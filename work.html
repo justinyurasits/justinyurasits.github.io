@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Work — Justin Yurasits</title>
+  <title>Selected Work — Justin Yurasits</title>
   <meta name="description" content="Engagements, tools, and case studies from Justin Yurasits — operational architecture for service businesses.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -387,6 +387,91 @@
       margin: 0;
     }
 
+    /* ─── PORTFOLIO SUMMARY ──────────────────────────── */
+
+    .portfolio-section {
+      background: var(--light-bg);
+      padding: 3.5rem 1.5rem 4rem;
+      border-bottom: 1px solid rgba(15,30,46,0.08);
+    }
+
+    .portfolio-inner {
+      max-width: 72rem;
+      margin: 0 auto;
+    }
+
+    .portfolio-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .portfolio-card {
+      background: #fff;
+      border: 1px solid rgba(15,30,46,0.08);
+      border-radius: 4px;
+      padding: 1.75rem 1.5rem 2rem;
+    }
+
+    .portfolio-card-industry {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: var(--muted);
+      margin: 0 0 0.5rem;
+    }
+
+    .portfolio-card-name {
+      font-family: 'Spectral', Georgia, serif;
+      font-weight: 700;
+      font-size: 1.1875rem;
+      line-height: 1.25;
+      color: var(--navy);
+      margin: 0 0 0.75rem;
+    }
+
+    .portfolio-card-desc {
+      font-size: 0.875rem;
+      line-height: 1.65;
+      color: #3D5468;
+      margin: 0;
+    }
+
+    .portfolio-card-status {
+      font-size: 0.875rem;
+      color: var(--teal);
+      font-style: italic;
+      margin: 0;
+    }
+
+    /* ─── DARK NARRATIVE BLOCKS ──────────────────────── */
+
+    .case-block-label--dark {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: #3E6480;
+      margin: 0 0 0.4rem;
+    }
+
+    .case-block-text--dark {
+      font-size: 0.9375rem;
+      line-height: 1.75;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .case-dark-blocks {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 4rem;
+      max-width: 56rem;
+    }
+
     /* ─── CTA ────────────────────────────────────────── */
 
     .cta-section {
@@ -508,6 +593,9 @@
       .case-light { padding: 4rem 1.5rem; }
       .case-layout { grid-template-columns: 1fr; gap: 2.5rem; }
       .case-dark { padding: 4rem 1.5rem; }
+      .portfolio-section { padding: 2.5rem 1.5rem 3rem; }
+      .portfolio-cards { grid-template-columns: 1fr; }
+      .case-dark-blocks { grid-template-columns: 1fr; gap: 0; }
       .cta-section { padding: 5.5rem 1.5rem; }
       .footer-cols { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
       .footer-links { justify-content: flex-start; }
@@ -575,8 +663,35 @@
   <!-- ─── HERO ─────────────────────────────────────────── -->
   <section class="work-hero" aria-labelledby="work-hero-h1">
     <div class="work-hero-inner">
-      <h1 class="work-hero-h1" id="work-hero-h1">Work</h1>
-      <p class="work-hero-sub">Engagements, tools, and case studies.</p>
+      <h1 class="work-hero-h1" id="work-hero-h1">Selected Work</h1>
+      <p class="work-hero-sub">The same methodology applied across different operational environments.</p>
+    </div>
+  </section>
+
+  <!-- ─── PORTFOLIO SUMMARY ──────────────────────────────── -->
+  <section class="portfolio-section" aria-label="Portfolio summary">
+    <div class="portfolio-inner">
+      <div class="portfolio-cards">
+
+        <div class="portfolio-card">
+          <p class="portfolio-card-industry">Residential Construction</p>
+          <p class="portfolio-card-name">Construction OS</p>
+          <p class="portfolio-card-desc">Operational architecture, document production, AI knowledge system</p>
+        </div>
+
+        <div class="portfolio-card">
+          <p class="portfolio-card-industry">Home Services</p>
+          <p class="portfolio-card-name">Home Modification OS</p>
+          <p class="portfolio-card-desc">Operational architecture, workflow documentation, service standardization</p>
+        </div>
+
+        <div class="portfolio-card">
+          <p class="portfolio-card-industry">Home Interiors</p>
+          <p class="portfolio-card-name">Beacon Hill Interiors</p>
+          <p class="portfolio-card-status">Engagement in progress</p>
+        </div>
+
+      </div>
     </div>
   </section>
 
@@ -611,7 +726,6 @@
             <p class="case-block-text">The team produces contract-ready documents in minutes. New PMs are productive on day one. The owner has stepped back from document production entirely.</p>
           </div>
 
-          <div class="case-screenshot" aria-label="Screenshot placeholder">[ screenshot ]</div>
         </div>
 
         <!-- Right: metrics -->
@@ -663,13 +777,33 @@
     </div>
   </section>
 
-  <!-- ─── CASE STUDY: BEACON HILL INTERIORS (dark) ─────── -->
-  <section class="case-dark" aria-labelledby="case-bhi-heading">
+  <!-- ─── CASE STUDY: HOME MODIFICATION OS (dark) ────────── -->
+  <section class="case-dark" aria-labelledby="case-hmod-heading">
     <div class="case-dark-inner">
       <p class="eyebrow">Case Study</p>
-      <h2 class="case-heading-light" id="case-bhi-heading">Beacon Hill Interiors</h2>
-      <span class="status-badge">Engagement in Progress</span>
-      <p class="case-dark-body">High-end interior design firm. Documenting client intake, project scoping, vendor management, and design standards. Case study coming once the engagement is complete.</p>
+      <h2 class="case-heading-light" id="case-hmod-heading">Home Modification OS</h2>
+
+      <div class="case-dark-blocks">
+        <div class="case-block">
+          <p class="case-block-label--dark">Client</p>
+          <p class="case-block-text--dark">Aging-in-place home modification services company.</p>
+        </div>
+
+        <div class="case-block">
+          <p class="case-block-label--dark">Problem</p>
+          <p class="case-block-text--dark">Service knowledge scattered across intake, scheduling, and field teams. No single source of truth for how work was scoped, priced, or executed.</p>
+        </div>
+
+        <div class="case-block">
+          <p class="case-block-label--dark">Work</p>
+          <p class="case-block-text--dark">Operational architecture across four core workflows. SOP framework and knowledge extraction.</p>
+        </div>
+
+        <div class="case-block">
+          <p class="case-block-label--dark">Outcome</p>
+          <p class="case-block-text--dark">Standardized service delivery. Operational knowledge no longer dependent on one person.</p>
+        </div>
+      </div>
     </div>
   </section>
 

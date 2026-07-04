@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Justin Yurasits — Operational Architecture for Service Businesses</title>
+  <meta name="description" content="We document how your business actually works, structure that knowledge for AI, and build systems that run without you in the room.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <style>
+    :root {
+      --navy:      #0F1E2E;
+      --navy-1:    #152333;
+      --teal:      #00A896;
+      --teal-dk:   #008E7E;
+      --offwhite:  #E8EDF2;
+      --muted:     #5E7F9A;
+      --light-bg:  #F7F8FA;
+      --body-dark: #1A2D3F;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--light-bg);
+      color: var(--body-dark);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── NAV ─────────────────────────────────────────── */
+
+    .site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--navy);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .nav-inner {
+      max-width: 72rem;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      height: 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .wordmark {
+      font-family: 'Spectral', Georgia, serif;
+      font-weight: 600;
+      font-size: 1.0625rem;
+      color: var(--offwhite);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+
+    .wordmark:hover { color: #fff; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover { color: var(--offwhite); }
+
+    .btn-book {
+      display: inline-block;
+      background: var(--teal);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      padding: 0.5rem 1.125rem;
+      border-radius: 3px;
+      text-decoration: none;
+      transition: background 0.15s;
+      white-space: nowrap;
+    }
+
+    .btn-book:hover { background: var(--teal-dk); }
+    .btn-book:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+
+    /* hamburger */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.25rem;
+      color: var(--muted);
+      transition: color 0.15s;
+    }
+    .nav-toggle:hover { color: var(--offwhite); }
+
+    /* mobile drawer */
+    .mobile-menu {
+      background: var(--navy-1);
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .mobile-menu-inner {
+      max-width: 72rem;
+      margin: 0 auto;
+      padding: 1.25rem 1.5rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .mobile-menu a {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 0.625rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      transition: color 0.15s;
+    }
+
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu a:hover { color: var(--offwhite); }
+
+    .mobile-menu .btn-book {
+      margin-top: 1rem;
+      text-align: center;
+      font-size: 1rem;
+      padding: 0.75rem 1.5rem;
+    }
+
+    /* ─── HERO ────────────────────────────────────────── */
+
+    .hero {
+      background: var(--navy);
+      min-height: calc(100vh - 4rem);
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-inner {
+      max-width: 72rem;
+      margin: 0 auto;
+      padding: 5rem 1.5rem 6rem;
+      max-width: 72rem;
+    }
+
+    .hero-content {
+      max-width: 44rem;
+    }
+
+    .hero-headline {
+      font-family: 'Spectral', Georgia, serif;
+      font-weight: 700;
+      font-size: clamp(2.25rem, 5vw, 3.75rem);
+      line-height: 1.1;
+      letter-spacing: -0.025em;
+      color: var(--offwhite);
+      text-wrap: balance;
+      margin: 0 0 1.5rem;
+    }
+
+    .hero-headline em {
+      font-style: normal;
+      color: var(--teal);
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.125rem);
+      line-height: 1.75;
+      color: var(--muted);
+      margin: 0 0 2.75rem;
+      max-width: 50ch;
+    }
+
+    .btn-hero {
+      display: inline-block;
+      background: var(--teal);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      padding: 0.875rem 2rem;
+      border-radius: 3px;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+
+    .btn-hero:hover { background: var(--teal-dk); }
+    .btn-hero:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
+
+    /* ─── WHY AI FAILS ──────────────────────────────── */
+
+    .eyebrow {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin: 0 0 1.25rem;
+    }
+
+    .why-section {
+      background: var(--light-bg);
+      padding: 5.5rem 1.5rem;
+    }
+
+    .why-inner {
+      max-width: 72rem;
+      margin: 0 auto;
+    }
+
+    .why-heading {
+      font-family: 'Spectral', Georgia, serif;
+      font-weight: 700;
+      font-size: clamp(1.625rem, 3vw, 2.375rem);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: var(--navy);
+      text-wrap: balance;
+      margin: 0 0 3.5rem;
+      max-width: 36rem;
+    }
+
+    .why-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .why-card {
+      background: #fff;
+      border: 1px solid rgba(15, 30, 46, 0.08);
+      border-radius: 4px;
+      padding: 2rem 1.875rem 2.25rem;
+    }
+
+    .why-card-title {
+      font-family: 'Spectral', Georgia, serif;
+      font-weight: 700;
+      font-size: 1.125rem;
+      line-height: 1.3;
+      color: var(--navy);
+      margin: 0 0 0.875rem;
+    }
+
+    .why-card-body {
+      font-size: 0.9375rem;
+      line-height: 1.7;
+      color: #3D5468;
+      margin: 0;
+    }
+
+    /* ─── THE METHOD ─────────────────────────────────── */
+
+    .method-section {
+      background: var(--navy);
+      padding: 5.5rem 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .method-inner {
+      max-width: 72rem;
+      margin: 0 auto;
+    }
+
+    .method-heading {
+      font-family: 'Spectral', Georgia, serif;
+      font-weight: 700;
+      font-size: clamp(1.625rem, 3vw, 2.375rem);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: var(--offwhite);
+      text-wrap: balance;
+      margin: 0 0 0.75rem;
+    }
+
+    .method-subhead {
+      font-size: 0.9375rem;
+      color: var(--muted);
+      margin: 0 0 3.5rem;
+      letter-spacing: 0.005em;
+    }
+
+    .method-row {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+    }
+
+    .method-card {
+      flex: 1;
+      background: #162637;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 4px;
+      padding: 2rem 1.875rem 2.25rem;
+    }
+
+    .method-card--destination {
+      border-left: 3px solid var(--teal);
+    }
+
+    .method-arrow {
+      flex: 0 0 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #2A4560;
+    }
+
+    .method-arrow svg {
+      display: block;
+    }
+
+    .method-card-title {
+      font-family: 'Spectral', Georgia, serif;
+      font-weight: 700;
+      font-size: 1.1875rem;
+      line-height: 1.25;
+      color: var(--offwhite);
+      margin: 0;
+    }
+
+    .method-card-title .step-num {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: #3E6480;
+      display: block;
+      margin-bottom: 0.625rem;
+      text-transform: uppercase;
+    }
+
+    .method-card--destination .method-card-title .step-num {
+      color: var(--teal);
+    }
+
+    .method-card-body {
+      font-size: 0.9375rem;
+      line-height: 1.7;
+      color: #6B8CA8;
+      margin: 0;
+    }
+
+    .method-tagline {
+      margin: 2.5rem 0 0;
+      font-size: 0.9375rem;
+      font-style: italic;
+      color: #3D5A74;
+      text-align: center;
+      letter-spacing: 0.005em;
+    }
+
+    /* ─── CASE STUDY ─────────────────────────────────── */
+
+    .case-section {
+      background: var(--light-bg);
+      padding: 5.5rem 1.5rem 4rem;
+    }
+
+    .case-inner {
+      max-width: 72rem;
+      margin: 0 auto;
+    }
+
+    .case-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4.5rem;
+      align-items: start;
+      margin-top: 3rem;
+    }
+
+    .case-block {
+      margin-bottom: 1.75rem;
+    }
+
+    .case-block-label {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: var(--navy);
+      margin: 0 0 0.4rem;
+    }
+
+    .case-block-text {
+      font-size: 0.9375rem;
+      line-height: 1.75;
+      color: #3D5468;
+      margin: 0;
+    }
+
+    .case-screenshot {
+      margin-top: 2.25rem;
+      background: #D5DAE0;
+      border-radius: 4px;
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #8A9BAC;
+      font-size: 0.8125rem;
+      letter-spacing: 0.04em;
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .metric-card {
+      background: #162637;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 4px;
+      padding: 1.375rem 1.25rem 1.5rem;
+    }
+
+    .metric-card-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: #3E6480;
+      margin: 0 0 1rem;
+    }
+
+    .metric-transform {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .metric-before {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8125rem;
+      color: #3A5870;
+      white-space: nowrap;
+    }
+
+    .metric-sep {
+      color: #2A4560;
+      font-size: 0.75rem;
+      flex-shrink: 0;
+    }
+
+    .metric-after {
+      font-family: 'Spectral', Georgia, serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--teal);
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .case-teal-link {
+      display: inline-block;
+      margin-top: 1.75rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--teal);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      transition: opacity 0.15s;
+    }
+
+    .case-teal-link:hover { opacity: 0.75; }
+
+    .case-footer-link {
+      display: block;
+      max-width: 72rem;
+      margin: 2.5rem auto 0;
+      padding: 0 1.5rem;
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: #3D5468;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .case-footer-link:hover { color: var(--navy); }
+
+    /* ─── DEPLOYED TOOLS ─────────────────────────────── */
+
+    .tools-section {
+      background: var(--navy);
+      padding: 5.5rem 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .tools-inner {
+      max-width: 72rem;
+      margin: 0 auto;
+    }
+
+    .tools-subhead {
+      font-size: 1rem;
+      line-height: 1.65;
+      color: var(--muted);
+      margin: 0.5rem 0 3rem;
+      max-width: 48ch;
+    }
+
+    .tools-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .tool-card {
+      background: #162637;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 4px;
+      padding: 2rem 1.875rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tool-name {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.0625rem;
+      font-weight: 600;
+      color: var(--teal);
+      letter-spacing: -0.01em;
+      margin: 0 0 0.625rem;
+    }
+
+    .tool-liner {
+      font-family: 'Spectral', Georgia, serif;
+      font-size: 1.0625rem;
+      font-weight: 400;
+      line-height: 1.45;
+      color: var(--offwhite);
+      margin: 0 0 0.875rem;
+    }
+
+    .tool-body {
+      font-size: 0.9375rem;
+      line-height: 1.7;
+      color: #6B8CA8;
+      margin: 0;
+      flex: 1;
+    }
+
+    .tool-link {
+      display: inline-block;
+      margin-top: 1.5rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--teal);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      transition: opacity 0.15s;
+    }
+
+    .tool-link:hover { opacity: 0.75; }
+
+    .tool-link--muted {
+      color: #3A5268;
+      font-weight: 500;
+      cursor: default;
+      pointer-events: none;
+    }
+
+    .tool-link--muted:hover { opacity: 1; }
+
+    .tools-footnote {
+      margin: 3rem 0 0;
+      font-size: 0.9375rem;
+      color: #3A5268;
+      text-align: center;
+      font-style: italic;
+    }
+
+    /* ─── CTA ────────────────────────────────────────── */
+
+    .cta-section {
+      background: var(--navy);
+      padding: 8rem 1.5rem;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .cta-heading {
+      font-family: 'Spectral', Georgia, serif;
+      font-weight: 700;
+      font-size: clamp(1.75rem, 4vw, 2.875rem);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--offwhite);
+      text-wrap: balance;
+      margin: 0 auto 1.25rem;
+      max-width: 28rem;
+    }
+
+    .cta-body {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--muted);
+      margin: 0 auto 2.5rem;
+      max-width: 38ch;
+    }
+
+    .cta-note {
+      margin-top: 1.5rem;
+      font-size: 0.8125rem;
+      color: #3A5268;
+      letter-spacing: 0.01em;
+    }
+
+    /* ─── FOOTER ─────────────────────────────────────── */
+
+    .site-footer {
+      background: var(--navy);
+      border-top: 1px solid #1E3A4F;
+      padding: 2.5rem 1.5rem 2rem;
+    }
+
+    .footer-inner {
+      max-width: 72rem;
+      margin: 0 auto;
+    }
+
+    .footer-cols {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-wordmark {
+      font-family: 'Spectral', Georgia, serif;
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--offwhite);
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    .footer-descriptor {
+      font-size: 0.8125rem;
+      color: var(--muted);
+    }
+
+    .footer-links {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .footer-links a {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .footer-links a:hover { color: var(--offwhite); }
+
+    .footer-sep {
+      color: #1E3A4F;
+      font-size: 0.8125rem;
+    }
+
+    .footer-copy {
+      font-size: 0.75rem;
+      color: #2A4560;
+      text-align: center;
+      border-top: 1px solid #152333;
+      padding-top: 1.5rem;
+    }
+
+    /* ─── RESPONSIVE ─────────────────────────────────── */
+
+    @media (max-width: 767px) {
+      .nav-links { display: none; }
+      .nav-toggle { display: flex; }
+      .hero { min-height: auto; }
+      .hero-inner { padding: 3.5rem 1.5rem 4rem; }
+      .why-cards { grid-template-columns: 1fr; }
+      .why-section { padding: 4rem 1.5rem; }
+      .method-row { flex-direction: column; gap: 1rem; }
+      .method-arrow { display: none; }
+      .method-section { padding: 4rem 1.5rem; }
+      .case-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+      .case-section { padding: 4rem 1.5rem 3rem; }
+      .tools-cards { grid-template-columns: 1fr; }
+      .tools-section { padding: 4rem 1.5rem; }
+      .cta-section { padding: 5.5rem 1.5rem; }
+      .footer-cols { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+      .footer-links { justify-content: flex-start; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ─── NAV ─────────────────────────────────────────── -->
+  <header class="site-nav" x-data="{ open: false }">
+    <div class="nav-inner">
+      <a href="/" class="wordmark">Justin Yurasits</a>
+
+      <ul class="nav-links" role="list">
+        <li><a href="/work.html">Work</a></li>
+        <li><a href="/engagements.html">Engagements</a></li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/insights.html">Insights</a></li>
+        <li><a href="https://cal.com/justinyurasits" class="btn-book">Book a Call</a></li>
+      </ul>
+
+      <button
+        class="nav-toggle"
+        @click="open = !open"
+        :aria-expanded="open.toString()"
+        aria-controls="mobile-menu"
+        aria-label="Toggle navigation"
+      >
+        <svg x-show="!open" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24" aria-hidden="true">
+          <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+        <svg x-show="open" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24" aria-hidden="true" style="display:none">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+
+    <div
+      id="mobile-menu"
+      class="mobile-menu"
+      x-show="open"
+      x-transition:enter="transition ease-out duration-150"
+      x-transition:enter-start="opacity-0 -translate-y-1"
+      x-transition:enter-end="opacity-100 translate-y-0"
+      x-transition:leave="transition ease-in duration-100"
+      x-transition:leave-start="opacity-100 translate-y-0"
+      x-transition:leave-end="opacity-0 -translate-y-1"
+      style="display:none"
+    >
+      <nav class="mobile-menu-inner" aria-label="Mobile navigation">
+        <a href="/work.html">Work</a>
+        <a href="/engagements.html">Engagements</a>
+        <a href="/about.html">About</a>
+        <a href="/insights.html">Insights</a>
+        <a href="https://cal.com/justinyurasits" class="btn-book">Book a Call</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ─── HERO ─────────────────────────────────────────── -->
+  <section class="hero" aria-labelledby="hero-headline">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <h1 class="hero-headline" id="hero-headline">
+          Your operation runs on 10 years of knowledge that lives in one person's head. <em>That's your biggest risk.</em>
+        </h1>
+        <p class="hero-sub">
+          We document how your business actually works, structure that knowledge for AI, and build systems that run without you in the room.
+        </p>
+        <a href="https://cal.com/justinyurasits" class="btn-hero">Book a 30-Minute Call</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── WHY AI PROJECTS FAIL ───────────────────────── -->
+  <section class="why-section" aria-labelledby="why-heading">
+    <div class="why-inner">
+      <p class="eyebrow">Why AI Projects Fail</p>
+      <h2 class="why-heading" id="why-heading">Most AI implementations fail because the business isn't legible.</h2>
+
+      <div class="why-cards">
+
+        <div class="why-card">
+          <h3 class="why-card-title">Knowledge lives in people's heads.</h3>
+          <p class="why-card-body">Expertise is intuitive, not documented. AI can't reason from knowledge it can't see.</p>
+        </div>
+
+        <div class="why-card">
+          <h3 class="why-card-title">Workflows are undocumented.</h3>
+          <p class="why-card-body">How work actually happens differs from how it's described. That gap is exactly where AI breaks down in production.</p>
+        </div>
+
+        <div class="why-card">
+          <h3 class="why-card-title">Decision logic has never been written down.</h3>
+          <p class="why-card-body">Pricing, exceptions, client judgment — none of it is in a system AI can reason from. So it guesses. And guesses wrong.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── THE METHOD ──────────────────────────────────── -->
+  <section class="method-section" aria-labelledby="method-heading">
+    <div class="method-inner">
+      <p class="eyebrow">The Method</p>
+      <h2 class="method-heading" id="method-heading">Document first. Then build the AI layer.</h2>
+      <p class="method-subhead">A fixed sequence. Each step depends on the one before it.</p>
+
+      <div class="method-row">
+
+        <div class="method-card">
+          <h3 class="method-card-title"><span class="step-num">1 · Document</span></h3>
+          <p class="method-card-body">We capture how the business actually operates — the real workflows, decisions, pricing logic, and communication standards. Not the ideal version. The real one.</p>
+        </div>
+
+        <div class="method-arrow" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"/>
+          </svg>
+        </div>
+
+        <div class="method-card">
+          <h3 class="method-card-title"><span class="step-num">2 · Structure</span></h3>
+          <p class="method-card-body">Every piece of operational knowledge gets organized into the right container. Procedures. Reference data. Judgment rules. Document standards. Each in its proper place.</p>
+        </div>
+
+        <div class="method-arrow" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"/>
+          </svg>
+        </div>
+
+        <div class="method-card method-card--destination">
+          <h3 class="method-card-title"><span class="step-num">3 · Automate</span></h3>
+          <p class="method-card-body">The AI layer runs on top of that structure. It knows your business. Repetitive work runs itself — and your team gets instant, accurate answers about any part of the operation.</p>
+        </div>
+
+      </div>
+
+      <p class="method-tagline">Most consultants skip straight to step 3. That's why it doesn't work.</p>
+    </div>
+  </section>
+
+  <!-- ─── CASE STUDY ───────────────────────────────────── -->
+  <section class="case-section" aria-labelledby="case-heading">
+    <div class="case-inner">
+      <p class="eyebrow">Case Study</p>
+      <h2 class="why-heading" id="case-heading">The method applied to a residential GC in Boston.</h2>
+
+      <div class="case-layout">
+
+        <!-- Left: narrative -->
+        <div>
+          <div class="case-block">
+            <p class="case-block-label">Client</p>
+            <p class="case-block-text">High-end residential general contractor. 15–20 active projects. 5-person PM team.</p>
+          </div>
+          <div class="case-block">
+            <p class="case-block-label">Problem</p>
+            <p class="case-block-text">Project knowledge scattered across people, email threads, and file systems. Every document built from scratch. New PMs needed months before they were productive.</p>
+          </div>
+          <div class="case-block">
+            <p class="case-block-label">What we built</p>
+            <p class="case-block-text">Construction OS — an AI operating system built on 160+ SOPs and a 1,258-line pricing database from real project data. Full document production suite.</p>
+          </div>
+          <div class="case-screenshot" aria-label="Screenshot placeholder">[ screenshot ]</div>
+        </div>
+
+        <!-- Right: metrics -->
+        <div>
+          <div class="metric-grid">
+
+            <div class="metric-card">
+              <p class="metric-card-label">Contract Packages</p>
+              <div class="metric-transform">
+                <span class="metric-before">4–8 hrs</span>
+                <span class="metric-sep">→</span>
+                <span class="metric-after">30 min</span>
+              </div>
+            </div>
+
+            <div class="metric-card">
+              <p class="metric-card-label">Preliminary Estimates</p>
+              <div class="metric-transform">
+                <span class="metric-before">½ day</span>
+                <span class="metric-sep">→</span>
+                <span class="metric-after">1 hour</span>
+              </div>
+            </div>
+
+            <div class="metric-card">
+              <p class="metric-card-label">Change Order Turnaround</p>
+              <div class="metric-transform">
+                <span class="metric-before">10 days</span>
+                <span class="metric-sep">→</span>
+                <span class="metric-after">3 days</span>
+              </div>
+            </div>
+
+            <div class="metric-card">
+              <p class="metric-card-label">New PM Onboarding</p>
+              <div class="metric-transform">
+                <span class="metric-before">Months</span>
+                <span class="metric-sep">→</span>
+                <span class="metric-after">Day one</span>
+              </div>
+            </div>
+
+          </div>
+
+          <a href="https://draftconstructionchangeorder.com" class="case-teal-link">Try the Change Order Drafter →</a>
+        </div>
+
+      </div>
+    </div>
+
+    <a href="/work.html" class="case-footer-link">See the full case study →</a>
+  </section>
+
+  <!-- ─── DEPLOYED TOOLS ───────────────────────────────── -->
+  <section class="tools-section" aria-labelledby="tools-heading">
+    <div class="tools-inner">
+      <p class="eyebrow">Deployed Tools</p>
+      <h2 class="method-heading" id="tools-heading">These aren't demos. They run on real business problems.</h2>
+      <p class="tools-subhead">Every tool we build is grounded in documented operational knowledge — not a generic template.</p>
+
+      <div class="tools-cards">
+
+        <div class="tool-card">
+          <p class="tool-name">Change Order Drafter</p>
+          <p class="tool-liner">Takes field notes and produces a contract-ready change order package in minutes.</p>
+          <p class="tool-body">Built on real SOPs and a trade-specific pricing database with automatic markup.</p>
+          <a href="https://draftconstructionchangeorder.com" class="tool-link">Try it →</a>
+        </div>
+
+        <div class="tool-card">
+          <p class="tool-name">Construction OS</p>
+          <p class="tool-liner">An AI operating system that answers any question about how the business operates — instantly, from documented SOPs.</p>
+          <p class="tool-body">Built for a residential GC in Boston.</p>
+          <span class="tool-link tool-link--muted">Coming soon</span>
+        </div>
+
+      </div>
+
+      <p class="tools-footnote">More tools in development. Each one starts with an Operational Architecture Assessment.</p>
+    </div>
+  </section>
+
+  <!-- ─── CTA ──────────────────────────────────────────── -->
+  <section class="cta-section" aria-labelledby="cta-heading">
+    <h2 class="cta-heading" id="cta-heading">Let's map out what this looks like for your business.</h2>
+    <p class="cta-body">A 30-minute conversation. No pitch. No commitment. Just clarity on whether this is the right fit.</p>
+    <a href="https://cal.com/justinyurasits" class="btn-hero">Book a 30-Minute Call</a>
+    <p class="cta-note">justin@justinyurasits.com &middot; justinyurasits.com</p>
+  </section>
+
+  <!-- ─── FOOTER ────────────────────────────────────────── -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-cols">
+        <div>
+          <span class="footer-wordmark">Justin Yurasits</span>
+          <span class="footer-descriptor">Operational Architecture for Service Businesses</span>
+        </div>
+        <div class="footer-links">
+          <a href="mailto:justin@justinyurasits.com">justin@justinyurasits.com</a>
+          <span class="footer-sep">&middot;</span>
+          <a href="https://linkedin.com/in/justinyurasits">linkedin.com/in/justinyurasits</a>
+        </div>
+      </div>
+      <p class="footer-copy">&copy; 2026 Justin Yurasits. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

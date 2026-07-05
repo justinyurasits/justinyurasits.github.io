@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Engagements — Justin Yurasits</title>
-  <meta name="description" content="How the work is structured, and what to expect. Every engagement starts with an Operational Architecture Assessment.">
+  <meta name="description" content="Two phases. Clear deliverables. Full ownership transfer. How an engagement with Justin Yurasits works.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -87,7 +87,6 @@
     }
 
     .nav-links a:hover { color: var(--offwhite); }
-
     .nav-links a[aria-current="page"] { color: var(--offwhite); }
 
     .btn-book {
@@ -156,11 +155,23 @@
       padding: 0.75rem 1.5rem;
     }
 
-    /* ─── PAGE HERO ──────────────────────────────────── */
+    /* ─── EYEBROW ─────────────────────────────────────── */
+
+    .eyebrow {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin: 0 0 1.25rem;
+    }
+
+    /* ─── HERO ────────────────────────────────────────── */
 
     .page-hero {
       background: var(--navy);
-      padding: 5rem 1.5rem;
+      padding: 5rem 1.5rem 5.5rem;
     }
 
     .page-hero-inner {
@@ -176,6 +187,7 @@
       letter-spacing: -0.025em;
       color: var(--offwhite);
       margin: 0 0 0.875rem;
+      text-wrap: balance;
     }
 
     .page-hero-sub {
@@ -184,137 +196,305 @@
       font-weight: 400;
       color: var(--muted);
       margin: 0;
-      line-height: 1.6;
     }
 
-    /* ─── SHARED EYEBROW ─────────────────────────────── */
+    /* ─── OUTCOMES SECTION ────────────────────────────── */
 
-    .eyebrow {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.6875rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--teal);
-      margin: 0 0 1.25rem;
-    }
-
-    /* ─── INTRO SECTION ──────────────────────────────── */
-
-    .intro-section {
+    .outcomes-section {
       background: var(--light-bg);
       padding: 5.5rem 1.5rem;
     }
 
-    .intro-inner {
+    .outcomes-inner {
       max-width: 72rem;
       margin: 0 auto;
     }
 
-    .intro-heading {
+    .outcomes-heading {
       font-family: 'Spectral', Georgia, serif;
       font-weight: 700;
       font-size: clamp(1.625rem, 3vw, 2.375rem);
       line-height: 1.2;
       letter-spacing: -0.02em;
       color: var(--navy);
-      text-wrap: balance;
-      margin: 0 0 1.25rem;
-      max-width: 32rem;
+      margin: 0 0 2.5rem;
     }
 
-    .intro-body {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.9375rem;
-      font-weight: 400;
-      color: #3D5468;
-      line-height: 1.75;
-      max-width: 52ch;
-      margin: 0 0 3.5rem;
-    }
-
-    /* ─── ENGAGEMENT CARDS ────────────────────────────── */
-
-    .engagement-stack {
-      display: flex;
-      flex-direction: column;
+    .outcomes-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
       gap: 1.25rem;
     }
 
-    .engagement-card {
+    .outcome-card {
       background: #fff;
-      border: 1px solid rgba(15, 30, 46, 0.08);
+      border: 1px solid rgba(15,30,46,0.08);
+      border-left: 3px solid rgba(0,168,150,0.25);
       border-radius: 4px;
-      padding: 2rem 2.25rem;
+      padding: 1.5rem 1.375rem 1.625rem;
+    }
+
+    .outcome-card-text {
+      font-size: 0.9375rem;
+      line-height: 1.6;
+      color: var(--body-dark);
+      font-weight: 500;
+      margin: 0;
+    }
+
+    /* ─── PHASE SECTIONS ──────────────────────────────── */
+
+    .phase1-section {
+      background: var(--navy);
+      padding: 5.5rem 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .phase2-section {
+      background: var(--light-bg);
+      padding: 5.5rem 1.5rem;
+      border-top: 1px solid rgba(15,30,46,0.08);
+    }
+
+    .phase-inner {
+      max-width: 72rem;
+      margin: 0 auto;
+    }
+
+    .phase-heading--dark {
+      font-family: 'Spectral', Georgia, serif;
+      font-weight: 700;
+      font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+      line-height: 1.15;
+      letter-spacing: -0.025em;
+      color: var(--offwhite);
+      margin: 0 0 0.75rem;
+      text-wrap: balance;
+    }
+
+    .phase-heading--light {
+      font-family: 'Spectral', Georgia, serif;
+      font-weight: 700;
+      font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+      line-height: 1.15;
+      letter-spacing: -0.025em;
+      color: var(--navy);
+      margin: 0 0 0.75rem;
+      text-wrap: balance;
+    }
+
+    .phase-meta--dark {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: #3E6480;
+      margin: 0 0 1.5rem;
+      letter-spacing: 0.02em;
+    }
+
+    .phase-meta--light {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--muted);
+      margin: 0 0 1.5rem;
+      letter-spacing: 0.02em;
+    }
+
+    .phase-desc--dark {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: var(--muted);
+      max-width: 54ch;
+      margin: 0 0 3rem;
+    }
+
+    .phase-desc--light {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: #3D5468;
+      max-width: 54ch;
+      margin: 0 0 3rem;
+    }
+
+    .phase-cards {
       display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 3rem;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+
+    .phase-card--dark {
+      background: #162637;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 4px;
+      padding: 1.625rem 1.5rem 1.75rem;
+    }
+
+    .phase-card--light {
+      background: #fff;
+      border: 1px solid rgba(15,30,46,0.08);
+      border-radius: 4px;
+      padding: 1.625rem 1.5rem 1.75rem;
+    }
+
+    .phase-card-name--dark {
+      font-family: 'Spectral', Georgia, serif;
+      font-weight: 700;
+      font-size: 1.0625rem;
+      color: var(--offwhite);
+      margin: 0;
+    }
+
+    .phase-card-name--light {
+      font-family: 'Spectral', Georgia, serif;
+      font-weight: 700;
+      font-size: 1.0625rem;
+      color: var(--navy);
+      margin: 0;
+    }
+
+    .phase-investment--dark {
+      margin: 2.5rem 0 0;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      color: #3E6480;
+      letter-spacing: 0.01em;
+    }
+
+    .phase-investment--dark strong {
+      font-family: 'Spectral', Georgia, serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--offwhite);
+      letter-spacing: -0.01em;
+      margin-left: 0.375rem;
+    }
+
+    .phase-investment--light {
+      margin: 2.5rem 0 0;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      color: var(--muted);
+      letter-spacing: 0.01em;
+    }
+
+    .phase-investment--light strong {
+      font-family: 'Spectral', Georgia, serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: -0.01em;
+      margin-left: 0.375rem;
+    }
+
+    /* ─── SCOPE SECTION ───────────────────────────────── */
+
+    .scope-section {
+      background: var(--navy);
+      padding: 5.5rem 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .scope-inner {
+      max-width: 72rem;
+      margin: 0 auto;
+    }
+
+    .scope-heading {
+      font-family: 'Spectral', Georgia, serif;
+      font-weight: 700;
+      font-size: clamp(1.625rem, 3vw, 2.375rem);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: var(--offwhite);
+      margin: 0 0 3rem;
+      max-width: 32rem;
+      text-wrap: balance;
+    }
+
+    .scope-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
       align-items: start;
     }
 
-    .card-left-label {
+    .scope-col-label {
       font-family: 'Inter', sans-serif;
       font-size: 0.6875rem;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.09em;
-      color: var(--teal);
-      margin: 0;
+      color: #3E6480;
+      margin: 0 0 1.25rem;
     }
 
-    .card-left-name {
-      font-family: 'Spectral', Georgia, serif;
-      font-weight: 700;
-      font-size: 1.375rem;
-      line-height: 1.2;
-      color: var(--navy);
-      margin: 0.375rem 0 0;
-    }
-
-    .card-left-duration {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.8125rem;
-      font-weight: 400;
-      color: #6B8CA8;
-      margin: 0.375rem 0 0;
-    }
-
-    .card-right-desc {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.9375rem;
-      font-weight: 400;
-      color: #3D5468;
-      line-height: 1.75;
-      margin: 0 0 1rem;
-    }
-
-    .card-right-list {
+    .scope-list {
       list-style: none;
       padding: 0;
       margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.875rem;
     }
 
-    .card-right-list li {
-      font-family: 'Inter', sans-serif;
+    .scope-list li {
       font-size: 0.9375rem;
-      font-weight: 400;
-      color: #3D5468;
-      line-height: 1.9;
-      padding-left: 0;
+      line-height: 1.6;
+      color: var(--muted);
+      padding-left: 1rem;
+      position: relative;
     }
 
-    .card-right-list li::before {
-      content: '— ';
-      color: var(--teal);
+    .scope-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.55em;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: #2A4560;
+    }
+
+    .scope-right-body {
+      font-size: 0.9375rem;
+      line-height: 1.75;
+      color: var(--muted);
+      margin: 0 0 1.75rem;
+    }
+
+    .scope-example {
+      background: #162637;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 4px;
+      padding: 1.375rem 1.5rem;
+    }
+
+    .scope-example-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: #3E6480;
+      margin: 0 0 0.625rem;
+    }
+
+    .scope-example-items {
+      font-size: 0.9375rem;
+      line-height: 1.7;
+      color: #6B8CA8;
+      margin: 0;
     }
 
     /* ─── CTA ────────────────────────────────────────── */
 
     .cta-section {
       background: var(--navy);
-      border-top: 1px solid rgba(255,255,255,0.05);
       padding: 7rem 1.5rem;
       text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.05);
     }
 
     .cta-heading {
@@ -325,21 +505,11 @@
       letter-spacing: -0.02em;
       color: var(--offwhite);
       text-wrap: balance;
-      margin: 0 auto 1.25rem;
-      max-width: 30rem;
-    }
-
-    .cta-body {
-      font-family: 'Inter', sans-serif;
-      font-size: 1rem;
-      font-weight: 400;
-      line-height: 1.7;
-      color: var(--muted);
-      max-width: 40ch;
       margin: 0 auto 2.5rem;
+      max-width: 28rem;
     }
 
-    .btn-hero {
+    .btn-cta {
       display: inline-block;
       background: var(--teal);
       color: #fff;
@@ -353,8 +523,15 @@
       transition: background 0.15s;
     }
 
-    .btn-hero:hover { background: var(--teal-dk); }
-    .btn-hero:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
+    .btn-cta:hover { background: var(--teal-dk); }
+    .btn-cta:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
+
+    .cta-subtext {
+      margin: 1.75rem 0 0;
+      font-size: 0.8125rem;
+      color: #2E4E68;
+      letter-spacing: 0.01em;
+    }
 
     /* ─── FOOTER ─────────────────────────────────────── */
 
@@ -426,19 +603,15 @@
     @media (max-width: 767px) {
       .nav-links { display: none; }
       .nav-toggle { display: flex; }
-
-      .page-hero { padding: 3.5rem 1.5rem; }
-
-      .intro-section { padding: 4rem 1.5rem; }
-
-      .engagement-card {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-        padding: 1.5rem 1.25rem;
-      }
-
-      .cta-section { padding: 5rem 1.5rem; }
-
+      .page-hero { padding: 3.5rem 1.5rem 4rem; }
+      .outcomes-section { padding: 4rem 1.5rem; }
+      .outcomes-grid { grid-template-columns: 1fr; }
+      .phase1-section { padding: 4rem 1.5rem; }
+      .phase2-section { padding: 4rem 1.5rem; }
+      .phase-cards { grid-template-columns: 1fr; }
+      .scope-section { padding: 4rem 1.5rem; }
+      .scope-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .cta-section { padding: 5.5rem 1.5rem; }
       .footer-cols { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
       .footer-links { justify-content: flex-start; }
     }
@@ -504,77 +677,138 @@
     </div>
   </header>
 
-  <!-- ─── PAGE HERO ────────────────────────────────────── -->
+  <!-- ─── HERO ─────────────────────────────────────────── -->
   <section class="page-hero" aria-labelledby="page-h1">
     <div class="page-hero-inner">
-      <h1 class="page-hero-h1" id="page-h1">Engagements</h1>
-      <p class="page-hero-sub">How the work is structured, and what to expect.</p>
+      <h1 class="page-hero-h1" id="page-h1">How an Engagement Works.</h1>
+      <p class="page-hero-sub">Two phases. Clear deliverables. Full ownership transfer.</p>
     </div>
   </section>
 
-  <!-- ─── INTRO + ENGAGEMENT CARDS ─────────────────────── -->
-  <section class="intro-section" aria-labelledby="intro-heading">
-    <div class="intro-inner">
+  <!-- ─── WHAT YOU LEAVE WITH ──────────────────────────── -->
+  <section class="outcomes-section" aria-labelledby="outcomes-heading">
+    <div class="outcomes-inner">
+      <h2 class="outcomes-heading" id="outcomes-heading">What you leave with.</h2>
+      <div class="outcomes-grid" role="list">
 
-      <p class="eyebrow">The Model</p>
-      <h2 class="intro-heading" id="intro-heading">Every engagement starts in the same place.</h2>
-      <p class="intro-body">Before we build anything, we map what's there. An Operational Architecture Assessment gives us a clear picture of how your business actually operates — where knowledge lives, how decisions get made, and what's missing. Everything else follows from that.</p>
+        <div class="outcome-card" role="listitem">
+          <p class="outcome-card-text">Documented workflows for every core process</p>
+        </div>
 
-      <div class="engagement-stack">
+        <div class="outcome-card" role="listitem">
+          <p class="outcome-card-text">Structured business knowledge your whole team can access</p>
+        </div>
 
-        <!-- Card 1 -->
-        <article class="engagement-card">
-          <div class="card-left">
-            <p class="card-left-label">01 · Entry Point</p>
-            <h3 class="card-left-name">Operational Architecture Assessment</h3>
-            <p class="card-left-duration">2–3 weeks</p>
-          </div>
-          <div class="card-right">
-            <p class="card-right-desc">A structured review of how your business actually operates. We interview the people who hold the knowledge, map the workflows and decision logic, and identify exactly where the gaps are.</p>
-            <ul class="card-right-list">
-              <li>Documentation inventory: what exists, what doesn't</li>
-              <li>Knowledge gap analysis: where the real risk is</li>
-              <li>AI-readiness assessment: what's ready to automate and what isn't</li>
-              <li>Engagement roadmap: what to build next and in what order</li>
-            </ul>
-          </div>
-        </article>
+        <div class="outcome-card" role="listitem">
+          <p class="outcome-card-text">SOP libraries organized for AI integration</p>
+        </div>
 
-        <!-- Card 2 -->
-        <article class="engagement-card">
-          <div class="card-left">
-            <p class="card-left-label">02 · Documentation</p>
-            <h3 class="card-left-name">Documentation Sprint</h3>
-            <p class="card-left-duration">4–6 weeks</p>
-          </div>
-          <div class="card-right">
-            <p class="card-right-desc">We document a specific domain of your business — workflows, pricing logic, decision rules, communication standards — from the ground up. The output is a structured knowledge base, not a binder on a shelf.</p>
-            <ul class="card-right-list">
-              <li>SOP library for the target domain</li>
-              <li>Pricing and reference data in structured format</li>
-              <li>Judgment rules and exception logic written down</li>
-              <li>Review and validation with the team</li>
-            </ul>
-          </div>
-        </article>
+        <div class="outcome-card" role="listitem">
+          <p class="outcome-card-text">AI-ready operational architecture</p>
+        </div>
 
-        <!-- Card 3 -->
-        <article class="engagement-card">
-          <div class="card-left">
-            <p class="card-left-label">03 · Implementation</p>
-            <h3 class="card-left-name">AI Implementation</h3>
-            <p class="card-left-duration">Scoped per engagement</p>
+        <div class="outcome-card" role="listitem">
+          <p class="outcome-card-text">Working tools and systems built for your operation</p>
+        </div>
+
+        <div class="outcome-card" role="listitem">
+          <p class="outcome-card-text">Full team training and ownership transfer</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── PHASE 1 ───────────────────────────────────────── -->
+  <section class="phase1-section" aria-labelledby="phase1-heading">
+    <div class="phase-inner">
+      <p class="eyebrow">Phase 1</p>
+      <h2 class="phase-heading--dark" id="phase1-heading">Operational Architecture Assessment.</h2>
+      <p class="phase-meta--dark">2–4 weeks &middot; Fixed fee</p>
+      <p class="phase-desc--dark">We spend time inside the business — observing, mapping, and extracting how it actually operates. Not the ideal version. The real one.</p>
+
+      <div class="phase-cards">
+
+        <div class="phase-card--dark">
+          <p class="phase-card-name--dark">Workflow Maps</p>
+        </div>
+
+        <div class="phase-card--dark">
+          <p class="phase-card-name--dark">Knowledge Inventory</p>
+        </div>
+
+        <div class="phase-card--dark">
+          <p class="phase-card-name--dark">Decision Architecture</p>
+        </div>
+
+        <div class="phase-card--dark">
+          <p class="phase-card-name--dark">AI Implementation Roadmap</p>
+        </div>
+
+      </div>
+
+      <p class="phase-investment--dark">Investment <strong>$10–15K</strong></p>
+    </div>
+  </section>
+
+  <!-- ─── PHASE 2 ───────────────────────────────────────── -->
+  <section class="phase2-section" aria-labelledby="phase2-heading">
+    <div class="phase-inner">
+      <p class="eyebrow">Phase 2</p>
+      <h2 class="phase-heading--light" id="phase2-heading">Operational System Build.</h2>
+      <p class="phase-meta--light">4–12 weeks &middot; Fixed fee</p>
+      <p class="phase-desc--light">We build the systems identified in Phase 1 — grounded in your actual operations, tested against real work, transferred to your team.</p>
+
+      <div class="phase-cards">
+
+        <div class="phase-card--light">
+          <p class="phase-card-name--light">Construction OS</p>
+        </div>
+
+        <div class="phase-card--light">
+          <p class="phase-card-name--light">Change Order OS</p>
+        </div>
+
+        <div class="phase-card--light">
+          <p class="phase-card-name--light">Knowledge Systems</p>
+        </div>
+
+        <div class="phase-card--light">
+          <p class="phase-card-name--light">Document Production Systems</p>
+        </div>
+
+      </div>
+
+      <p class="phase-investment--light">Investment <strong>$25–50K</strong></p>
+    </div>
+  </section>
+
+  <!-- ─── SCOPE DEFINITION ─────────────────────────────── -->
+  <section class="scope-section" aria-labelledby="scope-heading">
+    <div class="scope-inner">
+      <h2 class="scope-heading" id="scope-heading">Scope is defined before anything is signed.</h2>
+
+      <div class="scope-grid">
+
+        <div>
+          <p class="scope-col-label">What the scoping call covers</p>
+          <ul class="scope-list">
+            <li>Where operational knowledge currently lives — and where it doesn't</li>
+            <li>Which workflows cause the most friction for your team</li>
+            <li>Team structure, handoff points, and who holds the knowledge</li>
+            <li>Current documentation state and AI readiness</li>
+            <li>Whether Phase 1 is the right entry point</li>
+          </ul>
+        </div>
+
+        <div>
+          <p class="scope-col-label">What gets agreed before signing</p>
+          <p class="scope-right-body">Before Phase 1 begins, 3–5 priority workflows are identified and agreed in writing. The engagement is scoped to those workflows — nothing open-ended.</p>
+          <div class="scope-example">
+            <p class="scope-example-label">Example — Residential GC</p>
+            <p class="scope-example-items">Estimating &middot; Change orders &middot; PM onboarding</p>
           </div>
-          <div class="card-right">
-            <p class="card-right-desc">With documentation in place, we build the AI layer. This could be a document production suite, an AI Q&amp;A system trained on your SOPs, or automated workflows that run without manual input. The scope depends on what the Assessment and Sprint uncovered.</p>
-            <ul class="card-right-list">
-              <li>Tool design based on documented knowledge</li>
-              <li>Build and deployment</li>
-              <li>Team training and handoff</li>
-              <li>30-day post-launch support</li>
-            </ul>
-          </div>
-        </article>
+        </div>
 
       </div>
     </div>
@@ -582,10 +816,9 @@
 
   <!-- ─── CTA ──────────────────────────────────────────── -->
   <section class="cta-section" aria-labelledby="cta-heading">
-    <p class="eyebrow">Get Started</p>
-    <h2 class="cta-heading" id="cta-heading">Every engagement starts with an Operational Architecture Assessment.</h2>
-    <p class="cta-body">A 30-minute call is the first step. We'll talk about your business, where the knowledge gaps are, and whether an Assessment makes sense.</p>
-    <a href="https://cal.com/justinyurasits" class="btn-hero">Book a 30-Minute Call</a>
+    <h2 class="cta-heading" id="cta-heading">Start with a 30-minute scoping call.</h2>
+    <a href="https://cal.com/justinyurasits" class="btn-cta">Book a 30-Minute Call</a>
+    <p class="cta-subtext">No commitment until scope is agreed. Phase 1 stands alone as a deliverable.</p>
   </section>
 
   <!-- ─── FOOTER ────────────────────────────────────────── -->

@@ -229,6 +229,16 @@
       margin: 0 0 3rem;
     }
 
+    .case-subhead--dark {
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.7;
+      color: var(--muted);
+      max-width: 52ch;
+      margin: 0 0 3rem;
+    }
+
     .case-layout {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -778,32 +788,150 @@
     </div>
   </section>
 
-  <!-- ─── CASE STUDY: HOME MODIFICATION OS (dark) ────────── -->
-  <section class="case-dark" aria-labelledby="case-hmod-heading">
+  <!-- ─── CASE STUDY: HOME MODIFICATION OS (light) ───────── -->
+  <section class="case-light" aria-labelledby="case-hmod-heading" style="border-top: 1px solid rgba(15,30,46,0.08);">
+    <div class="case-light-inner">
+      <p class="eyebrow">Case Study</p>
+      <h2 class="case-heading" id="case-hmod-heading">Home Modification OS</h2>
+      <p class="case-subhead">A home modification company needed to stop losing a full day every time a new client came through the door.</p>
+
+      <div class="case-layout">
+
+        <!-- Left: narrative -->
+        <div>
+          <div class="case-block">
+            <p class="case-block-label">Client</p>
+            <p class="case-block-text">Aging-in-place home modification services company. Northeast.</p>
+          </div>
+
+          <div class="case-block">
+            <p class="case-block-label">Problem</p>
+            <p class="case-block-text">Every client engagement started with a manual site visit brief and hours of document preparation before a quote could go out. The process was slow, inconsistent, and dependent on one person.</p>
+          </div>
+
+          <div class="case-block">
+            <p class="case-block-label">What We Built</p>
+            <p class="case-block-text">Operational architecture across the intake and quoting workflow. Standardized the site visit process, documented assessment criteria, and built an AI-powered quote generation system grounded in real service data.</p>
+          </div>
+        </div>
+
+        <!-- Right: metrics -->
+        <div>
+          <div class="metric-grid">
+
+            <div class="metric-card">
+              <p class="metric-card-label">Visit Brief Preparation</p>
+              <div class="metric-transform">
+                <span class="metric-before">1 day</span>
+                <span class="metric-sep">→</span>
+                <span class="metric-after">1 hour</span>
+              </div>
+            </div>
+
+            <div class="metric-card">
+              <p class="metric-card-label">Initial Quote Generation</p>
+              <div class="metric-transform">
+                <span class="metric-before">8 hours</span>
+                <span class="metric-sep">→</span>
+                <span class="metric-after">30 min</span>
+              </div>
+            </div>
+
+            <div class="metric-card">
+              <p class="metric-card-label">Quote Consistency</p>
+              <div class="metric-transform">
+                <span class="metric-before">Variable</span>
+                <span class="metric-sep">→</span>
+                <span class="metric-after">Standard</span>
+              </div>
+            </div>
+
+            <div class="metric-card">
+              <p class="metric-card-label">Client Intake Process</p>
+              <div class="metric-transform">
+                <span class="metric-before">Manual</span>
+                <span class="metric-sep">→</span>
+                <span class="metric-after">Automated</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CASE STUDY: BEACON HILL INTERIORS (dark) ────────── -->
+  <section class="case-dark" aria-labelledby="case-bhi-heading">
     <div class="case-dark-inner">
       <p class="eyebrow">Case Study</p>
-      <h2 class="case-heading-light" id="case-hmod-heading">Home Modification OS</h2>
+      <h2 class="case-heading-light" id="case-bhi-heading">Beacon Hill Interiors</h2>
+      <p class="case-subhead--dark">A premium home services firm needed their service standards and operational knowledge to outlast any single team member.</p>
 
-      <div class="case-dark-blocks">
-        <div class="case-block">
-          <p class="case-block-label--dark">Client</p>
-          <p class="case-block-text--dark">Aging-in-place home modification services company.</p>
+      <div class="case-layout">
+
+        <!-- Left: narrative -->
+        <div>
+          <div class="case-block">
+            <p class="case-block-label--dark">Client</p>
+            <p class="case-block-text--dark">Premium residential home services company. Boston, MA.</p>
+          </div>
+
+          <div class="case-block">
+            <p class="case-block-label--dark">Problem</p>
+            <p class="case-block-text--dark">Service knowledge lived with the founder. Scheduling, client communication standards, vendor coordination, and service protocols were undocumented. Growth was constrained by the founder's personal bandwidth.</p>
+          </div>
+
+          <div class="case-block">
+            <p class="case-block-label--dark">What We Built</p>
+            <p class="case-block-text--dark">Operational architecture across core service workflows. Documented service standards, communication protocols, and vendor coordination processes. Built a knowledge system the team can query without involving the founder.</p>
+          </div>
         </div>
 
-        <div class="case-block">
-          <p class="case-block-label--dark">Problem</p>
-          <p class="case-block-text--dark">Service knowledge scattered across intake, scheduling, and field teams. No single source of truth for how work was scoped, priced, or executed.</p>
+        <!-- Right: metrics -->
+        <div>
+          <div class="metric-grid">
+
+            <div class="metric-card">
+              <p class="metric-card-label">Service Documentation</p>
+              <div class="metric-transform">
+                <span class="metric-before">0 SOPs</span>
+                <span class="metric-sep">→</span>
+                <span class="metric-after">40+</span>
+              </div>
+            </div>
+
+            <div class="metric-card">
+              <p class="metric-card-label">Client Communication</p>
+              <div class="metric-transform">
+                <span class="metric-before">Inconsistent</span>
+                <span class="metric-sep">→</span>
+                <span class="metric-after">Standard</span>
+              </div>
+            </div>
+
+            <div class="metric-card">
+              <p class="metric-card-label">Vendor Coordination</p>
+              <div class="metric-transform">
+                <span class="metric-before">Manual</span>
+                <span class="metric-sep">→</span>
+                <span class="metric-after">Documented</span>
+              </div>
+            </div>
+
+            <div class="metric-card">
+              <p class="metric-card-label">Founder Dependency</p>
+              <div class="metric-transform">
+                <span class="metric-before">Every decision</span>
+                <span class="metric-sep">→</span>
+                <span class="metric-after">Self-sufficient</span>
+              </div>
+            </div>
+
+          </div>
         </div>
 
-        <div class="case-block">
-          <p class="case-block-label--dark">Work</p>
-          <p class="case-block-text--dark">Operational architecture across four core workflows. SOP framework and knowledge extraction.</p>
-        </div>
-
-        <div class="case-block">
-          <p class="case-block-label--dark">Outcome</p>
-          <p class="case-block-text--dark">Standardized service delivery. Operational knowledge no longer dependent on one person.</p>
-        </div>
       </div>
     </div>
   </section>

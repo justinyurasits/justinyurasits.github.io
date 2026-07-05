@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About — Justin Yurasits</title>
-  <meta name="description" content="Ten years in enterprise AI. One engagement that changed what I look for.">
+  <title>Products — Justin Yurasits</title>
+  <meta name="description" content="The Construction OS Suite — AI products built on operational architecture for residential construction firms.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -87,7 +87,6 @@
     }
 
     .nav-links a:hover { color: var(--offwhite); }
-
     .nav-links a[aria-current="page"] { color: var(--offwhite); }
 
     .btn-book {
@@ -167,142 +166,219 @@
       margin: 0 0 1.25rem;
     }
 
-    /* ─── ABOUT HERO ──────────────────────────────────── */
+    /* ─── HERO ────────────────────────────────────────── */
 
-    .about-hero {
+    .products-hero {
       background: var(--navy);
-      padding: 5rem 1.5rem;
+      padding: 5rem 1.5rem 5.5rem;
     }
 
-    .about-hero-inner {
+    .products-hero-inner {
       max-width: 72rem;
       margin: 0 auto;
     }
 
-    .about-hero h1 {
+    .products-hero-h1 {
       font-family: 'Spectral', Georgia, serif;
       font-weight: 700;
       font-size: clamp(2rem, 4vw, 3rem);
       line-height: 1.1;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.025em;
       color: var(--offwhite);
-      margin: 0 0 1rem;
+      margin: 0 0 0.875rem;
+      text-wrap: balance;
     }
 
-    .about-hero-sub {
-      font-family: 'Inter', sans-serif;
+    .products-hero-sub {
       font-size: 1.0625rem;
       font-weight: 400;
-      line-height: 1.65;
       color: var(--muted);
       margin: 0;
-      max-width: 50ch;
+      max-width: 48ch;
     }
 
-    /* ─── STORY SECTION ───────────────────────────────── */
+    .products-hero-aside {
+      font-size: 0.9375rem;
+      color: #2E4E68;
+      margin: 1.375rem 0 0;
+      font-style: italic;
+      letter-spacing: 0.005em;
+    }
 
-    .story-section {
+    /* ─── PLATFORM SECTION ────────────────────────────── */
+
+    .platform-section {
       background: var(--light-bg);
       padding: 5.5rem 1.5rem;
     }
 
-    .story-inner {
+    .platform-inner {
       max-width: 72rem;
       margin: 0 auto;
     }
 
-    .story-layout {
-      display: grid;
-      grid-template-columns: 1fr 380px;
-      gap: 4rem;
-      align-items: start;
-      margin-top: 2rem;
+    .platform-heading {
+      font-family: 'Spectral', Georgia, serif;
+      font-weight: 700;
+      font-size: clamp(1.625rem, 3vw, 2.375rem);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: var(--navy);
+      margin: 0 0 2.5rem;
     }
 
-    .story-body p {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.9375rem;
-      font-weight: 400;
-      line-height: 1.75;
-      color: #3D5468;
-      margin: 0 0 1.375rem;
-    }
-
-    .story-body p:last-child {
-      margin-bottom: 0;
-    }
-
-    .story-photo {
-      background: #D5DAE0;
+    .platform-card {
+      background: #fff;
+      border: 1px solid rgba(15,30,46,0.08);
+      border-top: 3px solid var(--teal);
       border-radius: 4px;
-      height: 380px;
+      padding: 2.75rem 3rem 3rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.5rem;
+      align-items: start;
+    }
+
+    .platform-card-name {
+      font-family: 'Spectral', Georgia, serif;
+      font-weight: 700;
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: var(--navy);
+      margin: 0 0 1.25rem;
+    }
+
+    .status-live {
+      display: inline-block;
+      background: rgba(0,168,150,0.1);
+      color: var(--teal);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.625rem;
+      border-radius: 2px;
+    }
+
+    .status-dev {
+      display: inline-block;
+      background: rgba(94,127,154,0.12);
+      color: var(--muted);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.625rem;
+      border-radius: 2px;
+    }
+
+    .platform-card-desc {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: #3D5468;
+      margin: 0;
+    }
+
+    .platform-card-status-row {
       display: flex;
       align-items: center;
-      justify-content: center;
-      color: #8A9BAC;
-      font-size: 0.8125rem;
-      letter-spacing: 0.04em;
-      font-family: 'Inter', sans-serif;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
     }
 
-    /* ─── CREDIBILITY SECTION ─────────────────────────── */
+    /* ─── APPLICATIONS SECTION ────────────────────────── */
 
-    .cred-section {
+    .apps-section {
       background: var(--navy);
       padding: 5.5rem 1.5rem;
       border-top: 1px solid rgba(255,255,255,0.05);
     }
 
-    .cred-inner {
+    .apps-inner {
       max-width: 72rem;
       margin: 0 auto;
     }
 
-    .cred-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      margin-top: 2rem;
-    }
-
-    .cred-col-heading {
+    .apps-heading {
       font-family: 'Spectral', Georgia, serif;
       font-weight: 700;
-      font-size: 1.25rem;
-      line-height: 1.25;
+      font-size: clamp(1.625rem, 3vw, 2.375rem);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
       color: var(--offwhite);
-      margin: 0 0 1.5rem;
+      margin: 0 0 2.5rem;
     }
 
-    .cred-list {
-      list-style: none;
-      margin: 0;
-      padding: 0;
+    .apps-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .app-card {
+      background: #162637;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 4px;
+      padding: 2rem 1.875rem 2.25rem;
       display: flex;
       flex-direction: column;
-      gap: 0.875rem;
     }
 
-    .cred-list li {
+    .app-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.875rem;
+    }
+
+    .app-card-name {
       font-family: 'Inter', sans-serif;
-      font-size: 0.9375rem;
-      font-weight: 500;
+      font-size: 1.0625rem;
+      font-weight: 600;
       color: var(--offwhite);
-      line-height: 1.5;
+      letter-spacing: -0.01em;
+      margin: 0;
     }
 
-    .cred-list li .cred-descriptor {
-      font-weight: 400;
-      color: var(--muted);
+    .app-card-desc {
+      font-size: 0.9375rem;
+      line-height: 1.7;
+      color: #6B8CA8;
+      margin: 0;
+      flex: 1;
     }
 
-    /* ─── CTA SECTION ─────────────────────────────────── */
+    .app-card-link {
+      display: inline-block;
+      margin-top: 1.5rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--teal);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      transition: opacity 0.15s;
+    }
+
+    .app-card-link:hover { opacity: 0.75; }
+
+    .apps-footnote {
+      margin: 2.25rem 0 0;
+      font-size: 0.875rem;
+      color: #2E4E68;
+      font-style: italic;
+    }
+
+    /* ─── CTA ────────────────────────────────────────── */
 
     .cta-section {
       background: var(--navy);
+      border-top: 1px solid rgba(255,255,255,0.05);
       padding: 7rem 1.5rem;
       text-align: center;
-      border-top: 1px solid rgba(255,255,255,0.05);
     }
 
     .cta-heading {
@@ -313,17 +389,8 @@
       letter-spacing: -0.02em;
       color: var(--offwhite);
       text-wrap: balance;
-      margin: 0 auto 1.25rem;
-      max-width: 24rem;
-    }
-
-    .cta-body {
-      font-family: 'Inter', sans-serif;
-      font-size: 1rem;
-      line-height: 1.7;
-      color: var(--muted);
+      max-width: 28rem;
       margin: 0 auto 2.5rem;
-      max-width: 38ch;
     }
 
     .btn-cta {
@@ -413,24 +480,12 @@
     @media (max-width: 767px) {
       .nav-links { display: none; }
       .nav-toggle { display: flex; }
-
-      .about-hero { padding: 3.5rem 1.5rem 4rem; }
-
-      .story-section { padding: 4rem 1.5rem; }
-      .story-layout {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-      }
-      .story-photo { height: 260px; }
-
-      .cred-section { padding: 4rem 1.5rem; }
-      .cred-grid {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-      }
-
+      .products-hero { padding: 3.5rem 1.5rem 4rem; }
+      .platform-section { padding: 4rem 1.5rem; }
+      .platform-card { grid-template-columns: 1fr; gap: 1.5rem; padding: 2rem 1.75rem; }
+      .apps-section { padding: 4rem 1.5rem; }
+      .apps-grid { grid-template-columns: 1fr; }
       .cta-section { padding: 5.5rem 1.5rem; }
-
       .footer-cols { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
       .footer-links { justify-content: flex-start; }
     }
@@ -450,9 +505,9 @@
 
       <ul class="nav-links" role="list">
         <li><a href="/work.html">Work</a></li>
-        <li><a href="/products.html">Products</a></li>
+        <li><a href="/products.html" aria-current="page">Products</a></li>
         <li><a href="/engagements.html">Engagements</a></li>
-        <li><a href="/about.html" aria-current="page">About</a></li>
+        <li><a href="/about.html">About</a></li>
         <li><a href="/insights.html">Insights</a></li>
         <li><a href="https://cal.com/justinyurasits" class="btn-book">Book a Call</a></li>
       </ul>
@@ -487,9 +542,9 @@
     >
       <nav class="mobile-menu-inner" aria-label="Mobile navigation">
         <a href="/work.html">Work</a>
-        <a href="/products.html">Products</a>
+        <a href="/products.html" aria-current="page">Products</a>
         <a href="/engagements.html">Engagements</a>
-        <a href="/about.html" aria-current="page">About</a>
+        <a href="/about.html">About</a>
         <a href="/insights.html">Insights</a>
         <a href="https://cal.com/justinyurasits" class="btn-book">Book a Call</a>
       </nav>
@@ -497,62 +552,80 @@
   </header>
 
   <!-- ─── HERO ─────────────────────────────────────────── -->
-  <section class="about-hero" aria-labelledby="about-heading">
-    <div class="about-hero-inner">
-      <h1 id="about-heading">About</h1>
-      <p class="about-hero-sub">Ten years in enterprise AI. One engagement that changed what I look for.</p>
+  <section class="products-hero" aria-labelledby="products-h1">
+    <div class="products-hero-inner">
+      <h1 class="products-hero-h1" id="products-h1">Construction OS Suite</h1>
+      <p class="products-hero-sub">Products proven in construction. Built on operational architecture.</p>
+      <p class="products-hero-aside">The same architecture extends to any service business. Construction is where the proof is.</p>
     </div>
   </section>
 
-  <!-- ─── STORY ─────────────────────────────────────────── -->
-  <section class="story-section" aria-labelledby="story-heading">
-    <div class="story-inner">
-      <p class="eyebrow">The Work</p>
-      <div class="story-layout">
-        <div class="story-body">
-          <p>I spent the first part of my career inside enterprise AI — running implementations with organizations like Citizens Bank, Fidelity, Optimizely, and Jabra. Machine learning pipelines, personalization engines, predictive models. I know how AI projects get scoped, how they get sold internally, and how often they fail to deliver what was promised.</p>
-          <p>A few years ago, I started working with a high-end residential general contractor in Boston. They wanted to bring AI into their operations — faster estimates, better documents, less time on administrative work. What I found when I got inside the business was a company that ran entirely on institutional knowledge. Nothing was written down. Pricing logic lived in the owner's head. Every document started from scratch.</p>
-          <p>That's when the framing shifted. The problem wasn't that they needed better AI. The problem was that the business wasn't legible — not to AI, not to new hires, not to the owner when he wanted to step back. You can't automate what hasn't been documented. You can't delegate what hasn't been described. The gap wasn't technological. It was structural.</p>
-          <p>What I do now is Operational Architecture. I work with service businesses to document how they actually operate, structure that knowledge into the right containers, and build AI on top of something solid. The result isn't just faster workflows — it's a business that can scale without the founder in every conversation, onboard a new person on day one, and use AI tools that actually work because the knowledge is there for them to work from.</p>
+  <!-- ─── THE PLATFORM ─────────────────────────────────── -->
+  <section class="platform-section" aria-labelledby="platform-heading">
+    <div class="platform-inner">
+      <h2 class="platform-heading" id="platform-heading">The Platform</h2>
+
+      <div class="platform-card">
+        <div>
+          <div class="platform-card-status-row">
+            <p class="platform-card-name">Construction OS</p>
+            <span class="status-live">Live</span>
+          </div>
         </div>
-        <div class="story-photo" aria-label="Photo placeholder">[ photo ]</div>
+        <p class="platform-card-desc">The AI operating system for residential construction firms. Construction OS is the knowledge layer everything else runs on — 160+ SOPs, a live pricing database built from real project data, and a document production suite. It's the foundation.</p>
       </div>
     </div>
   </section>
 
-  <!-- ─── CREDIBILITY ────────────────────────────────────── -->
-  <section class="cred-section" aria-labelledby="cred-heading">
-    <div class="cred-inner">
-      <p class="eyebrow">Background</p>
-      <div class="cred-grid">
+  <!-- ─── APPLICATIONS ─────────────────────────────────── -->
+  <section class="apps-section" aria-labelledby="apps-heading">
+    <div class="apps-inner">
+      <h2 class="apps-heading" id="apps-heading">Applications</h2>
 
-        <div>
-          <h2 class="cred-col-heading" id="cred-heading">Enterprise AI</h2>
-          <ul class="cred-list">
-            <li>Citizens Bank</li>
-            <li>Fidelity Investments</li>
-            <li>Optimizely</li>
-            <li>Jabra</li>
-          </ul>
+      <div class="apps-grid">
+
+        <div class="app-card">
+          <div class="app-card-header">
+            <p class="app-card-name">Change Order OS</p>
+            <span class="status-live">Live</span>
+          </div>
+          <p class="app-card-desc">Voice note or field notes in. Contract-ready change order package out. Grounded in real trade-specific pricing with automatic markup.</p>
+          <a href="https://draftconstructionchangeorder.com" class="app-card-link">Try it →</a>
         </div>
 
-        <div>
-          <h2 class="cred-col-heading">Real Operations</h2>
-          <ul class="cred-list">
-            <li>Construction OS <span class="cred-descriptor">— Residential GC, Boston</span></li>
-            <li>Home Modification OS <span class="cred-descriptor">— in development</span></li>
-            <li>Deployed document production tools in active use</li>
-          </ul>
+        <div class="app-card">
+          <div class="app-card-header">
+            <p class="app-card-name">Estimating OS</p>
+            <span class="status-dev">In Development</span>
+          </div>
+          <p class="app-card-desc">Historical pricing intelligence for preliminary estimates. Built on real project data — not generic square-foot averages. Estimates in minutes instead of hours.</p>
+        </div>
+
+        <div class="app-card">
+          <div class="app-card-header">
+            <p class="app-card-name">Knowledge OS</p>
+            <span class="status-dev">In Development</span>
+          </div>
+          <p class="app-card-desc">Ask any question about how the business operates. Get an answer from documented SOPs and standards in seconds. The institutional knowledge that used to live in one person's head.</p>
+        </div>
+
+        <div class="app-card">
+          <div class="app-card-header">
+            <p class="app-card-name">Pay App OS</p>
+            <span class="status-dev">In Development</span>
+          </div>
+          <p class="app-card-desc">Schedule of values in. Completed AIA G702/G703 pay application out. Manual monthly entry eliminated.</p>
         </div>
 
       </div>
+
+      <p class="apps-footnote">In Development products are available through an Operational Architecture engagement.</p>
     </div>
   </section>
 
-  <!-- ─── CTA ───────────────────────────────────────────── -->
+  <!-- ─── CTA ──────────────────────────────────────────── -->
   <section class="cta-section" aria-labelledby="cta-heading">
-    <h2 class="cta-heading" id="cta-heading">If this resonates, let's talk.</h2>
-    <p class="cta-body">A 30-minute conversation. No pitch. No commitment.</p>
+    <h2 class="cta-heading" id="cta-heading">Interested in the Construction OS Suite for your firm?</h2>
     <a href="https://cal.com/justinyurasits" class="btn-cta">Book a 30-Minute Call</a>
   </section>
 

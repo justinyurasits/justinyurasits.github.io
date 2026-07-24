@@ -720,30 +720,30 @@
       white-space: nowrap;
     }
 
-    /* ─── WHAT CHANGES ──────────────────────────────── */
+    /* ─── PROBLEMS ───────────────────────────────────── */
 
-    .changes-section {
+    .problems-section {
       background: var(--light-bg);
       padding: 5.5rem 1.5rem;
     }
 
-    .changes-inner {
+    .problems-inner {
       max-width: 72rem;
       margin: 0 auto;
     }
 
-    .changes-heading {
+    .problems-heading {
       font-family: 'Spectral', Georgia, serif;
       font-weight: 700;
       font-size: clamp(1.75rem, 3.5vw, 2.625rem);
       letter-spacing: -0.02em;
       line-height: 1.15;
       color: var(--navy);
-      margin: 0 0 1.25rem;
+      margin: 0 0 1rem;
       text-wrap: balance;
     }
 
-    .changes-intro {
+    .problems-intro {
       font-size: 1rem;
       line-height: 1.75;
       color: #3D5468;
@@ -751,49 +751,42 @@
       margin: 0 0 3rem;
     }
 
-    .changes-col-headers {
+    .problems-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      margin-bottom: 0.25rem;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0;
     }
 
-    .changes-col-label {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.6875rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.09em;
-      padding-bottom: 0.875rem;
-      border-bottom: 1.5px solid currentColor;
-    }
-
-    .changes-col-label--before { color: #A05050; }
-    .changes-col-label--after  { color: var(--teal); padding-left: 2.5rem; }
-
-    .changes-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+    .problem-item {
+      padding: 1.875rem 2rem 1.875rem 0;
       border-bottom: 1px solid rgba(15,30,46,0.07);
-      padding: 1.125rem 0;
-      align-items: start;
     }
 
-    .changes-row:last-child { border-bottom: none; }
-
-    .changes-before {
-      font-size: 0.9375rem;
-      line-height: 1.55;
-      color: #8AA0B2;
-      padding-right: 2.5rem;
+    .problem-item:nth-child(even) {
+      padding-left: 2rem;
+      padding-right: 0;
+      border-left: 1px solid rgba(15,30,46,0.07);
     }
 
-    .changes-after {
+    .problem-item:nth-last-child(-n+2) { border-bottom: none; }
+
+    .problem-item:last-child:nth-child(odd) {
+      border-bottom: none;
+    }
+
+    .problem-title {
+      font-family: 'Inter', sans-serif;
       font-size: 0.9375rem;
-      line-height: 1.55;
-      color: var(--navy);
-      font-weight: 500;
-      padding-left: 2.5rem;
-      border-left: 2px solid rgba(0,168,150,0.3);
+      font-weight: 600;
+      color: var(--teal);
+      margin: 0 0 0.5rem;
+    }
+
+    .problem-desc {
+      font-size: 0.9375rem;
+      line-height: 1.65;
+      color: #3D5468;
+      margin: 0;
     }
 
     /* ─── CTA ────────────────────────────────────────── */
@@ -915,9 +908,11 @@
       .case-section { padding: 4rem 1.5rem 3rem; }
       .tools-cards { grid-template-columns: 1fr; }
       .tools-section { padding: 4rem 1.5rem; }
-      .changes-section { padding: 4rem 1.5rem; }
-      .changes-col-headers { display: none; }
-      .changes-row { grid-template-columns: 1fr; gap: 0.375rem; padding: 1rem 0; }
+      .problems-section { padding: 4rem 1.5rem; }
+      .problems-grid { grid-template-columns: 1fr; }
+      .problem-item { padding: 1.5rem 0; border-left: none !important; }
+      .problem-item:nth-last-child(-n+2) { border-bottom: 1px solid rgba(15,30,46,0.07); }
+      .problem-item:last-child { border-bottom: none; }
       .changes-before { padding-right: 0; font-size: 0.875rem; }
       .changes-after { padding-left: 0.875rem; border-top: none; }
       .cta-section { padding: 5.5rem 1.5rem; }
@@ -1036,42 +1031,39 @@
     </div>
   </section>
 
-  <!-- ─── WHAT CHANGES ────────────────────────────────── -->
-  <section class="changes-section" aria-labelledby="changes-heading">
-    <div class="changes-inner">
-      <h2 class="changes-heading" id="changes-heading">What Changes.</h2>
-      <p class="changes-intro">Most businesses run on a combination of experience, memory, and workarounds. Operational Architecture turns that knowledge into a system the business can use every day.</p>
+  <!-- ─── PROBLEMS ────────────────────────────────────── -->
+  <section class="problems-section" aria-labelledby="problems-heading">
+    <div class="problems-inner">
+      <h2 class="problems-heading" id="problems-heading">What We Help You Eliminate.</h2>
+      <p class="problems-intro">These problems show up across construction, trades, and field service businesses.</p>
 
-      <div class="changes-col-headers" aria-hidden="true">
-        <span class="changes-col-label changes-col-label--before">Before</span>
-        <span class="changes-col-label changes-col-label--after">After</span>
-      </div>
+      <div class="problems-grid">
 
-      <div role="list">
-        <div class="changes-row" role="listitem">
-          <span class="changes-before">Estimates rebuilt from memory every time</span>
-          <span class="changes-after">Estimates generated from your historical pricing data and real project history</span>
+        <div class="problem-item">
+          <p class="problem-title">Knowledge That Walks Out the Door</p>
+          <p class="problem-desc">Your best estimator has 20 years of pricing knowledge in his head. When he leaves, that knowledge leaves with him.</p>
         </div>
-        <div class="changes-row" role="listitem">
-          <span class="changes-before">Change orders drafted from scratch</span>
-          <span class="changes-after">Change orders produced in minutes using your standards, exclusions, and communication style</span>
+
+        <div class="problem-item">
+          <p class="problem-title">Owner Bottlenecks</p>
+          <p class="problem-desc">Every estimate, pricing question, and client decision routes back to you. Growth stops when one person's bandwidth runs out.</p>
         </div>
-        <div class="changes-row" role="listitem">
-          <span class="changes-before">New hires depend on experienced employees for answers</span>
-          <span class="changes-after">New team members find consistent answers without interrupting the owner or senior staff</span>
+
+        <div class="problem-item">
+          <p class="problem-title">Slow Document Production</p>
+          <p class="problem-desc">Change orders, estimates, proposals, and contract packages are rebuilt from scratch every time — taking hours when they should take minutes.</p>
         </div>
-        <div class="changes-row" role="listitem">
-          <span class="changes-before">Decisions made by habit and gut</span>
-          <span class="changes-after">Pricing logic, exceptions, and judgment documented and applied consistently</span>
+
+        <div class="problem-item">
+          <p class="problem-title">Inconsistent Standards</p>
+          <p class="problem-desc">Every PM writes things differently. No one follows the same standard because the standards aren't written down.</p>
         </div>
-        <div class="changes-row" role="listitem">
-          <span class="changes-before">AI tools that don't know your business</span>
-          <span class="changes-after">AI that answers using your company's pricing, standards, historical projects, and operating procedures</span>
+
+        <div class="problem-item">
+          <p class="problem-title">Slow Onboarding</p>
+          <p class="problem-desc">New hires take months before they can work independently because nothing is written down for them to learn from.</p>
         </div>
-        <div class="changes-row" role="listitem">
-          <span class="changes-before">Key person leaves and takes everything with them</span>
-          <span class="changes-after">Operational knowledge stays in the business regardless of who stays or goes</span>
-        </div>
+
       </div>
     </div>
   </section>

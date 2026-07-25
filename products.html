@@ -387,6 +387,31 @@
 
     .app-card-link:hover { opacity: 0.75; }
 
+    .apps-subsection-label {
+      font-family: 'Spectral', Georgia, serif;
+      font-weight: 600;
+      font-size: 1.25rem;
+      letter-spacing: -0.01em;
+      color: var(--offwhite);
+      margin: 3.5rem 0 1.5rem;
+      padding-top: 3rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .apps-subsection-label:first-of-type {
+      margin-top: 0;
+      padding-top: 0;
+      border-top: none;
+    }
+
+    .apps-preamble {
+      font-size: 0.875rem;
+      line-height: 1.65;
+      color: var(--muted);
+      max-width: 58ch;
+      margin: -0.5rem 0 1.75rem;
+    }
+
     .apps-footnote {
       margin: 2.25rem 0 0;
       font-size: 0.875rem;
@@ -602,8 +627,7 @@
   <!-- ─── APPLICATIONS ─────────────────────────────────── -->
   <section class="apps-section" aria-labelledby="apps-heading">
     <div class="apps-inner">
-      <h2 class="apps-heading" id="apps-heading">Modules Inside Construction OS.</h2>
-      <p class="apps-intro">Every module runs on the same operational intelligence foundation — your pricing, your standards, your workflows, your history.</p>
+      <p class="apps-subsection-label" id="apps-heading">Available Now</p>
 
       <div class="apps-grid">
 
@@ -618,8 +642,22 @@
 
         <div class="app-card">
           <div class="app-card-header">
+            <p class="app-card-name">Invoices</p>
+            <span class="status-built">Built &middot; Available through engagement</span>
+          </div>
+          <p class="app-card-desc">Every receipt from the field and every subcontractor invoice gets processed manually. Upload a photo or PDF and get structured data back — vendor, amount, line items, job code suggestion — ready to post. Built on documented cost categories and vendor standards from real project data.</p>
+        </div>
+
+      </div>
+
+      <p class="apps-subsection-label">Capabilities We Build Through Engagements</p>
+      <p class="apps-preamble">These capabilities are built through an Operational Architecture Engagement using your company's real pricing data, standards, and workflows.</p>
+
+      <div class="apps-grid">
+
+        <div class="app-card">
+          <div class="app-card-header">
             <p class="app-card-name">Estimating</p>
-            <span class="status-dev">In Development</span>
           </div>
           <p class="app-card-desc">Historical pricing intelligence for preliminary estimates. Built on real project data — not generic square-foot averages. Estimates in minutes instead of hours.</p>
         </div>
@@ -627,7 +665,6 @@
         <div class="app-card">
           <div class="app-card-header">
             <p class="app-card-name">Knowledge</p>
-            <span class="status-dev">In Development</span>
           </div>
           <p class="app-card-desc">Ask any question about how the business operates. Get an answer from documented SOPs and standards in seconds. The institutional knowledge that used to live in one person's head.</p>
         </div>
@@ -635,46 +672,33 @@
         <div class="app-card">
           <div class="app-card-header">
             <p class="app-card-name">Pay Applications</p>
-            <span class="status-dev">In Development</span>
           </div>
           <p class="app-card-desc">Schedule of values in. Completed AIA G702/G703 pay application out. Manual monthly entry eliminated.</p>
         </div>
 
         <div class="app-card">
           <div class="app-card-header">
-            <p class="app-card-name">Invoices</p>
-            <span class="status-built">Built &middot; Available through engagement</span>
-          </div>
-          <p class="app-card-desc">Every receipt from the field and every subcontractor invoice gets processed manually. Receipt &amp; Invoice OS takes a photo or PDF and returns structured data — vendor, amount, line items, job code suggestion — ready to post. Built on documented cost categories and vendor standards from real project data.</p>
-        </div>
-
-        <div class="app-card">
-          <div class="app-card-header">
             <p class="app-card-name">Field Reports</p>
-            <span class="status-dev">In Development</span>
           </div>
-          <p class="app-card-desc">Daily site reports are inconsistent, incomplete, or never filed. Field Report OS takes a voice memo or quick text from the superintendent and produces a formatted daily report — date, weather, crew count, work completed, issues flagged. Consistent documentation without the paperwork.</p>
+          <p class="app-card-desc">Daily site reports are inconsistent, incomplete, or never filed. A voice memo or quick text from the superintendent produces a formatted daily report — date, weather, crew count, work completed, issues flagged. Consistent documentation without the paperwork.</p>
         </div>
 
         <div class="app-card">
           <div class="app-card-header">
             <p class="app-card-name">Front Office</p>
-            <span class="status-dev">In Development</span>
           </div>
-          <p class="app-card-desc">Inbound calls qualified, captured, and routed based on documented business standards. Front Office OS knows your service area, pricing tiers, minimum project size, and qualification criteria — because those are documented in your operational architecture. A generic answering service doesn't know your business. This one does.</p>
+          <p class="app-card-desc">Inbound calls qualified, captured, and routed based on documented business standards. Knows your service area, pricing tiers, minimum project size, and qualification criteria — because those are documented in your operational architecture.</p>
         </div>
 
         <div class="app-card">
           <div class="app-card-header">
             <p class="app-card-name">Bid Comparison</p>
-            <span class="status-dev">In Development</span>
           </div>
-          <p class="app-card-desc">GCs receive multiple subcontractor bids for every scope and compare them manually in spreadsheets. Bid Comparison OS takes uploaded bids, extracts line items, and produces a normalized side-by-side comparison. Faster decisions, fewer mistakes, documented selection criteria.</p>
+          <p class="app-card-desc">Upload multiple subcontractor bids, get a normalized side-by-side comparison back. Line items extracted, scopes aligned, selection criteria documented. Faster decisions, fewer mistakes.</p>
         </div>
 
       </div>
 
-      <p class="apps-footnote">In Development products are available through an Operational Architecture engagement.</p>
       <p class="apps-footnote">The same architecture extends into HVAC, plumbing, electrical, and other field service businesses.</p>
     </div>
   </section>

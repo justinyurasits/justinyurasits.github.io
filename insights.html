@@ -255,6 +255,41 @@
       margin-top: 1.5rem;
     }
 
+    .article-badge-live {
+      display: inline-block;
+      background: var(--teal);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 0.6875rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.625rem;
+      border-radius: 2px;
+      margin-bottom: 1.25rem;
+    }
+
+    .article-card-link {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .article-card-link:hover .article-title { color: var(--teal-dk); }
+
+    .article-read-link {
+      display: inline-block;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 0.875rem;
+      color: var(--teal);
+      text-decoration: none;
+      margin-top: 1.5rem;
+      transition: color 0.15s;
+    }
+
+    .article-read-link:hover { color: var(--teal-dk); }
+
     /* ─── FOOTER ─────────────────────────────────────── */
 
     .site-footer {
@@ -414,10 +449,12 @@
         </article>
 
         <article class="article-card">
-          <span class="article-badge">Coming Soon</span>
-          <h2 class="article-title">The Hidden Risk of Tribal Knowledge</h2>
-          <p class="article-desc">What happens to a business when the people who know how it works stop showing up.</p>
-          <p class="article-coming">Coming soon</p>
+          <a href="/tribal-knowledge.html" class="article-card-link">
+            <span class="article-badge-live">Read</span>
+            <h2 class="article-title">The Hidden Risk of Tribal Knowledge</h2>
+            <p class="article-desc">What happens to a business when the people who know how it works stop showing up.</p>
+          </a>
+          <a href="/tribal-knowledge.html" class="article-read-link">Read article &rarr;</a>
         </article>
 
         <article class="article-card">

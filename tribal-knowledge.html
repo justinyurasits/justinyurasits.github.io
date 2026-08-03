@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What Walks Out the Door When Your Best Person Leaves — Justin Yurasits</title>
+  <meta name="description" content="Your best estimator's pricing judgment is one of the most valuable assets in the company. It may also be completely undocumented.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <style>
+    :root {
+      --navy:      #0F1E2E;
+      --navy-1:    #152333;
+      --teal:      #00A896;
+      --teal-dk:   #008E7E;
+      --offwhite:  #E8EDF2;
+      --muted:     #5E7F9A;
+      --light-bg:  #F7F8FA;
+      --body-dark: #1A2D3F;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--light-bg);
+      color: var(--body-dark);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── NAV ─────────────────────────────────────────── */
+
+    .site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--navy);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .nav-inner {
+      max-width: 72rem;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      height: 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .wordmark {
+      font-family: 'Spectral', Georgia, serif;
+      font-weight: 600;
+      font-size: 1.0625rem;
+      color: var(--offwhite);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+
+    .wordmark:hover { color: #fff; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover { color: var(--offwhite); }
+
+    .nav-links a[aria-current="page"] { color: var(--offwhite); }
+
+    .btn-book {
+      display: inline-block;
+      background: var(--teal);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      padding: 0.5rem 1.125rem;
+      border-radius: 3px;
+      text-decoration: none;
+      transition: background 0.15s;
+      white-space: nowrap;
+    }
+
+    .btn-book:hover { background: var(--teal-dk); }
+    .btn-book:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+
+    /* hamburger */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.25rem;
+      color: var(--muted);
+      transition: color 0.15s;
+    }
+    .nav-toggle:hover { color: var(--offwhite); }
+
+    /* mobile drawer */
+    .mobile-menu {
+      background: var(--navy-1);
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .mobile-menu-inner {
+      max-width: 72rem;
+      margin: 0 auto;
+      padding: 1.25rem 1.5rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .mobile-menu a {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 0.625rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      transition: color 0.15s;
+    }
+
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu a:hover { color: var(--offwhite); }
+
+    .mobile-menu .btn-book {
+      margin-top: 1rem;
+      text-align: center;
+      font-size: 1rem;
+      padding: 0.75rem 1.5rem;
+    }
+
+    /* ─── ARTICLE HERO ───────────────────────────────── */
+
+    .article-hero {
+      background: var(--navy);
+      padding: 5rem 1.5rem 4rem;
+    }
+
+    .article-hero-inner {
+      max-width: 42rem;
+      margin: 0 auto;
+    }
+
+    .article-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .article-back {
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color 0.15s;
+    }
+
+    .article-back:hover { color: var(--offwhite); }
+
+    .article-back svg {
+      display: inline;
+      vertical-align: middle;
+      margin-right: 0.3em;
+      margin-top: -1px;
+    }
+
+    .article-category {
+      display: inline-block;
+      background: var(--teal);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 0.6875rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.625rem;
+      border-radius: 2px;
+    }
+
+    .article-hero-title {
+      font-family: 'Spectral', Georgia, serif;
+      font-weight: 700;
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      line-height: 1.15;
+      letter-spacing: -0.025em;
+      color: var(--offwhite);
+      margin: 0 0 1.25rem;
+      text-wrap: balance;
+    }
+
+    .article-hero-lede {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 1.0625rem;
+      color: #5E7F9A;
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    /* ─── ARTICLE BODY ───────────────────────────────── */
+
+    .article-body {
+      background: #fff;
+      padding: 4.5rem 1.5rem 5rem;
+    }
+
+    .article-body-inner {
+      max-width: 42rem;
+      margin: 0 auto;
+    }
+
+    .article-body-inner p {
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      line-height: 1.75;
+      color: #253545;
+      margin: 0 0 1.25rem;
+    }
+
+    .article-body-inner h2 {
+      font-family: 'Spectral', Georgia, serif;
+      font-weight: 700;
+      font-size: 1.375rem;
+      line-height: 1.25;
+      color: var(--navy);
+      margin: 2.75rem 0 0.875rem;
+      letter-spacing: -0.015em;
+    }
+
+    .article-body-inner ul {
+      margin: 0 0 1.25rem;
+      padding-left: 1.5rem;
+    }
+
+    .article-body-inner ul li {
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      line-height: 1.75;
+      color: #253545;
+      margin-bottom: 0.375rem;
+    }
+
+    .article-closer {
+      margin-top: 3rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid rgba(15, 30, 46, 0.08);
+    }
+
+    .article-closer p {
+      font-family: 'Spectral', Georgia, serif;
+      font-style: italic;
+      font-size: 1.0625rem;
+      line-height: 1.65;
+      color: #3D5468;
+    }
+
+    /* ─── ARTICLE CTA ────────────────────────────────── */
+
+    .article-cta {
+      background: var(--light-bg);
+      border-top: 1px solid rgba(15, 30, 46, 0.08);
+      padding: 4rem 1.5rem;
+    }
+
+    .article-cta-inner {
+      max-width: 42rem;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .article-cta-heading {
+      font-family: 'Spectral', Georgia, serif;
+      font-weight: 700;
+      font-size: 1.375rem;
+      color: var(--navy);
+      margin: 0;
+      letter-spacing: -0.015em;
+    }
+
+    .article-cta-body {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9375rem;
+      line-height: 1.65;
+      color: #3D5468;
+      margin: 0;
+    }
+
+    .btn-cta {
+      display: inline-block;
+      background: var(--teal);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      padding: 0.75rem 1.5rem;
+      border-radius: 3px;
+      text-decoration: none;
+      align-self: flex-start;
+      transition: background 0.15s;
+    }
+
+    .btn-cta:hover { background: var(--teal-dk); }
+
+    /* ─── FOOTER ─────────────────────────────────────── */
+
+    .site-footer {
+      background: var(--navy);
+      border-top: 1px solid #1E3A4F;
+      padding: 2.5rem 1.5rem 2rem;
+    }
+
+    .footer-inner {
+      max-width: 72rem;
+      margin: 0 auto;
+    }
+
+    .footer-cols {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-wordmark {
+      font-family: 'Spectral', Georgia, serif;
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--offwhite);
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    .footer-descriptor {
+      font-size: 0.8125rem;
+      color: var(--muted);
+    }
+
+    .footer-links {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .footer-links a {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .footer-links a:hover { color: var(--offwhite); }
+
+    .footer-sep {
+      color: #1E3A4F;
+      font-size: 0.8125rem;
+    }
+
+    .footer-copy {
+      font-size: 0.75rem;
+      color: #2A4560;
+      text-align: center;
+      border-top: 1px solid #152333;
+      padding-top: 1.5rem;
+    }
+
+    /* ─── RESPONSIVE ─────────────────────────────────── */
+
+    @media (max-width: 767px) {
+      .nav-links { display: none; }
+      .nav-toggle { display: flex; }
+      .article-hero { padding: 3.5rem 1.5rem 3rem; }
+      .article-body { padding: 3rem 1.5rem 4rem; }
+      .article-cta { padding: 3rem 1.5rem; }
+      .footer-cols { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+      .footer-links { justify-content: flex-start; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ─── NAV ─────────────────────────────────────────── -->
+  <header class="site-nav" x-data="{ open: false }">
+    <div class="nav-inner">
+      <a href="/" class="wordmark">Justin Yurasits</a>
+
+      <ul class="nav-links" role="list">
+        <li><a href="/work.html">Work</a></li>
+        <li><a href="/products.html">Products</a></li>
+        <li><a href="/engagements.html">Engagements</a></li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/insights.html" aria-current="page">Insights</a></li>
+        <li><a href="https://cal.com/justinyurasits" class="btn-book">Book a Call</a></li>
+      </ul>
+
+      <button
+        class="nav-toggle"
+        @click="open = !open"
+        :aria-expanded="open.toString()"
+        aria-controls="mobile-menu"
+        aria-label="Toggle navigation"
+      >
+        <svg x-show="!open" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24" aria-hidden="true">
+          <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+        <svg x-show="open" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24" aria-hidden="true" style="display:none">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+
+    <div
+      id="mobile-menu"
+      class="mobile-menu"
+      x-show="open"
+      x-transition:enter="transition ease-out duration-150"
+      x-transition:enter-start="opacity-0 -translate-y-1"
+      x-transition:enter-end="opacity-100 translate-y-0"
+      x-transition:leave="transition ease-in duration-100"
+      x-transition:leave-start="opacity-100 translate-y-0"
+      x-transition:leave-end="opacity-0 -translate-y-1"
+      style="display:none"
+    >
+      <nav class="mobile-menu-inner" aria-label="Mobile navigation">
+        <a href="/work.html">Work</a>
+        <a href="/products.html">Products</a>
+        <a href="/engagements.html">Engagements</a>
+        <a href="/about.html">About</a>
+        <a href="/insights.html" aria-current="page">Insights</a>
+        <a href="https://cal.com/justinyurasits" class="btn-book">Book a Call</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ─── ARTICLE HERO ─────────────────────────────────── -->
+  <section class="article-hero">
+    <div class="article-hero-inner">
+      <div class="article-eyebrow">
+        <a href="/insights.html" class="article-back">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+          Insights
+        </a>
+        <span class="article-category">Knowledge Management</span>
+      </div>
+      <h1 class="article-hero-title">What Walks Out the Door When Your Best Person Leaves</h1>
+      <p class="article-hero-lede">Your best estimator's pricing judgment is one of the most valuable assets in the company. It may also be completely undocumented.</p>
+    </div>
+  </section>
+
+  <!-- ─── ARTICLE BODY ──────────────────────────────────── -->
+  <article class="article-body">
+    <div class="article-body-inner">
+
+      <p>Your best estimator has 20 years of pricing knowledge in his head. He can look at a scope and know almost immediately whether the access will be difficult, where the labor will run high, which trade is likely to miss something, and where the estimate needs extra protection. He may not be able to explain every step. He just knows.</p>
+
+      <p>That judgment is one of the most valuable assets in the company. It may also be completely undocumented.</p>
+
+      <h2>Tribal knowledge is more than information</h2>
+
+      <p>Most construction companies have plenty of information. They have estimates, contracts, project files, spreadsheets, emails, photographs, meeting notes, and accounting records. But information is not the same as operational knowledge.</p>
+
+      <p>Operational knowledge is the judgment behind the work:</p>
+
+      <ul>
+        <li>Why one project receives a higher markup than another</li>
+        <li>How an experienced PM handles an unclear scope</li>
+        <li>Which subcontractors require closer oversight</li>
+        <li>What language should be used with a particular type of client</li>
+        <li>When a pricing exception is reasonable</li>
+        <li>What warning signs suggest a project is heading toward trouble</li>
+      </ul>
+
+      <p>This knowledge accumulates through years of experience. It is what makes your best people your best people. But in many businesses, it remains attached to the individual rather than becoming an asset the company can reuse.</p>
+
+      <h2>The risk stays invisible until something changes</h2>
+
+      <p>As long as the experienced person is available, the system appears to work. The estimator answers the pricing question. The senior PM explains the client history. The owner steps in when an exception occurs. Nobody measures the dependency because the answer is always one phone call away.</p>
+
+      <p>Then someone retires. A project manager joins a competitor. An estimator becomes unavailable during a critical bid. The owner tries to step back.</p>
+
+      <p>Suddenly, the company discovers that the process was never really documented. It was being carried by a person. The risk was always there. It simply had not become urgent yet.</p>
+
+      <h2>What it costs</h2>
+
+      <p>When key knowledge leaves, the cost is rarely limited to replacing an employee. The next person may need months to understand how the company prices work, communicates with clients, handles exceptions, and makes decisions.</p>
+
+      <p>During that period: estimates take longer. Pricing becomes less consistent. Senior people spend more time answering routine questions. Mistakes increase because the new employee does not know the unwritten standards. The owner gets pulled back into work they thought they had delegated.</p>
+
+      <p>In a construction business, those consequences can affect margin, cash flow, client trust, and active project performance. A single poor pricing decision can follow the company through an entire project. A missed change order can become lost revenue. An inconsistent client response can become a relationship problem.</p>
+
+      <p>The knowledge loss may begin with one person leaving, but the effects spread throughout the operation.</p>
+
+      <h2>Construction is especially exposed</h2>
+
+      <p>Construction depends heavily on experienced judgment. Every project is different. The building is different. The client is different. The access conditions are different. The trades overlap differently.</p>
+
+      <p>The written process can only cover so much. Experienced people fill the gaps through judgment developed over years. That makes their knowledge valuable. It also makes the company vulnerable when that knowledge has never been captured.</p>
+
+      <h2>Capture it before it becomes urgent</h2>
+
+      <p>The worst time to document someone's knowledge is during their final two weeks with the company. The work should begin while they are still available and actively doing the job.</p>
+
+      <p>Watch how they complete real tasks. Ask why they made each decision. Document the rules, exceptions, standards, and warning signs they use. Connect those explanations to real estimates, projects, documents, and outcomes. Then organize the knowledge so other people can find and use it.</p>
+
+      <p>The goal is not to replace experienced employees. It is to make what they know available beyond the moments when someone happens to ask them.</p>
+
+      <p>A searchable operational knowledge system can give a new PM access to company standards, pricing guidance, workflows, and escalation rules from day one. They will still need experience and supervision. But they no longer have to begin with an empty page.</p>
+
+      <div class="article-closer">
+        <p>Your company's most valuable operational knowledge should not disappear when someone walks out the door.</p>
+        <p>What knowledge would leave your business tomorrow if your most experienced person did not come back? That is a useful question to answer before it becomes urgent.</p>
+      </div>
+
+    </div>
+  </article>
+
+  <!-- ─── ARTICLE CTA ────────────────────────────────────── -->
+  <section class="article-cta">
+    <div class="article-cta-inner">
+      <h2 class="article-cta-heading">Ready to capture your operational knowledge?</h2>
+      <p class="article-cta-body">In 30 minutes, we'll identify where operational dependency is costing your business the most time, money, or risk — and whether there's a practical system worth building.</p>
+      <a href="https://cal.com/justinyurasits" class="btn-cta">Book a Call</a>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ────────────────────────────────────────── -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-cols">
+        <div>
+          <span class="footer-wordmark">Justin Yurasits</span>
+          <span class="footer-descriptor">Operational Intelligence for Construction, Trades, and Field Services</span>
+        </div>
+        <div class="footer-links">
+          <a href="mailto:justin@justinyurasits.com">justin@justinyurasits.com</a>
+          <span class="footer-sep">&middot;</span>
+          <a href="https://linkedin.com/in/justinyurasits">linkedin.com/in/justinyurasits</a>
+        </div>
+      </div>
+      <p class="footer-copy">&copy; 2026 Justin Yurasits. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

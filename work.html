@@ -241,7 +241,7 @@
 
     .case-layout {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
       gap: 4.5rem;
       align-items: start;
     }
@@ -319,7 +319,6 @@
       font-family: 'Inter', sans-serif;
       font-size: 0.8125rem;
       color: #3A5870;
-      white-space: nowrap;
     }
 
     .metric-sep {
@@ -333,8 +332,7 @@
       font-size: 1.5rem;
       font-weight: 700;
       color: var(--teal);
-      line-height: 1;
-      white-space: nowrap;
+      line-height: 1.2;
     }
 
     .case-teal-link {

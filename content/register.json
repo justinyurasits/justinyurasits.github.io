@@ -1,0 +1,6 @@
+{
+  "documents": [
+    { "code": "CASE-001", "title": "Boston GC case study", "issued": "2026-09-04", "rev": "01" },
+    { "code": "BRAND-002", "title": "Brand system", "issued": "2026-09-04", "rev": "01" }
+  ]
+}

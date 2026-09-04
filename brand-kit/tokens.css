@@ -1,36 +1,57 @@
+/* ================================================================
+   Layer 1 — Palette
+   Raw values. Nothing in the site references these directly.
+   ================================================================ */
+
 :root {
-  --paper: #FBFBF8;
-  --bond: #EFEFEB;
-  --ink: #111111;
-  --annotation: #70706B;
-  --object: #A9A79E;
-  --dimension: #CCCAC2;
-  --revision: #C73A32;
+  --c-ink:           #111111;
+  --c-white:         #FFFFFF;
+  --c-bond:          #EFEFEB;
+  --c-steel:         #476776;
+  --c-revision:      #C73A32;
+  --c-graphite:      #5F6466;
+  --c-line:          #B8B9B5;
 
+  /* Derived — dark-surface values
+     --c-revision-lift  5.73:1 on ink  (#E2685E)
+     --c-graphite-lift  14.33:1 on ink, 4.59:1 on steel  (#D7E2E8)
+     --c-line-dark      10.01:1 on ink, 3.21:1 on steel  (#B1BFC5)
+  */
+  --c-revision-lift: #E2685E;
+  --c-graphite-lift: #D7E2E8;
+  --c-line-dark:     #B1BFC5;
+}
+
+
+/* ================================================================
+   Typography and spacing
+   ================================================================ */
+
+:root {
   --font-display: "Archivo", system-ui, -apple-system, sans-serif;
-  --font-body: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --font-body:    "Source Serif 4", Georgia, "Times New Roman", serif;
 
-  --fs-display: clamp(30px, 4.6vw, 42px);
-  --fs-head: clamp(21px, 2.6vw, 25px);
-  --fs-subhead: 18px;
-  --fs-body: 16px;
-  --fs-small: 14px;
-  --fs-annotation: 11px;
+  --fs-display:   clamp(30px, 4.6vw, 42px);
+  --fs-head:      clamp(21px, 2.6vw, 25px);
+  --fs-subhead:   18px;
+  --fs-body:      16px;
+  --fs-small:     14px;
+  --fs-annotation:11px;
 
-  --lh-display: 1.05;
-  --lh-head: 1.18;
-  --lh-subhead: 1.35;
-  --lh-body: 1.62;
-  --lh-annotation: 1.35;
+  --lh-display:   1.05;
+  --lh-head:      1.18;
+  --lh-subhead:   1.35;
+  --lh-body:      1.62;
+  --lh-annotation:1.35;
 
-  --tr-display: -0.022em;
-  --tr-head: -0.015em;
-  --tr-subhead: -0.01em;
+  --tr-display:   -0.022em;
+  --tr-head:      -0.015em;
+  --tr-subhead:   -0.01em;
   --tr-annotation: 0.06em;
 
-  --w-cut: 1.5px;
-  --w-object: 1px;
-  --w-dimension: 0.5px;
+  --w-cut:        1.5px;
+  --w-object:     1px;
+  --w-dimension:  0.5px;
 
   --s-1: 4px;
   --s-2: 8px;
@@ -41,12 +62,97 @@
   --s-7: 48px;
   --s-8: 64px;
   --s-9: 96px;
-  --s-10: 128px;
+  --s-10:128px;
 
-  --measure: 68ch;
-  --wrap: 1120px;
-  --radius: 2px;
+  --measure:    68ch;
+  --wrap:       1120px;
+  --radius:     2px;
+  --sheet-pad:  clamp(22px, 4vw, 40px);
+  --zone-pad:   clamp(48px, 8vw, 96px);
+}
 
-  --sheet-pad: clamp(22px, 4vw, 40px);
-  --zone-pad: clamp(48px, 8vw, 96px);
+
+/* ================================================================
+   Layer 2 — Roles
+   These are the only tokens components may use.
+   Defaults set here match the white surface.
+   ================================================================ */
+
+:root {
+  --fg:              var(--c-ink);
+  --fg-muted:        var(--c-graphite);
+  --surface:         var(--c-white);
+  --rule-cut:        var(--c-ink);
+  --rule-object:     var(--c-graphite);
+  --rule-dimension:  var(--c-line);
+  --change:          var(--c-revision);
+  --btn-bg:          var(--c-ink);
+  --btn-fg:          var(--c-white);
+  --btn-border:      var(--c-ink);
+}
+
+
+/* ================================================================
+   Surfaces — redefine role tokens per section
+   Apply one class to the section element.
+   ================================================================ */
+
+.surface--white {
+  --surface:         var(--c-white);
+  --fg:              var(--c-ink);
+  --fg-muted:        var(--c-graphite);
+  --rule-cut:        var(--c-ink);
+  --rule-object:     var(--c-graphite);
+  --rule-dimension:  var(--c-line);
+  --change:          var(--c-revision);
+  --btn-bg:          var(--c-ink);
+  --btn-fg:          var(--c-white);
+  --btn-border:      var(--c-ink);
+  background:        var(--c-white);
+  color:             var(--c-ink);
+}
+
+.surface--bond {
+  --surface:         var(--c-bond);
+  --fg:              var(--c-ink);
+  --fg-muted:        var(--c-graphite);
+  --rule-cut:        var(--c-ink);
+  --rule-object:     var(--c-graphite);
+  --rule-dimension:  var(--c-line);
+  --change:          var(--c-revision);
+  --btn-bg:          var(--c-ink);
+  --btn-fg:          var(--c-white);
+  --btn-border:      var(--c-ink);
+  background:        var(--c-bond);
+  color:             var(--c-ink);
+}
+
+.surface--ink {
+  --surface:         var(--c-ink);
+  --fg:              var(--c-white);
+  --fg-muted:        var(--c-graphite-lift);
+  --rule-cut:        var(--c-white);
+  --rule-object:     var(--c-line-dark);
+  --rule-dimension:  var(--c-line-dark);
+  --change:          var(--c-revision-lift);
+  --btn-bg:          var(--c-white);
+  --btn-fg:          var(--c-ink);
+  --btn-border:      var(--c-white);
+  background:        var(--c-ink);
+  color:             var(--c-white);
+}
+
+.surface--steel {
+  --surface:         var(--c-steel);
+  --fg:              var(--c-white);
+  --fg-muted:        var(--c-graphite-lift);
+  --rule-cut:        var(--c-white);
+  --rule-object:     var(--c-line-dark);
+  --rule-dimension:  var(--c-line-dark);
+  --change:          var(--c-revision-lift);
+  --btn-bg:          var(--c-white);
+  --btn-fg:          var(--c-ink);
+  --btn-border:      var(--c-white);
+  background:        var(--c-steel);
+  color:             var(--c-white);
 }

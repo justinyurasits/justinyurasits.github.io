@@ -646,6 +646,98 @@
       margin: 0;
     }
 
+    /* ─── PROOF METRICS ──────────────────────────────── */
+
+    .proof-section {
+      background: var(--navy);
+      padding: 5.5rem 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .proof-inner {
+      max-width: 72rem;
+      margin: 0 auto;
+    }
+
+    .proof-eyebrow {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin: 0 0 1rem;
+    }
+
+    .proof-heading {
+      font-family: 'Spectral', Georgia, serif;
+      font-weight: 700;
+      font-size: clamp(1.625rem, 3.5vw, 2.375rem);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      color: var(--offwhite);
+      text-wrap: balance;
+      margin: 0 0 2.75rem;
+    }
+
+    .proof-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .proof-card {
+      background: #162637;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 4px;
+      padding: 1.5rem 1.375rem 1.75rem;
+    }
+
+    .proof-card-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: #3E6480;
+      margin: 0 0 1.25rem;
+    }
+
+    .proof-transform {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .proof-before {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9375rem;
+      color: #3A5870;
+    }
+
+    .proof-arrow {
+      color: #2A4560;
+      font-size: 0.875rem;
+      line-height: 1.4;
+    }
+
+    .proof-after {
+      font-family: 'Spectral', Georgia, serif;
+      font-size: 1.625rem;
+      font-weight: 700;
+      color: var(--teal);
+      line-height: 1.1;
+    }
+
+    .proof-note {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      font-style: italic;
+      color: var(--muted);
+      margin: 0;
+    }
+
     /* ─── CASE STUDY ─────────────────────────────────── */
 
     .case-section {
@@ -1258,6 +1350,8 @@
       .configured-grid { grid-template-columns: 1fr; gap: 0.5rem; }
       .audience-section { padding: 4rem 1.5rem; }
       .audience-grid { grid-template-columns: 1fr; }
+      .proof-section { padding: 4rem 1.5rem; }
+      .proof-grid { grid-template-columns: repeat(2, 1fr); }
       .changes-before { padding-right: 0; font-size: 0.875rem; }
       .changes-after { padding-left: 0.875rem; border-top: none; }
       .cta-section { padding: 5.5rem 1.5rem; }
@@ -1503,6 +1597,56 @@
         </div>
 
       </div>
+    </div>
+  </section>
+
+  <!-- ─── PROOF METRICS ───────────────────────────────── -->
+  <section class="proof-section" aria-labelledby="proof-heading">
+    <div class="proof-inner">
+      <p class="proof-eyebrow">Case Study</p>
+      <h2 class="proof-heading" id="proof-heading">Applied to a residential GC in Boston.</h2>
+
+      <div class="proof-grid">
+
+        <div class="proof-card">
+          <p class="proof-card-label">Contract Packages</p>
+          <div class="proof-transform">
+            <span class="proof-before">4–8 hours</span>
+            <span class="proof-arrow">↓</span>
+            <span class="proof-after">30 min</span>
+          </div>
+        </div>
+
+        <div class="proof-card">
+          <p class="proof-card-label">Preliminary Estimates</p>
+          <div class="proof-transform">
+            <span class="proof-before">Half a day</span>
+            <span class="proof-arrow">↓</span>
+            <span class="proof-after">1 hour</span>
+          </div>
+        </div>
+
+        <div class="proof-card">
+          <p class="proof-card-label">Change Order Turnaround</p>
+          <div class="proof-transform">
+            <span class="proof-before">10 days</span>
+            <span class="proof-arrow">↓</span>
+            <span class="proof-after">3 days</span>
+          </div>
+        </div>
+
+        <div class="proof-card">
+          <p class="proof-card-label">PM Knowledge Access</p>
+          <div class="proof-transform">
+            <span class="proof-before">Months of onboarding</span>
+            <span class="proof-arrow">↓</span>
+            <span class="proof-after">Available day one</span>
+          </div>
+        </div>
+
+      </div>
+
+      <p class="proof-note">Results from a Construction OS implementation at a Boston-area residential GC with 15–20 active projects.</p>
     </div>
   </section>
 

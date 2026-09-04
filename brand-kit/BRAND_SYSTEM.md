@@ -2,7 +2,7 @@
 
 **Sheet:** BRAND-002
 **Issued:** 2026-09-04
-**Revision:** 03
+**Revision:** 04
 **Supersedes:** BRAND-001 (specimen)
 
 This file is the authority on what this brand looks like. It governs the website, PDFs, Word documents, decks, and carousels. When a rule here conflicts with anything else in this repository, or with an existing stylesheet, this file wins.
@@ -75,7 +75,7 @@ Four surfaces, applied as a class to the section wrapper element. Each redefines
 - **Steel blue is a surface only.** Never a text color, never a button, never a decorative border, never an icon fill. Within a section on a light surface, steel may appear as a structural color inside technical diagrams, product illustrations, tables, and data visualizations — drawing frames, axes, table ruling, leader lines. It never carries data values, figures, or bars, which stay ink.
 - **No more than two dark sections per page.** Ink and steel are strong; overuse dilutes both.
 - **Never place dark sections adjacent to each other.** Ink directly above steel reads as one large dark field — the surface boundary disappears and the hierarchy collapses.
-- **Dimension figures belong on white or bond only.** The revision-lift color (`#E2685E`) is 1.84:1 against steel — it cannot meet minimum contrast on dark surfaces. Dimension figures on ink or steel are therefore not permitted.
+- **Dimension figures belong on white, bond, and ink.** On ink the changed value uses `--c-revision-lift` (#E2685E, 5.72:1 on ink), and the change must be readable by position and label as well as color, never by color alone. Dimension figures are prohibited on steel: revision-lift reaches only 1.84:1 against that surface and no revision red at usable luminance can clear the 3:1 minimum.
 
 ---
 
@@ -188,7 +188,7 @@ The signature element. A measured transformation is drawn as two dimensioned spa
 4. **Ticks, not arrowheads.** Spans terminate in 45-degree architectural ticks, drawn as lines. Never a Unicode arrow or an arrowhead marker.
 5. **The changed state is red; the original is annotation gray.** One red span per figure.
 6. **At most two dimension figures per page.** Beyond that it stops being evidence and becomes a motif.
-7. **White or bond surfaces only.** The revision-lift color cannot reach required contrast on dark surfaces.
+7. **White, bond, and ink surfaces only.** On ink, the changed span uses `--c-revision-lift` and the changed state must be readable by position and label, not color alone. Steel is prohibited — no revision red can meet minimum contrast against `#476776`.
 
 Applies equally to non-time measures: step counts, document counts, days to turnaround, headcount touchpoints.
 
@@ -226,7 +226,7 @@ Each of these has a reason. A prohibition without a reason gets argued around.
 - **Icon sets** — no generic line-icon library. Where a mark is needed it is drawn from the line vocabulary in §5.
 - **Entrance animation on scroll** — fade-and-slide-up on every section is the generated default. Motion responds to a user action or does not exist.
 - **Steel as a text color, button, or icon** — steel is a surface. Its use outside a section background is prohibited.
-- **Dimension figures on ink or steel surfaces** — the revision color cannot reach required contrast; see §2.4 and §8.
+- **Dimension figures on steel** — revision-lift (#E2685E) reaches 1.84:1 on steel, below the 3:1 minimum for non-text. No revision red at usable luminance passes against `#476776`. Ink is permitted; see §8 rule 7.
 
 ---
 
@@ -259,3 +259,4 @@ Claude Code may not introduce a visual treatment not defined here. If a page nee
 | 01 | 2026-09-04 | Initial system. Adopted from BRAND-001 specimen with two substrates, dimension scaling convention, and register scheme added. |
 | 02 | 2026-09-04 | Added SiteNav as a seventh primitive. Navigation appears on every page and had no definition, which would have forced page-level invention. |
 | 03 | 2026-09-04 | Two-layer token architecture (palette → roles). Added steel surface and three derived dark-surface palette values. Surface classes replace inline background values. Dimension figures restricted to light surfaces (contrast failure on steel documented). Steel use rules added to §2.4 and §10. Surface rhythm rules added to §2.4 and §9. |
+| 04 | 2026-09-04 | `--c-revision` palette value changed from `#C73A32` to `#C43230` (bond contrast 4.47:1 → 4.73:1, white 5.46:1). Dimension figure prohibition narrowed from all dark surfaces to steel only — ink is permitted, with revision-lift at 5.72:1 on ink. §2.4, §8 rule 7, §10 updated. |

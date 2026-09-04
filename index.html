@@ -211,6 +211,21 @@
       margin: 0 0 2.25rem;
     }
 
+    .hero-differentiator {
+      font-size: 0.9375rem;
+      line-height: 1.65;
+      color: var(--offwhite);
+      margin: 0 0 2.25rem;
+      max-width: 50ch;
+    }
+
+    .hero-ctas {
+      display: flex;
+      align-items: center;
+      gap: 1.75rem;
+      flex-wrap: wrap;
+    }
+
     .btn-hero {
       display: inline-block;
       background: var(--teal);
@@ -223,10 +238,25 @@
       border-radius: 3px;
       text-decoration: none;
       transition: background 0.15s;
+      white-space: nowrap;
     }
 
     .btn-hero:hover { background: var(--teal-dk); }
     .btn-hero:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
+
+    .btn-hero-ghost {
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--offwhite);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: rgba(232, 237, 242, 0.4);
+      transition: text-decoration-color 0.15s;
+      white-space: nowrap;
+    }
+
+    .btn-hero-ghost:hover { text-decoration-color: var(--offwhite); }
 
     /* ─── WHY AI FAILS ──────────────────────────────── */
 
@@ -1001,11 +1031,14 @@
   <section class="hero" aria-labelledby="hero-headline">
     <div class="hero-inner">
       <div class="hero-content">
-        <h1 class="hero-headline" id="hero-headline">Stop Running Your Business From Memory</h1>
-        <p class="hero-sub">You haven't taken a real vacation in years. Every estimate still comes through you. Your pricing, standards, and operating knowledge live in your head. When you're unavailable, work slows down and decisions wait.</p>
-        <p class="hero-body">We capture the operational knowledge that runs your business and put it where your whole team can use it — so documents get produced faster, new hires get the knowledge they need sooner, and the business runs without you in every conversation.</p>
-        <p class="hero-proof">Proven in construction. Designed for trades and field service businesses.</p>
-        <a href="https://cal.com/justinyurasits" class="btn-hero">Book a 30-Minute Call</a>
+        <p class="eyebrow">Construction OS</p>
+        <h1 class="hero-headline" id="hero-headline">Give your construction team time back.</h1>
+        <p class="hero-sub">Construction OS helps teams produce project documentation, put company knowledge to work, and stay ahead of what needs attention across active projects.</p>
+        <p class="hero-differentiator">Built around how construction works. Configured around how your company works.</p>
+        <div class="hero-ctas">
+          <a href="https://draftconstructionchangeorder.com" class="btn-hero">Try the Change Order Demo</a>
+          <a href="https://cal.com/justinyurasits" class="btn-hero-ghost">Book a Demo</a>
+        </div>
       </div>
     </div>
   </section>

@@ -78,19 +78,22 @@
 .proof-strip {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto auto auto;
 }
 .proof-cell {
   padding: var(--s-7) var(--s-6);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  display: grid;
+  grid-row: 1 / 4;
+  grid-template-rows: subgrid;
+  align-items: baseline;
 }
 .proof-cell + .proof-cell {
   border-left: var(--w-dimension) solid var(--rule-dimension);
 }
-.proof-cell__label { margin: 0 0 var(--s-4); }
+.proof-cell__label { margin: 0 0 var(--s-2); }
 .proof-cell__figure {
   margin: 0;
+  padding-bottom: var(--s-5);
   font-family: var(--font-display);
   font-size: var(--fs-head);
   font-weight: 500;
@@ -136,7 +139,10 @@
 @media (max-width: 900px) {
   .hero-grid { grid-template-columns: 1fr; }
   .hero-visual { display: none; }
-  .proof-strip { grid-template-columns: repeat(2, 1fr); }
+  .proof-strip { grid-template-columns: repeat(2, 1fr); grid-template-rows: none; }
+  .proof-cell { grid-row: auto; display: flex; flex-direction: column; gap: var(--s-4); }
+  .proof-cell__figure { padding-bottom: 0; }
+  .proof-cell__label { margin: 0; }
   .proof-cell:nth-child(3) { border-left: none; }
 }
 @media (max-width: 760px) {
@@ -208,28 +214,26 @@
     <div class="proof-strip">
       <div class="proof-cell">
         <p class="proof-cell__figure">174</p>
-        <div>
-          <p class="annotation proof-cell__label">Standard document types</p>
-          <p class="annotation" style="margin:0">Across the full construction lifecycle</p>
-        </div>
+        <p class="annotation proof-cell__label">Standard document types</p>
+        <p class="annotation" style="margin:0">Across the full construction lifecycle</p>
       </div>
       <div class="proof-cell">
-        <p class="proof-cell__figure">
+        <p class="proof-cell__figure" style="font-size:var(--fs-subhead)">
           <span style="display:block">160+ SOPs</span>
           <span style="display:block">1,258 pricing items</span>
         </p>
-        <div>
-          <p class="annotation proof-cell__label">Construction intelligence base</p>
-          <p class="annotation" style="margin:0">Company standards, procedures and real project data</p>
-        </div>
+        <p class="annotation proof-cell__label">Construction intelligence base</p>
+        <p class="annotation" style="margin:0">Company standards, procedures and real project data</p>
       </div>
       <div class="proof-cell">
         <p class="proof-cell__figure"><span style="color:var(--fg-muted)">4–8 hrs → </span><span style="color:var(--change)">30 min</span></p>
-        <p class="annotation proof-cell__label" style="margin-bottom:0">Contract package preparation</p>
+        <p class="annotation proof-cell__label">Contract package preparation</p>
+        <p class="annotation" style="margin:0"></p>
       </div>
       <div class="proof-cell">
         <p class="proof-cell__figure"><span style="color:var(--fg-muted)">10 days → </span><span style="color:var(--change)">3 days</span></p>
-        <p class="annotation proof-cell__label" style="margin-bottom:0">Change order turnaround</p>
+        <p class="annotation proof-cell__label">Change order turnaround</p>
+        <p class="annotation" style="margin:0"></p>
       </div>
     </div>
   </div>

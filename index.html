@@ -422,6 +422,107 @@
       letter-spacing: 0.005em;
     }
 
+    /* ─── DEMO CALLOUT ───────────────────────────────── */
+
+    .demo-section {
+      background: var(--light-bg);
+      padding: 5.5rem 1.5rem;
+      border-top: 1px solid rgba(15,30,46,0.08);
+    }
+
+    .demo-inner {
+      max-width: 72rem;
+      margin: 0 auto;
+    }
+
+    .demo-heading {
+      font-family: 'Spectral', Georgia, serif;
+      font-weight: 700;
+      font-size: clamp(1.5rem, 3vw, 2.125rem);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      color: var(--navy);
+      margin: 0 0 0.875rem;
+      text-wrap: balance;
+    }
+
+    .demo-sub {
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #3D5468;
+      margin: 0 0 2.5rem;
+      max-width: 58ch;
+    }
+
+    .demo-card {
+      background: var(--navy);
+      border-radius: 4px;
+      padding: 2.5rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 3rem;
+    }
+
+    .demo-flow {
+      display: flex;
+      flex-direction: column;
+      gap: 0.625rem;
+    }
+
+    .demo-flow-step {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9375rem;
+      color: var(--offwhite);
+    }
+
+    .demo-flow-step + .demo-flow-step::before {
+      display: none;
+    }
+
+    .demo-flow-arrow {
+      color: var(--teal);
+      font-size: 0.875rem;
+      line-height: 1;
+    }
+
+    .demo-cta-side {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.625rem;
+      flex-shrink: 0;
+    }
+
+    .btn-demo {
+      display: inline-block;
+      background: var(--teal);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      padding: 0.875rem 1.875rem;
+      border-radius: 3px;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background 0.15s;
+    }
+
+    .btn-demo:hover { background: var(--teal-dk); }
+    .btn-demo:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
+
+    .demo-note {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8125rem;
+      color: #3E6480;
+      margin: 0;
+    }
+
     /* ─── CASE STUDY ─────────────────────────────────── */
 
     .case-section {
@@ -1028,6 +1129,8 @@
       .pain-grid { grid-template-columns: 1fr; }
       .product-section { padding: 4rem 1.5rem; }
       .product-grid { grid-template-columns: 1fr; }
+      .demo-section { padding: 4rem 1.5rem; }
+      .demo-card { flex-direction: column; align-items: flex-start; gap: 2rem; padding: 2rem 1.5rem; }
       .changes-before { padding-right: 0; font-size: 0.875rem; }
       .changes-after { padding-left: 0.875rem; border-top: none; }
       .cta-section { padding: 5.5rem 1.5rem; }
@@ -1201,6 +1304,27 @@
           <span class="product-card-badge">Coming Soon</span>
         </div>
 
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── DEMO CALLOUT ────────────────────────────────── -->
+  <section class="demo-section" aria-labelledby="demo-heading">
+    <div class="demo-inner">
+      <h2 class="demo-heading" id="demo-heading">Try Document Workbench: Change Order Workflow</h2>
+      <p class="demo-sub">Field notes, a voice memo, or an email — in, a structured change order package out. Built on real trade-specific pricing and construction standards.</p>
+
+      <div class="demo-card">
+        <div class="demo-flow">
+          <div class="demo-flow-step">Field notes</div>
+          <div class="demo-flow-step"><span class="demo-flow-arrow">↓</span> Structured change event</div>
+          <div class="demo-flow-step"><span class="demo-flow-arrow">↓</span> Contract-ready package</div>
+        </div>
+
+        <div class="demo-cta-side">
+          <a href="https://draftconstructionchangeorder.com" class="btn-demo">Try It Now</a>
+          <p class="demo-note">No account required.</p>
+        </div>
       </div>
     </div>
   </section>

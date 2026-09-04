@@ -523,6 +523,129 @@
       margin: 0;
     }
 
+    /* ─── CONFIGURED SECTION ─────────────────────────── */
+
+    .configured-section {
+      background: var(--navy);
+      padding: 5.5rem 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .configured-inner {
+      max-width: 52rem;
+      margin: 0 auto;
+    }
+
+    .configured-heading {
+      font-family: 'Spectral', Georgia, serif;
+      font-weight: 700;
+      font-size: clamp(1.625rem, 3.5vw, 2.375rem);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      color: var(--offwhite);
+      text-wrap: balance;
+      margin: 0 0 1rem;
+    }
+
+    .configured-sub {
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--muted);
+      margin: 0 0 2.75rem;
+    }
+
+    .configured-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.625rem 2.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .configured-item {
+      display: flex;
+      align-items: baseline;
+      gap: 0.625rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9375rem;
+      color: var(--offwhite);
+    }
+
+    .configured-check {
+      color: var(--teal);
+      font-size: 0.75rem;
+      flex-shrink: 0;
+      margin-top: 0.1em;
+    }
+
+    .configured-tagline {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 0.9375rem;
+      color: var(--teal);
+      text-align: center;
+      margin: 0;
+    }
+
+    /* ─── AUDIENCE SECTION ────────────────────────────── */
+
+    .audience-section {
+      background: var(--light-bg);
+      padding: 5.5rem 1.5rem;
+      border-top: 1px solid rgba(15,30,46,0.08);
+    }
+
+    .audience-inner {
+      max-width: 72rem;
+      margin: 0 auto;
+    }
+
+    .audience-heading {
+      font-family: 'Spectral', Georgia, serif;
+      font-weight: 700;
+      font-size: clamp(1.625rem, 3.5vw, 2.375rem);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      color: var(--navy);
+      text-align: center;
+      text-wrap: balance;
+      margin: 0 0 3rem;
+    }
+
+    .audience-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.5rem;
+    }
+
+    .audience-col-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin: 0 0 0.75rem;
+    }
+
+    .audience-col-heading {
+      font-family: 'Spectral', Georgia, serif;
+      font-weight: 700;
+      font-size: 1.1875rem;
+      line-height: 1.3;
+      color: var(--navy);
+      margin: 0 0 0.75rem;
+      text-wrap: balance;
+    }
+
+    .audience-col-body {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9375rem;
+      line-height: 1.7;
+      color: #3D5468;
+      margin: 0;
+    }
+
     /* ─── CASE STUDY ─────────────────────────────────── */
 
     .case-section {
@@ -1131,6 +1254,10 @@
       .product-grid { grid-template-columns: 1fr; }
       .demo-section { padding: 4rem 1.5rem; }
       .demo-card { flex-direction: column; align-items: flex-start; gap: 2rem; padding: 2rem 1.5rem; }
+      .configured-section { padding: 4rem 1.5rem; }
+      .configured-grid { grid-template-columns: 1fr; gap: 0.5rem; }
+      .audience-section { padding: 4rem 1.5rem; }
+      .audience-grid { grid-template-columns: 1fr; }
       .changes-before { padding-right: 0; font-size: 0.875rem; }
       .changes-after { padding-left: 0.875rem; border-top: none; }
       .cta-section { padding: 5.5rem 1.5rem; }
@@ -1325,6 +1452,56 @@
           <a href="https://draftconstructionchangeorder.com" class="btn-demo">Try It Now</a>
           <p class="demo-note">No account required.</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CONFIGURED SECTION ──────────────────────────── -->
+  <section class="configured-section" aria-labelledby="configured-heading">
+    <div class="configured-inner">
+      <h2 class="configured-heading" id="configured-heading">Your company already has a way of working. Construction OS uses it.</h2>
+      <p class="configured-sub">Construction OS is not a generic AI tool. Every response, document, and answer is grounded in how construction works and how your company specifically operates.</p>
+
+      <div class="configured-grid">
+        <div class="configured-item"><span class="configured-check">✓</span> Your templates</div>
+        <div class="configured-item"><span class="configured-check">✓</span> Your markup rules</div>
+        <div class="configured-item"><span class="configured-check">✓</span> Your contract language</div>
+        <div class="configured-item"><span class="configured-check">✓</span> Your approval thresholds</div>
+        <div class="configured-item"><span class="configured-check">✓</span> Your terminology</div>
+        <div class="configured-item"><span class="configured-check">✓</span> Your SOPs</div>
+        <div class="configured-item"><span class="configured-check">✓</span> Your pricing</div>
+        <div class="configured-item"><span class="configured-check">✓</span> Your project history</div>
+      </div>
+
+      <p class="configured-tagline">Built around how construction works. Configured around how your company works.</p>
+    </div>
+  </section>
+
+  <!-- ─── AUDIENCE SECTION ────────────────────────────── -->
+  <section class="audience-section" aria-labelledby="audience-heading">
+    <div class="audience-inner">
+      <h2 class="audience-heading" id="audience-heading">Who Construction OS is built for.</h2>
+
+      <div class="audience-grid">
+
+        <div>
+          <p class="audience-col-label">The Project Manager</p>
+          <h3 class="audience-col-heading">Less time on paperwork. More time managing the project.</h3>
+          <p class="audience-col-body">The PM managing five active jobs shouldn't spend half their day drafting change orders and formatting reports. Document Workbench gives that time back.</p>
+        </div>
+
+        <div>
+          <p class="audience-col-label">The Senior Expert</p>
+          <h3 class="audience-col-heading">Their knowledge becomes an asset of the company.</h3>
+          <p class="audience-col-body">Every company has someone who carries 20 or 30 years of operating knowledge. Construction Intelligence makes that knowledge accessible to the whole team — including after they're gone.</p>
+        </div>
+
+        <div>
+          <p class="audience-col-label">The Owner or COO</p>
+          <h3 class="audience-col-heading">Better visibility without being pulled into every question.</h3>
+          <p class="audience-col-body">As the company grows, staying on top of what needs attention across ten or fifteen active projects becomes impossible without the right system.</p>
+        </div>
+
       </div>
     </div>
   </section>

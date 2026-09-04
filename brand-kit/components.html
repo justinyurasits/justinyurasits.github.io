@@ -53,12 +53,14 @@
   --s-9: 96px;
   --s-10: 128px;
 
-  --measure: 68ch;
-  --wrap: 1120px;
+  --measure: 62ch;
+  --wrap: 1240px;
   --radius: 2px;
 
   --sheet-pad: clamp(22px, 4vw, 40px);
-  --zone-pad: clamp(48px, 8vw, 96px);
+  --zone-pad: clamp(36px, 4.5vw, 64px);
+
+  --gutter: var(--s-5);
 }
 
 /* Base
@@ -437,6 +439,64 @@ a:hover { text-decoration-thickness: 1.5px; }
   .site-nav[data-open="true"] .site-nav__links { display: flex; top: 100%; z-index: 10; }
 }
 
+/* Sheet grid — the page layout model
+   ------------------------------------------------------------------
+   Twelve columns. The first two are the annotation gutter: register
+   codes, dates, zone markers and field labels live there, the way
+   they run down the left edge of a drawing sheet. Content occupies
+   the remaining ten. This is what stops every section from stranding
+   itself in the left third of a wide page.                          */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+  row-gap: var(--s-5);
+  align-items: start;
+}
+
+.g-gutter { grid-column: 1 / 3; }
+.g-main   { grid-column: 3 / 10; }
+.g-wide   { grid-column: 3 / 13; }
+.g-side   { grid-column: 10 / 13; }
+.g-half-l { grid-column: 3 / 8; }
+.g-half-r { grid-column: 8 / 13; }
+.g-full   { grid-column: 1 / 13; }
+
+@media (max-width: 900px) {
+  .g-gutter, .g-main, .g-wide, .g-side,
+  .g-half-l, .g-half-r, .g-full { grid-column: 1 / 13; }
+  .g-gutter { margin-bottom: calc(var(--s-3) * -1); }
+}
+
+/* Spec list — term and description in aligned columns.
+   Replaces the stacked prose block, which left the page half empty. */
+
+.spec-list { border-top: var(--w-object) solid var(--object); }
+
+.spec-row {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+  padding: var(--s-4) 0;
+  border-bottom: var(--w-dimension) solid var(--dimension);
+}
+
+.spec-row__index { grid-column: 1 / 3; }
+.spec-row__term  { grid-column: 3 / 8; }
+.spec-row__desc  { grid-column: 8 / 13; color: var(--annotation); }
+
+@media (max-width: 900px) {
+  .spec-row { row-gap: var(--s-2); }
+  .spec-row__index, .spec-row__term, .spec-row__desc { grid-column: 1 / 13; }
+}
+
+/* Rules align to content columns, never to the container.
+   A rule that runs past the content it divides underlines nothing.  */
+
+.rule--main { margin-left: 0; }
+.zone > .rule:first-child { margin-top: 0; }
+
 </style>
 </head>
 <body>
@@ -454,105 +514,190 @@ a:hover { text-decoration-thickness: 1.5px; }
   </div>
 </nav>
 
-<div class="zone zone--tight">
-  <span class="annotation zone__marker">BRAND-002 / REV 01 / 2026-09-04</span>
-  <h1 class="display">Component reference</h1>
-  <div class="prose" style="margin-top:24px">
-    <p class="lead">Every primitive in the system, rendered. Compose pages from these. Nothing else gets invented in page code.</p>
+<div class="zone">
+  <div class="grid">
+    <div class="g-gutter">
+      <p class="annotation">BRAND-002</p>
+      <p class="annotation">REV 02</p>
+    </div>
+    <div class="g-main">
+      <h1 class="display">Component reference</h1>
+      <div class="prose" style="margin-top:20px">
+        <p class="lead">Every primitive in the system, rendered on the twelve-column sheet grid. Pages are composed from these.</p>
+      </div>
+      <p style="margin:24px 0 0">
+        <a class="btn" href="#">Primary action</a>
+        <a class="btn btn--ghost" href="#" style="margin-left:8px">Secondary action</a>
+      </p>
+    </div>
+    <div class="g-side">
+      <table class="table">
+        <tr><th>Primitive</th><th>State</th></tr>
+        <tr><td>SiteNav</td><td>Defined</td></tr>
+        <tr><td>Sheet</td><td>Defined</td></tr>
+        <tr><td>TitleBlock</td><td>Defined</td></tr>
+        <tr><td>Dimension</td><td>Defined</td></tr>
+        <tr><td>Register</td><td>Defined</td></tr>
+        <tr><td>Rule</td><td>Defined</td></tr>
+        <tr><td>Zone</td><td>Defined</td></tr>
+      </table>
+    </div>
   </div>
 </div>
 
 <hr class="rule rule--cut">
 
-<div class="zone zone--tight">
-  <span class="annotation zone__marker">Type</span>
-  <h2 class="display">Stop running your business from memory</h2>
-  <p class="annotation" style="margin-top:10px">Display / Archivo 600</p>
-  <h3 class="head" style="margin-top:40px">The senior PM everyone calls is a single point of failure</h3>
-  <p class="annotation" style="margin-top:10px">Head / Archivo 500</p>
-  <h4 class="subhead" style="margin-top:40px">What we document first</h4>
-  <p class="annotation" style="margin-top:10px">Subhead / Archivo 500</p>
-  <div class="prose" style="margin-top:40px">
-    <p>The estimator with thirty years of pricing judgment. The COO who answers every operational question. When they are pulled in every direction, or eventually leave, that knowledge does not transfer on its own.</p>
-    <p>We document how the company actually operates, structure it, and build the system on top of it. Not the ideal version of the business. The real one.</p>
+<div class="zone">
+  <div class="grid" style="row-gap:var(--s-6)">
+    <p class="annotation g-gutter">Type</p>
+    <div class="g-main">
+      <h2 class="display">Stop running your business from memory</h2>
+      <p class="annotation" style="margin-top:10px">Display / Archivo 600</p>
+      <h3 class="head" style="margin-top:36px">The senior PM everyone calls is a single point of failure</h3>
+      <p class="annotation" style="margin-top:10px">Head / Archivo 500</p>
+      <h4 class="subhead" style="margin-top:36px">What we document first</h4>
+      <p class="annotation" style="margin-top:10px">Subhead / Archivo 500</p>
+      <div class="prose" style="margin-top:36px">
+        <p>The estimator with thirty years of pricing judgment. The COO who answers every operational question. When they leave, that knowledge does not transfer on its own.</p>
+      </div>
+      <p class="annotation" style="margin-top:10px">Body / Source Serif 4 / 62ch measure</p>
+    </div>
+    <div class="g-side">
+      <p class="annotation">Line hierarchy</p>
+      <hr class="rule rule--cut" style="margin:14px 0 6px">
+      <p class="annotation">Cut / 1.5px</p>
+      <hr class="rule" style="margin:20px 0 6px">
+      <p class="annotation">Object / 1px</p>
+      <hr class="rule rule--dimension" style="margin:20px 0 6px">
+      <p class="annotation">Dimension / 0.5px</p>
+    </div>
   </div>
-  <p class="annotation" style="margin-top:10px">Body / Source Serif 4 400 / 68ch measure</p>
 </div>
 
 <hr class="rule rule--cut">
 
-<div class="zone zone--tight">
-  <span class="annotation zone__marker">Line hierarchy</span>
-  <hr class="rule rule--cut" style="margin:16px 0 6px">
-  <p class="annotation">Cut / 1.5px ink / sheet frame, title block, major division</p>
-  <hr class="rule" style="margin:28px 0 6px">
-  <p class="annotation">Object / 1px / section division, table rules</p>
-  <hr class="rule rule--dimension" style="margin:28px 0 6px">
-  <p class="annotation">Dimension / 0.5px / extension lines, cell borders</p>
-</div>
-
-<hr class="rule rule--cut">
-
-<div class="zone zone--tight">
-  <span class="annotation zone__marker">Dimension — measured evidence</span>
-  <div class="dim" style="max-width:620px">
-    <p class="annotation dim__label">Contract package, before</p>
-    <div class="dim__track" style="--span:100%">
-      <span class="dim__ext dim__ext--start"></span>
-      <span class="dim__ext dim__ext--end"></span>
-      <span class="dim__value">up to 8 hrs</span>
-    </div>
-    <p class="annotation dim__label">After</p>
-    <div class="dim__track dim__track--changed" style="--span:6.25%">
-      <span class="dim__ext dim__ext--start"></span>
-      <span class="dim__ext dim__ext--end"></span>
-      <span class="dim__value dim__value--outside">30 min</span>
-    </div>
-  </div>
-  <p class="annotation" style="max-width:60ch">Both spans on one scale. The changed state is the only red on the page.</p>
-
-  <div class="dim" style="max-width:620px;margin-top:56px">
-    <p class="annotation dim__label">PM onboarding, before</p>
-    <div class="dim__track" style="--span:100%">
-      <span class="dim__ext dim__ext--start"></span>
-      <span class="dim__ext dim__ext--end"></span>
-      <span class="dim__value">4 months</span>
-    </div>
-    <p class="annotation dim__label">After</p>
-    <div class="dim__track dim__track--changed" style="--span:22%">
-      <span class="dim__ext dim__ext--start"></span>
-      <span class="dim__ext dim__ext--end"></span>
-      <span class="dim__break"></span>
-      <span class="dim__value dim__value--outside">1 day</span>
-    </div>
-  </div>
-  <p class="annotation" style="max-width:60ch">Break marks. Ratio too large to draw at scale — span drawn at minimum, figure labelled not to scale.</p>
-</div>
-
-<hr class="rule rule--cut">
-
-<div class="zone zone--tight">
-  <span class="annotation zone__marker">Sheet — bond substrate</span>
-  <div class="sheet sheet--bond sheet--framed">
-    <div class="split split--7-5">
-      <div>
-        <h3 class="head">A residential GC in Boston</h3>
-        <div class="prose" style="margin-top:16px">
-          <p>Fifteen to twenty active projects and a five-person PM team. Project knowledge scattered across people, email threads, and file systems. Every document built from scratch.</p>
+<div class="zone">
+  <div class="grid" style="row-gap:var(--s-6)">
+    <p class="annotation g-gutter">Spec list</p>
+    <h2 class="head g-main">Term and description in aligned columns</h2>
+    <div class="g-full">
+      <div class="spec-list">
+        <div class="spec-row">
+          <p class="annotation spec-row__index">Knowledge</p>
+          <p class="subhead spec-row__term">Your best PM carries half the company's knowledge in their head.</p>
+          <p class="small spec-row__desc">When they are pulled in every direction, or eventually leave, that knowledge does not transfer on its own.</p>
+        </div>
+        <div class="spec-row">
+          <p class="annotation spec-row__index">Repetition</p>
+          <p class="subhead spec-row__term">Every project starts from scratch because the last one's lessons were never written down.</p>
+          <p class="small spec-row__desc">Estimates, RFI logs, subcontractor notes — rebuilt from memory, every time.</p>
+        </div>
+        <div class="spec-row">
+          <p class="annotation spec-row__index">Tooling</p>
+          <p class="subhead spec-row__term">You brought in software. It made the data problem bigger, not smaller.</p>
+          <p class="small spec-row__desc">More tools, more places to look, more things to update. The real work still happens in someone's head.</p>
         </div>
       </div>
-      <div>
-        <table class="table">
-          <tr><th>Active projects</th></tr>
-          <tr><td>15–20</td></tr>
-          <tr><th style="padding-top:16px">PM team</th></tr>
-          <tr><td>5</td></tr>
-          <tr><th style="padding-top:16px">Documents captured</th></tr>
-          <tr><td>160 SOPs</td></tr>
-        </table>
+    </div>
+  </div>
+</div>
+
+<hr class="rule rule--cut">
+
+<div class="zone">
+  <div class="grid" style="row-gap:var(--s-6)">
+    <p class="annotation g-gutter">Three-up grid</p>
+    <h2 class="head g-main">One grid per page maximum</h2>
+    <div class="g-wide">
+      <div class="grid-3">
+        <div>
+          <h3 class="subhead">Document workbench</h3>
+          <p class="small" style="margin:8px 0 0;color:var(--annotation)">Generate and manage the documentation that runs the project lifecycle, structured from the company's own templates.</p>
+        </div>
+        <div>
+          <h3 class="subhead">Construction intelligence</h3>
+          <p class="small" style="margin:8px 0 0;color:var(--annotation)">Industry procedure combined with the company's standards and pricing.</p>
+        </div>
+        <div>
+          <h3 class="subhead">Project intelligence</h3>
+          <p class="small" style="margin:8px 0 0;color:var(--annotation)">What is unresolved, at risk, or overdue across active projects.</p>
+        </div>
       </div>
     </div>
-    <div class="title-block" style="margin-top:48px">
+  </div>
+</div>
+
+<hr class="rule rule--cut">
+
+<div class="zone">
+  <div class="grid">
+    <p class="annotation g-gutter">Asymmetric split</p>
+    <div class="g-half-l">
+      <h2 class="head">A change order drafted in the field, not in the office.</h2>
+      <div class="prose" style="margin-top:16px">
+        <p>Describe what changed. The system pulls the scope, calculates the markup, formats the document, and sends it for signature.</p>
+      </div>
+      <p style="margin:24px 0 0"><a class="btn" href="#">Try it now</a></p>
+    </div>
+    <div class="g-half-r">
+      <div class="spec-list">
+        <div class="spec-row"><p class="annotation spec-row__index">01</p><p class="small spec-row__term" style="grid-column:3 / 13">Scope identified on site</p></div>
+        <div class="spec-row"><p class="annotation spec-row__index">02</p><p class="small spec-row__term" style="grid-column:3 / 13">Change order drafted via voice or text</p></div>
+        <div class="spec-row"><p class="annotation spec-row__index">03</p><p class="small spec-row__term" style="grid-column:3 / 13">Markup applied from company rate card</p></div>
+        <div class="spec-row"><p class="annotation spec-row__index">04</p><p class="small spec-row__term" style="grid-column:3 / 13">Document formatted and sent for signature</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="rule rule--cut">
+
+<div class="zone">
+  <div class="sheet sheet--bond sheet--framed">
+    <div class="grid">
+      <div class="g-gutter">
+        <p class="annotation">CASE-001</p>
+        <p class="annotation">Boston, MA</p>
+      </div>
+      <div style="grid-column:3 / 8">
+        <h2 class="head">A residential GC in Boston.</h2>
+        <div class="prose" style="margin-top:16px">
+          <p>Fifteen to twenty active projects, a five-person PM team. Every document rebuilt from scratch on every project.</p>
+        </div>
+      </div>
+      <div style="grid-column:8 / 13">
+        <div class="dim">
+          <p class="annotation dim__label">Contract package, before</p>
+          <div class="dim__track" style="--span:100%">
+            <span class="dim__ext dim__ext--start"></span>
+            <span class="dim__ext dim__ext--end"></span>
+            <span class="dim__value">up to 8 hrs</span>
+          </div>
+          <p class="annotation dim__label">After</p>
+          <div class="dim__track dim__track--changed" style="--span:6.25%">
+            <span class="dim__ext dim__ext--start"></span>
+            <span class="dim__ext dim__ext--end"></span>
+            <span class="dim__value dim__value--outside">30 min</span>
+          </div>
+        </div>
+        <div class="dim" style="margin-top:36px">
+          <p class="annotation dim__label">PM onboarding, before</p>
+          <div class="dim__track" style="--span:100%">
+            <span class="dim__ext dim__ext--start"></span>
+            <span class="dim__ext dim__ext--end"></span>
+            <span class="dim__value">4 months</span>
+          </div>
+          <p class="annotation dim__label">After — not to scale</p>
+          <div class="dim__track dim__track--changed" style="--span:22%">
+            <span class="dim__ext dim__ext--start"></span>
+            <span class="dim__ext dim__ext--end"></span>
+            <span class="dim__break"></span>
+            <span class="dim__value dim__value--outside">1 day</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="title-block" style="margin-top:44px">
       <div><span class="title-block__label">Project</span><span class="title-block__value">Construction OS</span></div>
       <div><span class="title-block__label">Sheet</span><span class="title-block__value">CASE-001</span></div>
       <div><span class="title-block__label">Issued</span><span class="title-block__value">2026-09-04</span></div>
@@ -561,55 +706,8 @@ a:hover { text-decoration-thickness: 1.5px; }
   </div>
 </div>
 
-<hr class="rule rule--cut">
-
 <div class="zone zone--tight">
-  <span class="annotation zone__marker">Table and inline title block</span>
-  <table class="table" style="max-width:640px">
-    <tr><th>Document</th><th>Register</th><th>Issued</th><th>Rev</th></tr>
-    <tr><td>Brand system</td><td>BRAND-002</td><td>2026-09-04</td><td>01</td></tr>
-    <tr><td>Boston GC case study</td><td>CASE-001</td><td>2026-08-22</td><td>02</td></tr>
-    <tr><td>Architecture specification</td><td>SPEC-004</td><td>2026-08-11</td><td>01</td></tr>
-  </table>
-  <p class="title-block--inline" style="max-width:640px;margin-top:32px">Construction OS / CASE-001 / 2026-09-04 / REV 02</p>
-</div>
-
-<hr class="rule rule--cut">
-
-<div class="zone zone--tight">
-  <span class="annotation zone__marker">Buttons</span>
-  <a class="btn" href="#">Book a scoping call</a>
-  <a class="btn btn--ghost" href="#" style="margin-left:10px">Try the change order drafter</a>
-  <p class="annotation" style="margin-top:20px">Buttons are ink. Never red — red means change, not emphasis.</p>
-</div>
-
-<hr class="rule rule--cut">
-
-<div class="zone zone--tight">
-  <span class="annotation zone__marker">Three-up grid — one per page maximum</span>
-  <div class="grid-3">
-    <div>
-      <h4 class="subhead">Document workbench</h4>
-      <p class="small" style="margin:8px 0 0;color:var(--annotation)">Generate and manage the documentation that runs the project lifecycle.</p>
-    </div>
-    <div>
-      <h4 class="subhead">Construction intelligence</h4>
-      <p class="small" style="margin:8px 0 0;color:var(--annotation)">Industry procedure combined with the company's own standards and pricing.</p>
-    </div>
-    <div>
-      <h4 class="subhead">Project intelligence</h4>
-      <p class="small" style="margin:8px 0 0;color:var(--annotation)">What is unresolved, at risk, or overdue across active projects.</p>
-    </div>
-  </div>
-</div>
-
-<div class="zone zone--tight">
-  <div class="title-block">
-    <div><span class="title-block__label">Project</span><span class="title-block__value">Construction OS</span></div>
-    <div><span class="title-block__label">Sheet</span><span class="title-block__value">BRAND-002</span></div>
-    <div><span class="title-block__label">Issued</span><span class="title-block__value">2026-09-04</span></div>
-    <div><span class="title-block__label">Revision</span><span class="title-block__value">01</span></div>
-  </div>
+  <p class="title-block--inline">Construction OS / BRAND-002 / 2026-09-04 / REV 02</p>
 </div>
 
 </div>

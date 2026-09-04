@@ -14,11 +14,11 @@
 
   /* Derived — dark-surface values
      --c-revision-lift  5.73:1 on ink  (#E2685E)
-     --c-graphite-lift  14.33:1 on ink, 4.59:1 on steel  (#D7E2E8)
+     --c-graphite-lift  6.69:1 on ink  (#949B9E) — ink surface only; steel uses white for all text
      --c-line-dark      10.01:1 on ink, 3.21:1 on steel  (#B1BFC5)
   */
   --c-revision-lift: #E2685E;
-  --c-graphite-lift: #D7E2E8;
+  --c-graphite-lift: #949B9E;
   --c-line-dark:     #B1BFC5;
 }
 
@@ -145,7 +145,7 @@
 .surface--steel {
   --surface:         var(--c-steel);
   --fg:              var(--c-white);
-  --fg-muted:        var(--c-graphite-lift);
+  --fg-muted:        var(--c-white); /* 6.05:1 max — no usable muted range; steel is single-level text only */
   --rule-cut:        var(--c-white);
   --rule-object:     var(--c-line-dark);
   --rule-dimension:  var(--c-line-dark);

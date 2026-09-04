@@ -88,7 +88,7 @@ a:hover { text-decoration-thickness: 1.5px; }
 /* Rule
    ------------------------------------------------------------------ */
 
-.rule { border: 0; border-top: var(--w-object) solid var(--rule-object); margin: var(--s-6) 0; }
+.rule { display: block; width: 100%; border: 0; border-top: var(--w-object) solid var(--rule-object); margin: var(--s-6) 0; }
 .rule--cut { border-top: var(--w-cut) solid var(--rule-cut); }
 .rule--dimension { border-top: var(--w-dimension) solid var(--rule-dimension); }
 
@@ -200,9 +200,9 @@ a:hover { text-decoration-thickness: 1.5px; }
 .dim__track::after {
   content: "";
   position: absolute;
-  top: -8px;
+  top: -6px;
   width: 0;
-  height: 17px;
+  height: 12px;
   border-left: var(--w-object) solid var(--fg-muted);
   transform: rotate(45deg);
 }

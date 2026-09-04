@@ -2,7 +2,7 @@
 
 **Sheet:** BRAND-002
 **Issued:** 2026-09-04
-**Revision:** 01
+**Revision:** 02
 **Supersedes:** BRAND-001 (specimen)
 
 This file is the authority on what this brand looks like. It governs the website, PDFs, Word documents, decks, and carousels. When a rule here conflicts with anything else in this repository, or with an existing stylesheet, this file wins.
@@ -112,7 +112,7 @@ Format is `PREFIX-NNN`, revisions are `REV NN`, dates are ISO `YYYY-MM-DD`.
 
 ## 7. Primitives
 
-Six. Pages are composed from these. Adding a seventh requires editing this file.
+Seven. Pages are composed from these. Adding an eighth requires editing this file.
 
 **`Sheet`** — substrate wrapper. Props: `substrate` (paper | bond), `framed` (bool). A framed sheet carries a cut-line border and internal padding of 26px (mobile) to 40px (desktop).
 
@@ -127,6 +127,8 @@ An inline single-line variant exists for contexts too small for a grid (carousel
 **`Rule`** — a horizontal division at one of the three defined weights. Props: `weight` (cut | object | dimension).
 
 **`Zone`** — a page section. Optional `marker` (annotation-styled label). Markers appear only on pages with more than three zones, where they perform navigation. On shorter pages the heading is sufficient and the marker is decoration.
+
+**`SiteNav`** — the seventh, added because it appears on every page and would otherwise have to be invented in page code. Left mark in Archivo 500, right-side ink links, one ghost button. Bottom edge is a dimension rule. Mobile collapses to a text toggle — no icon library, and no third-party JS framework for a single boolean.
 
 CTAs, tables, and diagrams are not primitives. They are compositions built from tokens and the six above. A CTA is a `Zone` with a heading and an ink button. Making them primitives is how a system grows to twenty components that each drift independently.
 
@@ -207,3 +209,4 @@ Claude Code may not introduce a visual treatment not defined here. If a page nee
 | Rev | Date | Change |
 |---|---|---|
 | 01 | 2026-09-04 | Initial system. Adopted from BRAND-001 specimen with two substrates, dimension scaling convention, and register scheme added. |
+| 02 | 2026-09-04 | Added SiteNav as a seventh primitive. Navigation appears on every page and had no definition, which would have forced page-level invention. |

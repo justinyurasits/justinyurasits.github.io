@@ -7,455 +7,31 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="brand.css">
 <style>
-:root {
-  --paper: #FBFBF8;
-  --bond: #EFEFEB;
-  --ink: #111111;
-  --annotation: #70706B;
-  --object: #A9A79E;
-  --dimension: #CCCAC2;
-  --revision: #C73A32;
-
-  --font-display: "Archivo", system-ui, -apple-system, sans-serif;
-  --font-body: "Source Serif 4", Georgia, "Times New Roman", serif;
-
-  --fs-display: clamp(30px, 4.6vw, 42px);
-  --fs-head: clamp(21px, 2.6vw, 25px);
-  --fs-subhead: 18px;
-  --fs-body: 16px;
-  --fs-small: 14px;
-  --fs-annotation: 11px;
-
-  --lh-display: 1.05;
-  --lh-head: 1.18;
-  --lh-subhead: 1.35;
-  --lh-body: 1.62;
-  --lh-annotation: 1.35;
-
-  --tr-display: -0.022em;
-  --tr-head: -0.015em;
-  --tr-subhead: -0.01em;
-  --tr-annotation: 0.06em;
-
-  --w-cut: 1.5px;
-  --w-object: 1px;
-  --w-dimension: 0.5px;
-
-  --s-1: 4px;
-  --s-2: 8px;
-  --s-3: 12px;
-  --s-4: 16px;
-  --s-5: 24px;
-  --s-6: 32px;
-  --s-7: 48px;
-  --s-8: 64px;
-  --s-9: 96px;
-  --s-10: 128px;
-
-  --measure: 68ch;
-  --wrap: 1120px;
-  --radius: 2px;
-
-  --sheet-pad: clamp(22px, 4vw, 40px);
-  --zone-pad: clamp(48px, 8vw, 96px);
-}
-
-/* Base
-   ------------------------------------------------------------------ */
-
-*, *::before, *::after { box-sizing: border-box; }
-
-html { -webkit-text-size-adjust: 100%; }
-
-body {
-  margin: 0;
-  background: var(--paper);
-  color: var(--ink);
-  font-family: var(--font-body);
-  font-size: var(--fs-body);
-  line-height: var(--lh-body);
-  font-variant-numeric: tabular-nums;
-  -webkit-font-smoothing: antialiased;
-}
-
-:focus-visible {
-  outline: 2px solid var(--ink);
-  outline-offset: 3px;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation: none !important; transition: none !important; }
-}
-
-.wrap {
-  max-width: var(--wrap);
-  margin-inline: auto;
-  padding-inline: var(--s-5);
-}
-
-/* Typography
-   ------------------------------------------------------------------ */
-
-.display, .head, .subhead, .small, .annotation {
-  font-family: var(--font-display);
-  margin: 0;
-}
-
-.display {
-  font-size: var(--fs-display);
-  line-height: var(--lh-display);
-  letter-spacing: var(--tr-display);
-  font-weight: 600;
-  max-width: 18ch;
-}
-
-.head {
-  font-size: var(--fs-head);
-  line-height: var(--lh-head);
-  letter-spacing: var(--tr-head);
-  font-weight: 500;
-  max-width: 26ch;
-}
-
-.subhead {
-  font-size: var(--fs-subhead);
-  line-height: var(--lh-subhead);
-  letter-spacing: var(--tr-subhead);
-  font-weight: 500;
-}
-
-.small { font-size: var(--fs-small); line-height: 1.5; font-weight: 400; }
-
-.annotation {
-  font-size: var(--fs-annotation);
-  line-height: var(--lh-annotation);
-  letter-spacing: var(--tr-annotation);
-  font-weight: 400;
-  color: var(--annotation);
-}
-
-.prose { max-width: var(--measure); }
-.prose p { margin: 0 0 var(--s-4); }
-.prose p:last-child { margin-bottom: 0; }
-.lead { font-size: 18px; line-height: 1.55; }
-
-a {
-  color: var(--ink);
-  text-decoration: underline;
-  text-decoration-thickness: 0.5px;
-  text-underline-offset: 3px;
-}
-a:hover { text-decoration-thickness: 1.5px; }
-
-/* Rule
-   ------------------------------------------------------------------ */
-
-.rule { border: 0; border-top: var(--w-object) solid var(--object); margin: var(--s-6) 0; }
-.rule--cut { border-top: var(--w-cut) solid var(--ink); }
-.rule--dimension { border-top: var(--w-dimension) solid var(--dimension); }
-
-/* Sheet
-   ------------------------------------------------------------------ */
-
-.sheet { background: var(--paper); padding: var(--sheet-pad); }
-.sheet--bond { background: var(--bond); }
-.sheet--framed { border: var(--w-cut) solid var(--ink); }
-
-/* Zone
-   ------------------------------------------------------------------ */
-
-.zone { padding-block: var(--zone-pad); }
-.zone--tight { padding-block: var(--s-7); }
-.zone__marker { display: block; margin-bottom: var(--s-4); }
-
-/* Split — asymmetric by default
-   ------------------------------------------------------------------ */
-
-.split { display: grid; grid-template-columns: 8fr 4fr; gap: var(--s-7); align-items: start; }
-.split--7-5 { grid-template-columns: 7fr 5fr; }
-.split--5-7 { grid-template-columns: 5fr 7fr; }
-.split--reverse > :first-child { order: 2; }
-
-@media (max-width: 760px) {
-  .split { grid-template-columns: 1fr; gap: var(--s-6); }
-  .split--reverse > :first-child { order: 0; }
-}
-
-/* Grid — one per page maximum
-   ------------------------------------------------------------------ */
-
-.grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; }
-.grid-3 > * { padding: var(--s-5) var(--s-5) var(--s-5) 0; border-top: var(--w-object) solid var(--object); }
-
-@media (max-width: 760px) {
-  .grid-3 { grid-template-columns: 1fr; }
-}
-
-/* Register — inline technical identifier
-   ------------------------------------------------------------------ */
-
-.register {
+/* Components reference only — not imported by pages */
+.swatch { display:inline-block; width:32px; height:32px; border: var(--w-object) solid var(--rule-object); vertical-align:middle; margin-right:var(--s-3); }
+.surface-demo + .surface-demo { margin-top:0; }
+.surface-demo .wrap { padding-block: var(--s-7); }
+.surface-demo .demo-label {
   font-family: var(--font-display);
   font-size: var(--fs-annotation);
   letter-spacing: var(--tr-annotation);
-  color: var(--annotation);
-  font-variant-numeric: tabular-nums;
-}
-
-/* Title block
-   ------------------------------------------------------------------ */
-
-.title-block {
-  border-top: var(--w-cut) solid var(--ink);
-  padding-top: var(--s-3);
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: var(--s-3);
-}
-
-.title-block__label {
-  display: block;
-  font-family: var(--font-display);
-  font-size: var(--fs-annotation);
-  letter-spacing: var(--tr-annotation);
-  color: var(--annotation);
-  margin-bottom: var(--s-1);
-}
-
-.title-block__value {
-  display: block;
-  font-family: var(--font-display);
-  font-size: 13px;
-  font-variant-numeric: tabular-nums;
-}
-
-.title-block--inline {
-  display: block;
-  font-family: var(--font-display);
-  font-size: var(--fs-annotation);
-  letter-spacing: var(--tr-annotation);
-  color: var(--annotation);
-  font-variant-numeric: tabular-nums;
-  border-top: var(--w-dimension) solid var(--dimension);
-  padding-top: var(--s-2);
-}
-
-@media (max-width: 560px) {
-  .title-block { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-4) var(--s-3); }
-}
-
-/* Dimension
-   ------------------------------------------------------------------ */
-
-.dim { margin: var(--s-5) 0; }
-.dim__label { margin-bottom: var(--s-5); }
-
-.dim__track {
-  position: relative;
-  width: var(--span, 100%);
-  height: 0;
-  border-top: var(--w-object) solid var(--annotation);
+  color: var(--fg-muted);
+  border-bottom: var(--w-object) solid var(--rule-object);
+  padding-bottom: var(--s-2);
   margin-bottom: var(--s-6);
-}
-
-.dim__track::before,
-.dim__track::after {
-  content: "";
-  position: absolute;
-  top: -8px;
-  width: 0;
-  height: 17px;
-  border-left: var(--w-object) solid var(--annotation);
-  transform: rotate(45deg);
-}
-.dim__track::before { left: 0; }
-.dim__track::after { right: 0; }
-
-.dim__ext {
-  position: absolute;
-  top: -18px;
-  width: 0;
-  height: 30px;
-  border-left: var(--w-dimension) solid var(--dimension);
-}
-.dim__ext--start { left: 0; }
-.dim__ext--end { right: 0; }
-
-.dim__value {
-  position: absolute;
-  bottom: 7px;
-  left: 50%;
-  transform: translateX(-50%);
-  white-space: nowrap;
-  font-family: var(--font-display);
-  font-size: 13px;
   font-variant-numeric: tabular-nums;
 }
-
-.dim__value--outside {
-  left: auto;
-  right: -12px;
-  transform: translateX(100%);
-  bottom: -7px;
-}
-
-.dim__track--changed { border-top-color: var(--revision); }
-.dim__track--changed::before,
-.dim__track--changed::after { border-left-color: var(--revision); }
-.dim__track--changed .dim__value { color: var(--revision); }
-
-.dim__break {
-  position: absolute;
-  top: -7px;
-  left: 50%;
-  width: 12px;
-  height: 15px;
-  transform: translateX(-50%);
-}
-.dim__break::before,
-.dim__break::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  width: 0;
-  height: 15px;
-  border-left: var(--w-object) solid currentColor;
-  transform: rotate(28deg);
-}
-.dim__break::before { left: 2px; }
-.dim__break::after { left: 8px; }
-
-/* Table
-   ------------------------------------------------------------------ */
-
-.table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
-.table th {
-  text-align: left;
-  font-family: var(--font-display);
-  font-size: var(--fs-annotation);
-  letter-spacing: var(--tr-annotation);
-  font-weight: 400;
-  color: var(--annotation);
-  padding: 0 var(--s-4) var(--s-2) 0;
-  border-bottom: var(--w-object) solid var(--object);
-}
-.table td {
-  font-family: var(--font-display);
-  font-size: var(--fs-small);
-  padding: var(--s-3) var(--s-4) var(--s-3) 0;
-  border-bottom: var(--w-dimension) solid var(--dimension);
-  vertical-align: top;
-}
-.table td:last-child, .table th:last-child { padding-right: 0; }
-
-/* Buttons
-   ------------------------------------------------------------------ */
-
-.btn {
-  display: inline-block;
-  font-family: var(--font-display);
-  font-size: var(--fs-small);
-  font-weight: 500;
-  line-height: 1;
-  padding: 13px 20px;
-  border-radius: var(--radius);
-  border: var(--w-cut) solid var(--ink);
-  background: var(--ink);
-  color: var(--paper);
-  text-decoration: none;
-  cursor: pointer;
-}
-.btn:hover { background: transparent; color: var(--ink); }
-
-.btn--ghost { background: transparent; color: var(--ink); }
-.btn--ghost:hover { background: var(--ink); color: var(--paper); }
-
-/* Navigation
-   ------------------------------------------------------------------ */
-
-.site-nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--s-5);
-  padding-block: var(--s-5);
-  border-bottom: var(--w-dimension) solid var(--dimension);
-}
-
-.site-nav__mark {
-  font-family: var(--font-display);
-  font-size: var(--fs-small);
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  text-decoration: none;
-}
-
-.site-nav__links { display: flex; align-items: center; gap: var(--s-5); }
-
-.site-nav__links a {
-  font-family: var(--font-display);
-  font-size: var(--fs-small);
-  text-decoration: none;
-}
-.site-nav__links a:hover {
-  text-decoration: underline;
-  text-decoration-thickness: 0.5px;
-  text-underline-offset: 3px;
-}
-.site-nav__links a[aria-current="page"] { text-decoration: underline; text-underline-offset: 3px; }
-.site-nav__links .btn { padding: 9px 14px; }
-.site-nav__links .btn:hover { text-decoration: none; }
-
-.site-nav__toggle {
-  display: none;
-  font-family: var(--font-display);
-  font-size: var(--fs-small);
-  background: none;
-  border: 0;
-  padding: 0;
-  color: var(--ink);
-  cursor: pointer;
-}
-
-@media (max-width: 760px) {
-  .site-nav { align-items: baseline; }
-  .site-nav__toggle { display: block; }
-  .site-nav__links {
-    display: none;
-    position: absolute;
-    left: 0;
-    right: 0;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--s-4);
-    background: var(--paper);
-    border-bottom: var(--w-object) solid var(--object);
-    padding: var(--s-5);
-  }
-  .site-nav[data-open="true"] { position: relative; }
-  .site-nav[data-open="true"] .site-nav__links { display: flex; top: 100%; z-index: 10; }
-}
-
+.demo-row { display:flex; gap:var(--s-4); flex-wrap:wrap; align-items:center; margin-bottom:var(--s-5); }
 </style>
 </head>
 <body>
 <div class="wrap">
 
-<nav class="site-nav" data-open="false">
-  <a class="site-nav__mark" href="#">Construction OS</a>
-  <button class="site-nav__toggle" aria-expanded="false">Menu</button>
-  <div class="site-nav__links">
-    <a href="#">Work</a>
-    <a href="#">Products</a>
-    <a href="#">Engagements</a>
-    <a href="#">About</a>
-    <a class="btn btn--ghost" href="#">Book a call</a>
-  </div>
-</nav>
-
 <div class="zone zone--tight">
-  <span class="annotation zone__marker">BRAND-002 / REV 01 / 2026-09-04</span>
+  <span class="annotation zone__marker">BRAND-002 / REV 03 / 2026-09-04</span>
   <h1 class="display">Component reference</h1>
   <div class="prose" style="margin-top:24px">
     <p class="lead">Every primitive in the system, rendered. Compose pages from these. Nothing else gets invented in page code.</p>
@@ -484,17 +60,17 @@ a:hover { text-decoration-thickness: 1.5px; }
 <div class="zone zone--tight">
   <span class="annotation zone__marker">Line hierarchy</span>
   <hr class="rule rule--cut" style="margin:16px 0 6px">
-  <p class="annotation">Cut / 1.5px ink / sheet frame, title block, major division</p>
+  <p class="annotation">Cut / 1.5px --rule-cut / sheet frame, title block, major division</p>
   <hr class="rule" style="margin:28px 0 6px">
-  <p class="annotation">Object / 1px / section division, table rules</p>
+  <p class="annotation">Object / 1px --rule-object / section division, table rules</p>
   <hr class="rule rule--dimension" style="margin:28px 0 6px">
-  <p class="annotation">Dimension / 0.5px / extension lines, cell borders</p>
+  <p class="annotation">Dimension / 0.5px --rule-dimension / extension lines, cell borders</p>
 </div>
 
 <hr class="rule rule--cut">
 
 <div class="zone zone--tight">
-  <span class="annotation zone__marker">Dimension — measured evidence</span>
+  <span class="annotation zone__marker">Dimension — measured evidence (white/bond surfaces only)</span>
   <div class="dim" style="max-width:620px">
     <p class="annotation dim__label">Contract package, before</p>
     <div class="dim__track" style="--span:100%">
@@ -567,7 +143,7 @@ a:hover { text-decoration-thickness: 1.5px; }
   <span class="annotation zone__marker">Table and inline title block</span>
   <table class="table" style="max-width:640px">
     <tr><th>Document</th><th>Register</th><th>Issued</th><th>Rev</th></tr>
-    <tr><td>Brand system</td><td>BRAND-002</td><td>2026-09-04</td><td>01</td></tr>
+    <tr><td>Brand system</td><td>BRAND-002</td><td>2026-09-04</td><td>03</td></tr>
     <tr><td>Boston GC case study</td><td>CASE-001</td><td>2026-08-22</td><td>02</td></tr>
     <tr><td>Architecture specification</td><td>SPEC-004</td><td>2026-08-11</td><td>01</td></tr>
   </table>
@@ -578,9 +154,11 @@ a:hover { text-decoration-thickness: 1.5px; }
 
 <div class="zone zone--tight">
   <span class="annotation zone__marker">Buttons</span>
-  <a class="btn" href="#">Book a scoping call</a>
-  <a class="btn btn--ghost" href="#" style="margin-left:10px">Try the change order drafter</a>
-  <p class="annotation" style="margin-top:20px">Buttons are ink. Never red — red means change, not emphasis.</p>
+  <div class="demo-row">
+    <a class="btn" href="#">Book a scoping call</a>
+    <a class="btn btn--ghost" href="#">Try the change order drafter</a>
+  </div>
+  <p class="annotation">Buttons are --btn-bg fill. Never red — red means change, not emphasis.</p>
 </div>
 
 <hr class="rule rule--cut">
@@ -590,15 +168,15 @@ a:hover { text-decoration-thickness: 1.5px; }
   <div class="grid-3">
     <div>
       <h4 class="subhead">Document workbench</h4>
-      <p class="small" style="margin:8px 0 0;color:var(--annotation)">Generate and manage the documentation that runs the project lifecycle.</p>
+      <p class="small" style="margin:8px 0 0;color:var(--fg-muted)">Generate and manage the documentation that runs the project lifecycle.</p>
     </div>
     <div>
       <h4 class="subhead">Construction intelligence</h4>
-      <p class="small" style="margin:8px 0 0;color:var(--annotation)">Industry procedure combined with the company's own standards and pricing.</p>
+      <p class="small" style="margin:8px 0 0;color:var(--fg-muted)">Industry procedure combined with the company's own standards and pricing.</p>
     </div>
     <div>
       <h4 class="subhead">Project intelligence</h4>
-      <p class="small" style="margin:8px 0 0;color:var(--annotation)">What is unresolved, at risk, or overdue across active projects.</p>
+      <p class="small" style="margin:8px 0 0;color:var(--fg-muted)">What is unresolved, at risk, or overdue across active projects.</p>
     </div>
   </div>
 </div>
@@ -608,21 +186,211 @@ a:hover { text-decoration-thickness: 1.5px; }
     <div><span class="title-block__label">Project</span><span class="title-block__value">Construction OS</span></div>
     <div><span class="title-block__label">Sheet</span><span class="title-block__value">BRAND-002</span></div>
     <div><span class="title-block__label">Issued</span><span class="title-block__value">2026-09-04</span></div>
-    <div><span class="title-block__label">Revision</span><span class="title-block__value">01</span></div>
+    <div><span class="title-block__label">Revision</span><span class="title-block__value">03</span></div>
   </div>
 </div>
 
+</div><!-- /wrap -->
+
+<!-- ================================================================
+     Surface inversion gallery — each primitive on all four surfaces
+     ================================================================ -->
+
+<div class="zone zone--tight" style="background:var(--c-bond)">
+  <div class="wrap">
+    <span class="annotation zone__marker">Surface inversion gallery</span>
+    <h2 class="head">Each primitive on every surface</h2>
+    <div class="prose" style="margin-top:var(--s-5)">
+      <p>Every component reads role tokens. Apply a surface class to the section wrapper and all tokens remap automatically. Check that no element relies on a hardcoded color.</p>
+    </div>
+  </div>
 </div>
 
-<script>
-document.querySelectorAll('.site-nav__toggle').forEach(function (b) {
-  b.addEventListener('click', function () {
-    var nav = b.closest('.site-nav');
-    var open = nav.dataset.open === 'true';
-    nav.dataset.open = String(!open);
-    b.setAttribute('aria-expanded', String(!open));
-  });
-});
-</script>
+<!-- Surface: white -->
+<div class="surface-demo surface--white">
+  <div class="wrap">
+    <p class="demo-label">surface--white / fg ink #111111 / fg-muted graphite #5F6466 / btn ink fill</p>
+
+    <div class="demo-row">
+      <a class="btn" href="#">Primary button</a>
+      <a class="btn btn--ghost" href="#">Ghost button</a>
+    </div>
+
+    <hr class="rule rule--cut" style="margin:var(--s-5) 0 var(--s-2)">
+    <p class="annotation">Cut rule — --rule-cut</p>
+    <hr class="rule" style="margin:var(--s-5) 0 var(--s-2)">
+    <p class="annotation">Object rule — --rule-object</p>
+    <hr class="rule rule--dimension" style="margin:var(--s-5) 0 var(--s-2)">
+    <p class="annotation">Dimension rule — --rule-dimension</p>
+
+    <table class="table" style="max-width:480px;margin-top:var(--s-6)">
+      <tr><th>Document</th><th>Register</th><th>Rev</th></tr>
+      <tr><td>Brand system</td><td>BRAND-002</td><td>03</td></tr>
+      <tr><td>Case study</td><td>CASE-001</td><td>02</td></tr>
+    </table>
+
+    <div class="title-block" style="margin-top:var(--s-6);max-width:640px">
+      <div><span class="title-block__label">Project</span><span class="title-block__value">Construction OS</span></div>
+      <div><span class="title-block__label">Sheet</span><span class="title-block__value">BRAND-002</span></div>
+      <div><span class="title-block__label">Issued</span><span class="title-block__value">2026-09-04</span></div>
+      <div><span class="title-block__label">Revision</span><span class="title-block__value">03</span></div>
+    </div>
+
+    <div class="dim" style="max-width:480px;margin-top:var(--s-7)">
+      <p class="annotation dim__label">Contract package, before</p>
+      <div class="dim__track" style="--span:100%">
+        <span class="dim__ext dim__ext--start"></span>
+        <span class="dim__ext dim__ext--end"></span>
+        <span class="dim__value">up to 8 hrs</span>
+      </div>
+      <p class="annotation dim__label">After</p>
+      <div class="dim__track dim__track--changed" style="--span:6.25%">
+        <span class="dim__ext dim__ext--start"></span>
+        <span class="dim__ext dim__ext--end"></span>
+        <span class="dim__value dim__value--outside">30 min</span>
+      </div>
+    </div>
+    <p class="annotation" style="margin-top:var(--s-3)">Dimension — white surface. Change: --c-revision #C43230 (5.46:1 on white, 4.73:1 on bond).</p>
+
+    <p class="title-block--inline" style="max-width:480px;margin-top:var(--s-6)">Construction OS / HOME / 2026-09-04 / REV 01</p>
+  </div>
+</div>
+
+<!-- Surface: bond -->
+<div class="surface-demo surface--bond">
+  <div class="wrap">
+    <p class="demo-label">surface--bond / fg ink #111111 / fg-muted graphite #5F6466 / btn ink fill</p>
+
+    <div class="demo-row">
+      <a class="btn" href="#">Primary button</a>
+      <a class="btn btn--ghost" href="#">Ghost button</a>
+    </div>
+
+    <hr class="rule rule--cut" style="margin:var(--s-5) 0 var(--s-2)">
+    <p class="annotation">Cut rule — --rule-cut</p>
+    <hr class="rule" style="margin:var(--s-5) 0 var(--s-2)">
+    <p class="annotation">Object rule — --rule-object</p>
+    <hr class="rule rule--dimension" style="margin:var(--s-5) 0 var(--s-2)">
+    <p class="annotation">Dimension rule — --rule-dimension</p>
+
+    <table class="table" style="max-width:480px;margin-top:var(--s-6)">
+      <tr><th>Document</th><th>Register</th><th>Rev</th></tr>
+      <tr><td>Brand system</td><td>BRAND-002</td><td>03</td></tr>
+      <tr><td>Case study</td><td>CASE-001</td><td>02</td></tr>
+    </table>
+
+    <div class="title-block" style="margin-top:var(--s-6);max-width:640px">
+      <div><span class="title-block__label">Project</span><span class="title-block__value">Construction OS</span></div>
+      <div><span class="title-block__label">Sheet</span><span class="title-block__value">BRAND-002</span></div>
+      <div><span class="title-block__label">Issued</span><span class="title-block__value">2026-09-04</span></div>
+      <div><span class="title-block__label">Revision</span><span class="title-block__value">03</span></div>
+    </div>
+
+    <div class="dim" style="max-width:480px;margin-top:var(--s-7)">
+      <p class="annotation dim__label">Contract package, before</p>
+      <div class="dim__track" style="--span:100%">
+        <span class="dim__ext dim__ext--start"></span>
+        <span class="dim__ext dim__ext--end"></span>
+        <span class="dim__value">up to 8 hrs</span>
+      </div>
+      <p class="annotation dim__label">After</p>
+      <div class="dim__track dim__track--changed" style="--span:6.25%">
+        <span class="dim__ext dim__ext--start"></span>
+        <span class="dim__ext dim__ext--end"></span>
+        <span class="dim__value dim__value--outside">30 min</span>
+      </div>
+    </div>
+    <p class="annotation" style="margin-top:var(--s-3)">Dimension — bond surface. Change: --c-revision #C43230 (4.73:1 on bond, 5.46:1 on white).</p>
+
+    <p class="title-block--inline" style="max-width:480px;margin-top:var(--s-6)">Construction OS / HOME / 2026-09-04 / REV 01</p>
+  </div>
+</div>
+
+<!-- Surface: ink -->
+<div class="surface-demo surface--ink">
+  <div class="wrap">
+    <p class="demo-label">surface--ink / fg white #FFFFFF (18.86:1) / fg-muted graphite-lift #949B9E (6.69:1) / btn white fill, ink text</p>
+
+    <div class="demo-row">
+      <a class="btn" href="#">Primary button</a>
+      <a class="btn btn--ghost" href="#">Ghost button</a>
+    </div>
+
+    <hr class="rule rule--cut" style="margin:var(--s-5) 0 var(--s-2)">
+    <p class="annotation">Cut rule — --rule-cut (white)</p>
+    <hr class="rule" style="margin:var(--s-5) 0 var(--s-2)">
+    <p class="annotation">Object rule — --rule-object (line-dark #B1BFC5, 10.01:1)</p>
+    <hr class="rule rule--dimension" style="margin:var(--s-5) 0 var(--s-2)">
+    <p class="annotation">Dimension rule — --rule-dimension (line-dark #B1BFC5)</p>
+
+    <table class="table" style="max-width:480px;margin-top:var(--s-6)">
+      <tr><th>Document</th><th>Register</th><th>Rev</th></tr>
+      <tr><td>Brand system</td><td>BRAND-002</td><td>03</td></tr>
+      <tr><td>Case study</td><td>CASE-001</td><td>02</td></tr>
+    </table>
+
+    <div class="title-block" style="margin-top:var(--s-6);max-width:640px">
+      <div><span class="title-block__label">Project</span><span class="title-block__value">Construction OS</span></div>
+      <div><span class="title-block__label">Sheet</span><span class="title-block__value">BRAND-002</span></div>
+      <div><span class="title-block__label">Issued</span><span class="title-block__value">2026-09-04</span></div>
+      <div><span class="title-block__label">Revision</span><span class="title-block__value">03</span></div>
+    </div>
+
+    <div class="dim" style="max-width:480px;margin-top:var(--s-7)">
+      <p class="annotation dim__label">Contract package, before</p>
+      <div class="dim__track" style="--span:100%">
+        <span class="dim__ext dim__ext--start"></span>
+        <span class="dim__ext dim__ext--end"></span>
+        <span class="dim__value">up to 8 hrs</span>
+      </div>
+      <p class="annotation dim__label">After</p>
+      <div class="dim__track dim__track--changed" style="--span:6.25%">
+        <span class="dim__ext dim__ext--start"></span>
+        <span class="dim__ext dim__ext--end"></span>
+        <span class="dim__value dim__value--outside">30 min</span>
+      </div>
+    </div>
+    <p class="annotation" style="margin-top:var(--s-3)">Dimension — ink surface. Changed value resolves to --c-revision-lift #E2685E (5.72:1 on ink). Position and label carry the change as well as color.</p>
+
+    <p class="title-block--inline" style="max-width:480px;margin-top:var(--s-6)">Construction OS / HOME / 2026-09-04 / REV 01</p>
+  </div>
+</div>
+
+<!-- Surface: steel -->
+<div class="surface-demo surface--steel">
+  <div class="wrap">
+    <p class="demo-label">surface--steel / fg white #FFFFFF (6.05:1) / fg-muted white — single text level only / btn white fill, ink text</p>
+
+    <div class="demo-row">
+      <a class="btn" href="#">Primary button</a>
+      <a class="btn btn--ghost" href="#">Ghost button</a>
+    </div>
+
+    <hr class="rule rule--cut" style="margin:var(--s-5) 0 var(--s-2)">
+    <p class="annotation">Cut rule — --rule-cut (white)</p>
+    <hr class="rule" style="margin:var(--s-5) 0 var(--s-2)">
+    <p class="annotation">Object rule — --rule-object (line-dark #B1BFC5, 3.21:1)</p>
+    <hr class="rule rule--dimension" style="margin:var(--s-5) 0 var(--s-2)">
+    <p class="annotation">Dimension rule — --rule-dimension (line-dark #B1BFC5)</p>
+
+    <table class="table" style="max-width:480px;margin-top:var(--s-6)">
+      <tr><th>Document</th><th>Register</th><th>Rev</th></tr>
+      <tr><td>Brand system</td><td>BRAND-002</td><td>03</td></tr>
+      <tr><td>Case study</td><td>CASE-001</td><td>02</td></tr>
+    </table>
+
+    <div class="title-block" style="margin-top:var(--s-6);max-width:640px">
+      <div><span class="title-block__label">Project</span><span class="title-block__value">Construction OS</span></div>
+      <div><span class="title-block__label">Sheet</span><span class="title-block__value">BRAND-002</span></div>
+      <div><span class="title-block__label">Issued</span><span class="title-block__value">2026-09-04</span></div>
+      <div><span class="title-block__label">Revision</span><span class="title-block__value">03</span></div>
+    </div>
+
+    <p class="annotation" style="margin-top:var(--s-6)">Dimension figures are not permitted on steel surfaces. See note on ink surface above.</p>
+
+    <p class="title-block--inline" style="max-width:480px;margin-top:var(--s-6)">Construction OS / HOME / 2026-09-04 / REV 01</p>
+  </div>
+</div>
+
 </body>
 </html>

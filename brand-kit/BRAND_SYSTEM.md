@@ -2,7 +2,7 @@
 
 **Sheet:** BRAND-002
 **Issued:** 2026-09-04
-**Revision:** 02
+**Revision:** 05
 **Supersedes:** BRAND-001 (specimen)
 
 This file is the authority on what this brand looks like. It governs the website, PDFs, Word documents, decks, and carousels. When a rule here conflicts with anything else in this repository, or with an existing stylesheet, this file wins.
@@ -23,19 +23,62 @@ The reason to hold this line: the buyer reads real drawings. Cosplay reads as an
 
 ## 2. Color
 
-| Token | Hex | Role |
+### 2.1 Palette (Layer 1)
+
+Raw values. Nothing in the site references these directly — all components use role tokens (§2.2).
+
+| Token | Hex | Note |
 |---|---|---|
-| `paper` | `#FBFBF8` | Default page and document background |
-| `bond` | `#EFEFEB` | Sheet substrate — case studies, diagram fields, document covers, evidence zones |
-| `ink` | `#111111` | All primary text, cut lines, primary buttons |
-| `annotation` | `#70706B` | Secondary text, metadata, field labels, dimension text |
-| `object` | `#A9A79E` | Medium rules, table borders, object lines |
-| `dimension` | `#CCCAC2` | Hairlines, extension lines, table zebra edges |
-| `revision` | `#C73A32` | Change only — see §4 |
+| `--c-ink` | `#111111` | |
+| `--c-white` | `#FFFFFF` | |
+| `--c-bond` | `#EFEFEB` | |
+| `--c-steel` | `#476776` | |
+| `--c-revision` | `#C73A32` | |
+| `--c-graphite` | `#5F6466` | Muted text on light surfaces |
+| `--c-line` | `#B8B9B5` | Rules on light surfaces |
+| `--c-revision-lift` | `#E2685E` | Revision on dark surfaces — 5.73:1 on ink |
+| `--c-graphite-lift` | `#949B9E` | Muted text on ink surface — 6.69:1 on ink |
+| `--c-line-dark` | `#B1BFC5` | Rules on dark surfaces — 10.01:1 on ink, 3.21:1 on steel |
 
-Two substrates, not one. `paper` is the default; `bond` marks things that behave like documents. A page entirely in `bond` reads as a government specification manual. As a rule of thumb, `bond` should cover less than half of any given page.
+### 2.2 Role tokens (Layer 2)
 
-There is no other color. No tints, no ramps, no state colors. Success, warning, and error states use ink with an annotation label; only error may use `revision`, because an error is a changed state.
+These are the only tokens components may use. Set per surface class; default values match the white surface.
+
+| Token | Role |
+|---|---|
+| `--fg` | Primary text |
+| `--fg-muted` | Secondary text, annotations, field labels |
+| `--surface` | Section background |
+| `--rule-cut` | 1.5px cut-weight division |
+| `--rule-object` | 1px object-weight division |
+| `--rule-dimension` | 0.5px dimension-weight division |
+| `--change` | Revision color for the current surface |
+| `--btn-bg`, `--btn-fg`, `--btn-border` | Button fill, label, and outline |
+
+### 2.3 Surfaces
+
+Four surfaces, applied as a class to the section wrapper element. Each redefines all role tokens.
+
+| Class | Background | Fg | Fg-muted | Buttons |
+|---|---|---|---|---|
+| `.surface--white` | `#FFFFFF` | ink | graphite | ink fill |
+| `.surface--bond` | `#EFEFEB` | ink | graphite | ink fill |
+| `.surface--ink` | `#111111` | white | graphite-lift | white fill, ink text |
+| `.surface--steel` | `#476776` | white | white | white fill, ink text |
+
+Steel's 6.05:1 ceiling leaves no usable secondary text range — `--fg-muted` is set to white. See §2.4.
+
+### 2.4 Surface rules
+
+- **White is the default.** Bond marks sections that behave like documents — evidence zones, case study frames, spec sheets. Ink and steel are deliberate high-contrast moments, used for weight, not as automatic section separators.
+- **No section may share a surface with the section directly above it.** Every surface change must be intentional.
+- **No more than three consecutive sections on one surface.** The page needs rhythm; monotone columns lose hierarchy.
+- **At least one dark surface (ink or steel) within the first two screens of any page.** The contrast keeps the page from reading as a document.
+- **Steel blue is a surface only.** Never a text color, never a button, never a decorative border, never an icon fill. Within a section on a light surface, steel may appear as a structural color inside technical diagrams, product illustrations, tables, and data visualizations — drawing frames, axes, table ruling, leader lines. It never carries data values, figures, or bars, which stay ink.
+- **Steel carries a single level of text.** Its 6.05:1 maximum contrast leaves no usable range for a secondary text level. Use steel for bands, figure grounds, and dividers — never for content sections requiring both primary and secondary text. `--fg-muted` on steel is set to white.
+- **No more than two dark sections per page.** Ink and steel are strong; overuse dilutes both.
+- **Never place dark sections adjacent to each other.** Ink directly above steel reads as one large dark field — the surface boundary disappears and the hierarchy collapses.
+- **Dimension figures belong on white, bond, and ink.** On ink the changed value uses `--c-revision-lift` (#E2685E, 5.72:1 on ink), and the change must be readable by position and label as well as color, never by color alone. Dimension figures are prohibited on steel: revision-lift reaches only 1.84:1 against that surface and no revision red at usable luminance can clear the 3:1 minimum.
 
 ---
 
@@ -67,9 +110,11 @@ Sentence case everywhere in language. Capitals are reserved for identifiers that
 
 `revision` means change. Specifically: a before-and-after pair, a reduction, a delta, a revised state, a flagged exception, or a failure.
 
-It does not mean emphasis. It is not the accent color. Buttons are ink. Links are ink with an underline. Nothing is red because a section felt flat.
+It does not mean emphasis. It is not the accent color. Buttons are ink (or white on dark surfaces). Links are fg-colored with an underline. Nothing is red because a section felt flat.
 
 Target: at most one red element per screen or page. The restraint is what makes it register.
+
+On dark surfaces the lifted red (`--c-revision-lift`, `#E2685E`) is used instead of `--c-revision`. Both are for change only. Neither is ever a call to action.
 
 ---
 
@@ -77,11 +122,11 @@ Target: at most one red element per screen or page. The restraint is what makes 
 
 Three weights, each carrying meaning. Never a fourth.
 
-| Weight | Web | Print / PDF | Word (sz, eighths pt) | Use |
-|---|---|---|---|---|
-| Cut | 1.5px `ink` | 1.0pt | 12 | Sheet frame, title block top edge, major division |
-| Object | 1px `object` | 0.6pt | 8 | Section division, table rules |
-| Dimension | 0.5px `dimension` | 0.35pt | 4 | Extension lines, cell borders, subtle separation |
+| Weight | Web | Print / PDF | Word (sz, eighths pt) | Token | Use |
+|---|---|---|---|---|---|
+| Cut | 1.5px | 1.0pt | 12 | `--rule-cut` | Sheet frame, title block top edge, major division |
+| Object | 1px | 0.6pt | 8 | `--rule-object` | Section division, table rules |
+| Dimension | 0.5px | 0.35pt | 4 | `--rule-dimension` | Extension lines, cell borders, subtle separation |
 
 A rule at the wrong weight is a lie about hierarchy. Do not use a cut line as decoration between paragraphs.
 
@@ -120,7 +165,7 @@ Seven. Pages are composed from these. Adding an eighth requires editing this fil
 
 An inline single-line variant exists for contexts too small for a grid (carousel footers, page footers). It separates fields with a spaced forward slash — `Construction OS / CASE-003 / 2026-09-04 / REV 01` — never a middle dot, and never a pipe.
 
-**`Dimension`** — measured evidence. See §8.
+**`Dimension`** — measured evidence. See §8. White or bond surfaces only.
 
 **`Register`** — inline technical identifier. Renders a code, optionally with revision. Annotation styling.
 
@@ -128,7 +173,7 @@ An inline single-line variant exists for contexts too small for a grid (carousel
 
 **`Zone`** — a page section. Optional `marker` (annotation-styled label). Markers appear only on pages with more than three zones, where they perform navigation. On shorter pages the heading is sufficient and the marker is decoration.
 
-**`SiteNav`** — the seventh, added because it appears on every page and would otherwise have to be invented in page code. Left mark in Archivo 500, right-side ink links, one ghost button. Bottom edge is a dimension rule. Mobile collapses to a text toggle — no icon library, and no third-party JS framework for a single boolean.
+**`SiteNav`** — the seventh, added because it appears on every page and would otherwise have to be invented in page code. Left mark in Archivo 500, right-side ink links, one ghost button. Bottom edge is a cut rule. Mobile collapses to a text toggle — no icon library, and no third-party JS framework for a single boolean.
 
 CTAs, tables, and diagrams are not primitives. They are compositions built from tokens and the six above. A CTA is a `Zone` with a heading and an ink button. Making them primitives is how a system grows to twenty components that each drift independently.
 
@@ -146,6 +191,7 @@ The signature element. A measured transformation is drawn as two dimensioned spa
 4. **Ticks, not arrowheads.** Spans terminate in 45-degree architectural ticks, drawn as lines. Never a Unicode arrow or an arrowhead marker.
 5. **The changed state is red; the original is annotation gray.** One red span per figure.
 6. **At most two dimension figures per page.** Beyond that it stops being evidence and becomes a motif.
+7. **White, bond, and ink surfaces only.** On ink, the changed span uses `--c-revision-lift` and the changed state must be readable by position and label, not color alone. Steel is prohibited — no revision red can meet minimum contrast against `#476776`.
 
 Applies equally to non-time measures: step counts, document counts, days to turnaround, headcount touchpoints.
 
@@ -157,7 +203,10 @@ The strongest tell of a generated page is not any single decoration. It is that 
 
 - **Left alignment by default.** Centering is reserved for the contents of a framed sheet.
 - **No two consecutive zones may share the same structure.** If one is a three-up grid, the next is prose, or a table, or a dimension figure, or an asymmetric split.
+- **No section may share a surface with the section directly above it.** See §2.4.
 - **At most one three-up grid per page.**
+- **At most two dark sections per page, never adjacent.** See §2.4.
+- **At least one dark surface within the first two screens.** See §2.4.
 - **Spend boldness once.** One element per page is the memorable thing. Everything around it stays quiet.
 - **Asymmetry is the default for content splits** — a 7/5 or 8/4 column relationship rather than 6/6.
 - **No card wrapper unless the content is genuinely a bounded object.** Prose does not need a container. A rule and whitespace divide content adequately.
@@ -179,6 +228,8 @@ Each of these has a reason. A prohibition without a reason gets argued around.
 - **Blueprint motifs** — grid overlays, drafting compasses, paper texture, blueprint blue, faux stamps.
 - **Icon sets** — no generic line-icon library. Where a mark is needed it is drawn from the line vocabulary in §5.
 - **Entrance animation on scroll** — fade-and-slide-up on every section is the generated default. Motion responds to a user action or does not exist.
+- **Steel as a text color, button, or icon** — steel is a surface. Its use outside a section background is prohibited.
+- **Dimension figures on steel** — revision-lift (#E2685E) reaches 1.84:1 on steel, below the 3:1 minimum for non-text. No revision red at usable luminance passes against `#476776`. Ink is permitted; see §8 rule 7.
 
 ---
 
@@ -196,7 +247,7 @@ Colors via `RGBColor`. Rules are implemented as single-cell table borders with `
 Hex without the leading `#`. Line widths in points. Slide masters carry the title block as a footer element.
 
 **Web**
-Tokens as CSS custom properties in `/styles/tokens.css`. Content — copy, metrics, case study data, the document register — lives in `/content` as data files, so changing `8 hrs` to `6 hrs` is a data edit, not a component edit.
+Tokens as CSS custom properties in `brand-kit/tokens.css` (two-layer: palette then roles). Content — copy, metrics, case study data, the document register — lives in `/content` as data files, so changing `8 hrs` to `6 hrs` is a data edit, not a component edit.
 
 ---
 
@@ -210,3 +261,6 @@ Claude Code may not introduce a visual treatment not defined here. If a page nee
 |---|---|---|
 | 01 | 2026-09-04 | Initial system. Adopted from BRAND-001 specimen with two substrates, dimension scaling convention, and register scheme added. |
 | 02 | 2026-09-04 | Added SiteNav as a seventh primitive. Navigation appears on every page and had no definition, which would have forced page-level invention. |
+| 03 | 2026-09-04 | Two-layer token architecture (palette → roles). Added steel surface and three derived dark-surface palette values. Surface classes replace inline background values. Dimension figures restricted to light surfaces (contrast failure on steel documented). Steel use rules added to §2.4 and §10. Surface rhythm rules added to §2.4 and §9. |
+| 04 | 2026-09-04 | `--c-revision` palette value changed from `#C73A32` to `#C43230` (bond contrast 4.47:1 → 4.73:1, white 5.46:1). Dimension figure prohibition narrowed from all dark surfaces to steel only — ink is permitted, with revision-lift at 5.72:1 on ink. §2.4, §8 rule 7, §10 updated. |
+| 05 | 2026-09-04 | `--c-graphite-lift` changed from `#D7E2E8` to `#949B9E` — 14.31:1 was indistinguishable from white fg; 6.69:1 creates usable hierarchy on ink. `--fg-muted` on steel set to white: 6.05:1 ceiling leaves no usable muted range. Rule added: steel carries single-level text only. Dimension tick height reduced 17px → 12px to prevent crowding on narrow spans. `.rule` constrained with `display:block; width:100%`. §2.1, §2.3, §2.4 updated. |

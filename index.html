@@ -10,13 +10,12 @@
 <link rel="stylesheet" href="brand-kit/tokens.css">
 <link rel="stylesheet" href="brand-kit/brand.css">
 <style>
-/* Nav — structural layout only; all visual values use brand tokens */
+/* Nav */
 .nav {
   position: sticky;
   top: 0;
-  background: var(--paper);
-  border-bottom: var(--w-cut) solid var(--ink);
   z-index: 100;
+  border-bottom: var(--w-dimension) solid var(--rule-dimension);
 }
 .nav__inner {
   display: flex;
@@ -25,7 +24,7 @@
   padding-block: var(--s-4);
 }
 .nav__brand { text-decoration: none; }
-.nav__brand:hover { text-decoration: none; color: var(--ink); }
+.nav__brand:hover { text-decoration: none; }
 .nav__links {
   display: flex;
   align-items: center;
@@ -40,24 +39,64 @@
 .nav__links .btn:hover { text-decoration: none; }
 .nav__toggle {
   display: none;
-  flex-direction: column;
-  gap: 5px;
   background: none;
   border: none;
   cursor: pointer;
   padding: var(--s-2);
-}
-.nav__toggle span {
-  display: block;
-  width: 22px;
-  height: var(--w-cut);
-  background: var(--ink);
+  font-family: var(--font-display);
+  font-size: var(--fs-small);
+  color: var(--fg);
 }
 
-/* Pain items — stacked with dimension rules */
+/* Hero — 13-column grid: cols 1–5 type, col 6 gap, cols 7–13 visual */
+.hero-grid {
+  display: grid;
+  grid-template-columns: 5fr 1fr 7fr;
+  align-items: stretch;
+  margin-top: var(--s-5);
+}
+.hero-grid > div:first-child {
+  padding-bottom: 40px;
+}
+.hero-visual {
+  grid-column: 3;
+  align-self: stretch;
+  margin-top: 14px;
+  border: var(--w-dimension) solid var(--rule-dimension);
+  width: calc(100% + var(--s-5) + max(0px, (100vw - var(--wrap)) / 2));
+  margin-right: calc(-1 * (var(--s-5) + max(0px, (100vw - var(--wrap)) / 2)));
+}
+
+/* Proof band */
+.proof-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.proof-cell {
+  padding: var(--s-7) var(--s-6);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.proof-cell + .proof-cell {
+  border-left: var(--w-dimension) solid var(--rule-dimension);
+}
+.proof-cell__label { margin: 0 0 var(--s-4); }
+.proof-cell__figure {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--fs-head);
+  font-weight: 500;
+  letter-spacing: var(--tr-head);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  color: var(--fg);
+}
+
+/* Pain items */
 .pain-items { margin-top: var(--s-7); }
 .pain-item { padding-block: var(--s-6); }
-.pain-item + .pain-item { border-top: var(--w-dimension) solid var(--dimension); }
+.pain-item + .pain-item { border-top: var(--w-dimension) solid var(--rule-dimension); }
 
 /* Demo field notes */
 .field-notes { list-style: none; margin: var(--s-6) 0 0; padding: 0; }
@@ -65,10 +104,10 @@
   display: flex;
   gap: var(--s-4);
   padding-block: var(--s-3);
-  border-top: var(--w-dimension) solid var(--dimension);
+  border-top: var(--w-dimension) solid var(--rule-dimension);
   font-family: var(--font-display);
   font-size: var(--fs-small);
-  color: var(--annotation);
+  color: var(--fg-muted);
 }
 .field-notes li::before {
   content: "—";
@@ -83,7 +122,7 @@
   display: flex;
   gap: var(--s-4);
   padding-block: var(--s-4);
-  border-top: var(--w-dimension) solid var(--dimension);
+  border-top: var(--w-dimension) solid var(--rule-dimension);
   font-family: var(--font-display);
   font-size: var(--fs-small);
 }
@@ -91,13 +130,19 @@
   content: "—";
   flex-shrink: 0;
   font-size: var(--fs-annotation);
-  color: var(--annotation);
+  color: var(--fg-muted);
   margin-top: 2px;
 }
 
-/* Mobile nav */
+/* Responsive */
+@media (max-width: 900px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .hero-visual { display: none; }
+  .proof-strip { grid-template-columns: repeat(2, 1fr); }
+  .proof-cell:nth-child(3) { border-left: none; }
+}
 @media (max-width: 760px) {
-  .nav__toggle { display: flex; }
+  .nav__toggle { display: block; }
   .nav__links {
     display: none;
     position: absolute;
@@ -108,8 +153,8 @@
     align-items: flex-start;
     gap: var(--s-4);
     padding: var(--s-5);
-    background: var(--paper);
-    border-bottom: var(--w-cut) solid var(--ink);
+    background: var(--surface);
+    border-bottom: var(--w-cut) solid var(--rule-cut);
   }
   .nav__links.is-open { display: flex; }
 }
@@ -118,13 +163,11 @@
 <body>
 
 <!-- Nav -->
-<nav class="nav" aria-label="Main navigation">
+<nav class="nav surface--white" aria-label="Main navigation">
   <div class="wrap">
     <div class="nav__inner">
       <a class="annotation nav__brand" href="/">Construction OS</a>
-      <button class="nav__toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
-        <span></span><span></span><span></span>
-      </button>
+      <button class="nav__toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">Menu</button>
       <ul class="nav__links" id="nav-links" role="list">
         <li><a class="small" href="work.html">Work</a></li>
         <li><a class="small" href="products.html">Products</a></li>
@@ -137,16 +180,48 @@
 </nav>
 
 <!-- Hero -->
-<section class="zone">
+<section class="surface--white zone" style="padding-bottom:0;overflow-x:clip">
   <div class="wrap">
     <span class="annotation zone__marker">AOS-001</span>
-    <h1 class="display">Give your construction team time back.</h1>
-    <div class="prose" style="margin-top:var(--s-6)">
-      <p class="lead">Construction OS captures how your company operates, structures it, and puts it to work. Your team stops guessing. Your projects stop stalling.</p>
+    <div class="hero-grid">
+      <div>
+        <h1 class="display">Give your construction team time back.</h1>
+        <div class="prose" style="margin-top:var(--s-6);max-width:52ch">
+          <p class="lead">Construction OS captures how your company operates, structures it, and puts it to work. Your team stops guessing. Your projects stop stalling.</p>
+        </div>
+        <div style="display:flex;gap:var(--s-4);flex-wrap:wrap;margin-top:var(--s-7)">
+          <a class="btn" href="https://cal.com/justinyurasits">Book a scoping call</a>
+          <a class="btn btn--ghost" href="#demo">See how it works</a>
+        </div>
+      </div>
+      <!-- visual region — cols 7–13 — Stage 2C drops the graphic here -->
+      <div class="hero-visual" aria-hidden="true"></div>
     </div>
-    <div style="display:flex;gap:var(--s-4);flex-wrap:wrap;margin-top:var(--s-7)">
-      <a class="btn" href="https://cal.com/justinyurasits">Book a scoping call</a>
-      <a class="btn btn--ghost" href="#demo">See how it works</a>
+  </div>
+</section>
+
+<!-- Proof band -->
+<section class="surface--ink">
+  <div class="wrap">
+    <div class="proof-strip">
+      <div class="proof-cell">
+        <p class="annotation proof-cell__label">SOPs documented</p>
+        <p class="proof-cell__figure">160+</p>
+      </div>
+      <div class="proof-cell">
+        <p class="annotation proof-cell__label">Pricing line items</p>
+        <p class="proof-cell__figure">1,258</p>
+      </div>
+      <div class="proof-cell">
+        <p class="annotation proof-cell__label">Active projects supported</p>
+        <p class="proof-cell__figure">15–20</p>
+      </div>
+      <div class="proof-cell">
+        <p class="annotation proof-cell__label">Contract package production</p>
+        <p class="proof-cell__figure">
+          <span style="color:var(--fg-muted)">4–8 hrs</span><span style="color:var(--change)"> → 30 min</span>
+        </p>
+      </div>
     </div>
   </div>
 </section>
@@ -344,12 +419,14 @@
     var open = links.classList.toggle('is-open');
     toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
     toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    toggle.textContent = open ? 'Close' : 'Menu';
   });
   document.addEventListener('click', function (e) {
     if (!toggle.contains(e.target) && !links.contains(e.target)) {
       links.classList.remove('is-open');
       toggle.setAttribute('aria-expanded', 'false');
       toggle.setAttribute('aria-label', 'Open menu');
+      toggle.textContent = 'Menu';
     }
   });
 })();

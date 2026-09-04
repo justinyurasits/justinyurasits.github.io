@@ -31,7 +31,7 @@
   --font-display: "Archivo", system-ui, -apple-system, sans-serif;
   --font-body:    "Source Serif 4", Georgia, "Times New Roman", serif;
 
-  --fs-display:   clamp(30px, 4.6vw, 42px);
+  --fs-display:   clamp(44px, 6.2vw, 84px);
   --fs-head:      clamp(21px, 2.6vw, 25px);
   --fs-subhead:   18px;
   --fs-body:      16px;

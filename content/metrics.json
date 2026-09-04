@@ -1,0 +1,6 @@
+{
+  "contractPackages": { "before": "up to 8 hrs", "after": "30 min" },
+  "estimates": { "before": "half a day", "after": "1 hour" },
+  "changeOrders": { "before": "10 days", "after": "3 days" },
+  "pmKnowledge": { "before": "months", "after": "day one" }
+}

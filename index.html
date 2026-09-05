@@ -135,6 +135,30 @@
 }
 .config-row p { margin: 0; }
 
+/* Products section */
+.products-proof {
+  border: var(--w-dimension) solid var(--rule-dimension);
+  min-height: 400px;
+}
+.products-doc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-top: var(--w-dimension) solid var(--rule-dimension);
+}
+.products-doc-list li {
+  font-size: var(--fs-small);
+  line-height: var(--lh-small);
+  padding: var(--s-3) 0;
+  border-bottom: var(--w-dimension) solid var(--rule-dimension);
+}
+.products-ops-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s-3) var(--s-9);
+}
+.products-ops-list p { margin: 0; }
+
 /* Responsive */
 @media (max-width: 900px) {
   .hero-grid { grid-template-columns: 1fr; }
@@ -144,6 +168,7 @@
   .proof-cell__figure { padding-bottom: 0; }
   .proof-cell__label { margin: 0; }
   .proof-cell:nth-child(3) { border-left: none; }
+  .products-ops-list { grid-template-columns: 1fr; gap: var(--s-3); }
 }
 @media (max-width: 760px) {
   .nav__toggle { display: block; }
@@ -280,23 +305,85 @@
 <hr class="rule rule--cut" style="margin:0">
 
 <!-- Products -->
+
+<!-- Intro + Document Workbench — white -->
 <section class="surface--white zone">
   <div class="wrap">
-    <span class="annotation zone__marker">Document infrastructure</span>
-    <h2 class="head" style="max-width:36ch">One system for doing the work, knowing how to handle it, and staying on top of it.</h2>
-    <div class="grid-3" style="margin-top:var(--s-7)">
+    <span class="annotation zone__marker">Products</span>
+    <h2 class="head" style="max-width:28ch">Three products. One construction operating system.</h2>
+    <div class="prose" style="margin-top:var(--s-5);max-width:56ch">
+      <p>Document Workbench handles the documents. Construction Intelligence puts company knowledge to work. Project Intelligence helps surface what needs attention across active projects.</p>
+    </div>
+
+    <div class="split split--7-5" style="margin-top:var(--s-9);align-items:start">
       <div>
-        <h3 class="subhead">Document workbench</h3>
-        <p class="small" style="margin-top:var(--s-3);color:var(--fg-muted)">Generate and manage the documentation that runs the project lifecycle — contracts, RFIs, change orders, meeting notes — structured from your company's own templates.</p>
+        <p class="annotation" style="margin:0">01</p>
+        <h3 class="head" style="margin-top:var(--s-3)">Document Workbench</h3>
+        <div class="prose" style="margin-top:var(--s-5)">
+          <p>Produce the documents that run the job. From first walkthrough through closeout, turn project information into consistent construction documents built around your company's standards, templates, terminology, and project context.</p>
+        </div>
+        <ul class="products-doc-list" style="margin-top:var(--s-6)">
+          <li>Lead, proposal, estimating and contract documents</li>
+          <li>RFIs, submittals, change orders, meeting and field documentation</li>
+          <li>Billing, project controls, closeout and handoff documents</li>
+        </ul>
       </div>
+      <div class="products-proof" aria-hidden="true"></div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule rule--cut" style="margin:0">
+
+<!-- 02 Construction Intelligence — bond -->
+<section class="surface--bond zone">
+  <div class="wrap">
+    <div class="split split--5-7" style="align-items:start">
+      <div class="products-proof" aria-hidden="true"></div>
       <div>
-        <h3 class="subhead">Construction intelligence</h3>
-        <p class="small" style="margin-top:var(--s-3);color:var(--fg-muted)">Industry procedure combined with your company's standards and pricing. Answers come from how your firm actually works, not generic best practices.</p>
+        <p class="annotation" style="margin:0">02</p>
+        <h3 class="head" style="margin-top:var(--s-3)">Construction Intelligence</h3>
+        <div class="prose" style="margin-top:var(--s-5)">
+          <p>Put your company's knowledge to work.</p>
+          <p>Construction know-how combined with your own procedures, pricing judgment, templates, standards, and project history — so your team gets the right answer without tracking down the person who knows.</p>
+        </div>
       </div>
-      <div>
-        <h3 class="subhead">Project intelligence</h3>
-        <p class="small" style="margin-top:var(--s-3);color:var(--fg-muted)">What is unresolved, at risk, or overdue across active projects — surfaced before it becomes a problem, not discovered at the weekly meeting.</p>
-      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule rule--cut" style="margin:0">
+
+<!-- 03 Project Intelligence — white -->
+<section class="surface--white zone">
+  <div class="wrap">
+    <p class="annotation" style="margin:0">03</p>
+    <div style="display:flex;align-items:baseline;gap:var(--s-4);flex-wrap:wrap;margin-top:var(--s-3)">
+      <h3 class="head" style="margin:0">Project Intelligence</h3>
+      <span class="annotation" style="color:var(--fg-muted)">In development</span>
+    </div>
+    <div class="prose" style="margin-top:var(--s-5);max-width:52ch">
+      <p>Know what needs attention.</p>
+      <p>Open decisions, aging changes, missing approvals, unresolved RFIs, unsigned agreements, and schedule issues surfaced across active projects — so leadership can manage by exception instead of chasing status.</p>
+    </div>
+    <div class="products-proof" style="margin-top:var(--s-7)" aria-hidden="true"></div>
+  </div>
+</section>
+
+<hr class="rule rule--cut" style="margin:0">
+
+<!-- Operations Automation — ink -->
+<section class="surface--ink zone">
+  <div class="wrap">
+    <span class="annotation zone__marker">Operations Automation — extension layer</span>
+    <div class="products-ops-list" style="margin-top:var(--s-6)">
+      <p class="small">01 Invoice intake</p>
+      <p class="small">02 Site safety</p>
+      <p class="small">03 Field reports</p>
+      <p class="small">04 Bid comparison</p>
+      <p class="small">05 Pay app preparation</p>
+      <p class="small">06 Change order drafting</p>
+      <p class="small">07 Intake workflows</p>
     </div>
   </div>
 </section>

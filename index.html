@@ -144,10 +144,8 @@
   .proof-cell__figure { padding-bottom: 0; }
   .proof-cell__label { margin: 0; }
   .proof-cell:nth-child(3) { border-left: none; }
-  .act1-art { display: none; }
 }
 @media (max-width: 760px) {
-  .act2-cols { grid-template-columns: 1fr; }
   .nav__toggle { display: block; }
   .nav__links {
     display: none;
@@ -246,92 +244,34 @@
 <section class="surface--bond zone">
   <div class="wrap">
 
-    <h2 class="head" style="max-width:36ch">Your construction team shouldn't have to work like this.</h2>
-    <div class="prose" style="margin-top:var(--s-5)">
-      <p>The problem isn't that your people don't know how to do the work. It's that too much of the business still depends on manual effort, individual memory, and constant follow-up.</p>
-    </div>
+    <h2 class="head">Sound familiar?</h2>
 
-    <!-- Act 1 — Paperwork -->
-    <div class="split split--5-7" style="margin-top:var(--s-9);align-items:stretch">
-      <div>
-        <p class="annotation zone__marker">Paperwork</p>
-        <h3 class="head">Your PMs are too valuable to spend their best hours producing paperwork.</h3>
-        <div class="prose" style="margin-top:var(--s-5)">
-          <p>Change orders, scopes, proposals, meeting notes, reports, and contract packages still have to be assembled, rewritten, formatted, and checked by people who should be managing projects.</p>
-        </div>
-      </div>
-      <div class="act1-art" aria-hidden="true" style="border:var(--w-dimension) solid var(--rule-dimension);min-height:360px"></div>
-    </div>
+    <div style="margin-top:var(--s-7);border-bottom:var(--w-dimension) solid var(--rule-dimension)">
 
-    <!-- Act 2 — Knowledge -->
-    <div style="margin-top:var(--s-9)">
-      <p class="display" style="font-size:40px;max-width:22ch">Your best people are still the company's operating system.</p>
-      <div class="act2-cols" style="display:grid;grid-template-columns:1fr 1fr;gap:var(--s-7);margin-top:var(--s-7);align-items:start">
-        <div class="prose">
-          <p>Standards, pricing judgment, procedures, and years of hard-earned experience live in a few people's heads. When someone needs an answer, they have to find the person who knows.</p>
-        </div>
-        <div style="border-top:var(--w-dimension) solid var(--rule-dimension)">
-          <p class="small" style="padding-block:var(--s-4);margin:0;border-bottom:var(--w-dimension) solid var(--rule-dimension)">Standards</p>
-          <p class="small" style="padding-block:var(--s-4);margin:0;border-bottom:var(--w-dimension) solid var(--rule-dimension)">Pricing judgment</p>
-          <p class="small" style="padding-block:var(--s-4);margin:0;border-bottom:var(--w-dimension) solid var(--rule-dimension)">Procedures</p>
-          <p class="small" style="padding-block:var(--s-4);margin:0;border-bottom:var(--w-dimension) solid var(--rule-dimension)">Historical project lessons</p>
-          <p class="small" style="padding-block:var(--s-4);margin:0;border-bottom:var(--w-dimension) solid var(--rule-dimension)">Subcontractor knowledge</p>
-        </div>
+      <div class="spec-row">
+        <p class="annotation">Paperwork</p>
+        <p class="subhead">Your PMs spend their best hours producing paperwork.</p>
+        <p class="small" style="font-family:var(--font-body);color:var(--fg-muted)">Change orders, RFIs, meeting minutes, reports, submittals, billing documentation, contract packages.</p>
       </div>
-    </div>
 
-    <!-- Act 3 — Visibility -->
-    <div class="split split--7-5" style="margin-top:var(--s-9);align-items:start">
-      <div>
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Project</th>
-              <th>Open item</th>
-              <th>Owner</th>
-              <th>Due</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Unit 4 fit-out</td>
-              <td>Scope revision</td>
-              <td>M. Torres</td>
-              <td>Sep 12</td>
-              <td style="color:var(--change)">Overdue</td>
-            </tr>
-            <tr>
-              <td>Warehouse shell</td>
-              <td>RFI response</td>
-              <td>D. Park</td>
-              <td>Sep 15</td>
-              <td>In review</td>
-            </tr>
-            <tr>
-              <td>Office renovation</td>
-              <td>Sub approval</td>
-              <td>K. Wells</td>
-              <td>Sep 18</td>
-              <td style="color:var(--change)">Blocked</td>
-            </tr>
-            <tr>
-              <td>Retail buildout</td>
-              <td>Change order</td>
-              <td>A. Chen</td>
-              <td>Sep 22</td>
-              <td>In review</td>
-            </tr>
-          </tbody>
-        </table>
+      <div class="spec-row">
+        <p class="annotation">Knowledge</p>
+        <p class="subhead">Your best people are the only ones who know how the company works.</p>
+        <p class="small" style="font-family:var(--font-body);color:var(--fg-muted)">The senior PM everyone calls. The COO who answers every operational question. The estimator with thirty years of pricing judgment.</p>
       </div>
-      <div>
-        <p class="annotation zone__marker">Visibility</p>
-        <h3 class="head">You're still chasing people to understand what's happening.</h3>
-        <div class="prose" style="margin-top:var(--s-5)">
-          <p>Open decisions, approvals, changes, risks, and next steps are scattered across emails, documents, systems, and conversations. Leadership gets visibility by asking around.</p>
-        </div>
+
+      <div class="spec-row">
+        <p class="annotation">Visibility</p>
+        <p class="subhead">You're chasing people to figure out what needs attention.</p>
+        <p class="small" style="font-family:var(--font-body);color:var(--fg-muted)">Open changes, aging RFIs, missing approvals, unsigned contracts, schedule issues, unresolved decisions.</p>
       </div>
+
+      <div class="spec-row">
+        <p class="annotation">Operations</p>
+        <p class="subhead">Too much routine operational work is still being done by hand.</p>
+        <p class="small" style="font-family:var(--font-body);color:var(--fg-muted)">Invoices and receipts get entered manually. Safety documentation gets assembled one form at a time. Field reports, bid comparisons, pay apps, and other repetitive workflows still depend on someone remembering to do them.</p>
+      </div>
+
     </div>
 
   </div>

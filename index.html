@@ -52,11 +52,8 @@
 .hero-grid {
   display: grid;
   grid-template-columns: 5fr 1fr 7fr;
-  align-items: stretch;
+  align-items: center;
   margin-top: var(--s-5);
-}
-.hero-grid > div:first-child {
-  padding-bottom: 40px;
 }
 .hero-visual {
   grid-column: 3;
@@ -190,7 +187,7 @@
 </nav>
 
 <!-- Hero -->
-<section class="surface--white zone" style="padding-bottom:0;overflow-x:clip">
+<section class="surface--white zone" style="padding-bottom:80px;overflow-x:clip">
   <div class="wrap">
     <div class="hero-grid">
       <div>
@@ -206,7 +203,7 @@
       </div>
       <!-- visual region — cols 7–13 -->
       <div class="hero-visual" aria-hidden="true">
-        <div style="padding-bottom:26px">
+        <div style="padding-left:calc(34/713*100%);padding-bottom:18px">
           <p class="subhead" style="margin:0">Document workbench</p>
           <p class="small" style="margin:var(--s-1) 0 0;color:var(--fg-muted);max-width:420px">Professional construction documents, built from your standards and project information.</p>
         </div>

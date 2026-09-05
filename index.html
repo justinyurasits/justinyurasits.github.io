@@ -107,7 +107,7 @@
 .spec-list { border-bottom: var(--w-dimension) solid var(--rule-dimension); margin-top: var(--s-6); }
 .spec-row {
   display: grid;
-  grid-template-columns: 2fr 5fr 5fr;
+  grid-template-columns: 1fr 1fr;
   gap: var(--s-6);
   padding-block: var(--s-5);
   border-top: var(--w-dimension) solid var(--rule-dimension);
@@ -250,26 +250,34 @@
     <div style="margin-top:var(--s-7);border-bottom:var(--w-dimension) solid var(--rule-dimension)">
 
       <div class="spec-row">
-        <p class="annotation">Paperwork</p>
-        <p class="subhead">Your PMs spend their best hours producing paperwork.</p>
+        <div>
+          <p class="annotation">Paperwork</p>
+          <p class="head" style="margin-top:var(--s-2)">Your PMs spend their best hours producing paperwork.</p>
+        </div>
         <p class="small" style="font-family:var(--font-body);color:var(--fg-muted)">Change orders, RFIs, meeting minutes, reports, submittals, billing documentation, contract packages.</p>
       </div>
 
       <div class="spec-row">
-        <p class="annotation">Knowledge</p>
-        <p class="subhead">Your best people are the only ones who know how the company works.</p>
+        <div>
+          <p class="annotation">Knowledge</p>
+          <p class="head" style="margin-top:var(--s-2)">Your best people are the only ones who know how the company works.</p>
+        </div>
         <p class="small" style="font-family:var(--font-body);color:var(--fg-muted)">The senior PM everyone calls. The COO who answers every operational question. The estimator with thirty years of pricing judgment.</p>
       </div>
 
       <div class="spec-row">
-        <p class="annotation">Visibility</p>
-        <p class="subhead">You're chasing people to figure out what needs attention.</p>
+        <div>
+          <p class="annotation">Visibility</p>
+          <p class="head" style="margin-top:var(--s-2)">You're chasing people to figure out what needs attention.</p>
+        </div>
         <p class="small" style="font-family:var(--font-body);color:var(--fg-muted)">Open changes, aging RFIs, missing approvals, unsigned contracts, schedule issues, unresolved decisions.</p>
       </div>
 
       <div class="spec-row">
-        <p class="annotation">Operations</p>
-        <p class="subhead">Too much routine operational work is still being done by hand.</p>
+        <div>
+          <p class="annotation">Operations</p>
+          <p class="head" style="margin-top:var(--s-2)">Too much routine operational work is still being done by hand.</p>
+        </div>
         <p class="small" style="font-family:var(--font-body);color:var(--fg-muted)">Invoices and receipts get entered manually. Safety documentation gets assembled one form at a time. Field reports, bid comparisons, pay apps, and other repetitive workflows still depend on someone remembering to do them.</p>
       </div>
 

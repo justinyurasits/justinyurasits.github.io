@@ -45,7 +45,7 @@ a { color: inherit; }
 .cos-nav__dropdown { position: relative; }
 .cos-nav__trigger { background: none; border: none; padding: 0; cursor: pointer; display: flex; align-items: center; gap: 5px; font: 500 15px/1 var(--font); color: var(--c-graphite); }
 .cos-nav__trigger::after { content: '▾'; font-size: 11px; color: var(--c-line); display: inline-block; position: relative; top: 1px; transition: transform .15s; }
-.cos-nav__panel { display: none; position: absolute; top: calc(100% + 20px); left: -18px; min-width: 280px; background: var(--c-white); border: 1px solid var(--c-ink); z-index: 100; }
+.cos-nav__panel { display: none; position: absolute; top: calc(100% + 20px); left: -18px; min-width: 300px; background: var(--c-white); border: 1px solid var(--c-ink); z-index: 100; }
 @media (min-width: 761px) {
   .cos-nav__dropdown:hover .cos-nav__panel { display: block; }
   .cos-nav__dropdown:hover .cos-nav__trigger::after { transform: rotate(-180deg); }
@@ -58,6 +58,10 @@ a { color: inherit; }
 .cos-nav__item-name { display: flex; align-items: center; gap: 8px; margin-bottom: 5px; font: 500 14px/1 var(--font); color: var(--c-ink); }
 .cos-nav__item-desc { display: block; font: 400 12px/1.4 var(--font); color: var(--c-graphite); }
 .cos-nav__item-tag { font: 400 11px/1 ui-monospace, 'Courier New', monospace; color: var(--c-graphite); flex-shrink: 0; }
+.cos-nav__tier-label { display: block; padding: 8px 18px 6px; font: 600 10px/1 var(--font); letter-spacing: .12em; text-transform: uppercase; color: var(--c-line); border-top: 1px solid var(--c-line); }
+.cos-nav__tier-label:first-child { border-top: none; padding-top: 12px; }
+.cos-nav__all { display: block; padding: 12px 18px; font: 600 13px/1 var(--font); color: var(--c-steel); text-decoration: none; border-top: 1px solid var(--c-line); }
+.cos-nav__all:hover { color: var(--c-ink); }
 
 /* ─── Shared CTA scale ───────────────────────────────────── */
 .ci-btn { display: inline-flex; align-items: center; min-height: 44px; padding: 13px 20px; font: 600 14px/1 var(--font); letter-spacing: -.01em; text-decoration: none; white-space: nowrap; }
@@ -290,6 +294,8 @@ a { color: inherit; }
   .cos-header__cta { display: none; }
   .cos-nav__trigger { padding: 12px 24px; width: 100%; justify-content: space-between; }
   .cos-nav__panel { position: static; min-width: 0; border: none; border-top: 1px solid var(--c-line); }
+  .cos-nav__tier-label { padding-left: 24px; }
+  .cos-nav__all { padding-left: 24px; }
   .cos-footer__cols { grid-template-columns: 1fr 1fr; gap: 32px; }
   .cos-footer__title-block { flex-direction: column; }
   .cos-footer__title-cell { padding: 6px 0; border-right: 0; border-bottom: 1px solid var(--c-line); }
@@ -326,6 +332,7 @@ a { color: inherit; }
         <li class="cos-nav__dropdown">
           <button class="cos-nav__trigger" aria-expanded="false" aria-haspopup="true">Products</button>
           <div class="cos-nav__panel" role="region">
+            <span class="cos-nav__tier-label">Core Products</span>
             <a class="cos-nav__item" href="/products/document-workbench.html">
               <span class="cos-nav__item-name"><span class="cos-nav__item-tag">01</span>Document Workbench</span>
               <span class="cos-nav__item-desc">Construction documents from project information</span>
@@ -335,17 +342,19 @@ a { color: inherit; }
               <span class="cos-nav__item-desc">Company-specific answers, source-backed</span>
             </a>
             <a class="cos-nav__item" href="/products/project-intelligence.html">
-              <span class="cos-nav__item-name">
-                <span class="cos-nav__item-tag">03</span>
-                Project Intelligence
-                <span class="cos-nav__item-tag" style="color:#476776">In development</span>
-              </span>
-              <span class="cos-nav__item-desc">Attention where it's needed, before it's urgent</span>
+              <span class="cos-nav__item-name"><span class="cos-nav__item-tag">03</span>Project Intelligence<span class="cos-nav__item-tag" style="color:#476776;margin-left:4px">In development</span></span>
+              <span class="cos-nav__item-desc">Attention where it&rsquo;s needed, before it&rsquo;s urgent</span>
             </a>
-            <a class="cos-nav__item" href="#">
-              <span class="cos-nav__item-name"><span class="cos-nav__item-tag">——</span>Operations Automation</span>
-              <span class="cos-nav__item-desc">Extension layer across the system</span>
+            <span class="cos-nav__tier-label">Extension Layer</span>
+            <a class="cos-nav__item" href="/products/operations-automation.html">
+              <span class="cos-nav__item-name"><span class="cos-nav__item-tag">&mdash;&mdash;</span>Operations Automation</span>
+              <span class="cos-nav__item-desc">Purpose-built workflows for repetitive construction work</span>
             </a>
+            <a class="cos-nav__item" href="/products/custom-solutions.html">
+              <span class="cos-nav__item-name"><span class="cos-nav__item-tag">&mdash;&mdash;</span>Custom Solutions</span>
+              <span class="cos-nav__item-desc">Purpose-built tools for work that doesn&rsquo;t fit a product</span>
+            </a>
+            <a class="cos-nav__all" href="/">All products &rarr;</a>
           </div>
         </li>
         <li><a href="/#services">Services</a></li>

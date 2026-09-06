@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Custom Solutions — Construction OS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ─── Tokens ─────────────────────────────────────────────── */
+:root {
+  --c-ink:       #111111;
+  --c-white:     #FFFFFF;
+  --c-bond:      #EFEFEB;
+  --c-steel:     #476776;
+  --c-graphite:  #5F6466;
+  --c-line:      #B8B9B5;
+  --c-revision:  #C43230;
+  --font:        'Archivo', Helvetica, sans-serif;
+}
+
+/* ─── Reset & base ───────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; font-family: var(--font); background: var(--c-white); color: var(--c-ink); -webkit-font-smoothing: antialiased; }
+ul, ol { list-style: none; margin: 0; padding: 0; }
+a { color: inherit; }
+
+/* ─── Container ──────────────────────────────────────────── */
+.cos-container { max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px); }
+
+/* ─── Header ─────────────────────────────────────────────── */
+.cos-header { position: sticky; top: 0; z-index: 50; background: var(--c-white); border-bottom: 1px solid var(--c-line); }
+.cos-header__inner { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+.cos-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; font: 600 17px/1 var(--font); letter-spacing: -.02em; color: var(--c-ink); white-space: nowrap; }
+.cos-nav { display: flex; align-items: center; gap: 32px; }
+.cos-nav a:not(.cos-header__cta) { font: 500 15px/1 var(--font); color: var(--c-graphite); text-decoration: none; }
+.cos-nav a[aria-current="page"] { color: var(--c-ink); border-bottom: 2px solid var(--c-ink); padding-bottom: 2px; }
+.cos-header__cta { display: inline-flex; align-items: center; min-height: 44px; padding: 13px 20px; font: 600 14px/1 var(--font); letter-spacing: -.01em; text-decoration: none; background: var(--c-ink); color: var(--c-white); white-space: nowrap; }
+.cos-header__cta:hover { background: var(--c-steel); }
+.cos-header__toggle { display: none; width: 44px; height: 44px; background: none; border: 1px solid var(--c-line); cursor: pointer; flex-direction: column; align-items: center; justify-content: center; gap: 8px; padding: 0; flex-shrink: 0; }
+.cos-header__toggle span { display: block; width: 18px; height: 2px; background: var(--c-ink); pointer-events: none; }
+
+/* ─── Dropdown ───────────────────────────────────────────── */
+.cos-nav__dropdown { position: relative; }
+.cos-nav__trigger { background: none; border: none; padding: 0; cursor: pointer; display: flex; align-items: center; gap: 5px; font: 500 15px/1 var(--font); color: var(--c-graphite); }
+.cos-nav__trigger::after { content: '▾'; font-size: 11px; color: var(--c-line); display: inline-block; position: relative; top: 1px; transition: transform .15s; }
+.cos-nav__panel { display: none; position: absolute; top: calc(100% + 20px); left: -18px; min-width: 300px; background: var(--c-white); border: 1px solid var(--c-ink); z-index: 100; }
+@media (min-width: 761px) {
+  .cos-nav__dropdown:hover .cos-nav__panel { display: block; }
+  .cos-nav__dropdown:hover .cos-nav__trigger::after { transform: rotate(-180deg); }
+}
+.cos-nav__dropdown.is-open .cos-nav__panel { display: block; }
+.cos-nav__dropdown.is-open .cos-nav__trigger::after { transform: rotate(-180deg); }
+.cos-nav__tier-label { display: block; padding: 8px 18px 6px; font: 600 10px/1 var(--font); letter-spacing: .12em; text-transform: uppercase; color: var(--c-line); border-top: 1px solid var(--c-line); }
+.cos-nav__tier-label:first-child { border-top: none; padding-top: 12px; }
+.cos-nav__item { display: block; padding: 12px 18px 13px; text-decoration: none; border-bottom: 1px solid var(--c-line); }
+.cos-nav__item:hover { background: var(--c-bond); }
+.cos-nav__item-name { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; font: 500 14px/1 var(--font); color: var(--c-ink); }
+.cos-nav__item-desc { display: block; font: 400 12px/1.4 var(--font); color: var(--c-graphite); }
+.cos-nav__item-tag { font: 400 11px/1 ui-monospace, 'Courier New', monospace; color: var(--c-graphite); flex-shrink: 0; }
+.cos-nav__all { display: block; padding: 12px 18px; font: 600 13px/1 var(--font); color: var(--c-steel); text-decoration: none; border-top: 1px solid var(--c-line); }
+.cos-nav__all:hover { color: var(--c-ink); }
+
+/* ─── Shared CTA scale ───────────────────────────────────── */
+.cs-btn { display: inline-flex; align-items: center; min-height: 44px; padding: 13px 20px; font: 600 14px/1 var(--font); letter-spacing: -.01em; text-decoration: none; white-space: nowrap; }
+.cs-btn--ink { background: var(--c-ink); color: var(--c-white); }
+.cs-btn--ink:hover { background: var(--c-steel); }
+.cs-btn--paper { background: var(--c-white); color: var(--c-ink); }
+.cs-btn--paper:hover { background: var(--c-bond); }
+.cs-link { display: inline-flex; align-items: center; min-height: 40px; font: 600 14px/1 var(--font); letter-spacing: -.01em; text-decoration: none; border-bottom: 2px solid; padding-bottom: 3px; }
+.cs-link--ink { color: var(--c-ink); border-color: var(--c-ink); }
+.cs-link--ink:hover { color: var(--c-steel); border-color: var(--c-steel); }
+.cs-link--paper { color: var(--c-white); border-color: var(--c-white); }
+.cs-link--paper:hover { color: var(--c-line); border-color: var(--c-line); }
+.cs-cta-row { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+
+/* ─── Shared type helpers ────────────────────────────────── */
+.cs-eyebrow { margin: 0 0 14px; font: 600 11px/1 var(--font); letter-spacing: .16em; text-transform: uppercase; color: var(--c-steel); }
+.cs-h2 { margin: 0; font: 600 clamp(28px, 8cqi, 42px)/1.05 var(--font); letter-spacing: -.035em; color: var(--c-ink); text-wrap: balance; }
+.cs-rule-2px { border: none; border-top: 2px solid var(--c-ink); }
+.cs-rule-1px { border: none; border-top: 1px solid var(--c-line); }
+.cs-section-head { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px,100%), 1fr)); gap: 24px 48px; align-items: start; container-type: inline-size; }
+
+/* ─── Extension layer tag ────────────────────────────────── */
+.cs-ext-tag { display: inline-flex; align-items: center; padding: 4px 8px; font: 600 11px/1 var(--font); letter-spacing: .14em; text-transform: uppercase; color: var(--c-steel); border: 1px solid var(--c-steel); white-space: nowrap; flex-shrink: 0; }
+.cs-ext-tag--ink { color: var(--c-line); border-color: var(--c-graphite); }
+.cs-ext-tag--sm { font-size: 10px; letter-spacing: .12em; }
+
+/* ─── § 1 Hero — Paper ───────────────────────────────────── */
+.cs-hero { background: var(--c-white); padding: 76px 0 64px; }
+.cs-hero__col { max-width: 64ch; container-type: inline-size; display: flex; flex-direction: column; gap: 26px; }
+.cs-hero__tag { margin: 0; display: flex; align-items: center; gap: 12px; font: 600 11px/1 var(--font); letter-spacing: .16em; text-transform: uppercase; color: var(--c-steel); flex-wrap: wrap; }
+.cs-hero__tag-n { font: 400 12px/1 ui-monospace, monospace; color: var(--c-graphite); letter-spacing: 0; }
+.cs-hero__tag-rule { width: 40px; height: 1px; background: var(--c-ink); flex-shrink: 0; }
+.cs-hero__name { margin: 0; font: 600 clamp(22px, 6cqi, 34px)/1.05 var(--font); letter-spacing: -.032em; color: var(--c-ink); display: flex; align-items: center; gap: .35em; white-space: nowrap; }
+.cs-hero__headline { margin: 0; font: 600 clamp(28px, 8.4cqi, 44px)/1.04 var(--font); letter-spacing: -.038em; color: var(--c-ink); text-wrap: balance; }
+.cs-hero__premise { margin: 0; max-width: 56ch; font: 500 18px/1.5 var(--font); color: var(--c-ink); }
+.cs-hero__body { margin: 0; max-width: 56ch; font: 400 17px/1.55 var(--font); color: var(--c-graphite); }
+.cs-hero__kicker { margin: 0; padding-left: 16px; border-left: 2px solid var(--c-steel); font: 600 18px/1.35 var(--font); color: var(--c-ink); }
+.cs-hero__rule { border: none; border-top: 2px solid var(--c-ink); margin: 48px 0 0; }
+.cs-hero__caps { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px,100%), 1fr)); column-gap: 40px; row-gap: 8px; }
+.cs-hero__cap { padding: 26px 0; border-top: 1px solid var(--c-line); }
+.cs-hero__cap-n { display: block; margin-bottom: 8px; font: 400 12px/1 ui-monospace, monospace; color: var(--c-graphite); }
+.cs-hero__cap-title { margin: 0 0 8px; font: 600 20px/1.25 var(--font); letter-spacing: -.02em; color: var(--c-ink); }
+.cs-hero__cap-body { margin: 0; font: 400 15px/1.55 var(--font); color: var(--c-graphite); }
+
+/* ─── § 2 Off-the-shelf software — Bond ─────────────────── */
+.cs-ots { background: var(--c-bond); padding: 76px 0 80px; }
+.cs-ots__head { container-type: inline-size; }
+.cs-ots__head-body1 { margin: 0 0 8px; font: 400 16px/1.6 var(--font); color: var(--c-graphite); }
+.cs-ots__head-body2 { margin: 0 0 8px; font: 500 17px/1.5 var(--font); color: var(--c-ink); }
+.cs-ots__head-body3 { margin: 0; font: 400 16px/1.6 var(--font); color: var(--c-graphite); }
+.cs-workarounds { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px,100%), 1fr)); column-gap: 40px; }
+.cs-workaround { border-top: 1px solid var(--c-line); padding: 18px 0; font: 500 16px/1.5 var(--font); color: var(--c-ink); }
+.cs-ots__close { margin: 0; max-width: 70ch; font: 600 19px/1.4 var(--font); letter-spacing: -.015em; color: var(--c-ink); padding-top: 24px; }
+
+/* ─── § 3 We don't start with AI — Paper + § 3b Ink ─────── */
+.cs-approach { background: var(--c-white); padding-top: 76px; }
+.cs-approach__head { container-type: inline-size; }
+.cs-approach__head-body { margin: 0; font: 500 17px/1.5 var(--font); color: var(--c-ink); }
+.cs-questions { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px,100%), 1fr)); column-gap: 40px; }
+.cs-question { border-top: 1px solid var(--c-line); padding: 22px 0; font: 600 19px/1.3 var(--font); letter-spacing: -.02em; color: var(--c-ink); }
+.cs-approach__close-wrap { padding: 24px 0 44px; }
+.cs-approach__close { margin: 0; max-width: 70ch; font: 500 17px/1.5 var(--font); color: var(--c-ink); }
+
+/* § 3b Ink band */
+.cs-approach__band { background: var(--c-ink); }
+.cs-approach__band-inner { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px,100%), 1fr)); gap: 16px 48px; align-items: start; padding: 38px 0; }
+.cs-band-label { font: 600 11px/1 var(--font); letter-spacing: .14em; text-transform: uppercase; color: var(--c-line); padding-top: 4px; }
+.cs-band-q-light { margin: 0 0 10px; font: 400 clamp(19px, 2.4vw, 22px)/1.4 var(--font); letter-spacing: -.02em; color: var(--c-line); }
+.cs-band-q-bold { margin: 0; font: 600 clamp(22px, 3vw, 28px)/1.3 var(--font); letter-spacing: -.028em; color: var(--c-white); }
+
+/* ─── § 4 Build around the problems — Bond ───────────────── */
+.cs-problems { background: var(--c-bond); padding: 76px 0 80px; }
+.cs-problems__head { container-type: inline-size; }
+.cs-problems__head-body { margin: 0; font: 400 16px/1.6 var(--font); color: var(--c-graphite); }
+.cs-problem-areas { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px,100%), 1fr)); column-gap: 40px; }
+.cs-problem-area { border-top: 1px solid var(--c-line); padding: 26px 0; display: flex; flex-direction: column; gap: 10px; }
+.cs-problem-area__title { margin: 0; font: 600 20px/1.25 var(--font); letter-spacing: -.02em; color: var(--c-ink); }
+.cs-problem-area__body { margin: 0; font: 400 15px/1.55 var(--font); color: var(--c-graphite); }
+.cs-problems__close { margin: 0; max-width: 70ch; font: 600 19px/1.4 var(--font); letter-spacing: -.015em; color: var(--c-ink); padding-top: 24px; }
+
+/* ─── § 5 A Custom Solution can help you — Paper ────────── */
+.cs-outcomes { background: var(--c-white); padding: 76px 0 80px; }
+.cs-outcomes__head { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px,100%), 1fr)); gap: 20px 48px; align-items: end; container-type: inline-size; padding-bottom: 16px; }
+.cs-outcomes__heading { margin: 0; font: 600 clamp(26px, 7cqi, 38px)/1.05 var(--font); letter-spacing: -.032em; color: var(--c-ink); text-wrap: balance; }
+.cs-outcomes__col-labels { display: flex; gap: 28px; align-items: baseline; }
+.cs-outcomes__col-label { font: 600 11px/1 var(--font); letter-spacing: .14em; text-transform: uppercase; }
+.cs-outcomes__col-label--do { color: var(--c-ink); }
+.cs-outcomes__col-label--instead { color: var(--c-graphite); }
+.cs-pairs { border-top: 2px solid var(--c-ink); }
+.cs-pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px,100%), 1fr)); gap: 10px 28px; align-items: baseline; padding: 24px 0; border-bottom: 1px solid var(--c-line); }
+.cs-pair__action { margin: 0; font: 600 21px/1.25 var(--font); letter-spacing: -.022em; color: var(--c-ink); }
+.cs-pair__instead { margin: 0; font: 400 16px/1.5 var(--font); color: var(--c-graphite); }
+.cs-outcomes__close { margin: 0; max-width: 70ch; font: 600 19px/1.4 var(--font); letter-spacing: -.015em; color: var(--c-ink); padding-top: 24px; }
+
+/* ─── § 6 From painful workflow — Bond ───────────────────── */
+.cs-process { background: var(--c-bond); padding: 76px 0 80px; }
+.cs-process__head { container-type: inline-size; margin-bottom: 0; }
+.cs-process__heading { margin: 0; font: 600 clamp(28px, 8cqi, 42px)/1.05 var(--font); letter-spacing: -.035em; color: var(--c-ink); text-wrap: balance; }
+.cs-ledger { border-top: 2px solid var(--c-ink); }
+.cs-ledger-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px,100%), 1fr)); gap: 12px 28px; align-items: baseline; padding: 28px 0; border-bottom: 1px solid var(--c-line); }
+.cs-ledger-row:last-child { border-bottom: none; }
+.cs-ledger__cell1 { display: flex; align-items: baseline; gap: 0; }
+.cs-ledger__n { width: 46px; flex: none; font: 400 12px/1 ui-monospace, monospace; color: var(--c-graphite); }
+.cs-ledger__title { margin: 0; font: 600 21px/1.25 var(--font); letter-spacing: -.022em; color: var(--c-ink); }
+.cs-ledger__body { }
+.cs-ledger__b1 { margin: 0 0 6px; font: 500 16px/1.5 var(--font); color: var(--c-ink); }
+.cs-ledger__b2 { margin: 0; font: 400 15px/1.55 var(--font); color: var(--c-graphite); }
+.cs-ledger__b-single { margin: 0; font: 400 16px/1.6 var(--font); color: var(--c-graphite); }
+.cs-process__close { margin: 0; font: 600 19px/1.4 var(--font); letter-spacing: -.015em; color: var(--c-ink); padding-top: 24px; }
+
+/* ─── § 7 Custom doesn't mean starting from zero — Paper ─── */
+.cs-foundation { background: var(--c-white); padding: 76px 0 80px; }
+.cs-foundation__head { container-type: inline-size; }
+.cs-foundation__head-body { margin: 0; font: 400 16px/1.6 var(--font); color: var(--c-graphite); }
+.cs-cap-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px,100%), 1fr)); column-gap: 40px; row-gap: 44px; }
+.cs-cap-card { border-top: 1px solid var(--c-line); padding: 26px 0 0; display: flex; flex-direction: column; gap: 12px; }
+.cs-cap-card__hrow { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 2px; }
+.cs-cap-card__marker { font: 400 12px/1 ui-monospace, monospace; color: var(--c-graphite); flex-shrink: 0; }
+.cs-cap-card__name { font: 600 17px/1 var(--font); letter-spacing: -.015em; color: var(--c-ink); }
+.cs-cap-card__dev-tag { display: inline-flex; align-items: center; padding: 3px 6px; font: 600 10px/1 var(--font); letter-spacing: .1em; text-transform: uppercase; color: var(--c-graphite); border: 1px solid var(--c-line); white-space: nowrap; }
+.cs-cap-card__ext-label { font: 600 10px/1 var(--font); letter-spacing: .1em; text-transform: uppercase; color: var(--c-graphite); white-space: nowrap; }
+.cs-cap-card__role { margin: 0; font: 600 20px/1.25 var(--font); letter-spacing: -.02em; color: var(--c-ink); }
+.cs-cap-card__desc { margin: 0; font: 400 15px/1.55 var(--font); color: var(--c-graphite); }
+.cs-cap-card__link { display: inline-flex; align-items: center; min-height: 40px; align-self: flex-start; font: 600 14px/1 var(--font); letter-spacing: -.01em; text-decoration: none; border-bottom: 2px solid var(--c-ink); padding-bottom: 3px; color: var(--c-ink); }
+.cs-cap-card__link:hover { color: var(--c-steel); border-color: var(--c-steel); }
+
+/* ─── § 8 Not custom software for the sake — Bond ────────── */
+.cs-limits { background: var(--c-bond); padding: 76px 0 80px; }
+.cs-limits__head { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px,100%), 1fr)); gap: 24px 48px; align-items: start; container-type: inline-size; }
+.cs-limits__heading { margin: 0; font: 600 clamp(26px, 7cqi, 38px)/1.05 var(--font); letter-spacing: -.032em; color: var(--c-ink); text-wrap: balance; }
+.cs-refusals { }
+.cs-refusal { margin: 0; font: 400 16px/1.55 var(--font); color: var(--c-graphite); padding: 14px 0; }
+.cs-refusal + .cs-refusal { border-top: 1px solid var(--c-line); }
+.cs-reasons-intro { margin: 0; font: 500 17px/1.5 var(--font); color: var(--c-ink); }
+.cs-reasons { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px,100%), 1fr)); column-gap: 40px; }
+.cs-reason { border-top: 1px solid var(--c-line); padding: 20px 0; font: 600 19px/1.3 var(--font); letter-spacing: -.02em; color: var(--c-ink); }
+.cs-limits__close { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px,100%), 1fr)); gap: 20px 48px; align-items: start; padding-top: 24px; }
+.cs-limits__close-left { display: flex; flex-direction: column; gap: 10px; }
+.cs-limits__close-g { margin: 0; font: 400 16px/1.6 var(--font); color: var(--c-graphite); }
+.cs-limits__close-kicker { margin: 0; padding-left: 16px; border-left: 2px solid var(--c-steel); font: 600 19px/1.35 var(--font); color: var(--c-ink); }
+
+/* ─── § 9 Closing CTA — Ink ──────────────────────────────── */
+.cs-close { background: var(--c-ink); padding: 88px 0 80px; }
+.cs-close__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(340px,100%), 1fr)); gap: 56px; align-items: start; container-type: inline-size; }
+.cs-close__lockup { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 28px; }
+.cs-close__lockup-name { font: 600 14px/1 var(--font); letter-spacing: .14em; text-transform: uppercase; color: var(--c-white); white-space: nowrap; }
+.cs-close__h { margin: 0 0 16px; font: 600 clamp(32px, 10cqi, 58px)/0.99 var(--font); letter-spacing: -.042em; color: var(--c-white); text-wrap: balance; }
+.cs-close__intro { margin: 0 0 20px; max-width: 46ch; font: 400 19px/1.55 var(--font); color: var(--c-line); }
+.cs-close__candidates { margin: 0 0 24px; }
+.cs-close-candidate { font: 500 16px/1.4 var(--font); color: var(--c-white); padding: 13px 0; display: block; }
+.cs-close-candidate + .cs-close-candidate { border-top: 1px solid var(--c-graphite); }
+.cs-close__kicker { padding-left: 16px; border-left: 2px solid var(--c-white); display: flex; flex-direction: column; gap: 8px; margin-bottom: 28px; }
+.cs-close__kicker-strong { margin: 0; font: 600 19px/1.35 var(--font); color: var(--c-white); }
+.cs-close__kicker-sub { margin: 0; font: 400 16px/1.5 var(--font); color: var(--c-line); }
+.cs-close__index-label { font: 500 12px/1 var(--font); letter-spacing: .12em; text-transform: uppercase; color: var(--c-line); margin: 0 0 14px; }
+.cs-close__index-rule { height: 1px; background: var(--c-graphite); margin: 0 0 0; }
+.cs-close__index-row { display: flex; align-items: center; gap: 12px; padding: 16px 0; border-bottom: 1px solid var(--c-graphite); }
+.cs-close__index-row:last-child { border-bottom: none; }
+.cs-close__index-n { font: 400 12px/1 ui-monospace, monospace; color: var(--c-line); flex-shrink: 0; }
+.cs-close__index-name { font: 600 17px/1 var(--font); color: var(--c-white); }
+.cs-close__index-tag { display: inline-flex; align-items: center; padding: 3px 6px; font: 600 10px/1 var(--font); letter-spacing: .12em; text-transform: uppercase; color: var(--c-line); border: 1px solid var(--c-graphite); margin-left: 8px; white-space: nowrap; }
+
+/* ─── Footer ─────────────────────────────────────────────── */
+.cos-footer { background: var(--c-white); border-top: 1px solid var(--c-line); }
+.cos-footer__inner { padding-top: 52px; }
+.cos-footer__cols { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 40px; }
+.cos-footer__brand { display: flex; flex-direction: column; gap: 14px; }
+.cos-footer__lockup { display: flex; align-items: center; gap: 10px; text-decoration: none; font: 600 15px/1 var(--font); letter-spacing: -.015em; color: var(--c-ink); }
+.cos-footer__tagline { margin: 0; font: 400 13px/1.5 var(--font); color: var(--c-graphite); max-width: 26ch; }
+.cos-footer__cta-link { align-self: flex-start; font: 600 13px/1 var(--font); color: var(--c-ink); text-decoration: none; border-bottom: 1px solid var(--c-ink); padding-bottom: 2px; }
+.cos-footer__cta-link:hover { color: var(--c-steel); border-bottom-color: var(--c-steel); }
+.cos-footer__col { display: flex; flex-direction: column; gap: 10px; }
+.cos-footer__col-head { font: 600 11px/1 var(--font); letter-spacing: .14em; text-transform: uppercase; color: var(--c-graphite); margin-bottom: 4px; }
+.cos-footer__col-item { display: flex; align-items: baseline; gap: 8px; font: 400 14px/1 var(--font); color: var(--c-graphite); text-decoration: none; }
+.cos-footer__col-item:hover { color: var(--c-ink); }
+.cos-footer__col-item--current { font-weight: 600; color: var(--c-ink); }
+.cos-footer__col-n { font: 400 11px/1 ui-monospace, monospace; color: var(--c-line); flex-shrink: 0; }
+.cos-footer__bottom { border-top: 1px solid var(--c-line); padding: 20px 0; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.cos-footer__copy { font: 400 12px/1 var(--font); color: var(--c-graphite); }
+.cos-footer__policy { font: 400 12px/1 var(--font); color: var(--c-graphite); text-decoration: none; }
+.cos-footer__policy:hover { color: var(--c-ink); }
+.cos-footer__title-block { border-top: 1px solid var(--c-line); display: flex; flex-wrap: wrap; }
+.cos-footer__title-cell { font: 400 10px/1 ui-monospace, monospace; letter-spacing: .08em; text-transform: uppercase; color: var(--c-graphite); padding: 12px 16px; border-right: 1px solid var(--c-line); white-space: nowrap; }
+.cos-footer__title-cell:first-child { padding-left: 0; }
+.cos-footer__title-cell:last-child { border-right: 0; }
+
+/* ─── Mobile nav ─────────────────────────────────────────── */
+@media (max-width: 760px) {
+  .cos-header__toggle { display: flex; }
+  .cos-nav { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--c-white); border-top: 1px solid var(--c-line); border-bottom: 1px solid var(--c-line); flex-direction: column; align-items: stretch; gap: 0; }
+  .cos-nav.is-open { display: flex; }
+  .cos-nav > li { border-bottom: 1px solid var(--c-line); }
+  .cos-nav > li:last-child { border-bottom: none; }
+  .cos-nav a:not(.cos-header__cta) { padding: 14px 24px; display: block; }
+  .cos-header__cta { display: none; }
+  .cos-nav__trigger { padding: 12px 24px; width: 100%; justify-content: space-between; }
+  .cos-nav__panel { position: static; min-width: 0; border: none; border-top: 1px solid var(--c-line); }
+  .cos-nav__tier-label { padding-left: 24px; }
+  .cos-nav__item { padding-left: 24px; padding-right: 24px; }
+  .cos-nav__all { padding-left: 24px; }
+  .cos-footer__cols { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .cos-footer__title-block { flex-direction: column; }
+  .cos-footer__title-cell { padding: 6px 0; border-right: 0; border-bottom: 1px solid var(--c-line); }
+  .cos-footer__title-cell:last-child { border-bottom: 0; }
+  .cs-hero { padding: 56px 0 48px; }
+  .cs-hero__rule { margin-top: 32px; }
+}
+@media (max-width: 900px) {
+  .cos-footer__cols { grid-template-columns: 1fr 1fr; gap: 32px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Header (Paper, sticky) — two-tier Products menu -->
+<header class="cos-header" id="top">
+  <div class="cos-container">
+    <div class="cos-header__inner">
+
+      <a class="cos-logo" href="/">
+        <svg viewBox="0 0 100 100" width="22" height="22" aria-hidden="true">
+          <polyline points="14,56 14,14 56,14" fill="none" stroke="currentColor" stroke-width="13"/>
+          <polyline points="86,44 86,86 44,86" fill="none" stroke="currentColor" stroke-width="13"/>
+          <rect x="32" y="32" width="36" height="36" fill="#C43230"/>
+        </svg>
+        Construction OS
+      </a>
+
+      <button class="cos-header__toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav">
+        <span></span><span></span>
+      </button>
+
+      <ul class="cos-nav" id="main-nav" role="list">
+        <li class="cos-nav__dropdown">
+          <button class="cos-nav__trigger" aria-expanded="false" aria-haspopup="true">Products</button>
+          <div class="cos-nav__panel" role="region">
+            <span class="cos-nav__tier-label">Core Products</span>
+            <a class="cos-nav__item" href="/products/document-workbench.html">
+              <span class="cos-nav__item-name"><span class="cos-nav__item-tag">01</span>Document Workbench</span>
+              <span class="cos-nav__item-desc">Construction documents from project information</span>
+            </a>
+            <a class="cos-nav__item" href="/products/construction-intelligence.html">
+              <span class="cos-nav__item-name"><span class="cos-nav__item-tag">02</span>Construction Intelligence</span>
+              <span class="cos-nav__item-desc">Company-specific answers, source-backed</span>
+            </a>
+            <a class="cos-nav__item" href="/products/project-intelligence.html">
+              <span class="cos-nav__item-name"><span class="cos-nav__item-tag">03</span>Project Intelligence<span class="cos-nav__item-tag" style="color:#476776;margin-left:4px">In development</span></span>
+              <span class="cos-nav__item-desc">Attention where it&rsquo;s needed, before it&rsquo;s urgent</span>
+            </a>
+            <span class="cos-nav__tier-label">Extension Layer</span>
+            <a class="cos-nav__item" href="/products/operations-automation.html">
+              <span class="cos-nav__item-name"><span class="cos-nav__item-tag">&mdash;&mdash;</span>Operations Automation</span>
+              <span class="cos-nav__item-desc">Purpose-built workflows for repetitive construction work</span>
+            </a>
+            <a class="cos-nav__item" href="/products/custom-solutions.html" aria-current="page">
+              <span class="cos-nav__item-name"><span class="cos-nav__item-tag">&mdash;&mdash;</span>Custom Solutions</span>
+              <span class="cos-nav__item-desc">Purpose-built tools for work that doesn&rsquo;t fit a product</span>
+            </a>
+            <a class="cos-nav__all" href="/">All products &rarr;</a>
+          </div>
+        </li>
+        <li><a href="/#services">Services</a></li>
+        <li class="cos-nav__dropdown">
+          <button class="cos-nav__trigger" aria-expanded="false" aria-haspopup="true">Resources</button>
+          <div class="cos-nav__panel" role="region">
+            <a class="cos-nav__item" href="#">
+              <span class="cos-nav__item-name">Case Studies</span>
+              <span class="cos-nav__item-desc">How construction teams use Construction OS</span>
+            </a>
+            <a class="cos-nav__item" href="#">
+              <span class="cos-nav__item-name">Insights</span>
+              <span class="cos-nav__item-desc">Operations thinking for construction companies</span>
+            </a>
+          </div>
+        </li>
+        <li><a href="/#about">About</a></li>
+        <li><a class="cos-header__cta" href="https://cal.com/justinyurasits">Book a demo</a></li>
+      </ul>
+
+    </div>
+  </div>
+</header>
+
+
+<!-- § 1. Hero — Paper -->
+<section class="cs-hero">
+  <div class="cos-container">
+    <div class="cs-hero__col">
+
+      <!-- Tag row: —— · rule · CONSTRUCTION OS · EXTENSION LAYER tag (no trailing rule per rule f) -->
+      <p class="cs-hero__tag">
+        <span class="cs-hero__tag-n">&mdash;&mdash;</span>
+        <span class="cs-hero__tag-rule"></span>
+        <span>Construction OS</span>
+        <span class="cs-ext-tag">Extension Layer</span>
+      </p>
+
+      <!-- Product name with CS icon at .74em -->
+      <h1 class="cs-hero__name">
+        <!-- icon-custom-solutions: 56×56 Ink at (8,8) + 40×40 Steel at (52,52), ≤24px: stroke 11 each -->
+        <svg viewBox="0 0 100 100" style="width:.74em;height:.74em;flex:none" aria-hidden="true">
+          <rect x="8" y="8" width="56" height="56" fill="none" stroke="currentColor" stroke-width="11"/>
+          <rect x="52" y="52" width="40" height="40" fill="none" stroke="#476776" stroke-width="11"/>
+        </svg>
+        Custom Solutions
+      </h1>
+
+      <!-- Headline -->
+      <p class="cs-hero__headline">Software should fit your business. Your business shouldn&rsquo;t have to fit the software.</p>
+
+      <!-- Premise (500) -->
+      <p class="cs-hero__premise">Every contractor has work that doesn&rsquo;t fit neatly into off-the-shelf software.</p>
+
+      <!-- Body paragraphs (400, Graphite) -->
+      <p class="cs-hero__body">The spreadsheet nobody wants to maintain. The approval that dies in email. The report someone rebuilds every Friday. The information that gets entered into three different systems. The workflow that only works because one person remembers how to run it.</p>
+      <p class="cs-hero__body">We learn how the work actually happens, find the unnecessary manual effort, and build purpose-built AI tools, automations, workflows, and integrations around your operation.</p>
+
+      <!-- Kicker -->
+      <p class="cs-hero__kicker">Start with the work everyone wishes would go away.</p>
+
+      <!-- CTA row -->
+      <div class="cs-cta-row">
+        <a class="cs-btn cs-btn--ink" href="https://cal.com/justinyurasits">Book a demo</a>
+        <a class="cs-link cs-link--ink" href="#process">See how we work</a>
+      </div>
+
+    </div>
+
+    <!-- Three capability points under 2px Ink rule -->
+    <hr class="cs-hero__rule" aria-hidden="true">
+    <div class="cs-hero__caps" aria-label="Key capabilities">
+      <div class="cs-hero__cap">
+        <span class="cs-hero__cap-n">01</span>
+        <h2 class="cs-hero__cap-title">Built around your business</h2>
+        <p class="cs-hero__cap-body">Your process, your people, your rules, your systems.</p>
+      </div>
+      <div class="cs-hero__cap">
+        <span class="cs-hero__cap-n">02</span>
+        <h2 class="cs-hero__cap-title">Focused on real operational pain</h2>
+        <p class="cs-hero__cap-body">Repetitive, slow, inconsistent, document-heavy, or overly dependent on manual handoffs.</p>
+      </div>
+      <div class="cs-hero__cap">
+        <span class="cs-hero__cap-n">03</span>
+        <h2 class="cs-hero__cap-title">Built to fit</h2>
+        <p class="cs-hero__cap-body">Use the right combination of AI, automation, software, and Construction OS capabilities for the problem.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- § 2. Off-the-shelf software doesn't fit every workflow — Bond -->
+<section class="cs-ots">
+  <div class="cos-container">
+
+    <!-- Header block -->
+    <div class="cs-section-head cs-ots__head" style="padding-bottom:20px">
+      <div>
+        <p class="cs-eyebrow">The Problem</p>
+        <h2 class="cs-h2">Off-the-shelf software doesn&rsquo;t fit every workflow.</h2>
+      </div>
+      <div>
+        <p class="cs-ots__head-body1">Most software gives you its process and asks your company to adapt.</p>
+        <p class="cs-ots__head-body2">Sometimes that&rsquo;s fine.</p>
+        <p class="cs-ots__head-body3">Sometimes you end up with workarounds:</p>
+      </div>
+    </div>
+    <hr class="cs-rule-2px" style="margin-bottom:20px" aria-hidden="true">
+
+    <!-- Six workarounds -->
+    <ul class="cs-workarounds" role="list">
+      <li class="cs-workaround">An estimate gets copied into multiple systems.</li>
+      <li class="cs-workaround">Project information gets rebuilt for the weekly report.</li>
+      <li class="cs-workaround">Subcontractor paperwork gets chased through email.</li>
+      <li class="cs-workaround">A client approval gets lost between the PM, designer, and owner.</li>
+      <li class="cs-workaround">Two project managers handle the same process two different ways.</li>
+      <li class="cs-workaround">A recurring task still takes hours because none of your systems quite handles it.</li>
+    </ul>
+
+    <hr class="cs-rule-2px" style="margin-top:30px;margin-bottom:0" aria-hidden="true">
+    <p class="cs-ots__close">When the workaround becomes the workflow, there may be a better way.</p>
+
+  </div>
+</section>
+
+
+<!-- § 3. We don't start with AI — Paper + § 3b Ink band -->
+<section class="cs-approach">
+  <div class="cos-container">
+
+    <!-- Header block -->
+    <div class="cs-section-head cs-approach__head" style="padding-bottom:20px">
+      <div>
+        <p class="cs-eyebrow">The Approach</p>
+        <h2 class="cs-h2">We don&rsquo;t start with AI. We start with the work.</h2>
+      </div>
+      <div>
+        <p class="cs-approach__head-body">Show us how the process actually happens today.</p>
+      </div>
+    </div>
+    <hr class="cs-rule-2px" style="margin-bottom:0" aria-hidden="true">
+
+    <!-- Six diagnostic questions -->
+    <div class="cs-questions">
+      <div class="cs-question">Where does the information come from?</div>
+      <div class="cs-question">Who touches it?</div>
+      <div class="cs-question">What gets copied, checked, reformatted, or chased?</div>
+      <div class="cs-question">Where does the process slow down?</div>
+      <div class="cs-question">What requires real construction judgment?</div>
+      <div class="cs-question">What is simply repetitive production?</div>
+    </div>
+
+    <hr class="cs-rule-2px" aria-hidden="true">
+    <div class="cs-approach__close-wrap">
+      <p class="cs-approach__close">Then we determine what should stay human, what should become easier, and what can be automated.</p>
+    </div>
+
+  </div>
+
+  <!-- § 3b. Ink band — the page's sharpest line -->
+  <div class="cs-approach__band">
+    <div class="cos-container cs-approach__band-inner">
+      <span class="cs-band-label">The Real Question</span>
+      <div>
+        <p class="cs-band-q-light">The question isn&rsquo;t &ldquo;Where can we add AI?&rdquo;</p>
+        <p class="cs-band-q-bold">It&rsquo;s &ldquo;Why is your team still doing this the hard way?&rdquo;</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- § 4. Build around the problems costing your team time — Bond -->
+<section class="cs-problems">
+  <div class="cos-container">
+
+    <!-- Header block -->
+    <div class="cs-section-head cs-problems__head" style="padding-bottom:20px">
+      <div>
+        <p class="cs-eyebrow">Where It Fits</p>
+        <h2 class="cs-h2">Build around the problems costing your team time.</h2>
+      </div>
+      <div>
+        <p class="cs-problems__head-body">Custom Solutions are designed for operational problems that are important enough to fix but too specific for a generic product.</p>
+      </div>
+    </div>
+    <hr class="cs-rule-2px" style="margin-bottom:0" aria-hidden="true">
+
+    <!-- Eight problem areas — no numbers per spec -->
+    <ul class="cs-problem-areas" role="list">
+      <li class="cs-problem-area">
+        <h3 class="cs-problem-area__title">Repetitive administrative work</h3>
+        <p class="cs-problem-area__body">Stop spending skilled time re-entering, formatting, checking, and moving the same information.</p>
+      </li>
+      <li class="cs-problem-area">
+        <h3 class="cs-problem-area__title">Document-heavy processes</h3>
+        <p class="cs-problem-area__body">Turn project information into the reports, forms, packages, correspondence, or records the workflow requires.</p>
+      </li>
+      <li class="cs-problem-area">
+        <h3 class="cs-problem-area__title">Manual handoffs</h3>
+        <p class="cs-problem-area__body">Move work forward without depending on another email, reminder, or person remembering the next step.</p>
+      </li>
+      <li class="cs-problem-area">
+        <h3 class="cs-problem-area__title">Information between systems</h3>
+        <p class="cs-problem-area__body">Reduce the copying and re-entry required when your project, accounting, spreadsheet, email, and document systems don&rsquo;t connect the way the business needs them to.</p>
+      </li>
+      <li class="cs-problem-area">
+        <h3 class="cs-problem-area__title">Review and approval workflows</h3>
+        <p class="cs-problem-area__body">Make it clearer what is waiting, who needs to act, and what happens next.</p>
+      </li>
+      <li class="cs-problem-area">
+        <h3 class="cs-problem-area__title">Compliance and evidence tracking</h3>
+        <p class="cs-problem-area__body">Capture photos, forms, certificates, training records, approvals, and other evidence in a process the team can actually follow.</p>
+      </li>
+      <li class="cs-problem-area">
+        <h3 class="cs-problem-area__title">Company knowledge</h3>
+        <p class="cs-problem-area__body">Put procedures, standards, pricing rules, and operating guidance within reach of the people doing the work.</p>
+      </li>
+      <li class="cs-problem-area">
+        <h3 class="cs-problem-area__title">Operational visibility</h3>
+        <p class="cs-problem-area__body">Surface the exceptions that need attention instead of making leadership assemble status manually.</p>
+      </li>
+    </ul>
+
+    <hr class="cs-rule-2px" style="margin-top:30px;margin-bottom:0" aria-hidden="true">
+    <p class="cs-problems__close">If your team does it over and over, there may be a better way to do it.</p>
+
+  </div>
+</section>
+
+
+<!-- § 5. A Custom Solution can help you — Paper -->
+<section class="cs-outcomes">
+  <div class="cos-container">
+
+    <!-- Header with column labels in right cell -->
+    <div class="cs-outcomes__head">
+      <div>
+        <p class="cs-eyebrow">What It Does</p>
+        <h2 class="cs-outcomes__heading">A Custom Solution can help you:</h2>
+      </div>
+      <div class="cs-outcomes__col-labels">
+        <span class="cs-outcomes__col-label cs-outcomes__col-label--do">Do This</span>
+        <span class="cs-outcomes__col-label cs-outcomes__col-label--instead">Instead Of</span>
+      </div>
+    </div>
+    <hr class="cs-rule-2px" aria-hidden="true">
+
+    <!-- Six paired rows -->
+    <div class="cs-pairs">
+      <div class="cs-pair">
+        <p class="cs-pair__action">Capture information once</p>
+        <p class="cs-pair__instead">Instead of entering it again and again.</p>
+      </div>
+      <div class="cs-pair">
+        <p class="cs-pair__action">Apply your company&rsquo;s rules</p>
+        <p class="cs-pair__instead">Instead of relying on someone to remember every step.</p>
+      </div>
+      <div class="cs-pair">
+        <p class="cs-pair__action">Produce the next useful output</p>
+        <p class="cs-pair__instead">Instead of rebuilding it from scratch.</p>
+      </div>
+      <div class="cs-pair">
+        <p class="cs-pair__action">Move work forward</p>
+        <p class="cs-pair__instead">Instead of depending on another manual handoff.</p>
+      </div>
+      <div class="cs-pair">
+        <p class="cs-pair__action">Surface the exception</p>
+        <p class="cs-pair__instead">Instead of making someone check everything.</p>
+      </div>
+      <div class="cs-pair" style="border-bottom:none">
+        <p class="cs-pair__action">Keep the record</p>
+        <p class="cs-pair__instead">Instead of leaving evidence scattered across inboxes, spreadsheets, and folders.</p>
+      </div>
+    </div>
+
+    <hr class="cs-rule-2px" style="margin-top:0" aria-hidden="true">
+    <p class="cs-outcomes__close">Remove unnecessary manual work without removing the judgment that makes your people valuable.</p>
+
+  </div>
+</section>
+
+
+<!-- § 6. From painful workflow to working solution — Bond -->
+<section class="cs-process" id="process">
+  <div class="cos-container">
+
+    <div class="cs-process__head" style="margin-bottom:0;container-type:inline-size">
+      <p class="cs-eyebrow">The Process</p>
+      <h2 class="cs-process__heading">From painful workflow to working solution.</h2>
+    </div>
+    <hr class="cs-rule-2px" style="margin:26px 0 0" aria-hidden="true">
+
+    <!-- Four ledger rows -->
+    <div class="cs-ledger">
+
+      <div class="cs-ledger-row">
+        <div class="cs-ledger__cell1">
+          <span class="cs-ledger__n">01</span>
+          <h3 class="cs-ledger__title">Show us the problem.</h3>
+        </div>
+        <div class="cs-ledger__body">
+          <p class="cs-ledger__b1">Start with the workflow your team is tired of doing by hand.</p>
+          <p class="cs-ledger__b2">We learn how it actually works today&mdash;not how it is supposed to work on paper.</p>
+        </div>
+      </div>
+
+      <div class="cs-ledger-row">
+        <div class="cs-ledger__cell1">
+          <span class="cs-ledger__n">02</span>
+          <h3 class="cs-ledger__title">Find the unnecessary work.</h3>
+        </div>
+        <div class="cs-ledger__body">
+          <p class="cs-ledger__b-single">Separate the parts that require experience and judgment from the repetitive production, information movement, checking, and handoffs around them.</p>
+        </div>
+      </div>
+
+      <div class="cs-ledger-row">
+        <div class="cs-ledger__cell1">
+          <span class="cs-ledger__n">03</span>
+          <h3 class="cs-ledger__title">Build around your operation.</h3>
+        </div>
+        <div class="cs-ledger__body">
+          <p class="cs-ledger__b-single">Create the tool, workflow, automation, or integration around the way your company needs the work to happen.</p>
+        </div>
+      </div>
+
+      <div class="cs-ledger-row">
+        <div class="cs-ledger__cell1">
+          <span class="cs-ledger__n">04</span>
+          <h3 class="cs-ledger__title">Prove it in real work.</h3>
+        </div>
+        <div class="cs-ledger__body">
+          <p class="cs-ledger__b1">Put it in the hands of the people who actually perform the process.</p>
+          <p class="cs-ledger__b2">If it saves meaningful time and makes the workflow better, expand from there.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <hr class="cs-rule-2px" style="margin-top:0;margin-bottom:0" aria-hidden="true">
+    <p class="cs-process__close">Solve one real problem. Prove the value. Build from there.</p>
+
+  </div>
+</section>
+
+
+<!-- § 7. Custom doesn't mean starting from zero — Paper -->
+<section class="cs-foundation">
+  <div class="cos-container">
+
+    <!-- Header block -->
+    <div class="cs-section-head cs-foundation__head" style="padding-bottom:20px">
+      <div>
+        <p class="cs-eyebrow">The Foundation</p>
+        <h2 class="cs-h2">Custom doesn&rsquo;t mean starting from zero.</h2>
+      </div>
+      <div>
+        <p class="cs-foundation__head-body">Custom Solutions can use and extend the same capabilities behind Construction OS.</p>
+      </div>
+    </div>
+    <hr class="cs-rule-2px" style="margin-bottom:30px" aria-hidden="true">
+
+    <!-- Four capability cards (row-gap:44px for wrapping grid) -->
+    <div class="cs-cap-cards">
+
+      <!-- 01 Document Workbench -->
+      <div class="cs-cap-card">
+        <div class="cs-cap-card__hrow">
+          <span class="cs-cap-card__marker">01</span>
+          <!-- icon-less-paperwork at 15px: one sheet, currentColor, sw=12 -->
+          <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true">
+            <rect x="14" y="26" width="52" height="60" fill="none" stroke="currentColor" stroke-width="12"/>
+          </svg>
+          <span class="cs-cap-card__name">Document Workbench</span>
+        </div>
+        <p class="cs-cap-card__role">Produce what the workflow requires.</p>
+        <p class="cs-cap-card__desc">Create company-standard documents, reports, forms, and other project outputs from the information already in the work.</p>
+        <a class="cs-cap-card__link" href="/products/document-workbench.html">Explore Document Workbench &rarr;</a>
+      </div>
+
+      <!-- 02 Construction Intelligence -->
+      <div class="cs-cap-card">
+        <div class="cs-cap-card__hrow">
+          <span class="cs-cap-card__marker">02</span>
+          <!-- icon-fewer-bottlenecks at 15px: two polylines, currentColor, sw=11 -->
+          <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true">
+            <polyline points="8,20 40,20 54,42 94,42" fill="none" stroke="currentColor" stroke-width="11"/>
+            <polyline points="8,80 40,80 54,58 94,58" fill="none" stroke="currentColor" stroke-width="11"/>
+          </svg>
+          <span class="cs-cap-card__name">Construction Intelligence</span>
+        </div>
+        <p class="cs-cap-card__role">Apply how your company does the work.</p>
+        <p class="cs-cap-card__desc">Use your procedures, standards, pricing rules, references, and company knowledge when the workflow depends on understanding what should happen.</p>
+        <a class="cs-cap-card__link" href="/products/construction-intelligence.html">Explore Construction Intelligence &rarr;</a>
+      </div>
+
+      <!-- 03 Project Intelligence [IN DEVELOPMENT] -->
+      <div class="cs-cap-card">
+        <div class="cs-cap-card__hrow">
+          <span class="cs-cap-card__marker">03</span>
+          <!-- icon-better-visibility at 15px: baseline + 4 bars, no red, currentColor, sw=11 -->
+          <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true">
+            <line x1="18" y1="70" x2="82" y2="70" stroke="currentColor" stroke-width="11"/>
+            <line x1="30" y1="70" x2="30" y2="56" stroke="currentColor" stroke-width="11"/>
+            <line x1="50" y1="70" x2="50" y2="44" stroke="currentColor" stroke-width="11"/>
+            <line x1="70" y1="70" x2="70" y2="32" stroke="currentColor" stroke-width="11"/>
+          </svg>
+          <span class="cs-cap-card__name">Project Intelligence</span>
+          <span class="cs-cap-card__dev-tag">In Development</span>
+        </div>
+        <p class="cs-cap-card__role">Surface what needs attention.</p>
+        <p class="cs-cap-card__desc">Bring open items, aging issues, missing approvals, and other exceptions into view when the workflow depends on knowing where intervention is needed.</p>
+        <a class="cs-cap-card__link" href="/products/project-intelligence.html">Explore Project Intelligence &rarr;</a>
+      </div>
+
+      <!-- Operations Automation — EXTENSION LAYER, Graphite unboxed label -->
+      <div class="cs-cap-card">
+        <div class="cs-cap-card__hrow">
+          <span class="cs-cap-card__marker">&mdash;&mdash;</span>
+          <!-- icon-less-repetitive-work at 15px: 3 dashes + baseline run, currentColor, sw=11, no red -->
+          <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true">
+            <line x1="14" y1="28" x2="34" y2="28" stroke="currentColor" stroke-width="11"/>
+            <line x1="42" y1="28" x2="62" y2="28" stroke="currentColor" stroke-width="11"/>
+            <line x1="70" y1="28" x2="90" y2="28" stroke="currentColor" stroke-width="11"/>
+            <line x1="14" y1="74" x2="90" y2="74" stroke="currentColor" stroke-width="11"/>
+          </svg>
+          <span class="cs-cap-card__name">Operations Automation</span>
+          <span class="cs-cap-card__ext-label">Extension Layer</span>
+        </div>
+        <p class="cs-cap-card__role">Handle the repeatable work around it.</p>
+        <p class="cs-cap-card__desc">Use automation patterns for recurring construction workflows such as invoices, field reporting, safety, compliance, billing, changes, and client decisions.</p>
+        <a class="cs-cap-card__link" href="/products/operations-automation.html">Explore Operations Automation &rarr;</a>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- § 8. Not custom software for the sake of custom software — Bond -->
+<section class="cs-limits">
+  <div class="cos-container">
+
+    <!-- Header: left heading, right three refusals as ruled lines -->
+    <div class="cs-limits__head" style="padding-bottom:20px">
+      <div>
+        <p class="cs-eyebrow">The Limits</p>
+        <h2 class="cs-limits__heading">Not custom software for the sake of custom software.</h2>
+      </div>
+      <div class="cs-refusals">
+        <p class="cs-refusal">We are not trying to replace every system you use.</p>
+        <p class="cs-refusal">We are not looking for complicated problems just because they are interesting to build.</p>
+        <p class="cs-refusal">And we are not going to automate work that is better handled by an experienced person.</p>
+      </div>
+    </div>
+    <hr class="cs-rule-2px" style="margin-bottom:30px" aria-hidden="true">
+
+    <!-- Reasons intro + six reasons grid -->
+    <p class="cs-reasons-intro" style="margin-bottom:0;padding-bottom:0">A Custom Solution should have a clear business reason to exist:</p>
+    <div class="cs-reasons" style="margin-top:26px">
+      <div class="cs-reason">Save meaningful time.</div>
+      <div class="cs-reason">Remove unnecessary manual work.</div>
+      <div class="cs-reason">Make a recurring process more consistent.</div>
+      <div class="cs-reason">Reduce avoidable handoffs and bottlenecks.</div>
+      <div class="cs-reason">Make company knowledge easier to use.</div>
+      <div class="cs-reason">Give the team better visibility into what needs attention.</div>
+    </div>
+
+    <!-- Two-column close -->
+    <hr class="cs-rule-2px" style="margin-top:30px;margin-bottom:0" aria-hidden="true">
+    <div class="cs-limits__close">
+      <div class="cs-limits__close-left">
+        <p class="cs-limits__close-g">If the software you already have solves the problem well, use it.</p>
+        <p class="cs-limits__close-g">If judgment is what creates the value, keep the judgment.</p>
+      </div>
+      <p class="cs-limits__close-kicker">Build only where the business case is real.</p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- § 9. Closing CTA — Ink -->
+<section class="cs-close" id="cta">
+  <div class="cos-container">
+    <div class="cs-close__grid">
+
+      <!-- Left column -->
+      <div>
+        <!-- Lockup: CS icon + name + EXTENSION LAYER tag (no trailing rule per rule f) -->
+        <div class="cs-close__lockup">
+          <!-- CS icon at 24px on Ink: large rect Paper, small rect Line gray, sw=11 -->
+          <svg viewBox="0 0 100 100" width="24" height="24" aria-hidden="true">
+            <rect x="8" y="8" width="56" height="56" fill="none" stroke="#ffffff" stroke-width="11"/>
+            <rect x="52" y="52" width="40" height="40" fill="none" stroke="#B8B9B5" stroke-width="11"/>
+          </svg>
+          <span class="cs-close__lockup-name">Custom Solutions</span>
+          <span class="cs-ext-tag cs-ext-tag--ink cs-ext-tag--sm">Extension Layer</span>
+        </div>
+
+        <h2 class="cs-close__h">Start with the workflow everyone complains about.</h2>
+        <p class="cs-close__intro">You probably already know which one it is.</p>
+
+        <!-- Six candidates -->
+        <div class="cs-close__candidates">
+          <span class="cs-close-candidate">The spreadsheet nobody wants to own.</span>
+          <span class="cs-close-candidate">The report that eats up Friday afternoon.</span>
+          <span class="cs-close-candidate">The process that takes five emails and three people.</span>
+          <span class="cs-close-candidate">The paperwork everybody puts off.</span>
+          <span class="cs-close-candidate">The information somebody keeps entering twice.</span>
+          <span class="cs-close-candidate">The question that always goes back to the same person.</span>
+        </div>
+
+        <!-- Kicker -->
+        <div class="cs-close__kicker">
+          <p class="cs-close__kicker-strong">Show us how it works today.</p>
+          <p class="cs-close__kicker-sub">We&rsquo;ll help determine whether there&rsquo;s a better way to run it.</p>
+        </div>
+
+        <!-- CTA row -->
+        <div class="cs-cta-row">
+          <a class="cs-btn cs-btn--paper" href="https://cal.com/justinyurasits">Book a demo</a>
+          <a class="cs-link cs-link--paper" href="/">Explore Construction OS &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Right column: What we build on -->
+      <div>
+        <p class="cs-close__index-label">What we build on</p>
+        <div class="cs-close__index-rule"></div>
+
+        <!-- 01 Document Workbench -->
+        <div class="cs-close__index-row">
+          <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true">
+            <rect x="14" y="26" width="52" height="60" fill="none" stroke="#ffffff" stroke-width="12"/>
+          </svg>
+          <span class="cs-close__index-n">01</span>
+          <span class="cs-close__index-name">Document Workbench</span>
+        </div>
+
+        <!-- 02 Construction Intelligence -->
+        <div class="cs-close__index-row">
+          <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true">
+            <polyline points="8,20 40,20 54,42 94,42" fill="none" stroke="#ffffff" stroke-width="11"/>
+            <polyline points="8,80 40,80 54,58 94,58" fill="none" stroke="#ffffff" stroke-width="11"/>
+          </svg>
+          <span class="cs-close__index-n">02</span>
+          <span class="cs-close__index-name">Construction Intelligence</span>
+        </div>
+
+        <!-- 03 Project Intelligence [IN DEVELOPMENT] -->
+        <div class="cs-close__index-row">
+          <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true">
+            <line x1="18" y1="70" x2="82" y2="70" stroke="#ffffff" stroke-width="11"/>
+            <line x1="30" y1="70" x2="30" y2="56" stroke="#ffffff" stroke-width="11"/>
+            <line x1="50" y1="70" x2="50" y2="44" stroke="#ffffff" stroke-width="11"/>
+            <line x1="70" y1="70" x2="70" y2="32" stroke="#ffffff" stroke-width="11"/>
+          </svg>
+          <span class="cs-close__index-n">03</span>
+          <span class="cs-close__index-name">Project Intelligence</span>
+          <span class="cs-close__index-tag">In Development</span>
+        </div>
+
+        <!-- Operations Automation -->
+        <div class="cs-close__index-row">
+          <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true">
+            <line x1="14" y1="28" x2="34" y2="28" stroke="#ffffff" stroke-width="11"/>
+            <line x1="42" y1="28" x2="62" y2="28" stroke="#ffffff" stroke-width="11"/>
+            <line x1="70" y1="28" x2="90" y2="28" stroke="#ffffff" stroke-width="11"/>
+            <line x1="14" y1="74" x2="90" y2="74" stroke="#B8B9B5" stroke-width="11"/>
+          </svg>
+          <span class="cs-close__index-n">&mdash;&mdash;</span>
+          <span class="cs-close__index-name">Operations Automation</span>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- Footer — Paper -->
+<footer class="cos-footer">
+  <div class="cos-footer__inner cos-container">
+    <div class="cos-footer__cols">
+
+      <div class="cos-footer__brand">
+        <a class="cos-footer__lockup" href="/">
+          <svg viewBox="0 0 100 100" width="22" height="22" aria-hidden="true" style="flex:none">
+            <polyline points="14,56 14,14 56,14" fill="none" stroke="currentColor" stroke-width="13"/>
+            <polyline points="86,44 86,86 44,86" fill="none" stroke="currentColor" stroke-width="13"/>
+            <rect x="32" y="32" width="36" height="36" fill="#C43230"/>
+          </svg>
+          Construction OS
+        </a>
+        <p class="cos-footer__tagline">Three products. One construction operating system.</p>
+        <a class="cos-footer__cta-link" href="https://cal.com/justinyurasits">Book a demo</a>
+      </div>
+
+      <div class="cos-footer__col">
+        <span class="cos-footer__col-head">Products</span>
+        <a class="cos-footer__col-item" href="/products/document-workbench.html">
+          <span class="cos-footer__col-n">01</span>Document Workbench
+        </a>
+        <a class="cos-footer__col-item" href="/products/construction-intelligence.html">
+          <span class="cos-footer__col-n">02</span>Construction Intelligence
+        </a>
+        <a class="cos-footer__col-item" href="/products/project-intelligence.html">
+          <span class="cos-footer__col-n">03</span>Project Intelligence
+        </a>
+        <a class="cos-footer__col-item" href="/products/operations-automation.html">
+          <span class="cos-footer__col-n">&mdash;&mdash;</span>Operations Automation
+        </a>
+        <a class="cos-footer__col-item cos-footer__col-item--current" href="/products/custom-solutions.html" aria-current="page">
+          <span class="cos-footer__col-n">&mdash;&mdash;</span>Custom Solutions
+        </a>
+      </div>
+
+      <div class="cos-footer__col">
+        <span class="cos-footer__col-head">Company</span>
+        <a class="cos-footer__col-item" href="/#services">Services</a>
+        <a class="cos-footer__col-item" href="/#about">About</a>
+        <a class="cos-footer__col-item" href="https://cal.com/justinyurasits">Book a demo</a>
+      </div>
+
+      <div class="cos-footer__col">
+        <span class="cos-footer__col-head">Resources</span>
+        <a class="cos-footer__col-item" href="#">Case Studies</a>
+        <a class="cos-footer__col-item" href="#">Insights</a>
+      </div>
+
+    </div>
+
+    <div class="cos-footer__bottom">
+      <span class="cos-footer__copy">&copy; 2026 Construction OS</span>
+      <a class="cos-footer__policy" href="#">Privacy</a>
+    </div>
+
+    <!-- Title block -->
+    <div class="cos-footer__title-block" aria-label="Document title block">
+      <span class="cos-footer__title-cell">Sheet&nbsp;&nbsp;Construction OS</span>
+      <span class="cos-footer__title-cell">Page&nbsp;&nbsp;Custom Solutions</span>
+      <span class="cos-footer__title-cell">Issued&nbsp;&nbsp;2026-09-06</span>
+      <span class="cos-footer__title-cell">Rev&nbsp;&nbsp;01</span>
+      <span class="cos-footer__title-cell">Status&nbsp;&nbsp;Issued For Review</span>
+    </div>
+
+  </div>
+</footer>
+
+
+<script>
+(function () {
+  var header = document.querySelector('.cos-header');
+  var toggle = header.querySelector('.cos-header__toggle');
+  var nav    = header.querySelector('.cos-nav');
+
+  toggle.addEventListener('click', function () {
+    var open = nav.classList.toggle('is-open');
+    toggle.setAttribute('aria-expanded', open);
+  });
+
+  var dropdowns = Array.prototype.slice.call(header.querySelectorAll('.cos-nav__dropdown'));
+  dropdowns.forEach(function (dd) {
+    var btn = dd.querySelector('.cos-nav__trigger');
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var isOpen = dd.classList.contains('is-open');
+      dropdowns.forEach(function (other) {
+        if (other !== dd) {
+          other.classList.remove('is-open');
+          other.querySelector('.cos-nav__trigger').setAttribute('aria-expanded', 'false');
+        }
+      });
+      dd.classList.toggle('is-open', !isOpen);
+      btn.setAttribute('aria-expanded', !isOpen);
+    });
+  });
+
+  document.addEventListener('click', function () {
+    dropdowns.forEach(function (dd) {
+      dd.classList.remove('is-open');
+      dd.querySelector('.cos-nav__trigger').setAttribute('aria-expanded', 'false');
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

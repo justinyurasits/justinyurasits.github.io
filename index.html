@@ -710,10 +710,11 @@
   max-width: 38ch;
 }
 /* Construction Intelligence capability rows */
-.ci-rows { margin-top: var(--s-5); border-top: var(--w-dimension) solid var(--rule-dimension); }
-.ci-row { padding: var(--s-4) 0; border-bottom: var(--w-dimension) solid var(--rule-dimension); }
-.ci-row-title { font-family: var(--font-display); font-size: 13px; font-weight: 500; color: var(--fg); margin: 0 0 var(--s-2); line-height: 1.3; }
-.ci-row-desc { font-family: var(--font-display); font-size: var(--fs-annotation); letter-spacing: var(--tr-annotation); color: var(--fg-muted); margin: 0; line-height: 1.45; }
+.ci-rows { margin-top: 24px; border-top: 2px solid var(--c-ink); }
+.ci-row { padding: 18px 0; border-bottom: 1px solid var(--c-line); }
+.ci-row:last-child { border-bottom: 0; padding-bottom: 0; }
+.ci-row-title { font: 600 20px/1.25 var(--font-display), sans-serif; letter-spacing: -0.02em; color: var(--c-ink); margin: 0 0 6px; }
+.ci-row-desc { font: 400 14px/1.5 var(--font-display), sans-serif; color: var(--c-graphite); margin: 0; }
 
 /* Product CTAs */
 .prod-cta { display: flex; align-items: center; gap: var(--s-5); margin-top: var(--s-5); flex-wrap: wrap; }
@@ -806,7 +807,7 @@
 .ci-name-row { display: flex; align-items: center; gap: 14px; }
 .ci-name-row svg { flex: none; }
 .ci-proof {
-  border: 2px solid var(--c-ink);
+  border: 1px solid var(--c-ink);
   background: var(--c-white);
   box-sizing: border-box;
   display: flex;
@@ -815,7 +816,7 @@
 }
 .ci-q-band {
   padding: 20px 24px 22px;
-  border-bottom: 2px solid var(--c-ink);
+  border-bottom: 1px solid var(--c-ink);
 }
 .ci-q-tag {
   font: 400 11px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace;
@@ -832,12 +833,11 @@
 }
 .ci-body {
   display: grid;
-  grid-template-columns: 60fr 40fr;
+  grid-template-columns: minmax(260px, 1.5fr) minmax(200px, 1fr);
   align-items: start;
-  flex: 1;
 }
 .ci-answer {
-  padding: 20px 20px 20px 24px;
+  padding: 22px 24px 26px;
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -855,7 +855,7 @@
 }
 .ci-sources {
   border-left: 1px solid var(--c-line);
-  background: var(--c-white);
+  background: var(--c-bond);
   display: flex;
   flex-direction: column;
   align-self: stretch;
@@ -1687,6 +1687,12 @@
         </div>
       </div>
     </div>
+    <nav class="cos-products__next">
+      <span>Next</span>
+      <div>
+        <a href="#product-03"><i>03</i> Project Intelligence</a>
+      </div>
+    </nav>
   </div>
 </section>
 

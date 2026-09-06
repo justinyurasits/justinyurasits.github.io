@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Construction Intelligence — Construction OS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ─── Tokens ─────────────────────────────────────────────── */
+:root {
+  --c-ink:       #111111;
+  --c-white:     #FFFFFF;
+  --c-bond:      #EFEFEB;
+  --c-steel:     #476776;
+  --c-graphite:  #5F6466;
+  --c-line:      #B8B9B5;
+  --c-revision:  #C43230;
+  --font-display: 'Archivo';
+}
+
+/* ─── Reset & base ───────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; font-family: var(--font-display), Helvetica, sans-serif; background: var(--c-white); color: var(--c-ink); -webkit-font-smoothing: antialiased; }
+ul, ol { list-style: none; margin: 0; padding: 0; }
+a { color: inherit; }
+img { max-width: 100%; display: block; }
+
+/* ─── Container ──────────────────────────────────────────── */
+.cos-container { max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px); }
+
+/* ─── Header ─────────────────────────────────────────────── */
+.cos-header { position: sticky; top: 0; z-index: 50; background: var(--c-white); border-bottom: 1px solid var(--c-line); transition: min-height .2s; }
+.cos-header__inner { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 32px; transition: min-height .2s; }
+.cos-header--compact .cos-header__inner { min-height: 60px; }
+.cos-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; font: 600 17px/1 var(--font-display), sans-serif; letter-spacing: -.02em; color: var(--c-ink); white-space: nowrap; }
+.cos-nav { display: flex; align-items: center; gap: 32px; list-style: none; margin: 0; padding: 0; }
+.cos-nav a:not(.cos-header__cta) { font: 500 15px/1 var(--font-display), sans-serif; color: var(--c-graphite); text-decoration: none; }
+.cos-nav a:not(.cos-header__cta)[aria-current="page"] { color: var(--c-ink); border-bottom: 2px solid var(--c-ink); padding-bottom: 2px; }
+.cos-header__cta { display: inline-flex; align-items: center; min-height: 44px; padding: 13px 20px; font: 600 14px/1 var(--font-display), sans-serif; letter-spacing: -.01em; text-decoration: none; background: var(--c-ink); color: var(--c-white); white-space: nowrap; }
+.cos-header__cta:hover { background: var(--c-steel); color: var(--c-white); }
+.cos-header__toggle { display: none; width: 44px; height: 44px; background: none; border: 1px solid var(--c-line); cursor: pointer; flex-direction: column; align-items: center; justify-content: center; gap: 8px; padding: 0; flex-shrink: 0; }
+.cos-header__toggle span { display: block; width: 18px; height: 2px; background: var(--c-ink); pointer-events: none; }
+
+/* ─── Dropdown nav ───────────────────────────────────────── */
+.cos-nav__dropdown { position: relative; }
+.cos-nav__trigger { background: none; border: none; padding: 0; cursor: pointer; display: flex; align-items: center; gap: 5px; font: 500 15px/1 var(--font-display), sans-serif; color: var(--c-graphite); }
+.cos-nav__trigger::after { content: '▾'; font-size: 11px; color: var(--c-line); display: inline-block; position: relative; top: 1px; transition: transform .15s; }
+.cos-nav__panel { display: none; position: absolute; top: calc(100% + 20px); left: -18px; min-width: 280px; background: var(--c-white); border: 1px solid var(--c-ink); z-index: 100; }
+@media (min-width: 761px) {
+  .cos-nav__dropdown:hover .cos-nav__panel { display: block; }
+  .cos-nav__dropdown:hover .cos-nav__trigger::after { transform: rotate(-180deg); }
+}
+.cos-nav__dropdown.is-open .cos-nav__panel { display: block; }
+.cos-nav__dropdown.is-open .cos-nav__trigger::after { transform: rotate(-180deg); }
+.cos-nav__item { display: block; padding: 14px 18px; text-decoration: none; border-bottom: 1px solid var(--c-line); }
+.cos-nav__item:last-child { border-bottom: none; }
+.cos-nav__item:hover { background: var(--c-bond); }
+.cos-nav__item-name { display: flex; align-items: center; gap: 8px; margin-bottom: 5px; font: 500 14px/1 var(--font-display), sans-serif; color: var(--c-ink); }
+.cos-nav__item-desc { display: block; font: 400 12px/1.4 var(--font-display), sans-serif; color: var(--c-graphite); }
+.cos-nav__item-tag { font: 400 11px/1 ui-monospace, 'Courier New', monospace; color: var(--c-graphite); flex-shrink: 0; }
+
+/* ─── Product block (shared) ──────────────────────────────── */
+.cos-product-section { background: var(--c-bond); padding: 72px 40px 64px; }
+.cos-product { display: grid; grid-template-columns: minmax(340px, 1fr) minmax(340px, 1.15fr); gap: 48px; align-items: start; max-width: 1440px; margin: 0 auto; }
+.cos-product__col { container-type: inline-size; display: flex; flex-direction: column; gap: 26px; min-width: 0; }
+.cos-product__tag { margin: 0; display: flex; align-items: center; gap: 12px; min-height: 26px; font: 600 11px/1 var(--font-display), sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--c-steel); }
+.cos-product__tag span { font: 400 12px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace; color: var(--c-graphite); letter-spacing: 0; }
+.cos-product__tag i { width: 40px; height: 1px; background: var(--c-ink); flex-shrink: 0; }
+.cos-product__name { display: flex; align-items: center; gap: .4em; font: 600 clamp(22px, 7.2cqi, 38px)/1.05 var(--font-display), sans-serif; letter-spacing: -.032em; white-space: nowrap; color: var(--c-ink); margin: 0; }
+.cos-product__name svg { width: .72em; height: .72em; flex: none; }
+.cos-product__name-group { display: flex; flex-direction: column; gap: 14px; }
+.cos-product__lead { margin: 0; max-width: 30ch; font: 500 20px/1.4 var(--font-display), sans-serif; letter-spacing: -.015em; color: var(--c-ink); }
+.cos-product__body { margin: 0; max-width: 46ch; font: 400 16px/1.6 var(--font-display), sans-serif; color: var(--c-graphite); text-wrap: pretty; }
+.cos-product__cta { margin: 0; display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+
+/* Buttons */
+.cos-btn { display: inline-flex; align-items: center; min-height: 48px; padding: 15px 26px; font: 600 15px/1 var(--font-display), sans-serif; letter-spacing: -.01em; text-decoration: none; }
+.cos-btn--ink { background: var(--c-ink); color: var(--c-white); }
+.cos-btn--ink:hover { background: var(--c-steel); color: var(--c-white); }
+.cos-btn--paper { background: var(--c-white); color: var(--c-ink); }
+.cos-btn--paper:hover { background: var(--c-bond); }
+.cos-link { font: 600 15px/1 var(--font-display), sans-serif; letter-spacing: -.01em; color: var(--c-ink); text-decoration: none; border-bottom: 2px solid var(--c-ink); padding-bottom: 3px; }
+.cos-link:hover { color: var(--c-steel); border-bottom-color: var(--c-steel); }
+.cos-link--paper { color: var(--c-white); border-bottom-color: var(--c-white); }
+.cos-link--paper:hover { color: var(--c-line); border-bottom-color: var(--c-line); }
+
+/* Proof table */
+.cos-proof { margin: 0; border-top: 2px solid var(--c-ink); }
+.cos-proof > div { padding: 22px 0 20px; border-bottom: 1px solid var(--c-line); }
+.cos-proof > div:last-child { border-bottom: 0; padding-bottom: 0; }
+.cos-proof dt { margin: 0 0 6px; font: 600 20px/1.25 var(--font-display), sans-serif; letter-spacing: -.02em; color: var(--c-ink); }
+.cos-proof dd { margin: 0; font: 400 14px/1.5 var(--font-display), sans-serif; color: var(--c-graphite); }
+
+/* Next rail */
+.cos-next { margin-top: 30px; padding-top: 22px; border-top: 1px solid var(--c-line); display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.cos-next__label { font: 500 12px/1 var(--font-display), sans-serif; letter-spacing: .12em; text-transform: uppercase; color: var(--c-graphite); white-space: nowrap; }
+.cos-next__item { font: 400 12px/1 ui-monospace, monospace; color: var(--c-graphite); }
+.cos-next__item strong { font: 600 15px/1 var(--font-display), sans-serif; letter-spacing: -.01em; color: var(--c-ink); margin-left: 4px; }
+
+/* Artifact caption */
+.cos-doc-cap { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font: 400 11px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace; letter-spacing: .04em; color: var(--c-graphite); text-transform: uppercase; white-space: nowrap; min-height: 26px; }
+.cos-doc-cap span + span { color: var(--c-steel); }
+
+/* ─── Answer card ────────────────────────────────────────── */
+.cos-answer { border: 1px solid var(--c-ink); background: var(--c-white); }
+.cos-answer__q { padding: 20px 24px 22px; border-bottom: 1px solid var(--c-ink); display: flex; flex-direction: column; gap: 10px; }
+.cos-answer__q b { font: 400 11px/1 ui-monospace, monospace; letter-spacing: .1em; color: var(--c-steel); text-transform: uppercase; }
+.cos-answer__q h4 { margin: 0; font: 600 21px/1.28 var(--font-display), sans-serif; letter-spacing: -.022em; color: var(--c-ink); text-wrap: pretty; }
+
+.cos-answer__body { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.cos-answer__text { padding: 22px 24px 26px; display: flex; flex-direction: column; gap: 15px; min-width: 0; }
+.cos-answer__text p { margin: 0; font: 400 15px/1.6 var(--font-display), sans-serif; color: var(--c-graphite); text-wrap: pretty; }
+.cos-answer__text p:first-child { font: 500 16px/1.5 var(--font-display), sans-serif; letter-spacing: -.01em; color: var(--c-ink); }
+
+.cos-sources { border-top: 1px solid var(--c-line); border-left: 1px solid var(--c-line); background: var(--c-bond); padding: 22px 20px 26px; display: flex; flex-direction: column; min-width: 0; }
+.cos-sources__head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; padding-bottom: 12px; border-bottom: 1px solid var(--c-ink); font: 600 11px/1 var(--font-display), sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--c-ink); }
+.cos-sources__head span { font: 400 11px/1 ui-monospace, monospace; letter-spacing: 0; color: var(--c-graphite); }
+.cos-sources ul { margin: 0; padding: 0; }
+.cos-sources li { list-style: none; padding: 14px 0; border-bottom: 1px solid var(--c-line); display: flex; flex-direction: column; gap: 4px; }
+.cos-sources li:last-of-type { border-bottom: 0; padding-bottom: 16px; }
+.cos-sources li b { font: 400 12px/1 ui-monospace, monospace; color: var(--c-ink); }
+.cos-sources li span { font: 400 13px/1.45 var(--font-display), sans-serif; color: var(--c-graphite); }
+.cos-sources__foot { margin-top: auto; padding-top: 14px; border-top: 1px solid var(--c-line); display: flex; flex-direction: column; gap: 4px; }
+.cos-sources__foot b { font: 600 11px/1 var(--font-display), sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--c-steel); }
+.cos-sources__foot span { font: 400 13px/1.45 var(--font-display), sans-serif; color: var(--c-graphite); }
+
+.cos-answer__delta { border-top: 1px solid var(--c-ink); background: var(--c-ink); padding: 18px 24px; display: grid; gap: 10px 24px; align-items: baseline; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+.cos-answer__delta b { font: 600 11px/1 var(--font-display), sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--c-line); }
+.cos-answer__delta p { margin: 0; font: 500 15px/1.5 var(--font-display), sans-serif; letter-spacing: -.01em; color: var(--c-white); }
+
+/* ─── Hero ───────────────────────────────────────────────── */
+.ci-hero { background: var(--c-bond); padding: 80px 0 76px; }
+.ci-hero__inner { display: flex; flex-direction: column; gap: 32px; max-width: 720px; }
+.ci-hero__eyebrow { display: flex; align-items: center; gap: 10px; font: 500 12px/1 var(--font-display), sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--c-steel); }
+.ci-hero__eyebrow-rule { width: 32px; height: 1px; background: var(--c-steel); }
+.ci-hero__h { margin: 0; font: 600 clamp(36px, 5.5vw, 64px)/1.06 var(--font-display), sans-serif; letter-spacing: -.032em; color: var(--c-ink); text-wrap: balance; }
+.ci-hero__lead { margin: 0; max-width: 48ch; font: 400 19px/1.55 var(--font-display), sans-serif; color: var(--c-graphite); text-wrap: pretty; }
+.ci-hero__cta { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+
+/* ─── Current state (pain) ───────────────────────────────── */
+.ci-pain { background: var(--c-white); padding: 76px 0 80px; }
+.ci-pain__head { margin-bottom: 48px; }
+.ci-pain__label { margin: 0 0 14px; font: 600 11px/1 var(--font-display), sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--c-steel); }
+.ci-pain__heading { margin: 0; font: 600 clamp(26px, 3.2vw, 40px)/1.1 var(--font-display), sans-serif; letter-spacing: -.028em; color: var(--c-ink); text-wrap: balance; max-width: 22ch; }
+.ci-pain__rows { border-top: 2px solid var(--c-ink); }
+.ci-pain__row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; padding: 22px 0 20px; border-bottom: 1px solid var(--c-line); align-items: start; }
+.ci-pain__row:last-child { border-bottom: 0; padding-bottom: 0; }
+.ci-pain__q { margin: 0; font: 500 15px/1.5 var(--font-display), sans-serif; color: var(--c-ink); }
+.ci-pain__a { margin: 0; font: 400 14px/1.6 var(--font-display), sans-serif; color: var(--c-graphite); }
+
+/* ─── Ink band ───────────────────────────────────────────── */
+.ci-ink-band { background: var(--c-ink); padding: 34px 0; }
+.ci-ink-band__text { margin: 0; font: 600 clamp(18px, 2.2vw, 28px)/1.25 var(--font-display), sans-serif; letter-spacing: -.022em; color: var(--c-white); text-wrap: balance; max-width: 52ch; }
+
+/* ─── Question comparison ────────────────────────────────── */
+.ci-compare { background: var(--c-white); padding: 76px 0 80px; }
+.ci-compare__head { margin-bottom: 48px; }
+.ci-compare__label { margin: 0 0 14px; font: 600 11px/1 var(--font-display), sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--c-steel); }
+.ci-compare__heading { margin: 0; font: 600 clamp(26px, 3.2vw, 40px)/1.1 var(--font-display), sans-serif; letter-spacing: -.028em; color: var(--c-ink); text-wrap: balance; max-width: 28ch; }
+.ci-compare__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; border: 1px solid var(--c-ink); }
+.ci-compare__col { background: var(--c-white); }
+.ci-compare__col + .ci-compare__col { border-left: 1px solid var(--c-ink); }
+.ci-compare__col-head { padding: 16px 24px 18px; border-bottom: 1px solid var(--c-ink); font: 600 11px/1 var(--font-display), sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--c-graphite); background: var(--c-bond); }
+.ci-compare__col-head--ci { color: var(--c-ink); background: var(--c-white); }
+.ci-compare__q { padding: 22px 24px 0; }
+.ci-compare__q-label { display: block; margin-bottom: 8px; font: 400 11px/1 ui-monospace, monospace; letter-spacing: .1em; text-transform: uppercase; color: var(--c-steel); }
+.ci-compare__q-text { margin: 0; font: 500 16px/1.45 var(--font-display), sans-serif; letter-spacing: -.012em; color: var(--c-ink); }
+.ci-compare__body { padding: 20px 24px 26px; display: flex; flex-direction: column; gap: 12px; }
+.ci-compare__item { font: 400 14px/1.55 var(--font-display), sans-serif; color: var(--c-graphite); padding-left: 14px; position: relative; }
+.ci-compare__item::before { content: '—'; position: absolute; left: 0; color: var(--c-line); }
+.ci-compare__item--ci { color: var(--c-ink); }
+.ci-compare__item--ci::before { color: var(--c-steel); }
+
+/* ─── Handoff to action ──────────────────────────────────── */
+.ci-handoff { background: var(--c-bond); padding: 76px 0 80px; }
+.ci-handoff__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+.ci-handoff__label { margin: 0 0 16px; font: 600 11px/1 var(--font-display), sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--c-steel); }
+.ci-handoff__heading { margin: 0 0 20px; font: 600 clamp(26px, 3.2vw, 40px)/1.1 var(--font-display), sans-serif; letter-spacing: -.028em; color: var(--c-ink); text-wrap: balance; }
+.ci-handoff__body { margin: 0 0 32px; max-width: 44ch; font: 400 16px/1.6 var(--font-display), sans-serif; color: var(--c-graphite); text-wrap: pretty; }
+.ci-handoff__flow { border: 1px solid var(--c-ink); background: var(--c-white); }
+.ci-handoff__flow-row { padding: 18px 24px; display: flex; align-items: center; gap: 16px; border-bottom: 1px solid var(--c-line); }
+.ci-handoff__flow-row:last-child { border-bottom: 0; }
+.ci-handoff__flow-n { font: 400 11px/1 ui-monospace, monospace; color: var(--c-graphite); flex-shrink: 0; width: 20px; }
+.ci-handoff__flow-text { font: 500 14px/1.4 var(--font-display), sans-serif; color: var(--c-ink); }
+.ci-handoff__flow-sub { font: 400 13px/1.4 var(--font-display), sans-serif; color: var(--c-graphite); margin-top: 2px; }
+.ci-handoff__flow-arrow { margin-left: auto; font: 400 14px/1 var(--font-display), sans-serif; color: var(--c-line); flex-shrink: 0; }
+
+/* ─── Experienced people ─────────────────────────────────── */
+.ci-people { background: var(--c-white); padding: 76px 0 80px; }
+.ci-people__grid { display: grid; grid-template-columns: minmax(300px, 1fr) minmax(300px, 1.2fr); gap: 64px; align-items: start; }
+.ci-people__label { margin: 0 0 14px; font: 600 11px/1 var(--font-display), sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--c-steel); }
+.ci-people__heading { margin: 0 0 20px; font: 600 clamp(26px, 3.2vw, 40px)/1.1 var(--font-display), sans-serif; letter-spacing: -.028em; color: var(--c-ink); text-wrap: balance; }
+.ci-people__body { margin: 0; max-width: 44ch; font: 400 16px/1.6 var(--font-display), sans-serif; color: var(--c-graphite); text-wrap: pretty; }
+.ci-people__cells { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); column-gap: 40px; }
+.ci-people__cell { border-top: 1px solid var(--c-line); padding: 26px 0; }
+.ci-people__cell-head { margin: 0 0 8px; font: 600 17px/1.2 var(--font-display), sans-serif; letter-spacing: -.015em; color: var(--c-ink); }
+.ci-people__cell-body { margin: 0; font: 400 14px/1.6 var(--font-display), sans-serif; color: var(--c-graphite); }
+
+/* ─── Onboarding ─────────────────────────────────────────── */
+.ci-onboard { background: var(--c-bond); padding: 76px 0 80px; }
+.ci-onboard__head { margin-bottom: 48px; max-width: 560px; }
+.ci-onboard__label { margin: 0 0 14px; font: 600 11px/1 var(--font-display), sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--c-steel); }
+.ci-onboard__heading { margin: 0 0 16px; font: 600 clamp(26px, 3.2vw, 40px)/1.1 var(--font-display), sans-serif; letter-spacing: -.028em; color: var(--c-ink); text-wrap: balance; }
+.ci-onboard__sub { margin: 0; font: 400 16px/1.6 var(--font-display), sans-serif; color: var(--c-graphite); max-width: 52ch; text-wrap: pretty; }
+.ci-onboard__steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); column-gap: 40px; }
+.ci-onboard__step { border-top: 1px solid var(--c-line); padding: 26px 0; }
+.ci-onboard__step-n { display: block; margin-bottom: 10px; font: 400 12px/1 ui-monospace, monospace; color: var(--c-graphite); }
+.ci-onboard__step-head { margin: 0 0 8px; font: 600 17px/1.2 var(--font-display), sans-serif; letter-spacing: -.015em; color: var(--c-ink); }
+.ci-onboard__step-body { margin: 0; font: 400 14px/1.6 var(--font-display), sans-serif; color: var(--c-graphite); }
+
+/* ─── Not a chatbot ──────────────────────────────────────── */
+.ci-notbot { background: var(--c-white); padding: 76px 0 80px; }
+.ci-notbot__grid { display: grid; grid-template-columns: minmax(300px, 1fr) minmax(300px, 1fr); gap: 64px; align-items: start; }
+.ci-notbot__label { margin: 0 0 14px; font: 600 11px/1 var(--font-display), sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--c-steel); }
+.ci-notbot__heading { margin: 0 0 20px; font: 600 clamp(26px, 3.2vw, 40px)/1.1 var(--font-display), sans-serif; letter-spacing: -.028em; color: var(--c-ink); text-wrap: balance; }
+.ci-notbot__body { margin: 0; max-width: 44ch; font: 400 16px/1.6 var(--font-display), sans-serif; color: var(--c-graphite); text-wrap: pretty; }
+.ci-notbot__rows { border-top: 2px solid var(--c-ink); }
+.ci-notbot__row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; padding: 18px 0 16px; border-bottom: 1px solid var(--c-line); align-items: start; }
+.ci-notbot__row:last-child { border-bottom: 0; }
+.ci-notbot__row-label { font: 600 11px/1 var(--font-display), sans-serif; letter-spacing: .12em; text-transform: uppercase; color: var(--c-line); margin-bottom: 6px; }
+.ci-notbot__generic { font: 400 14px/1.55 var(--font-display), sans-serif; color: var(--c-graphite); }
+.ci-notbot__ci { font: 400 14px/1.55 var(--font-display), sans-serif; color: var(--c-ink); }
+
+/* ─── Configuration ──────────────────────────────────────── */
+.ci-config { background: var(--c-bond); padding: 76px 0 80px; }
+.ci-config__grid { display: grid; grid-template-columns: minmax(300px, 1fr) minmax(300px, 1fr); gap: 64px; align-items: start; }
+.ci-config__label { margin: 0 0 14px; font: 600 11px/1 var(--font-display), sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--c-steel); }
+.ci-config__heading { margin: 0 0 20px; font: 600 clamp(26px, 3.2vw, 40px)/1.1 var(--font-display), sans-serif; letter-spacing: -.028em; color: var(--c-ink); text-wrap: balance; }
+.ci-config__body { margin: 0; max-width: 44ch; font: 400 16px/1.6 var(--font-display), sans-serif; color: var(--c-graphite); text-wrap: pretty; }
+.ci-config__list { margin: 24px 0 0; padding: 0; border-top: 1px solid var(--c-line); }
+.ci-config__list-item { list-style: none; padding: 14px 0; border-bottom: 1px solid var(--c-line); font: 400 14px/1.5 var(--font-display), sans-serif; color: var(--c-graphite); display: flex; align-items: baseline; gap: 10px; }
+.ci-config__list-item::before { content: '——'; font: 400 12px/1 ui-monospace, monospace; color: var(--c-line); flex-shrink: 0; }
+.ci-config__list-item:last-child { border-bottom: 0; }
+.ci-config__note { margin: 28px 0 0; padding: 20px 24px; background: var(--c-white); border: 1px solid var(--c-line); }
+.ci-config__note p { margin: 0; font: 400 14px/1.6 var(--font-display), sans-serif; color: var(--c-graphite); }
+.ci-config__note strong { font-weight: 600; color: var(--c-ink); }
+
+/* ─── Closing CTA ────────────────────────────────────────── */
+.cos-close { background: var(--c-ink); padding: 88px 0 80px; }
+.cos-close__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+.cos-close__lockup { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+.cos-close__lockup-name { font: 600 15px/1 var(--font-display), sans-serif; letter-spacing: -.015em; color: var(--c-white); }
+.cos-close__lockup-rule { flex: 1; height: 1px; background: var(--c-graphite); }
+.cos-close__headline { margin: 0 0 16px; font: 600 clamp(28px, 3.5vw, 44px)/1.1 var(--font-display), sans-serif; letter-spacing: -.028em; color: var(--c-white); text-wrap: balance; }
+.cos-close__subhead { margin: 0 0 14px; font: 400 16px/1.6 var(--font-display), sans-serif; color: var(--c-line); text-wrap: pretty; max-width: 48ch; }
+.cos-close__subhead:last-of-type { margin-bottom: 0; }
+.cos-close__subhead--sm { font-size: 14px; color: var(--c-graphite); }
+.cos-close__cta { margin-top: 32px; display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+.cos-close__btn-primary { display: inline-flex; align-items: center; min-height: 48px; padding: 15px 26px; font: 600 15px/1 var(--font-display), sans-serif; letter-spacing: -.01em; text-decoration: none; background: var(--c-white); color: var(--c-ink); }
+.cos-close__btn-primary:hover { background: var(--c-bond); }
+.cos-close__btn-link { font: 600 15px/1 var(--font-display), sans-serif; letter-spacing: -.01em; color: var(--c-white); text-decoration: none; border-bottom: 2px solid var(--c-white); padding-bottom: 3px; }
+.cos-close__btn-link:hover { color: var(--c-line); border-bottom-color: var(--c-line); }
+.cos-close__index-label { margin: 0 0 14px; font: 600 11px/1 var(--font-display), sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--c-graphite); }
+.cos-close__index-rule { height: 1px; background: var(--c-graphite); margin-bottom: 0; }
+.cos-close__index-row { display: flex; align-items: center; gap: 12px; padding: 16px 0; border-bottom: 1px solid var(--c-graphite); }
+.cos-close__index-row:last-child { border-bottom: 0; }
+.cos-close__index-n { font: 400 12px/1 ui-monospace, monospace; color: var(--c-graphite); flex-shrink: 0; }
+.cos-close__index-name { font: 600 15px/1 var(--font-display), sans-serif; letter-spacing: -.01em; color: var(--c-white); }
+.cos-close__index-tag { font: 400 11px/1 ui-monospace, monospace; color: var(--c-graphite); margin-left: auto; }
+.cos-close__index-ext { font: 400 11px/1 var(--font-display), sans-serif; color: var(--c-graphite); margin-left: auto; }
+
+/* ─── Footer ─────────────────────────────────────────────── */
+.cos-footer { background: var(--c-bond); border-top: 1px solid var(--c-line); }
+.cos-footer__inner { padding-top: 52px; padding-bottom: 40px; }
+.cos-footer__cols { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+.cos-footer__brand { display: flex; flex-direction: column; gap: 14px; }
+.cos-footer__lockup { display: flex; align-items: center; gap: 10px; text-decoration: none; font: 600 15px/1 var(--font-display), sans-serif; letter-spacing: -.015em; color: var(--c-ink); }
+.cos-footer__tagline { margin: 0; font: 400 13px/1.5 var(--font-display), sans-serif; color: var(--c-graphite); max-width: 26ch; }
+.cos-footer__cta-link { align-self: flex-start; margin-top: 6px; font: 600 13px/1 var(--font-display), sans-serif; letter-spacing: -.01em; color: var(--c-ink); text-decoration: none; border-bottom: 1px solid var(--c-ink); padding-bottom: 2px; }
+.cos-footer__cta-link:hover { color: var(--c-steel); border-bottom-color: var(--c-steel); }
+.cos-footer__col { display: flex; flex-direction: column; gap: 10px; }
+.cos-footer__col-head { font: 600 11px/1 var(--font-display), sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--c-graphite); margin-bottom: 4px; }
+.cos-footer__col-item { display: flex; align-items: baseline; gap: 8px; font: 400 14px/1 var(--font-display), sans-serif; color: var(--c-graphite); text-decoration: none; }
+.cos-footer__col-item:hover { color: var(--c-ink); }
+.cos-footer__col-n { font: 400 11px/1 ui-monospace, monospace; color: var(--c-line); flex-shrink: 0; }
+.cos-footer__bottom { border-top: 1px solid var(--c-line); padding-top: 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.cos-footer__copy { font: 400 12px/1 var(--font-display), sans-serif; color: var(--c-graphite); }
+.cos-footer__policy { font: 400 12px/1 var(--font-display), sans-serif; color: var(--c-graphite); text-decoration: none; }
+.cos-footer__policy:hover { color: var(--c-ink); }
+
+/* ─── Mobile nav ─────────────────────────────────────────── */
+@media (max-width: 760px) {
+  .cos-header__toggle { display: flex; }
+  .cos-nav {
+    display: none;
+    position: absolute; top: 100%; left: 0; right: 0;
+    background: var(--c-white); border-top: 1px solid var(--c-line); border-bottom: 1px solid var(--c-line);
+    flex-direction: column; align-items: stretch; gap: 0; padding: 0;
+  }
+  .cos-nav.is-open { display: flex; }
+  .cos-nav > li { border-bottom: 1px solid var(--c-line); }
+  .cos-nav > li:last-child { border-bottom: none; }
+  .cos-nav a:not(.cos-header__cta), .cos-nav__trigger { padding: 14px 24px; display: block; width: 100%; text-align: left; }
+  .cos-header__cta { display: none; }
+  .cos-nav__trigger { padding: 12px 24px; width: 100%; justify-content: space-between; }
+  .cos-nav__panel { position: static; min-width: 0; border: none; border-top: 1px solid var(--c-line); }
+  .cos-nav__panel .cos-nav__item { padding: 10px 32px; font-size: 13px; }
+}
+
+/* ─── Responsive ─────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .cos-product-section { padding: 56px 24px 48px; }
+  .cos-product { grid-template-columns: 1fr; gap: 32px; }
+  .ci-handoff__grid,
+  .ci-people__grid,
+  .ci-notbot__grid,
+  .ci-config__grid { grid-template-columns: 1fr; gap: 40px; }
+  .cos-close__grid { grid-template-columns: 1fr; gap: 48px; }
+  .cos-footer__cols { grid-template-columns: 1fr 1fr; gap: 32px; }
+}
+
+@media (max-width: 760px) {
+  .ci-hero { padding: 60px 0 56px; }
+  .ci-hero__h { font-size: clamp(32px, 8vw, 48px); }
+  .ci-pain__row,
+  .ci-compare__grid { grid-template-columns: 1fr; }
+  .ci-compare__col + .ci-compare__col { border-left: 0; border-top: 1px solid var(--c-ink); }
+  .ci-notbot__row { grid-template-columns: 1fr; }
+  .cos-answer__body { grid-template-columns: 1fr; }
+  .cos-sources { border-left: 0; border-top: 1px solid var(--c-line); }
+  .cos-answer__delta { grid-template-columns: 1fr; }
+  .cos-footer__cols { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="cos-header" id="top">
+  <div class="cos-container">
+    <div class="cos-header__inner">
+
+      <a class="cos-logo" href="/">
+        <svg viewBox="0 0 100 100" width="22" height="22" aria-hidden="true">
+          <polyline points="14,56 14,14 56,14" fill="none" stroke="currentColor" stroke-width="13"/>
+          <polyline points="86,44 86,86 44,86" fill="none" stroke="currentColor" stroke-width="13"/>
+          <rect x="32" y="32" width="36" height="36" fill="#C43230"/>
+        </svg>
+        Construction OS
+      </a>
+
+      <button class="cos-header__toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav">
+        <span></span><span></span>
+      </button>
+
+      <ul class="cos-nav" id="main-nav" role="list">
+
+        <!-- Products ▾ -->
+        <li class="cos-nav__dropdown">
+          <button class="cos-nav__trigger" aria-expanded="false" aria-haspopup="true">Products</button>
+          <div class="cos-nav__panel" role="region">
+            <a class="cos-nav__item" href="/products/document-workbench.html">
+              <span class="cos-nav__item-name">
+                <span class="cos-nav__item-tag">01</span>
+                Document Workbench
+              </span>
+              <span class="cos-nav__item-desc">Construction documents from project information</span>
+            </a>
+            <a class="cos-nav__item" href="/products/construction-intelligence.html" aria-current="page">
+              <span class="cos-nav__item-name">
+                <span class="cos-nav__item-tag">02</span>
+                Construction Intelligence
+              </span>
+              <span class="cos-nav__item-desc">Company-specific answers, source-backed</span>
+            </a>
+            <a class="cos-nav__item" href="#">
+              <span class="cos-nav__item-name">
+                <span class="cos-nav__item-tag">03</span>
+                Project Intelligence
+                <span class="cos-nav__item-tag" style="margin-left:4px;color:#476776">In development</span>
+              </span>
+              <span class="cos-nav__item-desc">Attention where it's needed, before it's urgent</span>
+            </a>
+            <a class="cos-nav__item" href="#">
+              <span class="cos-nav__item-name">
+                <span class="cos-nav__item-tag">——</span>
+                Operations Automation
+              </span>
+              <span class="cos-nav__item-desc">Extension layer across the system</span>
+            </a>
+          </div>
+        </li>
+
+        <!-- Services -->
+        <li><a href="/#services">Services</a></li>
+
+        <!-- Resources ▾ -->
+        <li class="cos-nav__dropdown">
+          <button class="cos-nav__trigger" aria-expanded="false" aria-haspopup="true">Resources</button>
+          <div class="cos-nav__panel" role="region">
+            <a class="cos-nav__item" href="#">
+              <span class="cos-nav__item-name">Case Studies</span>
+              <span class="cos-nav__item-desc">How construction teams use Construction OS</span>
+            </a>
+            <a class="cos-nav__item" href="#">
+              <span class="cos-nav__item-name">Insights</span>
+              <span class="cos-nav__item-desc">Operations thinking for construction companies</span>
+            </a>
+          </div>
+        </li>
+
+        <!-- About -->
+        <li><a href="/#about">About</a></li>
+
+        <!-- CTA -->
+        <li><a class="cos-header__cta" href="https://cal.com/justinyurasits">Book a demo</a></li>
+
+      </ul>
+    </div>
+  </div>
+</header>
+
+
+<!-- 1. Hero — Bond -->
+<section class="ci-hero">
+  <div class="cos-container">
+    <div class="ci-hero__inner">
+      <p class="ci-hero__eyebrow">
+        <span class="ci-hero__eyebrow-rule"></span>
+        02 &mdash; Knowledge
+      </p>
+      <h1 class="ci-hero__h">The answer is in there.<br>Now it&rsquo;s reachable.</h1>
+      <p class="ci-hero__lead">Construction Intelligence gives your team access to your company&rsquo;s procedures, pricing rules, standards, and project history&mdash;so the right answer takes seconds, not a search.</p>
+      <div class="ci-hero__cta">
+        <a class="cos-btn cos-btn--ink" href="https://cal.com/justinyurasits">Book a demo</a>
+        <a class="cos-link" href="#product">See how it works</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- 2. Current state ledger — Paper -->
+<section class="ci-pain">
+  <div class="cos-container">
+    <div class="ci-pain__head">
+      <p class="ci-pain__label">The current state</p>
+      <h2 class="ci-pain__heading">Where the search happens today</h2>
+    </div>
+    <dl class="ci-pain__rows">
+      <div class="ci-pain__row">
+        <dt class="ci-pain__q">&ldquo;How do we price an owner-requested change on cost-plus?&rdquo;</dt>
+        <dd class="ci-pain__a">Whoever wrote the procedure is in a meeting. The PM makes their best guess or waits.</dd>
+      </div>
+      <div class="ci-pain__row">
+        <dt class="ci-pain__q">&ldquo;What&rsquo;s our standard markup for subcontracted millwork?&rdquo;</dt>
+        <dd class="ci-pain__a">It&rsquo;s in a procedure document from three years ago. If anyone can find it.</dd>
+      </div>
+      <div class="ci-pain__row">
+        <dt class="ci-pain__q">&ldquo;What does our contract say about NTE authorization?&rdquo;</dt>
+        <dd class="ci-pain__a">Ask the PM who worked that owner. If they still work here.</dd>
+      </div>
+      <div class="ci-pain__row">
+        <dt class="ci-pain__q">&ldquo;New project manager, complex delivery type&rdquo;</dt>
+        <dd class="ci-pain__a">Six months to learn the right questions. Longer to get the answers right without asking.</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+
+<!-- 3. Ink band -->
+<div class="ci-ink-band">
+  <div class="cos-container">
+    <p class="ci-ink-band__text">When the answer is a search, the wrong people decide.</p>
+  </div>
+</div>
+
+
+<!-- 4. Product block — Bond -->
+<section class="cos-product-section" id="product">
+  <div class="cos-product">
+
+    <!-- Left column -->
+    <div class="cos-product__col">
+      <p class="cos-product__tag">
+        <span>02</span>
+        <i></i>
+        KNOWLEDGE
+      </p>
+      <div class="cos-product__name-group">
+        <h2 class="cos-product__name">
+          <!-- Fewer-bottlenecks icon, no red — currentColor only -->
+          <svg viewBox="0 0 100 100" aria-hidden="true">
+            <line x1="6" y1="50" x2="96" y2="50" stroke="currentColor" stroke-width="4"/>
+            <polyline points="8,20 40,20 54,42 94,42" fill="none" stroke="currentColor" stroke-width="8"/>
+            <polyline points="8,80 40,80 54,58 94,58" fill="none" stroke="currentColor" stroke-width="8"/>
+          </svg>
+          Construction Intelligence
+        </h2>
+        <p class="cos-product__lead">Put your company&rsquo;s knowledge to work.</p>
+      </div>
+      <p class="cos-product__body">Combine construction know-how with your procedures, pricing rules, standards, templates, and project history&mdash;so your team gets company-specific answers without searching through folders or tracking down the person who knows. Put your best people&rsquo;s judgment in reach of the whole team.</p>
+      <div class="cos-product__cta">
+        <a class="cos-btn cos-btn--ink" href="https://cal.com/justinyurasits">Explore Construction Intelligence &rarr;</a>
+        <a class="cos-link" href="#">See it work</a>
+      </div>
+
+      <!-- Proof table -->
+      <dl class="cos-proof">
+        <div>
+          <dt class="is-sm">Company-specific answers</dt>
+          <dd>Grounded in your procedures, pricing rules, standards, templates, and project history</dd>
+        </div>
+        <div>
+          <dt class="is-sm">Source-backed reasoning</dt>
+          <dd>See the procedure, standard, or reference behind the answer</dd>
+        </div>
+        <div>
+          <dt class="is-sm">Knowledge that doesn&rsquo;t walk out the door</dt>
+          <dd>Capture how experienced people make decisions and make it reusable</dd>
+        </div>
+      </dl>
+
+      <!-- Next rail -->
+      <div class="cos-next">
+        <span class="cos-next__label">Next</span>
+        <span class="cos-next__item">03 <strong>Project Intelligence</strong></span>
+      </div>
+    </div>
+
+    <!-- Right column — answer card artifact -->
+    <div class="cos-product__col">
+      <div class="cos-doc-cap">
+        <span>Construction Intelligence &mdash; Answer</span>
+        <span>4 Sources Cited</span>
+      </div>
+
+      <figure style="margin:0">
+        <div class="cos-answer" role="img" aria-label="Example Construction Intelligence answer card">
+
+          <!-- Question band -->
+          <div class="cos-answer__q">
+            <b>Question</b>
+            <h4>How should we price an owner-requested millwork change on a cost-plus project?</h4>
+          </div>
+
+          <!-- Answer body + sources rail -->
+          <div class="cos-answer__body">
+            <!-- Answer text -->
+            <div class="cos-answer__text">
+              <p>On cost-plus, the PCO is still required&mdash;it establishes owner consent that the costs are eligible and defines whether fee applies.</p>
+              <p>For subcontracted millwork, price from the shop quote, write the scope internally, apply contract fee without compounding and show it separately, state schedule impact in calendar days, and get written authorization before fabrication begins.</p>
+              <p>If pricing is not final and the owner wants the shop released, authorize in writing as NTE or T&amp;M&mdash;never verbally.</p>
+            </div>
+            <!-- Sources rail -->
+            <div class="cos-sources">
+              <div class="cos-sources__head">
+                Sources <span>4 cited</span>
+              </div>
+              <ul>
+                <li>
+                  <b>FCM-03 &sect;8.2</b>
+                  <span>Cost-plus change authorization and fee treatment</span>
+                </li>
+                <li>
+                  <b>CHG-53 &sect;8.6 / &sect;9.2</b>
+                  <span>PCO pricing presentation and contractor-written scope</span>
+                </li>
+                <li>
+                  <b>CON-16 &sect;7.4</b>
+                  <span>Fee and markup rules</span>
+                </li>
+                <li>
+                  <b>CHG-59</b>
+                  <span>NTE/T&amp;M authorization</span>
+                </li>
+              </ul>
+              <div class="cos-sources__foot">
+                <b>Answered from</b>
+                <span>Your company&rsquo;s procedures and standards</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- What changes the answer — Ink band -->
+          <div class="cos-answer__delta">
+            <b>What changes the answer</b>
+            <p>Subcontracted vs. self-performed millwork; whether the project has a GMP cap.</p>
+          </div>
+
+        </div>
+      </figure>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- 5. Question comparison — Paper -->
+<section class="ci-compare">
+  <div class="cos-container">
+    <div class="ci-compare__head">
+      <p class="ci-compare__label">How it differs</p>
+      <h2 class="ci-compare__heading">Not a general answer. Your company&rsquo;s answer.</h2>
+    </div>
+    <div class="ci-compare__grid">
+      <!-- Generic AI column -->
+      <div class="ci-compare__col">
+        <div class="ci-compare__col-head">Generic AI</div>
+        <div class="ci-compare__q">
+          <span class="ci-compare__q-label">Question</span>
+          <p class="ci-compare__q-text">How do we handle a cost-plus change order for subcontracted work?</p>
+        </div>
+        <div class="ci-compare__body">
+          <p class="ci-compare__item">General guidance based on common construction practice</p>
+          <p class="ci-compare__item">No reference to your contract type, fee structure, or delivery method</p>
+          <p class="ci-compare__item">No source documents — you can&rsquo;t verify what it&rsquo;s based on</p>
+          <p class="ci-compare__item">Different answer every time, depending on how the question is phrased</p>
+          <p class="ci-compare__item">Same answer as your competitors get</p>
+        </div>
+      </div>
+      <!-- CI column -->
+      <div class="ci-compare__col">
+        <div class="ci-compare__col-head ci-compare__col-head--ci">Construction Intelligence</div>
+        <div class="ci-compare__q">
+          <span class="ci-compare__q-label">Question</span>
+          <p class="ci-compare__q-text">How do we handle a cost-plus change order for subcontracted work?</p>
+        </div>
+        <div class="ci-compare__body">
+          <p class="ci-compare__item ci-compare__item--ci">Answers drawn from your procedures, CHG-53, CON-16, and project precedent</p>
+          <p class="ci-compare__item ci-compare__item--ci">Applies your fee structure, markup rules, and authorization requirements</p>
+          <p class="ci-compare__item ci-compare__item--ci">Every answer shows the source — section and document it came from</p>
+          <p class="ci-compare__item ci-compare__item--ci">Consistent answer, grounded in your standards, not the phrasing</p>
+          <p class="ci-compare__item ci-compare__item--ci">Only your company gets this answer</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- 6. Handoff to action — Bond -->
+<section class="ci-handoff">
+  <div class="cos-container">
+    <div class="ci-handoff__grid">
+
+      <div>
+        <p class="ci-handoff__label">From answer to action</p>
+        <h2 class="ci-handoff__heading">The answer leads somewhere.</h2>
+        <p class="ci-handoff__body">When the answer requires a document or a next step, Construction Intelligence guides the PM to the right workflow in Document Workbench&mdash;so the knowledge becomes a deliverable, not just a reply.</p>
+        <a class="cos-link" href="/products/document-workbench.html">See Document Workbench &rarr;</a>
+      </div>
+
+      <div>
+        <div class="ci-handoff__flow">
+          <div class="ci-handoff__flow-row">
+            <span class="ci-handoff__flow-n">01</span>
+            <div>
+              <p class="ci-handoff__flow-text">PM asks Construction Intelligence</p>
+              <p class="ci-handoff__flow-sub">How do we price this change? What does the contract require?</p>
+            </div>
+            <span class="ci-handoff__flow-arrow">&darr;</span>
+          </div>
+          <div class="ci-handoff__flow-row">
+            <span class="ci-handoff__flow-n">02</span>
+            <div>
+              <p class="ci-handoff__flow-text">Gets the answer with its sources</p>
+              <p class="ci-handoff__flow-sub">Grounded in procedure documents, fee rules, and contract terms</p>
+            </div>
+            <span class="ci-handoff__flow-arrow">&darr;</span>
+          </div>
+          <div class="ci-handoff__flow-row">
+            <span class="ci-handoff__flow-n">03</span>
+            <div>
+              <p class="ci-handoff__flow-text">Opens the right workflow in Document Workbench</p>
+              <p class="ci-handoff__flow-sub">Change order, PCO, or scope document — already scoped correctly</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- 7. Experienced people — Paper -->
+<section class="ci-people">
+  <div class="cos-container">
+    <div class="ci-people__grid">
+      <div>
+        <p class="ci-people__label">The knowledge problem</p>
+        <h2 class="ci-people__heading">What happens when the person who knows leaves.</h2>
+        <p class="ci-people__body">Your most experienced PMs carry years of decisions in their heads — how your company prices work, handles difficult owners, interprets its contracts, and applies its standards. When they&rsquo;re in a meeting, on another job, or gone, that knowledge isn&rsquo;t available.</p>
+      </div>
+      <div>
+        <div class="ci-people__cells">
+          <div class="ci-people__cell">
+            <h3 class="ci-people__cell-head">Procedures exist. They&rsquo;re not read.</h3>
+            <p class="ci-people__cell-body">The knowledge is written down somewhere. It lives in procedure manuals, past project files, and email threads. It&rsquo;s not findable when it&rsquo;s needed.</p>
+          </div>
+          <div class="ci-people__cell">
+            <h3 class="ci-people__cell-head">New PMs learn by asking.</h3>
+            <p class="ci-people__cell-body">The fastest way to get a company-specific answer is to find the right person. That&rsquo;s expensive and inconsistent, and it stops working when the person isn&rsquo;t available.</p>
+          </div>
+          <div class="ci-people__cell">
+            <h3 class="ci-people__cell-head">Knowledge walks out the door.</h3>
+            <p class="ci-people__cell-body">When experienced people leave, years of company-specific judgment goes with them. The procedures stay. The nuance doesn&rsquo;t.</p>
+          </div>
+          <div class="ci-people__cell">
+            <h3 class="ci-people__cell-head">Construction Intelligence captures it.</h3>
+            <p class="ci-people__cell-body">Your procedures, standards, and project history become a knowledge base your whole team can query. The answer your best PM would give is the answer the system gives.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- 8. Onboarding — Bond -->
+<section class="ci-onboard">
+  <div class="cos-container">
+    <div class="ci-onboard__head">
+      <p class="ci-onboard__label">What gets connected</p>
+      <h2 class="ci-onboard__heading">Built from what your company already has.</h2>
+      <p class="ci-onboard__sub">Construction Intelligence is configured around the materials you already rely on. You don&rsquo;t start from scratch — you connect what exists.</p>
+    </div>
+    <div class="ci-onboard__steps">
+      <div class="ci-onboard__step">
+        <span class="ci-onboard__step-n">01</span>
+        <h3 class="ci-onboard__step-head">Procedure documents</h3>
+        <p class="ci-onboard__step-body">Your change order procedures, subcontract requirements, PCO protocols, and operating practices. The rules your company follows.</p>
+      </div>
+      <div class="ci-onboard__step">
+        <span class="ci-onboard__step-n">02</span>
+        <h3 class="ci-onboard__step-head">Pricing rules and fee structures</h3>
+        <p class="ci-onboard__step-body">Your markup schedules, fee calculations, GMP provisions, and delivery-method-specific pricing logic. The numbers your company uses.</p>
+      </div>
+      <div class="ci-onboard__step">
+        <span class="ci-onboard__step-n">03</span>
+        <h3 class="ci-onboard__step-head">Contract standards</h3>
+        <p class="ci-onboard__step-body">Your standard contract provisions, owner-specific terms, authorization requirements, and scope language. What your company has agreed to.</p>
+      </div>
+      <div class="ci-onboard__step">
+        <span class="ci-onboard__step-n">04</span>
+        <h3 class="ci-onboard__step-head">Project history</h3>
+        <p class="ci-onboard__step-body">Precedent from past projects — how similar situations were handled, what worked, and what your company learned. What you&rsquo;ve already figured out.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- 9. Not a chatbot — Paper -->
+<section class="ci-notbot">
+  <div class="cos-container">
+    <div class="ci-notbot__grid">
+      <div>
+        <p class="ci-notbot__label">How it&rsquo;s different</p>
+        <h2 class="ci-notbot__heading">Not a generic AI assistant.</h2>
+        <p class="ci-notbot__body">Construction Intelligence is trained on your company&rsquo;s materials and answers from your company&rsquo;s perspective. The sources behind every answer are yours.</p>
+      </div>
+      <div>
+        <div class="ci-notbot__rows">
+          <div class="ci-notbot__row">
+            <div>
+              <p class="ci-notbot__row-label">Generic AI</p>
+              <p class="ci-notbot__generic">General construction practice, hedged for broad applicability. Right for someone, not necessarily for you.</p>
+            </div>
+            <div>
+              <p class="ci-notbot__row-label" style="color:var(--c-steel)">Construction Intelligence</p>
+              <p class="ci-notbot__ci">Your procedures, your pricing rules, your contract language. Specific to how your company operates.</p>
+            </div>
+          </div>
+          <div class="ci-notbot__row">
+            <div>
+              <p class="ci-notbot__row-label">Generic AI</p>
+              <p class="ci-notbot__generic">No source documents. No way to verify what the answer is based on or challenge it.</p>
+            </div>
+            <div>
+              <p class="ci-notbot__row-label" style="color:var(--c-steel)">Construction Intelligence</p>
+              <p class="ci-notbot__ci">Every answer cites the source document and section. The PM can read it, verify it, and show it to the owner.</p>
+            </div>
+          </div>
+          <div class="ci-notbot__row">
+            <div>
+              <p class="ci-notbot__row-label">Generic AI</p>
+              <p class="ci-notbot__generic">The same tool your competitors use, trained on the same public data. No competitive differentiation.</p>
+            </div>
+            <div>
+              <p class="ci-notbot__row-label" style="color:var(--c-steel)">Construction Intelligence</p>
+              <p class="ci-notbot__ci">Your company&rsquo;s intellectual property — your hard-won knowledge — used by your team and no one else.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- 10. Configuration — Bond -->
+<section class="ci-config">
+  <div class="cos-container">
+    <div class="ci-config__grid">
+      <div>
+        <p class="ci-config__label">Setup</p>
+        <h2 class="ci-config__heading">Configured around your company.</h2>
+        <p class="ci-config__body">You don&rsquo;t need to change the way your company works to use Construction Intelligence. We configure it around the procedures, pricing rules, and standards you already rely on.</p>
+        <ul class="ci-config__list">
+          <li class="ci-config__list-item">We map your procedure documents and identify what&rsquo;s worth connecting</li>
+          <li class="ci-config__list-item">We structure your pricing rules, fee schedules, and markup logic</li>
+          <li class="ci-config__list-item">We index your contract standards and authorization requirements</li>
+          <li class="ci-config__list-item">We test answers against real scenarios from your project history</li>
+          <li class="ci-config__list-item">Your team asks questions. We refine what needs refining.</li>
+        </ul>
+      </div>
+      <div>
+        <div class="ci-config__note">
+          <p><strong>Your company&rsquo;s way of working becomes the starting point,</strong> not something the system asks you to replace. Construction Intelligence answers the way your company answers&mdash;because it&rsquo;s built from what your company knows.</p>
+        </div>
+        <div class="ci-config__note" style="margin-top:16px">
+          <p>Questions about how your procedures would translate into Construction Intelligence? <strong>We answer that in the first conversation.</strong> Book a demo to see how it works with your materials.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- 11. Closing CTA — Ink -->
+<section class="cos-close" id="cta">
+  <div class="cos-container">
+    <div class="cos-close__grid">
+
+      <!-- Left column -->
+      <div class="cos-close__col">
+        <div class="cos-close__lockup">
+          <!-- CI icon with Paper strokes, Line gray axis line (no red) -->
+          <svg viewBox="0 0 100 100" width="24" height="24" aria-hidden="true">
+            <line x1="6" y1="50" x2="96" y2="50" stroke="#B8B9B5" stroke-width="4"/>
+            <polyline points="8,20 40,20 54,42 94,42" fill="none" stroke="#ffffff" stroke-width="8"/>
+            <polyline points="8,80 40,80 54,58 94,58" fill="none" stroke="#ffffff" stroke-width="8"/>
+          </svg>
+          <span class="cos-close__lockup-name">Construction Intelligence</span>
+          <span class="cos-close__lockup-rule"></span>
+        </div>
+        <h2 class="cos-close__headline">Get the answer. See what it&rsquo;s based on. Know what comes next.</h2>
+        <p class="cos-close__subhead">See how Construction Intelligence can give your team access to your company&rsquo;s procedures, pricing rules, and standards&mdash;and deliver answers in seconds instead of a search.</p>
+        <p class="cos-close__subhead cos-close__subhead--sm">Configured around your procedure documents, contract standards, and project history. Built from what your company already knows.</p>
+        <div class="cos-close__cta">
+          <a class="cos-close__btn-primary" href="https://cal.com/justinyurasits">Book a demo</a>
+          <a class="cos-close__btn-link" href="#">See it work &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Right column — the rest of the system -->
+      <div class="cos-close__col">
+        <p class="cos-close__index-label">The rest of the system</p>
+        <div class="cos-close__index-rule"></div>
+
+        <!-- 01 Document Workbench -->
+        <div class="cos-close__index-row">
+          <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true">
+            <polyline points="30,14 86,14 86,72" fill="none" stroke="#B8B9B5" stroke-width="5"/>
+            <rect x="14" y="26" width="52" height="60" fill="none" stroke="#ffffff" stroke-width="12"/>
+          </svg>
+          <span class="cos-close__index-n">01</span>
+          <span class="cos-close__index-name">Document Workbench</span>
+        </div>
+
+        <!-- 03 Project Intelligence -->
+        <div class="cos-close__index-row">
+          <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true">
+            <rect x="6" y="18" width="88" height="64" fill="none" stroke="#B8B9B5" stroke-width="5"/>
+            <line x1="18" y1="70" x2="82" y2="70" stroke="#ffffff" stroke-width="12"/>
+            <line x1="30" y1="70" x2="30" y2="56" stroke="#ffffff" stroke-width="12"/>
+            <line x1="50" y1="70" x2="50" y2="44" stroke="#ffffff" stroke-width="12"/>
+            <line x1="70" y1="70" x2="70" y2="32" stroke="#ffffff" stroke-width="12"/>
+          </svg>
+          <span class="cos-close__index-n">03</span>
+          <span class="cos-close__index-name">Project Intelligence</span>
+          <span class="cos-close__index-tag">In development</span>
+        </div>
+
+        <!-- Operations Automation -->
+        <div class="cos-close__index-row">
+          <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true">
+            <line x1="14" y1="28" x2="34" y2="28" stroke="#ffffff" stroke-width="12"/>
+            <line x1="42" y1="28" x2="62" y2="28" stroke="#ffffff" stroke-width="12"/>
+            <line x1="70" y1="28" x2="90" y2="28" stroke="#ffffff" stroke-width="12"/>
+            <line x1="24" y1="34" x2="24" y2="66" stroke="#B8B9B5" stroke-width="5"/>
+            <line x1="52" y1="34" x2="52" y2="66" stroke="#B8B9B5" stroke-width="5"/>
+            <line x1="80" y1="34" x2="80" y2="66" stroke="#B8B9B5" stroke-width="5"/>
+            <line x1="14" y1="74" x2="90" y2="74" stroke="#ffffff" stroke-width="12"/>
+          </svg>
+          <span class="cos-close__index-n">&mdash;&mdash;</span>
+          <span class="cos-close__index-name">Operations Automation</span>
+          <span class="cos-close__index-ext">Extension layer</span>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- 12. Footer — Bond -->
+<footer class="cos-footer">
+  <div class="cos-footer__inner cos-container">
+    <div class="cos-footer__cols">
+
+      <div class="cos-footer__brand">
+        <a class="cos-footer__lockup" href="/">
+          <svg viewBox="0 0 100 100" width="22" height="22" aria-hidden="true" style="color:#111111;flex:none">
+            <polyline points="14,56 14,14 56,14" fill="none" stroke="currentColor" stroke-width="13"/>
+            <polyline points="86,44 86,86 44,86" fill="none" stroke="currentColor" stroke-width="13"/>
+            <rect x="32" y="32" width="36" height="36" fill="#C43230"/>
+          </svg>
+          Construction OS
+        </a>
+        <p class="cos-footer__tagline">Three products. One construction operating system.</p>
+        <a class="cos-footer__cta-link" href="https://cal.com/justinyurasits">Book a demo</a>
+      </div>
+
+      <div class="cos-footer__col">
+        <span class="cos-footer__col-head">Products</span>
+        <a class="cos-footer__col-item" href="/products/document-workbench.html">
+          <span class="cos-footer__col-n">01</span>Document Workbench
+        </a>
+        <a class="cos-footer__col-item" href="/products/construction-intelligence.html">
+          <span class="cos-footer__col-n">02</span>Construction Intelligence
+        </a>
+        <a class="cos-footer__col-item" href="#">
+          <span class="cos-footer__col-n">03</span>Project Intelligence
+        </a>
+        <a class="cos-footer__col-item" href="#">
+          <span class="cos-footer__col-n">——</span>Operations Automation
+        </a>
+      </div>
+
+      <div class="cos-footer__col">
+        <span class="cos-footer__col-head">Company</span>
+        <a class="cos-footer__col-item" href="/#services">Services</a>
+        <a class="cos-footer__col-item" href="/#about">About</a>
+        <a class="cos-footer__col-item" href="https://cal.com/justinyurasits">Book a demo</a>
+      </div>
+
+      <div class="cos-footer__col">
+        <span class="cos-footer__col-head">Resources</span>
+        <a class="cos-footer__col-item" href="#">Case Studies</a>
+        <a class="cos-footer__col-item" href="#">Insights</a>
+      </div>
+
+    </div>
+    <div class="cos-footer__bottom">
+      <span class="cos-footer__copy">&copy; 2026 Construction OS</span>
+      <a class="cos-footer__policy" href="#">Privacy</a>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+(function () {
+  var header = document.querySelector('.cos-header');
+  var toggle = header.querySelector('.cos-header__toggle');
+  var nav    = header.querySelector('.cos-nav');
+
+  /* Scroll compact */
+  window.addEventListener('scroll', function () {
+    header.classList.toggle('cos-header--compact', window.scrollY > 40);
+  }, { passive: true });
+
+  /* Mobile toggle */
+  toggle.addEventListener('click', function () {
+    var open = nav.classList.toggle('is-open');
+    toggle.setAttribute('aria-expanded', open);
+  });
+
+  /* Dropdown triggers */
+  var dropdowns = Array.prototype.slice.call(header.querySelectorAll('.cos-nav__dropdown'));
+  dropdowns.forEach(function (dd) {
+    var btn = dd.querySelector('.cos-nav__trigger');
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var isOpen = dd.classList.contains('is-open');
+      /* Close siblings */
+      dropdowns.forEach(function (other) {
+        if (other !== dd) {
+          other.classList.remove('is-open');
+          other.querySelector('.cos-nav__trigger').setAttribute('aria-expanded', 'false');
+        }
+      });
+      dd.classList.toggle('is-open', !isOpen);
+      btn.setAttribute('aria-expanded', !isOpen);
+    });
+  });
+
+  /* Close on outside click */
+  document.addEventListener('click', function () {
+    dropdowns.forEach(function (dd) {
+      dd.classList.remove('is-open');
+      dd.querySelector('.cos-nav__trigger').setAttribute('aria-expanded', 'false');
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

@@ -590,11 +590,12 @@
 .prod-section { padding: 72px 40px 64px; }
 .prod-split {
   display: grid;
+  grid-template-columns: minmax(340px, 1fr) minmax(340px, 1.15fr);
+  gap: 48px;
   align-items: start;
-  margin-top: clamp(40px, 6vw, 80px);
+  max-width: 1440px;
+  margin: 0 auto;
 }
-.prod-split--ci { grid-template-columns: 38fr 56fr; column-gap: 6%; }
-.prod-split--pi { grid-template-columns: 30fr 64fr; column-gap: 6%; }
 
 .prod-index {
   display: flex;
@@ -666,7 +667,7 @@
 .cos-index__promise { font: 600 20px/1.25 var(--font-display), sans-serif; letter-spacing: -.02em; color: var(--c-ink); }
 .cos-index__product { font: 500 13px/1 var(--font-display), sans-serif; color: var(--c-graphite); }
 .cos-index a:hover .cos-index__promise { color: var(--c-steel); }
-.cos-product { display: grid; gap: 48px; padding-top: 18px; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); align-items: start; }
+.cos-product { display: grid; grid-template-columns: minmax(340px, 1fr) minmax(340px, 1.15fr); gap: 48px; align-items: start; max-width: 1440px; margin: 0 auto; }
 .cos-product__col { display: flex; flex-direction: column; gap: 26px; min-width: 0; container-type: inline-size; }
 .cos-product__tag { margin: 0; display: flex; align-items: center; gap: 12px; min-height: 26px; font: 600 11px/1 var(--font-display), sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--c-steel); }
 .cos-product__tag span { font: 400 12px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace; color: var(--c-graphite); letter-spacing: 0; }
@@ -686,6 +687,7 @@
 .cos-proof dt .is-delta { color: var(--c-revision); }
 .cos-proof dd { margin: 0; font: 400 14px/1.5 var(--font-display), sans-serif; color: var(--c-graphite); }
 .cos-product__name-row { display: flex; align-items: center; gap: 14px; }
+.cos-product__name-group { display: flex; flex-direction: column; gap: 14px; }
 .cos-index__nrow { display: flex; align-items: center; gap: 8px; }
 .cos-index__nrow svg { flex: none; }
 .cos-product__doc { display: flex; flex-direction: column; gap: 12px; }
@@ -950,7 +952,7 @@
 }
 .cos-attn__row {
   display: grid;
-  grid-template-columns: 28% 42% 52px auto;
+  grid-template-columns: minmax(150px, 1fr) minmax(180px, 1.4fr) 52px minmax(78px, .55fr);
   border-bottom: 1px solid var(--c-line);
 }
 .cos-attn__row > * { padding: 14px 14px 16px; }
@@ -965,6 +967,11 @@
   padding-top: 0;
   padding-bottom: 8px;
 }
+.cos-attn__project { font: 500 15px/1.3 var(--font-display), sans-serif; letter-spacing: -.01em; color: var(--c-ink); display: block; }
+.cos-attn__owner { font: 400 13px/1.4 var(--font-display), sans-serif; color: var(--c-graphite); display: block; margin-top: 2px; }
+.cos-attn__age { font: 400 14px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace; text-align: right; display: block; }
+.cos-attn__status { font: 500 13px/1 var(--font-display), sans-serif; color: var(--c-graphite); display: block; }
+.cos-attn__status--exception { font-weight: 600; color: var(--c-revision); }
 .pi-hdr-strip {
   display: flex;
   justify-content: space-between;
@@ -1205,9 +1212,10 @@
   .proof-cell:nth-child(4) { border-top: var(--w-dimension) solid var(--rule-dimension); }
 }
 @media (max-width: 900px) {
-  .prod-split--ci,
-  .prod-split--pi { grid-template-columns: 1fr; row-gap: var(--s-7); }
-  .cos-products { padding: 56px 0 64px; }
+  .prod-split,
+  .cos-product { grid-template-columns: 1fr; gap: 32px; }
+  .prod-section,
+  .cos-products { padding: 56px 24px 48px; }
   .cos-index a { padding-left: 0; border-left: 0; border-top: 1px solid var(--c-line); }
   .cos-index li:first-child a { border-top: 0; }
   .cos-doc { height: 420px; }
@@ -1514,7 +1522,7 @@
     <div class="cos-product" id="product-01">
       <div class="cos-product__col">
         <p class="cos-product__tag"><span>01</span><i></i>Documents</p>
-        <div>
+        <div class="cos-product__name-group">
           <h3 class="cos-product__name">
             <svg viewBox="0 0 100 100" aria-hidden="true">
               <rect x="14" y="26" width="52" height="60" fill="none" stroke="currentColor" stroke-width="9"/>
@@ -1636,15 +1644,17 @@
       <!-- Intro -->
       <div class="prod-intro">
         <p class="cos-product__tag"><span>02</span><i></i>Knowledge</p>
-        <h3 class="prod-name">
-          <svg viewBox="0 0 100 100" aria-hidden="true">
-            <line x1="6" y1="50" x2="96" y2="50" stroke="#476776" stroke-width="4"/>
-            <polyline points="8,20 40,20 54,42 94,42" fill="none" stroke="currentColor" stroke-width="9"/>
-            <polyline points="8,80 40,80 54,58 94,58" fill="none" stroke="currentColor" stroke-width="9"/>
-          </svg>
-          Construction Intelligence
-        </h3>
-        <p class="prod-promise">Put your company&rsquo;s knowledge to work.</p>
+        <div class="cos-product__name-group">
+          <h3 class="prod-name">
+            <svg viewBox="0 0 100 100" aria-hidden="true">
+              <line x1="6" y1="50" x2="96" y2="50" stroke="#476776" stroke-width="4"/>
+              <polyline points="8,20 40,20 54,42 94,42" fill="none" stroke="currentColor" stroke-width="9"/>
+              <polyline points="8,80 40,80 54,58 94,58" fill="none" stroke="currentColor" stroke-width="9"/>
+            </svg>
+            Construction Intelligence
+          </h3>
+          <p class="prod-promise">Put your company&rsquo;s knowledge to work.</p>
+        </div>
         <p class="prod-body">Combine construction know-how with your procedures, pricing rules, standards, templates, and project history&mdash;so your team gets company-specific answers without searching through folders or tracking down the person who knows. Put your best people&rsquo;s judgment in reach of the whole team.</p>
         <div class="prod-cta">
           <a class="hero-btn hero-btn--primary" href="#">Explore Construction Intelligence &rarr;</a>
@@ -1730,19 +1740,21 @@
     <div class="prod-split prod-split--pi">
       <!-- Intro -->
       <div class="prod-intro">
-        <p class="prod-index">03</p>
-        <h3 class="prod-name">
-          <svg viewBox="0 0 100 100" aria-hidden="true">
-            <rect x="6" y="18" width="88" height="64" fill="none" stroke="#476776" stroke-width="4"/>
-            <line x1="18" y1="70" x2="82" y2="70" stroke="currentColor" stroke-width="9"/>
-            <line x1="30" y1="70" x2="30" y2="56" stroke="currentColor" stroke-width="9"/>
-            <line x1="50" y1="70" x2="50" y2="44" stroke="currentColor" stroke-width="9"/>
-            <line x1="70" y1="70" x2="70" y2="32" stroke="currentColor" stroke-width="9"/>
-          </svg>
-          Project Intelligence
-          <span class="cos-tag--dev">In development</span>
-        </h3>
-        <p class="prod-promise">Know what needs attention.</p>
+        <p class="cos-product__tag"><span>03</span><i></i>Attention</p>
+        <div class="cos-product__name-group">
+          <h3 class="prod-name">
+            <svg viewBox="0 0 100 100" aria-hidden="true">
+              <rect x="6" y="18" width="88" height="64" fill="none" stroke="#476776" stroke-width="4"/>
+              <line x1="18" y1="70" x2="82" y2="70" stroke="currentColor" stroke-width="9"/>
+              <line x1="30" y1="70" x2="30" y2="56" stroke="currentColor" stroke-width="9"/>
+              <line x1="50" y1="70" x2="50" y2="44" stroke="currentColor" stroke-width="9"/>
+              <line x1="70" y1="70" x2="70" y2="32" stroke="currentColor" stroke-width="9"/>
+            </svg>
+            Project Intelligence
+            <span class="cos-tag--dev">In development</span>
+          </h3>
+          <p class="prod-promise">Know what needs attention.</p>
+        </div>
         <p class="prod-body">Surface the open decisions, aging changes, missing approvals, unresolved RFIs, and schedule issues that need attention across active projects.</p>
         <p class="prod-cta">
           <a class="hero-btn hero-btn--primary" href="#">Explore Project Intelligence &rarr;</a>
@@ -1779,35 +1791,35 @@
               <div>Age</div>
               <div>Status</div>
             </div>
-            <div class="cos-attn__row pi-row--overdue">
-              <div><span class="pi-proj-name">Residential Renovation</span><span class="pi-proj-owner">PM</span></div>
+            <div class="cos-attn__row">
+              <div><span class="cos-attn__project">Residential Renovation</span><span class="cos-attn__owner">PM</span></div>
               <div><span class="pi-need">Owner approval &mdash; millwork change</span></div>
-              <div><span class="pi-age">12d</span></div>
-              <div><span class="pi-status">Overdue</span></div>
+              <div><span class="cos-attn__age">12d</span></div>
+              <div><span class="cos-attn__status cos-attn__status--exception">Overdue</span></div>
             </div>
-            <div class="cos-attn__row pi-row--blocked">
-              <div><span class="pi-proj-name">Cambridge Renovation</span><span class="pi-proj-owner">Ops</span></div>
+            <div class="cos-attn__row">
+              <div><span class="cos-attn__project">Cambridge Renovation</span><span class="cos-attn__owner">Ops</span></div>
               <div><span class="pi-need">Subcontract agreement</span></div>
-              <div><span class="pi-age">6d</span></div>
-              <div><span class="pi-status">Blocked</span></div>
+              <div><span class="cos-attn__age">6d</span></div>
+              <div><span class="cos-attn__status cos-attn__status--exception">Blocked</span></div>
             </div>
             <div class="cos-attn__row">
-              <div><span class="pi-proj-name">High-Rise Residence</span><span class="pi-proj-owner">Architect</span></div>
+              <div><span class="cos-attn__project">High-Rise Residence</span><span class="cos-attn__owner">Architect</span></div>
               <div><span class="pi-need">RFI 027 &mdash; ceiling coordination</span></div>
-              <div><span class="pi-age">8d</span></div>
-              <div><span class="pi-status">Waiting</span></div>
+              <div><span class="cos-attn__age">8d</span></div>
+              <div><span class="cos-attn__status">Waiting</span></div>
             </div>
             <div class="cos-attn__row">
-              <div><span class="pi-proj-name">Back Bay Residence</span><span class="pi-proj-owner">PM</span></div>
+              <div><span class="cos-attn__project">Back Bay Residence</span><span class="cos-attn__owner">PM</span></div>
               <div><span class="pi-need">Client finish selection</span></div>
-              <div><span class="pi-age">5d</span></div>
-              <div><span class="pi-status">Due soon</span></div>
+              <div><span class="cos-attn__age">5d</span></div>
+              <div><span class="cos-attn__status">Due soon</span></div>
             </div>
             <div class="cos-attn__row">
-              <div><span class="pi-proj-name">Townhouse Renovation</span><span class="pi-proj-owner">Estimator</span></div>
+              <div><span class="cos-attn__project">Townhouse Renovation</span><span class="cos-attn__owner">Estimator</span></div>
               <div><span class="pi-need">Change pricing not issued</span></div>
-              <div><span class="pi-age">4d</span></div>
-              <div><span class="pi-status">Open</span></div>
+              <div><span class="cos-attn__age">4d</span></div>
+              <div><span class="cos-attn__status">Open</span></div>
             </div>
           </div>
           <div class="pi-footer">

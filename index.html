@@ -587,7 +587,7 @@
 }
 
 /* Products — shared intro grammar */
-.prod-section { padding-block: clamp(56px, 8vw, 120px); }
+.prod-section { padding: 72px 40px 64px; }
 .prod-split {
   display: grid;
   align-items: start;
@@ -612,11 +612,18 @@
   flex: 1;
   border-top: var(--w-cut) solid var(--rule-cut);
 }
+.prod-intro { container-type: inline-size; }
 .prod-name {
-  font: 600 clamp(28px, 3.6vw, 38px)/1.05 var(--font-display), sans-serif;
-  letter-spacing: -0.032em;
+  display: flex;
+  align-items: center;
+  gap: .4em;
+  font: 600 clamp(22px, 7.2cqi, 38px)/1.05 var(--font-display), sans-serif;
+  letter-spacing: -.032em;
+  white-space: nowrap;
+  color: var(--c-ink);
   margin: 0;
 }
+.prod-name svg { width: .72em; height: .72em; flex: none; }
 .prod-in-dev {
   display: inline-flex;
   align-items: center;
@@ -646,7 +653,7 @@
   max-width: 46ch;
 }
 /* Document Workbench section */
-.cos-products { background: var(--c-bond); padding: 64px 0 76px; }
+.cos-products { background: var(--c-bond); padding: 72px 40px 64px; }
 .cos-products__head { margin-bottom: 30px; }
 .cos-products__head h2 { margin: 0 0 12px; display: flex; align-items: center; gap: 16px; font: 600 clamp(34px, 5vw, 52px)/1 var(--font-display), sans-serif; letter-spacing: -.035em; color: var(--c-ink); }
 .cos-products__head p { margin: 0; font: 500 20px/1.4 var(--font-display), sans-serif; letter-spacing: -.015em; color: var(--c-graphite); }
@@ -659,15 +666,16 @@
 .cos-index__product { font: 500 13px/1 var(--font-display), sans-serif; color: var(--c-graphite); }
 .cos-index a:hover .cos-index__promise { color: var(--c-steel); }
 .cos-product { display: grid; gap: 48px; padding-top: 18px; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); align-items: start; }
-.cos-product__col { display: flex; flex-direction: column; gap: 26px; min-width: 0; }
-.cos-product__tag { margin: 0; display: flex; align-items: center; gap: 12px; font: 600 11px/1 var(--font-display), sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--c-steel); }
+.cos-product__col { display: flex; flex-direction: column; gap: 26px; min-width: 0; container-type: inline-size; }
+.cos-product__tag { margin: 0; display: flex; align-items: center; gap: 12px; min-height: 26px; font: 600 11px/1 var(--font-display), sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--c-steel); }
 .cos-product__tag span { font: 400 12px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace; color: var(--c-graphite); letter-spacing: 0; }
 .cos-product__tag i { width: 40px; height: 1px; background: var(--c-ink); }
-.cos-product__name { margin: 0 0 14px; font: 600 clamp(28px, 3.6vw, 38px)/1.05 var(--font-display), sans-serif; letter-spacing: -.032em; color: var(--c-ink); }
+.cos-product__name { display: flex; align-items: center; gap: .4em; font: 600 clamp(22px, 7.2cqi, 38px)/1.05 var(--font-display), sans-serif; letter-spacing: -.032em; white-space: nowrap; color: var(--c-ink); margin: 0; }
+.cos-product__name svg { width: .72em; height: .72em; flex: none; }
 .cos-product__lead { margin: 0; max-width: 30ch; font: 500 20px/1.4 var(--font-display), sans-serif; letter-spacing: -.015em; color: var(--c-ink); }
 .cos-product__body { margin: 0; max-width: 46ch; font: 400 16px/1.6 var(--font-display), sans-serif; color: var(--c-graphite); text-wrap: pretty; }
 .cos-product__cta { margin: 0; display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
-.cos-link { font: 600 15px/1 var(--font-display), sans-serif; letter-spacing: -.01em; color: var(--c-ink); text-decoration: none; border-bottom: 2px solid var(--c-ink); padding-bottom: 2px; }
+.cos-link { font: 600 15px/1 var(--font-display), sans-serif; letter-spacing: -.01em; color: var(--c-ink); text-decoration: none; border-bottom: 2px solid var(--c-ink); padding-bottom: 3px; }
 .cos-link:hover { color: var(--c-steel); border-bottom-color: var(--c-steel); }
 .cos-proof { margin: 0; border-top: 2px solid var(--c-ink); }
 .cos-proof > div { padding: 22px 0 20px; border-bottom: 1px solid var(--c-line); }
@@ -1489,13 +1497,13 @@
       <div class="cos-product__col">
         <p class="cos-product__tag"><span>01</span><i></i>Documents</p>
         <div>
-          <div class="cos-product__name-row">
-            <svg viewBox="0 0 100 100" width="27" height="27" aria-hidden="true" style="flex:none">
+          <h3 class="cos-product__name">
+            <svg viewBox="0 0 100 100" aria-hidden="true">
               <rect x="14" y="26" width="52" height="60" fill="none" stroke="currentColor" stroke-width="9"/>
               <polyline points="30,14 86,14 86,72" fill="none" stroke="var(--c-steel)" stroke-width="4"/>
             </svg>
-            <h3 class="cos-product__name">Document Workbench</h3>
-          </div>
+            Document Workbench
+          </h3>
           <p class="cos-product__lead">Produce the documents that run the job.</p>
         </div>
         <p class="cos-product__body">From first walkthrough through closeout, turn project information into company-standard construction documents without starting from scratch every time. Spend less time producing paperwork and more time managing the job.</p>
@@ -1610,14 +1618,14 @@
       <!-- Intro -->
       <div class="prod-intro">
         <p class="cos-product__tag"><span>02</span><i></i>Knowledge</p>
-        <div class="ci-name-row">
-          <svg viewBox="0 0 100 100" width="27" height="27" aria-hidden="true" style="flex:none">
+        <h3 class="prod-name">
+          <svg viewBox="0 0 100 100" aria-hidden="true">
             <line x1="6" y1="50" x2="96" y2="50" stroke="#476776" stroke-width="4"/>
             <polyline points="8,20 40,20 54,42 94,42" fill="none" stroke="currentColor" stroke-width="9"/>
             <polyline points="8,80 40,80 54,58 94,58" fill="none" stroke="currentColor" stroke-width="9"/>
           </svg>
-          <h3 class="prod-name">Construction Intelligence</h3>
-        </div>
+          Construction Intelligence
+        </h3>
         <p class="prod-promise">Put your company&rsquo;s knowledge to work.</p>
         <p class="prod-body">Combine construction know-how with your procedures, pricing rules, standards, templates, and project history&mdash;so your team gets company-specific answers without searching through folders or tracking down the person who knows. Put your best people&rsquo;s judgment in reach of the whole team.</p>
         <div class="prod-cta">
@@ -1643,7 +1651,7 @@
       <div>
         <div class="ci-card-cap">
           <span>Construction Intelligence &mdash; Answer</span>
-          <span>4 sources cited</span>
+          <span>Example Answer</span>
         </div>
         <div class="ci-proof" aria-hidden="true">
         <div class="ci-q-band">
@@ -1706,14 +1714,16 @@
       <div class="prod-intro">
         <p class="prod-index">03</p>
         <div class="pi-name-row">
-          <svg viewBox="0 0 100 100" width="27" height="27" aria-hidden="true" style="flex:none">
-            <rect x="6" y="18" width="88" height="64" fill="none" stroke="var(--c-steel)" stroke-width="4"/>
-            <line x1="18" y1="70" x2="82" y2="70" stroke="currentColor" stroke-width="9"/>
-            <line x1="30" y1="70" x2="30" y2="56" stroke="currentColor" stroke-width="9"/>
-            <line x1="50" y1="70" x2="50" y2="44" stroke="currentColor" stroke-width="9"/>
-            <line x1="70" y1="70" x2="70" y2="32" stroke="var(--c-revision)" stroke-width="9"/>
-          </svg>
-          <h3 class="prod-name">Project Intelligence</h3>
+          <h3 class="prod-name">
+            <svg viewBox="0 0 100 100" aria-hidden="true">
+              <rect x="6" y="18" width="88" height="64" fill="none" stroke="var(--c-steel)" stroke-width="4"/>
+              <line x1="18" y1="70" x2="82" y2="70" stroke="currentColor" stroke-width="9"/>
+              <line x1="30" y1="70" x2="30" y2="56" stroke="currentColor" stroke-width="9"/>
+              <line x1="50" y1="70" x2="50" y2="44" stroke="currentColor" stroke-width="9"/>
+              <line x1="70" y1="70" x2="70" y2="32" stroke="var(--c-revision)" stroke-width="9"/>
+            </svg>
+            Project Intelligence
+          </h3>
           <span class="prod-in-dev">In development</span>
         </div>
         <p class="prod-promise">Know what needs attention.</p>

@@ -10,42 +10,88 @@
 <link rel="stylesheet" href="brand-kit/tokens.css">
 <link rel="stylesheet" href="brand-kit/brand.css">
 <style>
-/* Nav */
-.nav {
+/* Container */
+.cos-container { max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px); }
+
+/* Header */
+.cos-header {
   position: sticky;
   top: 0;
-  z-index: 100;
-  border-bottom: var(--w-dimension) solid var(--rule-dimension);
+  z-index: 50;
+  background: #FFFFFF;
+  border-bottom: 1px solid #B8B9B5;
+  transition: min-height .2s;
 }
-.nav__inner {
+.cos-header__inner {
+  min-height: 72px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-block: var(--s-4);
+  gap: 32px;
+  transition: min-height .2s;
 }
-.nav__brand { text-decoration: none; font-size: 15px; font-weight: 500; letter-spacing: 0; }
-.nav__brand:hover { text-decoration: none; }
-.nav__links {
+.cos-header--compact .cos-header__inner { min-height: 60px; }
+.cos-logo {
   display: flex;
   align-items: center;
-  gap: var(--s-5);
+  gap: 10px;
+  text-decoration: none;
+  font: 600 17px/1 var(--font-display), sans-serif;
+  letter-spacing: -.02em;
+  color: #111111;
+  white-space: nowrap;
+}
+.cos-nav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
   list-style: none;
   margin: 0;
   padding: 0;
 }
-.nav__links a { text-decoration: none; }
-.nav__links a:hover { text-decoration: underline; text-decoration-thickness: 0.5px; text-underline-offset: 3px; }
-.nav__links .btn,
-.nav__links .btn:hover { text-decoration: none; }
-.nav__toggle {
+.cos-nav a:not(.cos-header__cta) {
+  font: 500 15px/1 var(--font-display), sans-serif;
+  color: #5F6466;
+  text-decoration: none;
+}
+.cos-nav a:not(.cos-header__cta)[aria-current="page"] {
+  color: #111111;
+  border-bottom: 2px solid #111111;
+  padding-bottom: 2px;
+}
+.cos-header__cta {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 13px 20px;
+  font: 600 14px/1 var(--font-display), sans-serif;
+  letter-spacing: -.01em;
+  text-decoration: none;
+  background: #111111;
+  color: #FFFFFF;
+  white-space: nowrap;
+}
+.cos-header__cta:hover { background: #476776; }
+.cos-header__toggle {
   display: none;
+  width: 44px;
+  height: 44px;
   background: none;
-  border: none;
+  border: 1px solid #B8B9B5;
   cursor: pointer;
-  padding: var(--s-2);
-  font-family: var(--font-display);
-  font-size: var(--fs-small);
-  color: var(--fg);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0;
+  flex-shrink: 0;
+}
+.cos-header__toggle span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: #111111;
+  pointer-events: none;
 }
 
 /* Hero */
@@ -145,6 +191,26 @@
 .hero-doc__corner--tr { top: 10px; right: 10px; border-top: 2px solid var(--c-line); border-right: 2px solid var(--c-line); }
 .hero-doc__corner--bl { bottom: 10px; left: 10px; border-bottom: 2px solid var(--c-line); border-left: 2px solid var(--c-line); }
 .hero-doc img { display: block; width: 100%; height: auto; }
+.hero-doc-stack {
+  position: relative;
+  margin-right: 16px;
+  margin-bottom: 16px;
+}
+.hero-doc-sheet {
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--c-ink);
+  background: var(--c-white);
+}
+.hero-doc-sheet:nth-child(1) { transform: translate(16px, 16px); z-index: 0; }
+.hero-doc-sheet:nth-child(2) { transform: translate(8px,  8px);  z-index: 1; }
+.hero-doc-sheet span {
+  position: absolute;
+  top: 8px; right: 10px;
+  font: 400 11px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace;
+  color: var(--c-graphite);
+}
+.hero-doc-stack .cos-doc { position: relative; z-index: 2; }
 .hero-doc__fade {
   position: absolute;
   inset: auto 0 0 0;
@@ -587,14 +653,12 @@
 }
 
 /* Products — shared intro grammar */
-.prod-section { padding: 72px 40px 64px; }
+.prod-section { padding: 72px 0 64px; }
 .prod-split {
   display: grid;
   grid-template-columns: minmax(340px, 1fr) minmax(340px, 1.15fr);
   gap: 48px;
   align-items: start;
-  max-width: 1440px;
-  margin: 0 auto;
 }
 
 .prod-index {
@@ -655,7 +719,7 @@
   max-width: 46ch;
 }
 /* Document Workbench section */
-.cos-products { background: var(--c-bond); padding: 72px 40px 64px; }
+.cos-products { background: var(--c-white); padding: 72px 0 64px; }
 .cos-products__head { margin-bottom: 30px; }
 .cos-products__head h2 { margin: 0 0 12px; display: flex; align-items: center; gap: 16px; font: 600 clamp(34px, 5vw, 52px)/1 var(--font-display), sans-serif; letter-spacing: -.035em; color: var(--c-ink); }
 .cos-products__head p { margin: 0; font: 500 20px/1.4 var(--font-display), sans-serif; letter-spacing: -.015em; color: var(--c-graphite); }
@@ -667,7 +731,7 @@
 .cos-index__promise { font: 600 20px/1.25 var(--font-display), sans-serif; letter-spacing: -.02em; color: var(--c-ink); }
 .cos-index__product { font: 500 13px/1 var(--font-display), sans-serif; color: var(--c-graphite); }
 .cos-index a:hover .cos-index__promise { color: var(--c-steel); }
-.cos-product { display: grid; grid-template-columns: minmax(340px, 1fr) minmax(340px, 1.15fr); gap: 48px; align-items: start; max-width: 1440px; margin: 0 auto; }
+.cos-product { display: grid; grid-template-columns: minmax(340px, 1fr) minmax(340px, 1.15fr); gap: 48px; align-items: start; }
 .cos-product__col { display: flex; flex-direction: column; gap: 26px; min-width: 0; container-type: inline-size; }
 .cos-product__tag { margin: 0; display: flex; align-items: center; gap: 12px; min-height: 26px; font: 600 11px/1 var(--font-display), sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--c-steel); }
 .cos-product__tag span { font: 400 12px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace; color: var(--c-graphite); letter-spacing: 0; }
@@ -1075,7 +1139,7 @@
 
 /* Operations Automation */
 /* Operations Automation */
-.ops-block { border-top: var(--w-cut) solid var(--rule-cut); padding: 76px 0 0; }
+.ops-block { padding: 76px 0 0; }
 .ops-grid {
   display: grid;
   gap: 44px;
@@ -1206,9 +1270,8 @@
 .ops-foot a:hover { color: var(--c-steel); border-bottom-color: var(--c-steel); }
 
 /* Closing CTA */
-.cos-close { background: #111111; padding: 88px 40px 80px; }
+.cos-close { background: #111111; padding: 88px 0 80px; }
 .cos-close__grid {
-  max-width: 1440px; margin: 0 auto;
   display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
   gap: 56px; align-items: start;
 }
@@ -1240,8 +1303,8 @@
   .prod-split,
   .cos-product { grid-template-columns: 1fr; gap: 32px; }
   .prod-section,
-  .cos-products { padding: 56px 24px 48px; }
-  .cos-close { padding: 64px 24px 56px; }
+  .cos-products { padding: 56px 0 48px; }
+  .cos-close { padding: 64px 0 56px; }
   .cos-index a { padding-left: 0; border-left: 0; border-top: 1px solid var(--c-line); }
   .cos-index li:first-child a { border-top: 0; }
   .cos-doc { height: 420px; }
@@ -1254,6 +1317,7 @@
   .ops-block { padding-top: 56px; }
   .ops-col--divided { border-left: none; padding-left: 0; border-top: 1px solid var(--c-line); margin-top: 8px; }
   .ops-col--divided .ops-cap { display: none; }
+  .cos-footer__inner { padding-top: 40px; }
 }
 @media (max-width: 600px) {
   .dw-artifact { grid-template-columns: 1fr; }
@@ -1271,8 +1335,10 @@
   .proof-cell:nth-child(3), .proof-cell:nth-child(4) { border-top: var(--w-dimension) solid var(--rule-dimension); }
 }
 @media (max-width: 760px) {
-  .nav__toggle { display: block; }
-  .nav__links {
+  .cos-header__inner { min-height: 64px; }
+  .cos-header--compact .cos-header__inner { min-height: 64px; }
+  .cos-header__toggle { display: inline-flex; }
+  .cos-nav {
     display: none;
     position: absolute;
     top: 100%;
@@ -1280,38 +1346,142 @@
     right: 0;
     flex-direction: column;
     align-items: flex-start;
-    gap: var(--s-4);
-    padding: var(--s-5);
-    background: var(--surface);
-    border-bottom: var(--w-cut) solid var(--rule-cut);
+    gap: 0;
+    padding: 16px 20px 24px;
+    background: #FFFFFF;
+    border-bottom: 1px solid #B8B9B5;
   }
-  .nav__links.is-open { display: flex; }
+  .cos-nav.is-open { display: flex; }
+  .cos-nav li { width: 100%; }
+  .cos-nav a { display: block; padding: 12px 0; font-size: 15px; }
+  .cos-header__cta { font-size: 13px; padding: 10px 14px; }
   .spec-row { grid-template-columns: 1fr; gap: var(--s-3); }
+}
+
+/* Footer */
+.cos-footer { background: #FFFFFF; border-top: 1px solid #B8B9B5; }
+.cos-footer__inner { padding-top: 56px; }
+.cos-footer__cols {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 40px;
+  padding-bottom: 48px;
+}
+.cos-footer__brand { display: flex; flex-direction: column; gap: 16px; }
+.cos-footer__lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  font: 600 17px/1 var(--font-display), sans-serif;
+  letter-spacing: -.02em;
+  color: #111111;
+}
+.cos-footer__tagline { font: 400 14px/1.55 var(--font-display), sans-serif; color: #5F6466; max-width: 30ch; margin: 0; }
+.cos-footer__cta-link {
+  font: 600 14px/1 var(--font-display), sans-serif;
+  color: #111111;
+  text-decoration: none;
+  border-bottom: 2px solid #111111;
+  padding-bottom: 3px;
+  width: fit-content;
+}
+.cos-footer__col { display: flex; flex-direction: column; }
+.cos-footer__col-head {
+  font: 600 11px/1 var(--font-display), sans-serif;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: #111111;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #B8B9B5;
+}
+.cos-footer__col-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font: 500 14px/1 var(--font-display), sans-serif;
+  letter-spacing: -.005em;
+  color: #5F6466;
+  text-decoration: none;
+  padding-top: 12px;
+}
+.cos-footer__col-item:hover { color: #111111; }
+.cos-footer__col-item--ink { color: #111111; }
+.cos-footer__contact-email {
+  display: inline-block;
+  font: 600 17px/1 var(--font-display), sans-serif;
+  letter-spacing: -.015em;
+  color: #111111;
+  text-decoration: none;
+  border-bottom: 2px solid #111111;
+  padding-bottom: 3px;
+  margin-top: 14px;
+}
+.cos-footer__contact-email:hover { color: #476776; border-bottom-color: #476776; }
+.cos-footer__col-n { font: 400 11px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace; color: #5F6466; flex: none; }
+.cos-footer__col-dash { font: 400 11px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace; color: #5F6466; flex: none; }
+.cos-titleblock {
+  border: 1px solid #111111;
+  background: #FFFFFF;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+.cos-titleblock__cell {
+  padding: 12px 16px;
+  border-right: 1px solid #B8B9B5;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.cos-titleblock__cell:last-child { border-right: 0; }
+.cos-titleblock__label {
+  font: 600 9px/1 var(--font-display), sans-serif;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: #5F6466;
+}
+.cos-titleblock__value { font: 400 12px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace; color: #111111; }
+.cos-footer__legal {
+  padding: 18px 0 40px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  font: 400 13px/1 var(--font-display), sans-serif;
+  color: #5F6466;
 }
 </style>
 </head>
 <body>
 
 <!-- Nav -->
-<nav class="nav surface--white" aria-label="Main navigation">
-  <div class="wrap">
-    <div class="nav__inner">
-      <a class="nav__brand" href="/">Construction OS</a>
-      <button class="nav__toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">Menu</button>
-      <ul class="nav__links" id="nav-links" role="list">
-        <li><a class="small" href="work.html">Work</a></li>
-        <li><a class="small" href="products.html">Products</a></li>
-        <li><a class="small" href="engagements.html">Engagements</a></li>
-        <li><a class="small" href="about.html">About</a></li>
-        <li><a class="btn btn--ghost" href="https://cal.com/justinyurasits">Book a call</a></li>
-      </ul>
-    </div>
+<header class="cos-header" id="cos-header">
+  <div class="cos-header__inner cos-container">
+    <a class="cos-logo" href="/">
+      <svg viewBox="0 0 100 100" width="22" height="22" aria-hidden="true">
+        <polyline points="16,54 16,16 54,16" fill="none" stroke="#111111" stroke-width="11"/>
+        <polyline points="84,46 84,84 46,84" fill="none" stroke="#111111" stroke-width="11"/>
+        <rect x="34" y="34" width="32" height="32" fill="#C43230"/>
+      </svg>
+      Construction OS
+    </a>
+    <button class="cos-header__toggle" aria-label="Open menu" aria-expanded="false" aria-controls="cos-nav">
+      <span></span>
+      <span></span>
+    </button>
+    <ul class="cos-nav" id="cos-nav" role="list">
+      <li><a href="work.html">Work</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="engagements.html">Engagements</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a class="cos-header__cta" href="https://cal.com/justinyurasits">Book a demo</a></li>
+    </ul>
   </div>
-</nav>
+</header>
 
 <!-- Hero -->
 <section class="surface--white hero-section" id="hero">
-  <div class="wrap">
+  <div class="cos-container">
     <div class="hero-grid">
       <div class="hero-col">
         <p class="hero-eyebrow">
@@ -1335,18 +1505,75 @@
       </div>
 
       <figure class="hero-doc-fig">
-        <figcaption class="hero-doc-cap">
+        <figcaption class="cos-doc-cap">
           <span>Exhibit A &mdash; Scope of Work</span>
-          <span>CON-15</span>
+          <span>Rev. 2 &middot; Cost-plus w/ GMP</span>
         </figcaption>
-        <div class="hero-doc">
-          <span class="hero-doc__corner hero-doc__corner--tr"></span>
-          <span class="hero-doc__corner hero-doc__corner--bl"></span>
-          <img src="assets/estimate-stack-hero.svg" alt="Scope of Work document excerpt" width="713" height="585">
-          <span class="hero-doc__fade"></span>
-          <div class="hero-doc__foot">
-            <span>4 of 11 pages &middot; Generated from project data</span>
-            <a href="#">Open the full exhibit</a>
+        <div class="hero-doc-stack">
+          <div class="hero-doc-sheet" aria-hidden="true"><span>Page 3 of 6</span></div>
+          <div class="hero-doc-sheet" aria-hidden="true"><span>Page 2 of 6</span></div>
+          <div class="cos-doc">
+            <span class="cos-doc__corner cos-doc__corner--tr"></span>
+            <span class="cos-doc__corner cos-doc__corner--bl"></span>
+            <div class="dw-artifact">
+              <div class="dw-main">
+                <div class="dw-tb-row">
+                  <span>Residential renovation</span>
+                  <span>Page 1 of 6</span>
+                </div>
+                <p class="dw-exhibit-name">Exhibit A &mdash; Scope of work</p>
+                <p class="dw-exhibit-sub">Contract dated 14 Aug 2026 &ndash; Rev. 2 &ndash; Cost-plus w/ GMP</p>
+                <hr class="dw-main-rule">
+                <p class="dw-art-head">1.&ensp;General</p>
+                <p class="dw-art-body">1.1&ensp;The Contractor shall furnish all labor, materials, equipment, tools, and supervision necessary to complete the scope described herein, in strict accordance with the Contract Documents and all applicable codes and regulations.</p>
+                <p class="dw-art-body">1.2&ensp;Work shall be executed in a workmanlike manner consistent with industry standards. All materials shall be new unless noted otherwise. Substitutions require prior written approval from the Owner&rsquo;s representative.</p>
+                <p class="dw-art-body">1.3&ensp;The Owner shall have reasonable access to the site during working hours. Contractor shall maintain a clean, safe, and orderly site at all times and shall protect adjacent finishes and occupied areas throughout construction.</p>
+                <hr class="dw-art-rule">
+                <p class="dw-art-head">2.&ensp;Millwork &amp; finish carpentry</p>
+                <table class="dw-sched">
+                  <thead><tr><th>Item</th><th>Description</th><th class="u">Unit</th></tr></thead>
+                  <tbody>
+                    <tr><td>2.1a</td><td>Kitchen casework, stain-grade</td><td class="u">LS</td></tr>
+                    <tr><td>2.1b</td><td>Library shelving and panel walls</td><td class="u">LS</td></tr>
+                    <tr><td>2.2</td><td>Painted-grade trim, Levels 1&ndash;3</td><td class="u">LF</td></tr>
+                    <tr><td>2.3</td><td>Built-in window seats, primary bedroom</td><td class="u">EA</td></tr>
+                    <tr><td>2.4</td><td>Crown molding, main level</td><td class="u">LF</td></tr>
+                  </tbody>
+                </table>
+                <hr class="dw-art-rule">
+                <p class="dw-art-head">3.&ensp;Doors &amp; hardware</p>
+                <p class="dw-art-body">3.1&ensp;Contractor shall furnish and install all interior doors, frames, and hardware per the door schedule issued by the Architect. All hardware finishes shall be brushed nickel unless otherwise noted on the schedule.</p>
+                <p class="dw-art-body">3.2&ensp;Existing door frames to remain shall be repaired, shimmed, and refinished to match new work. Owner to confirm selections from hardware samples prior to order.</p>
+              </div>
+              <div class="dw-rail">
+                <div class="dw-rp">
+                  <p class="dw-rp-hdr">Proposal letter</p>
+                  <p class="dw-rp-body">Re: Interior renovation &mdash; 214 Commonwealth Ave.</p>
+                  <p class="dw-rp-body">We are pleased to submit this proposal for the interior renovation under a cost-plus contract with GMP. Our fee is established at 18% of direct costs, inclusive of all general conditions.</p>
+                  <p class="dw-rp-body">This proposal supersedes all prior correspondence. Acceptance constitutes agreement to the terms of the attached contract.</p>
+                </div>
+                <div class="dw-rp">
+                  <p class="dw-rp-hdr">Site visit &amp; existing conditions</p>
+                  <p class="dw-rp-body">Existing casework: to remain in place. Protect in place &mdash; contractor responsible for any damage during construction.</p>
+                  <p class="dw-rp-body">Structural: wall at grid line C confirmed load-bearing. Beam sizing to be determined by structural engineer prior to demo permit.</p>
+                  <p class="dw-rp-body">MEP: routing conflicts at ceiling level require coordination with MEP sub prior to rough-in.</p>
+                </div>
+                <div class="dw-rp">
+                  <p class="dw-rp-hdr">Preliminary schedule</p>
+                  <div class="dw-rp-row"><span class="dw-rp-k">Mobilization</span><span class="dw-rp-v">01 Sep 2026</span></div>
+                  <div class="dw-rp-row"><span class="dw-rp-k">Demo &amp; rough framing</span><span class="dw-rp-v">15 Sep</span></div>
+                  <div class="dw-rp-row"><span class="dw-rp-k">MEP rough-in</span><span class="dw-rp-v">29 Sep</span></div>
+                  <div class="dw-rp-row"><span class="dw-rp-k">Millwork delivery</span><span class="dw-rp-v">20 Oct</span></div>
+                  <div class="dw-rp-row"><span class="dw-rp-k">Punch list complete</span><span class="dw-rp-v">07 Nov</span></div>
+                  <div class="dw-rp-row"><span class="dw-rp-k">Substantial completion</span><span class="dw-rp-v">14 Nov 2026</span></div>
+                </div>
+              </div>
+            </div>
+            <span class="cos-doc__fade"></span>
+            <div class="cos-doc__foot">
+              <span>Page 1 of 6 &middot; Residential renovation</span>
+              <a href="#">Open the full exhibit</a>
+            </div>
           </div>
         </div>
       </figure>
@@ -1362,7 +1589,7 @@
 
 <!-- Problems — Does any of this sound familiar? -->
 <section class="surface--bond fam-section" id="familiar">
-  <div class="wrap">
+  <div class="cos-container">
     <header class="fam-head">
       <div>
         <p class="fam-eyebrow">The current state</p>
@@ -1485,13 +1712,12 @@
   </div>
 </section>
 
-<hr class="rule rule--cut" style="margin:0">
 
 <!-- Products -->
 
 <!-- 01 Document Workbench — bond -->
-<section class="surface--bond cos-products" id="products">
-  <div class="wrap">
+<section class="surface--white cos-products" id="products">
+  <div class="cos-container">
     <header class="cos-products__head">
       <h2>
         <svg viewBox="0 0 100 100" width="38" height="38" aria-label="Construction OS">
@@ -1661,11 +1887,10 @@
   </div>
 </section>
 
-<hr class="rule rule--cut" style="margin:0">
 
 <!-- 02 Construction Intelligence — bond -->
 <section class="surface--bond prod-section" id="product-02">
-  <div class="wrap">
+  <div class="cos-container">
     <div class="prod-split prod-split--ci">
       <!-- Intro -->
       <div class="prod-intro">
@@ -1758,11 +1983,10 @@
   </div>
 </section>
 
-<hr class="rule rule--cut" style="margin:0">
 
 <!-- 03 Project Intelligence — white -->
 <section class="surface--white prod-section" id="product-03">
-  <div class="wrap">
+  <div class="cos-container">
     <div class="prod-split prod-split--pi">
       <!-- Intro -->
       <div class="prod-intro">
@@ -1872,8 +2096,8 @@
 </section>
 
 <!-- Operations Automation -->
-<section class="ops-block" id="ops">
-  <div class="wrap">
+<section class="ops-block surface--bond" id="ops">
+  <div class="cos-container">
     <div class="ops-grid">
 
       <aside class="ops-rail">
@@ -1952,11 +2176,10 @@
   </div>
 </section>
 
-<hr class="rule rule--cut" style="margin:0">
 
 <!-- Real-world proof -->
-<section class="surface--bond zone--tight" id="proof">
-  <div class="wrap">
+<section class="surface--white zone--tight" id="proof">
+  <div class="cos-container">
     <div class="prf-intro">
       <h2 class="prf-intro-head">Built in real construction operations.</h2>
       <p class="prf-intro-copy">Construction OS grew out of hands-on construction management&mdash;learning where the work breaks down, then building and applying systems to fix it.</p>
@@ -1986,11 +2209,10 @@
   </div>
 </section>
 
-<hr class="rule rule--cut" style="margin:0">
 
 <!-- Configuration -->
 <section class="surface--bond cfg-section" id="config">
-  <div class="wrap">
+  <div class="cos-container">
     <header class="cfg-head">
       <div>
         <p class="cfg-eyebrow">Configuration</p>
@@ -2039,10 +2261,10 @@
   </div>
 </section>
 
-<hr class="rule rule--cut" style="margin:0">
 
 <!-- CTA -->
 <section class="cos-close" id="cta">
+  <div class="cos-container">
   <div class="cos-close__grid">
 
     <!-- Left column -->
@@ -2132,40 +2354,131 @@
     </div>
 
   </div>
+  </div><!-- /.cos-container -->
 </section>
 
-<hr class="rule rule--cut" style="margin:0">
 
 <!-- Footer -->
-<footer class="zone--tight">
-  <div class="wrap">
-    <p class="title-block--inline">Construction OS / HOME / 2026-09-04 / REV 01</p>
-    <div style="display:flex;gap:var(--s-5);margin-top:var(--s-4)">
-      <a class="annotation" href="#">Contact</a>
-      <a class="annotation" href="#">LinkedIn</a>
+<footer class="cos-footer">
+  <div class="cos-footer__inner cos-container">
+    <div class="cos-footer__cols">
+
+      <!-- Identity -->
+      <div class="cos-footer__brand">
+        <a class="cos-footer__lockup" href="/">
+          <svg viewBox="0 0 100 100" width="22" height="22" aria-hidden="true" style="color:#111111;flex:none">
+            <polyline points="14,56 14,14 56,14" fill="none" stroke="currentColor" stroke-width="13"/>
+            <polyline points="86,44 86,86 44,86" fill="none" stroke="currentColor" stroke-width="13"/>
+            <rect x="32" y="32" width="36" height="36" fill="#C43230"/>
+          </svg>
+          Construction OS
+        </a>
+        <p class="cos-footer__tagline">Three products. One construction operating system.</p>
+        <a class="cos-footer__cta-link" href="https://cal.com/justinyurasits">Book a demo</a>
+      </div>
+
+      <!-- Products -->
+      <div class="cos-footer__col">
+        <span class="cos-footer__col-head">Products</span>
+        <a class="cos-footer__col-item" href="#products">
+          <span class="cos-footer__col-n">01</span>Document Workbench
+        </a>
+        <a class="cos-footer__col-item" href="#products">
+          <span class="cos-footer__col-n">02</span>Construction Intelligence
+        </a>
+        <a class="cos-footer__col-item" href="#products">
+          <span class="cos-footer__col-n">03</span>Project Intelligence
+        </a>
+        <a class="cos-footer__col-item" href="#products">
+          <span class="cos-footer__col-dash">——</span>Operations Automation
+        </a>
+      </div>
+
+      <!-- Company -->
+      <div class="cos-footer__col">
+        <span class="cos-footer__col-head">Company</span>
+        <a class="cos-footer__col-item" href="work.html">Work</a>
+        <a class="cos-footer__col-item" href="engagements.html">Engagements</a>
+        <a class="cos-footer__col-item" href="about.html">About</a>
+      </div>
+
+      <!-- Contact -->
+      <div class="cos-footer__col">
+        <span class="cos-footer__col-head">Talk to us</span>
+        <a class="cos-footer__contact-email" href="mailto:justin@justinyurasits.com">justin@justinyurasits.com</a>
+        <a class="cos-footer__col-item" href="tel:8572481365">857-248-1365</a>
+        <a class="cos-footer__col-item" href="https://linkedin.com/in/justinyurasits">LinkedIn</a>
+      </div>
+
+    </div>
+
+    <!-- Title block -->
+    <div class="cos-titleblock">
+      <div class="cos-titleblock__cell">
+        <span class="cos-titleblock__label">Sheet</span>
+        <span class="cos-titleblock__value">CONSTRUCTION OS</span>
+      </div>
+      <div class="cos-titleblock__cell">
+        <span class="cos-titleblock__label">Page</span>
+        <span class="cos-titleblock__value" id="tb-page">HOME</span>
+      </div>
+      <div class="cos-titleblock__cell">
+        <span class="cos-titleblock__label">Issued</span>
+        <span class="cos-titleblock__value">2026-09-05</span>
+      </div>
+      <div class="cos-titleblock__cell">
+        <span class="cos-titleblock__label">Rev</span>
+        <span class="cos-titleblock__value">01</span>
+      </div>
+      <div class="cos-titleblock__cell">
+        <span class="cos-titleblock__label">Status</span>
+        <span class="cos-titleblock__value">ISSUED FOR REVIEW</span>
+      </div>
+    </div>
+
+    <!-- Legal -->
+    <div class="cos-footer__legal">
+      <span>© 2026 Construction OS</span>
     </div>
   </div>
 </footer>
 
 <script>
 (function () {
-  var toggle = document.querySelector('.nav__toggle');
-  var links = document.getElementById('nav-links');
-  if (!toggle || !links) return;
-  toggle.addEventListener('click', function () {
-    var open = links.classList.toggle('is-open');
-    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-    toggle.textContent = open ? 'Close' : 'Menu';
-  });
-  document.addEventListener('click', function (e) {
-    if (!toggle.contains(e.target) && !links.contains(e.target)) {
-      links.classList.remove('is-open');
-      toggle.setAttribute('aria-expanded', 'false');
-      toggle.setAttribute('aria-label', 'Open menu');
-      toggle.textContent = 'Menu';
-    }
-  });
+  var header = document.getElementById('cos-header');
+  var toggle = header ? header.querySelector('.cos-header__toggle') : null;
+  var nav = document.getElementById('cos-nav');
+
+  if (toggle && nav) {
+    toggle.addEventListener('click', function () {
+      var open = nav.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    });
+    document.addEventListener('click', function (e) {
+      if (!toggle.contains(e.target) && !nav.contains(e.target)) {
+        nav.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-label', 'Open menu');
+      }
+    });
+  }
+
+  if (header) {
+    window.addEventListener('scroll', function () {
+      if (window.scrollY > 40) {
+        header.classList.add('cos-header--compact');
+      } else {
+        header.classList.remove('cos-header--compact');
+      }
+    }, { passive: true });
+  }
+
+  var tbPage = document.getElementById('tb-page');
+  if (tbPage) {
+    var seg = location.pathname.replace(/\/$/, '').split('/').pop().replace(/\.html$/, '').toUpperCase();
+    tbPage.textContent = seg || 'HOME';
+  }
 })();
 </script>
 

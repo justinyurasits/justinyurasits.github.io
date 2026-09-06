@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Document Workbench — Construction OS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,300..600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../brand-kit/tokens.css">
+<link rel="stylesheet" href="../brand-kit/brand.css">
+<style>
+/* ─── Tokens ─────────────────────────────────────────────── */
+:root {
+  --c-ink:       #111111;
+  --c-white:     #FFFFFF;
+  --c-bond:      #EFEFEB;
+  --c-steel:     #476776;
+  --c-graphite:  #5F6466;
+  --c-line:      #B8B9B5;
+  --c-revision:  #C43230;
+  --font-display: 'Archivo';
+}
+
+/* ─── Container ──────────────────────────────────────────── */
+.cos-container { max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px); }
+
+/* ─── Header ─────────────────────────────────────────────── */
+.cos-header { position: sticky; top: 0; z-index: 50; background: #FFFFFF; border-bottom: 1px solid #B8B9B5; transition: min-height .2s; }
+.cos-header__inner { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 32px; transition: min-height .2s; }
+.cos-header--compact .cos-header__inner { min-height: 60px; }
+.cos-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; font: 600 17px/1 var(--font-display), sans-serif; letter-spacing: -.02em; color: #111111; white-space: nowrap; }
+.cos-nav { display: flex; align-items: center; gap: 32px; list-style: none; margin: 0; padding: 0; }
+.cos-nav a:not(.cos-header__cta) { font: 500 15px/1 var(--font-display), sans-serif; color: #5F6466; text-decoration: none; }
+.cos-nav a:not(.cos-header__cta)[aria-current="page"] { color: #111111; border-bottom: 2px solid #111111; padding-bottom: 2px; }
+.cos-header__cta { display: inline-flex; align-items: center; min-height: 44px; padding: 13px 20px; font: 600 14px/1 var(--font-display), sans-serif; letter-spacing: -.01em; text-decoration: none; background: #111111; color: #FFFFFF; white-space: nowrap; }
+.cos-header__cta:hover { background: #476776; }
+.cos-header__toggle { display: none; width: 44px; height: 44px; background: none; border: 1px solid #B8B9B5; cursor: pointer; flex-direction: column; align-items: center; justify-content: center; gap: 8px; padding: 0; flex-shrink: 0; }
+.cos-header__toggle span { display: block; width: 18px; height: 2px; background: #111111; pointer-events: none; }
+
+/* ─── Product block (shared) ──────────────────────────────── */
+.cos-product { display: grid; grid-template-columns: minmax(340px, 1fr) minmax(340px, 1.15fr); gap: 48px; align-items: start; }
+.cos-product__col { display: flex; flex-direction: column; gap: 26px; min-width: 0; container-type: inline-size; }
+.cos-product__tag { margin: 0; display: flex; align-items: center; gap: 12px; min-height: 26px; font: 600 11px/1 var(--font-display), sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--c-steel); }
+.cos-product__tag span { font: 400 12px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace; color: var(--c-graphite); letter-spacing: 0; }
+.cos-product__tag i { width: 40px; height: 1px; background: var(--c-ink); }
+.cos-product__name { display: flex; align-items: center; gap: .4em; font: 600 clamp(22px, 7.2cqi, 38px)/1.05 var(--font-display), sans-serif; letter-spacing: -.032em; white-space: nowrap; color: var(--c-ink); margin: 0; }
+.cos-product__name svg { width: .72em; height: .72em; flex: none; }
+.cos-product__lead { margin: 0; max-width: 30ch; font: 500 20px/1.4 var(--font-display), sans-serif; letter-spacing: -.015em; color: var(--c-ink); }
+.cos-product__body { margin: 0; max-width: 46ch; font: 400 16px/1.6 var(--font-display), sans-serif; color: var(--c-graphite); text-wrap: pretty; }
+.cos-product__cta { margin: 0; display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+
+/* Buttons */
+.cos-btn { display: inline-flex; align-items: center; min-height: 48px; padding: 15px 26px; font: 600 15px/1 var(--font-display), sans-serif; letter-spacing: -.01em; text-decoration: none; }
+.cos-btn--ink { background: var(--c-ink); color: var(--c-white); }
+.cos-btn--ink:hover { background: var(--c-steel); color: var(--c-white); }
+.cos-btn--paper { background: var(--c-white); color: var(--c-ink); }
+.cos-btn--paper:hover { background: var(--c-bond); }
+.cos-link { font: 600 15px/1 var(--font-display), sans-serif; letter-spacing: -.01em; color: var(--c-ink); text-decoration: none; border-bottom: 2px solid var(--c-ink); padding-bottom: 3px; }
+.cos-link:hover { color: var(--c-steel); border-bottom-color: var(--c-steel); }
+.cos-link--paper { color: var(--c-white); border-bottom-color: var(--c-white); }
+.cos-link--paper:hover { color: var(--c-line); border-bottom-color: var(--c-line); }
+
+/* Proof table (shared) */
+.cos-proof { margin: 0; border-top: 2px solid var(--c-ink); }
+.cos-proof > div { padding: 22px 0 20px; border-bottom: 1px solid var(--c-line); }
+.cos-proof > div:last-child { border-bottom: 0; padding-bottom: 0; }
+.cos-proof dt { margin: 0 0 6px; font: 600 28px/1.1 var(--font-display), sans-serif; letter-spacing: -.03em; color: var(--c-ink); }
+.cos-proof dt.is-sm { font-size: 20px; letter-spacing: -.02em; line-height: 1.25; }
+.cos-proof dt .is-delta { color: var(--c-revision); }
+.cos-proof dd { margin: 0; font: 400 14px/1.5 var(--font-display), sans-serif; color: var(--c-graphite); }
+
+/* ─── Document artifact (shared) ─────────────────────────── */
+.cos-product__doc { display: flex; flex-direction: column; gap: 12px; }
+.cos-doc-cap { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font: 400 11px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace; letter-spacing: 0.04em; color: var(--c-graphite); text-transform: uppercase; white-space: nowrap; min-height: 26px; }
+.cos-doc-cap span + span { color: var(--c-steel); }
+.cos-doc { position: relative; height: 560px; overflow: hidden; border: 1px solid var(--c-ink); background: var(--c-white); }
+.cos-doc .dw-artifact { border: 0; position: static; }
+.cos-doc__corner { position: absolute; width: 14px; height: 14px; }
+.cos-doc__corner--tr { top: 10px; right: 10px; border-top: 2px solid var(--c-line); border-right: 2px solid var(--c-line); }
+.cos-doc__corner--bl { bottom: 10px; left: 10px; border-bottom: 2px solid var(--c-line); border-left: 2px solid var(--c-line); }
+.cos-doc__fade { position: absolute; inset: auto 0 0 0; height: 88px; pointer-events: none; background: linear-gradient(to bottom, rgba(255,255,255,0), #ffffff 62%); }
+.cos-doc__foot { position: absolute; inset: auto 0 0 0; border-top: 1px solid var(--c-line); background: var(--c-white); padding: 10px 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px; font: 400 11px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace; color: var(--c-graphite); }
+.cos-doc__foot a { font: 500 12px/1 var(--font-display), sans-serif; letter-spacing: -.01em; color: var(--c-ink); text-decoration: none; border-bottom: 1px solid var(--c-ink); }
+.cos-doc__foot a:hover { color: var(--c-steel); border-bottom-color: var(--c-steel); }
+
+.dw-artifact { position: relative; display: grid; grid-template-columns: 65fr 35fr; border: 1px solid var(--c-ink); background: var(--c-white); overflow: hidden; }
+.dw-main { background: var(--c-white); padding: 18px 20px 16px; box-sizing: border-box; font-family: var(--font-display); display: flex; flex-direction: column; }
+.dw-tb-row { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 2px 8px; padding-bottom: 7px; border-bottom: 1px solid var(--c-line); font-size: 8px; letter-spacing: 0.05em; color: var(--c-graphite); }
+.dw-exhibit-name { font-size: 16px; font-weight: 600; letter-spacing: -0.012em; line-height: 1.1; color: var(--c-ink); margin: 10px 0 2px; }
+.dw-exhibit-sub { font-size: 9px; font-weight: 400; color: var(--c-graphite); margin: 0; }
+.dw-main-rule { border: none; border-top: 2px solid var(--c-ink); margin: 9px 0; }
+.dw-art-rule  { border: none; border-top: 1px solid var(--c-line); margin: 7px 0 9px; }
+.dw-art-head { font-size: 10px; font-weight: 600; margin: 9px 0 3px; color: var(--c-ink); }
+.dw-art-body { font-size: 8.5px; line-height: 1.55; color: var(--c-ink); margin: 0 0 5px; }
+.dw-sched { width: 100%; border-collapse: collapse; font-size: 9px; font-variant-numeric: tabular-nums; }
+.dw-sched th { font-weight: 500; font-size: 8.5px; color: var(--c-graphite); text-align: left; padding: 4px 10px 4px 0; border-bottom: 1px solid var(--c-line); }
+.dw-sched td { text-align: left; padding: 3px 10px 3px 0; color: var(--c-ink); vertical-align: top; }
+.dw-sched .u { text-align: right; padding-right: 0; }
+.dw-rail { display: flex; flex-direction: column; border-left: 2px solid var(--c-ink); }
+.dw-rp { flex: 1; padding: 12px 13px; box-sizing: border-box; overflow: hidden; font-family: var(--font-display); min-height: 110px; background: var(--c-bond); }
+.dw-rp + .dw-rp { border-top: 2px solid var(--c-ink); }
+.dw-rp-hdr { font-size: 9px; font-weight: 600; letter-spacing: 0.02em; color: var(--c-ink); padding-bottom: 6px; border-bottom: 2px solid var(--c-ink); margin-bottom: 8px; }
+.dw-rp-body { font-size: 9px; line-height: 1.5; color: var(--c-graphite); margin: 0 0 4px; }
+.dw-rp-body:last-child { margin-bottom: 0; }
+.dw-rp-row { display: flex; justify-content: space-between; align-items: baseline; gap: 6px; margin-bottom: 4px; font-size: 8.5px; }
+.dw-rp-row:last-child { margin-bottom: 0; }
+.dw-rp-k { font-weight: 500; color: var(--c-ink); white-space: nowrap; flex-shrink: 0; }
+.dw-rp-v { color: var(--c-graphite); text-align: right; }
+
+/* ─── Closing CTA (shared) ──────────────────────────────── */
+.cos-close { background: #111111; padding: 88px 0 80px; }
+.cos-close__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 56px; align-items: start; }
+.cos-close__col { container-type: inline-size; display: flex; flex-direction: column; gap: 28px; min-width: 0; }
+.cos-close__lockup { display: flex; align-items: center; gap: 10px; min-height: 26px; }
+.cos-close__lockup-name { font: 600 14px/1 var(--font-display), sans-serif; letter-spacing: .14em; text-transform: uppercase; color: #ffffff; white-space: nowrap; }
+.cos-close__lockup-rule { flex: 1; height: 1px; background: #5F6466; }
+.cos-close__headline { font: 600 clamp(34px, 12cqi, 68px)/0.98 var(--font-display), sans-serif; letter-spacing: -.042em; color: #ffffff; text-wrap: balance; margin: 0; }
+.cos-close__subhead { font: 400 19px/1.55 var(--font-display), sans-serif; color: #B8B9B5; max-width: 44ch; margin: 0; }
+.cos-close__subhead--sm { font-size: 16px; }
+.cos-close__cta { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+.cos-close__btn-primary { display: inline-flex; align-items: center; min-height: 48px; padding: 15px 26px; font: 600 15px/1 var(--font-display), sans-serif; letter-spacing: -.01em; text-decoration: none; background: #ffffff; color: #111111; }
+.cos-close__btn-link { font: 600 15px/1 var(--font-display), sans-serif; letter-spacing: -.01em; color: #ffffff; text-decoration: none; border-bottom: 2px solid #ffffff; padding-bottom: 3px; }
+.cos-close__index-label { font: 500 12px/1 var(--font-display), sans-serif; letter-spacing: .12em; text-transform: uppercase; color: #B8B9B5; margin: 0; }
+.cos-close__index-rule { height: 1px; background: #5F6466; }
+.cos-close__index-row { display: flex; align-items: center; gap: 14px; padding: 18px 0; border-bottom: 1px solid #5F6466; }
+.cos-close__index-row:last-child { border-bottom: 0; }
+.cos-close__index-n { font: 400 12px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace; color: #B8B9B5; flex-shrink: 0; }
+.cos-close__index-name { font: 600 17px/1.2 var(--font-display), sans-serif; letter-spacing: -.015em; color: #ffffff; }
+.cos-close__index-tag { border: 1px solid #5F6466; color: #B8B9B5; font: 600 10px/1 var(--font-display), sans-serif; letter-spacing: .12em; text-transform: uppercase; padding: 3px 6px; white-space: nowrap; }
+.cos-close__index-ext { font: 500 10px/1 var(--font-display), sans-serif; letter-spacing: .12em; text-transform: uppercase; color: #B8B9B5; white-space: nowrap; }
+
+/* ─── Footer (shared) ────────────────────────────────────── */
+.cos-footer { background: #FFFFFF; border-top: 1px solid #B8B9B5; }
+.cos-footer__inner { padding-top: 56px; }
+.cos-footer__cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; padding-bottom: 48px; }
+.cos-footer__brand { display: flex; flex-direction: column; gap: 16px; }
+.cos-footer__lockup { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font: 600 17px/1 var(--font-display), sans-serif; letter-spacing: -.02em; color: #111111; }
+.cos-footer__tagline { font: 400 14px/1.55 var(--font-display), sans-serif; color: #5F6466; max-width: 30ch; margin: 0; }
+.cos-footer__cta-link { font: 600 14px/1 var(--font-display), sans-serif; color: #111111; text-decoration: none; border-bottom: 2px solid #111111; padding-bottom: 3px; width: fit-content; }
+.cos-footer__col { display: flex; flex-direction: column; }
+.cos-footer__col-head { font: 600 11px/1 var(--font-display), sans-serif; letter-spacing: .14em; text-transform: uppercase; color: #111111; padding-bottom: 12px; border-bottom: 1px solid #B8B9B5; }
+.cos-footer__col-item { display: flex; align-items: center; gap: 10px; font: 500 14px/1 var(--font-display), sans-serif; letter-spacing: -.005em; color: #5F6466; text-decoration: none; padding-top: 12px; }
+.cos-footer__col-item:hover { color: #111111; }
+.cos-footer__contact-email { display: inline-block; font: 600 17px/1 var(--font-display), sans-serif; letter-spacing: -.015em; color: #111111; text-decoration: none; border-bottom: 2px solid #111111; padding-bottom: 3px; margin-top: 14px; }
+.cos-footer__contact-email:hover { color: #476776; border-bottom-color: #476776; }
+.cos-footer__col-n { font: 400 11px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace; color: #5F6466; flex: none; }
+.cos-footer__col-dash { font: 400 11px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace; color: #5F6466; flex: none; }
+.cos-titleblock { border: 1px solid #111111; background: #FFFFFF; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+.cos-titleblock__cell { padding: 12px 16px; border-right: 1px solid #B8B9B5; display: flex; flex-direction: column; gap: 5px; }
+.cos-titleblock__cell:last-child { border-right: 0; }
+.cos-titleblock__label { font: 600 9px/1 var(--font-display), sans-serif; letter-spacing: .16em; text-transform: uppercase; color: #5F6466; }
+.cos-titleblock__value { font: 400 12px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace; color: #111111; }
+.cos-footer__legal { padding: 18px 0 40px; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; font: 400 13px/1 var(--font-display), sans-serif; color: #5F6466; }
+
+/* ─── Page-level: hero ───────────────────────────────────── */
+.dw-hero { padding: 72px 0 64px; background: var(--c-white); border-bottom: 1px solid var(--c-line); }
+.dw-hero .cos-product__col:first-child { gap: 24px; }
+
+.dw-kicker {
+  border-left: 2px solid var(--c-steel);
+  padding-left: 16px;
+  font: 600 15px/1.5 var(--font-display), sans-serif;
+  letter-spacing: -.01em;
+  color: var(--c-ink);
+  margin: 0;
+}
+
+/* ─── Current state ──────────────────────────────────────── */
+.dw-current { padding: 72px 0 76px; background: var(--c-bond); }
+.dw-current__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 56px;
+  align-items: start;
+  container-type: inline-size;
+}
+.dw-current__eyebrow { font: 600 11px/1 var(--font-display), sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--c-steel); margin: 0 0 20px; }
+.dw-current__heading {
+  font: 600 clamp(28px, 8cqi, 42px)/1.05 var(--font-display), sans-serif;
+  letter-spacing: -.035em;
+  color: var(--c-ink);
+  text-wrap: balance;
+  margin: 0;
+}
+.dw-current__body { border-top: 2px solid var(--c-ink); padding-top: 24px; display: flex; flex-direction: column; gap: 16px; }
+.dw-current__p { margin: 0; font: 400 16px/1.6 var(--font-display), sans-serif; color: var(--c-graphite); }
+.dw-current__p--emphasis { font: 600 19px/1.5 var(--font-display), sans-serif; letter-spacing: -.015em; color: var(--c-ink); }
+
+/* ─── Lifecycle ──────────────────────────────────────────── */
+.dw-lifecycle { padding: 76px 0 0; background: var(--c-white); }
+.dw-lifecycle__hdr {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding-bottom: 20px;
+  border-bottom: 2px solid var(--c-ink);
+  margin-bottom: 0;
+}
+.dw-lifecycle__hdr-left { display: flex; flex-direction: column; gap: 10px; }
+.dw-lifecycle__eyebrow { font: 600 11px/1 var(--font-display), sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--c-steel); margin: 0; }
+.dw-lifecycle__heading {
+  font: 600 clamp(28px, 4vw, 40px)/1.05 var(--font-display), sans-serif;
+  letter-spacing: -.032em;
+  color: var(--c-ink);
+  text-wrap: balance;
+  margin: 0;
+  max-width: 26ch;
+}
+.dw-lifecycle__count { font: 500 12px/1 var(--font-display), sans-serif; letter-spacing: .12em; text-transform: uppercase; color: var(--c-graphite); white-space: nowrap; }
+
+.dw-phase {
+  display: grid;
+  grid-template-columns: 46px minmax(200px, 1fr) minmax(240px, 1.2fr);
+  column-gap: 28px;
+  padding: 30px 0;
+  border-bottom: 1px solid var(--c-line);
+  align-items: start;
+}
+.dw-phase:last-child { border-bottom: 0; padding-bottom: 0; }
+.dw-phase-n { padding-top: 6px; font: 400 12px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace; color: var(--c-graphite); font-variant-numeric: tabular-nums; }
+.dw-phase-content { display: flex; flex-direction: column; gap: 6px; }
+.dw-phase-name { font: 600 22px/1.1 var(--font-display), sans-serif; letter-spacing: -.022em; color: var(--c-ink); margin: 0; }
+.dw-phase-desc { font: 400 15px/1.55 var(--font-display), sans-serif; color: var(--c-graphite); margin: 0; text-wrap: pretty; }
+.dw-doclist {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0;
+  align-content: start;
+}
+.dw-doclist-item {
+  font: 500 14px/1.5 var(--font-display), sans-serif;
+  color: var(--c-ink);
+  padding: 4px 0;
+  border-bottom: 1px solid #EFEFEB;
+}
+.dw-doclist-item:last-child { border-bottom: 0; }
+
+/* ─── 150+ strip ─────────────────────────────────────────── */
+.dw-strip { background: var(--c-ink); padding: 28px 0; margin-top: 12px; }
+.dw-strip__inner { display: flex; align-items: baseline; gap: 18px; flex-wrap: wrap; }
+.dw-strip__figure { font: 600 34px/1 var(--font-display), sans-serif; letter-spacing: -.03em; color: var(--c-white); }
+.dw-strip__label { font: 500 17px/1.4 var(--font-display), sans-serif; color: var(--c-white); }
+
+/* ─── How it works ───────────────────────────────────────── */
+.dw-how { padding: 76px 0 80px; background: var(--c-bond); }
+.dw-how__hdr { display: flex; flex-direction: column; gap: 12px; border-bottom: 2px solid var(--c-ink); padding-bottom: 0; margin-bottom: 40px; }
+.dw-how__eyebrow { font: 600 11px/1 var(--font-display), sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--c-steel); margin: 0; padding-bottom: 0; }
+.dw-how__heading { font: 600 clamp(26px, 4vw, 36px)/1.1 var(--font-display), sans-serif; letter-spacing: -.028em; color: var(--c-ink); text-wrap: balance; margin: 0; max-width: 22ch; padding-bottom: 20px; }
+.dw-how__cols {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 0;
+}
+.dw-step {
+  padding: 0 36px;
+  border-left: 1px solid var(--c-line);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+.dw-step:first-child { padding-left: 0; border-left: 0; }
+.dw-step:last-child { padding-right: 0; }
+.dw-step-n-rule { display: flex; align-items: center; gap: 12px; }
+.dw-step-n { font: 400 12px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace; color: var(--c-graphite); }
+.dw-step-rule { height: 28px; width: 2px; background: var(--c-ink); flex: none; }
+.dw-step-name { font: 600 20px/1.25 var(--font-display), sans-serif; letter-spacing: -.02em; color: var(--c-ink); margin: 0; }
+.dw-step-lead { font: 500 15px/1.55 var(--font-display), sans-serif; color: var(--c-ink); margin: 0; }
+.dw-step-body { font: 400 15px/1.55 var(--font-display), sans-serif; color: var(--c-graphite); margin: 0; }
+.dw-how__close {
+  margin-top: 44px;
+  padding-top: 22px;
+  border-top: 1px solid var(--c-line);
+  font: 500 17px/1.5 var(--font-display), sans-serif;
+  letter-spacing: -.015em;
+  color: var(--c-ink);
+  max-width: 64ch;
+}
+
+/* ─── Configuration ──────────────────────────────────────── */
+.dw-config { padding: 76px 0 80px; background: var(--c-white); }
+.dw-config__hdr {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 32px;
+  align-items: end;
+  border-bottom: 2px solid var(--c-ink);
+  padding-bottom: 24px;
+  margin-bottom: 0;
+}
+.dw-config__hdr-left { display: flex; flex-direction: column; gap: 10px; }
+.dw-config__eyebrow { font: 600 11px/1 var(--font-display), sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--c-steel); margin: 0; }
+.dw-config__heading { font: 600 clamp(26px, 4vw, 38px)/1.05 var(--font-display), sans-serif; letter-spacing: -.03em; color: var(--c-ink); text-wrap: balance; margin: 0; max-width: 20ch; }
+.dw-config__deck { font: 400 16px/1.6 var(--font-display), sans-serif; color: var(--c-graphite); margin: 0 0 8px; max-width: 38ch; }
+.dw-config__deck--bold { font: 600 17px/1.5 var(--font-display), sans-serif; letter-spacing: -.015em; color: var(--c-ink); margin: 0; }
+.dw-config__rows { margin-top: 0; }
+.dw-config-row {
+  display: grid;
+  grid-template-columns: 46px minmax(200px, .9fr) minmax(240px, 1.2fr);
+  column-gap: 28px;
+  padding: 24px 0;
+  border-top: 1px solid var(--c-line);
+  align-items: baseline;
+}
+.dw-config-row:first-child { border-top: 0; }
+.dw-config-row-n { font: 400 12px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace; color: var(--c-graphite); padding-top: 3px; }
+.dw-config-row-name { font: 600 19px/1.3 var(--font-display), sans-serif; letter-spacing: -.02em; color: var(--c-ink); margin: 0; }
+.dw-config-row-desc { font: 400 15px/1.55 var(--font-display), sans-serif; color: var(--c-graphite); margin: 0; }
+.dw-config__close {
+  margin-top: 30px;
+  padding-top: 24px;
+  border-top: 2px solid var(--c-ink);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  align-items: start;
+}
+.dw-config__close-p1 { font: 400 16px/1.6 var(--font-display), sans-serif; color: var(--c-graphite); margin: 0; max-width: 44ch; }
+.dw-config__close-p2 { font: 600 19px/1.5 var(--font-display), sans-serif; letter-spacing: -.018em; color: var(--c-ink); margin: 0; max-width: 44ch; text-wrap: pretty; }
+
+/* ─── See it work (demo) ─────────────────────────────────── */
+.dw-demo { padding: 76px 0 80px; background: var(--c-bond); }
+.dw-demo__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 56px;
+  align-items: start;
+}
+.dw-demo__col { display: flex; flex-direction: column; gap: 26px; }
+.dw-demo__eyebrow { font: 600 11px/1 var(--font-display), sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--c-steel); margin: 0; }
+.dw-demo__heading { font: 600 clamp(26px, 7cqi, 38px)/1.1 var(--font-display), sans-serif; letter-spacing: -.03em; color: var(--c-ink); text-wrap: balance; margin: 0; container-type: inline-size; max-width: 22ch; }
+.dw-demo__body { font: 400 16px/1.6 var(--font-display), sans-serif; color: var(--c-graphite); max-width: 42ch; margin: 0; text-wrap: pretty; }
+
+.dw-demo-fig { display: flex; flex-direction: column; gap: 12px; }
+.dw-demo-cap { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font: 400 11px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace; letter-spacing: 0.04em; color: var(--c-graphite); text-transform: uppercase; white-space: nowrap; min-height: 26px; }
+.dw-demo-cap span + span { color: var(--c-steel); }
+.dw-demo-card { border: 1px solid var(--c-ink); background: var(--c-white); overflow: hidden; }
+
+.dw-demo-input { padding: 20px 24px 22px; border-bottom: 1px solid var(--c-ink); }
+.dw-demo-input-label { display: block; font: 400 11px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace; letter-spacing: .1em; text-transform: uppercase; color: var(--c-steel); margin: 0 0 10px; }
+.dw-demo-input-text { font: 500 16px/1.5 var(--font-display), sans-serif; color: var(--c-graphite); margin: 0; text-wrap: pretty; }
+
+/* Draft schematic */
+.dw-draft { padding: 20px 24px; }
+.dw-draft-title-bar { background: var(--c-ink); padding: 8px 12px; margin-bottom: 14px; display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.dw-draft-title-bar span { font: 600 10px/1 var(--font-display), sans-serif; letter-spacing: .1em; text-transform: uppercase; color: var(--c-white); }
+.dw-draft-title-bar small { font: 400 9px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace; color: var(--c-line); }
+.dw-draft-line { height: 8px; background: var(--c-line); border-radius: 0; margin-bottom: 8px; }
+.dw-draft-line--half { width: 55%; }
+.dw-draft-line--third { width: 35%; }
+.dw-draft-line--sm { height: 6px; background: #DDDDD9; margin-bottom: 6px; }
+.dw-draft-line--sm-half { width: 62%; }
+.dw-draft-spacer { height: 10px; }
+.dw-draft-rule { border: none; border-top: 1px solid var(--c-line); margin: 14px 0 12px; }
+.dw-draft-table { width: 100%; border-collapse: collapse; }
+.dw-draft-table th { font: 500 9px/1 var(--font-display), sans-serif; letter-spacing: .06em; text-transform: uppercase; color: var(--c-graphite); padding: 4px 8px 4px 0; border-bottom: 1px solid var(--c-line); text-align: left; }
+.dw-draft-table th:last-child { text-align: right; padding-right: 0; }
+.dw-draft-table td { font: 400 10px/1.4 var(--font-display), sans-serif; color: var(--c-ink); padding: 5px 8px 5px 0; border-bottom: 1px solid #EFEFEB; vertical-align: top; }
+.dw-draft-table td:last-child { text-align: right; padding-right: 0; font-variant-numeric: tabular-nums; }
+.dw-draft-table tbody tr:last-child td { border-bottom: 0; }
+
+.dw-demo-footer { background: var(--c-ink); padding: 18px 24px; display: flex; align-items: baseline; gap: 16px; }
+.dw-demo-footer-label { font: 600 11px/1 var(--font-display), sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--c-line); white-space: nowrap; }
+.dw-demo-footer-val { font: 600 17px/1 var(--font-display), sans-serif; letter-spacing: -.02em; color: var(--c-white); }
+.dw-demo-footer-val .is-delta { color: var(--c-revision); }
+
+/* ─── Built from inside ──────────────────────────────────── */
+.dw-built { padding: 76px 0 80px; background: var(--c-white); }
+.dw-built__intro {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 32px 56px;
+  align-items: start;
+  margin-bottom: 40px;
+}
+.dw-built__heading { font: 600 clamp(26px, 4vw, 36px)/1.1 var(--font-display), sans-serif; letter-spacing: -.028em; color: var(--c-ink); text-wrap: balance; margin: 0; max-width: 22ch; }
+.dw-built__body { font: 400 16px/1.6 var(--font-display), sans-serif; color: var(--c-graphite); margin: 0; max-width: 44ch; text-wrap: pretty; }
+.dw-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  border-top: 2px solid var(--c-ink);
+}
+.dw-stat {
+  padding: 24px 24px 24px 0;
+  border-right: 1px solid var(--c-line);
+  display: flex;
+  flex-direction: column;
+}
+.dw-stat:last-child { border-right: 0; padding-right: 0; }
+.dw-stat + .dw-stat { padding-left: 24px; }
+.dw-stat-before { font: 400 12px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace; color: var(--c-graphite); margin: 0 0 10px; min-height: 1em; }
+.dw-stat-figure { font: 600 38px/1 var(--font-display), sans-serif; letter-spacing: -.03em; color: var(--c-ink); margin: 0 0 12px; }
+.dw-stat-figure--red { color: var(--c-revision); }
+.dw-stat-rule { border: none; border-top: 1px solid var(--c-line); margin: 0 0 12px; }
+.dw-stat-caption { font: 400 14px/1.5 var(--font-display), sans-serif; color: var(--c-graphite); margin: 0; }
+.dw-built__foot {
+  margin-top: 32px;
+  padding-top: 18px;
+  border-top: 1px solid var(--c-line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.dw-built__case { font: 400 11px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace; letter-spacing: .04em; text-transform: uppercase; color: var(--c-graphite); }
+.dw-built__case-link { font: 600 14px/1 var(--font-display), sans-serif; letter-spacing: -.01em; color: var(--c-ink); text-decoration: none; border-bottom: 2px solid var(--c-ink); padding-bottom: 2px; }
+.dw-built__case-link:hover { color: var(--c-steel); border-bottom-color: var(--c-steel); }
+
+/* ─── Configured around ──────────────────────────────────── */
+.dw-configured { padding: 76px 0 80px; background: var(--c-bond); }
+.dw-configured__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 32px 56px;
+  align-items: start;
+}
+.dw-configured__heading { font: 600 clamp(26px, 4vw, 38px)/1.05 var(--font-display), sans-serif; letter-spacing: -.03em; color: var(--c-ink); text-wrap: balance; margin: 0; max-width: 18ch; }
+.dw-configured__body { border-top: 2px solid var(--c-ink); padding-top: 24px; display: flex; flex-direction: column; gap: 16px; }
+.dw-configured__p { margin: 0; font: 400 16px/1.6 var(--font-display), sans-serif; color: var(--c-graphite); text-wrap: pretty; }
+.dw-configured__p strong { font-weight: 600; color: var(--c-ink); }
+
+/* ─── Responsive ─────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .cos-product { grid-template-columns: 1fr; gap: 32px; }
+  .cos-close { padding: 64px 0 56px; }
+  .cos-doc { height: 420px; }
+  .dw-hero { padding: 56px 0 48px; }
+  .dw-current { padding: 56px 0 60px; }
+  .dw-lifecycle { padding: 60px 0 0; }
+  .dw-how { padding: 60px 0 64px; }
+  .dw-config { padding: 60px 0 64px; }
+  .dw-demo { padding: 60px 0 64px; }
+  .dw-built { padding: 60px 0 64px; }
+  .dw-configured { padding: 60px 0 64px; }
+  .dw-phase { grid-template-columns: 46px 1fr; }
+  .dw-phase > *:last-child { grid-column: 2 / -1; }
+  .dw-config-row { grid-template-columns: 46px 1fr; }
+  .dw-config-row > *:last-child { grid-column: 2 / -1; }
+  .cos-footer__inner { padding-top: 40px; }
+}
+@media (max-width: 760px) {
+  .cos-header__inner { min-height: 64px; }
+  .cos-header--compact .cos-header__inner { min-height: 64px; }
+  .cos-header__toggle { display: inline-flex; }
+  .cos-nav {
+    display: none; position: absolute; top: 100%; left: 0; right: 0;
+    flex-direction: column; align-items: flex-start; gap: 0;
+    padding: 16px 20px 24px; background: #FFFFFF; border-bottom: 1px solid #B8B9B5;
+  }
+  .cos-nav.is-open { display: flex; }
+  .cos-nav li { width: 100%; }
+  .cos-nav a { display: block; padding: 12px 0; font-size: 15px; }
+  .cos-header__cta { font-size: 13px; padding: 10px 14px; }
+  .dw-step { padding: 24px 0; border-left: 0; border-top: 1px solid var(--c-line); }
+  .dw-step:first-child { border-top: 0; padding-top: 0; }
+  .dw-phase { grid-template-columns: 46px 1fr; row-gap: 16px; }
+  .dw-stats { grid-template-columns: 1fr; }
+  .dw-stat { border-right: 0; border-bottom: 1px solid var(--c-line); padding-right: 0; }
+  .dw-stat:last-child { border-bottom: 0; }
+  .dw-stat + .dw-stat { padding-left: 0; }
+}
+@media (max-width: 600px) {
+  .dw-artifact { grid-template-columns: 1fr; }
+  .dw-rail { border-left: none; border-top: 2px solid var(--c-ink); }
+}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="cos-header" id="cos-header">
+  <div class="cos-header__inner cos-container">
+    <a class="cos-logo" href="/">
+      <svg viewBox="0 0 100 100" width="22" height="22" aria-hidden="true">
+        <polyline points="16,54 16,16 54,16" fill="none" stroke="#111111" stroke-width="11"/>
+        <polyline points="84,46 84,84 46,84" fill="none" stroke="#111111" stroke-width="11"/>
+        <rect x="34" y="34" width="32" height="32" fill="#C43230"/>
+      </svg>
+      Construction OS
+    </a>
+    <button class="cos-header__toggle" aria-label="Open menu" aria-expanded="false" aria-controls="cos-nav">
+      <span></span>
+      <span></span>
+    </button>
+    <ul class="cos-nav" id="cos-nav" role="list">
+      <li><a href="/work.html">Work</a></li>
+      <li><a href="/products.html" aria-current="page">Products</a></li>
+      <li><a href="/engagements.html">Engagements</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a class="cos-header__cta" href="https://cal.com/justinyurasits">Book a demo</a></li>
+    </ul>
+  </div>
+</header>
+
+
+<!-- 2. Hero — Paper -->
+<section class="dw-hero" id="hero">
+  <div class="cos-container">
+    <div class="cos-product">
+
+      <!-- Left column -->
+      <div class="cos-product__col">
+        <p class="cos-product__tag">
+          <span>01</span><i></i>Documents
+        </p>
+        <h1 class="cos-product__name">
+          <svg viewBox="0 0 100 100" aria-hidden="true">
+            <rect x="14" y="26" width="52" height="60" fill="none" stroke="currentColor" stroke-width="9"/>
+            <polyline points="30,14 86,14 86,72" fill="none" stroke="var(--c-steel)" stroke-width="4"/>
+          </svg>
+          Document Workbench
+        </h1>
+        <p class="cos-product__lead">Produce the documents that run the job.</p>
+        <p class="cos-product__body">From first walkthrough through closeout, turn notes, scopes, estimates, decisions, and project information into company-standard construction documents&mdash;without rebuilding the same paperwork from scratch every time.</p>
+        <p class="dw-kicker">Spend less time producing paperwork. More time managing the job.</p>
+        <p class="cos-product__cta">
+          <a class="cos-btn cos-btn--ink" href="https://cal.com/justinyurasits">Book a demo</a>
+          <a class="cos-link" href="https://draftconstructionchangeorder.com">See it work</a>
+        </p>
+        <dl class="cos-proof">
+          <div>
+            <dt>150+ standard document types</dt>
+            <dd>Across the full construction lifecycle</dd>
+          </div>
+          <div>
+            <dt><b>4&ndash;8 hours</b> <b class="is-delta">&rarr; ~30 minutes</b></dt>
+            <dd>Initial contract package preparation</dd>
+          </div>
+          <div>
+            <dt class="is-sm">Built around how your company works</dt>
+            <dd>Your templates, scope language, pricing structure, and terminology</dd>
+          </div>
+        </dl>
+      </div>
+
+      <!-- Right column — document artifact -->
+      <figure class="cos-product__doc">
+        <figcaption class="cos-doc-cap">
+          <span>Exhibit A &mdash; Scope of Work</span>
+          <span>Rev. 2 &middot; Cost-plus w/ GMP</span>
+        </figcaption>
+        <div class="cos-doc">
+          <span class="cos-doc__corner cos-doc__corner--tr"></span>
+          <span class="cos-doc__corner cos-doc__corner--bl"></span>
+          <div class="dw-artifact">
+            <div class="dw-main">
+              <div class="dw-tb-row">
+                <span>Residential renovation</span>
+                <span>Page 1 of 6</span>
+              </div>
+              <p class="dw-exhibit-name">Exhibit A &mdash; Scope of work</p>
+              <p class="dw-exhibit-sub">Contract dated 14 Aug 2026 &ndash; Rev. 2 &ndash; Cost-plus w/ GMP</p>
+              <hr class="dw-main-rule">
+              <p class="dw-art-head">1.&ensp;General</p>
+              <p class="dw-art-body">1.1&ensp;The Contractor shall furnish all labor, materials, equipment, tools, and supervision necessary to complete the scope described herein, in strict accordance with the Contract Documents and all applicable codes and regulations.</p>
+              <p class="dw-art-body">1.2&ensp;Work shall be executed in a workmanlike manner consistent with industry standards. All materials shall be new unless noted otherwise. Substitutions require prior written approval from the Owner&rsquo;s representative.</p>
+              <p class="dw-art-body">1.3&ensp;The Owner shall have reasonable access to the site during working hours. Contractor shall maintain a clean, safe, and orderly site at all times and shall protect adjacent finishes and occupied areas throughout construction.</p>
+              <hr class="dw-art-rule">
+              <p class="dw-art-head">2.&ensp;Millwork &amp; finish carpentry</p>
+              <table class="dw-sched">
+                <thead><tr><th>Item</th><th>Description</th><th class="u">Unit</th></tr></thead>
+                <tbody>
+                  <tr><td>2.1a</td><td>Kitchen casework, stain-grade</td><td class="u">LS</td></tr>
+                  <tr><td>2.1b</td><td>Library shelving and panel walls</td><td class="u">LS</td></tr>
+                  <tr><td>2.2</td><td>Painted-grade trim, Levels 1&ndash;3</td><td class="u">LF</td></tr>
+                  <tr><td>2.3</td><td>Built-in window seats, primary bedroom</td><td class="u">EA</td></tr>
+                  <tr><td>2.4</td><td>Crown molding, main level</td><td class="u">LF</td></tr>
+                </tbody>
+              </table>
+              <hr class="dw-art-rule">
+              <p class="dw-art-head">3.&ensp;Doors &amp; hardware</p>
+              <p class="dw-art-body">3.1&ensp;Contractor shall furnish and install all interior doors, frames, and hardware per the door schedule issued by the Architect. All hardware finishes shall be brushed nickel unless otherwise noted on the schedule.</p>
+              <p class="dw-art-body">3.2&ensp;Existing door frames to remain shall be repaired, shimmed, and refinished to match new work. Owner to confirm selections from hardware samples prior to order.</p>
+            </div>
+            <div class="dw-rail">
+              <div class="dw-rp">
+                <p class="dw-rp-hdr">Proposal letter</p>
+                <p class="dw-rp-body">Re: Interior renovation &mdash; 214 Commonwealth Ave.</p>
+                <p class="dw-rp-body">We are pleased to submit this proposal for the interior renovation under a cost-plus contract with GMP. Our fee is established at 18% of direct costs, inclusive of all general conditions.</p>
+                <p class="dw-rp-body">This proposal supersedes all prior correspondence. Acceptance constitutes agreement to the terms of the attached contract.</p>
+              </div>
+              <div class="dw-rp">
+                <p class="dw-rp-hdr">Site visit &amp; existing conditions</p>
+                <p class="dw-rp-body">Existing casework: to remain in place. Protect in place &mdash; contractor responsible for any damage during construction.</p>
+                <p class="dw-rp-body">Structural: wall at grid line C confirmed load-bearing. Beam sizing to be determined by structural engineer prior to demo permit.</p>
+                <p class="dw-rp-body">MEP: routing conflicts at ceiling level require coordination with MEP sub prior to rough-in.</p>
+              </div>
+              <div class="dw-rp">
+                <p class="dw-rp-hdr">Preliminary schedule</p>
+                <div class="dw-rp-row"><span class="dw-rp-k">Mobilization</span><span class="dw-rp-v">01 Sep 2026</span></div>
+                <div class="dw-rp-row"><span class="dw-rp-k">Demo &amp; rough framing</span><span class="dw-rp-v">15 Sep</span></div>
+                <div class="dw-rp-row"><span class="dw-rp-k">MEP rough-in</span><span class="dw-rp-v">29 Sep</span></div>
+                <div class="dw-rp-row"><span class="dw-rp-k">Millwork delivery</span><span class="dw-rp-v">20 Oct</span></div>
+                <div class="dw-rp-row"><span class="dw-rp-k">Punch list complete</span><span class="dw-rp-v">07 Nov</span></div>
+                <div class="dw-rp-row"><span class="dw-rp-k">Substantial completion</span><span class="dw-rp-v">14 Nov 2026</span></div>
+              </div>
+            </div>
+          </div>
+          <span class="cos-doc__fade"></span>
+          <div class="cos-doc__foot">
+            <span>Page 1 of 6 &middot; Residential renovation</span>
+            <a href="#">Open the full exhibit</a>
+          </div>
+        </div>
+      </figure>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- 3. Current state — Bond -->
+<section class="dw-current" id="current-state">
+  <div class="cos-container">
+    <div class="dw-current__grid">
+      <div>
+        <p class="dw-current__eyebrow">The current state</p>
+        <h2 class="dw-current__heading">Your PMs shouldn&rsquo;t be document-production machines.</h2>
+      </div>
+      <div class="dw-current__body">
+        <p class="dw-current__p">Every project creates a steady stream of paperwork: proposals, contracts, scopes, RFIs, submittals, change orders, meeting minutes, billing documentation, closeout packages, and more.</p>
+        <p class="dw-current__p dw-current__p--emphasis">The documents matter. Rebuilding them manually every time doesn&rsquo;t.</p>
+        <p class="dw-current__p">Document Workbench gives your team a repeatable way to turn project information into consistent, professional documentation built around the way your company already works.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- 4. Lifecycle — Paper -->
+<section class="dw-lifecycle" id="lifecycle">
+  <div class="cos-container">
+    <header class="dw-lifecycle__hdr">
+      <div class="dw-lifecycle__hdr-left">
+        <p class="dw-lifecycle__eyebrow">Coverage</p>
+        <h2 class="dw-lifecycle__heading">One workbench. From first walkthrough to closeout.</h2>
+      </div>
+      <span class="dw-lifecycle__count">Five phases</span>
+    </header>
+
+    <div class="dw-phase">
+      <span class="dw-phase-n">01</span>
+      <div class="dw-phase-content">
+        <h3 class="dw-phase-name">Preconstruction &amp; sales</h3>
+        <p class="dw-phase-desc">Turn early project information into the documents that move an opportunity forward.</p>
+      </div>
+      <div class="dw-doclist" aria-label="Documents">
+        <span class="dw-doclist-item">Site visit reports</span>
+        <span class="dw-doclist-item">Existing conditions documentation</span>
+        <span class="dw-doclist-item">Preliminary estimates and budgets</span>
+        <span class="dw-doclist-item">Proposal letters</span>
+        <span class="dw-doclist-item">Scope documents</span>
+        <span class="dw-doclist-item">Contract exhibits</span>
+      </div>
+    </div>
+
+    <div class="dw-phase">
+      <span class="dw-phase-n">02</span>
+      <div class="dw-phase-content">
+        <h3 class="dw-phase-name">Contracting &amp; buyout</h3>
+        <p class="dw-phase-desc">Build clear, consistent contract documentation without rebuilding every scope and agreement from scratch.</p>
+      </div>
+      <div class="dw-doclist" aria-label="Documents">
+        <span class="dw-doclist-item">Contract packages</span>
+        <span class="dw-doclist-item">Scopes of work</span>
+        <span class="dw-doclist-item">Contract exhibits</span>
+        <span class="dw-doclist-item">Subcontractor scope documents</span>
+        <span class="dw-doclist-item">Agreements and supporting documentation</span>
+      </div>
+    </div>
+
+    <div class="dw-phase">
+      <span class="dw-phase-n">03</span>
+      <div class="dw-phase-content">
+        <h3 class="dw-phase-name">Project execution</h3>
+        <p class="dw-phase-desc">Keep the documentation moving as the job changes.</p>
+      </div>
+      <div class="dw-doclist" aria-label="Documents">
+        <span class="dw-doclist-item">RFIs</span>
+        <span class="dw-doclist-item">Submittals</span>
+        <span class="dw-doclist-item">Change orders</span>
+        <span class="dw-doclist-item">Meeting minutes</span>
+        <span class="dw-doclist-item">Field reports</span>
+        <span class="dw-doclist-item">Decision documentation</span>
+        <span class="dw-doclist-item">Project correspondence</span>
+      </div>
+    </div>
+
+    <div class="dw-phase">
+      <span class="dw-phase-n">04</span>
+      <div class="dw-phase-content">
+        <h3 class="dw-phase-name">Billing &amp; project controls</h3>
+        <p class="dw-phase-desc">Turn current project information into the documentation needed to manage cost and get paid.</p>
+      </div>
+      <div class="dw-doclist" aria-label="Documents">
+        <span class="dw-doclist-item">Billing documentation</span>
+        <span class="dw-doclist-item">Pay application support</span>
+        <span class="dw-doclist-item">Change documentation</span>
+        <span class="dw-doclist-item">Allowance and cost-control documents</span>
+        <span class="dw-doclist-item">Project reporting</span>
+      </div>
+    </div>
+
+    <div class="dw-phase">
+      <span class="dw-phase-n">05</span>
+      <div class="dw-phase-content">
+        <h3 class="dw-phase-name">Closeout &amp; handoff</h3>
+        <p class="dw-phase-desc">Finish the paperwork with the same consistency you brought to the job.</p>
+      </div>
+      <div class="dw-doclist" aria-label="Documents">
+        <span class="dw-doclist-item">Punch documentation</span>
+        <span class="dw-doclist-item">Closeout packages</span>
+        <span class="dw-doclist-item">Warranty documentation</span>
+        <span class="dw-doclist-item">Handoff documents</span>
+        <span class="dw-doclist-item">Final project records</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- 4b. 150+ strip — Ink -->
+<div class="dw-strip">
+  <div class="cos-container">
+    <div class="dw-strip__inner">
+      <span class="dw-strip__figure">150+</span>
+      <span class="dw-strip__label">standard construction document types across the project lifecycle.</span>
+    </div>
+  </div>
+</div>
+
+
+<!-- 5. How it works — Bond -->
+<section class="dw-how" id="how-it-works">
+  <div class="cos-container">
+    <header class="dw-how__hdr">
+      <p class="dw-how__eyebrow">How it works</p>
+      <h2 class="dw-how__heading">Start with the information you already have.</h2>
+    </header>
+    <div class="dw-how__cols">
+      <div class="dw-step">
+        <div class="dw-step-n-rule">
+          <span class="dw-step-n">01</span>
+          <span class="dw-step-rule"></span>
+        </div>
+        <h3 class="dw-step-name">Bring the project context</h3>
+        <p class="dw-step-lead">Notes. Emails. Scopes. Estimates. Decisions. Existing forms. Project requirements.</p>
+        <p class="dw-step-body">Document Workbench starts with the information your team is already producing and collecting.</p>
+      </div>
+      <div class="dw-step">
+        <div class="dw-step-n-rule">
+          <span class="dw-step-n">02</span>
+          <span class="dw-step-rule"></span>
+        </div>
+        <h3 class="dw-step-name">Apply how your company works</h3>
+        <p class="dw-step-lead">Your templates, terminology, standard language, pricing structure, document conventions, and operating procedures become part of how the work is produced.</p>
+      </div>
+      <div class="dw-step">
+        <div class="dw-step-n-rule">
+          <span class="dw-step-n">03</span>
+          <span class="dw-step-rule"></span>
+        </div>
+        <h3 class="dw-step-name">Produce a company-ready draft</h3>
+        <p class="dw-step-lead">Turn that information into structured construction documentation ready for your team to review, revise, and issue.</p>
+      </div>
+    </div>
+    <p class="dw-how__close">Less blank-page work. Less copying and pasting. Less rebuilding the same document for the next job.</p>
+  </div>
+</section>
+
+
+<!-- 6. Configuration — Paper -->
+<section class="dw-config" id="configuration">
+  <div class="cos-container">
+    <header class="dw-config__hdr">
+      <div class="dw-config__hdr-left">
+        <p class="dw-config__eyebrow">Configuration</p>
+        <h2 class="dw-config__heading">Not a generic template library. Not a blank chatbot.</h2>
+      </div>
+      <div>
+        <p class="dw-config__deck">Your company already has a way of doing the work.</p>
+        <p class="dw-config__deck--bold">Document Workbench is configured around it.</p>
+      </div>
+    </header>
+    <div class="dw-config__rows">
+      <div class="dw-config-row">
+        <span class="dw-config-row-n">01</span>
+        <p class="dw-config-row-name">Your contract templates</p>
+        <p class="dw-config-row-desc">Not generic agreements and exhibits.</p>
+      </div>
+      <div class="dw-config-row">
+        <span class="dw-config-row-n">02</span>
+        <p class="dw-config-row-name">Your scope language</p>
+        <p class="dw-config-row-desc">The way your team actually describes the work.</p>
+      </div>
+      <div class="dw-config-row">
+        <span class="dw-config-row-n">03</span>
+        <p class="dw-config-row-name">Your pricing and markup structure</p>
+        <p class="dw-config-row-desc">The rules and conventions your team already uses.</p>
+      </div>
+      <div class="dw-config-row">
+        <span class="dw-config-row-n">04</span>
+        <p class="dw-config-row-name">Your terminology and standards</p>
+        <p class="dw-config-row-desc">Documents that read like they came from your company.</p>
+      </div>
+      <div class="dw-config-row">
+        <span class="dw-config-row-n">05</span>
+        <p class="dw-config-row-name">Your project context</p>
+        <p class="dw-config-row-desc">The specific information that makes each document useful on the actual job.</p>
+      </div>
+    </div>
+    <div class="dw-config__close">
+      <p class="dw-config__close-p1">The result is not simply faster document drafting.</p>
+      <p class="dw-config__close-p2">It is a more consistent way to turn how your company works into the paperwork that runs the project.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- 7. See it work — Bond -->
+<section class="dw-demo" id="see-it-work">
+  <div class="cos-container">
+    <div class="dw-demo__grid">
+
+      <!-- Left -->
+      <div class="dw-demo__col">
+        <p class="dw-demo__eyebrow">See it work</p>
+        <h2 class="dw-demo__heading">Turn a field change into a professional change-order draft.</h2>
+        <p class="dw-demo__body">Drop in a field note, email thread, or verbal instruction. Document Workbench structures it into a company-ready PCO draft — scope written, pricing applied, schedule impact noted.</p>
+        <a class="cos-btn cos-btn--ink" href="https://draftconstructionchangeorder.com">Try the live Change Order demo &rarr;</a>
+      </div>
+
+      <!-- Right — demo card -->
+      <figure class="dw-demo-fig">
+        <figcaption class="dw-demo-cap">
+          <span>PCO-014 &mdash; Millwork change</span>
+          <span>Draft</span>
+        </figcaption>
+        <div class="dw-demo-card">
+          <!-- Input band -->
+          <div class="dw-demo-input">
+            <span class="dw-demo-input-label">Field input</span>
+            <p class="dw-demo-input-text">&ldquo;Owner wants the closet shelving switched to painted MDF. Shop needs an answer before Friday.&rdquo;</p>
+          </div>
+          <!-- Draft schematic -->
+          <div class="dw-draft">
+            <div class="dw-draft-title-bar">
+              <span>Proposed change order</span>
+              <small>PCO-014 &mdash; Rev. 1</small>
+            </div>
+            <div class="dw-draft-line dw-draft-line--half"></div>
+            <div class="dw-draft-line dw-draft-line--sm dw-draft-line--sm-half"></div>
+            <div class="dw-draft-spacer"></div>
+            <div class="dw-draft-line dw-draft-line--sm"></div>
+            <div class="dw-draft-line dw-draft-line--sm dw-draft-line--sm-half"></div>
+            <div class="dw-draft-rule"></div>
+            <table class="dw-draft-table">
+              <thead>
+                <tr><th>Item</th><th>Description</th><th>Unit</th><th>Amount</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1.1</td>
+                  <td>Remove existing wire shelving, patch &amp; paint</td>
+                  <td>LS</td>
+                  <td>$1,240</td>
+                </tr>
+                <tr>
+                  <td>1.2</td>
+                  <td>Painted MDF shelving system, primary closet</td>
+                  <td>LS</td>
+                  <td>$3,850</td>
+                </tr>
+                <tr>
+                  <td>1.3</td>
+                  <td>Contractor fee — 18%</td>
+                  <td>LS</td>
+                  <td>$919</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="dw-draft-line dw-draft-line--sm" style="margin-top:10px;"></div>
+            <div class="dw-draft-line dw-draft-line--sm dw-draft-line--third"></div>
+          </div>
+          <!-- Ink footer -->
+          <div class="dw-demo-footer">
+            <span class="dw-demo-footer-label">Turnaround</span>
+            <span class="dw-demo-footer-val">~10 days <span class="is-delta">&rarr; ~3 days</span></span>
+          </div>
+        </div>
+      </figure>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- 8. Built from inside — Paper -->
+<section class="dw-built" id="built-from">
+  <div class="cos-container">
+    <div class="dw-built__intro">
+      <h2 class="dw-built__heading">Built in real construction operations.</h2>
+      <p class="dw-built__body">Construction OS grew out of hands-on construction management&mdash;learning where the work breaks down, then building and applying systems to fix it.</p>
+    </div>
+    <div class="dw-stats">
+      <div class="dw-stat">
+        <p class="dw-stat-before">4&ndash;8 hrs &rarr;</p>
+        <p class="dw-stat-figure dw-stat-figure--red">~30 min</p>
+        <hr class="dw-stat-rule">
+        <p class="dw-stat-caption">Initial contract package preparation</p>
+      </div>
+      <div class="dw-stat">
+        <p class="dw-stat-before">~10 days &rarr;</p>
+        <p class="dw-stat-figure dw-stat-figure--red">~3 days</p>
+        <hr class="dw-stat-rule">
+        <p class="dw-stat-caption">Change-order turnaround</p>
+      </div>
+      <div class="dw-stat">
+        <p class="dw-stat-before">&nbsp;</p>
+        <p class="dw-stat-figure">150+</p>
+        <hr class="dw-stat-rule">
+        <p class="dw-stat-caption">Standard construction document types</p>
+      </div>
+    </div>
+    <div class="dw-built__foot">
+      <span class="dw-built__case">CASE-001 &sol; Residential GC &sol; Boston</span>
+      <a class="dw-built__case-link" href="#">Read the case study &rarr;</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- 9. Configured around your company — Bond -->
+<section class="dw-configured" id="configured-around">
+  <div class="cos-container">
+    <div class="dw-configured__grid">
+      <h2 class="dw-configured__heading">Configured around your company</h2>
+      <div class="dw-configured__body">
+        <p class="dw-configured__p"><strong>You don&rsquo;t need to throw out the way your company works to use Document Workbench.</strong> We configure it around the standards, documents, terminology, and operating practices you already rely on&mdash;then identify where the work can become faster, more consistent, and easier to repeat.</p>
+        <p class="dw-configured__p">Your company&rsquo;s way of working becomes the starting point, not something the software asks you to replace.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- 10. Closing CTA — Ink -->
+<section class="cos-close" id="cta">
+  <div class="cos-container">
+    <div class="cos-close__grid">
+
+      <!-- Left column -->
+      <div class="cos-close__col">
+        <div class="cos-close__lockup">
+          <svg viewBox="0 0 100 100" width="24" height="24" aria-hidden="true">
+            <polyline points="16,54 16,16 54,16" fill="none" stroke="#ffffff" stroke-width="10"/>
+            <polyline points="84,46 84,84 46,84" fill="none" stroke="#ffffff" stroke-width="10"/>
+            <rect x="34" y="34" width="32" height="32" fill="#C43230"/>
+          </svg>
+          <span class="cos-close__lockup-name">Document Workbench</span>
+          <span class="cos-close__lockup-rule"></span>
+        </div>
+        <h2 class="cos-close__headline">Give your PMs time back.</h2>
+        <p class="cos-close__subhead">See how Document Workbench can reduce the time your team spends rebuilding the same paperwork and turn project information into company-standard documents without starting from scratch.</p>
+        <p class="cos-close__subhead cos-close__subhead--sm">Configured around your templates, scope language, and operating practices. Built from real construction operations.</p>
+        <div class="cos-close__cta">
+          <a class="cos-close__btn-primary" href="https://cal.com/justinyurasits">Book a demo</a>
+          <a class="cos-close__btn-link" href="https://draftconstructionchangeorder.com">See it work &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Right column — the rest of the system -->
+      <div class="cos-close__col">
+        <p class="cos-close__index-label">The rest of the system</p>
+        <div class="cos-close__index-rule"></div>
+
+        <!-- 02 Construction Intelligence -->
+        <div class="cos-close__index-row">
+          <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true">
+            <line x1="6" y1="50" x2="96" y2="50" stroke="#B8B9B5" stroke-width="5"/>
+            <polyline points="8,20 40,20 54,42 94,42" fill="none" stroke="#ffffff" stroke-width="12"/>
+            <polyline points="8,80 40,80 54,58 94,58" fill="none" stroke="#ffffff" stroke-width="12"/>
+          </svg>
+          <span class="cos-close__index-n">02</span>
+          <span class="cos-close__index-name">Construction Intelligence</span>
+        </div>
+
+        <!-- 03 Project Intelligence -->
+        <div class="cos-close__index-row">
+          <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true">
+            <rect x="6" y="18" width="88" height="64" fill="none" stroke="#B8B9B5" stroke-width="5"/>
+            <line x1="18" y1="70" x2="82" y2="70" stroke="#ffffff" stroke-width="12"/>
+            <line x1="30" y1="70" x2="30" y2="56" stroke="#ffffff" stroke-width="12"/>
+            <line x1="50" y1="70" x2="50" y2="44" stroke="#ffffff" stroke-width="12"/>
+            <line x1="70" y1="70" x2="70" y2="32" stroke="#ffffff" stroke-width="12"/>
+          </svg>
+          <span class="cos-close__index-n">03</span>
+          <span class="cos-close__index-name">Project Intelligence</span>
+          <span class="cos-close__index-tag">In development</span>
+        </div>
+
+        <!-- Operations Automation -->
+        <div class="cos-close__index-row">
+          <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true">
+            <line x1="14" y1="28" x2="34" y2="28" stroke="#ffffff" stroke-width="12"/>
+            <line x1="42" y1="28" x2="62" y2="28" stroke="#ffffff" stroke-width="12"/>
+            <line x1="70" y1="28" x2="90" y2="28" stroke="#ffffff" stroke-width="12"/>
+            <line x1="24" y1="34" x2="24" y2="66" stroke="#B8B9B5" stroke-width="5"/>
+            <line x1="52" y1="34" x2="52" y2="66" stroke="#B8B9B5" stroke-width="5"/>
+            <line x1="80" y1="34" x2="80" y2="66" stroke="#B8B9B5" stroke-width="5"/>
+            <line x1="14" y1="74" x2="90" y2="74" stroke="#ffffff" stroke-width="12"/>
+          </svg>
+          <span class="cos-close__index-n">&mdash;&mdash;</span>
+          <span class="cos-close__index-name">Operations Automation</span>
+          <span class="cos-close__index-ext">Extension layer</span>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- 11. Footer -->
+<footer class="cos-footer">
+  <div class="cos-footer__inner cos-container">
+    <div class="cos-footer__cols">
+
+      <div class="cos-footer__brand">
+        <a class="cos-footer__lockup" href="/">
+          <svg viewBox="0 0 100 100" width="22" height="22" aria-hidden="true" style="color:#111111;flex:none">
+            <polyline points="14,56 14,14 56,14" fill="none" stroke="currentColor" stroke-width="13"/>
+            <polyline points="86,44 86,86 44,86" fill="none" stroke="currentColor" stroke-width="13"/>
+            <rect x="32" y="32" width="36" height="36" fill="#C43230"/>
+          </svg>
+          Construction OS
+        </a>
+        <p class="cos-footer__tagline">Three products. One construction operating system.</p>
+        <a class="cos-footer__cta-link" href="https://cal.com/justinyurasits">Book a demo</a>
+      </div>
+
+      <div class="cos-footer__col">
+        <span class="cos-footer__col-head">Products</span>
+        <a class="cos-footer__col-item" href="/products/document-workbench.html">
+          <span class="cos-footer__col-n">01</span>Document Workbench
+        </a>
+        <a class="cos-footer__col-item" href="/">
+          <span class="cos-footer__col-n">02</span>Construction Intelligence
+        </a>
+        <a class="cos-footer__col-item" href="/">
+          <span class="cos-footer__col-n">03</span>Project Intelligence
+        </a>
+        <a class="cos-footer__col-item" href="/">
+          <span class="cos-footer__col-dash">——</span>Operations Automation
+        </a>
+      </div>
+
+      <div class="cos-footer__col">
+        <span class="cos-footer__col-head">Company</span>
+        <a class="cos-footer__col-item" href="/work.html">Work</a>
+        <a class="cos-footer__col-item" href="/engagements.html">Engagements</a>
+        <a class="cos-footer__col-item" href="/about.html">About</a>
+      </div>
+
+      <div class="cos-footer__col">
+        <span class="cos-footer__col-head">Talk to us</span>
+        <a class="cos-footer__contact-email" href="mailto:justin@justinyurasits.com">justin@justinyurasits.com</a>
+        <a class="cos-footer__col-item" href="tel:8572481365">857-248-1365</a>
+        <a class="cos-footer__col-item" href="https://linkedin.com/in/justinyurasits">LinkedIn</a>
+      </div>
+
+    </div>
+
+    <div class="cos-titleblock">
+      <div class="cos-titleblock__cell"><span class="cos-titleblock__label">Sheet</span><span class="cos-titleblock__value">CONSTRUCTION OS</span></div>
+      <div class="cos-titleblock__cell"><span class="cos-titleblock__label">Page</span><span class="cos-titleblock__value">DOCUMENT WORKBENCH</span></div>
+      <div class="cos-titleblock__cell"><span class="cos-titleblock__label">Issued</span><span class="cos-titleblock__value">2026-09-05</span></div>
+      <div class="cos-titleblock__cell"><span class="cos-titleblock__label">Rev</span><span class="cos-titleblock__value">01</span></div>
+      <div class="cos-titleblock__cell"><span class="cos-titleblock__label">Status</span><span class="cos-titleblock__value">ISSUED FOR REVIEW</span></div>
+    </div>
+    <div class="cos-footer__legal">
+      <span>&copy; 2026 Justin Yurasits. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+(function () {
+  var header = document.getElementById('cos-header');
+  var toggle = header ? header.querySelector('.cos-header__toggle') : null;
+  var nav = document.getElementById('cos-nav');
+  if (toggle && nav) {
+    toggle.addEventListener('click', function () {
+      var open = nav.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    });
+    document.addEventListener('click', function (e) {
+      if (!toggle.contains(e.target) && !nav.contains(e.target)) {
+        nav.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-label', 'Open menu');
+      }
+    });
+  }
+  if (header) {
+    window.addEventListener('scroll', function () {
+      if (window.scrollY > 40) { header.classList.add('cos-header--compact'); }
+      else { header.classList.remove('cos-header--compact'); }
+    }, { passive: true });
+  }
+})();
+</script>
+
+</body>
+</html>

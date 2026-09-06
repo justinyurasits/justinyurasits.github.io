@@ -613,12 +613,9 @@
   border-top: var(--w-cut) solid var(--rule-cut);
 }
 .prod-name {
-  font-family: var(--font-display);
-  font-size: var(--fs-head);
-  font-weight: 600;
-  line-height: 1.08;
-  letter-spacing: var(--tr-head);
-  margin: var(--s-3) 0 0;
+  font: 600 clamp(28px, 3.6vw, 38px)/1.05 var(--font-display), sans-serif;
+  letter-spacing: -0.032em;
+  margin: 0;
 }
 .prod-in-dev {
   display: inline-flex;
@@ -806,6 +803,8 @@
 /* Construction Intelligence proof */
 .ci-name-row { display: flex; align-items: center; gap: 14px; }
 .ci-name-row svg { flex: none; }
+.ci-card-cap { display: flex; justify-content: space-between; align-items: center; gap: 12px; min-height: 26px; font: 400 11px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace; letter-spacing: 0.04em; color: var(--c-graphite); text-transform: uppercase; white-space: nowrap; margin-bottom: 12px; }
+.ci-card-cap span + span { color: var(--c-steel); }
 .ci-proof {
   border: 1px solid var(--c-ink);
   background: var(--c-white);
@@ -1462,11 +1461,8 @@
         <span class="cos-index__nrow">
           <span class="cos-index__n">02</span>
           <svg viewBox="0 0 100 100" width="14" height="14" aria-hidden="true">
-            <circle cx="50" cy="50" r="14" fill="none" stroke="currentColor" stroke-width="9"/>
-            <line x1="50" y1="14" x2="50" y2="36" stroke="var(--c-steel)" stroke-width="4"/>
-            <line x1="50" y1="64" x2="50" y2="86" stroke="var(--c-steel)" stroke-width="4"/>
-            <line x1="14" y1="50" x2="36" y2="50" stroke="var(--c-steel)" stroke-width="4"/>
-            <line x1="64" y1="50" x2="86" y2="50" stroke="var(--c-steel)" stroke-width="4"/>
+            <polyline points="8,20 40,20 54,42 94,42" fill="none" stroke="currentColor" stroke-width="11"/>
+            <polyline points="8,80 40,80 54,58 94,58" fill="none" stroke="currentColor" stroke-width="11"/>
           </svg>
         </span>
         <span class="cos-index__layer">Knowledge</span>
@@ -1613,14 +1609,12 @@
     <div class="prod-split prod-split--ci">
       <!-- Intro -->
       <div class="prod-intro">
-        <p class="prod-index">02</p>
+        <p class="cos-product__tag"><span>02</span><i></i>Knowledge</p>
         <div class="ci-name-row">
           <svg viewBox="0 0 100 100" width="27" height="27" aria-hidden="true" style="flex:none">
-            <circle cx="50" cy="50" r="14" fill="none" stroke="currentColor" stroke-width="9"/>
-            <line x1="50" y1="14" x2="50" y2="36" stroke="var(--c-steel)" stroke-width="4"/>
-            <line x1="50" y1="64" x2="50" y2="86" stroke="var(--c-steel)" stroke-width="4"/>
-            <line x1="14" y1="50" x2="36" y2="50" stroke="var(--c-steel)" stroke-width="4"/>
-            <line x1="64" y1="50" x2="86" y2="50" stroke="var(--c-steel)" stroke-width="4"/>
+            <line x1="6" y1="50" x2="96" y2="50" stroke="#476776" stroke-width="4"/>
+            <polyline points="8,20 40,20 54,42 94,42" fill="none" stroke="currentColor" stroke-width="9"/>
+            <polyline points="8,80 40,80 54,58 94,58" fill="none" stroke="currentColor" stroke-width="9"/>
           </svg>
           <h3 class="prod-name">Construction Intelligence</h3>
         </div>
@@ -1646,7 +1640,12 @@
         </div>
       </div>
       <!-- Proof -->
-      <div class="ci-proof" aria-hidden="true">
+      <div>
+        <div class="ci-card-cap">
+          <span>Construction Intelligence &mdash; Answer</span>
+          <span>4 sources cited</span>
+        </div>
+        <div class="ci-proof" aria-hidden="true">
         <div class="ci-q-band">
           <p class="ci-q-tag">Question</p>
           <p class="ci-question">How should we price an owner-requested millwork change on a cost-plus project?</p>
@@ -1684,6 +1683,7 @@
         <div class="ci-caveat">
           <span class="ci-caveat-label">What changes the answer</span>
           <span class="ci-caveat-text">Subcontracted vs. self-performed millwork; whether the project has a GMP cap.</span>
+        </div>
         </div>
       </div>
     </div>

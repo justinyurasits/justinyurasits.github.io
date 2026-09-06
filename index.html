@@ -616,6 +616,7 @@
 .prod-name {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: .4em;
   font: 600 clamp(22px, 7.2cqi, 38px)/1.05 var(--font-display), sans-serif;
   letter-spacing: -.032em;
@@ -624,15 +625,15 @@
   margin: 0;
 }
 .prod-name svg { width: .72em; height: .72em; flex: none; }
-.prod-in-dev {
-  display: inline-flex;
-  align-items: center;
-  font: 600 11px/1 var(--font-display), sans-serif;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--c-steel);
-  padding: 4px 8px;
+.cos-tag--dev {
   border: 1px solid var(--c-steel);
+  color: var(--c-steel);
+  background: none;
+  font: 600 11px/1 var(--font-display), sans-serif;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  white-space: nowrap;
 }
 .prod-promise {
   font-family: var(--font-display);
@@ -940,12 +941,29 @@
 .pi-name-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
 .pi-name-row svg { flex: none; }
 .pi-proof {
-  border: 2px solid var(--c-ink);
+  border: 1px solid var(--c-ink);
   background: var(--c-white);
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   overflow: hidden;
+}
+.cos-attn__row {
+  display: grid;
+  grid-template-columns: 28% 42% 52px auto;
+  border-bottom: 1px solid var(--c-line);
+}
+.cos-attn__row > * { padding: 14px 14px 16px; }
+.cos-attn__row > *:first-child { padding-left: 24px; }
+.cos-attn__row > *:last-child { padding-right: 24px; }
+.cos-attn .cos-attn__row:last-child { border-bottom: 1px solid var(--c-ink); }
+.cos-attn__hdr > * {
+  font: 600 10px/1 var(--font-display), sans-serif;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--c-graphite);
+  padding-top: 0;
+  padding-bottom: 8px;
 }
 .pi-hdr-strip {
   display: flex;
@@ -1045,7 +1063,7 @@
 .pi-next div { display: flex; gap: 28px; flex-wrap: wrap; }
 .pi-next a { display: flex; align-items: center; gap: 10px; font: 600 15px/1 var(--font-display), sans-serif; letter-spacing: -.015em; color: var(--c-ink); text-decoration: none; }
 .pi-next a i { font: 500 12px/1 var(--font-display), sans-serif; font-style: normal; color: var(--c-steel); }
-.pi-next a svg { flex: none; }
+.pi-next a svg { width: .72em; height: .72em; flex: none; }
 .pi-next a:hover { color: var(--c-steel); }
 
 /* Operations Automation */
@@ -1713,19 +1731,17 @@
       <!-- Intro -->
       <div class="prod-intro">
         <p class="prod-index">03</p>
-        <div class="pi-name-row">
-          <h3 class="prod-name">
-            <svg viewBox="0 0 100 100" aria-hidden="true">
-              <rect x="6" y="18" width="88" height="64" fill="none" stroke="var(--c-steel)" stroke-width="4"/>
-              <line x1="18" y1="70" x2="82" y2="70" stroke="currentColor" stroke-width="9"/>
-              <line x1="30" y1="70" x2="30" y2="56" stroke="currentColor" stroke-width="9"/>
-              <line x1="50" y1="70" x2="50" y2="44" stroke="currentColor" stroke-width="9"/>
-              <line x1="70" y1="70" x2="70" y2="32" stroke="var(--c-revision)" stroke-width="9"/>
-            </svg>
-            Project Intelligence
-          </h3>
-          <span class="prod-in-dev">In development</span>
-        </div>
+        <h3 class="prod-name">
+          <svg viewBox="0 0 100 100" aria-hidden="true">
+            <rect x="6" y="18" width="88" height="64" fill="none" stroke="#476776" stroke-width="4"/>
+            <line x1="18" y1="70" x2="82" y2="70" stroke="currentColor" stroke-width="9"/>
+            <line x1="30" y1="70" x2="30" y2="56" stroke="currentColor" stroke-width="9"/>
+            <line x1="50" y1="70" x2="50" y2="44" stroke="currentColor" stroke-width="9"/>
+            <line x1="70" y1="70" x2="70" y2="32" stroke="currentColor" stroke-width="9"/>
+          </svg>
+          Project Intelligence
+          <span class="cos-tag--dev">In development</span>
+        </h3>
         <p class="prod-promise">Know what needs attention.</p>
         <p class="prod-body">Surface the open decisions, aging changes, missing approvals, unresolved RFIs, and schedule issues that need attention across active projects.</p>
         <p class="prod-cta">
@@ -1747,59 +1763,56 @@
         </div>
       </div>
       <!-- Proof -->
-      <div class="pi-proof" aria-hidden="true">
-        <div class="pi-hdr-strip">
-          <span class="pi-hdr-label">Project Attention</span>
-          <span class="pi-hdr-meta">Example View</span>
+      <div>
+        <div class="ci-card-cap">
+          <span>Project attention</span>
+          <span>Example view</span>
         </div>
-        <div class="pi-body">
-          <p class="pi-summary">5 items need attention across 4 active projects</p>
-          <table class="pi-table">
-            <thead>
-              <tr>
-                <th class="pi-col-proj">Project</th>
-                <th class="pi-col-desc">Needs attention</th>
-                <th class="pi-col-age">Age</th>
-                <th class="pi-col-status">Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="pi-row--overdue">
-                <td class="pi-col-proj"><span class="pi-proj-name">Residential Renovation</span><span class="pi-proj-owner">PM</span></td>
-                <td class="pi-col-desc"><span class="pi-need">Owner approval &mdash; millwork change</span></td>
-                <td class="pi-col-age"><span class="pi-age">12d</span></td>
-                <td class="pi-col-status"><span class="pi-status">Overdue</span></td>
-              </tr>
-              <tr class="pi-row--blocked">
-                <td class="pi-col-proj"><span class="pi-proj-name">Cambridge Renovation</span><span class="pi-proj-owner">Ops</span></td>
-                <td class="pi-col-desc"><span class="pi-need">Subcontract agreement</span></td>
-                <td class="pi-col-age"><span class="pi-age">6d</span></td>
-                <td class="pi-col-status"><span class="pi-status">Blocked</span></td>
-              </tr>
-              <tr>
-                <td class="pi-col-proj"><span class="pi-proj-name">High-Rise Residence</span><span class="pi-proj-owner">Architect</span></td>
-                <td class="pi-col-desc"><span class="pi-need">RFI 027 &mdash; ceiling coordination</span></td>
-                <td class="pi-col-age"><span class="pi-age">8d</span></td>
-                <td class="pi-col-status"><span class="pi-status">Waiting</span></td>
-              </tr>
-              <tr>
-                <td class="pi-col-proj"><span class="pi-proj-name">Back Bay Residence</span><span class="pi-proj-owner">PM</span></td>
-                <td class="pi-col-desc"><span class="pi-need">Client finish selection</span></td>
-                <td class="pi-col-age"><span class="pi-age">5d</span></td>
-                <td class="pi-col-status"><span class="pi-status">Due soon</span></td>
-              </tr>
-              <tr>
-                <td class="pi-col-proj"><span class="pi-proj-name">Townhouse Renovation</span><span class="pi-proj-owner">Estimator</span></td>
-                <td class="pi-col-desc"><span class="pi-need">Change pricing not issued</span></td>
-                <td class="pi-col-age"><span class="pi-age">4d</span></td>
-                <td class="pi-col-status"><span class="pi-status">Open</span></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="pi-footer">
-          <span class="pi-footer-label">Manage by exception</span>
-          <span class="pi-footer-val">Nothing running to plan needs your attention.</span>
+        <div class="pi-proof" aria-hidden="true">
+          <div class="pi-body">
+            <p class="pi-summary">5 items need attention across 4 active projects</p>
+          </div>
+          <div class="cos-attn">
+            <div class="cos-attn__row cos-attn__hdr">
+              <div>Project</div>
+              <div>Needs attention</div>
+              <div>Age</div>
+              <div>Status</div>
+            </div>
+            <div class="cos-attn__row pi-row--overdue">
+              <div><span class="pi-proj-name">Residential Renovation</span><span class="pi-proj-owner">PM</span></div>
+              <div><span class="pi-need">Owner approval &mdash; millwork change</span></div>
+              <div><span class="pi-age">12d</span></div>
+              <div><span class="pi-status">Overdue</span></div>
+            </div>
+            <div class="cos-attn__row pi-row--blocked">
+              <div><span class="pi-proj-name">Cambridge Renovation</span><span class="pi-proj-owner">Ops</span></div>
+              <div><span class="pi-need">Subcontract agreement</span></div>
+              <div><span class="pi-age">6d</span></div>
+              <div><span class="pi-status">Blocked</span></div>
+            </div>
+            <div class="cos-attn__row">
+              <div><span class="pi-proj-name">High-Rise Residence</span><span class="pi-proj-owner">Architect</span></div>
+              <div><span class="pi-need">RFI 027 &mdash; ceiling coordination</span></div>
+              <div><span class="pi-age">8d</span></div>
+              <div><span class="pi-status">Waiting</span></div>
+            </div>
+            <div class="cos-attn__row">
+              <div><span class="pi-proj-name">Back Bay Residence</span><span class="pi-proj-owner">PM</span></div>
+              <div><span class="pi-need">Client finish selection</span></div>
+              <div><span class="pi-age">5d</span></div>
+              <div><span class="pi-status">Due soon</span></div>
+            </div>
+            <div class="cos-attn__row">
+              <div><span class="pi-proj-name">Townhouse Renovation</span><span class="pi-proj-owner">Estimator</span></div>
+              <div><span class="pi-need">Change pricing not issued</span></div>
+              <div><span class="pi-age">4d</span></div>
+              <div><span class="pi-status">Open</span></div>
+            </div>
+          </div>
+          <div class="pi-footer">
+            <span class="pi-footer-val">Nothing running to plan needs your attention.</span>
+          </div>
         </div>
       </div>
     </div>
@@ -1807,7 +1820,7 @@
       <span>Next</span>
       <div>
         <a href="#ops">
-          <svg viewBox="0 0 100 100" width="14" height="14" aria-hidden="true">
+          <svg viewBox="0 0 100 100" aria-hidden="true">
             <line x1="14" y1="28" x2="34" y2="28" stroke="currentColor" stroke-width="11"/>
             <line x1="42" y1="28" x2="62" y2="28" stroke="currentColor" stroke-width="11"/>
             <line x1="70" y1="28" x2="90" y2="28" stroke="currentColor" stroke-width="11"/>

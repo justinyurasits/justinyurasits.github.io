@@ -1205,6 +1205,31 @@
 }
 .ops-foot a:hover { color: var(--c-steel); border-bottom-color: var(--c-steel); }
 
+/* Closing CTA */
+.cos-close { background: #111111; padding: 88px 40px 80px; }
+.cos-close__grid {
+  max-width: 1440px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 56px; align-items: start;
+}
+.cos-close__col { container-type: inline-size; display: flex; flex-direction: column; gap: 28px; min-width: 0; }
+.cos-close__lockup { display: flex; align-items: center; gap: 10px; min-height: 26px; }
+.cos-close__lockup-name { font: 600 14px/1 var(--font-display), sans-serif; letter-spacing: .14em; text-transform: uppercase; color: #ffffff; white-space: nowrap; }
+.cos-close__lockup-rule { flex: 1; height: 1px; background: #5F6466; }
+.cos-close__headline { font: 600 clamp(34px, 12cqi, 76px)/0.98 var(--font-display), sans-serif; letter-spacing: -.042em; color: #ffffff; text-wrap: balance; margin: 0; }
+.cos-close__subhead { font: 400 19px/1.55 var(--font-display), sans-serif; color: #B8B9B5; max-width: 44ch; margin: 0; }
+.cos-close__cta { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+.cos-close__btn-primary { display: inline-flex; align-items: center; min-height: 48px; padding: 15px 26px; font: 600 15px/1 var(--font-display), sans-serif; letter-spacing: -.01em; text-decoration: none; background: #ffffff; color: #111111; }
+.cos-close__btn-link { font: 600 15px/1 var(--font-display), sans-serif; letter-spacing: -.01em; color: #ffffff; text-decoration: none; border-bottom: 2px solid #ffffff; padding-bottom: 3px; }
+.cos-close__index-label { font: 500 12px/1 var(--font-display), sans-serif; letter-spacing: .12em; text-transform: uppercase; color: #B8B9B5; margin: 0; }
+.cos-close__index-rule { height: 1px; background: #5F6466; }
+.cos-close__index-row { display: flex; align-items: center; gap: 14px; padding: 18px 0; border-bottom: 1px solid #5F6466; }
+.cos-close__index-row:last-child { border-bottom: 0; }
+.cos-close__index-n { font: 400 12px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace; color: #B8B9B5; flex-shrink: 0; }
+.cos-close__index-name { font: 600 17px/1.2 var(--font-display), sans-serif; letter-spacing: -.015em; color: #ffffff; }
+.cos-close__index-tag { border: 1px solid #5F6466; color: #B8B9B5; font: 600 10px/1 var(--font-display), sans-serif; letter-spacing: .12em; text-transform: uppercase; padding: 3px 6px; white-space: nowrap; }
+.cos-close__index-ext { font: 500 10px/1 var(--font-display), sans-serif; letter-spacing: .12em; text-transform: uppercase; color: #B8B9B5; white-space: nowrap; }
+
 /* Responsive */
 @media (max-width: 1023px) {
   .proof-strip { grid-template-columns: repeat(2, 1fr); }
@@ -1216,6 +1241,7 @@
   .cos-product { grid-template-columns: 1fr; gap: 32px; }
   .prod-section,
   .cos-products { padding: 56px 24px 48px; }
+  .cos-close { padding: 64px 24px 56px; }
   .cos-index a { padding-left: 0; border-left: 0; border-top: 1px solid var(--c-line); }
   .cos-index li:first-child a { border-top: 0; }
   .cos-doc { height: 420px; }
@@ -2016,14 +2042,95 @@
 <hr class="rule rule--cut" style="margin:0">
 
 <!-- CTA -->
-<section class="surface--ink" id="cta" style="padding-block:clamp(80px,10vw,128px)">
-  <div class="wrap">
-    <h2 class="display" style="max-width:14ch">Give your team time back.</h2>
-    <p style="font-family:var(--font-body);font-size:var(--fs-subhead);line-height:var(--lh-subhead);color:var(--fg-muted);margin:var(--s-5) 0 0;max-width:44ch">See what Construction OS could take off your team's plate.</p>
-    <div style="display:flex;align-items:center;gap:var(--s-6);margin-top:var(--s-8);flex-wrap:wrap">
-      <a class="btn" href="https://cal.com/justinyurasits">Book a demo</a>
-      <a style="font-family:var(--font-display);font-size:var(--fs-small);font-weight:500;color:var(--fg);text-decoration:underline;text-decoration-thickness:0.5px;text-underline-offset:3px" href="https://draftconstructionchangeorder.com">See it work &rarr;</a>
+<section class="cos-close" id="cta">
+  <div class="cos-close__grid">
+
+    <!-- Left column -->
+    <div class="cos-close__col">
+
+      <!-- Lockup -->
+      <div class="cos-close__lockup">
+        <svg viewBox="0 0 100 100" width="24" height="24" aria-label="Construction OS">
+          <polyline points="16,54 16,16 54,16" fill="none" stroke="#ffffff" stroke-width="7"/>
+          <polyline points="84,46 84,84 46,84" fill="none" stroke="#ffffff" stroke-width="7"/>
+          <rect x="32" y="32" width="36" height="36" fill="#C43230" stroke="#B8B9B5" stroke-width="4"/>
+        </svg>
+        <span class="cos-close__lockup-name">Construction OS</span>
+        <span class="cos-close__lockup-rule"></span>
+      </div>
+
+      <!-- Headline -->
+      <h2 class="cos-close__headline">Give your team time back.</h2>
+
+      <!-- Subhead -->
+      <p class="cos-close__subhead">See how Construction OS can reduce the paperwork, repeat questions, and status chasing that consume your team&rsquo;s day.</p>
+
+      <!-- CTAs -->
+      <div class="cos-close__cta">
+        <a class="cos-close__btn-primary" href="https://cal.com/justinyurasits">Book a demo</a>
+        <a class="cos-close__btn-link" href="https://draftconstructionchangeorder.com">See it work &rarr;</a>
+      </div>
+
     </div>
+
+    <!-- Right column — product index -->
+    <div class="cos-close__col">
+      <p class="cos-close__index-label">What you get</p>
+      <div class="cos-close__index-rule"></div>
+
+      <!-- 01 Document Workbench -->
+      <div class="cos-close__index-row">
+        <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true">
+          <polyline points="30,14 86,14 86,72" fill="none" stroke="#B8B9B5" stroke-width="5"/>
+          <rect x="14" y="26" width="52" height="60" fill="none" stroke="#ffffff" stroke-width="12"/>
+        </svg>
+        <span class="cos-close__index-n">01</span>
+        <span class="cos-close__index-name">Document Workbench</span>
+      </div>
+
+      <!-- 02 Construction Intelligence -->
+      <div class="cos-close__index-row">
+        <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true">
+          <line x1="6" y1="50" x2="96" y2="50" stroke="#B8B9B5" stroke-width="5"/>
+          <polyline points="8,20 40,20 54,42 94,42" fill="none" stroke="#ffffff" stroke-width="12"/>
+          <polyline points="8,80 40,80 54,58 94,58" fill="none" stroke="#ffffff" stroke-width="12"/>
+        </svg>
+        <span class="cos-close__index-n">02</span>
+        <span class="cos-close__index-name">Construction Intelligence</span>
+      </div>
+
+      <!-- 03 Project Intelligence -->
+      <div class="cos-close__index-row">
+        <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true">
+          <rect x="6" y="18" width="88" height="64" fill="none" stroke="#B8B9B5" stroke-width="5"/>
+          <line x1="18" y1="70" x2="82" y2="70" stroke="#ffffff" stroke-width="12"/>
+          <line x1="30" y1="70" x2="30" y2="56" stroke="#ffffff" stroke-width="12"/>
+          <line x1="50" y1="70" x2="50" y2="44" stroke="#ffffff" stroke-width="12"/>
+          <line x1="70" y1="70" x2="70" y2="32" stroke="#ffffff" stroke-width="12"/>
+        </svg>
+        <span class="cos-close__index-n">03</span>
+        <span class="cos-close__index-name">Project Intelligence</span>
+        <span class="cos-close__index-tag">In development</span>
+      </div>
+
+      <!-- Operations Automation -->
+      <div class="cos-close__index-row">
+        <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true">
+          <line x1="14" y1="28" x2="34" y2="28" stroke="#ffffff" stroke-width="12"/>
+          <line x1="42" y1="28" x2="62" y2="28" stroke="#ffffff" stroke-width="12"/>
+          <line x1="70" y1="28" x2="90" y2="28" stroke="#ffffff" stroke-width="12"/>
+          <line x1="24" y1="34" x2="24" y2="66" stroke="#B8B9B5" stroke-width="5"/>
+          <line x1="52" y1="34" x2="52" y2="66" stroke="#B8B9B5" stroke-width="5"/>
+          <line x1="80" y1="34" x2="80" y2="66" stroke="#B8B9B5" stroke-width="5"/>
+          <line x1="14" y1="74" x2="90" y2="74" stroke="#ffffff" stroke-width="12"/>
+        </svg>
+        <span class="cos-close__index-n">&mdash;&mdash;</span>
+        <span class="cos-close__index-name">Operations Automation</span>
+        <span class="cos-close__index-ext">Extension layer</span>
+      </div>
+
+    </div>
+
   </div>
 </section>
 

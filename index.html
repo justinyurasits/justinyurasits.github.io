@@ -6,7 +6,7 @@
 <title>Construction OS — Give your construction team time back</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,300..600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="brand-kit/tokens.css">
 <link rel="stylesheet" href="brand-kit/brand.css">
 <style>
@@ -48,59 +48,191 @@
   color: var(--fg);
 }
 
-/* Hero — 13-column grid: cols 1–5 type, col 6 gap, cols 7–13 visual */
+/* Hero */
+.hero-section { padding: 64px 0 0; }
 .hero-grid {
   display: grid;
-  grid-template-columns: 5fr 1fr 7fr;
-  align-items: center;
-  margin-top: var(--s-5);
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 56px;
+  align-items: start;
 }
-.hero-visual {
-  grid-column: 3;
-  align-self: stretch;
-  margin-top: 0;
-  overflow: hidden;
-  width: calc(100% + var(--s-5) + max(0px, (100vw - var(--wrap)) / 2) - 32px);
-  margin-right: calc(-1 * (var(--s-5) + max(0px, (100vw - var(--wrap)) / 2) - 32px));
+.hero-col { display: flex; flex-direction: column; gap: 28px; }
+.hero-eyebrow {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 26px;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--c-ink);
+}
+.hero-eyebrow i { flex: 1; height: 1px; background: var(--c-line); font-style: normal; }
+.hero-title {
+  margin: 0;
+  max-width: 22ch;
+  font-family: var(--font-display);
+  font-size: clamp(38px, 5.4vw, 68px);
+  font-weight: 600;
+  line-height: 0.98;
+  letter-spacing: -0.042em;
+  color: var(--c-ink);
+  text-wrap: balance;
+}
+.hero-body {
+  margin: 0;
+  max-width: 46ch;
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--c-graphite);
+}
+.hero-kicker {
+  border-left: 2px solid var(--c-steel);
+  padding-left: 16px;
   display: flex;
   flex-direction: column;
+  gap: 4px;
 }
-.hero-visual img {
-  display: block;
-  width: 100%;
-  flex: 1;
-  min-height: 0;
-  object-fit: contain;
-  object-position: left top;
+.hero-kicker p { margin: 0; font-family: var(--font-display); font-size: 15px; line-height: 1.5; }
+.hero-kicker p:first-child { font-weight: 400; color: var(--c-graphite); }
+.hero-kicker p:last-child { font-weight: 600; letter-spacing: -0.01em; color: var(--c-ink); }
+.hero-cta { display: flex; gap: 16px; flex-wrap: wrap; }
+.hero-btn {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 15px 26px;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  border: 1px solid transparent;
+}
+.hero-btn--primary { background: var(--c-ink); color: var(--c-white); border-color: var(--c-ink); }
+.hero-btn--primary:hover { background: var(--c-steel); border-color: var(--c-steel); color: var(--c-white); }
+.hero-btn--ghost { border-color: var(--c-ink); color: var(--c-ink); background: transparent; }
+.hero-btn--ghost:hover { background: var(--c-ink); color: var(--c-white); }
+.hero-doc-fig { display: flex; flex-direction: column; gap: 12px; }
+.hero-doc-cap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  min-height: 26px;
+  font: 400 11px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace;
+  letter-spacing: 0.04em;
+  color: var(--c-graphite);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.hero-doc-cap span + span { color: var(--c-steel); }
+.hero-doc {
+  position: relative;
+  height: 520px;
+  overflow: hidden;
+  border: 1px solid var(--c-ink);
+  background: var(--c-white);
+}
+.hero-doc__corner { position: absolute; width: 14px; height: 14px; }
+.hero-doc__corner--tr { top: 10px; right: 10px; border-top: 2px solid var(--c-line); border-right: 2px solid var(--c-line); }
+.hero-doc__corner--bl { bottom: 10px; left: 10px; border-bottom: 2px solid var(--c-line); border-left: 2px solid var(--c-line); }
+.hero-doc img { display: block; width: 100%; height: auto; }
+.hero-doc__fade {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 84px;
+  pointer-events: none;
+  background: linear-gradient(to bottom, rgba(255,255,255,0), #ffffff 62%);
+}
+.hero-doc__foot {
+  position: absolute;
+  inset: auto 0 0 0;
+  border-top: 1px solid var(--c-line);
+  background: var(--c-white);
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font: 400 11px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace;
+  color: var(--c-graphite);
+}
+.hero-doc__foot a {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--c-ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--c-ink);
+}
+.hero-doc__foot a:hover { color: var(--c-steel); border-bottom-color: var(--c-steel); }
+.hero-fold {
+  margin: 60px 0 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--c-ink);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+.hero-fold li {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 22px 26px;
+  border-left: 1px solid var(--c-line);
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.015em;
+  color: var(--c-ink);
+}
+.hero-fold li:first-child { border-left: none; padding-left: 0; }
+.hero-fold li span {
+  font: 400 11px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace;
+  letter-spacing: 0;
+  color: var(--c-steel);
+  font-variant-numeric: tabular-nums;
 }
 
 /* Proof band */
 .proof-strip {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: auto auto auto;
 }
 .proof-cell {
   padding: var(--s-7) var(--s-6);
-  display: grid;
-  grid-row: 1 / 4;
-  grid-template-rows: subgrid;
-  align-items: baseline;
+  display: flex;
+  flex-direction: column;
 }
 .proof-cell + .proof-cell {
   border-left: var(--w-dimension) solid var(--rule-dimension);
 }
-.proof-cell__label { margin: 0 0 var(--s-2); }
 .proof-cell__figure {
-  margin: 0;
-  padding-bottom: var(--s-5);
+  margin: 0 0 var(--s-3);
   font-family: var(--font-display);
-  font-size: var(--fs-head);
+  font-size: 17px;
   font-weight: 500;
-  letter-spacing: var(--tr-head);
-  line-height: 1;
-  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.005em;
+  line-height: 1.25;
   color: var(--fg);
+}
+.proof-cell__body {
+  font-family: var(--font-display);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--fg-muted);
+  margin: 0;
+  max-width: 26ch;
 }
 
 /* Spec list — problems */
@@ -127,48 +259,930 @@
 }
 .step-row p { margin: 0; }
 
-/* Config rows — configuration */
-.config-rows { border-bottom: var(--w-dimension) solid var(--rule-dimension); min-width: 0; }
-.config-row {
-  padding-block: var(--s-4);
-  border-top: var(--w-dimension) solid var(--rule-dimension);
+/* Configuration section */
+/* Configuration section — ledger */
+.cfg-section { padding-block: 72px 80px; }
+.cfg-eyebrow {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--c-steel);
+  margin: 0 0 16px;
 }
-.config-row p { margin: 0; }
-
-/* Products section */
-.products-proof {
-  border: var(--w-dimension) solid var(--rule-dimension);
-  min-height: 400px;
+.cfg-head {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--s-6);
+  align-items: end;
+  border-bottom: 2px solid var(--c-ink);
+  padding-bottom: 26px;
+  margin-bottom: 44px;
 }
-.products-doc-list {
-  list-style: none;
-  padding: 0;
+.cfg-title {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 4.4vw, 48px);
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  color: var(--c-ink);
+  text-wrap: balance;
+  max-width: 15ch;
   margin: 0;
+}
+.cfg-deck {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--c-graphite);
+  max-width: 34ch;
+  margin: 0;
+}
+.cfg-cols {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+.cfg-group {
+  display: flex;
+  flex-direction: column;
+  padding: 0 36px;
+  border-left: 1px solid var(--c-line);
+  min-width: 0;
+}
+.cfg-group:first-child { padding-left: 0; border-left: none; }
+.cfg-group:last-child { padding-right: 0; }
+.cfg-group-label {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--c-ink);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 30px;
+}
+.cfg-dot { width: 7px; height: 7px; flex: none; background: var(--c-ink); }
+.cfg-dot--rev { background: var(--c-revision); }
+.cfg-row { display: flex; gap: 16px; }
+.cfg-rule { border: none; height: 1px; background: var(--c-line); margin: 26px 0; }
+.cfg-row-n {
+  flex: none;
+  padding-top: 5px;
+  font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1;
+  color: var(--c-line);
+  font-variant-numeric: tabular-nums;
+}
+.cfg-row-n--rev { color: var(--c-revision); padding-top: 7px; }
+.cfg-row-t {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+  color: var(--c-ink);
+  text-wrap: pretty;
+  margin: 0;
+}
+.cfg-row-t--lead {
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+@media (max-width: 900px) {
+  .cfg-section { padding-block: 56px 64px; }
+  .cfg-group { padding: 32px 0; border-left: none; border-top: 1px solid var(--c-line); }
+  .cfg-group:first-child { padding-top: 0; border-top: none; }
+}
+
+/* Familiar section — four-row ledger */
+.fam-section {
+  padding-block: 72px 76px;
+  --fam-hairline: var(--c-steel);
+  --fam-red: transparent;
+}
+.fam-head {
+  display: grid;
+  gap: 32px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  align-items: end;
+  border-bottom: 2px solid var(--c-ink);
+  padding-bottom: 24px;
+  margin-bottom: 40px;
+}
+.fam-eyebrow {
+  margin: 0 0 14px;
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--c-steel);
+}
+.fam-title {
+  margin: 0;
+  max-width: 18ch;
+  font-family: var(--font-display);
+  font-size: clamp(30px, 4.6vw, 44px);
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  color: var(--c-ink);
+  text-wrap: balance;
+}
+.fam-count {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--c-graphite);
+}
+.fam-pain {
+  display: grid;
+  column-gap: 28px;
+  align-items: start;
+  grid-template-columns: 46px minmax(160px, .7fr) minmax(240px, 1.3fr) minmax(240px, 1.3fr);
+  padding: 30px 0;
+}
+.fam-pain:first-child { padding-top: 0; }
+.fam-pain:last-child { padding-bottom: 0; }
+.fam-rule { border: 0; height: 1px; background: var(--c-line); margin: 0; }
+.fam-n {
+  padding-top: 8px;
+  font: 400 12px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace;
+  color: var(--c-graphite);
+  font-variant-numeric: tabular-nums;
+}
+.fam-cat {
+  margin: 0;
+  padding-top: 4px;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--c-ink);
+}
+.fam-cat svg { flex: none; }
+.fam-stmt {
+  margin: 0;
+  min-width: 0;
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  color: var(--c-ink);
+  text-wrap: pretty;
+}
+.fam-detail {
+  margin: 0;
+  padding-top: 4px;
+  min-width: 0;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--c-graphite);
+  text-wrap: pretty;
+}
+.fam-answer {
+  margin-top: 40px;
+  background: var(--c-ink);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  --fam-hairline: var(--c-line);
+  --fam-red: var(--c-revision);
+}
+.fam-answer p {
+  margin: 0;
+  padding: 26px 24px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border-left: 1px solid var(--c-graphite);
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.015em;
+  color: var(--c-white);
+}
+.fam-answer p:first-child { border-left: 0; }
+.fam-answer svg { flex: none; color: var(--c-white); }
+@media (max-width: 900px) {
+  .fam-section { padding-block: 56px 64px; }
+  .fam-pain { grid-template-columns: 1fr; row-gap: 14px; }
+  .fam-n { padding-top: 0; }
+  .fam-answer p { border-left: 0; border-top: 1px solid var(--c-graphite); }
+  .fam-answer p:first-child { border-top: 0; }
+}
+
+/* Real-world proof */
+.prf-intro { max-width: 52ch; }
+.prf-intro-head {
+  font-family: var(--font-display);
+  font-size: clamp(21px, 2.6vw, 26px);
+  font-weight: 500;
+  line-height: 1.18;
+  letter-spacing: -0.015em;
+  color: var(--fg);
+  margin: 0;
+}
+.prf-intro-copy {
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--fg-muted);
+  margin: var(--s-3) 0 0;
+}
+.prf-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: var(--w-cut) solid var(--rule-cut);
+  margin-top: var(--s-6);
+}
+.prf-stat {
+  padding: var(--s-5) var(--s-6) var(--s-5) 0;
+}
+.prf-stat + .prf-stat {
+  padding-left: var(--s-6);
+  border-left: var(--w-dimension) solid var(--rule-dimension);
+}
+.prf-stat:last-child { padding-right: 0; }
+.prf-before {
+  font-family: var(--font-display);
+  font-size: var(--fs-annotation);
+  letter-spacing: var(--tr-annotation);
+  color: var(--fg-muted);
+  margin: 0 0 var(--s-3);
+  min-height: calc(1em * 1.35);
+}
+.prf-figure {
+  font-family: var(--font-display);
+  font-size: clamp(38px, 4.5vw, 56px);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--fg);
+  margin: 0;
+}
+.prf-figure--red { color: var(--change); }
+.prf-label {
+  font-family: var(--font-display);
+  font-size: var(--fs-annotation);
+  letter-spacing: var(--tr-annotation);
+  color: var(--fg-muted);
+  margin: var(--s-4) 0 0;
+  padding-top: var(--s-3);
   border-top: var(--w-dimension) solid var(--rule-dimension);
 }
-.products-doc-list li {
-  font-size: var(--fs-small);
-  line-height: var(--lh-small);
-  padding: var(--s-3) 0;
+.prf-sublabel {
+  font-family: var(--font-display);
+  font-size: var(--fs-annotation);
+  letter-spacing: var(--tr-annotation);
+  color: var(--fg-muted);
+  margin: var(--s-1) 0 0;
+  opacity: 0.65;
+}
+.prf-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: var(--s-4);
+  padding-top: var(--s-4);
+  border-top: var(--w-dimension) solid var(--rule-dimension);
+}
+@media (max-width: 760px) {
+  .prf-grid { grid-template-columns: 1fr 1fr; }
+  .prf-stat:nth-child(3) {
+    border-left: none;
+    padding-left: 0;
+    padding-top: var(--s-5);
+    border-top: var(--w-dimension) solid var(--rule-dimension);
+    grid-column: 1 / -1;
+  }
+}
+@media (max-width: 480px) {
+  .prf-grid { grid-template-columns: 1fr; }
+  .prf-stat + .prf-stat { border-left: none; padding-left: 0; border-top: var(--w-dimension) solid var(--rule-dimension); }
+  .prf-stat:nth-child(3) { grid-column: auto; }
+  .prf-foot { flex-direction: column; gap: var(--s-3); }
+}
+
+/* Products — shared intro grammar */
+.prod-section { padding-block: clamp(56px, 8vw, 120px); }
+.prod-split {
+  display: grid;
+  align-items: start;
+  margin-top: clamp(40px, 6vw, 80px);
+}
+.prod-split--ci { grid-template-columns: 38fr 56fr; column-gap: 6%; }
+.prod-split--pi { grid-template-columns: 30fr 64fr; column-gap: 6%; }
+
+.prod-index {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  font-family: var(--font-display);
+  font-size: var(--fs-annotation);
+  letter-spacing: var(--tr-annotation);
+  color: var(--fg-muted);
+  margin: 0;
+}
+.prod-index::after {
+  content: '';
+  display: block;
+  flex: 1;
+  border-top: var(--w-cut) solid var(--rule-cut);
+}
+.prod-name {
+  font-family: var(--font-display);
+  font-size: var(--fs-head);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: var(--tr-head);
+  margin: var(--s-3) 0 0;
+}
+.prod-in-dev {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: var(--fs-annotation);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--fg-muted);
+  margin: var(--s-3) 0 0;
+  padding: 4px 10px;
+  border: 1px solid var(--rule-dimension);
+}
+.prod-promise {
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.45;
+  color: var(--fg);
+  margin: var(--s-5) 0 0;
+}
+.prod-body {
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--fg-muted);
+  margin: var(--s-4) 0 0;
+  max-width: 38ch;
+}
+/* Document Workbench section */
+.cos-products { background: var(--c-bond); padding: 64px 0 76px; }
+.cos-products__head { margin-bottom: 30px; }
+.cos-products__head h2 { margin: 0 0 12px; display: flex; align-items: center; gap: 16px; font: 600 clamp(34px, 5vw, 52px)/1 var(--font-display), sans-serif; letter-spacing: -.035em; color: var(--c-ink); }
+.cos-products__head p { margin: 0; font: 500 20px/1.4 var(--font-display), sans-serif; letter-spacing: -.015em; color: var(--c-graphite); }
+.cos-index { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); border-top: 2px solid var(--c-ink); border-bottom: 1px solid var(--c-line); }
+.cos-index a { display: flex; flex-direction: column; gap: 12px; padding: 20px 28px 22px; border-left: 1px solid var(--c-line); text-decoration: none; }
+.cos-index li:first-child a { padding-left: 0; border-left: 0; }
+.cos-index__n { font: 400 12px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace; color: var(--c-ink); }
+.cos-index__layer { font: 600 11px/1 var(--font-display), sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--c-steel); }
+.cos-index__promise { font: 600 20px/1.25 var(--font-display), sans-serif; letter-spacing: -.02em; color: var(--c-ink); }
+.cos-index__product { font: 500 13px/1 var(--font-display), sans-serif; color: var(--c-graphite); }
+.cos-index a:hover .cos-index__promise { color: var(--c-steel); }
+.cos-product { display: grid; gap: 48px; padding-top: 18px; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); align-items: start; }
+.cos-product__col { display: flex; flex-direction: column; gap: 26px; min-width: 0; }
+.cos-product__tag { margin: 0; display: flex; align-items: center; gap: 12px; font: 600 11px/1 var(--font-display), sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--c-steel); }
+.cos-product__tag span { font: 400 12px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace; color: var(--c-graphite); letter-spacing: 0; }
+.cos-product__tag i { width: 40px; height: 1px; background: var(--c-ink); }
+.cos-product__name { margin: 0 0 14px; font: 600 clamp(28px, 3.6vw, 38px)/1.05 var(--font-display), sans-serif; letter-spacing: -.032em; color: var(--c-ink); }
+.cos-product__lead { margin: 0; max-width: 30ch; font: 500 20px/1.4 var(--font-display), sans-serif; letter-spacing: -.015em; color: var(--c-ink); }
+.cos-product__body { margin: 0; max-width: 46ch; font: 400 16px/1.6 var(--font-display), sans-serif; color: var(--c-graphite); text-wrap: pretty; }
+.cos-product__cta { margin: 0; display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+.cos-link { font: 600 15px/1 var(--font-display), sans-serif; letter-spacing: -.01em; color: var(--c-ink); text-decoration: none; border-bottom: 2px solid var(--c-ink); padding-bottom: 2px; }
+.cos-link:hover { color: var(--c-steel); border-bottom-color: var(--c-steel); }
+.cos-proof { margin: 0; border-top: 2px solid var(--c-ink); }
+.cos-proof > div { padding: 22px 0 20px; border-bottom: 1px solid var(--c-line); }
+.cos-proof > div:last-child { border-bottom: 0; padding-bottom: 0; }
+.cos-proof dt { margin: 0 0 6px; font: 600 28px/1.1 var(--font-display), sans-serif; letter-spacing: -.03em; color: var(--c-ink); }
+.cos-proof dt.is-sm { font-size: 20px; letter-spacing: -.02em; line-height: 1.25; }
+.cos-proof dt .is-delta { color: var(--c-revision); }
+.cos-proof dd { margin: 0; font: 400 14px/1.5 var(--font-display), sans-serif; color: var(--c-graphite); }
+.cos-product__name-row { display: flex; align-items: center; gap: 14px; }
+.cos-index__nrow { display: flex; align-items: center; gap: 8px; }
+.cos-index__nrow svg { flex: none; }
+.cos-product__doc { display: flex; flex-direction: column; gap: 12px; }
+.cos-doc-cap { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font: 400 11px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace; letter-spacing: 0.04em; color: var(--c-graphite); text-transform: uppercase; }
+.cos-doc-cap span + span { color: var(--c-steel); }
+.cos-doc { position: relative; height: 560px; overflow: hidden; border: 1px solid var(--c-ink); background: var(--c-white); }
+.cos-doc .dw-artifact { border: 0; position: static; }
+.cos-doc__corner { position: absolute; width: 14px; height: 14px; }
+.cos-doc__corner--tr { top: 10px; right: 10px; border-top: 2px solid var(--c-line); border-right: 2px solid var(--c-line); }
+.cos-doc__corner--bl { bottom: 10px; left: 10px; border-bottom: 2px solid var(--c-line); border-left: 2px solid var(--c-line); }
+.cos-doc__fade { position: absolute; inset: auto 0 0 0; height: 88px; pointer-events: none; background: linear-gradient(to bottom, rgba(255,255,255,0), #ffffff 62%); }
+.cos-doc__foot { position: absolute; inset: auto 0 0 0; border-top: 1px solid var(--c-line); background: var(--c-white); padding: 10px 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px; font: 400 11px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace; color: var(--c-graphite); }
+.cos-doc__foot a { font: 500 12px/1 var(--font-display), sans-serif; letter-spacing: -.01em; color: var(--c-ink); text-decoration: none; border-bottom: 1px solid var(--c-ink); }
+.cos-doc__foot a:hover { color: var(--c-steel); border-bottom-color: var(--c-steel); }
+.cos-products__next { margin-top: 30px; padding-top: 22px; border-top: 1px solid var(--c-line); display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+.cos-products__next > span { font: 500 12px/1 var(--font-display), sans-serif; letter-spacing: .12em; text-transform: uppercase; color: var(--c-graphite); }
+.cos-products__next div { display: flex; gap: 28px; flex-wrap: wrap; }
+.cos-products__next a { display: flex; align-items: baseline; gap: 10px; font: 600 15px/1 var(--font-display), sans-serif; letter-spacing: -.015em; color: var(--c-ink); text-decoration: none; }
+.cos-products__next a i { font: 400 12px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace; font-style: normal; color: var(--c-graphite); }
+.cos-products__next a:hover { color: var(--c-steel); }
+.prod-outcome {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--fg);
+  margin: var(--s-5) 0 0;
+  max-width: 38ch;
+}
+/* Construction Intelligence capability rows */
+.ci-rows { margin-top: var(--s-5); border-top: var(--w-dimension) solid var(--rule-dimension); }
+.ci-row { padding: var(--s-4) 0; border-bottom: var(--w-dimension) solid var(--rule-dimension); }
+.ci-row-title { font-family: var(--font-display); font-size: 13px; font-weight: 500; color: var(--fg); margin: 0 0 var(--s-2); line-height: 1.3; }
+.ci-row-desc { font-family: var(--font-display); font-size: var(--fs-annotation); letter-spacing: var(--tr-annotation); color: var(--fg-muted); margin: 0; line-height: 1.45; }
+
+/* Product CTAs */
+.prod-cta { display: flex; align-items: center; gap: var(--s-5); margin-top: var(--s-5); flex-wrap: wrap; }
+.prod-link { font-family: var(--font-display); font-size: var(--fs-small); font-weight: 500; color: var(--fg-muted); }
+
+/* Document Workbench proof */
+.dw-artifact {
+  position: relative;
+  display: grid;
+  grid-template-columns: 65fr 35fr;
+  border: var(--w-cut) solid var(--c-ink);
+  background: var(--c-white);
+  overflow: hidden;
+}
+.dw-main {
+  background: var(--c-white);
+  padding: 18px 20px 16px;
+  box-sizing: border-box;
+  font-family: var(--font-display);
+  display: flex;
+  flex-direction: column;
+}
+.dw-tb-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: var(--s-1) var(--s-3);
+  padding-bottom: 7px;
+  border-bottom: var(--w-dimension) solid var(--c-line);
+  font-size: 8px;
+  letter-spacing: 0.05em;
+  color: var(--c-graphite);
+}
+.dw-exhibit-name {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.012em;
+  line-height: 1.1;
+  color: var(--c-ink);
+  margin: 10px 0 2px;
+}
+.dw-exhibit-sub {
+  font-size: 9px;
+  font-weight: 400;
+  color: var(--c-graphite);
+  margin: 0;
+}
+.dw-main-rule { border: none; border-top: var(--w-cut) solid var(--c-ink); margin: 9px 0 9px; }
+.dw-art-rule  { border: none; border-top: var(--w-dimension) solid var(--c-line); margin: 7px 0 9px; }
+.dw-meta { font-size: 8.5px; color: var(--c-graphite); margin: 0 0 9px; }
+.dw-art-head { font-size: 10px; font-weight: 600; margin: 9px 0 3px; color: var(--c-ink); }
+.dw-art-body { font-size: 8.5px; line-height: 1.55; color: var(--c-ink); margin: 0 0 5px; }
+.dw-sched { width: 100%; border-collapse: collapse; font-size: 9px; font-variant-numeric: tabular-nums; }
+.dw-sched th { font-weight: 500; font-size: 8.5px; color: var(--c-graphite); text-align: left; padding: 4px 10px 4px 0; border-bottom: var(--w-dimension) solid var(--c-line); }
+.dw-sched td { text-align: left; padding: 3px 10px 3px 0; color: var(--c-ink); vertical-align: top; }
+.dw-sched .u { text-align: right; padding-right: 0; }
+.dw-rail {
+  display: flex;
+  flex-direction: column;
+  border-left: var(--w-cut) solid var(--c-ink);
+}
+.dw-rp {
+  flex: 1;
+  padding: 12px 13px;
+  box-sizing: border-box;
+  overflow: hidden;
+  font-family: var(--font-display);
+  min-height: 110px;
+  background: var(--c-bond);
+}
+.dw-rp + .dw-rp { border-top: var(--w-cut) solid var(--c-ink); }
+.dw-rp-hdr {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--c-ink);
+  padding-bottom: 6px;
+  border-bottom: var(--w-cut) solid var(--c-ink);
+  margin-bottom: 8px;
+}
+.dw-rp-body { font-size: 9px; line-height: 1.5; color: var(--c-graphite); margin: 0 0 4px; }
+.dw-rp-body:last-child { margin-bottom: 0; }
+.dw-rp-row { display: flex; justify-content: space-between; align-items: baseline; gap: 6px; margin-bottom: 4px; font-size: 8.5px; }
+.dw-rp-row:last-child { margin-bottom: 0; }
+.dw-rp-k { font-weight: 500; color: var(--c-ink); white-space: nowrap; flex-shrink: 0; }
+.dw-rp-v { color: var(--c-graphite); text-align: right; }
+
+/* Construction Intelligence proof */
+.ci-proof {
+  border: var(--w-cut) solid var(--c-ink);
+  background: var(--c-white);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.ci-q-band {
+  padding: var(--s-6) var(--s-6) var(--s-5);
+  border-bottom: var(--w-cut) solid var(--c-ink);
+}
+.ci-question {
+  font-family: var(--font-body);
+  font-size: clamp(18px, 2.2vw, 26px);
+  font-weight: 400;
+  line-height: 1.18;
+  color: var(--fg);
+  margin: 0;
+}
+.ci-body {
+  display: grid;
+  grid-template-columns: 60fr 40fr;
+  align-items: start;
+  flex: 1;
+}
+.ci-answer {
+  padding: var(--s-5) var(--s-5) var(--s-5) var(--s-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+}
+.ci-para-lead {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.52;
+  color: var(--fg);
+  margin: 0;
+}
+.ci-para {
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--fg-muted);
+  margin: 0;
+}
+.ci-sources {
+  background: var(--c-bond);
+  border-left: var(--w-dimension) solid var(--rule-dimension);
+  padding: var(--s-4) var(--s-4) var(--s-5);
+  align-self: stretch;
+}
+.ci-src-hdr {
+  font-family: var(--font-display);
+  font-size: var(--fs-annotation);
+  font-weight: 600;
+  letter-spacing: var(--tr-annotation);
+  color: var(--fg);
+  margin: 0 0 var(--s-3);
+  padding-bottom: var(--s-2);
   border-bottom: var(--w-dimension) solid var(--rule-dimension);
 }
-.products-ops-list {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--s-3) var(--s-9);
+.ci-src-entry {
+  padding: var(--s-2) 0;
+  border-top: var(--w-dimension) solid var(--rule-dimension);
 }
-.products-ops-list p { margin: 0; }
+.ci-src-entry:first-child { border-top: none; padding-top: 0; }
+.ci-src-code {
+  font-family: var(--font-display);
+  font-size: var(--fs-annotation);
+  font-weight: 600;
+  color: var(--fg);
+  display: block;
+  line-height: 1.35;
+}
+.ci-src-desc {
+  font-family: var(--font-body);
+  font-size: var(--fs-annotation);
+  color: var(--fg-muted);
+  display: block;
+  line-height: 1.4;
+  margin-top: 1px;
+}
+.ci-caveat {
+  border-top: var(--w-cut) solid var(--c-ink);
+  padding: var(--s-4) var(--s-6);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--s-5);
+  align-items: baseline;
+}
+.ci-caveat-label {
+  font-family: var(--font-display);
+  font-size: var(--fs-annotation);
+  letter-spacing: var(--tr-annotation);
+  color: var(--fg-muted);
+  white-space: nowrap;
+}
+.ci-caveat-text {
+  font-family: var(--font-body);
+  font-size: var(--fs-small);
+  color: var(--fg);
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* Project Intelligence proof */
+.pi-proof {
+  border: var(--w-dimension) solid var(--c-graphite);
+  background: var(--c-white);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.pi-hdr-strip {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0 var(--s-4);
+  padding: var(--s-3) var(--s-5);
+  background: var(--c-bond);
+  border-bottom: var(--w-dimension) solid var(--c-graphite);
+  font-family: var(--font-display);
+  font-size: var(--fs-annotation);
+  letter-spacing: var(--tr-annotation);
+}
+.pi-hdr-label { font-weight: 600; color: var(--fg); }
+.pi-hdr-meta  { color: var(--fg-muted); }
+.pi-body { padding: var(--s-5); display: flex; flex-direction: column; gap: var(--s-4); }
+.pi-summary {
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.35;
+  color: var(--fg);
+  margin: 0;
+  padding-bottom: var(--s-4);
+  border-bottom: var(--w-cut) solid var(--c-ink);
+}
+.pi-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+.pi-table th {
+  font-family: var(--font-display);
+  font-size: var(--fs-annotation);
+  letter-spacing: var(--tr-annotation);
+  font-weight: 400;
+  color: var(--fg-muted);
+  text-align: left;
+  padding: var(--s-2) var(--s-3) var(--s-2) 0;
+  border-bottom: var(--w-dimension) solid var(--rule-dimension);
+}
+.pi-table th:last-child, .pi-table td:last-child { padding-right: 0; }
+.pi-table td {
+  padding: var(--s-2) var(--s-3) var(--s-2) 0;
+  border-bottom: var(--w-dimension) solid var(--rule-dimension);
+  vertical-align: top;
+  line-height: 1.35;
+}
+.pi-table tbody tr:last-child td { border-bottom: var(--w-cut) solid var(--c-ink); }
+.pi-col-proj { width: 20%; }
+.pi-col-desc { width: 57%; }
+.pi-col-as   { width: 23%; }
+.pi-proj-name {
+  font-family: var(--font-display);
+  font-size: var(--fs-annotation);
+  letter-spacing: var(--tr-annotation);
+  color: var(--fg-muted);
+  display: block;
+  line-height: 1.35;
+}
+.pi-proj-owner {
+  font-family: var(--font-display);
+  font-size: var(--fs-annotation);
+  letter-spacing: var(--tr-annotation);
+  color: var(--fg-muted);
+  display: block;
+  line-height: 1.35;
+}
+.pi-need {
+  font-family: var(--font-body);
+  font-size: var(--fs-small);
+  color: var(--fg);
+  line-height: 1.35;
+  display: block;
+  min-width: 0;
+}
+.pi-age {
+  font-family: var(--font-display);
+  font-size: var(--fs-small);
+  font-weight: 600;
+  display: block;
+  font-variant-numeric: tabular-nums;
+  color: var(--fg-muted);
+}
+.pi-status {
+  font-family: var(--font-display);
+  font-size: var(--fs-annotation);
+  display: block;
+  color: var(--fg-muted);
+}
+.pi-row--overdue .pi-age,
+.pi-row--blocked .pi-age  { color: var(--fg); }
+.pi-row--overdue .pi-status,
+.pi-row--blocked .pi-status { color: var(--change); }
+.pi-close {
+  font-family: var(--font-body);
+  font-size: var(--fs-small);
+  color: var(--fg-muted);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Operations Automation */
+/* Operations Automation */
+.ops-block { border-top: var(--w-cut) solid var(--rule-cut); padding: 76px 0 0; }
+.ops-grid {
+  display: grid;
+  gap: 44px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  align-items: start;
+}
+.ops-rail { display: flex; flex-direction: column; gap: 20px; min-width: 0; }
+.ops-eyebrow {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--c-line);
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--c-steel);
+}
+.ops-title {
+  margin: 0;
+  max-width: 14ch;
+  font-family: var(--font-display);
+  font-size: clamp(30px, 4vw, 42px);
+  font-weight: 600;
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+  color: var(--c-ink);
+  text-wrap: balance;
+}
+.ops-lead {
+  margin: 0;
+  max-width: 26ch;
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.015em;
+  color: var(--c-ink);
+}
+.ops-body {
+  margin: 0;
+  max-width: 40ch;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--c-graphite);
+  text-wrap: pretty;
+}
+.ops-figure { margin: 8px 0 0; display: flex; align-items: baseline; gap: 10px; }
+.ops-figure b {
+  font-family: var(--font-display);
+  font-size: 34px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--c-ink);
+}
+.ops-figure span {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--c-graphite);
+}
+.ops-col { display: flex; flex-direction: column; min-width: 0; }
+.ops-col--divided { border-left: 1px solid var(--c-line); padding-left: 44px; }
+.ops-cap { height: 2px; background: var(--c-ink); }
+.ops-mod { display: flex; gap: 16px; padding: 26px 0; }
+.ops-mod:first-of-type { padding-top: 24px; }
+.ops-mod-n {
+  flex: none;
+  padding-top: 6px;
+  font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1;
+  color: var(--c-line);
+  font-variant-numeric: tabular-nums;
+}
+.ops-mod-name {
+  margin: 0 0 8px;
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  color: var(--c-ink);
+}
+.ops-mod-copy {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.55;
+  color: var(--c-graphite);
+  text-wrap: pretty;
+}
+.ops-hr { border: none; height: 1px; background: var(--c-line); margin: 0; }
+.ops-foot {
+  margin-top: 56px;
+  padding: 22px 0 30px;
+  border-top: 1px solid var(--c-line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.ops-foot p { margin: 0; font-family: var(--font-display); font-size: 14px; font-weight: 500; line-height: 1.5; color: var(--c-graphite); }
+.ops-foot a {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  color: var(--c-ink);
+  text-decoration: none;
+  border-bottom: 2px solid var(--c-ink);
+  padding-bottom: 3px;
+}
+.ops-foot a:hover { color: var(--c-steel); border-bottom-color: var(--c-steel); }
 
 /* Responsive */
+@media (max-width: 1023px) {
+  .proof-strip { grid-template-columns: repeat(2, 1fr); }
+  .proof-cell:nth-child(3) { border-left: none; border-top: var(--w-dimension) solid var(--rule-dimension); }
+  .proof-cell:nth-child(4) { border-top: var(--w-dimension) solid var(--rule-dimension); }
+}
 @media (max-width: 900px) {
-  .hero-grid { grid-template-columns: 1fr; }
-  .hero-visual { display: none; }
-  .proof-strip { grid-template-columns: repeat(2, 1fr); grid-template-rows: none; }
-  .proof-cell { grid-row: auto; display: flex; flex-direction: column; gap: var(--s-4); }
-  .proof-cell__figure { padding-bottom: 0; }
-  .proof-cell__label { margin: 0; }
-  .proof-cell:nth-child(3) { border-left: none; }
-  .products-ops-list { grid-template-columns: 1fr; gap: var(--s-3); }
+  .prod-split--ci,
+  .prod-split--pi { grid-template-columns: 1fr; row-gap: var(--s-7); }
+  .cos-products { padding: 56px 0 64px; }
+  .cos-index a { padding-left: 0; border-left: 0; border-top: 1px solid var(--c-line); }
+  .cos-index li:first-child a { border-top: 0; }
+  .cos-doc { height: 420px; }
+  .ci-body { grid-template-columns: 1fr; }
+  .ci-sources { border-left: none; border-top: var(--w-dimension) solid var(--rule-dimension); }
+  .hero-doc { height: 380px; }
+  .hero-fold { grid-template-columns: 1fr; }
+  .hero-fold li { border-left: none; border-top: 1px solid var(--c-line); padding-left: 0; }
+  .hero-fold li:first-child { border-top: none; }
+  .ops-block { padding-top: 56px; }
+  .ops-col--divided { border-left: none; padding-left: 0; border-top: 1px solid var(--c-line); margin-top: 8px; }
+  .ops-col--divided .ops-cap { display: none; }
+}
+@media (max-width: 600px) {
+  .dw-artifact { grid-template-columns: 1fr; }
+  .dw-rail { border-left: none; border-top: var(--w-cut) solid var(--c-ink); }
+  .pi-table, .pi-table thead, .pi-table tbody, .pi-table tr, .pi-table td { display: block; }
+  .pi-table thead { display: none; }
+  .pi-table tr { display: flex; flex-direction: column; gap: 2px; padding: var(--s-3) 0; border-bottom: var(--w-dimension) solid var(--rule-dimension); }
+  .pi-table tbody tr:last-child { border-bottom: var(--w-cut) solid var(--c-ink); }
+  .pi-table td { border-bottom: none; padding: 0; width: auto !important; }
+  .pi-col-as { display: flex; gap: var(--s-3); }
+  .pi-age, .pi-status { display: inline; }
+}
+@media (max-width: 480px) {
+  .proof-strip { grid-template-columns: 1fr; }
+  .proof-cell + .proof-cell { border-left: none; border-top: var(--w-dimension) solid var(--rule-dimension); }
+  .proof-cell:nth-child(3), .proof-cell:nth-child(4) { border-top: var(--w-dimension) solid var(--rule-dimension); }
 }
 @media (max-width: 760px) {
   .nav__toggle { display: block; }
@@ -210,95 +1224,178 @@
 </nav>
 
 <!-- Hero -->
-<section class="surface--white zone" style="padding-bottom:80px;overflow-x:clip">
+<section class="surface--white hero-section" id="hero">
   <div class="wrap">
     <div class="hero-grid">
-      <div>
-        <h1 class="display">Give your construction team time back.</h1>
-        <div class="prose" style="margin-top:var(--s-6);max-width:52ch">
-          <p class="lead">Your best people shouldn't be buried in paperwork, answering the same questions, and chasing project status. Construction OS produces the documentation, holds the answers, and keeps you ahead of what needs attention.</p>
-        </div>
-        <p class="small" style="margin-top:var(--s-5);max-width:52ch;color:var(--fg-muted)">Built around how construction works. Configured around how your company works.</p>
-        <div style="display:flex;gap:var(--s-4);flex-wrap:wrap;margin-top:var(--s-7)">
-          <a class="btn btn--ghost" href="https://draftconstructionchangeorder.com">See it work</a>
-          <a class="btn" href="https://cal.com/justinyurasits">Book a demo</a>
-        </div>
-      </div>
-      <!-- visual region — cols 7–13 -->
-      <div class="hero-visual" aria-hidden="true">
-        <img src="assets/estimate-stack-hero.svg" alt="" width="713" height="585">
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Proof band -->
-<section class="surface--ink">
-  <div class="wrap">
-    <div class="proof-strip">
-      <div class="proof-cell">
-        <p class="proof-cell__figure">174</p>
-        <p class="annotation proof-cell__label">Standard document types</p>
-        <p class="annotation" style="margin:0">Across the full construction lifecycle</p>
-      </div>
-      <div class="proof-cell">
-        <p class="proof-cell__figure" style="font-size:var(--fs-subhead)">
-          <span style="display:block">160+ SOPs</span>
-          <span style="display:block">1,258 pricing items</span>
+      <div class="hero-col">
+        <p class="hero-eyebrow">
+          <svg viewBox="0 0 100 100" width="24" height="24" aria-label="Construction OS">
+            <polyline points="16,54 16,16 54,16" fill="none" stroke="currentColor" stroke-width="7"/>
+            <polyline points="84,46 84,84 46,84" fill="none" stroke="currentColor" stroke-width="7"/>
+            <rect x="32" y="32" width="36" height="36" fill="var(--c-revision)" stroke="var(--c-steel)" stroke-width="4"/>
+          </svg>
+          Construction OS<i></i>
         </p>
-        <p class="annotation proof-cell__label">Construction intelligence base</p>
-        <p class="annotation" style="margin:0">Company standards, procedures and real project data</p>
+        <h1 class="hero-title">Give your construction team time back.</h1>
+        <p class="hero-body">Your best people shouldn&rsquo;t spend their day producing paperwork, answering the same questions, and chasing project status. Construction OS gives them the documents, company knowledge, and project visibility to keep work moving.</p>
+        <div class="hero-kicker">
+          <p>Built around how construction works.</p>
+          <p>Configured around how your company works.</p>
+        </div>
+        <div class="hero-cta">
+          <a class="hero-btn hero-btn--primary" href="https://cal.com/justinyurasits">Book a demo</a>
+          <a class="hero-btn hero-btn--ghost" href="https://draftconstructionchangeorder.com">See it work</a>
+        </div>
       </div>
-      <div class="proof-cell">
-        <p class="proof-cell__figure"><span style="color:var(--fg-muted)">4–8 hrs → </span><span style="color:var(--change)">30 min</span></p>
-        <p class="annotation proof-cell__label">Initial contract package preparation</p>
-        <p class="annotation" style="margin:0"></p>
-      </div>
-      <div class="proof-cell">
-        <p class="proof-cell__figure"><span style="color:var(--fg-muted)">2 days → </span><span style="color:var(--change)">2 hours</span></p>
-        <p class="annotation proof-cell__label">Change order turnaround</p>
-        <p class="annotation" style="margin:0"></p>
-      </div>
+
+      <figure class="hero-doc-fig">
+        <figcaption class="hero-doc-cap">
+          <span>Exhibit A &mdash; Scope of Work</span>
+          <span>CON-15</span>
+        </figcaption>
+        <div class="hero-doc">
+          <span class="hero-doc__corner hero-doc__corner--tr"></span>
+          <span class="hero-doc__corner hero-doc__corner--bl"></span>
+          <img src="assets/estimate-stack-hero.svg" alt="Scope of Work document excerpt" width="713" height="585">
+          <span class="hero-doc__fade"></span>
+          <div class="hero-doc__foot">
+            <span>4 of 11 pages &middot; Generated from project data</span>
+            <a href="#">Open the full exhibit</a>
+          </div>
+        </div>
+      </figure>
     </div>
+
+    <ol class="hero-fold">
+      <li><span>01</span> Document Workbench</li>
+      <li><span>02</span> Construction Intelligence</li>
+      <li><span>03</span> Project Intelligence</li>
+    </ol>
   </div>
 </section>
 
-<hr class="rule rule--cut" style="margin:0">
-
-<!-- Problems -->
-<section class="surface--bond zone">
+<!-- Problems — Does any of this sound familiar? -->
+<section class="surface--bond fam-section" id="familiar">
   <div class="wrap">
-
-    <h2 class="head">Sound familiar?</h2>
-
-    <div style="margin-top:var(--s-7);border-bottom:var(--w-dimension) solid var(--rule-dimension)">
-
-      <div class="spec-row">
-        <p class="small" style="color:var(--fg-muted)">Paperwork</p>
-        <p class="head">Your PMs spend their best hours producing paperwork.</p>
-        <p class="small" style="font-family:var(--font-body);color:var(--fg-muted)">Change orders, RFIs, meeting minutes, reports, submittals, billing documentation, contract packages.</p>
+    <header class="fam-head">
+      <div>
+        <p class="fam-eyebrow">The current state</p>
+        <h2 class="fam-title">Does any of this sound familiar?</h2>
       </div>
+      <p class="fam-count">Four places it shows up</p>
+    </header>
 
-      <div class="spec-row">
-        <p class="small" style="color:var(--fg-muted)">Knowledge</p>
-        <p class="head">Your best people are the only ones who know how the company works.</p>
-        <p class="small" style="font-family:var(--font-body);color:var(--fg-muted)">The senior PM everyone calls. The COO who answers every operational question. The estimator with thirty years of pricing judgment.</p>
-      </div>
+    <div class="fam-rows">
 
-      <div class="spec-row">
-        <p class="small" style="color:var(--fg-muted)">Visibility</p>
-        <p class="head">You're chasing people to figure out what needs attention.</p>
-        <p class="small" style="font-family:var(--font-body);color:var(--fg-muted)">Open changes, aging RFIs, missing approvals, unsigned contracts, schedule issues, unresolved decisions.</p>
-      </div>
+      <article class="fam-pain">
+        <span class="fam-n">01</span>
+        <p class="fam-cat">
+          <svg viewBox="0 0 100 100" width="26" height="26" aria-hidden="true">
+            <polyline points="30,14 86,14 86,72" fill="none" stroke="var(--fam-hairline)" stroke-width="5"/>
+            <rect x="14" y="26" width="52" height="60" fill="none" stroke="currentColor" stroke-width="9"/>
+            <line x1="26" y1="56" x2="54" y2="56" stroke="var(--fam-red)" stroke-width="5"/>
+          </svg>
+          Paperwork
+        </p>
+        <h3 class="fam-stmt">Your PMs spend their best hours producing paperwork.</h3>
+        <p class="fam-detail">Change orders, RFIs, meeting minutes, reports, submittals, billing documentation, contract packages.</p>
+      </article>
+      <hr class="fam-rule">
 
-      <div class="spec-row">
-        <p class="small" style="color:var(--fg-muted)">Operations</p>
-        <p class="head">Too much routine operational work is still being done by hand.</p>
-        <p class="small" style="font-family:var(--font-body);color:var(--fg-muted)">Invoices and receipts get entered manually. Safety documentation gets assembled one form at a time. Field reports, bid comparisons, pay apps, and other repetitive workflows still depend on someone remembering to do them.</p>
-      </div>
+      <article class="fam-pain">
+        <span class="fam-n">02</span>
+        <p class="fam-cat">
+          <svg viewBox="0 0 100 100" width="26" height="26" aria-hidden="true">
+            <circle cx="50" cy="50" r="16" fill="none" stroke="currentColor" stroke-width="9"/>
+            <line x1="50" y1="10" x2="50" y2="34" stroke="var(--fam-hairline)" stroke-width="5"/>
+            <line x1="14" y1="74" x2="34" y2="62" stroke="var(--fam-hairline)" stroke-width="5"/>
+            <line x1="66" y1="62" x2="86" y2="74" stroke="var(--fam-hairline)" stroke-width="5"/>
+            <circle cx="50" cy="10" r="5" fill="var(--fam-red)" stroke="none"/>
+          </svg>
+          Knowledge
+        </p>
+        <h3 class="fam-stmt">Your best people are the only ones who know how the company works.</h3>
+        <p class="fam-detail">The senior PM everyone calls. The COO who answers every operational question. The estimator with thirty years of pricing judgment.</p>
+      </article>
+      <hr class="fam-rule">
+
+      <article class="fam-pain">
+        <span class="fam-n">03</span>
+        <p class="fam-cat">
+          <svg viewBox="0 0 100 100" width="26" height="26" aria-hidden="true">
+            <rect x="22" y="22" width="56" height="56" fill="none" stroke="currentColor" stroke-width="9"/>
+            <line x1="22" y1="10" x2="22" y2="22" stroke="var(--fam-hairline)" stroke-width="5"/>
+            <line x1="78" y1="10" x2="78" y2="22" stroke="var(--fam-hairline)" stroke-width="5"/>
+            <line x1="10" y1="22" x2="22" y2="22" stroke="var(--fam-hairline)" stroke-width="5"/>
+            <line x1="78" y1="22" x2="90" y2="22" stroke="var(--fam-hairline)" stroke-width="5"/>
+            <line x1="50" y1="38" x2="50" y2="62" stroke="var(--fam-red)" stroke-width="5"/>
+            <line x1="38" y1="50" x2="62" y2="50" stroke="var(--fam-red)" stroke-width="5"/>
+          </svg>
+          Visibility
+        </p>
+        <h3 class="fam-stmt">You&rsquo;re chasing people to figure out what needs attention.</h3>
+        <p class="fam-detail">Open changes, aging RFIs, missing approvals, unsigned contracts, schedule issues, unresolved decisions.</p>
+      </article>
+      <hr class="fam-rule">
+
+      <article class="fam-pain">
+        <span class="fam-n">04</span>
+        <p class="fam-cat">
+          <svg viewBox="0 0 100 100" width="26" height="26" aria-hidden="true">
+            <polyline points="20,64 20,36 80,36 80,64" fill="none" stroke="currentColor" stroke-width="9"/>
+            <polyline points="30,76 20,64 10,76" fill="none" stroke="var(--fam-hairline)" stroke-width="5"/>
+            <polyline points="70,24 80,36 90,24" fill="none" stroke="var(--fam-hairline)" stroke-width="5"/>
+            <line x1="32" y1="36" x2="68" y2="36" stroke="var(--fam-red)" stroke-width="5"/>
+          </svg>
+          Operations
+        </p>
+        <h3 class="fam-stmt">Too much routine operational work is still being done by hand.</h3>
+        <p class="fam-detail">Invoices and receipts get entered manually. Safety documentation gets assembled one form at a time. Field reports, bid comparisons, pay apps, and other repetitive workflows still depend on someone remembering to do them.</p>
+      </article>
 
     </div>
 
+    <div class="fam-answer">
+      <p>
+        <svg viewBox="0 0 100 100" width="24" height="24" aria-hidden="true">
+          <polyline points="30,14 86,14 86,72" fill="none" stroke="var(--fam-hairline)" stroke-width="5"/>
+          <rect x="14" y="26" width="52" height="60" fill="none" stroke="currentColor" stroke-width="9"/>
+          <line x1="26" y1="56" x2="54" y2="56" stroke="var(--fam-red)" stroke-width="5"/>
+        </svg>
+        Less paperwork
+      </p>
+      <p>
+        <svg viewBox="0 0 100 100" width="24" height="24" aria-hidden="true">
+          <circle cx="50" cy="50" r="16" fill="none" stroke="currentColor" stroke-width="9"/>
+          <line x1="50" y1="10" x2="50" y2="34" stroke="var(--fam-hairline)" stroke-width="5"/>
+          <line x1="14" y1="74" x2="34" y2="62" stroke="var(--fam-hairline)" stroke-width="5"/>
+          <line x1="66" y1="62" x2="86" y2="74" stroke="var(--fam-hairline)" stroke-width="5"/>
+          <circle cx="50" cy="10" r="5" fill="var(--fam-red)" stroke="none"/>
+        </svg>
+        Fewer bottlenecks
+      </p>
+      <p>
+        <svg viewBox="0 0 100 100" width="24" height="24" aria-hidden="true">
+          <rect x="22" y="22" width="56" height="56" fill="none" stroke="currentColor" stroke-width="9"/>
+          <line x1="22" y1="10" x2="22" y2="22" stroke="var(--fam-hairline)" stroke-width="5"/>
+          <line x1="78" y1="10" x2="78" y2="22" stroke="var(--fam-hairline)" stroke-width="5"/>
+          <line x1="10" y1="22" x2="22" y2="22" stroke="var(--fam-hairline)" stroke-width="5"/>
+          <line x1="78" y1="22" x2="90" y2="22" stroke="var(--fam-hairline)" stroke-width="5"/>
+          <line x1="50" y1="38" x2="50" y2="62" stroke="var(--fam-red)" stroke-width="5"/>
+          <line x1="38" y1="50" x2="62" y2="50" stroke="var(--fam-red)" stroke-width="5"/>
+        </svg>
+        Better visibility
+      </p>
+      <p>
+        <svg viewBox="0 0 100 100" width="24" height="24" aria-hidden="true">
+          <polyline points="20,64 20,36 80,36 80,64" fill="none" stroke="currentColor" stroke-width="9"/>
+          <polyline points="30,76 20,64 10,76" fill="none" stroke="var(--fam-hairline)" stroke-width="5"/>
+          <polyline points="70,24 80,36 90,24" fill="none" stroke="var(--fam-hairline)" stroke-width="5"/>
+          <line x1="32" y1="36" x2="68" y2="36" stroke="var(--fam-red)" stroke-width="5"/>
+        </svg>
+        Less repetitive work
+      </p>
+    </div>
   </div>
 </section>
 
@@ -306,46 +1403,248 @@
 
 <!-- Products -->
 
-<!-- Intro + Document Workbench — white -->
-<section class="surface--white zone">
+<!-- 01 Document Workbench — bond -->
+<section class="surface--bond cos-products" id="products">
   <div class="wrap">
-    <span class="annotation zone__marker">Products</span>
-    <h2 class="head" style="max-width:28ch">Three products. One construction operating system.</h2>
-    <div class="prose" style="margin-top:var(--s-5);max-width:56ch">
-      <p>Document Workbench handles the documents. Construction Intelligence puts company knowledge to work. Project Intelligence helps surface what needs attention across active projects.</p>
-    </div>
+    <header class="cos-products__head">
+      <h2>
+        <svg viewBox="0 0 100 100" width="38" height="38" aria-label="Construction OS">
+          <polyline points="16,54 16,16 54,16" fill="none" stroke="currentColor" stroke-width="8"/>
+          <polyline points="84,46 84,84 46,84" fill="none" stroke="currentColor" stroke-width="8"/>
+          <rect x="32" y="32" width="36" height="36" fill="var(--c-revision)" stroke="var(--c-steel)" stroke-width="4"/>
+        </svg>
+        Construction OS
+      </h2>
+      <p>Three products. One construction operating system.</p>
+    </header>
 
-    <div class="split split--5-7" style="margin-top:var(--s-9);align-items:start">
-      <div>
-        <p class="annotation" style="margin:0">01</p>
-        <h3 class="head" style="margin-top:var(--s-3)">Document Workbench</h3>
-        <div class="prose" style="margin-top:var(--s-5)">
-          <p>Produce the documents that run the job. From first walkthrough through closeout, turn project information into consistent construction documents built around your company's standards, templates, terminology, and project context.</p>
+    <ol class="cos-index">
+      <li><a href="#product-01">
+        <span class="cos-index__nrow">
+          <span class="cos-index__n">01</span>
+          <svg viewBox="0 0 100 100" width="14" height="14" aria-hidden="true">
+            <rect x="14" y="26" width="52" height="60" fill="none" stroke="currentColor" stroke-width="9"/>
+            <polyline points="30,14 86,14 86,72" fill="none" stroke="var(--c-steel)" stroke-width="4"/>
+          </svg>
+        </span>
+        <span class="cos-index__layer">Documents</span>
+        <span class="cos-index__promise">Produce the documents.</span>
+        <span class="cos-index__product">Document Workbench</span>
+      </a></li>
+      <li><a href="#product-02">
+        <span class="cos-index__nrow">
+          <span class="cos-index__n">02</span>
+          <svg viewBox="0 0 100 100" width="14" height="14" aria-hidden="true">
+            <circle cx="50" cy="50" r="14" fill="none" stroke="currentColor" stroke-width="9"/>
+            <line x1="50" y1="14" x2="50" y2="36" stroke="var(--c-steel)" stroke-width="4"/>
+            <line x1="50" y1="64" x2="50" y2="86" stroke="var(--c-steel)" stroke-width="4"/>
+            <line x1="14" y1="50" x2="36" y2="50" stroke="var(--c-steel)" stroke-width="4"/>
+            <line x1="64" y1="50" x2="86" y2="50" stroke="var(--c-steel)" stroke-width="4"/>
+          </svg>
+        </span>
+        <span class="cos-index__layer">Knowledge</span>
+        <span class="cos-index__promise">Get the right answer.</span>
+        <span class="cos-index__product">Construction Intelligence</span>
+      </a></li>
+      <li><a href="#product-03">
+        <span class="cos-index__nrow">
+          <span class="cos-index__n">03</span>
+          <svg viewBox="0 0 100 100" width="14" height="14" aria-hidden="true">
+            <rect x="28" y="28" width="44" height="44" fill="none" stroke="currentColor" stroke-width="9"/>
+            <polyline points="14,30 14,14 30,14" fill="none" stroke="var(--c-steel)" stroke-width="4"/>
+            <polyline points="70,14 86,14 86,30" fill="none" stroke="var(--c-steel)" stroke-width="4"/>
+            <polyline points="14,70 14,86 30,86" fill="none" stroke="var(--c-steel)" stroke-width="4"/>
+            <polyline points="86,70 86,86 70,86" fill="none" stroke="var(--c-steel)" stroke-width="4"/>
+          </svg>
+        </span>
+        <span class="cos-index__layer">Attention</span>
+        <span class="cos-index__promise">Know what needs attention.</span>
+        <span class="cos-index__product">Project Intelligence</span>
+      </a></li>
+    </ol>
+
+    <div class="cos-product" id="product-01">
+      <div class="cos-product__col">
+        <p class="cos-product__tag"><span>01</span><i></i>Documents</p>
+        <div>
+          <div class="cos-product__name-row">
+            <svg viewBox="0 0 100 100" width="27" height="27" aria-hidden="true" style="flex:none">
+              <rect x="14" y="26" width="52" height="60" fill="none" stroke="currentColor" stroke-width="9"/>
+              <polyline points="30,14 86,14 86,72" fill="none" stroke="var(--c-steel)" stroke-width="4"/>
+            </svg>
+            <h3 class="cos-product__name">Document Workbench</h3>
+          </div>
+          <p class="cos-product__lead">Produce the documents that run the job.</p>
         </div>
-        <ul class="products-doc-list" style="margin-top:var(--s-6)">
-          <li>Lead, proposal, estimating and contract documents</li>
-          <li>RFIs, submittals, change orders, meeting and field documentation</li>
-          <li>Billing, project controls, closeout and handoff documents</li>
-        </ul>
+        <p class="cos-product__body">From first walkthrough through closeout, turn project information into company-standard construction documents without starting from scratch every time. Spend less time producing paperwork and more time managing the job.</p>
+        <p class="cos-product__cta">
+          <a class="hero-btn hero-btn--primary" href="#">Explore Document Workbench &rarr;</a>
+          <a class="cos-link" href="https://draftconstructionchangeorder.com">See it work</a>
+        </p>
+        <dl class="cos-proof">
+          <div>
+            <dt>150+ standard document types</dt>
+            <dd>Across the full construction lifecycle</dd>
+          </div>
+          <div>
+            <dt><b>4&ndash;8 hours</b> <b class="is-delta">&rarr; ~30 minutes</b></dt>
+            <dd>Initial contract package preparation</dd>
+          </div>
+          <div>
+            <dt class="is-sm">Built around how your company works</dt>
+            <dd>Your templates, scope language, pricing structure, and terminology</dd>
+          </div>
+        </dl>
       </div>
-      <div class="products-proof" aria-hidden="true"></div>
+
+      <figure class="cos-product__doc">
+        <figcaption class="cos-doc-cap">
+          <span>Exhibit A &mdash; Scope of Work</span>
+          <span>Rev. 2 &middot; Cost-plus w/ GMP</span>
+        </figcaption>
+        <div class="cos-doc">
+          <span class="cos-doc__corner cos-doc__corner--tr"></span>
+          <span class="cos-doc__corner cos-doc__corner--bl"></span>
+          <div class="dw-artifact">
+          <!-- Exhibit A — Scope of Work -->
+          <div class="dw-main">
+            <div class="dw-tb-row">
+              <span>Residential renovation</span>
+              <span>Page 1 of 6</span>
+            </div>
+            <p class="dw-exhibit-name">Exhibit A &mdash; Scope of work</p>
+            <p class="dw-exhibit-sub">Contract dated 14 Aug 2026 &ndash; Rev. 2 &ndash; Cost-plus w/ GMP</p>
+            <hr class="dw-main-rule">
+            <p class="dw-art-head">1.&ensp;General</p>
+            <p class="dw-art-body">1.1&ensp;The Contractor shall furnish all labor, materials, equipment, tools, and supervision necessary to complete the scope described herein, in strict accordance with the Contract Documents and all applicable codes and regulations.</p>
+            <p class="dw-art-body">1.2&ensp;Work shall be executed in a workmanlike manner consistent with industry standards. All materials shall be new unless noted otherwise. Substitutions require prior written approval from the Owner&rsquo;s representative.</p>
+            <p class="dw-art-body">1.3&ensp;The Owner shall have reasonable access to the site during working hours. Contractor shall maintain a clean, safe, and orderly site at all times and shall protect adjacent finishes and occupied areas throughout construction.</p>
+            <hr class="dw-art-rule">
+            <p class="dw-art-head">2.&ensp;Millwork &amp; finish carpentry</p>
+            <table class="dw-sched">
+              <thead><tr><th>Item</th><th>Description</th><th class="u">Unit</th></tr></thead>
+              <tbody>
+                <tr><td>2.1a</td><td>Kitchen casework, stain-grade</td><td class="u">LS</td></tr>
+                <tr><td>2.1b</td><td>Library shelving and panel walls</td><td class="u">LS</td></tr>
+                <tr><td>2.2</td><td>Painted-grade trim, Levels 1&ndash;3</td><td class="u">LF</td></tr>
+                <tr><td>2.3</td><td>Built-in window seats, primary bedroom</td><td class="u">EA</td></tr>
+                <tr><td>2.4</td><td>Crown molding, main level</td><td class="u">LF</td></tr>
+              </tbody>
+            </table>
+            <hr class="dw-art-rule">
+            <p class="dw-art-head">3.&ensp;Doors &amp; hardware</p>
+            <p class="dw-art-body">3.1&ensp;Contractor shall furnish and install all interior doors, frames, and hardware per the door schedule issued by the Architect. All hardware finishes shall be brushed nickel unless otherwise noted on the schedule.</p>
+            <p class="dw-art-body">3.2&ensp;Existing door frames to remain shall be repaired, shimmed, and refinished to match new work. Owner to confirm selections from hardware samples prior to order.</p>
+          </div>
+          <!-- Right rail: three supporting documents -->
+          <div class="dw-rail">
+            <div class="dw-rp">
+              <p class="dw-rp-hdr">Proposal letter</p>
+              <p class="dw-rp-body">Re: Interior renovation &mdash; 214 Commonwealth Ave.</p>
+              <p class="dw-rp-body">We are pleased to submit this proposal for the interior renovation under a cost-plus contract with GMP. Our fee is established at 18% of direct costs, inclusive of all general conditions.</p>
+              <p class="dw-rp-body">This proposal supersedes all prior correspondence. Acceptance constitutes agreement to the terms of the attached contract.</p>
+            </div>
+            <div class="dw-rp">
+              <p class="dw-rp-hdr">Site visit &amp; existing conditions</p>
+              <p class="dw-rp-body">Existing casework: to remain in place. Protect in place &mdash; contractor responsible for any damage during construction.</p>
+              <p class="dw-rp-body">Structural: wall at grid line C confirmed load-bearing. Beam sizing to be determined by structural engineer prior to demo permit.</p>
+              <p class="dw-rp-body">MEP: routing conflicts at ceiling level require coordination with MEP sub prior to rough-in.</p>
+            </div>
+            <div class="dw-rp">
+              <p class="dw-rp-hdr">Preliminary schedule</p>
+              <div class="dw-rp-row"><span class="dw-rp-k">Mobilization</span><span class="dw-rp-v">01 Sep 2026</span></div>
+              <div class="dw-rp-row"><span class="dw-rp-k">Demo &amp; rough framing</span><span class="dw-rp-v">15 Sep</span></div>
+              <div class="dw-rp-row"><span class="dw-rp-k">MEP rough-in</span><span class="dw-rp-v">29 Sep</span></div>
+              <div class="dw-rp-row"><span class="dw-rp-k">Millwork delivery</span><span class="dw-rp-v">20 Oct</span></div>
+              <div class="dw-rp-row"><span class="dw-rp-k">Punch list complete</span><span class="dw-rp-v">07 Nov</span></div>
+              <div class="dw-rp-row"><span class="dw-rp-k">Substantial completion</span><span class="dw-rp-v">14 Nov 2026</span></div>
+            </div>
+          </div>
+        </div>
+          <span class="cos-doc__fade"></span>
+          <div class="cos-doc__foot">
+            <span>Page 1 of 6 &middot; Residential renovation</span>
+            <a href="#">Open the full exhibit</a>
+          </div>
+        </div>
+      </figure>
     </div>
+    <nav class="cos-products__next">
+      <span>Next</span>
+      <div>
+        <a href="#product-02"><i>02</i> Construction Intelligence</a>
+        <a href="#product-03"><i>03</i> Project Intelligence</a>
+      </div>
+    </nav>
   </div>
 </section>
 
 <hr class="rule rule--cut" style="margin:0">
 
 <!-- 02 Construction Intelligence — bond -->
-<section class="surface--bond zone">
+<section class="surface--bond prod-section" id="product-02">
   <div class="wrap">
-    <div class="split split--7-5" style="align-items:start">
-      <div class="products-proof" aria-hidden="true"></div>
-      <div>
-        <p class="annotation" style="margin:0">02</p>
-        <h3 class="head" style="margin-top:var(--s-3)">Construction Intelligence</h3>
-        <div class="prose" style="margin-top:var(--s-5)">
-          <p>Put your company's knowledge to work.</p>
-          <p>Construction know-how combined with your own procedures, pricing judgment, templates, standards, and project history — so your team gets the right answer without tracking down the person who knows.</p>
+    <div class="prod-split prod-split--ci">
+      <!-- Intro -->
+      <div class="prod-intro">
+        <p class="prod-index">02</p>
+        <h3 class="prod-name">Construction<br>Intelligence</h3>
+        <p class="prod-promise">Put your company&rsquo;s knowledge to work.</p>
+        <p class="prod-body">Combine construction know-how with your procedures, pricing rules, standards, templates, and project history&mdash;so your team gets company-specific answers without searching through folders or tracking down the person who knows.</p>
+        <p class="prod-outcome">Put your best people&rsquo;s judgment in reach of the whole team.</p>
+        <div class="prod-cta">
+          <a class="btn btn--ghost" href="#">See it work</a>
+          <a class="prod-link" href="#">Explore Construction Intelligence &rarr;</a>
+        </div>
+        <div class="ci-rows">
+          <div class="ci-row">
+            <p class="ci-row-title">Company-specific answers</p>
+            <p class="ci-row-desc">Grounded in your procedures, pricing rules, standards, templates, and project history</p>
+          </div>
+          <div class="ci-row">
+            <p class="ci-row-title">Source-backed reasoning</p>
+            <p class="ci-row-desc">See the procedure, standard, or reference behind the answer</p>
+          </div>
+          <div class="ci-row">
+            <p class="ci-row-title">Knowledge that doesn&rsquo;t walk out the door</p>
+            <p class="ci-row-desc">Capture how experienced people make decisions and make it reusable</p>
+          </div>
+        </div>
+      </div>
+      <!-- Proof -->
+      <div class="ci-proof" aria-hidden="true">
+        <div class="ci-q-band">
+          <p class="ci-question">How should we price an owner-requested millwork change on a cost-plus project?</p>
+        </div>
+        <div class="ci-body">
+          <div class="ci-answer">
+            <p class="ci-para-lead">On cost-plus, the PCO is still required &mdash; it establishes owner consent that the costs are eligible and defines whether fee applies.</p>
+            <p class="ci-para">For subcontracted millwork, price from the shop quote, write the scope internally, apply contract fee without compounding and show it separately, state schedule impact in calendar days, and get written authorization before fabrication begins.</p>
+            <p class="ci-para">If pricing is not final and the owner wants the shop released, authorize in writing as NTE or T&amp;M &mdash; never verbally.</p>
+          </div>
+          <div class="ci-sources">
+            <p class="ci-src-hdr">Sources</p>
+            <div class="ci-src-entry">
+              <span class="ci-src-code">FCM-03 §8.2</span>
+              <span class="ci-src-desc">Cost-plus change authorization and fee treatment</span>
+            </div>
+            <div class="ci-src-entry">
+              <span class="ci-src-code">CHG-53 §8.6&thinsp;/&thinsp;§9.2</span>
+              <span class="ci-src-desc">PCO pricing presentation and contractor-written scope</span>
+            </div>
+            <div class="ci-src-entry">
+              <span class="ci-src-code">CON-16 §7.4</span>
+              <span class="ci-src-desc">Fee and markup rules</span>
+            </div>
+            <div class="ci-src-entry">
+              <span class="ci-src-code">CHG-59</span>
+              <span class="ci-src-desc">NTE&thinsp;/&thinsp;T&amp;M authorization</span>
+            </div>
+          </div>
+        </div>
+        <div class="ci-caveat">
+          <span class="ci-caveat-label">What changes the answer</span>
+          <span class="ci-caveat-text">Subcontracted vs. self-performed millwork; whether the project has a GMP cap.</span>
         </div>
       </div>
     </div>
@@ -355,133 +1654,195 @@
 <hr class="rule rule--cut" style="margin:0">
 
 <!-- 03 Project Intelligence — white -->
-<section class="surface--white zone">
+<section class="surface--white prod-section" id="product-03">
   <div class="wrap">
-    <div class="split" style="grid-template-columns:1fr 1fr;align-items:start">
-      <div class="products-proof" aria-hidden="true"></div>
-      <div>
-        <p class="annotation" style="margin:0">03</p>
-        <h3 class="head" style="margin-top:var(--s-3)">Project Intelligence</h3>
-        <p class="annotation" style="margin-top:var(--s-2);color:var(--fg)">In development</p>
-        <div class="prose" style="margin-top:var(--s-5)">
-          <p>Know what needs attention.</p>
-          <p>Open decisions, aging changes, missing approvals, unresolved RFIs, unsigned agreements, and schedule issues surfaced across active projects — so leadership can manage by exception instead of chasing status.</p>
+    <div class="prod-split prod-split--pi">
+      <!-- Intro -->
+      <div class="prod-intro">
+        <p class="prod-index">03</p>
+        <h3 class="prod-name">Project<br>Intelligence</h3>
+        <span class="prod-in-dev">In development</span>
+        <p class="prod-promise">Know what needs attention.</p>
+        <p class="prod-body">Surface the open decisions, aging changes, missing approvals, unresolved RFIs, and schedule issues that need attention across active projects.</p>
+        <p class="prod-outcome">Stop collecting status. Start managing the exceptions.</p>
+        <a class="prod-link" href="#" style="display:inline-block;margin-top:var(--s-4)">Explore Project Intelligence &rarr;</a>
+        <div class="ci-rows">
+          <div class="ci-row">
+            <p class="ci-row-title">What needs attention, in one place</p>
+            <p class="ci-row-desc">Open changes, approvals, RFIs, agreements, decisions, and schedule issues across active projects</p>
+          </div>
+          <div class="ci-row">
+            <p class="ci-row-title">Prioritized by urgency</p>
+            <p class="ci-row-desc">See what is overdue, blocked, waiting, or due soon</p>
+          </div>
+          <div class="ci-row">
+            <p class="ci-row-title">Manage by exception</p>
+            <p class="ci-row-desc">Spend leadership time on the jobs and decisions that actually need intervention</p>
+          </div>
+        </div>
+      </div>
+      <!-- Proof -->
+      <div class="pi-proof" aria-hidden="true">
+        <div class="pi-hdr-strip">
+          <span class="pi-hdr-label">Project attention</span>
+          <span class="pi-hdr-meta">Example project attention view</span>
+        </div>
+        <div class="pi-body">
+          <p class="pi-summary">5 items need attention across 4 active projects</p>
+          <table class="pi-table">
+            <thead>
+              <tr>
+                <th class="pi-col-proj">Project / Owner</th>
+                <th class="pi-col-desc">Needs attention</th>
+                <th class="pi-col-as">Age / Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="pi-row--overdue">
+                <td><span class="pi-proj-name">Residential Renovation</span><span class="pi-proj-owner">PM</span></td>
+                <td><span class="pi-need">Owner approval &mdash; millwork change</span></td>
+                <td><span class="pi-age">12d</span><span class="pi-status">Overdue</span></td>
+              </tr>
+              <tr class="pi-row--blocked">
+                <td><span class="pi-proj-name">Cambridge Renovation</span><span class="pi-proj-owner">Ops</span></td>
+                <td><span class="pi-need">Subcontract agreement</span></td>
+                <td><span class="pi-age">6d</span><span class="pi-status">Blocked</span></td>
+              </tr>
+              <tr>
+                <td><span class="pi-proj-name">High-Rise Residence</span><span class="pi-proj-owner">Architect</span></td>
+                <td><span class="pi-need">RFI 027 &mdash; ceiling coordination</span></td>
+                <td><span class="pi-age">8d</span><span class="pi-status">Waiting</span></td>
+              </tr>
+              <tr>
+                <td><span class="pi-proj-name">Back Bay Residence</span><span class="pi-proj-owner">PM</span></td>
+                <td><span class="pi-need">Client finish selection</span></td>
+                <td><span class="pi-age">5d</span><span class="pi-status">Due soon</span></td>
+              </tr>
+              <tr>
+                <td><span class="pi-proj-name">Townhouse Renovation</span><span class="pi-proj-owner">Estimator</span></td>
+                <td><span class="pi-need">Change pricing not issued</span></td>
+                <td><span class="pi-age">4d</span><span class="pi-status">Open</span></td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="pi-close">Manage by exception. Nothing running to plan needs your attention.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<hr class="rule rule--cut" style="margin:0">
-
-<!-- Operations Automation — ink -->
-<section class="surface--ink zone">
+<!-- Operations Automation -->
+<section class="ops-block" id="ops">
   <div class="wrap">
-    <span class="annotation zone__marker">Operations Automation — extension layer</span>
-    <div class="products-ops-list" style="margin-top:var(--s-6)">
-      <p class="small">01 Invoice intake</p>
-      <p class="small">02 Site safety</p>
-      <p class="small">03 Field reports</p>
-      <p class="small">04 Bid comparison</p>
-      <p class="small">05 Pay app preparation</p>
-      <p class="small">06 Change order drafting</p>
-      <p class="small">07 Intake workflows</p>
+    <div class="ops-grid">
+
+      <aside class="ops-rail">
+        <p class="ops-eyebrow">
+          <svg viewBox="0 0 100 100" width="16" height="16" aria-hidden="true">
+            <polyline points="12,58 12,12 58,12" fill="none" stroke="currentColor" stroke-width="16"/>
+            <polyline points="88,42 88,88 42,88" fill="none" stroke="currentColor" stroke-width="16"/>
+          </svg>
+          Construction OS / Extension layer
+        </p>
+        <h2 class="ops-title">Operations Automation</h2>
+        <p class="ops-lead">Automate the repetitive work around the job.</p>
+        <p class="ops-body">Construction OS can be extended with purpose-built automations for the workflows your team still handles by hand&mdash;from invoices and field reports to billing, compliance, and client decisions.</p>
+        <p class="ops-figure"><b>6</b><span>modules live today &mdash; turned on per company</span></p>
+      </aside>
+
+      <div class="ops-col">
+        <div class="ops-cap"></div>
+        <article class="ops-mod">
+          <span class="ops-mod-n">01</span>
+          <div>
+            <h3 class="ops-mod-name">Invoice Intake</h3>
+            <p class="ops-mod-copy">Stop rekeying invoices and receipts. Get structured cost data ready for review.</p>
+          </div>
+        </article>
+        <hr class="ops-hr">
+        <article class="ops-mod">
+          <span class="ops-mod-n">02</span>
+          <div>
+            <h3 class="ops-mod-name">Field Reports</h3>
+            <p class="ops-mod-copy">Stop reconstructing the day at 5 PM. Turn voice notes into a finished daily report.</p>
+          </div>
+        </article>
+        <hr class="ops-hr">
+        <article class="ops-mod">
+          <span class="ops-mod-n">03</span>
+          <div>
+            <h3 class="ops-mod-name">Change Order Drafting</h3>
+            <p class="ops-mod-copy">Capture the change while the details are fresh. Turn field notes into a professional change-order draft.</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="ops-col ops-col--divided">
+        <div class="ops-cap"></div>
+        <article class="ops-mod">
+          <span class="ops-mod-n">04</span>
+          <div>
+            <h3 class="ops-mod-name">Site Safety</h3>
+            <p class="ops-mod-copy">Stop building safety paperwork form by form. Generate the required documentation from project conditions.</p>
+          </div>
+        </article>
+        <hr class="ops-hr">
+        <article class="ops-mod">
+          <span class="ops-mod-n">05</span>
+          <div>
+            <h3 class="ops-mod-name">Bid Comparison</h3>
+            <p class="ops-mod-copy">Stop comparing apples to oranges. Normalize bids so scope gaps and exclusions stand out.</p>
+          </div>
+        </article>
+        <hr class="ops-hr">
+        <article class="ops-mod">
+          <span class="ops-mod-n">06</span>
+          <div>
+            <h3 class="ops-mod-name">Subcontractor Compliance</h3>
+            <p class="ops-mod-copy">Know who is cleared to work. See who is missing COIs, W-9s, licenses, or waivers.</p>
+          </div>
+        </article>
+      </div>
+
     </div>
+    <footer class="ops-foot">
+      <p>Modules run on your templates, your rates, and your approval chain.</p>
+      <a href="#">See the extension layer</a>
+    </footer>
   </div>
 </section>
 
 <hr class="rule rule--cut" style="margin:0">
 
-<!-- Case study -->
-<section class="surface--bond zone">
+<!-- Real-world proof -->
+<section class="surface--bond zone--tight" id="proof">
   <div class="wrap">
-    <span class="annotation zone__marker">Case study</span>
-    <div class="sheet sheet--bond sheet--framed" style="margin-top:var(--s-5)">
-      <div style="display:grid;grid-template-columns:1fr 5fr 4fr;gap:var(--s-6);align-items:start">
-        <p class="annotation">CASE-001</p>
-        <div>
-          <h3 class="head">A residential GC in Boston</h3>
-          <div class="prose" style="margin-top:var(--s-5)">
-            <p>Fifteen to twenty active projects and a five-person PM team. Project knowledge scattered across people, email threads, and file systems. Every document built from scratch.</p>
-          </div>
-        </div>
-        <div>
-          <div class="dim" style="margin-top:0">
-            <p class="annotation dim__label">FIG 1 — Contract package assembly, before</p>
-            <div class="dim__track" style="--span:100%">
-              <span class="dim__ext dim__ext--start"></span>
-              <span class="dim__ext dim__ext--end"></span>
-              <span class="dim__value">up to 8 hrs</span>
-            </div>
-            <p class="annotation dim__label">After</p>
-            <div class="dim__track dim__track--changed" style="--span:6.25%">
-              <span class="dim__ext dim__ext--start"></span>
-              <span class="dim__ext dim__ext--end"></span>
-              <span class="dim__value dim__value--outside">30 min</span>
-            </div>
-          </div>
-          <div class="dim" style="margin-top:var(--s-7)">
-            <p class="annotation dim__label">FIG 2 — Change order turnaround, before</p>
-            <div class="dim__track" style="--span:100%">
-              <span class="dim__ext dim__ext--start"></span>
-              <span class="dim__ext dim__ext--end"></span>
-              <span class="dim__value">10 days</span>
-            </div>
-            <p class="annotation dim__label">After</p>
-            <div class="dim__track dim__track--changed" style="--span:30%">
-              <span class="dim__ext dim__ext--start"></span>
-              <span class="dim__ext dim__ext--end"></span>
-              <span class="dim__value dim__value--outside">3 days</span>
-            </div>
-          </div>
-        </div>
-        <div class="title-block" style="grid-column:1/-1">
-          <div><span class="title-block__label">Project</span><span class="title-block__value">Construction OS</span></div>
-          <div><span class="title-block__label">Sheet</span><span class="title-block__value">CASE-001</span></div>
-          <div><span class="title-block__label">Issued</span><span class="title-block__value">2026-09-04</span></div>
-          <div><span class="title-block__label">Revision</span><span class="title-block__value">01</span></div>
-        </div>
+    <div class="prf-intro">
+      <h2 class="prf-intro-head">Built in real construction operations.</h2>
+      <p class="prf-intro-copy">Construction OS grew out of hands-on construction management&mdash;learning where the work breaks down, then building and applying systems to fix it.</p>
+    </div>
+    <div class="prf-grid">
+      <div class="prf-stat">
+        <p class="prf-before">4&ndash;8 hrs &rarr;</p>
+        <p class="prf-figure prf-figure--red">~30 min</p>
+        <p class="prf-label">Contract package preparation</p>
+      </div>
+      <div class="prf-stat">
+        <p class="prf-before">~10 days &rarr;</p>
+        <p class="prf-figure prf-figure--red">~3 days</p>
+        <p class="prf-label">Change-order turnaround</p>
+      </div>
+      <div class="prf-stat">
+        <p class="prf-before">&nbsp;</p>
+        <p class="prf-figure">150+</p>
+        <p class="prf-label">Standard construction document types</p>
+        <p class="prf-sublabel">Across the full project lifecycle</p>
       </div>
     </div>
-  </div>
-</section>
-
-<hr class="rule rule--cut" style="margin:0">
-
-<!-- Change order workflow -->
-<section class="surface--bond zone" id="demo">
-  <div class="wrap">
-    <div class="split split--7-5">
-      <div>
-        <span class="annotation zone__marker">Change order workflow</span>
-        <h2 class="head">A change order drafted in the field, not in the office.</h2>
-        <div class="prose" style="margin-top:var(--s-5)">
-          <p>Describe what changed. Construction OS pulls the scope, calculates the markup, formats the document, and sends it for signature. The PM never leaves the site.</p>
-        </div>
-        <a class="btn" href="https://cal.com/justinyurasits" style="margin-top:var(--s-6);display:inline-block">Try it now</a>
-      </div>
-      <div class="step-list">
-        <div class="step-row">
-          <span class="annotation">01</span>
-          <p class="small">Scope identified on site</p>
-        </div>
-        <div class="step-row">
-          <span class="annotation">02</span>
-          <p class="small">Change order drafted via voice or text</p>
-        </div>
-        <div class="step-row">
-          <span class="annotation">03</span>
-          <p class="small">Markup applied from company rate card</p>
-        </div>
-        <div class="step-row">
-          <span class="annotation">04</span>
-          <p class="small">Document formatted and sent for signature</p>
-        </div>
-        <div class="step-row">
-          <span class="annotation">05</span>
-          <p class="small">Project log updated automatically</p>
-        </div>
-      </div>
+    <div class="prf-foot">
+      <span class="annotation">CASE-001 &sol; Residential GC &sol; Boston</span>
+      <a class="annotation" href="#">Read the case study &rarr;</a>
     </div>
   </div>
 </section>
@@ -489,22 +1850,51 @@
 <hr class="rule rule--cut" style="margin:0">
 
 <!-- Configuration -->
-<section class="surface--bond zone">
+<section class="surface--bond cfg-section" id="config">
   <div class="wrap">
-    <div class="split split--5-7">
+    <header class="cfg-head">
       <div>
-        <span class="annotation zone__marker">Configuration</span>
-        <h2 class="head">Your company already has a way of working. Construction OS uses it.</h2>
+        <p class="cfg-eyebrow">Configuration</p>
+        <h2 class="cfg-title">Configured around your company</h2>
       </div>
-      <div class="config-rows">
-        <div class="config-row"><p class="small">Your contract templates, rate cards, and scope language — not generic defaults</p></div>
-        <div class="config-row"><p class="small">Your subcontractor relationships and pricing — already in the system</p></div>
-        <div class="config-row"><p class="small">Your closeout checklist, not a borrowed one</p></div>
-        <div class="config-row"><p class="small">Your RFI log format, exactly as your team knows it</p></div>
-        <div class="config-row"><p class="small">Your change order markup structure, applied automatically</p></div>
-        <div class="config-row"><p class="small">Your project phases, milestones, and handoff sequence</p></div>
-        <div class="config-row"><p class="small">Your PM team's institutional knowledge — documented before it walks out the door</p></div>
-        <div class="config-row"><p class="small">Deployed in weeks, not quarters</p></div>
+      <p class="cfg-deck">Your company already has a way of working. Construction OS uses it.</p>
+    </header>
+    <div class="cfg-cols">
+      <div class="cfg-group">
+        <p class="cfg-group-label"><span class="cfg-dot"></span>Documents &amp; delivery</p>
+        <div class="cfg-row">
+          <span class="cfg-row-n">01</span>
+          <p class="cfg-row-t">Your contract templates, scope language, and document standards</p>
+        </div>
+        <hr class="cfg-rule">
+        <div class="cfg-row">
+          <span class="cfg-row-n">02</span>
+          <p class="cfg-row-t">Your project phases, logs, and handoff process</p>
+        </div>
+      </div>
+      <div class="cfg-group">
+        <p class="cfg-group-label"><span class="cfg-dot"></span>Pricing &amp; operations</p>
+        <div class="cfg-row">
+          <span class="cfg-row-n">03</span>
+          <p class="cfg-row-t">Your pricing rules, markups, and rate cards</p>
+        </div>
+        <hr class="cfg-rule">
+        <div class="cfg-row">
+          <span class="cfg-row-n">04</span>
+          <p class="cfg-row-t">Your SOPs, approvals, and operating procedures</p>
+        </div>
+      </div>
+      <div class="cfg-group">
+        <p class="cfg-group-label"><span class="cfg-dot cfg-dot--rev"></span>Company knowledge</p>
+        <div class="cfg-row">
+          <span class="cfg-row-n">05</span>
+          <p class="cfg-row-t">Your historical project knowledge and lessons learned</p>
+        </div>
+        <hr class="cfg-rule">
+        <div class="cfg-row">
+          <span class="cfg-row-n cfg-row-n--rev">06</span>
+          <p class="cfg-row-t cfg-row-t--lead">The judgment your best people carry around in their heads</p>
+        </div>
       </div>
     </div>
   </div>
@@ -513,11 +1903,13 @@
 <hr class="rule rule--cut" style="margin:0">
 
 <!-- CTA -->
-<section class="surface--white zone">
+<section class="surface--ink" id="cta" style="padding-block:clamp(80px,10vw,128px)">
   <div class="wrap">
-    <h2 class="head">Stop running your business from memory.</h2>
-    <div style="margin-top:var(--s-7)">
-      <a class="btn" href="https://cal.com/justinyurasits">Book a scoping call</a>
+    <h2 class="display" style="max-width:14ch">Give your team time back.</h2>
+    <p style="font-family:var(--font-body);font-size:var(--fs-subhead);line-height:var(--lh-subhead);color:var(--fg-muted);margin:var(--s-5) 0 0;max-width:44ch">See what Construction OS could take off your team's plate.</p>
+    <div style="display:flex;align-items:center;gap:var(--s-6);margin-top:var(--s-8);flex-wrap:wrap">
+      <a class="btn" href="https://cal.com/justinyurasits">Book a demo</a>
+      <a style="font-family:var(--font-display);font-size:var(--fs-small);font-weight:500;color:var(--fg);text-decoration:underline;text-decoration-thickness:0.5px;text-underline-offset:3px" href="https://draftconstructionchangeorder.com">See it work &rarr;</a>
     </div>
   </div>
 </section>

@@ -632,19 +632,22 @@
   border: 1px solid var(--rule-dimension);
 }
 .prod-promise {
-  font-family: var(--font-body);
-  font-size: 18px;
-  line-height: 1.45;
-  color: var(--fg);
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.015em;
+  color: var(--c-ink);
   margin: var(--s-5) 0 0;
 }
 .prod-body {
-  font-family: var(--font-body);
-  font-size: var(--fs-body);
-  line-height: var(--lh-body);
-  color: var(--fg-muted);
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--c-graphite);
   margin: var(--s-4) 0 0;
-  max-width: 38ch;
+  max-width: 46ch;
 }
 /* Document Workbench section */
 .cos-products { background: var(--c-bond); padding: 64px 0 76px; }
@@ -801,8 +804,10 @@
 .dw-rp-v { color: var(--c-graphite); text-align: right; }
 
 /* Construction Intelligence proof */
+.ci-name-row { display: flex; align-items: center; gap: 14px; }
+.ci-name-row svg { flex: none; }
 .ci-proof {
-  border: var(--w-cut) solid var(--c-ink);
+  border: 2px solid var(--c-ink);
   background: var(--c-white);
   box-sizing: border-box;
   display: flex;
@@ -810,15 +815,20 @@
   overflow: hidden;
 }
 .ci-q-band {
-  padding: var(--s-6) var(--s-6) var(--s-5);
-  border-bottom: var(--w-cut) solid var(--c-ink);
+  padding: 20px 24px 22px;
+  border-bottom: 2px solid var(--c-ink);
+}
+.ci-q-tag {
+  font: 400 11px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace;
+  letter-spacing: 0.04em;
+  color: var(--c-steel);
+  text-transform: uppercase;
+  margin: 0 0 10px;
 }
 .ci-question {
-  font-family: var(--font-body);
-  font-size: clamp(18px, 2.2vw, 26px);
-  font-weight: 400;
-  line-height: 1.18;
-  color: var(--fg);
+  font: 600 21px/1.28 var(--font-display), sans-serif;
+  letter-spacing: -0.022em;
+  color: var(--c-ink);
   margin: 0;
 }
 .ci-body {
@@ -828,83 +838,96 @@
   flex: 1;
 }
 .ci-answer {
-  padding: var(--s-5) var(--s-5) var(--s-5) var(--s-6);
+  padding: 20px 20px 20px 24px;
   display: flex;
   flex-direction: column;
-  gap: var(--s-4);
+  gap: 15px;
 }
 .ci-para-lead {
-  font-family: var(--font-body);
-  font-size: 17px;
-  line-height: 1.52;
-  color: var(--fg);
+  font: 500 16px/1.5 var(--font-display), sans-serif;
+  letter-spacing: -0.01em;
+  color: var(--c-ink);
   margin: 0;
 }
 .ci-para {
-  font-family: var(--font-body);
-  font-size: var(--fs-body);
-  line-height: var(--lh-body);
-  color: var(--fg-muted);
+  font: 400 15px/1.6 var(--font-display), sans-serif;
+  color: var(--c-graphite);
   margin: 0;
 }
 .ci-sources {
-  background: var(--c-bond);
-  border-left: var(--w-dimension) solid var(--rule-dimension);
-  padding: var(--s-4) var(--s-4) var(--s-5);
+  border-left: 1px solid var(--c-line);
+  background: var(--c-white);
+  display: flex;
+  flex-direction: column;
   align-self: stretch;
 }
-.ci-src-hdr {
-  font-family: var(--font-display);
-  font-size: var(--fs-annotation);
-  font-weight: 600;
-  letter-spacing: var(--tr-annotation);
-  color: var(--fg);
-  margin: 0 0 var(--s-3);
-  padding-bottom: var(--s-2);
-  border-bottom: var(--w-dimension) solid var(--rule-dimension);
+.ci-src-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--c-ink);
+  font: 600 11px/1 var(--font-display), sans-serif;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--c-ink);
 }
-.ci-src-entry {
-  padding: var(--s-2) 0;
-  border-top: var(--w-dimension) solid var(--rule-dimension);
+.ci-src-head span {
+  font: 400 11px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--c-graphite);
 }
-.ci-src-entry:first-child { border-top: none; padding-top: 0; }
+.ci-src-entry { padding: 8px 16px; }
+.ci-src-entry + .ci-src-entry { border-top: 1px solid var(--c-line); }
 .ci-src-code {
-  font-family: var(--font-display);
-  font-size: var(--fs-annotation);
-  font-weight: 600;
-  color: var(--fg);
+  font: 400 12px/1.4 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace;
+  color: var(--c-ink);
   display: block;
-  line-height: 1.35;
 }
 .ci-src-desc {
-  font-family: var(--font-body);
-  font-size: var(--fs-annotation);
-  color: var(--fg-muted);
+  font: 400 13px/1.4 var(--font-display), sans-serif;
+  color: var(--c-graphite);
   display: block;
-  line-height: 1.4;
-  margin-top: 1px;
+  margin-top: 2px;
+}
+.ci-src-foot {
+  margin-top: auto;
+  padding: 12px 16px;
+  border-top: 1px solid var(--c-line);
+}
+.ci-src-foot-label {
+  font: 600 11px/1 var(--font-display), sans-serif;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--c-steel);
+  display: block;
+  margin: 0 0 4px;
+}
+.ci-src-foot-val {
+  font: 400 13px/1.4 var(--font-display), sans-serif;
+  color: var(--c-graphite);
+  display: block;
+  margin: 0;
 }
 .ci-caveat {
-  border-top: var(--w-cut) solid var(--c-ink);
-  padding: var(--s-4) var(--s-6);
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: var(--s-5);
-  align-items: baseline;
+  background: var(--c-ink);
+  padding: 18px 24px;
 }
 .ci-caveat-label {
-  font-family: var(--font-display);
-  font-size: var(--fs-annotation);
-  letter-spacing: var(--tr-annotation);
-  color: var(--fg-muted);
-  white-space: nowrap;
+  font: 600 11px/1 var(--font-display), sans-serif;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--c-line);
+  display: block;
+  margin: 0 0 6px;
 }
 .ci-caveat-text {
-  font-family: var(--font-body);
-  font-size: var(--fs-small);
-  color: var(--fg);
-  line-height: 1.4;
+  font: 500 15px/1.4 var(--font-display), sans-serif;
+  color: var(--c-white);
   margin: 0;
+  display: block;
 }
 
 /* Project Intelligence proof */
@@ -1159,7 +1182,7 @@
   .cos-index li:first-child a { border-top: 0; }
   .cos-doc { height: 420px; }
   .ci-body { grid-template-columns: 1fr; }
-  .ci-sources { border-left: none; border-top: var(--w-dimension) solid var(--rule-dimension); }
+  .ci-sources { border-left: none; border-top: 1px solid var(--c-line); }
   .hero-doc { height: 380px; }
   .hero-fold { grid-template-columns: 1fr; }
   .hero-fold li { border-left: none; border-top: 1px solid var(--c-line); padding-left: 0; }
@@ -1588,13 +1611,21 @@
       <!-- Intro -->
       <div class="prod-intro">
         <p class="prod-index">02</p>
-        <h3 class="prod-name">Construction<br>Intelligence</h3>
+        <div class="ci-name-row">
+          <svg viewBox="0 0 100 100" width="27" height="27" aria-hidden="true" style="flex:none">
+            <circle cx="50" cy="50" r="14" fill="none" stroke="currentColor" stroke-width="9"/>
+            <line x1="50" y1="14" x2="50" y2="36" stroke="var(--c-steel)" stroke-width="4"/>
+            <line x1="50" y1="64" x2="50" y2="86" stroke="var(--c-steel)" stroke-width="4"/>
+            <line x1="14" y1="50" x2="36" y2="50" stroke="var(--c-steel)" stroke-width="4"/>
+            <line x1="64" y1="50" x2="86" y2="50" stroke="var(--c-steel)" stroke-width="4"/>
+          </svg>
+          <h3 class="prod-name">Construction Intelligence</h3>
+        </div>
         <p class="prod-promise">Put your company&rsquo;s knowledge to work.</p>
-        <p class="prod-body">Combine construction know-how with your procedures, pricing rules, standards, templates, and project history&mdash;so your team gets company-specific answers without searching through folders or tracking down the person who knows.</p>
-        <p class="prod-outcome">Put your best people&rsquo;s judgment in reach of the whole team.</p>
+        <p class="prod-body">Combine construction know-how with your procedures, pricing rules, standards, templates, and project history&mdash;so your team gets company-specific answers without searching through folders or tracking down the person who knows. Put your best people&rsquo;s judgment in reach of the whole team.</p>
         <div class="prod-cta">
-          <a class="btn btn--ghost" href="#">See it work</a>
-          <a class="prod-link" href="#">Explore Construction Intelligence &rarr;</a>
+          <a class="hero-btn hero-btn--primary" href="#">Explore Construction Intelligence &rarr;</a>
+          <a class="cos-link" href="#">See it work</a>
         </div>
         <div class="ci-rows">
           <div class="ci-row">
@@ -1614,6 +1645,7 @@
       <!-- Proof -->
       <div class="ci-proof" aria-hidden="true">
         <div class="ci-q-band">
+          <p class="ci-q-tag">Question</p>
           <p class="ci-question">How should we price an owner-requested millwork change on a cost-plus project?</p>
         </div>
         <div class="ci-body">
@@ -1623,7 +1655,7 @@
             <p class="ci-para">If pricing is not final and the owner wants the shop released, authorize in writing as NTE or T&amp;M &mdash; never verbally.</p>
           </div>
           <div class="ci-sources">
-            <p class="ci-src-hdr">Sources</p>
+            <div class="ci-src-head">Sources <span>4</span></div>
             <div class="ci-src-entry">
               <span class="ci-src-code">FCM-03 §8.2</span>
               <span class="ci-src-desc">Cost-plus change authorization and fee treatment</span>
@@ -1639,6 +1671,10 @@
             <div class="ci-src-entry">
               <span class="ci-src-code">CHG-59</span>
               <span class="ci-src-desc">NTE&thinsp;/&thinsp;T&amp;M authorization</span>
+            </div>
+            <div class="ci-src-foot">
+              <span class="ci-src-foot-label">Answered from</span>
+              <span class="ci-src-foot-val">Your company&rsquo;s procedures and standards</span>
             </div>
           </div>
         </div>

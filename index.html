@@ -621,15 +621,14 @@
   margin: var(--s-3) 0 0;
 }
 .prod-in-dev {
-  display: inline-block;
-  font-family: var(--font-display);
-  font-size: var(--fs-annotation);
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  color: var(--fg-muted);
-  margin: var(--s-3) 0 0;
-  padding: 4px 10px;
-  border: 1px solid var(--rule-dimension);
+  display: inline-flex;
+  align-items: center;
+  font: 600 11px/1 var(--font-display), sans-serif;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--c-steel);
+  padding: 4px 8px;
+  border: 1px solid var(--c-steel);
 }
 .prod-promise {
   font-family: var(--font-display);
@@ -931,8 +930,10 @@
 }
 
 /* Project Intelligence proof */
+.pi-name-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.pi-name-row svg { flex: none; }
 .pi-proof {
-  border: var(--w-dimension) solid var(--c-graphite);
+  border: 2px solid var(--c-ink);
   background: var(--c-white);
   box-sizing: border-box;
   display: flex;
@@ -942,99 +943,103 @@
 .pi-hdr-strip {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
-  flex-wrap: wrap;
-  gap: 0 var(--s-4);
-  padding: var(--s-3) var(--s-5);
-  background: var(--c-bond);
-  border-bottom: var(--w-dimension) solid var(--c-graphite);
-  font-family: var(--font-display);
-  font-size: var(--fs-annotation);
-  letter-spacing: var(--tr-annotation);
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  border-bottom: 2px solid var(--c-ink);
+  white-space: nowrap;
+  font: 400 11px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--c-ink);
 }
-.pi-hdr-label { font-weight: 600; color: var(--fg); }
-.pi-hdr-meta  { color: var(--fg-muted); }
-.pi-body { padding: var(--s-5); display: flex; flex-direction: column; gap: var(--s-4); }
+.pi-hdr-meta { color: var(--c-steel); }
+.pi-body { padding: 20px; display: flex; flex-direction: column; gap: 16px; }
 .pi-summary {
-  font-family: var(--font-body);
-  font-size: 18px;
-  line-height: 1.35;
-  color: var(--fg);
+  font: 600 21px/1.28 var(--font-display), sans-serif;
+  letter-spacing: -0.022em;
+  color: var(--c-ink);
   margin: 0;
-  padding-bottom: var(--s-4);
-  border-bottom: var(--w-cut) solid var(--c-ink);
+  padding-bottom: 16px;
+  border-bottom: 2px solid var(--c-ink);
 }
 .pi-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
-.pi-table th {
-  font-family: var(--font-display);
-  font-size: var(--fs-annotation);
-  letter-spacing: var(--tr-annotation);
-  font-weight: 400;
-  color: var(--fg-muted);
-  text-align: left;
-  padding: var(--s-2) var(--s-3) var(--s-2) 0;
-  border-bottom: var(--w-dimension) solid var(--rule-dimension);
-}
+.pi-col-proj { width: 28%; }
+.pi-col-desc { width: 42%; }
+.pi-col-age  { width: 52px; }
+.pi-col-status { width: auto; }
 .pi-table th:last-child, .pi-table td:last-child { padding-right: 0; }
-.pi-table td {
-  padding: var(--s-2) var(--s-3) var(--s-2) 0;
-  border-bottom: var(--w-dimension) solid var(--rule-dimension);
-  vertical-align: top;
-  line-height: 1.35;
+.pi-table th {
+  font: 600 10px/1 var(--font-display), sans-serif;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--c-graphite);
+  text-align: left;
+  padding: 0 12px 8px 0;
+  border-bottom: 1px solid var(--c-line);
 }
-.pi-table tbody tr:last-child td { border-bottom: var(--w-cut) solid var(--c-ink); }
-.pi-col-proj { width: 20%; }
-.pi-col-desc { width: 57%; }
-.pi-col-as   { width: 23%; }
+.pi-table td {
+  padding: 10px 12px 10px 0;
+  border-bottom: 1px solid var(--c-line);
+  vertical-align: top;
+}
+.pi-table tbody tr:last-child td { border-bottom: 0; }
+.pi-table .pi-col-age { text-align: right; }
 .pi-proj-name {
-  font-family: var(--font-display);
-  font-size: var(--fs-annotation);
-  letter-spacing: var(--tr-annotation);
-  color: var(--fg-muted);
+  font: 500 15px/1.35 var(--font-display), sans-serif;
+  color: var(--c-ink);
   display: block;
-  line-height: 1.35;
 }
 .pi-proj-owner {
-  font-family: var(--font-display);
-  font-size: var(--fs-annotation);
-  letter-spacing: var(--tr-annotation);
-  color: var(--fg-muted);
+  font: 400 13px/1.4 var(--font-display), sans-serif;
+  color: var(--c-graphite);
   display: block;
-  line-height: 1.35;
+  margin-top: 2px;
 }
 .pi-need {
-  font-family: var(--font-body);
-  font-size: var(--fs-small);
-  color: var(--fg);
-  line-height: 1.35;
+  font: 400 14px/1.4 var(--font-display), sans-serif;
+  color: var(--c-graphite);
   display: block;
-  min-width: 0;
 }
 .pi-age {
-  font-family: var(--font-display);
-  font-size: var(--fs-small);
-  font-weight: 600;
+  font: 400 14px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace;
   display: block;
   font-variant-numeric: tabular-nums;
-  color: var(--fg-muted);
+  color: var(--c-graphite);
 }
 .pi-status {
-  font-family: var(--font-display);
-  font-size: var(--fs-annotation);
+  font: 500 13px/1 var(--font-display), sans-serif;
   display: block;
-  color: var(--fg-muted);
+  color: var(--c-graphite);
 }
-.pi-row--overdue .pi-age,
-.pi-row--blocked .pi-age  { color: var(--fg); }
 .pi-row--overdue .pi-status,
-.pi-row--blocked .pi-status { color: var(--change); }
-.pi-close {
-  font-family: var(--font-body);
-  font-size: var(--fs-small);
-  color: var(--fg-muted);
-  margin: 0;
-  line-height: 1.5;
+.pi-row--blocked .pi-status { color: var(--c-revision); font-weight: 600; }
+.pi-footer {
+  background: var(--c-ink);
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
+.pi-footer-label {
+  font: 600 11px/1 var(--font-display), sans-serif;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--c-line);
+  display: block;
+}
+.pi-footer-val {
+  font: 500 15px/1.4 var(--font-display), sans-serif;
+  color: var(--c-white);
+  display: block;
+}
+.pi-next { margin-top: 30px; padding-top: 22px; border-top: 1px solid var(--c-line); display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+.pi-next > span { font: 500 12px/1 var(--font-display), sans-serif; letter-spacing: .12em; text-transform: uppercase; color: var(--c-graphite); }
+.pi-next div { display: flex; gap: 28px; flex-wrap: wrap; }
+.pi-next a { display: flex; align-items: center; gap: 10px; font: 600 15px/1 var(--font-display), sans-serif; letter-spacing: -.015em; color: var(--c-ink); text-decoration: none; }
+.pi-next a i { font: 500 12px/1 var(--font-display), sans-serif; font-style: normal; color: var(--c-steel); }
+.pi-next a svg { flex: none; }
+.pi-next a:hover { color: var(--c-steel); }
 
 /* Operations Automation */
 /* Operations Automation */
@@ -1196,11 +1201,10 @@
   .dw-rail { border-left: none; border-top: var(--w-cut) solid var(--c-ink); }
   .pi-table, .pi-table thead, .pi-table tbody, .pi-table tr, .pi-table td { display: block; }
   .pi-table thead { display: none; }
-  .pi-table tr { display: flex; flex-direction: column; gap: 2px; padding: var(--s-3) 0; border-bottom: var(--w-dimension) solid var(--rule-dimension); }
-  .pi-table tbody tr:last-child { border-bottom: var(--w-cut) solid var(--c-ink); }
-  .pi-table td { border-bottom: none; padding: 0; width: auto !important; }
-  .pi-col-as { display: flex; gap: var(--s-3); }
-  .pi-age, .pi-status { display: inline; }
+  .pi-table tr { display: flex; flex-direction: column; gap: 4px; padding: 10px 0; border-bottom: 1px solid var(--c-line); }
+  .pi-table tbody tr:last-child { border-bottom: 0; }
+  .pi-table td { border-bottom: none; padding: 0; width: auto !important; text-align: left; }
+  .pi-col-age, .pi-col-status { display: inline; }
 }
 @media (max-width: 480px) {
   .proof-strip { grid-template-columns: 1fr; }
@@ -1473,11 +1477,10 @@
         <span class="cos-index__nrow">
           <span class="cos-index__n">03</span>
           <svg viewBox="0 0 100 100" width="14" height="14" aria-hidden="true">
-            <rect x="28" y="28" width="44" height="44" fill="none" stroke="currentColor" stroke-width="9"/>
-            <polyline points="14,30 14,14 30,14" fill="none" stroke="var(--c-steel)" stroke-width="4"/>
-            <polyline points="70,14 86,14 86,30" fill="none" stroke="var(--c-steel)" stroke-width="4"/>
-            <polyline points="14,70 14,86 30,86" fill="none" stroke="var(--c-steel)" stroke-width="4"/>
-            <polyline points="86,70 86,86 70,86" fill="none" stroke="var(--c-steel)" stroke-width="4"/>
+            <line x1="18" y1="70" x2="82" y2="70" stroke="currentColor" stroke-width="11"/>
+            <line x1="30" y1="70" x2="30" y2="56" stroke="currentColor" stroke-width="11"/>
+            <line x1="50" y1="70" x2="50" y2="44" stroke="currentColor" stroke-width="11"/>
+            <line x1="70" y1="70" x2="70" y2="32" stroke="currentColor" stroke-width="11"/>
           </svg>
         </span>
         <span class="cos-index__layer">Attention</span>
@@ -1696,12 +1699,22 @@
       <!-- Intro -->
       <div class="prod-intro">
         <p class="prod-index">03</p>
-        <h3 class="prod-name">Project<br>Intelligence</h3>
-        <span class="prod-in-dev">In development</span>
+        <div class="pi-name-row">
+          <svg viewBox="0 0 100 100" width="27" height="27" aria-hidden="true" style="flex:none">
+            <rect x="6" y="18" width="88" height="64" fill="none" stroke="var(--c-steel)" stroke-width="4"/>
+            <line x1="18" y1="70" x2="82" y2="70" stroke="currentColor" stroke-width="9"/>
+            <line x1="30" y1="70" x2="30" y2="56" stroke="currentColor" stroke-width="9"/>
+            <line x1="50" y1="70" x2="50" y2="44" stroke="currentColor" stroke-width="9"/>
+            <line x1="70" y1="70" x2="70" y2="32" stroke="var(--c-revision)" stroke-width="9"/>
+          </svg>
+          <h3 class="prod-name">Project Intelligence</h3>
+          <span class="prod-in-dev">In development</span>
+        </div>
         <p class="prod-promise">Know what needs attention.</p>
         <p class="prod-body">Surface the open decisions, aging changes, missing approvals, unresolved RFIs, and schedule issues that need attention across active projects.</p>
-        <p class="prod-outcome">Stop collecting status. Start managing the exceptions.</p>
-        <a class="prod-link" href="#" style="display:inline-block;margin-top:var(--s-4)">Explore Project Intelligence &rarr;</a>
+        <p class="prod-cta">
+          <a class="hero-btn hero-btn--primary" href="#">Explore Project Intelligence &rarr;</a>
+        </p>
         <div class="ci-rows">
           <div class="ci-row">
             <p class="ci-row-title">What needs attention, in one place</p>
@@ -1720,51 +1733,74 @@
       <!-- Proof -->
       <div class="pi-proof" aria-hidden="true">
         <div class="pi-hdr-strip">
-          <span class="pi-hdr-label">Project attention</span>
-          <span class="pi-hdr-meta">Example project attention view</span>
+          <span class="pi-hdr-label">Project Attention</span>
+          <span class="pi-hdr-meta">Example View</span>
         </div>
         <div class="pi-body">
           <p class="pi-summary">5 items need attention across 4 active projects</p>
           <table class="pi-table">
             <thead>
               <tr>
-                <th class="pi-col-proj">Project / Owner</th>
+                <th class="pi-col-proj">Project</th>
                 <th class="pi-col-desc">Needs attention</th>
-                <th class="pi-col-as">Age / Status</th>
+                <th class="pi-col-age">Age</th>
+                <th class="pi-col-status">Status</th>
               </tr>
             </thead>
             <tbody>
               <tr class="pi-row--overdue">
-                <td><span class="pi-proj-name">Residential Renovation</span><span class="pi-proj-owner">PM</span></td>
-                <td><span class="pi-need">Owner approval &mdash; millwork change</span></td>
-                <td><span class="pi-age">12d</span><span class="pi-status">Overdue</span></td>
+                <td class="pi-col-proj"><span class="pi-proj-name">Residential Renovation</span><span class="pi-proj-owner">PM</span></td>
+                <td class="pi-col-desc"><span class="pi-need">Owner approval &mdash; millwork change</span></td>
+                <td class="pi-col-age"><span class="pi-age">12d</span></td>
+                <td class="pi-col-status"><span class="pi-status">Overdue</span></td>
               </tr>
               <tr class="pi-row--blocked">
-                <td><span class="pi-proj-name">Cambridge Renovation</span><span class="pi-proj-owner">Ops</span></td>
-                <td><span class="pi-need">Subcontract agreement</span></td>
-                <td><span class="pi-age">6d</span><span class="pi-status">Blocked</span></td>
+                <td class="pi-col-proj"><span class="pi-proj-name">Cambridge Renovation</span><span class="pi-proj-owner">Ops</span></td>
+                <td class="pi-col-desc"><span class="pi-need">Subcontract agreement</span></td>
+                <td class="pi-col-age"><span class="pi-age">6d</span></td>
+                <td class="pi-col-status"><span class="pi-status">Blocked</span></td>
               </tr>
               <tr>
-                <td><span class="pi-proj-name">High-Rise Residence</span><span class="pi-proj-owner">Architect</span></td>
-                <td><span class="pi-need">RFI 027 &mdash; ceiling coordination</span></td>
-                <td><span class="pi-age">8d</span><span class="pi-status">Waiting</span></td>
+                <td class="pi-col-proj"><span class="pi-proj-name">High-Rise Residence</span><span class="pi-proj-owner">Architect</span></td>
+                <td class="pi-col-desc"><span class="pi-need">RFI 027 &mdash; ceiling coordination</span></td>
+                <td class="pi-col-age"><span class="pi-age">8d</span></td>
+                <td class="pi-col-status"><span class="pi-status">Waiting</span></td>
               </tr>
               <tr>
-                <td><span class="pi-proj-name">Back Bay Residence</span><span class="pi-proj-owner">PM</span></td>
-                <td><span class="pi-need">Client finish selection</span></td>
-                <td><span class="pi-age">5d</span><span class="pi-status">Due soon</span></td>
+                <td class="pi-col-proj"><span class="pi-proj-name">Back Bay Residence</span><span class="pi-proj-owner">PM</span></td>
+                <td class="pi-col-desc"><span class="pi-need">Client finish selection</span></td>
+                <td class="pi-col-age"><span class="pi-age">5d</span></td>
+                <td class="pi-col-status"><span class="pi-status">Due soon</span></td>
               </tr>
               <tr>
-                <td><span class="pi-proj-name">Townhouse Renovation</span><span class="pi-proj-owner">Estimator</span></td>
-                <td><span class="pi-need">Change pricing not issued</span></td>
-                <td><span class="pi-age">4d</span><span class="pi-status">Open</span></td>
+                <td class="pi-col-proj"><span class="pi-proj-name">Townhouse Renovation</span><span class="pi-proj-owner">Estimator</span></td>
+                <td class="pi-col-desc"><span class="pi-need">Change pricing not issued</span></td>
+                <td class="pi-col-age"><span class="pi-age">4d</span></td>
+                <td class="pi-col-status"><span class="pi-status">Open</span></td>
               </tr>
             </tbody>
           </table>
-          <p class="pi-close">Manage by exception. Nothing running to plan needs your attention.</p>
+        </div>
+        <div class="pi-footer">
+          <span class="pi-footer-label">Manage by exception</span>
+          <span class="pi-footer-val">Nothing running to plan needs your attention.</span>
         </div>
       </div>
     </div>
+    <nav class="pi-next">
+      <span>Next</span>
+      <div>
+        <a href="#ops">
+          <svg viewBox="0 0 100 100" width="14" height="14" aria-hidden="true">
+            <line x1="14" y1="28" x2="34" y2="28" stroke="currentColor" stroke-width="11"/>
+            <line x1="42" y1="28" x2="62" y2="28" stroke="currentColor" stroke-width="11"/>
+            <line x1="70" y1="28" x2="90" y2="28" stroke="currentColor" stroke-width="11"/>
+            <line x1="14" y1="74" x2="90" y2="74" stroke="currentColor" stroke-width="11"/>
+          </svg>
+          Operations Automation<i>Extension layer</i>
+        </a>
+      </div>
+    </nav>
   </div>
 </section>
 

@@ -17,35 +17,33 @@
   --c-graphite:  #5F6466;
   --c-line:      #B8B9B5;
   --c-revision:  #C43230;
-  --font-display: 'Archivo';
+  --font:        'Archivo', Helvetica, sans-serif;
 }
 
 /* ─── Reset & base ───────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; }
-body { margin: 0; font-family: var(--font-display), Helvetica, sans-serif; background: var(--c-white); color: var(--c-ink); -webkit-font-smoothing: antialiased; }
+body { margin: 0; font-family: var(--font); background: var(--c-white); color: var(--c-ink); -webkit-font-smoothing: antialiased; }
 ul, ol { list-style: none; margin: 0; padding: 0; }
 a { color: inherit; }
-img { max-width: 100%; display: block; }
 
 /* ─── Container ──────────────────────────────────────────── */
 .cos-container { max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px); }
 
 /* ─── Header ─────────────────────────────────────────────── */
-.cos-header { position: sticky; top: 0; z-index: 50; background: var(--c-white); border-bottom: 1px solid var(--c-line); transition: min-height .2s; }
-.cos-header__inner { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 32px; transition: min-height .2s; }
-.cos-header--compact .cos-header__inner { min-height: 60px; }
-.cos-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; font: 600 17px/1 var(--font-display), sans-serif; letter-spacing: -.02em; color: var(--c-ink); white-space: nowrap; }
-.cos-nav { display: flex; align-items: center; gap: 32px; list-style: none; margin: 0; padding: 0; }
-.cos-nav a:not(.cos-header__cta) { font: 500 15px/1 var(--font-display), sans-serif; color: var(--c-graphite); text-decoration: none; }
-.cos-nav a:not(.cos-header__cta)[aria-current="page"] { color: var(--c-ink); border-bottom: 2px solid var(--c-ink); padding-bottom: 2px; }
-.cos-header__cta { display: inline-flex; align-items: center; min-height: 44px; padding: 13px 20px; font: 600 14px/1 var(--font-display), sans-serif; letter-spacing: -.01em; text-decoration: none; background: var(--c-ink); color: var(--c-white); white-space: nowrap; }
-.cos-header__cta:hover { background: var(--c-steel); color: var(--c-white); }
+.cos-header { position: sticky; top: 0; z-index: 50; background: var(--c-white); border-bottom: 1px solid var(--c-line); }
+.cos-header__inner { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+.cos-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; font: 600 17px/1 var(--font); letter-spacing: -.02em; color: var(--c-ink); white-space: nowrap; }
+.cos-nav { display: flex; align-items: center; gap: 32px; }
+.cos-nav a:not(.cos-header__cta) { font: 500 15px/1 var(--font); color: var(--c-graphite); text-decoration: none; }
+.cos-nav a[aria-current="page"] { color: var(--c-ink); border-bottom: 2px solid var(--c-ink); padding-bottom: 2px; }
+.cos-header__cta { display: inline-flex; align-items: center; min-height: 44px; padding: 13px 20px; font: 600 14px/1 var(--font); letter-spacing: -.01em; text-decoration: none; background: var(--c-ink); color: var(--c-white); white-space: nowrap; }
+.cos-header__cta:hover { background: var(--c-steel); }
 .cos-header__toggle { display: none; width: 44px; height: 44px; background: none; border: 1px solid var(--c-line); cursor: pointer; flex-direction: column; align-items: center; justify-content: center; gap: 8px; padding: 0; flex-shrink: 0; }
 .cos-header__toggle span { display: block; width: 18px; height: 2px; background: var(--c-ink); pointer-events: none; }
 
-/* ─── Dropdown nav ───────────────────────────────────────── */
+/* ─── Dropdown ───────────────────────────────────────────── */
 .cos-nav__dropdown { position: relative; }
-.cos-nav__trigger { background: none; border: none; padding: 0; cursor: pointer; display: flex; align-items: center; gap: 5px; font: 500 15px/1 var(--font-display), sans-serif; color: var(--c-graphite); }
+.cos-nav__trigger { background: none; border: none; padding: 0; cursor: pointer; display: flex; align-items: center; gap: 5px; font: 500 15px/1 var(--font); color: var(--c-graphite); }
 .cos-nav__trigger::after { content: '▾'; font-size: 11px; color: var(--c-line); display: inline-block; position: relative; top: 1px; transition: transform .15s; }
 .cos-nav__panel { display: none; position: absolute; top: calc(100% + 20px); left: -18px; min-width: 280px; background: var(--c-white); border: 1px solid var(--c-ink); z-index: 100; }
 @media (min-width: 761px) {
@@ -57,277 +55,256 @@ img { max-width: 100%; display: block; }
 .cos-nav__item { display: block; padding: 14px 18px; text-decoration: none; border-bottom: 1px solid var(--c-line); }
 .cos-nav__item:last-child { border-bottom: none; }
 .cos-nav__item:hover { background: var(--c-bond); }
-.cos-nav__item-name { display: flex; align-items: center; gap: 8px; margin-bottom: 5px; font: 500 14px/1 var(--font-display), sans-serif; color: var(--c-ink); }
-.cos-nav__item-desc { display: block; font: 400 12px/1.4 var(--font-display), sans-serif; color: var(--c-graphite); }
+.cos-nav__item-name { display: flex; align-items: center; gap: 8px; margin-bottom: 5px; font: 500 14px/1 var(--font); color: var(--c-ink); }
+.cos-nav__item-desc { display: block; font: 400 12px/1.4 var(--font); color: var(--c-graphite); }
 .cos-nav__item-tag { font: 400 11px/1 ui-monospace, 'Courier New', monospace; color: var(--c-graphite); flex-shrink: 0; }
 
-/* ─── Product block (shared) ──────────────────────────────── */
-.cos-product-section { background: var(--c-bond); padding: 72px 40px 64px; }
-.cos-product { display: grid; grid-template-columns: minmax(340px, 1fr) minmax(340px, 1.15fr); gap: 48px; align-items: start; max-width: 1440px; margin: 0 auto; }
-.cos-product__col { container-type: inline-size; display: flex; flex-direction: column; gap: 26px; min-width: 0; }
-.cos-product__tag { margin: 0; display: flex; align-items: center; gap: 12px; min-height: 26px; font: 600 11px/1 var(--font-display), sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--c-steel); }
-.cos-product__tag span { font: 400 12px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace; color: var(--c-graphite); letter-spacing: 0; }
-.cos-product__tag i { width: 40px; height: 1px; background: var(--c-ink); flex-shrink: 0; }
-.cos-product__name { display: flex; align-items: center; gap: .4em; font: 600 clamp(22px, 7.2cqi, 38px)/1.05 var(--font-display), sans-serif; letter-spacing: -.032em; white-space: nowrap; color: var(--c-ink); margin: 0; }
-.cos-product__name svg { width: .72em; height: .72em; flex: none; }
-.cos-product__name-group { display: flex; flex-direction: column; gap: 14px; }
-.cos-product__lead { margin: 0; max-width: 30ch; font: 500 20px/1.4 var(--font-display), sans-serif; letter-spacing: -.015em; color: var(--c-ink); }
-.cos-product__body { margin: 0; max-width: 46ch; font: 400 16px/1.6 var(--font-display), sans-serif; color: var(--c-graphite); text-wrap: pretty; }
-.cos-product__cta { margin: 0; display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+/* ─── Shared CTA scale ───────────────────────────────────── */
+.ci-btn { display: inline-flex; align-items: center; min-height: 44px; padding: 13px 20px; font: 600 14px/1 var(--font); letter-spacing: -.01em; text-decoration: none; white-space: nowrap; }
+.ci-btn--ink { background: var(--c-ink); color: var(--c-white); }
+.ci-btn--ink:hover { background: var(--c-steel); }
+.ci-btn--paper { background: var(--c-white); color: var(--c-ink); }
+.ci-btn--paper:hover { background: var(--c-bond); }
+.ci-link { display: inline-flex; align-items: center; min-height: 40px; font: 600 14px/1 var(--font); letter-spacing: -.01em; text-decoration: none; border-bottom: 2px solid; padding-bottom: 3px; }
+.ci-link--ink { color: var(--c-ink); border-color: var(--c-ink); }
+.ci-link--ink:hover { color: var(--c-steel); border-color: var(--c-steel); }
+.ci-link--paper { color: var(--c-white); border-color: var(--c-white); }
+.ci-link--paper:hover { color: var(--c-line); border-color: var(--c-line); }
+.ci-cta-row { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
 
-/* Buttons */
-.cos-btn { display: inline-flex; align-items: center; min-height: 48px; padding: 15px 26px; font: 600 15px/1 var(--font-display), sans-serif; letter-spacing: -.01em; text-decoration: none; }
-.cos-btn--ink { background: var(--c-ink); color: var(--c-white); }
-.cos-btn--ink:hover { background: var(--c-steel); color: var(--c-white); }
-.cos-btn--paper { background: var(--c-white); color: var(--c-ink); }
-.cos-btn--paper:hover { background: var(--c-bond); }
-.cos-link { font: 600 15px/1 var(--font-display), sans-serif; letter-spacing: -.01em; color: var(--c-ink); text-decoration: none; border-bottom: 2px solid var(--c-ink); padding-bottom: 3px; }
-.cos-link:hover { color: var(--c-steel); border-bottom-color: var(--c-steel); }
-.cos-link--paper { color: var(--c-white); border-bottom-color: var(--c-white); }
-.cos-link--paper:hover { color: var(--c-line); border-bottom-color: var(--c-line); }
+/* ─── Shared type ────────────────────────────────────────── */
+.ci-eyebrow { margin: 0 0 14px; font: 600 11px/1 var(--font); letter-spacing: .16em; text-transform: uppercase; color: var(--c-steel); }
+.ci-eyebrow--line { color: var(--c-line); }
+.ci-h2 { margin: 0; font: 600 clamp(28px, 8cqi, 42px)/1.05 var(--font); letter-spacing: -.035em; color: var(--c-ink); text-wrap: balance; }
+.ci-h2--no-balance { margin: 0; font: 600 clamp(28px, 8cqi, 42px)/1.05 var(--font); letter-spacing: -.035em; color: var(--c-ink); }
+.ci-rule-2px { border: none; border-top: 2px solid var(--c-ink); }
+.ci-rule-1px { border: none; border-top: 1px solid var(--c-line); }
 
-/* Proof table */
-.cos-proof { margin: 0; border-top: 2px solid var(--c-ink); }
-.cos-proof > div { padding: 22px 0 20px; border-bottom: 1px solid var(--c-line); }
-.cos-proof > div:last-child { border-bottom: 0; padding-bottom: 0; }
-.cos-proof dt { margin: 0 0 6px; font: 600 20px/1.25 var(--font-display), sans-serif; letter-spacing: -.02em; color: var(--c-ink); }
-.cos-proof dd { margin: 0; font: 400 14px/1.5 var(--font-display), sans-serif; color: var(--c-graphite); }
+/* ─── Two-column section header ──────────────────────────── */
+.ci-section-head { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px,100%), 1fr)); gap: 24px 48px; align-items: start; container-type: inline-size; }
 
-/* Next rail */
-.cos-next { margin-top: 30px; padding-top: 22px; border-top: 1px solid var(--c-line); display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
-.cos-next__label { font: 500 12px/1 var(--font-display), sans-serif; letter-spacing: .12em; text-transform: uppercase; color: var(--c-graphite); white-space: nowrap; }
-.cos-next__item { font: 400 12px/1 ui-monospace, monospace; color: var(--c-graphite); }
-.cos-next__item strong { font: 600 15px/1 var(--font-display), sans-serif; letter-spacing: -.01em; color: var(--c-ink); margin-left: 4px; }
+/* ─── § 1 Hero — Paper ───────────────────────────────────── */
+.ci-hero { background: var(--c-white); padding: 76px 0 64px; }
+.ci-hero__col { max-width: 64ch; container-type: inline-size; display: flex; flex-direction: column; gap: 26px; }
+.ci-hero__tag { margin: 0; display: flex; align-items: center; gap: 12px; font: 600 11px/1 var(--font); letter-spacing: .16em; text-transform: uppercase; color: var(--c-steel); }
+.ci-hero__tag-n { font: 400 12px/1 ui-monospace, monospace; color: var(--c-graphite); letter-spacing: 0; }
+.ci-hero__tag-rule { width: 40px; height: 1px; background: var(--c-ink); flex-shrink: 0; }
+.ci-hero__name { margin: 0; font: 600 clamp(22px, 6cqi, 34px)/1.05 var(--font); letter-spacing: -.032em; color: var(--c-ink); display: flex; align-items: center; gap: .35em; white-space: nowrap; }
+.ci-hero__headline { margin: 0; font: 600 clamp(30px, 9cqi, 48px)/1.02 var(--font); letter-spacing: -.038em; color: var(--c-ink); text-wrap: balance; }
+.ci-hero__body { margin: 0; max-width: 56ch; font: 400 17px/1.55 var(--font); color: var(--c-graphite); }
+.ci-hero__outcome { margin: 0; padding-left: 16px; border-left: 2px solid var(--c-steel); font: 600 18px/1.35 var(--font); color: var(--c-ink); }
+.ci-hero__rule { border: none; border-top: 2px solid var(--c-ink); margin: 48px 0 0; }
+.ci-hero__caps { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px,100%), 1fr)); column-gap: 40px; row-gap: 8px; }
+.ci-hero__cap { padding: 26px 0; border-top: 1px solid var(--c-line); }
+.ci-hero__cap-n { display: block; margin-bottom: 8px; font: 400 12px/1 ui-monospace, monospace; color: var(--c-graphite); }
+.ci-hero__cap-title { margin: 0 0 8px; font: 600 20px/1.25 var(--font); letter-spacing: -.02em; color: var(--c-ink); }
+.ci-hero__cap-body { margin: 0; font: 400 15px/1.55 var(--font); color: var(--c-graphite); }
 
-/* Artifact caption */
-.cos-doc-cap { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font: 400 11px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace; letter-spacing: .04em; color: var(--c-graphite); text-transform: uppercase; white-space: nowrap; min-height: 26px; }
-.cos-doc-cap span + span { color: var(--c-steel); }
+/* ─── § 2 Your best people — Bond ───────────────────────── */
+.ci-problem { background: var(--c-bond); padding-top: 76px; }
+.ci-problem__head { padding-bottom: 24px; }
+.ci-problem__body-g { margin: 0 0 12px; font: 400 16px/1.6 var(--font); color: var(--c-graphite); }
+.ci-problem__body-emph { margin: 0; font: 500 17px/1.5 var(--font); color: var(--c-ink); }
+.ci-ledger { border-top: 2px solid var(--c-ink); }
+.ci-ledger__row { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px,100%), 1fr)); gap: 0 28px; align-items: baseline; padding: 28px 0; border-bottom: 1px solid var(--c-line); }
+.ci-ledger__row--last { padding-bottom: 46px; border-bottom: 0; }
+.ci-ledger__cell1 { display: flex; align-items: baseline; gap: 0; }
+.ci-ledger__n { width: 46px; flex: none; font: 400 12px/1 ui-monospace, monospace; color: var(--c-graphite); }
+.ci-ledger__claim { margin: 0; font: 600 21px/1.25 var(--font); letter-spacing: -.022em; color: var(--c-ink); }
+.ci-ledger__con { margin: 0; font: 400 16px/1.6 var(--font); color: var(--c-graphite); }
 
-/* ─── Answer card ────────────────────────────────────────── */
-.cos-answer { border: 1px solid var(--c-ink); background: var(--c-white); }
-.cos-answer__q { padding: 20px 24px 22px; border-bottom: 1px solid var(--c-ink); display: flex; flex-direction: column; gap: 10px; }
-.cos-answer__q b { font: 400 11px/1 ui-monospace, monospace; letter-spacing: .1em; color: var(--c-steel); text-transform: uppercase; }
-.cos-answer__q h4 { margin: 0; font: 600 21px/1.28 var(--font-display), sans-serif; letter-spacing: -.022em; color: var(--c-ink); text-wrap: pretty; }
+/* 2b Ink band */
+.ci-problem__band { background: var(--c-ink); }
+.ci-problem__band-inner { padding: 34px 0; }
+.ci-band__text { margin: 0; max-width: 32ch; font: 600 clamp(22px, 3.4vw, 30px)/1.25 var(--font); letter-spacing: -.028em; color: var(--c-white); text-wrap: balance; }
 
-.cos-answer__body { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
-.cos-answer__text { padding: 22px 24px 26px; display: flex; flex-direction: column; gap: 15px; min-width: 0; }
-.cos-answer__text p { margin: 0; font: 400 15px/1.6 var(--font-display), sans-serif; color: var(--c-graphite); text-wrap: pretty; }
-.cos-answer__text p:first-child { font: 500 16px/1.5 var(--font-display), sans-serif; letter-spacing: -.01em; color: var(--c-ink); }
+/* ─── § 3 Turn what your company knows — Paper ───────────── */
+.ci-product { background: var(--c-white); padding: 76px 0 80px; }
+.ci-product__head { padding-bottom: 24px; }
+.ci-product__head-body { margin: 0; font: 400 16px/1.6 var(--font); color: var(--c-graphite); }
+.ci-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px,100%), 1fr)); column-gap: 40px; padding-bottom: 30px; }
+.ci-step { border-top: 1px solid var(--c-line); padding: 26px 0; display: flex; flex-direction: column; gap: 10px; }
+.ci-step__n { font: 400 12px/1 ui-monospace, monospace; color: var(--c-graphite); }
+.ci-step__title { margin: 0; font: 600 21px/1.25 var(--font); letter-spacing: -.022em; color: var(--c-ink); }
+.ci-step__body { margin: 0; font: 400 15px/1.55 var(--font); color: var(--c-graphite); }
+.ci-product__close { margin: 0; max-width: 70ch; font: 600 19px/1.4 var(--font); letter-spacing: -.015em; color: var(--c-ink); padding-top: 24px; }
 
-.cos-sources { border-top: 1px solid var(--c-line); border-left: 1px solid var(--c-line); background: var(--c-bond); padding: 22px 20px 26px; display: flex; flex-direction: column; min-width: 0; }
-.cos-sources__head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; padding-bottom: 12px; border-bottom: 1px solid var(--c-ink); font: 600 11px/1 var(--font-display), sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--c-ink); }
-.cos-sources__head span { font: 400 11px/1 ui-monospace, monospace; letter-spacing: 0; color: var(--c-graphite); }
-.cos-sources ul { margin: 0; padding: 0; }
-.cos-sources li { list-style: none; padding: 14px 0; border-bottom: 1px solid var(--c-line); display: flex; flex-direction: column; gap: 4px; }
-.cos-sources li:last-of-type { border-bottom: 0; padding-bottom: 16px; }
-.cos-sources li b { font: 400 12px/1 ui-monospace, monospace; color: var(--c-ink); }
-.cos-sources li span { font: 400 13px/1.45 var(--font-display), sans-serif; color: var(--c-graphite); }
-.cos-sources__foot { margin-top: auto; padding-top: 14px; border-top: 1px solid var(--c-line); display: flex; flex-direction: column; gap: 4px; }
-.cos-sources__foot b { font: 600 11px/1 var(--font-display), sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--c-steel); }
-.cos-sources__foot span { font: 400 13px/1.45 var(--font-display), sans-serif; color: var(--c-graphite); }
+/* ─── § 4 Get the answer — Bond ──────────────────────────── */
+.ci-specimen-sec { background: var(--c-bond); padding: 76px 0 80px; }
+.ci-specimen-sec__head { padding-bottom: 24px; }
+.ci-specimen-sec__caption { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+.ci-specimen-sec__cap-line { font: 400 11px/1 ui-monospace, monospace; color: var(--c-graphite); text-transform: uppercase; letter-spacing: .04em; white-space: nowrap; }
+.ci-specimen-sec__cap-spec { font: 400 11px/1 ui-monospace, monospace; color: var(--c-steel); text-transform: uppercase; letter-spacing: .04em; }
+.ci-specimen-sec__head-wrap { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
 
-.cos-answer__delta { border-top: 1px solid var(--c-ink); background: var(--c-ink); padding: 18px 24px; display: grid; gap: 10px 24px; align-items: baseline; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
-.cos-answer__delta b { font: 600 11px/1 var(--font-display), sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--c-line); }
-.cos-answer__delta p { margin: 0; font: 500 15px/1.5 var(--font-display), sans-serif; letter-spacing: -.01em; color: var(--c-white); }
+/* Answer specimen */
+.ci-specimen { border: 1px solid var(--c-ink); background: var(--c-white); }
+.ci-specimen__q-band { padding: 20px 24px 22px; border-bottom: 1px solid var(--c-ink); display: flex; flex-direction: column; gap: 8px; }
+.ci-specimen__q-label { font: 600 11px/1 ui-monospace, monospace; letter-spacing: .1em; text-transform: uppercase; color: var(--c-steel); }
+.ci-specimen__q-text { margin: 0; font: 600 21px/1.25 var(--font); letter-spacing: -.022em; color: var(--c-ink); }
+.ci-specimen__body { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px,100%), 1fr)); }
+.ci-answer { padding: 24px; display: flex; flex-direction: column; gap: 15px; }
+.ci-answer p { margin: 0; }
+.ci-answer p:first-child { font: 500 16px/1.55 var(--font); letter-spacing: -.01em; color: var(--c-ink); }
+.ci-answer p:not(:first-child) { font: 400 15px/1.6 var(--font); color: var(--c-graphite); }
+.ci-sources { border-top: 1px solid var(--c-line); border-left: 1px solid var(--c-line); background: var(--c-bond); display: flex; flex-direction: column; }
+.ci-sources__head { padding: 16px 20px 0; display: flex; align-items: baseline; gap: 8px; }
+.ci-sources__label { font: 600 11px/1 var(--font); letter-spacing: .14em; text-transform: uppercase; color: var(--c-graphite); }
+.ci-sources__count { font: 400 11px/1 ui-monospace, monospace; color: var(--c-graphite); }
+.ci-sources__divider { margin: 12px 20px 0; border: none; border-top: 1px solid var(--c-ink); }
+.ci-sources__list { flex: 1; display: flex; flex-direction: column; }
+.ci-source-row { padding: 12px 20px 14px; border-bottom: 1px solid var(--c-line); display: flex; align-items: baseline; gap: 12px; }
+.ci-source-row:last-child { border-bottom: none; }
+.ci-source-row__code { font: 400 12px/1 ui-monospace, monospace; color: var(--c-graphite); flex-shrink: 0; white-space: nowrap; }
+.ci-source-row__gloss { font: 400 13px/1.45 var(--font); color: var(--c-graphite); }
+.ci-sources__foot { margin-top: auto; padding: 14px 20px; }
+.ci-sources__foot-rule { border: none; border-top: 1px solid var(--c-line); margin-bottom: 12px; }
+.ci-sources__foot-label { display: block; margin-bottom: 5px; font: 600 11px/1 var(--font); letter-spacing: .14em; text-transform: uppercase; color: var(--c-steel); }
+.ci-sources__foot-val { margin: 0; font: 400 13px/1.4 var(--font); color: var(--c-graphite); }
+.ci-specimen__footer { background: var(--c-ink); padding: 18px 24px; display: grid; grid-template-columns: auto 1fr; gap: 10px 24px; align-items: baseline; }
+.ci-specimen__footer-label { font: 600 11px/1 var(--font); letter-spacing: .14em; text-transform: uppercase; color: var(--c-line); white-space: nowrap; }
+.ci-specimen__footer-val { font: 500 15px/1.4 var(--font); color: var(--c-white); }
+.ci-specimen-sec__note { margin-top: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px,100%), 1fr)); gap: 8px 40px; }
+.ci-specimen-sec__note-strong { margin: 0; font: 500 16px/1.5 var(--font); color: var(--c-ink); }
+.ci-specimen-sec__note-body { margin: 0; font: 400 15px/1.55 var(--font); color: var(--c-graphite); }
 
-/* ─── Hero ───────────────────────────────────────────────── */
-.ci-hero { background: var(--c-bond); padding: 80px 0 76px; }
-.ci-hero__inner { display: flex; flex-direction: column; gap: 32px; max-width: 720px; }
-.ci-hero__eyebrow { display: flex; align-items: center; gap: 10px; font: 500 12px/1 var(--font-display), sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--c-steel); }
-.ci-hero__eyebrow-rule { width: 32px; height: 1px; background: var(--c-steel); }
-.ci-hero__h { margin: 0; font: 600 clamp(36px, 5.5vw, 64px)/1.06 var(--font-display), sans-serif; letter-spacing: -.032em; color: var(--c-ink); text-wrap: balance; }
-.ci-hero__lead { margin: 0; max-width: 48ch; font: 400 19px/1.55 var(--font-display), sans-serif; color: var(--c-graphite); text-wrap: pretty; }
-.ci-hero__cta { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+/* ─── § 5 Ask how your company does the work — Paper ─────── */
+.ci-questions { background: var(--c-white); padding: 76px 0 80px; }
+.ci-questions__head { padding-bottom: 24px; }
+.ci-questions__head-body { margin: 0; font: 400 16px/1.6 var(--font); color: var(--c-graphite); }
+.ci-question-rows { border-top: 2px solid var(--c-ink); }
+.ci-question-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px,100%), 1fr)); gap: 16px 28px; align-items: baseline; padding: 26px 0; border-bottom: 1px solid var(--c-line); }
+.ci-question-row--last { border-bottom: 0; }
+.ci-qcell1 { display: flex; flex-direction: column; gap: 10px; }
+.ci-qcell1__cat { font: 600 11px/1 var(--font); letter-spacing: .14em; text-transform: uppercase; color: var(--c-steel); }
+.ci-qcell1__pair { display: flex; align-items: baseline; gap: 10px; }
+.ci-qcell1__io { font: 500 11px/1 var(--font); letter-spacing: .1em; text-transform: uppercase; color: var(--c-graphite); flex: none; }
+.ci-qcell1__q { margin: 0; font: 400 16px/1.5 var(--font); color: var(--c-graphite); }
+.ci-qcell2 { display: flex; align-items: baseline; gap: 10px; }
+.ci-qcell2__ask { font: 600 11px/1 var(--font); letter-spacing: .1em; text-transform: uppercase; color: var(--c-ink); flex: none; }
+.ci-qcell2__q { margin: 0; font: 600 21px/1.25 var(--font); letter-spacing: -.022em; color: var(--c-ink); }
+.ci-questions__close { margin: 0; max-width: 70ch; font: 600 19px/1.4 var(--font); letter-spacing: -.015em; color: var(--c-ink); padding-top: 24px; }
 
-/* ─── Current state (pain) ───────────────────────────────── */
-.ci-pain { background: var(--c-white); padding: 76px 0 80px; }
-.ci-pain__head { margin-bottom: 48px; }
-.ci-pain__label { margin: 0 0 14px; font: 600 11px/1 var(--font-display), sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--c-steel); }
-.ci-pain__heading { margin: 0; font: 600 clamp(26px, 3.2vw, 40px)/1.1 var(--font-display), sans-serif; letter-spacing: -.028em; color: var(--c-ink); text-wrap: balance; max-width: 22ch; }
-.ci-pain__rows { border-top: 2px solid var(--c-ink); }
-.ci-pain__row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; padding: 22px 0 20px; border-bottom: 1px solid var(--c-line); align-items: start; }
-.ci-pain__row:last-child { border-bottom: 0; padding-bottom: 0; }
-.ci-pain__q { margin: 0; font: 500 15px/1.5 var(--font-display), sans-serif; color: var(--c-ink); }
-.ci-pain__a { margin: 0; font: 400 14px/1.6 var(--font-display), sans-serif; color: var(--c-graphite); }
+/* ─── § 6 Answer shouldn't end the workflow — Bond ───────── */
+.ci-workflow { background: var(--c-bond); padding-top: 76px; }
+.ci-workflow__head { padding-bottom: 24px; }
+.ci-workflow__head-body { margin: 0; font: 400 16px/1.6 var(--font); color: var(--c-graphite); }
+.ci-workflow__subhead { margin: 14px 0 0; font: 500 20px/1.35 var(--font); letter-spacing: -.02em; color: var(--c-ink); }
+.ci-flows { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px,100%), 1fr)); column-gap: 40px; padding-bottom: 40px; }
+.ci-flow { border-top: 1px solid var(--c-line); padding: 26px 0 0; display: flex; flex-direction: column; gap: 16px; }
+.ci-flow__name { margin: 0; font: 600 21px/1.25 var(--font); letter-spacing: -.022em; color: var(--c-ink); }
+.ci-flow__step { display: flex; flex-direction: column; gap: 8px; }
+.ci-flow__step-label { display: flex; align-items: center; gap: 8px; }
+.ci-flow__step-prod { font: 600 11px/1 var(--font); letter-spacing: .14em; text-transform: uppercase; color: var(--c-steel); }
+.ci-flow__step-ci { margin: 0; font: 500 16px/1.45 var(--font); color: var(--c-ink); }
+.ci-flow__connector { font: 400 16px/1 ui-monospace, monospace; color: var(--c-steel); }
+.ci-flow__step-dw { margin: 0; font: 400 15px/1.55 var(--font); color: var(--c-graphite); }
 
-/* ─── Ink band ───────────────────────────────────────────── */
-.ci-ink-band { background: var(--c-ink); padding: 34px 0; }
-.ci-ink-band__text { margin: 0; font: 600 clamp(18px, 2.2vw, 28px)/1.25 var(--font-display), sans-serif; letter-spacing: -.022em; color: var(--c-white); text-wrap: balance; max-width: 52ch; }
+/* 6b Ink band */
+.ci-workflow__band { background: var(--c-ink); }
+.ci-workflow__band-inner { padding: 34px 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px,100%), 1fr)); gap: 12px 40px; align-items: baseline; }
+.ci-workflow__band-label { font: 600 11px/1 var(--font); letter-spacing: .14em; text-transform: uppercase; color: var(--c-line); white-space: nowrap; align-self: center; }
+.ci-workflow__band-val { font: 600 22px/1.2 var(--font); letter-spacing: -.022em; color: var(--c-white); }
+.ci-workflow__band-sub { margin-top: 8px; font: 500 15px/1.4 var(--font); color: var(--c-line); }
 
-/* ─── Question comparison ────────────────────────────────── */
-.ci-compare { background: var(--c-white); padding: 76px 0 80px; }
-.ci-compare__head { margin-bottom: 48px; }
-.ci-compare__label { margin: 0 0 14px; font: 600 11px/1 var(--font-display), sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--c-steel); }
-.ci-compare__heading { margin: 0; font: 600 clamp(26px, 3.2vw, 40px)/1.1 var(--font-display), sans-serif; letter-spacing: -.028em; color: var(--c-ink); text-wrap: balance; max-width: 28ch; }
-.ci-compare__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; border: 1px solid var(--c-ink); }
-.ci-compare__col { background: var(--c-white); }
-.ci-compare__col + .ci-compare__col { border-left: 1px solid var(--c-ink); }
-.ci-compare__col-head { padding: 16px 24px 18px; border-bottom: 1px solid var(--c-ink); font: 600 11px/1 var(--font-display), sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--c-graphite); background: var(--c-bond); }
-.ci-compare__col-head--ci { color: var(--c-ink); background: var(--c-white); }
-.ci-compare__q { padding: 22px 24px 0; }
-.ci-compare__q-label { display: block; margin-bottom: 8px; font: 400 11px/1 ui-monospace, monospace; letter-spacing: .1em; text-transform: uppercase; color: var(--c-steel); }
-.ci-compare__q-text { margin: 0; font: 500 16px/1.45 var(--font-display), sans-serif; letter-spacing: -.012em; color: var(--c-ink); }
-.ci-compare__body { padding: 20px 24px 26px; display: flex; flex-direction: column; gap: 12px; }
-.ci-compare__item { font: 400 14px/1.55 var(--font-display), sans-serif; color: var(--c-graphite); padding-left: 14px; position: relative; }
-.ci-compare__item::before { content: '—'; position: absolute; left: 0; color: var(--c-line); }
-.ci-compare__item--ci { color: var(--c-ink); }
-.ci-compare__item--ci::before { color: var(--c-steel); }
+/* ─── § 7 Keep what your company has learned — Paper ─────── */
+.ci-continuity { background: var(--c-white); padding: 76px 0 80px; }
+.ci-continuity__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px,100%), 1fr)); gap: 48px; align-items: start; container-type: inline-size; }
+.ci-continuity__left { display: flex; flex-direction: column; }
+.ci-continuity__left-rule { border: none; border-top: 1px solid var(--c-line); margin: 28px 0 20px; }
+.ci-continuity__p { margin: 0 0 14px; font: 400 16px/1.6 var(--font); color: var(--c-graphite); }
+.ci-continuity__p:last-child { margin-bottom: 0; }
+.ci-continuity__right { border-top: 2px solid var(--c-ink); }
+.ci-continuity-outcome { padding: 22px 0; border-bottom: 1px solid var(--c-line); }
+.ci-continuity-outcome--last { border-bottom: none; }
+.ci-continuity-outcome__title { margin: 0 0 8px; font: 600 21px/1.25 var(--font); letter-spacing: -.022em; color: var(--c-ink); }
+.ci-continuity-outcome__body { margin: 0; font: 400 15px/1.55 var(--font); color: var(--c-graphite); }
+.ci-continuity__imp-rule { border: none; border-top: 1px solid var(--c-line); margin: 0; }
+.ci-imperatives { padding: 0; }
+.ci-imperative { margin: 0; padding: 8px 0; font: 600 20px/1.35 var(--font); letter-spacing: -.02em; color: var(--c-ink); }
 
-/* ─── Handoff to action ──────────────────────────────────── */
-.ci-handoff { background: var(--c-bond); padding: 76px 0 80px; }
-.ci-handoff__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
-.ci-handoff__label { margin: 0 0 16px; font: 600 11px/1 var(--font-display), sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--c-steel); }
-.ci-handoff__heading { margin: 0 0 20px; font: 600 clamp(26px, 3.2vw, 40px)/1.1 var(--font-display), sans-serif; letter-spacing: -.028em; color: var(--c-ink); text-wrap: balance; }
-.ci-handoff__body { margin: 0 0 32px; max-width: 44ch; font: 400 16px/1.6 var(--font-display), sans-serif; color: var(--c-graphite); text-wrap: pretty; }
-.ci-handoff__flow { border: 1px solid var(--c-ink); background: var(--c-white); }
-.ci-handoff__flow-row { padding: 18px 24px; display: flex; align-items: center; gap: 16px; border-bottom: 1px solid var(--c-line); }
-.ci-handoff__flow-row:last-child { border-bottom: 0; }
-.ci-handoff__flow-n { font: 400 11px/1 ui-monospace, monospace; color: var(--c-graphite); flex-shrink: 0; width: 20px; }
-.ci-handoff__flow-text { font: 500 14px/1.4 var(--font-display), sans-serif; color: var(--c-ink); }
-.ci-handoff__flow-sub { font: 400 13px/1.4 var(--font-display), sans-serif; color: var(--c-graphite); margin-top: 2px; }
-.ci-handoff__flow-arrow { margin-left: auto; font: 400 14px/1 var(--font-display), sans-serif; color: var(--c-line); flex-shrink: 0; }
-
-/* ─── Experienced people ─────────────────────────────────── */
-.ci-people { background: var(--c-white); padding: 76px 0 80px; }
-.ci-people__grid { display: grid; grid-template-columns: minmax(300px, 1fr) minmax(300px, 1.2fr); gap: 64px; align-items: start; }
-.ci-people__label { margin: 0 0 14px; font: 600 11px/1 var(--font-display), sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--c-steel); }
-.ci-people__heading { margin: 0 0 20px; font: 600 clamp(26px, 3.2vw, 40px)/1.1 var(--font-display), sans-serif; letter-spacing: -.028em; color: var(--c-ink); text-wrap: balance; }
-.ci-people__body { margin: 0; max-width: 44ch; font: 400 16px/1.6 var(--font-display), sans-serif; color: var(--c-graphite); text-wrap: pretty; }
-.ci-people__cells { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); column-gap: 40px; }
-.ci-people__cell { border-top: 1px solid var(--c-line); padding: 26px 0; }
-.ci-people__cell-head { margin: 0 0 8px; font: 600 17px/1.2 var(--font-display), sans-serif; letter-spacing: -.015em; color: var(--c-ink); }
-.ci-people__cell-body { margin: 0; font: 400 14px/1.6 var(--font-display), sans-serif; color: var(--c-graphite); }
-
-/* ─── Onboarding ─────────────────────────────────────────── */
-.ci-onboard { background: var(--c-bond); padding: 76px 0 80px; }
-.ci-onboard__head { margin-bottom: 48px; max-width: 560px; }
-.ci-onboard__label { margin: 0 0 14px; font: 600 11px/1 var(--font-display), sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--c-steel); }
-.ci-onboard__heading { margin: 0 0 16px; font: 600 clamp(26px, 3.2vw, 40px)/1.1 var(--font-display), sans-serif; letter-spacing: -.028em; color: var(--c-ink); text-wrap: balance; }
-.ci-onboard__sub { margin: 0; font: 400 16px/1.6 var(--font-display), sans-serif; color: var(--c-graphite); max-width: 52ch; text-wrap: pretty; }
-.ci-onboard__steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); column-gap: 40px; }
-.ci-onboard__step { border-top: 1px solid var(--c-line); padding: 26px 0; }
-.ci-onboard__step-n { display: block; margin-bottom: 10px; font: 400 12px/1 ui-monospace, monospace; color: var(--c-graphite); }
-.ci-onboard__step-head { margin: 0 0 8px; font: 600 17px/1.2 var(--font-display), sans-serif; letter-spacing: -.015em; color: var(--c-ink); }
-.ci-onboard__step-body { margin: 0; font: 400 14px/1.6 var(--font-display), sans-serif; color: var(--c-graphite); }
-
-/* ─── Not a chatbot ──────────────────────────────────────── */
-.ci-notbot { background: var(--c-white); padding: 76px 0 80px; }
-.ci-notbot__grid { display: grid; grid-template-columns: minmax(300px, 1fr) minmax(300px, 1fr); gap: 64px; align-items: start; }
-.ci-notbot__label { margin: 0 0 14px; font: 600 11px/1 var(--font-display), sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--c-steel); }
-.ci-notbot__heading { margin: 0 0 20px; font: 600 clamp(26px, 3.2vw, 40px)/1.1 var(--font-display), sans-serif; letter-spacing: -.028em; color: var(--c-ink); text-wrap: balance; }
-.ci-notbot__body { margin: 0; max-width: 44ch; font: 400 16px/1.6 var(--font-display), sans-serif; color: var(--c-graphite); text-wrap: pretty; }
-.ci-notbot__rows { border-top: 2px solid var(--c-ink); }
-.ci-notbot__row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; padding: 18px 0 16px; border-bottom: 1px solid var(--c-line); align-items: start; }
-.ci-notbot__row:last-child { border-bottom: 0; }
-.ci-notbot__row-label { font: 600 11px/1 var(--font-display), sans-serif; letter-spacing: .12em; text-transform: uppercase; color: var(--c-line); margin-bottom: 6px; }
-.ci-notbot__generic { font: 400 14px/1.55 var(--font-display), sans-serif; color: var(--c-graphite); }
-.ci-notbot__ci { font: 400 14px/1.55 var(--font-display), sans-serif; color: var(--c-ink); }
-
-/* ─── Configuration ──────────────────────────────────────── */
+/* ─── § 8 Not a generic chatbot — Bond ───────────────────── */
 .ci-config { background: var(--c-bond); padding: 76px 0 80px; }
-.ci-config__grid { display: grid; grid-template-columns: minmax(300px, 1fr) minmax(300px, 1fr); gap: 64px; align-items: start; }
-.ci-config__label { margin: 0 0 14px; font: 600 11px/1 var(--font-display), sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--c-steel); }
-.ci-config__heading { margin: 0 0 20px; font: 600 clamp(26px, 3.2vw, 40px)/1.1 var(--font-display), sans-serif; letter-spacing: -.028em; color: var(--c-ink); text-wrap: balance; }
-.ci-config__body { margin: 0; max-width: 44ch; font: 400 16px/1.6 var(--font-display), sans-serif; color: var(--c-graphite); text-wrap: pretty; }
-.ci-config__list { margin: 24px 0 0; padding: 0; border-top: 1px solid var(--c-line); }
-.ci-config__list-item { list-style: none; padding: 14px 0; border-bottom: 1px solid var(--c-line); font: 400 14px/1.5 var(--font-display), sans-serif; color: var(--c-graphite); display: flex; align-items: baseline; gap: 10px; }
-.ci-config__list-item::before { content: '——'; font: 400 12px/1 ui-monospace, monospace; color: var(--c-line); flex-shrink: 0; }
-.ci-config__list-item:last-child { border-bottom: 0; }
-.ci-config__note { margin: 28px 0 0; padding: 20px 24px; background: var(--c-white); border: 1px solid var(--c-line); }
-.ci-config__note p { margin: 0; font: 400 14px/1.6 var(--font-display), sans-serif; color: var(--c-graphite); }
-.ci-config__note strong { font-weight: 600; color: var(--c-ink); }
+.ci-config__head { padding-bottom: 24px; }
+.ci-config__head-body { margin: 0; font: 400 16px/1.6 var(--font); color: var(--c-graphite); }
+.ci-config__diff-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px,100%), 1fr)); gap: 20px 48px; align-items: start; margin-bottom: 32px; }
+.ci-config__diff-intro { margin: 0; font: 500 17px/1.55 var(--font); color: var(--c-ink); }
+.ci-config__diff-q { margin: 0; padding-left: 22px; border-left: 2px solid var(--c-steel); font: 600 22px/1.25 var(--font); letter-spacing: -.022em; color: var(--c-ink); }
+.ci-config__inputs-intro { margin: 0 0 12px; font: 500 16px/1.5 var(--font); color: var(--c-ink); padding-top: 24px; }
+.ci-inputs { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px,100%), 1fr)); gap: 0 32px; }
+.ci-input-item { display: flex; align-items: baseline; gap: 10px; padding: 14px 0; border-bottom: 1px solid var(--c-line); }
+.ci-input-item__n { font: 400 11px/1 ui-monospace, monospace; color: var(--c-graphite); flex-shrink: 0; }
+.ci-input-item__label { font: 500 16px/1.3 var(--font); color: var(--c-ink); }
+.ci-config__close { margin: 34px 0 0; max-width: 70ch; font: 600 19px/1.4 var(--font); letter-spacing: -.015em; color: var(--c-ink); }
 
-/* ─── Closing CTA ────────────────────────────────────────── */
-.cos-close { background: var(--c-ink); padding: 88px 0 80px; }
-.cos-close__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
-.cos-close__lockup { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
-.cos-close__lockup-name { font: 600 15px/1 var(--font-display), sans-serif; letter-spacing: -.015em; color: var(--c-white); }
-.cos-close__lockup-rule { flex: 1; height: 1px; background: var(--c-graphite); }
-.cos-close__headline { margin: 0 0 16px; font: 600 clamp(28px, 3.5vw, 44px)/1.1 var(--font-display), sans-serif; letter-spacing: -.028em; color: var(--c-white); text-wrap: balance; }
-.cos-close__subhead { margin: 0 0 14px; font: 400 16px/1.6 var(--font-display), sans-serif; color: var(--c-line); text-wrap: pretty; max-width: 48ch; }
-.cos-close__subhead:last-of-type { margin-bottom: 0; }
-.cos-close__subhead--sm { font-size: 14px; color: var(--c-graphite); }
-.cos-close__cta { margin-top: 32px; display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
-.cos-close__btn-primary { display: inline-flex; align-items: center; min-height: 48px; padding: 15px 26px; font: 600 15px/1 var(--font-display), sans-serif; letter-spacing: -.01em; text-decoration: none; background: var(--c-white); color: var(--c-ink); }
-.cos-close__btn-primary:hover { background: var(--c-bond); }
-.cos-close__btn-link { font: 600 15px/1 var(--font-display), sans-serif; letter-spacing: -.01em; color: var(--c-white); text-decoration: none; border-bottom: 2px solid var(--c-white); padding-bottom: 3px; }
-.cos-close__btn-link:hover { color: var(--c-line); border-bottom-color: var(--c-line); }
-.cos-close__index-label { margin: 0 0 14px; font: 600 11px/1 var(--font-display), sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--c-graphite); }
-.cos-close__index-rule { height: 1px; background: var(--c-graphite); margin-bottom: 0; }
-.cos-close__index-row { display: flex; align-items: center; gap: 12px; padding: 16px 0; border-bottom: 1px solid var(--c-graphite); }
-.cos-close__index-row:last-child { border-bottom: 0; }
-.cos-close__index-n { font: 400 12px/1 ui-monospace, monospace; color: var(--c-graphite); flex-shrink: 0; }
-.cos-close__index-name { font: 600 15px/1 var(--font-display), sans-serif; letter-spacing: -.01em; color: var(--c-white); }
-.cos-close__index-tag { font: 400 11px/1 ui-monospace, monospace; color: var(--c-graphite); margin-left: auto; }
-.cos-close__index-ext { font: 400 11px/1 var(--font-display), sans-serif; color: var(--c-graphite); margin-left: auto; }
+/* ─── § 9 Closing CTA — Ink ──────────────────────────────── */
+.ci-close { background: var(--c-ink); padding: 88px 0 80px; }
+.ci-close__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(340px,100%), 1fr)); gap: 56px; align-items: start; container-type: inline-size; }
+.ci-close__lockup { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; flex-wrap: wrap; }
+.ci-close__lockup-name { font: 600 14px/1 var(--font); letter-spacing: .14em; text-transform: uppercase; color: var(--c-white); white-space: nowrap; }
+.ci-close__lockup-rule { flex: 1; height: 1px; background: var(--c-graphite); min-width: 20px; }
+.ci-close__h { margin: 0 0 24px; font: 600 clamp(34px, 11cqi, 64px)/0.98 var(--font); letter-spacing: -.042em; color: var(--c-white); text-wrap: balance; }
+.ci-close__body1 { margin: 0 0 14px; max-width: 46ch; font: 400 19px/1.55 var(--font); color: var(--c-line); }
+.ci-close__body2 { margin: 0; max-width: 46ch; font: 400 16px/1.6 var(--font); color: var(--c-line); }
+.ci-close__index-label { margin: 0 0 0; font: 500 12px/1 var(--font); letter-spacing: .12em; text-transform: uppercase; color: var(--c-line); }
+.ci-close__index-rule { height: 1px; background: var(--c-graphite); margin: 14px 0 0; }
+.ci-close__index-row { display: flex; align-items: center; gap: 12px; padding: 16px 0; border-bottom: 1px solid var(--c-graphite); }
+.ci-close__index-row:last-child { border-bottom: 0; }
+.ci-close__index-n { font: 400 12px/1 ui-monospace, monospace; color: var(--c-line); flex-shrink: 0; }
+.ci-close__index-name { font: 600 17px/1 var(--font); color: var(--c-white); }
+.ci-close__index-tag { display: inline-flex; align-items: center; padding: 3px 6px; font: 600 10px/1 var(--font); letter-spacing: .12em; text-transform: uppercase; color: var(--c-line); border: 1px solid var(--c-graphite); margin-left: 8px; white-space: nowrap; }
+.ci-close__index-ext { font: 500 10px/1 var(--font); letter-spacing: .1em; text-transform: uppercase; color: var(--c-graphite); margin-left: auto; }
 
 /* ─── Footer ─────────────────────────────────────────────── */
-.cos-footer { background: var(--c-bond); border-top: 1px solid var(--c-line); }
-.cos-footer__inner { padding-top: 52px; padding-bottom: 40px; }
-.cos-footer__cols { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+.cos-footer { background: var(--c-white); border-top: 1px solid var(--c-line); }
+.cos-footer__inner { padding-top: 52px; }
+.cos-footer__cols { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 40px; }
 .cos-footer__brand { display: flex; flex-direction: column; gap: 14px; }
-.cos-footer__lockup { display: flex; align-items: center; gap: 10px; text-decoration: none; font: 600 15px/1 var(--font-display), sans-serif; letter-spacing: -.015em; color: var(--c-ink); }
-.cos-footer__tagline { margin: 0; font: 400 13px/1.5 var(--font-display), sans-serif; color: var(--c-graphite); max-width: 26ch; }
-.cos-footer__cta-link { align-self: flex-start; margin-top: 6px; font: 600 13px/1 var(--font-display), sans-serif; letter-spacing: -.01em; color: var(--c-ink); text-decoration: none; border-bottom: 1px solid var(--c-ink); padding-bottom: 2px; }
+.cos-footer__lockup { display: flex; align-items: center; gap: 10px; text-decoration: none; font: 600 15px/1 var(--font); letter-spacing: -.015em; color: var(--c-ink); }
+.cos-footer__tagline { margin: 0; font: 400 13px/1.5 var(--font); color: var(--c-graphite); max-width: 26ch; }
+.cos-footer__cta-link { align-self: flex-start; font: 600 13px/1 var(--font); color: var(--c-ink); text-decoration: none; border-bottom: 1px solid var(--c-ink); padding-bottom: 2px; }
 .cos-footer__cta-link:hover { color: var(--c-steel); border-bottom-color: var(--c-steel); }
 .cos-footer__col { display: flex; flex-direction: column; gap: 10px; }
-.cos-footer__col-head { font: 600 11px/1 var(--font-display), sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--c-graphite); margin-bottom: 4px; }
-.cos-footer__col-item { display: flex; align-items: baseline; gap: 8px; font: 400 14px/1 var(--font-display), sans-serif; color: var(--c-graphite); text-decoration: none; }
+.cos-footer__col-head { font: 600 11px/1 var(--font); letter-spacing: .14em; text-transform: uppercase; color: var(--c-graphite); margin-bottom: 4px; }
+.cos-footer__col-item { display: flex; align-items: baseline; gap: 8px; font: 400 14px/1 var(--font); color: var(--c-graphite); text-decoration: none; }
 .cos-footer__col-item:hover { color: var(--c-ink); }
+.cos-footer__col-item--current { font-weight: 600; color: var(--c-ink); }
 .cos-footer__col-n { font: 400 11px/1 ui-monospace, monospace; color: var(--c-line); flex-shrink: 0; }
-.cos-footer__bottom { border-top: 1px solid var(--c-line); padding-top: 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-.cos-footer__copy { font: 400 12px/1 var(--font-display), sans-serif; color: var(--c-graphite); }
-.cos-footer__policy { font: 400 12px/1 var(--font-display), sans-serif; color: var(--c-graphite); text-decoration: none; }
+.cos-footer__bottom { border-top: 1px solid var(--c-line); padding: 20px 0; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.cos-footer__copy { font: 400 12px/1 var(--font); color: var(--c-graphite); }
+.cos-footer__policy { font: 400 12px/1 var(--font); color: var(--c-graphite); text-decoration: none; }
 .cos-footer__policy:hover { color: var(--c-ink); }
+.cos-footer__title-block { border-top: 1px solid var(--c-line); display: flex; flex-wrap: wrap; }
+.cos-footer__title-cell { font: 400 10px/1 ui-monospace, monospace; letter-spacing: .08em; text-transform: uppercase; color: var(--c-graphite); padding: 12px 16px; border-right: 1px solid var(--c-line); white-space: nowrap; }
+.cos-footer__title-cell:first-child { padding-left: 0; }
+.cos-footer__title-cell:last-child { border-right: 0; }
 
 /* ─── Mobile nav ─────────────────────────────────────────── */
 @media (max-width: 760px) {
   .cos-header__toggle { display: flex; }
-  .cos-nav {
-    display: none;
-    position: absolute; top: 100%; left: 0; right: 0;
-    background: var(--c-white); border-top: 1px solid var(--c-line); border-bottom: 1px solid var(--c-line);
-    flex-direction: column; align-items: stretch; gap: 0; padding: 0;
-  }
+  .cos-nav { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--c-white); border-top: 1px solid var(--c-line); border-bottom: 1px solid var(--c-line); flex-direction: column; align-items: stretch; gap: 0; }
   .cos-nav.is-open { display: flex; }
   .cos-nav > li { border-bottom: 1px solid var(--c-line); }
   .cos-nav > li:last-child { border-bottom: none; }
-  .cos-nav a:not(.cos-header__cta), .cos-nav__trigger { padding: 14px 24px; display: block; width: 100%; text-align: left; }
+  .cos-nav a:not(.cos-header__cta) { padding: 14px 24px; display: block; }
   .cos-header__cta { display: none; }
   .cos-nav__trigger { padding: 12px 24px; width: 100%; justify-content: space-between; }
   .cos-nav__panel { position: static; min-width: 0; border: none; border-top: 1px solid var(--c-line); }
-  .cos-nav__panel .cos-nav__item { padding: 10px 32px; font-size: 13px; }
-}
-
-/* ─── Responsive ─────────────────────────────────────────── */
-@media (max-width: 900px) {
-  .cos-product-section { padding: 56px 24px 48px; }
-  .cos-product { grid-template-columns: 1fr; gap: 32px; }
-  .ci-handoff__grid,
-  .ci-people__grid,
-  .ci-notbot__grid,
-  .ci-config__grid { grid-template-columns: 1fr; gap: 40px; }
-  .cos-close__grid { grid-template-columns: 1fr; gap: 48px; }
   .cos-footer__cols { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .cos-footer__title-block { flex-direction: column; }
+  .cos-footer__title-cell { padding: 6px 0; border-right: 0; border-bottom: 1px solid var(--c-line); }
+  .cos-footer__title-cell:last-child { border-bottom: 0; }
+  .ci-hero { padding: 56px 0 48px; }
+  .ci-hero__rule { margin-top: 32px; }
 }
-
-@media (max-width: 760px) {
-  .ci-hero { padding: 60px 0 56px; }
-  .ci-hero__h { font-size: clamp(32px, 8vw, 48px); }
-  .ci-pain__row,
-  .ci-compare__grid { grid-template-columns: 1fr; }
-  .ci-compare__col + .ci-compare__col { border-left: 0; border-top: 1px solid var(--c-ink); }
-  .ci-notbot__row { grid-template-columns: 1fr; }
-  .cos-answer__body { grid-template-columns: 1fr; }
-  .cos-sources { border-left: 0; border-top: 1px solid var(--c-line); }
-  .cos-answer__delta { grid-template-columns: 1fr; }
-  .cos-footer__cols { grid-template-columns: 1fr; }
+@media (max-width: 900px) {
+  .cos-footer__cols { grid-template-columns: 1fr 1fr; gap: 32px; }
 }
 </style>
 </head>
 <body>
 
-<!-- Header -->
+<!-- Header (Paper, sticky) -->
 <header class="cos-header" id="top">
   <div class="cos-container">
     <div class="cos-header__inner">
@@ -346,47 +323,32 @@ img { max-width: 100%; display: block; }
       </button>
 
       <ul class="cos-nav" id="main-nav" role="list">
-
-        <!-- Products ▾ -->
         <li class="cos-nav__dropdown">
           <button class="cos-nav__trigger" aria-expanded="false" aria-haspopup="true">Products</button>
           <div class="cos-nav__panel" role="region">
             <a class="cos-nav__item" href="/products/document-workbench.html">
-              <span class="cos-nav__item-name">
-                <span class="cos-nav__item-tag">01</span>
-                Document Workbench
-              </span>
+              <span class="cos-nav__item-name"><span class="cos-nav__item-tag">01</span>Document Workbench</span>
               <span class="cos-nav__item-desc">Construction documents from project information</span>
             </a>
             <a class="cos-nav__item" href="/products/construction-intelligence.html" aria-current="page">
-              <span class="cos-nav__item-name">
-                <span class="cos-nav__item-tag">02</span>
-                Construction Intelligence
-              </span>
+              <span class="cos-nav__item-name"><span class="cos-nav__item-tag">02</span>Construction Intelligence</span>
               <span class="cos-nav__item-desc">Company-specific answers, source-backed</span>
             </a>
-            <a class="cos-nav__item" href="#">
+            <a class="cos-nav__item" href="/products/project-intelligence.html">
               <span class="cos-nav__item-name">
                 <span class="cos-nav__item-tag">03</span>
                 Project Intelligence
-                <span class="cos-nav__item-tag" style="margin-left:4px;color:#476776">In development</span>
+                <span class="cos-nav__item-tag" style="color:#476776">In development</span>
               </span>
               <span class="cos-nav__item-desc">Attention where it's needed, before it's urgent</span>
             </a>
             <a class="cos-nav__item" href="#">
-              <span class="cos-nav__item-name">
-                <span class="cos-nav__item-tag">——</span>
-                Operations Automation
-              </span>
+              <span class="cos-nav__item-name"><span class="cos-nav__item-tag">——</span>Operations Automation</span>
               <span class="cos-nav__item-desc">Extension layer across the system</span>
             </a>
           </div>
         </li>
-
-        <!-- Services -->
         <li><a href="/#services">Services</a></li>
-
-        <!-- Resources ▾ -->
         <li class="cos-nav__dropdown">
           <button class="cos-nav__trigger" aria-expanded="false" aria-haspopup="true">Resources</button>
           <div class="cos-nav__panel" role="region">
@@ -400,275 +362,514 @@ img { max-width: 100%; display: block; }
             </a>
           </div>
         </li>
-
-        <!-- About -->
         <li><a href="/#about">About</a></li>
-
-        <!-- CTA -->
         <li><a class="cos-header__cta" href="https://cal.com/justinyurasits">Book a demo</a></li>
-
       </ul>
+
     </div>
   </div>
 </header>
 
 
-<!-- 1. Hero — Bond -->
+<!-- § 1. Hero — Paper -->
 <section class="ci-hero">
   <div class="cos-container">
-    <div class="ci-hero__inner">
-      <p class="ci-hero__eyebrow">
-        <span class="ci-hero__eyebrow-rule"></span>
-        02 &mdash; Knowledge
+    <div class="ci-hero__col">
+
+      <!-- Masterbrand tag row -->
+      <p class="ci-hero__tag">
+        <span class="ci-hero__tag-n">02</span>
+        <span class="ci-hero__tag-rule"></span>
+        <span>Construction OS</span>
       </p>
-      <h1 class="ci-hero__h">The answer is in there.<br>Now it&rsquo;s reachable.</h1>
-      <p class="ci-hero__lead">Construction Intelligence gives your team access to your company&rsquo;s procedures, pricing rules, standards, and project history&mdash;so the right answer takes seconds, not a search.</p>
-      <div class="ci-hero__cta">
-        <a class="cos-btn cos-btn--ink" href="https://cal.com/justinyurasits">Book a demo</a>
-        <a class="cos-link" href="#product">See how it works</a>
+
+      <!-- Product name with CI icon at .72em -->
+      <h1 class="ci-hero__name">
+        <!-- icon-fewer-bottlenecks at .72em, two polylines only (below 24px: drop hairline) -->
+        <svg viewBox="0 0 100 100" style="width:.72em;height:.72em;flex:none" aria-hidden="true">
+          <polyline points="8,20 40,20 54,42 94,42" fill="none" stroke="currentColor" stroke-width="11"/>
+          <polyline points="8,80 40,80 54,58 94,58" fill="none" stroke="currentColor" stroke-width="11"/>
+        </svg>
+        Construction Intelligence
+      </h1>
+
+      <!-- Headline -->
+      <p class="ci-hero__headline">Put your company's knowledge to work.</p>
+
+      <!-- Body -->
+      <p class="ci-hero__body">Your company has spent years learning how to price work, manage changes, write scopes, solve problems, and run projects. Construction Intelligence combines that know-how with your procedures, pricing rules, standards, templates, and project history&mdash;so your team can get company-specific answers without tracking down the person who knows.</p>
+
+      <!-- Outcome line (2px Steel left border) -->
+      <p class="ci-hero__outcome">Get the answer. See what it&rsquo;s based on. Know what comes next.</p>
+
+      <!-- CTA row -->
+      <div class="ci-cta-row">
+        <a class="ci-btn ci-btn--ink" href="https://cal.com/justinyurasits">Book a demo</a>
+        <a class="ci-link ci-link--ink" href="#specimen">See an answer</a>
+      </div>
+
+    </div>
+
+    <!-- Three capability points under 2px Ink rule -->
+    <hr class="ci-hero__rule" aria-hidden="true">
+    <div class="ci-hero__caps" aria-label="Key capabilities">
+      <div class="ci-hero__cap">
+        <span class="ci-hero__cap-n">01</span>
+        <h2 class="ci-hero__cap-title">Company-specific answers</h2>
+        <p class="ci-hero__cap-body">Grounded in your procedures, pricing rules, standards, templates, and project history.</p>
+      </div>
+      <div class="ci-hero__cap">
+        <span class="ci-hero__cap-n">02</span>
+        <h2 class="ci-hero__cap-title">Source-backed reasoning</h2>
+        <p class="ci-hero__cap-body">See the procedure, standard, or reference behind the answer.</p>
+      </div>
+      <div class="ci-hero__cap">
+        <span class="ci-hero__cap-n">03</span>
+        <h2 class="ci-hero__cap-title">From answer to action</h2>
+        <p class="ci-hero__cap-body">When the answer requires a document or next step, guide the PM to the right workflow in Document Workbench.</p>
       </div>
     </div>
   </div>
 </section>
 
 
-<!-- 2. Current state ledger — Paper -->
-<section class="ci-pain">
+<!-- § 2. Your best people (Bond) + 2b Ink transition band -->
+<section class="ci-problem">
   <div class="cos-container">
-    <div class="ci-pain__head">
-      <p class="ci-pain__label">The current state</p>
-      <h2 class="ci-pain__heading">Where the search happens today</h2>
+
+    <!-- Header block -->
+    <div class="ci-section-head ci-problem__head">
+      <div>
+        <p class="ci-eyebrow">The Problem</p>
+        <h2 class="ci-h2">Your best people shouldn&rsquo;t be the only path to an answer.</h2>
+      </div>
+      <div>
+        <p class="ci-problem__body-g">Every construction company has people everyone depends on. The senior PM who knows how a difficult change should be handled. The estimator whose pricing judgment everyone trusts. The COO who knows the procedure nobody else can find.</p>
+        <p class="ci-problem__body-emph">Their experience is valuable. The problem is when the whole company has to go through them to use it.</p>
+      </div>
     </div>
-    <dl class="ci-pain__rows">
-      <div class="ci-pain__row">
-        <dt class="ci-pain__q">&ldquo;How do we price an owner-requested change on cost-plus?&rdquo;</dt>
-        <dd class="ci-pain__a">Whoever wrote the procedure is in a meeting. The PM makes their best guess or waits.</dd>
-      </div>
-      <div class="ci-pain__row">
-        <dt class="ci-pain__q">&ldquo;What&rsquo;s our standard markup for subcontracted millwork?&rdquo;</dt>
-        <dd class="ci-pain__a">It&rsquo;s in a procedure document from three years ago. If anyone can find it.</dd>
-      </div>
-      <div class="ci-pain__row">
-        <dt class="ci-pain__q">&ldquo;What does our contract say about NTE authorization?&rdquo;</dt>
-        <dd class="ci-pain__a">Ask the PM who worked that owner. If they still work here.</dd>
-      </div>
-      <div class="ci-pain__row">
-        <dt class="ci-pain__q">&ldquo;New project manager, complex delivery type&rdquo;</dt>
-        <dd class="ci-pain__a">Six months to learn the right questions. Longer to get the answers right without asking.</dd>
-      </div>
-    </dl>
-  </div>
-</section>
+    <hr class="ci-rule-2px" style="margin-bottom:30px" aria-hidden="true">
 
+    <!-- Ledger -->
+    <div class="ci-ledger">
 
-<!-- 3. Ink band -->
-<div class="ci-ink-band">
-  <div class="cos-container">
-    <p class="ci-ink-band__text">When the answer is a search, the wrong people decide.</p>
-  </div>
-</div>
-
-
-<!-- 4. Product block — Bond -->
-<section class="cos-product-section" id="product">
-  <div class="cos-product">
-
-    <!-- Left column -->
-    <div class="cos-product__col">
-      <p class="cos-product__tag">
-        <span>02</span>
-        <i></i>
-        KNOWLEDGE
-      </p>
-      <div class="cos-product__name-group">
-        <h2 class="cos-product__name">
-          <!-- Fewer-bottlenecks icon, no red — currentColor only -->
-          <svg viewBox="0 0 100 100" aria-hidden="true">
-            <line x1="6" y1="50" x2="96" y2="50" stroke="currentColor" stroke-width="4"/>
-            <polyline points="8,20 40,20 54,42 94,42" fill="none" stroke="currentColor" stroke-width="8"/>
-            <polyline points="8,80 40,80 54,58 94,58" fill="none" stroke="currentColor" stroke-width="8"/>
-          </svg>
-          Construction Intelligence
-        </h2>
-        <p class="cos-product__lead">Put your company&rsquo;s knowledge to work.</p>
-      </div>
-      <p class="cos-product__body">Combine construction know-how with your procedures, pricing rules, standards, templates, and project history&mdash;so your team gets company-specific answers without searching through folders or tracking down the person who knows. Put your best people&rsquo;s judgment in reach of the whole team.</p>
-      <div class="cos-product__cta">
-        <a class="cos-btn cos-btn--ink" href="https://cal.com/justinyurasits">Explore Construction Intelligence &rarr;</a>
-        <a class="cos-link" href="#">See it work</a>
-      </div>
-
-      <!-- Proof table -->
-      <dl class="cos-proof">
-        <div>
-          <dt class="is-sm">Company-specific answers</dt>
-          <dd>Grounded in your procedures, pricing rules, standards, templates, and project history</dd>
+      <div class="ci-ledger__row">
+        <div class="ci-ledger__cell1">
+          <span class="ci-ledger__n">01</span>
+          <h3 class="ci-ledger__claim">Your best people become bottlenecks.</h3>
         </div>
         <div>
-          <dt class="is-sm">Source-backed reasoning</dt>
-          <dd>See the procedure, standard, or reference behind the answer</dd>
+          <p class="ci-ledger__con">The same experienced people get interrupted all day to answer questions the company has already answered before.</p>
+        </div>
+      </div>
+
+      <div class="ci-ledger__row">
+        <div class="ci-ledger__cell1">
+          <span class="ci-ledger__n">02</span>
+          <h3 class="ci-ledger__claim">Experienced people leave&mdash;and the knowledge leaves with them.</h3>
         </div>
         <div>
-          <dt class="is-sm">Knowledge that doesn&rsquo;t walk out the door</dt>
-          <dd>Capture how experienced people make decisions and make it reusable</dd>
+          <p class="ci-ledger__con">Retirement, turnover, and succession can take decades of accumulated judgment out of the business.</p>
         </div>
-      </dl>
-
-      <!-- Next rail -->
-      <div class="cos-next">
-        <span class="cos-next__label">Next</span>
-        <span class="cos-next__item">03 <strong>Project Intelligence</strong></span>
-      </div>
-    </div>
-
-    <!-- Right column — answer card artifact -->
-    <div class="cos-product__col">
-      <div class="cos-doc-cap">
-        <span>Construction Intelligence &mdash; Answer</span>
-        <span>4 Sources Cited</span>
       </div>
 
-      <figure style="margin:0">
-        <div class="cos-answer" role="img" aria-label="Example Construction Intelligence answer card">
-
-          <!-- Question band -->
-          <div class="cos-answer__q">
-            <b>Question</b>
-            <h4>How should we price an owner-requested millwork change on a cost-plus project?</h4>
-          </div>
-
-          <!-- Answer body + sources rail -->
-          <div class="cos-answer__body">
-            <!-- Answer text -->
-            <div class="cos-answer__text">
-              <p>On cost-plus, the PCO is still required&mdash;it establishes owner consent that the costs are eligible and defines whether fee applies.</p>
-              <p>For subcontracted millwork, price from the shop quote, write the scope internally, apply contract fee without compounding and show it separately, state schedule impact in calendar days, and get written authorization before fabrication begins.</p>
-              <p>If pricing is not final and the owner wants the shop released, authorize in writing as NTE or T&amp;M&mdash;never verbally.</p>
-            </div>
-            <!-- Sources rail -->
-            <div class="cos-sources">
-              <div class="cos-sources__head">
-                Sources <span>4 cited</span>
-              </div>
-              <ul>
-                <li>
-                  <b>FCM-03 &sect;8.2</b>
-                  <span>Cost-plus change authorization and fee treatment</span>
-                </li>
-                <li>
-                  <b>CHG-53 &sect;8.6 / &sect;9.2</b>
-                  <span>PCO pricing presentation and contractor-written scope</span>
-                </li>
-                <li>
-                  <b>CON-16 &sect;7.4</b>
-                  <span>Fee and markup rules</span>
-                </li>
-                <li>
-                  <b>CHG-59</b>
-                  <span>NTE/T&amp;M authorization</span>
-                </li>
-              </ul>
-              <div class="cos-sources__foot">
-                <b>Answered from</b>
-                <span>Your company&rsquo;s procedures and standards</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- What changes the answer — Ink band -->
-          <div class="cos-answer__delta">
-            <b>What changes the answer</b>
-            <p>Subcontracted vs. self-performed millwork; whether the project has a GMP cap.</p>
-          </div>
-
+      <div class="ci-ledger__row">
+        <div class="ci-ledger__cell1">
+          <span class="ci-ledger__n">03</span>
+          <h3 class="ci-ledger__claim">New people know construction. They don&rsquo;t know your company yet.</h3>
         </div>
-      </figure>
-    </div>
+        <div>
+          <p class="ci-ledger__con">They still need to learn your pricing philosophy, standards, contract practices, approval requirements, and the lessons your team learned the hard way.</p>
+        </div>
+      </div>
 
+      <div class="ci-ledger__row ci-ledger__row--last">
+        <div class="ci-ledger__cell1">
+          <span class="ci-ledger__n">04</span>
+          <h3 class="ci-ledger__claim">The answer exists. Nobody can find it.</h3>
+        </div>
+        <div>
+          <p class="ci-ledger__con">Procedures, pricing guidance, examples, and project lessons are scattered across folders, documents, and past jobs&mdash;so asking a person is often easier than finding the answer.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 2b. Transition band — Ink (full-bleed inside Bond section) -->
+  <div class="ci-problem__band">
+    <div class="cos-container ci-problem__band-inner">
+      <p class="ci-band__text">Your company already knows more than it can consistently use.</p>
+    </div>
   </div>
 </section>
 
 
-<!-- 5. Question comparison — Paper -->
-<section class="ci-compare">
+<!-- § 3. Turn what your company knows — Paper -->
+<section class="ci-product">
   <div class="cos-container">
-    <div class="ci-compare__head">
-      <p class="ci-compare__label">How it differs</p>
-      <h2 class="ci-compare__heading">Not a general answer. Your company&rsquo;s answer.</h2>
-    </div>
-    <div class="ci-compare__grid">
-      <!-- Generic AI column -->
-      <div class="ci-compare__col">
-        <div class="ci-compare__col-head">Generic AI</div>
-        <div class="ci-compare__q">
-          <span class="ci-compare__q-label">Question</span>
-          <p class="ci-compare__q-text">How do we handle a cost-plus change order for subcontracted work?</p>
-        </div>
-        <div class="ci-compare__body">
-          <p class="ci-compare__item">General guidance based on common construction practice</p>
-          <p class="ci-compare__item">No reference to your contract type, fee structure, or delivery method</p>
-          <p class="ci-compare__item">No source documents — you can&rsquo;t verify what it&rsquo;s based on</p>
-          <p class="ci-compare__item">Different answer every time, depending on how the question is phrased</p>
-          <p class="ci-compare__item">Same answer as your competitors get</p>
-        </div>
+
+    <!-- Header block -->
+    <div class="ci-section-head ci-product__head">
+      <div>
+        <p class="ci-eyebrow">The Product</p>
+        <h2 class="ci-h2">Turn what your company knows into something the whole team can use.</h2>
       </div>
-      <!-- CI column -->
-      <div class="ci-compare__col">
-        <div class="ci-compare__col-head ci-compare__col-head--ci">Construction Intelligence</div>
-        <div class="ci-compare__q">
-          <span class="ci-compare__q-label">Question</span>
-          <p class="ci-compare__q-text">How do we handle a cost-plus change order for subcontracted work?</p>
-        </div>
-        <div class="ci-compare__body">
-          <p class="ci-compare__item ci-compare__item--ci">Answers drawn from your procedures, CHG-53, CON-16, and project precedent</p>
-          <p class="ci-compare__item ci-compare__item--ci">Applies your fee structure, markup rules, and authorization requirements</p>
-          <p class="ci-compare__item ci-compare__item--ci">Every answer shows the source — section and document it came from</p>
-          <p class="ci-compare__item ci-compare__item--ci">Consistent answer, grounded in your standards, not the phrasing</p>
-          <p class="ci-compare__item ci-compare__item--ci">Only your company gets this answer</p>
-        </div>
+      <div>
+        <p class="ci-product__head-body">Construction Intelligence combines construction know-how with the knowledge specific to your business: your procedures, pricing rules, standards, templates, contract language, project examples, and documented operating judgment.</p>
       </div>
     </div>
+    <hr class="ci-rule-2px" style="margin-bottom:30px" aria-hidden="true">
+
+    <!-- Three steps -->
+    <div class="ci-steps">
+      <div class="ci-step">
+        <span class="ci-step__n">01</span>
+        <h3 class="ci-step__title">Ask the real question</h3>
+        <p class="ci-step__body">Ask in normal construction language, with the project and contract details that actually matter.</p>
+      </div>
+      <div class="ci-step">
+        <span class="ci-step__n">02</span>
+        <h3 class="ci-step__title">Get the company-specific answer</h3>
+        <p class="ci-step__body">Apply the procedures, standards, pricing rules, references, and context relevant to the question.</p>
+      </div>
+      <div class="ci-step">
+        <span class="ci-step__n">03</span>
+        <h3 class="ci-step__title">See why&mdash;and what happens next</h3>
+        <p class="ci-step__body">See the sources behind the guidance, understand the conditions that could change the answer, and identify the next action when one is required.</p>
+      </div>
+    </div>
+
+    <hr class="ci-rule-2px" aria-hidden="true">
+    <p class="ci-product__close">The goal isn&rsquo;t to replace experienced people. It&rsquo;s to stop making them the only way the company can access what it already knows.</p>
+
   </div>
 </section>
 
 
-<!-- 6. Handoff to action — Bond -->
-<section class="ci-handoff">
+<!-- § 4. Get the answer—and see what it's based on. — Bond -->
+<section class="ci-specimen-sec" id="specimen">
   <div class="cos-container">
-    <div class="ci-handoff__grid">
 
+    <!-- Header block -->
+    <div class="ci-specimen-sec__head-wrap ci-specimen-sec__head">
       <div>
-        <p class="ci-handoff__label">From answer to action</p>
-        <h2 class="ci-handoff__heading">The answer leads somewhere.</h2>
-        <p class="ci-handoff__body">When the answer requires a document or a next step, Construction Intelligence guides the PM to the right workflow in Document Workbench&mdash;so the knowledge becomes a deliverable, not just a reply.</p>
-        <a class="cos-link" href="/products/document-workbench.html">See Document Workbench &rarr;</a>
+        <p class="ci-eyebrow">The Answer</p>
+        <h2 class="ci-h2">Get the answer&mdash;and see what it&rsquo;s based on.</h2>
+      </div>
+      <div class="ci-specimen-sec__caption">
+        <span class="ci-specimen-sec__cap-line">Construction Intelligence &mdash; Answer</span>
+        <span class="ci-specimen-sec__cap-spec">Specimen</span>
+      </div>
+    </div>
+    <hr class="ci-rule-2px" style="margin-bottom:34px" aria-hidden="true">
+
+    <!-- Answer specimen -->
+    <div class="ci-specimen" role="region" aria-label="Answer specimen">
+
+      <!-- Question band -->
+      <div class="ci-specimen__q-band">
+        <span class="ci-specimen__q-label">Question</span>
+        <p class="ci-specimen__q-text">How should we price an owner-requested millwork change on a cost-plus project?</p>
       </div>
 
+      <!-- Body: auto-fit grid (answer + sources) -->
+      <div class="ci-specimen__body">
+
+        <!-- Answer column -->
+        <div class="ci-answer">
+          <p>On cost-plus, the PCO is still required&mdash;it establishes owner consent that the costs are eligible and defines whether fee applies.</p>
+          <p>For subcontracted millwork, price from the shop quote, write the scope internally, apply contract fee without compounding and show it separately, state schedule impact in calendar days, and get written authorization before fabrication begins.</p>
+          <p>If pricing is not final and the owner wants the shop released, authorize in writing as NTE or T&M&mdash;never verbally.</p>
+        </div>
+
+        <!-- Sources rail -->
+        <div class="ci-sources">
+          <div class="ci-sources__head">
+            <span class="ci-sources__label">Sources</span>
+            <span class="ci-sources__count">4</span>
+          </div>
+          <hr class="ci-sources__divider" aria-hidden="true">
+          <div class="ci-sources__list">
+            <div class="ci-source-row">
+              <span class="ci-source-row__code">FCM-03 §8.2</span>
+              <span class="ci-source-row__gloss">Cost-plus change authorization and fee treatment</span>
+            </div>
+            <div class="ci-source-row">
+              <span class="ci-source-row__code">CHG-53 §8.6 / §9.2</span>
+              <span class="ci-source-row__gloss">PCO pricing presentation and contractor-written scope</span>
+            </div>
+            <div class="ci-source-row">
+              <span class="ci-source-row__code">CON-16 §7.4</span>
+              <span class="ci-source-row__gloss">Fee and markup rules</span>
+            </div>
+            <div class="ci-source-row">
+              <span class="ci-source-row__code">CHG-59</span>
+              <span class="ci-source-row__gloss">NTE / T&M authorization</span>
+            </div>
+          </div>
+          <div class="ci-sources__foot">
+            <hr class="ci-sources__foot-rule" aria-hidden="true">
+            <span class="ci-sources__foot-label">Answered From</span>
+            <p class="ci-sources__foot-val">Your company&rsquo;s procedures and standards</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Ink footer band -->
+      <div class="ci-specimen__footer">
+        <span class="ci-specimen__footer-label">What Changes The Answer</span>
+        <p class="ci-specimen__footer-val">Subcontracted vs. self-performed millwork; whether the project has a GMP cap.</p>
+      </div>
+
+    </div>
+
+    <!-- Proof note below specimen -->
+    <div class="ci-specimen-sec__note">
+      <p class="ci-specimen-sec__note-strong">An answer, the basis for it, and the conditions that would change it.</p>
+      <p class="ci-specimen-sec__note-body">Not a retrieved document, and not an unexplained response.</p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- § 5. Ask how your company does the work. — Paper -->
+<section class="ci-questions">
+  <div class="cos-container">
+
+    <!-- Header block -->
+    <div class="ci-section-head ci-questions__head">
       <div>
-        <div class="ci-handoff__flow">
-          <div class="ci-handoff__flow-row">
-            <span class="ci-handoff__flow-n">01</span>
-            <div>
-              <p class="ci-handoff__flow-text">PM asks Construction Intelligence</p>
-              <p class="ci-handoff__flow-sub">How do we price this change? What does the contract require?</p>
-            </div>
-            <span class="ci-handoff__flow-arrow">&darr;</span>
+        <p class="ci-eyebrow">The Questions</p>
+        <h2 class="ci-h2">Ask how your company does the work.</h2>
+      </div>
+      <div>
+        <p class="ci-questions__head-body">Generic construction questions are easy. The valuable questions are the ones where the answer depends on both construction knowledge and how your company operates.</p>
+      </div>
+    </div>
+    <hr class="ci-rule-2px" aria-hidden="true">
+
+    <!-- Four paired rows -->
+    <div class="ci-question-rows">
+
+      <div class="ci-question-row">
+        <div class="ci-qcell1">
+          <span class="ci-qcell1__cat">Changes</span>
+          <div class="ci-qcell1__pair">
+            <span class="ci-qcell1__io">Instead&nbsp;of</span>
+            <p class="ci-qcell1__q">How do you price a change order?</p>
           </div>
-          <div class="ci-handoff__flow-row">
-            <span class="ci-handoff__flow-n">02</span>
-            <div>
-              <p class="ci-handoff__flow-text">Gets the answer with its sources</p>
-              <p class="ci-handoff__flow-sub">Grounded in procedure documents, fee rules, and contract terms</p>
-            </div>
-            <span class="ci-handoff__flow-arrow">&darr;</span>
+        </div>
+        <div class="ci-qcell2">
+          <span class="ci-qcell2__ask">Ask</span>
+          <p class="ci-qcell2__q">How should we price this owner-requested millwork change on this type of contract?</p>
+        </div>
+      </div>
+
+      <div class="ci-question-row">
+        <div class="ci-qcell1">
+          <span class="ci-qcell1__cat">Contracts</span>
+          <div class="ci-qcell1__pair">
+            <span class="ci-qcell1__io">Instead&nbsp;of</span>
+            <p class="ci-qcell1__q">What belongs in a subcontract?</p>
           </div>
-          <div class="ci-handoff__flow-row">
-            <span class="ci-handoff__flow-n">03</span>
-            <div>
-              <p class="ci-handoff__flow-text">Opens the right workflow in Document Workbench</p>
-              <p class="ci-handoff__flow-sub">Change order, PCO, or scope document — already scoped correctly</p>
-            </div>
+        </div>
+        <div class="ci-qcell2">
+          <span class="ci-qcell2__ask">Ask</span>
+          <p class="ci-qcell2__q">What does our company require before this subcontract can be issued?</p>
+        </div>
+      </div>
+
+      <div class="ci-question-row">
+        <div class="ci-qcell1">
+          <span class="ci-qcell1__cat">RFIs</span>
+          <div class="ci-qcell1__pair">
+            <span class="ci-qcell1__io">Instead&nbsp;of</span>
+            <p class="ci-qcell1__q">What is an RFI?</p>
           </div>
+        </div>
+        <div class="ci-qcell2">
+          <span class="ci-qcell2__ask">Ask</span>
+          <p class="ci-qcell2__q">Based on this condition and our process, should we issue an RFI?</p>
+        </div>
+      </div>
+
+      <div class="ci-question-row ci-question-row--last">
+        <div class="ci-qcell1">
+          <span class="ci-qcell1__cat">Company Process</span>
+          <div class="ci-qcell1__pair">
+            <span class="ci-qcell1__io">Instead&nbsp;of</span>
+            <p class="ci-qcell1__q">What is the standard procedure?</p>
+          </div>
+        </div>
+        <div class="ci-qcell2">
+          <span class="ci-qcell2__ask">Ask</span>
+          <p class="ci-qcell2__q">How are we expected to handle this here?</p>
+        </div>
+      </div>
+
+    </div>
+
+    <hr class="ci-rule-2px" style="margin-top:30px" aria-hidden="true">
+    <p class="ci-questions__close">These aren&rsquo;t just knowledge questions. They&rsquo;re operating questions.</p>
+
+  </div>
+</section>
+
+
+<!-- § 6. The answer shouldn't be the end of the workflow. — Bond + 6b Ink band -->
+<section class="ci-workflow">
+  <div class="cos-container">
+
+    <!-- Header block -->
+    <div class="ci-section-head ci-workflow__head">
+      <div>
+        <p class="ci-eyebrow">Construction OS Connection</p>
+        <h2 class="ci-h2--no-balance">The answer shouldn&rsquo;t be the end of the workflow.</h2>
+        <p class="ci-workflow__subhead">Know what to do. Then do it.</p>
+      </div>
+      <div>
+        <p class="ci-workflow__head-body">When an answer requires documentation, approval, or another project action, Construction Intelligence can guide the PM toward the appropriate document or workflow in Document Workbench.</p>
+      </div>
+    </div>
+    <hr class="ci-rule-2px" style="margin-bottom:30px" aria-hidden="true">
+
+    <!-- Three flows -->
+    <div class="ci-flows">
+
+      <!-- Flow 1: Owner-requested change -->
+      <div class="ci-flow">
+        <h3 class="ci-flow__name">Owner-requested change</h3>
+
+        <!-- CI step -->
+        <div class="ci-flow__step">
+          <div class="ci-flow__step-label">
+            <svg viewBox="0 0 100 100" width="14" height="14" aria-hidden="true" style="flex:none;color:var(--c-steel)">
+              <polyline points="8,20 40,20 54,42 94,42" fill="none" stroke="currentColor" stroke-width="11"/>
+              <polyline points="8,80 40,80 54,58 94,58" fill="none" stroke="currentColor" stroke-width="11"/>
+            </svg>
+            <span class="ci-flow__step-prod">Construction Intelligence</span>
+          </div>
+          <p class="ci-flow__step-ci">Determine the required authorization, pricing treatment, and relevant company procedure.</p>
+        </div>
+
+        <span class="ci-flow__connector" aria-hidden="true">↓</span>
+
+        <!-- DW step -->
+        <div class="ci-flow__step">
+          <div class="ci-flow__step-label">
+            <svg viewBox="0 0 100 100" width="14" height="14" aria-hidden="true" style="flex:none;color:var(--c-steel)">
+              <rect x="14" y="26" width="52" height="60" fill="none" stroke="currentColor" stroke-width="11"/>
+            </svg>
+            <span class="ci-flow__step-prod">Document Workbench</span>
+          </div>
+          <p class="ci-flow__step-dw">Guide the PM toward the appropriate change documentation.</p>
+        </div>
+      </div>
+
+      <!-- Flow 2: Subcontract readiness -->
+      <div class="ci-flow">
+        <h3 class="ci-flow__name">Subcontract readiness</h3>
+
+        <div class="ci-flow__step">
+          <div class="ci-flow__step-label">
+            <svg viewBox="0 0 100 100" width="14" height="14" aria-hidden="true" style="flex:none;color:var(--c-steel)">
+              <polyline points="8,20 40,20 54,42 94,42" fill="none" stroke="currentColor" stroke-width="11"/>
+              <polyline points="8,80 40,80 54,58 94,58" fill="none" stroke="currentColor" stroke-width="11"/>
+            </svg>
+            <span class="ci-flow__step-prod">Construction Intelligence</span>
+          </div>
+          <p class="ci-flow__step-ci">Identify requirements or approvals that are still missing.</p>
+        </div>
+
+        <span class="ci-flow__connector" aria-hidden="true">↓</span>
+
+        <div class="ci-flow__step">
+          <div class="ci-flow__step-label">
+            <svg viewBox="0 0 100 100" width="14" height="14" aria-hidden="true" style="flex:none;color:var(--c-steel)">
+              <rect x="14" y="26" width="52" height="60" fill="none" stroke="currentColor" stroke-width="11"/>
+            </svg>
+            <span class="ci-flow__step-prod">Document Workbench</span>
+          </div>
+          <p class="ci-flow__step-dw">Guide the PM toward the appropriate subcontract or supporting documentation.</p>
+        </div>
+      </div>
+
+      <!-- Flow 3: Potential RFI -->
+      <div class="ci-flow">
+        <h3 class="ci-flow__name">Potential RFI</h3>
+
+        <div class="ci-flow__step">
+          <div class="ci-flow__step-label">
+            <svg viewBox="0 0 100 100" width="14" height="14" aria-hidden="true" style="flex:none;color:var(--c-steel)">
+              <polyline points="8,20 40,20 54,42 94,42" fill="none" stroke="currentColor" stroke-width="11"/>
+              <polyline points="8,80 40,80 54,58 94,58" fill="none" stroke="currentColor" stroke-width="11"/>
+            </svg>
+            <span class="ci-flow__step-prod">Construction Intelligence</span>
+          </div>
+          <p class="ci-flow__step-ci">Determine whether the condition requires formal clarification.</p>
+        </div>
+
+        <span class="ci-flow__connector" aria-hidden="true">↓</span>
+
+        <div class="ci-flow__step">
+          <div class="ci-flow__step-label">
+            <svg viewBox="0 0 100 100" width="14" height="14" aria-hidden="true" style="flex:none;color:var(--c-steel)">
+              <rect x="14" y="26" width="52" height="60" fill="none" stroke="currentColor" stroke-width="11"/>
+            </svg>
+            <span class="ci-flow__step-prod">Document Workbench</span>
+          </div>
+          <p class="ci-flow__step-dw">Guide the PM toward the appropriate RFI workflow when one is needed.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 6b. Knowledge to action — Ink band (full-bleed inside Bond section) -->
+  <div class="ci-workflow__band">
+    <div class="cos-container ci-workflow__band-inner">
+      <span class="ci-workflow__band-label">Knowledge to Action</span>
+      <div>
+        <p class="ci-workflow__band-val">Ask the question. Understand the requirement. Build the document that moves the job forward.</p>
+        <p class="ci-workflow__band-sub">The answer tells the team what happens next.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- § 7. Keep what your company has learned. — Paper -->
+<section class="ci-continuity">
+  <div class="cos-container">
+    <div class="ci-continuity__grid">
+
+      <!-- Left: eyebrow + heading + rule + paragraphs -->
+      <div class="ci-continuity__left">
+        <p class="ci-eyebrow">Continuity</p>
+        <h2 class="ci-h2">Keep what your company has learned.</h2>
+        <hr class="ci-continuity__left-rule" aria-hidden="true">
+        <p class="ci-continuity__p">Some of a construction company's most valuable knowledge was accumulated over ten, twenty, or thirty years. Much of it was never designed to survive the person who learned it.</p>
+        <p class="ci-continuity__p">Retirement, turnover, and succession make that a business problem. So does bringing a new PM into a company whose standards, pricing judgment, and operating practices may take years to absorb informally.</p>
+      </div>
+
+      <!-- Right: 2px Ink top rule + outcomes + imperatives -->
+      <div class="ci-continuity__right">
+        <div class="ci-continuity-outcome">
+          <h3 class="ci-continuity-outcome__title">Preserve more of the experience.</h3>
+          <p class="ci-continuity-outcome__body">Document procedures, examples, standards, decision guidance, and lessons while experienced people are still available to explain them.</p>
+        </div>
+        <div class="ci-continuity-outcome ci-continuity-outcome--last">
+          <h3 class="ci-continuity-outcome__title">Give new people a better way to learn.</h3>
+          <p class="ci-continuity-outcome__body">Let PMs find company-specific guidance in the context of the work they are actually doing instead of depending on someone being available to explain everything.</p>
+        </div>
+        <hr class="ci-continuity__imp-rule" aria-hidden="true">
+        <div class="ci-imperatives" aria-label="Three imperatives">
+          <p class="ci-imperative">Preserve the lessons.</p>
+          <p class="ci-imperative">Pass on the judgment.</p>
+          <p class="ci-imperative">Keep the company from starting over.</p>
         </div>
       </div>
 
@@ -677,220 +878,140 @@ img { max-width: 100%; display: block; }
 </section>
 
 
-<!-- 7. Experienced people — Paper -->
-<section class="ci-people">
-  <div class="cos-container">
-    <div class="ci-people__grid">
-      <div>
-        <p class="ci-people__label">The knowledge problem</p>
-        <h2 class="ci-people__heading">What happens when the person who knows leaves.</h2>
-        <p class="ci-people__body">Your most experienced PMs carry years of decisions in their heads — how your company prices work, handles difficult owners, interprets its contracts, and applies its standards. When they&rsquo;re in a meeting, on another job, or gone, that knowledge isn&rsquo;t available.</p>
-      </div>
-      <div>
-        <div class="ci-people__cells">
-          <div class="ci-people__cell">
-            <h3 class="ci-people__cell-head">Procedures exist. They&rsquo;re not read.</h3>
-            <p class="ci-people__cell-body">The knowledge is written down somewhere. It lives in procedure manuals, past project files, and email threads. It&rsquo;s not findable when it&rsquo;s needed.</p>
-          </div>
-          <div class="ci-people__cell">
-            <h3 class="ci-people__cell-head">New PMs learn by asking.</h3>
-            <p class="ci-people__cell-body">The fastest way to get a company-specific answer is to find the right person. That&rsquo;s expensive and inconsistent, and it stops working when the person isn&rsquo;t available.</p>
-          </div>
-          <div class="ci-people__cell">
-            <h3 class="ci-people__cell-head">Knowledge walks out the door.</h3>
-            <p class="ci-people__cell-body">When experienced people leave, years of company-specific judgment goes with them. The procedures stay. The nuance doesn&rsquo;t.</p>
-          </div>
-          <div class="ci-people__cell">
-            <h3 class="ci-people__cell-head">Construction Intelligence captures it.</h3>
-            <p class="ci-people__cell-body">Your procedures, standards, and project history become a knowledge base your whole team can query. The answer your best PM would give is the answer the system gives.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- 8. Onboarding — Bond -->
-<section class="ci-onboard">
-  <div class="cos-container">
-    <div class="ci-onboard__head">
-      <p class="ci-onboard__label">What gets connected</p>
-      <h2 class="ci-onboard__heading">Built from what your company already has.</h2>
-      <p class="ci-onboard__sub">Construction Intelligence is configured around the materials you already rely on. You don&rsquo;t start from scratch — you connect what exists.</p>
-    </div>
-    <div class="ci-onboard__steps">
-      <div class="ci-onboard__step">
-        <span class="ci-onboard__step-n">01</span>
-        <h3 class="ci-onboard__step-head">Procedure documents</h3>
-        <p class="ci-onboard__step-body">Your change order procedures, subcontract requirements, PCO protocols, and operating practices. The rules your company follows.</p>
-      </div>
-      <div class="ci-onboard__step">
-        <span class="ci-onboard__step-n">02</span>
-        <h3 class="ci-onboard__step-head">Pricing rules and fee structures</h3>
-        <p class="ci-onboard__step-body">Your markup schedules, fee calculations, GMP provisions, and delivery-method-specific pricing logic. The numbers your company uses.</p>
-      </div>
-      <div class="ci-onboard__step">
-        <span class="ci-onboard__step-n">03</span>
-        <h3 class="ci-onboard__step-head">Contract standards</h3>
-        <p class="ci-onboard__step-body">Your standard contract provisions, owner-specific terms, authorization requirements, and scope language. What your company has agreed to.</p>
-      </div>
-      <div class="ci-onboard__step">
-        <span class="ci-onboard__step-n">04</span>
-        <h3 class="ci-onboard__step-head">Project history</h3>
-        <p class="ci-onboard__step-body">Precedent from past projects — how similar situations were handled, what worked, and what your company learned. What you&rsquo;ve already figured out.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- 9. Not a chatbot — Paper -->
-<section class="ci-notbot">
-  <div class="cos-container">
-    <div class="ci-notbot__grid">
-      <div>
-        <p class="ci-notbot__label">How it&rsquo;s different</p>
-        <h2 class="ci-notbot__heading">Not a generic AI assistant.</h2>
-        <p class="ci-notbot__body">Construction Intelligence is trained on your company&rsquo;s materials and answers from your company&rsquo;s perspective. The sources behind every answer are yours.</p>
-      </div>
-      <div>
-        <div class="ci-notbot__rows">
-          <div class="ci-notbot__row">
-            <div>
-              <p class="ci-notbot__row-label">Generic AI</p>
-              <p class="ci-notbot__generic">General construction practice, hedged for broad applicability. Right for someone, not necessarily for you.</p>
-            </div>
-            <div>
-              <p class="ci-notbot__row-label" style="color:var(--c-steel)">Construction Intelligence</p>
-              <p class="ci-notbot__ci">Your procedures, your pricing rules, your contract language. Specific to how your company operates.</p>
-            </div>
-          </div>
-          <div class="ci-notbot__row">
-            <div>
-              <p class="ci-notbot__row-label">Generic AI</p>
-              <p class="ci-notbot__generic">No source documents. No way to verify what the answer is based on or challenge it.</p>
-            </div>
-            <div>
-              <p class="ci-notbot__row-label" style="color:var(--c-steel)">Construction Intelligence</p>
-              <p class="ci-notbot__ci">Every answer cites the source document and section. The PM can read it, verify it, and show it to the owner.</p>
-            </div>
-          </div>
-          <div class="ci-notbot__row">
-            <div>
-              <p class="ci-notbot__row-label">Generic AI</p>
-              <p class="ci-notbot__generic">The same tool your competitors use, trained on the same public data. No competitive differentiation.</p>
-            </div>
-            <div>
-              <p class="ci-notbot__row-label" style="color:var(--c-steel)">Construction Intelligence</p>
-              <p class="ci-notbot__ci">Your company&rsquo;s intellectual property — your hard-won knowledge — used by your team and no one else.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- 10. Configuration — Bond -->
+<!-- § 8. Not a generic chatbot. — Bond -->
 <section class="ci-config">
   <div class="cos-container">
-    <div class="ci-config__grid">
+
+    <!-- Header block -->
+    <div class="ci-section-head ci-config__head">
       <div>
-        <p class="ci-config__label">Setup</p>
-        <h2 class="ci-config__heading">Configured around your company.</h2>
-        <p class="ci-config__body">You don&rsquo;t need to change the way your company works to use Construction Intelligence. We configure it around the procedures, pricing rules, and standards you already rely on.</p>
-        <ul class="ci-config__list">
-          <li class="ci-config__list-item">We map your procedure documents and identify what&rsquo;s worth connecting</li>
-          <li class="ci-config__list-item">We structure your pricing rules, fee schedules, and markup logic</li>
-          <li class="ci-config__list-item">We index your contract standards and authorization requirements</li>
-          <li class="ci-config__list-item">We test answers against real scenarios from your project history</li>
-          <li class="ci-config__list-item">Your team asks questions. We refine what needs refining.</li>
-        </ul>
+        <p class="ci-eyebrow">The Distinction</p>
+        <h2 class="ci-h2--no-balance">Not a generic chatbot.</h2>
       </div>
       <div>
-        <div class="ci-config__note">
-          <p><strong>Your company&rsquo;s way of working becomes the starting point,</strong> not something the system asks you to replace. Construction Intelligence answers the way your company answers&mdash;because it&rsquo;s built from what your company knows.</p>
-        </div>
-        <div class="ci-config__note" style="margin-top:16px">
-          <p>Questions about how your procedures would translate into Construction Intelligence? <strong>We answer that in the first conversation.</strong> Book a demo to see how it works with your materials.</p>
-        </div>
+        <p class="ci-config__head-body">Generic AI knows a lot about construction. It does not automatically know your pricing rules, contract language, approval process, preferred scope structure, documentation standards, operating procedures, or the lessons your company learned on previous jobs.</p>
       </div>
     </div>
+    <hr class="ci-rule-2px" style="margin-bottom:30px" aria-hidden="true">
+
+    <!-- The different question — two columns -->
+    <div class="ci-config__diff-row">
+      <p class="ci-config__diff-intro">Construction Intelligence starts with a different question:</p>
+      <p class="ci-config__diff-q">What should our team do, based on what construction requires and how our company operates?</p>
+    </div>
+
+    <hr class="ci-rule-2px" aria-hidden="true">
+
+    <!-- Eight inputs -->
+    <p class="ci-config__inputs-intro">We configure Construction Intelligence around the knowledge your company already has:</p>
+    <div class="ci-inputs" role="list">
+      <div class="ci-input-item" role="listitem">
+        <span class="ci-input-item__n">01</span>
+        <span class="ci-input-item__label">Procedures and SOPs</span>
+      </div>
+      <div class="ci-input-item" role="listitem">
+        <span class="ci-input-item__n">02</span>
+        <span class="ci-input-item__label">Templates and standard documents</span>
+      </div>
+      <div class="ci-input-item" role="listitem">
+        <span class="ci-input-item__n">03</span>
+        <span class="ci-input-item__label">Pricing references and rules</span>
+      </div>
+      <div class="ci-input-item" role="listitem">
+        <span class="ci-input-item__n">04</span>
+        <span class="ci-input-item__label">Contract language</span>
+      </div>
+      <div class="ci-input-item" role="listitem">
+        <span class="ci-input-item__n">05</span>
+        <span class="ci-input-item__label">Company standards</span>
+      </div>
+      <div class="ci-input-item" role="listitem">
+        <span class="ci-input-item__n">06</span>
+        <span class="ci-input-item__label">Project examples</span>
+      </div>
+      <div class="ci-input-item" role="listitem">
+        <span class="ci-input-item__n">07</span>
+        <span class="ci-input-item__label">Lessons learned</span>
+      </div>
+      <div class="ci-input-item" role="listitem">
+        <span class="ci-input-item__n">08</span>
+        <span class="ci-input-item__label">Documented decision guidance</span>
+      </div>
+    </div>
+
+    <p class="ci-config__close">Your company&rsquo;s knowledge becomes something the whole team can use&mdash;not something they have to know who to ask for.</p>
+
   </div>
 </section>
 
 
-<!-- 11. Closing CTA — Ink -->
-<section class="cos-close" id="cta">
+<!-- § 9. Closing CTA — Ink -->
+<section class="ci-close" id="cta">
   <div class="cos-container">
-    <div class="cos-close__grid">
+    <div class="ci-close__grid">
 
       <!-- Left column -->
-      <div class="cos-close__col">
-        <div class="cos-close__lockup">
-          <!-- CI icon with Paper strokes, Line gray axis line (no red) -->
+      <div>
+        <!-- Lockup: product icon + name + rule -->
+        <div class="ci-close__lockup">
+          <!-- icon-fewer-bottlenecks at 24px: Paper strokes, Line gray axis line, no red -->
           <svg viewBox="0 0 100 100" width="24" height="24" aria-hidden="true">
-            <line x1="6" y1="50" x2="96" y2="50" stroke="#B8B9B5" stroke-width="4"/>
-            <polyline points="8,20 40,20 54,42 94,42" fill="none" stroke="#ffffff" stroke-width="8"/>
-            <polyline points="8,80 40,80 54,58 94,58" fill="none" stroke="#ffffff" stroke-width="8"/>
+            <line x1="6" y1="50" x2="96" y2="50" stroke="#B8B9B5" stroke-width="5"/>
+            <polyline points="8,20 40,20 54,42 94,42" fill="none" stroke="#ffffff" stroke-width="11"/>
+            <polyline points="8,80 40,80 54,58 94,58" fill="none" stroke="#ffffff" stroke-width="11"/>
           </svg>
-          <span class="cos-close__lockup-name">Construction Intelligence</span>
-          <span class="cos-close__lockup-rule"></span>
+          <span class="ci-close__lockup-name">Construction Intelligence</span>
+          <span class="ci-close__lockup-rule"></span>
         </div>
-        <h2 class="cos-close__headline">Get the answer. See what it&rsquo;s based on. Know what comes next.</h2>
-        <p class="cos-close__subhead">See how Construction Intelligence can give your team access to your company&rsquo;s procedures, pricing rules, and standards&mdash;and deliver answers in seconds instead of a search.</p>
-        <p class="cos-close__subhead cos-close__subhead--sm">Configured around your procedure documents, contract standards, and project history. Built from what your company already knows.</p>
-        <div class="cos-close__cta">
-          <a class="cos-close__btn-primary" href="https://cal.com/justinyurasits">Book a demo</a>
-          <a class="cos-close__btn-link" href="#">See it work &rarr;</a>
+
+        <h2 class="ci-close__h">Put your best people&rsquo;s judgment in reach of the whole team.</h2>
+        <p class="ci-close__body1">Your senior people should spend their time on the decisions that actually require their experience&mdash;not repeatedly retrieving information the company already knows.</p>
+        <p class="ci-close__body2">Give your team a better path to the answer, the reasoning behind it, and the work that needs to happen next.</p>
+
+        <div class="ci-cta-row" style="margin-top:32px">
+          <a class="ci-btn ci-btn--paper" href="https://cal.com/justinyurasits">Book a demo</a>
+          <a class="ci-link ci-link--paper" href="/products/document-workbench.html">Explore Document Workbench &rarr;</a>
         </div>
       </div>
 
-      <!-- Right column — the rest of the system -->
-      <div class="cos-close__col">
-        <p class="cos-close__index-label">The rest of the system</p>
-        <div class="cos-close__index-rule"></div>
+      <!-- Right column: the rest of the system -->
+      <div>
+        <p class="ci-close__index-label">The rest of the system</p>
+        <div class="ci-close__index-rule"></div>
 
         <!-- 01 Document Workbench -->
-        <div class="cos-close__index-row">
+        <div class="ci-close__index-row">
           <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true">
-            <polyline points="30,14 86,14 86,72" fill="none" stroke="#B8B9B5" stroke-width="5"/>
             <rect x="14" y="26" width="52" height="60" fill="none" stroke="#ffffff" stroke-width="12"/>
           </svg>
-          <span class="cos-close__index-n">01</span>
-          <span class="cos-close__index-name">Document Workbench</span>
+          <span class="ci-close__index-n">01</span>
+          <span class="ci-close__index-name">Document Workbench</span>
         </div>
 
-        <!-- 03 Project Intelligence -->
-        <div class="cos-close__index-row">
+        <!-- 03 Project Intelligence (in development) -->
+        <div class="ci-close__index-row">
           <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true">
-            <rect x="6" y="18" width="88" height="64" fill="none" stroke="#B8B9B5" stroke-width="5"/>
             <line x1="18" y1="70" x2="82" y2="70" stroke="#ffffff" stroke-width="12"/>
             <line x1="30" y1="70" x2="30" y2="56" stroke="#ffffff" stroke-width="12"/>
             <line x1="50" y1="70" x2="50" y2="44" stroke="#ffffff" stroke-width="12"/>
             <line x1="70" y1="70" x2="70" y2="32" stroke="#ffffff" stroke-width="12"/>
           </svg>
-          <span class="cos-close__index-n">03</span>
-          <span class="cos-close__index-name">Project Intelligence</span>
-          <span class="cos-close__index-tag">In development</span>
+          <span class="ci-close__index-n">03</span>
+          <span class="ci-close__index-name">Project Intelligence</span>
+          <span class="ci-close__index-tag">In Development</span>
         </div>
 
         <!-- Operations Automation -->
-        <div class="cos-close__index-row">
+        <div class="ci-close__index-row">
           <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true">
             <line x1="14" y1="28" x2="34" y2="28" stroke="#ffffff" stroke-width="12"/>
             <line x1="42" y1="28" x2="62" y2="28" stroke="#ffffff" stroke-width="12"/>
             <line x1="70" y1="28" x2="90" y2="28" stroke="#ffffff" stroke-width="12"/>
-            <line x1="24" y1="34" x2="24" y2="66" stroke="#B8B9B5" stroke-width="5"/>
-            <line x1="52" y1="34" x2="52" y2="66" stroke="#B8B9B5" stroke-width="5"/>
-            <line x1="80" y1="34" x2="80" y2="66" stroke="#B8B9B5" stroke-width="5"/>
             <line x1="14" y1="74" x2="90" y2="74" stroke="#ffffff" stroke-width="12"/>
           </svg>
-          <span class="cos-close__index-n">&mdash;&mdash;</span>
-          <span class="cos-close__index-name">Operations Automation</span>
-          <span class="cos-close__index-ext">Extension layer</span>
+          <span class="ci-close__index-n">&mdash;&mdash;</span>
+          <span class="ci-close__index-name">Operations Automation</span>
+          <span class="ci-close__index-ext">Extension Layer</span>
         </div>
 
       </div>
@@ -900,14 +1021,14 @@ img { max-width: 100%; display: block; }
 </section>
 
 
-<!-- 12. Footer — Bond -->
+<!-- Footer — Paper -->
 <footer class="cos-footer">
   <div class="cos-footer__inner cos-container">
     <div class="cos-footer__cols">
 
       <div class="cos-footer__brand">
         <a class="cos-footer__lockup" href="/">
-          <svg viewBox="0 0 100 100" width="22" height="22" aria-hidden="true" style="color:#111111;flex:none">
+          <svg viewBox="0 0 100 100" width="22" height="22" aria-hidden="true" style="flex:none">
             <polyline points="14,56 14,14 56,14" fill="none" stroke="currentColor" stroke-width="13"/>
             <polyline points="86,44 86,86 44,86" fill="none" stroke="currentColor" stroke-width="13"/>
             <rect x="32" y="32" width="36" height="36" fill="#C43230"/>
@@ -923,10 +1044,10 @@ img { max-width: 100%; display: block; }
         <a class="cos-footer__col-item" href="/products/document-workbench.html">
           <span class="cos-footer__col-n">01</span>Document Workbench
         </a>
-        <a class="cos-footer__col-item" href="/products/construction-intelligence.html">
+        <a class="cos-footer__col-item cos-footer__col-item--current" href="/products/construction-intelligence.html" aria-current="page">
           <span class="cos-footer__col-n">02</span>Construction Intelligence
         </a>
-        <a class="cos-footer__col-item" href="#">
+        <a class="cos-footer__col-item" href="/products/project-intelligence.html">
           <span class="cos-footer__col-n">03</span>Project Intelligence
         </a>
         <a class="cos-footer__col-item" href="#">
@@ -948,10 +1069,21 @@ img { max-width: 100%; display: block; }
       </div>
 
     </div>
+
     <div class="cos-footer__bottom">
       <span class="cos-footer__copy">&copy; 2026 Construction OS</span>
       <a class="cos-footer__policy" href="#">Privacy</a>
     </div>
+
+    <!-- Title block -->
+    <div class="cos-footer__title-block" aria-label="Document title block">
+      <span class="cos-footer__title-cell">Sheet&nbsp;&nbsp;Construction OS</span>
+      <span class="cos-footer__title-cell">Page&nbsp;&nbsp;Construction Intelligence</span>
+      <span class="cos-footer__title-cell">Issued&nbsp;&nbsp;2026-09-06</span>
+      <span class="cos-footer__title-cell">Rev&nbsp;&nbsp;03</span>
+      <span class="cos-footer__title-cell">Status&nbsp;&nbsp;Issued For Review</span>
+    </div>
+
   </div>
 </footer>
 
@@ -962,25 +1094,17 @@ img { max-width: 100%; display: block; }
   var toggle = header.querySelector('.cos-header__toggle');
   var nav    = header.querySelector('.cos-nav');
 
-  /* Scroll compact */
-  window.addEventListener('scroll', function () {
-    header.classList.toggle('cos-header--compact', window.scrollY > 40);
-  }, { passive: true });
-
-  /* Mobile toggle */
   toggle.addEventListener('click', function () {
     var open = nav.classList.toggle('is-open');
     toggle.setAttribute('aria-expanded', open);
   });
 
-  /* Dropdown triggers */
   var dropdowns = Array.prototype.slice.call(header.querySelectorAll('.cos-nav__dropdown'));
   dropdowns.forEach(function (dd) {
     var btn = dd.querySelector('.cos-nav__trigger');
     btn.addEventListener('click', function (e) {
       e.stopPropagation();
       var isOpen = dd.classList.contains('is-open');
-      /* Close siblings */
       dropdowns.forEach(function (other) {
         if (other !== dd) {
           other.classList.remove('is-open');
@@ -992,7 +1116,6 @@ img { max-width: 100%; display: block; }
     });
   });
 
-  /* Close on outside click */
   document.addEventListener('click', function () {
     dropdowns.forEach(function (dd) {
       dd.classList.remove('is-open');

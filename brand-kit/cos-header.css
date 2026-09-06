@@ -1,0 +1,55 @@
+/* ─── cos-header component ──────────────────────────────────────── */
+/* Shared nav CSS for all cos-header pages. Requires tokens.css.    */
+/* Never edit this by hand — re-run tools/generate-header.js.       */
+
+.cos-header { position: sticky; top: 0; z-index: 50; background: var(--c-white); border-bottom: 1px solid var(--c-line); transition: min-height .2s; }
+.cos-header__inner { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 32px; transition: min-height .2s; }
+.cos-header--compact .cos-header__inner { min-height: 60px; }
+.cos-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; font: 600 17px/1 var(--font-display); letter-spacing: -.02em; color: var(--c-ink); white-space: nowrap; }
+.cos-nav { display: flex; align-items: center; gap: 32px; list-style: none; margin: 0; padding: 0; }
+.cos-nav a:not(.cos-header__cta) { font: 500 15px/1 var(--font-display); color: var(--c-graphite); text-decoration: none; }
+.cos-nav a:not(.cos-header__cta)[aria-current="page"] { color: var(--c-ink); border-bottom: 2px solid var(--c-ink); padding-bottom: 2px; }
+.cos-header__cta { display: inline-flex; align-items: center; min-height: 44px; padding: 13px 20px; font: 600 14px/1 var(--font-display); letter-spacing: -.01em; text-decoration: none; background: var(--c-ink); color: var(--c-white); white-space: nowrap; }
+.cos-header__cta:hover { background: var(--c-steel); color: var(--c-white); }
+.cos-header__toggle { display: none; background: none; border: none; cursor: pointer; font: 600 14px/1 var(--font-display); color: var(--c-ink); padding: 0; flex-shrink: 0; min-height: 44px; align-items: center; }
+.cos-nav__dropdown { position: relative; }
+.cos-nav__trigger { background: none; border: none; border-bottom: 2px solid transparent; padding: 0 0 2px; cursor: pointer; display: flex; align-items: center; gap: 6px; font: 500 15px/1 var(--font-display); color: var(--c-graphite); }
+.cos-nav__trigger::after { content: '▾'; font-size: 9px; color: var(--c-graphite); display: inline-block; transition: transform .15s; }
+.cos-nav__dropdown.is-open .cos-nav__trigger, .cos-nav__trigger.is-current { color: var(--c-ink); border-bottom-color: var(--c-ink); }
+.cos-nav__dropdown.is-open .cos-nav__trigger::after { transform: rotate(-180deg); }
+.cos-nav__panel { display: none; position: absolute; top: 100%; left: 0; width: min(340px, calc(100vw - 48px)); background: var(--c-white); border: 1px solid var(--c-ink); border-top: 0; z-index: 100; padding: 18px 20px; }
+.cos-nav__dropdown.is-open .cos-nav__panel { display: block; }
+.cos-nav__group-label { display: block; font: 600 11px/1 var(--font-display); letter-spacing: .14em; text-transform: uppercase; color: var(--c-steel); margin-top: 20px; margin-bottom: 8px; }
+.cos-nav__group-label:first-child { margin-top: 0; }
+.cos-nav__item { display: flex; align-items: baseline; padding: 11px 0; border-top: 1px solid var(--c-line); text-decoration: none; margin-inline: -20px; padding-inline: 20px; }
+.cos-nav__item:hover, .cos-nav__item:focus-visible { background: var(--c-bond); outline: none; }
+.cos-nav__marker { width: 28px; flex: none; font: 400 11px/1 ui-monospace, 'Courier New', monospace; color: var(--c-graphite); }
+.cos-nav__name { font: 600 16px/1 var(--font-display); letter-spacing: -.015em; color: var(--c-ink); }
+
+@media (max-width: 899px) {
+  .cos-header__inner { min-height: 64px; }
+  .cos-header--compact .cos-header__inner { min-height: 64px; }
+  .cos-header__toggle { display: inline-flex; }
+  .cos-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--c-white);
+    border-top: 1px solid var(--c-line);
+    border-bottom: 1px solid var(--c-line);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+  .cos-nav.is-open { display: flex; }
+  .cos-nav > li { border-bottom: 1px solid var(--c-line); }
+  .cos-nav > li:last-child { border-bottom: none; }
+  .cos-nav a:not(.cos-header__cta) { padding: 14px 24px; display: block; }
+  .cos-header__cta { display: block; margin: 12px 24px; }
+  .cos-nav__trigger { padding: 12px 24px; width: 100%; justify-content: space-between; border-bottom: none; }
+  .cos-nav__panel { position: static; width: 100%; border: none; border-top: 1px solid var(--c-line); padding: 0; }
+  .cos-nav__item { margin-inline: 0; padding-inline: 24px; }
+  .cos-nav__group-label { padding-left: 24px; }
+}

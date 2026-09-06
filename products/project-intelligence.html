@@ -30,40 +30,6 @@ img { max-width: 100%; display: block; }
 /* ─── Container ──────────────────────────────────────────── */
 .cos-container { max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px); }
 
-/* ─── Header ─────────────────────────────────────────────── */
-.cos-header { position: sticky; top: 0; z-index: 50; background: var(--c-white); border-bottom: 1px solid var(--c-line); }
-.cos-header__inner { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 32px; transition: min-height .2s; }
-.cos-header--compact .cos-header__inner { min-height: 60px; }
-.cos-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; font: 600 17px/1 var(--font-display), sans-serif; letter-spacing: -.02em; color: var(--c-ink); white-space: nowrap; }
-.cos-nav { display: flex; align-items: center; gap: 32px; list-style: none; margin: 0; padding: 0; }
-.cos-nav a:not(.cos-header__cta) { font: 500 15px/1 var(--font-display), sans-serif; color: var(--c-graphite); text-decoration: none; }
-.cos-nav a:not(.cos-header__cta)[aria-current="page"] { color: var(--c-ink); border-bottom: 2px solid var(--c-ink); padding-bottom: 2px; }
-.cos-header__cta { display: inline-flex; align-items: center; min-height: 44px; padding: 13px 20px; font: 600 14px/1 var(--font-display), sans-serif; letter-spacing: -.01em; text-decoration: none; background: var(--c-ink); color: var(--c-white); white-space: nowrap; }
-.cos-header__cta:hover { background: var(--c-steel); color: var(--c-white); }
-.cos-header__toggle { display: none; width: 44px; height: 44px; background: none; border: 1px solid var(--c-line); cursor: pointer; flex-direction: column; align-items: center; justify-content: center; gap: 8px; padding: 0; flex-shrink: 0; }
-.cos-header__toggle span { display: block; width: 18px; height: 2px; background: var(--c-ink); pointer-events: none; }
-
-/* ─── Dropdown nav ───────────────────────────────────────── */
-.cos-nav__dropdown { position: relative; }
-.cos-nav__trigger { background: none; border: none; padding: 0; cursor: pointer; display: flex; align-items: center; gap: 5px; font: 500 15px/1 var(--font-display), sans-serif; color: var(--c-graphite); }
-.cos-nav__trigger::after { content: '▾'; font-size: 11px; color: var(--c-line); display: inline-block; position: relative; top: 1px; transition: transform .15s; }
-.cos-nav__panel { display: none; position: absolute; top: calc(100% + 20px); left: -18px; min-width: 300px; background: var(--c-white); border: 1px solid var(--c-ink); z-index: 100; }
-@media (min-width: 761px) {
-  .cos-nav__dropdown:hover .cos-nav__panel { display: block; }
-  .cos-nav__dropdown:hover .cos-nav__trigger::after { transform: rotate(-180deg); }
-}
-.cos-nav__dropdown.is-open .cos-nav__panel { display: block; }
-.cos-nav__dropdown.is-open .cos-nav__trigger::after { transform: rotate(-180deg); }
-.cos-nav__item { display: block; padding: 14px 18px; text-decoration: none; border-bottom: 1px solid var(--c-line); }
-.cos-nav__item:last-child { border-bottom: none; }
-.cos-nav__item:hover { background: var(--c-bond); }
-.cos-nav__item-name { display: flex; align-items: center; gap: 8px; margin-bottom: 5px; font: 500 14px/1 var(--font-display), sans-serif; color: var(--c-ink); }
-.cos-nav__item-desc { display: block; font: 400 12px/1.4 var(--font-display), sans-serif; color: var(--c-graphite); }
-.cos-nav__item-tag { font: 400 11px/1 ui-monospace, 'Courier New', monospace; color: var(--c-graphite); flex-shrink: 0; }
-.cos-nav__tier-label { display: block; padding: 8px 18px 6px; font: 600 10px/1 var(--font-display), sans-serif; letter-spacing: .12em; text-transform: uppercase; color: var(--c-line); border-top: 1px solid var(--c-line); }
-.cos-nav__tier-label:first-child { border-top: none; padding-top: 12px; }
-.cos-nav__all { display: block; padding: 12px 18px; font: 600 13px/1 var(--font-display), sans-serif; color: var(--c-steel); text-decoration: none; border-top: 1px solid var(--c-line); }
-.cos-nav__all:hover { color: var(--c-ink); }
 
 /* ─── Shared CTA scale ───────────────────────────────────── */
 .pi-btn { display: inline-flex; align-items: center; min-height: 44px; padding: 13px 20px; font: 600 14px/1 var(--font-display), sans-serif; letter-spacing: -.01em; text-decoration: none; white-space: nowrap; }
@@ -293,19 +259,17 @@ img { max-width: 100%; display: block; }
 .cos-footer__title-cell:last-child { border-right: 0; }
 
 /* ─── Mobile nav ─────────────────────────────────────────── */
-@media (max-width: 760px) {
-  .cos-header__toggle { display: flex; }
+
   .cos-nav { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--c-white); border-top: 1px solid var(--c-line); border-bottom: 1px solid var(--c-line); flex-direction: column; align-items: stretch; gap: 0; padding: 0; }
   .cos-nav.is-open { display: flex; }
   .cos-nav > li { border-bottom: 1px solid var(--c-line); }
   .cos-nav > li:last-child { border-bottom: none; }
   .cos-nav a:not(.cos-header__cta) { padding: 14px 24px; display: block; width: 100%; }
-  .cos-header__cta { display: none; }
+  .cos-header__cta { display: block; margin: 12px 24px; }
   .cos-nav__trigger { padding: 12px 24px; width: 100%; justify-content: space-between; }
-  .cos-nav__panel { position: static; min-width: 0; border: none; border-top: 1px solid var(--c-line); }
-  .cos-nav__tier-label { padding-left: 24px; }
-  .cos-nav__all { padding-left: 24px; }
-  .cos-nav__panel .cos-nav__item { padding: 10px 32px; font-size: 13px; }
+  .cos-nav__panel { position: static; width: 100%; border: none; border-top: 1px solid var(--c-line); padding: 0; }
+  .cos-nav__group-label { padding-left: 24px; }
+  .cos-nav__item { margin-inline: 0; padding-inline: 24px; }
 }
 
 /* ─── Responsive ─────────────────────────────────────────── */
@@ -323,14 +287,14 @@ img { max-width: 100%; display: block; }
   .cos-footer__title-cell:last-child { border-bottom: 0; }
 }
 </style>
+<link rel="stylesheet" href="../brand-kit/cos-header.css">
 </head>
 <body>
 
-<!-- Header -->
-<header class="cos-header" id="top">
+<!-- header:start -->
+<header class="cos-header" id="cos-header">
   <div class="cos-container">
     <div class="cos-header__inner">
-
       <a class="cos-logo" href="/">
         <svg viewBox="0 0 100 100" width="22" height="22" aria-hidden="true">
           <polyline points="14,56 14,14 56,14" fill="none" stroke="currentColor" stroke-width="13"/>
@@ -339,60 +303,39 @@ img { max-width: 100%; display: block; }
         </svg>
         Construction OS
       </a>
-
-      <button class="cos-header__toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav">
-        <span></span><span></span>
-      </button>
-
+      <button class="cos-header__toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav">Menu</button>
       <ul class="cos-nav" id="main-nav" role="list">
+        <li><a href="/work.html">Work</a></li>
         <li class="cos-nav__dropdown">
-          <button class="cos-nav__trigger" aria-expanded="false" aria-haspopup="true">Products</button>
-          <div class="cos-nav__panel" role="region">
-            <span class="cos-nav__tier-label">Core Products</span>
+          <button class="cos-nav__trigger is-current" aria-expanded="false" aria-haspopup="true" aria-controls="products-panel">Products</button>
+          <nav class="cos-nav__panel" id="products-panel">
+            <span class="cos-nav__group-label">Core Products</span>
             <a class="cos-nav__item" href="/products/document-workbench.html">
-              <span class="cos-nav__item-name"><span class="cos-nav__item-tag">01</span>Document Workbench</span>
-              <span class="cos-nav__item-desc">Construction documents from project information</span>
+              <span class="cos-nav__marker">01</span><span class="cos-nav__name">Document Workbench</span>
             </a>
             <a class="cos-nav__item" href="/products/construction-intelligence.html">
-              <span class="cos-nav__item-name"><span class="cos-nav__item-tag">02</span>Construction Intelligence</span>
-              <span class="cos-nav__item-desc">Company-specific answers, source-backed</span>
+              <span class="cos-nav__marker">02</span><span class="cos-nav__name">Construction Intelligence</span>
             </a>
             <a class="cos-nav__item" href="/products/project-intelligence.html" aria-current="page">
-              <span class="cos-nav__item-name"><span class="cos-nav__item-tag">03</span>Project Intelligence<span class="cos-nav__item-tag" style="color:#476776;margin-left:4px">In development</span></span>
-              <span class="cos-nav__item-desc">Attention where it&rsquo;s needed, before it&rsquo;s urgent</span>
+              <span class="cos-nav__marker">03</span><span class="cos-nav__name">Project Intelligence</span>
             </a>
-            <span class="cos-nav__tier-label">Extension Layer</span>
+            <span class="cos-nav__group-label">Extension Layer</span>
             <a class="cos-nav__item" href="/products/operations-automation.html">
-              <span class="cos-nav__item-name"><span class="cos-nav__item-tag">&mdash;&mdash;</span>Operations Automation</span>
-              <span class="cos-nav__item-desc">Purpose-built workflows for repetitive construction work</span>
+              <span class="cos-nav__marker">——</span><span class="cos-nav__name">Operations Automation</span>
             </a>
             <a class="cos-nav__item" href="/products/custom-solutions.html">
-              <span class="cos-nav__item-name"><span class="cos-nav__item-tag">&mdash;&mdash;</span>Custom Solutions</span>
-              <span class="cos-nav__item-desc">Purpose-built tools for work that doesn&rsquo;t fit a product</span>
+              <span class="cos-nav__marker">——</span><span class="cos-nav__name">Custom Solutions</span>
             </a>
-            <a class="cos-nav__all" href="/">All products &rarr;</a>
-          </div>
+          </nav>
         </li>
-        <li><a href="/#services">Services</a></li>
-        <li class="cos-nav__dropdown">
-          <button class="cos-nav__trigger" aria-expanded="false" aria-haspopup="true">Resources</button>
-          <div class="cos-nav__panel" role="region">
-            <a class="cos-nav__item" href="#">
-              <span class="cos-nav__item-name">Case Studies</span>
-              <span class="cos-nav__item-desc">How construction teams use Construction OS</span>
-            </a>
-            <a class="cos-nav__item" href="#">
-              <span class="cos-nav__item-name">Insights</span>
-              <span class="cos-nav__item-desc">Operations thinking for construction companies</span>
-            </a>
-          </div>
-        </li>
-        <li><a href="/#about">About</a></li>
+        <li><a href="/services.html">Services</a></li>
+        <li><a href="/about.html">About</a></li>
         <li><a class="cos-header__cta" href="https://cal.com/justinyurasits">Book a demo</a></li>
       </ul>
     </div>
   </div>
 </header>
+<!-- header:end -->
 
 
 <!-- § 2. Hero — Paper -->
@@ -1036,10 +979,12 @@ img { max-width: 100%; display: block; }
 
 
 <!-- § 13. Footer — Paper -->
+<!-- footer:start -->
 <footer class="cos-footer">
   <div class="cos-footer__inner cos-container">
     <div class="cos-footer__cols">
 
+      <!-- Identity -->
       <div class="cos-footer__brand">
         <a class="cos-footer__lockup" href="/">
           <svg viewBox="0 0 100 100" width="22" height="22" aria-hidden="true" style="color:#111111;flex:none">
@@ -1053,6 +998,7 @@ img { max-width: 100%; display: block; }
         <a class="cos-footer__cta-link" href="https://cal.com/justinyurasits">Book a demo</a>
       </div>
 
+      <!-- Products -->
       <div class="cos-footer__col">
         <span class="cos-footer__col-head">Products</span>
         <a class="cos-footer__col-item" href="/products/document-workbench.html">
@@ -1061,45 +1007,71 @@ img { max-width: 100%; display: block; }
         <a class="cos-footer__col-item" href="/products/construction-intelligence.html">
           <span class="cos-footer__col-n">02</span>Construction Intelligence
         </a>
-        <a class="cos-footer__col-item cos-footer__col-item--current" href="/products/project-intelligence.html" aria-current="page">
+        <span class="cos-footer__col-item cos-footer__col-item--ink">
           <span class="cos-footer__col-n">03</span>Project Intelligence
+        </span>
+        <a class="cos-footer__col-item" href="/products/operations-automation.html">
+          <span class="cos-footer__col-dash">——</span>Operations Automation
         </a>
-        <a class="cos-footer__col-item" href="#">
-          <span class="cos-footer__col-n">——</span>Operations Automation
+        <a class="cos-footer__col-item" href="/products/custom-solutions.html">
+          <span class="cos-footer__col-dash">——</span>Custom Solutions
         </a>
       </div>
 
+      <!-- Company -->
       <div class="cos-footer__col">
         <span class="cos-footer__col-head">Company</span>
-        <a class="cos-footer__col-item" href="/#services">Services</a>
-        <a class="cos-footer__col-item" href="/#about">About</a>
-        <a class="cos-footer__col-item" href="https://cal.com/justinyurasits">Book a demo</a>
+        <a class="cos-footer__col-item" href="/work.html">Work</a>
+        <a class="cos-footer__col-item" href="/services.html">Services</a>
+        <a class="cos-footer__col-item" href="/about.html">About</a>
       </div>
 
+      <!-- Contact -->
       <div class="cos-footer__col">
-        <span class="cos-footer__col-head">Resources</span>
-        <a class="cos-footer__col-item" href="#">Case Studies</a>
-        <a class="cos-footer__col-item" href="#">Insights</a>
+        <span class="cos-footer__col-head">Talk to us</span>
+        <a class="cos-footer__contact-email" href="mailto:justin@justinyurasits.com">justin@justinyurasits.com</a>
+        <a class="cos-footer__col-item" href="tel:8572481365">857-248-1365</a>
+        <a class="cos-footer__col-item" href="https://linkedin.com/in/justinyurasits">LinkedIn</a>
       </div>
 
     </div>
 
-    <div class="cos-footer__bottom">
-      <span class="cos-footer__copy">&copy; 2026 Construction OS</span>
-      <a class="cos-footer__policy" href="#">Privacy</a>
+    <!-- Title block -->
+    <div class="cos-titleblock">
+      <div class="cos-titleblock__cell">
+        <span class="cos-titleblock__label">Sheet</span>
+        <span class="cos-titleblock__value">CONSTRUCTION OS</span>
+      </div>
+      <div class="cos-titleblock__cell">
+        <span class="cos-titleblock__label">Page</span>
+        <span class="cos-titleblock__value">PROJECT INTELLIGENCE</span>
+      </div>
+      <div class="cos-titleblock__cell">
+        <span class="cos-titleblock__label">Issued</span>
+        <span class="cos-titleblock__value">2026-09-06</span>
+      </div>
+      <div class="cos-titleblock__cell">
+        <span class="cos-titleblock__label">Rev</span>
+        <span class="cos-titleblock__value">03</span>
+      </div>
+      <div class="cos-titleblock__cell">
+        <span class="cos-titleblock__label">Status</span>
+        <span class="cos-titleblock__value">ISSUED FOR REVIEW</span>
+      </div>
     </div>
 
-    <!-- Title block (disclosure 4b / STATUS IN DEVELOPMENT) -->
-    <div class="cos-footer__title-block" aria-label="Document title block">
-      <span class="cos-footer__title-cell">Sheet&nbsp;&nbsp;Construction OS</span>
-      <span class="cos-footer__title-cell">Page&nbsp;&nbsp;Project Intelligence</span>
-      <span class="cos-footer__title-cell">Issued&nbsp;&nbsp;2026-09-06</span>
-      <span class="cos-footer__title-cell">Rev&nbsp;&nbsp;01</span>
-      <span class="cos-footer__title-cell">Status&nbsp;&nbsp;In Development</span>
+    <!-- Legal -->
+    <div class="cos-footer__legal">
+      <span>&copy; 2026 Construction OS</span>
+      <span>
+        <a href="/privacy.html" class="cos-footer__legal-link">Privacy Policy</a>
+        &nbsp;&middot;&nbsp;
+        <a href="/terms.html" class="cos-footer__legal-link">Terms</a>
+      </span>
     </div>
-
   </div>
 </footer>
+<!-- footer:end -->
 
 
 <script>
@@ -1107,38 +1079,71 @@ img { max-width: 100%; display: block; }
   var header = document.querySelector('.cos-header');
   var toggle = header.querySelector('.cos-header__toggle');
   var nav    = header.querySelector('.cos-nav');
-
-  window.addEventListener('scroll', function () {
-    header.classList.toggle('cos-header--compact', window.scrollY > 40);
-  }, { passive: true });
+  var dd     = header.querySelector('.cos-nav__dropdown');
+  var btn    = dd ? dd.querySelector('.cos-nav__trigger') : null;
+  var panel  = dd ? dd.querySelector('.cos-nav__panel') : null;
 
   toggle.addEventListener('click', function () {
     var open = nav.classList.toggle('is-open');
     toggle.setAttribute('aria-expanded', open);
   });
 
-  var dropdowns = Array.prototype.slice.call(header.querySelectorAll('.cos-nav__dropdown'));
-  dropdowns.forEach(function (dd) {
-    var btn = dd.querySelector('.cos-nav__trigger');
-    btn.addEventListener('click', function (e) {
-      e.stopPropagation();
-      var isOpen = dd.classList.contains('is-open');
-      dropdowns.forEach(function (other) {
-        if (other !== dd) {
-          other.classList.remove('is-open');
-          other.querySelector('.cos-nav__trigger').setAttribute('aria-expanded', 'false');
-        }
-      });
-      dd.classList.toggle('is-open', !isOpen);
-      btn.setAttribute('aria-expanded', !isOpen);
-    });
+  if (!dd) return;
+
+  var openTimer, closeTimer;
+
+  function openPanel() {
+    clearTimeout(closeTimer);
+    dd.classList.add('is-open');
+    btn.setAttribute('aria-expanded', 'true');
+  }
+
+  function closePanel() {
+    clearTimeout(openTimer);
+    dd.classList.remove('is-open');
+    btn.setAttribute('aria-expanded', 'false');
+  }
+
+  btn.addEventListener('click', function (e) {
+    e.stopPropagation();
+    clearTimeout(openTimer); clearTimeout(closeTimer);
+    dd.classList.contains('is-open') ? closePanel() : openPanel();
   });
 
-  document.addEventListener('click', function () {
-    dropdowns.forEach(function (dd) {
-      dd.classList.remove('is-open');
-      dd.querySelector('.cos-nav__trigger').setAttribute('aria-expanded', 'false');
-    });
+  btn.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); dd.classList.contains('is-open') ? closePanel() : openPanel(); }
+  });
+
+  dd.addEventListener('mouseenter', function () {
+    if (window.innerWidth < 900) return;
+    clearTimeout(closeTimer);
+    openTimer = setTimeout(openPanel, 120);
+  });
+
+  dd.addEventListener('mouseleave', function () {
+    if (window.innerWidth < 900) return;
+    clearTimeout(openTimer);
+    closeTimer = setTimeout(closePanel, 200);
+  });
+
+  btn.addEventListener('keydown', function (e) {
+    if (!dd.classList.contains('is-open')) return;
+    var items = Array.prototype.slice.call(panel.querySelectorAll('.cos-nav__item'));
+    if (e.key === 'ArrowDown') { e.preventDefault(); if (items[0]) items[0].focus(); }
+    if (e.key === 'Escape') { closePanel(); btn.focus(); }
+  });
+
+  panel.addEventListener('keydown', function (e) {
+    var items = Array.prototype.slice.call(panel.querySelectorAll('.cos-nav__item'));
+    var idx = items.indexOf(document.activeElement);
+    if (e.key === 'ArrowDown') { e.preventDefault(); if (idx < items.length - 1) items[idx + 1].focus(); }
+    if (e.key === 'ArrowUp') { e.preventDefault(); if (idx > 0) items[idx - 1].focus(); else btn.focus(); }
+    if (e.key === 'Escape') { e.preventDefault(); closePanel(); btn.focus(); }
+    if (e.key === 'Tab') { closePanel(); }
+  });
+
+  document.addEventListener('click', function (e) {
+    if (!dd.contains(e.target)) closePanel();
   });
 })();
 </script>

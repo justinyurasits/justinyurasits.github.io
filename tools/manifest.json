@@ -1,0 +1,90 @@
+{
+  "email": "justin@justinyurasits.com",
+  "calLink": "https://cal.com/justinyurasits",
+  "pages": [
+    {
+      "path": "index.html",
+      "active": "none",
+      "activeProduct": null,
+      "footer": {
+        "current": "none",
+        "page": "Construction OS",
+        "issued": "2026-09-06",
+        "rev": "01",
+        "status": "Issued For Review"
+      }
+    },
+    {
+      "path": "products/document-workbench.html",
+      "active": "products",
+      "activeProduct": "document-workbench",
+      "footer": {
+        "current": "document-workbench",
+        "page": "Document Workbench",
+        "issued": "2026-09-06",
+        "rev": "03",
+        "status": "Issued For Review"
+      }
+    },
+    {
+      "path": "products/construction-intelligence.html",
+      "active": "products",
+      "activeProduct": "construction-intelligence",
+      "footer": {
+        "current": "construction-intelligence",
+        "page": "Construction Intelligence",
+        "issued": "2026-09-06",
+        "rev": "03",
+        "status": "Issued For Review"
+      }
+    },
+    {
+      "path": "products/project-intelligence.html",
+      "active": "products",
+      "activeProduct": "project-intelligence",
+      "footer": {
+        "current": "project-intelligence",
+        "page": "Project Intelligence",
+        "issued": "2026-09-06",
+        "rev": "03",
+        "status": "Issued For Review"
+      }
+    },
+    {
+      "path": "products/operations-automation.html",
+      "active": "products",
+      "activeProduct": "operations-automation",
+      "footer": {
+        "current": "operations-automation",
+        "page": "Operations Automation",
+        "issued": "2026-09-06",
+        "rev": "01",
+        "status": "Issued For Review"
+      }
+    },
+    {
+      "path": "products/custom-solutions.html",
+      "active": "products",
+      "activeProduct": "custom-solutions",
+      "footer": {
+        "current": "custom-solutions",
+        "page": "Custom Solutions",
+        "issued": "2026-09-06",
+        "rev": "01",
+        "status": "Issued For Review"
+      }
+    },
+    {
+      "path": "services.html",
+      "active": "services",
+      "activeProduct": null,
+      "footer": {
+        "current": "none",
+        "page": "Services",
+        "issued": "2026-09-06",
+        "rev": "01",
+        "status": "Issued For Review"
+      }
+    }
+  ]
+}

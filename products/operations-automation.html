@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Operations Automation — Construction OS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ─── Tokens ─────────────────────────────────────────────── */
+:root {
+  --c-ink:       #111111;
+  --c-white:     #FFFFFF;
+  --c-bond:      #EFEFEB;
+  --c-steel:     #476776;
+  --c-graphite:  #5F6466;
+  --c-line:      #B8B9B5;
+  --c-revision:  #C43230;
+  --font:        'Archivo', Helvetica, sans-serif;
+}
+
+/* ─── Reset & base ───────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; font-family: var(--font); background: var(--c-white); color: var(--c-ink); -webkit-font-smoothing: antialiased; }
+ul, ol { list-style: none; margin: 0; padding: 0; }
+a { color: inherit; }
+
+/* ─── Container ──────────────────────────────────────────── */
+.cos-container { max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px); }
+
+/* ─── Header ─────────────────────────────────────────────── */
+.cos-header { position: sticky; top: 0; z-index: 50; background: var(--c-white); border-bottom: 1px solid var(--c-line); }
+.cos-header__inner { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+.cos-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; font: 600 17px/1 var(--font); letter-spacing: -.02em; color: var(--c-ink); white-space: nowrap; }
+.cos-nav { display: flex; align-items: center; gap: 32px; }
+.cos-nav a:not(.cos-header__cta) { font: 500 15px/1 var(--font); color: var(--c-graphite); text-decoration: none; }
+.cos-nav a[aria-current="page"] { color: var(--c-ink); border-bottom: 2px solid var(--c-ink); padding-bottom: 2px; }
+.cos-header__cta { display: inline-flex; align-items: center; min-height: 44px; padding: 13px 20px; font: 600 14px/1 var(--font); letter-spacing: -.01em; text-decoration: none; background: var(--c-ink); color: var(--c-white); white-space: nowrap; }
+.cos-header__cta:hover { background: var(--c-steel); }
+.cos-header__toggle { display: none; width: 44px; height: 44px; background: none; border: 1px solid var(--c-line); cursor: pointer; flex-direction: column; align-items: center; justify-content: center; gap: 8px; padding: 0; flex-shrink: 0; }
+.cos-header__toggle span { display: block; width: 18px; height: 2px; background: var(--c-ink); pointer-events: none; }
+
+/* ─── Dropdown ───────────────────────────────────────────── */
+.cos-nav__dropdown { position: relative; }
+.cos-nav__trigger { background: none; border: none; padding: 0; cursor: pointer; display: flex; align-items: center; gap: 5px; font: 500 15px/1 var(--font); color: var(--c-graphite); }
+.cos-nav__trigger::after { content: '▾'; font-size: 11px; color: var(--c-line); display: inline-block; position: relative; top: 1px; transition: transform .15s; }
+.cos-nav__panel { display: none; position: absolute; top: calc(100% + 20px); left: -18px; min-width: 280px; background: var(--c-white); border: 1px solid var(--c-ink); z-index: 100; }
+@media (min-width: 761px) {
+  .cos-nav__dropdown:hover .cos-nav__panel { display: block; }
+  .cos-nav__dropdown:hover .cos-nav__trigger::after { transform: rotate(-180deg); }
+}
+.cos-nav__dropdown.is-open .cos-nav__panel { display: block; }
+.cos-nav__dropdown.is-open .cos-nav__trigger::after { transform: rotate(-180deg); }
+.cos-nav__item { display: block; padding: 14px 18px; text-decoration: none; border-bottom: 1px solid var(--c-line); }
+.cos-nav__item:last-child { border-bottom: none; }
+.cos-nav__item:hover { background: var(--c-bond); }
+.cos-nav__item-name { display: flex; align-items: center; gap: 8px; margin-bottom: 5px; font: 500 14px/1 var(--font); color: var(--c-ink); }
+.cos-nav__item-desc { display: block; font: 400 12px/1.4 var(--font); color: var(--c-graphite); }
+.cos-nav__item-tag { font: 400 11px/1 ui-monospace, 'Courier New', monospace; color: var(--c-graphite); flex-shrink: 0; }
+
+/* ─── Shared CTA scale ───────────────────────────────────── */
+.oa-btn { display: inline-flex; align-items: center; min-height: 44px; padding: 13px 20px; font: 600 14px/1 var(--font); letter-spacing: -.01em; text-decoration: none; white-space: nowrap; }
+.oa-btn--ink { background: var(--c-ink); color: var(--c-white); }
+.oa-btn--ink:hover { background: var(--c-steel); }
+.oa-btn--paper { background: var(--c-white); color: var(--c-ink); }
+.oa-btn--paper:hover { background: var(--c-bond); }
+.oa-link { display: inline-flex; align-items: center; min-height: 40px; font: 600 14px/1 var(--font); letter-spacing: -.01em; text-decoration: none; border-bottom: 2px solid; padding-bottom: 3px; }
+.oa-link--ink { color: var(--c-ink); border-color: var(--c-ink); }
+.oa-link--ink:hover { color: var(--c-steel); border-color: var(--c-steel); }
+.oa-link--paper { color: var(--c-white); border-color: var(--c-white); }
+.oa-link--paper:hover { color: var(--c-line); border-color: var(--c-line); }
+.oa-cta-row { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+
+/* ─── Shared type ────────────────────────────────────────── */
+.oa-eyebrow { margin: 0 0 14px; font: 600 11px/1 var(--font); letter-spacing: .16em; text-transform: uppercase; color: var(--c-steel); }
+.oa-eyebrow--line { color: var(--c-line); }
+.oa-h2 { margin: 0; font: 600 clamp(28px, 8cqi, 42px)/1.05 var(--font); letter-spacing: -.035em; color: var(--c-ink); text-wrap: balance; }
+.oa-rule-2px { border: none; border-top: 2px solid var(--c-ink); }
+.oa-rule-1px { border: none; border-top: 1px solid var(--c-line); }
+
+/* ─── Two-column section header ──────────────────────────── */
+.oa-section-head { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px,100%), 1fr)); gap: 24px 48px; align-items: start; container-type: inline-size; }
+
+/* ─── Extension layer tag ────────────────────────────────── */
+.oa-ext-tag { display: inline-flex; align-items: center; padding: 4px 8px; font: 600 11px/1 var(--font); letter-spacing: .14em; text-transform: uppercase; color: var(--c-steel); border: 1px solid var(--c-steel); white-space: nowrap; flex-shrink: 0; }
+.oa-ext-tag--ink { color: var(--c-line); border-color: var(--c-graphite); }
+.oa-ext-tag--sm { font-size: 10px; letter-spacing: .12em; }
+
+/* ─── § 1 Hero — Paper ───────────────────────────────────── */
+.oa-hero { background: var(--c-white); padding: 76px 0 64px; }
+.oa-hero__col { max-width: 64ch; container-type: inline-size; display: flex; flex-direction: column; gap: 26px; }
+.oa-hero__tag { margin: 0; display: flex; align-items: center; gap: 12px; font: 600 11px/1 var(--font); letter-spacing: .16em; text-transform: uppercase; color: var(--c-steel); flex-wrap: wrap; }
+.oa-hero__tag-n { font: 400 12px/1 ui-monospace, monospace; color: var(--c-graphite); letter-spacing: 0; }
+.oa-hero__tag-rule { width: 40px; height: 1px; background: var(--c-ink); flex-shrink: 0; }
+.oa-hero__name { margin: 0; font: 600 clamp(22px, 6cqi, 34px)/1.05 var(--font); letter-spacing: -.032em; color: var(--c-ink); display: flex; align-items: center; gap: .35em; white-space: nowrap; }
+.oa-hero__headline { margin: 0; font: 600 clamp(30px, 9cqi, 48px)/1.02 var(--font); letter-spacing: -.038em; color: var(--c-ink); text-wrap: balance; }
+.oa-hero__body { margin: 0; max-width: 56ch; font: 400 17px/1.55 var(--font); color: var(--c-graphite); }
+.oa-hero__body2 { margin: 0; max-width: 56ch; font: 500 18px/1.5 var(--font); color: var(--c-ink); }
+.oa-hero__kicker { margin: 0; padding-left: 16px; border-left: 2px solid var(--c-steel); font: 600 18px/1.35 var(--font); color: var(--c-ink); }
+.oa-hero__rule { border: none; border-top: 2px solid var(--c-ink); margin: 48px 0 0; }
+.oa-hero__caps { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px,100%), 1fr)); column-gap: 40px; row-gap: 8px; }
+.oa-hero__cap { padding: 26px 0; border-top: 1px solid var(--c-line); }
+.oa-hero__cap-n { display: block; margin-bottom: 8px; font: 400 12px/1 ui-monospace, monospace; color: var(--c-graphite); }
+.oa-hero__cap-title { margin: 0 0 8px; font: 600 20px/1.25 var(--font); letter-spacing: -.02em; color: var(--c-ink); }
+.oa-hero__cap-body { margin: 0; font: 400 15px/1.55 var(--font); color: var(--c-graphite); }
+
+/* ─── § 2 The work around the job — Bond ────────────────── */
+.oa-problem { background: var(--c-bond); padding-top: 76px; }
+.oa-problem__head { container-type: inline-size; margin-bottom: 20px; }
+.oa-problem__heading { margin: 0; font: 600 clamp(28px, 8cqi, 42px)/1.05 var(--font); letter-spacing: -.035em; color: var(--c-ink); text-wrap: balance; max-width: 26ch; }
+.oa-friction-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px,100%), 1fr)); column-gap: 40px; }
+.oa-friction { border-top: 1px solid var(--c-line); padding: 18px 0; font: 500 16px/1.5 var(--font); color: var(--c-ink); }
+.oa-problem__close-wrap { padding: 24px 0 46px; }
+.oa-problem__close { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px,100%), 1fr)); gap: 16px 48px; align-items: start; }
+.oa-problem__close-left { display: flex; flex-direction: column; gap: 10px; }
+.oa-problem__close-g { margin: 0; font: 400 16px/1.55 var(--font); color: var(--c-graphite); }
+.oa-problem__close-emph { margin: 0; font: 500 17px/1.5 var(--font); color: var(--c-ink); }
+.oa-problem__close-right { margin: 0; font: 400 16px/1.55 var(--font); color: var(--c-graphite); }
+
+/* § 2b Ink band */
+.oa-problem__band { background: var(--c-ink); }
+.oa-problem__band-inner { padding: 34px 0; }
+.oa-band__text { margin: 0; max-width: 32ch; font: 600 clamp(22px, 3.4vw, 30px)/1.25 var(--font); letter-spacing: -.028em; color: var(--c-white); text-wrap: balance; }
+
+/* ─── § 3 Automate the work that follows a pattern — Paper ─ */
+.oa-shape { background: var(--c-white); padding: 76px 0 80px; }
+.oa-shape__head { container-type: inline-size; padding-bottom: 24px; }
+.oa-shape__head-body { margin: 0; font: 400 16px/1.6 var(--font); color: var(--c-graphite); }
+.oa-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px,100%), 1fr)); column-gap: 40px; padding-bottom: 30px; }
+.oa-step { border-top: 1px solid var(--c-line); padding: 26px 0; display: flex; flex-direction: column; gap: 10px; }
+.oa-step__n { font: 400 12px/1 ui-monospace, monospace; color: var(--c-graphite); }
+.oa-step__title { margin: 0; font: 600 21px/1.25 var(--font); letter-spacing: -.022em; color: var(--c-ink); }
+.oa-step__body { margin: 0; font: 400 15px/1.55 var(--font); color: var(--c-graphite); }
+.oa-shape__close { margin: 0; max-width: 70ch; font: 600 19px/1.4 var(--font); letter-spacing: -.015em; color: var(--c-ink); padding-top: 24px; }
+
+/* ─── § 4 Where automation can earn its keep — Bond ─────── */
+.oa-catalogue { background: var(--c-bond); padding: 76px 0 80px; }
+.oa-catalogue__head { container-type: inline-size; padding-bottom: 24px; }
+.oa-catalogue__head-body { margin: 0; font: 400 16px/1.6 var(--font); color: var(--c-graphite); }
+
+/* Site Safety featured panel */
+.oa-ss { border: 1px solid var(--c-ink); background: var(--c-white); margin-bottom: 30px; }
+.oa-ss__header { padding: 20px 24px; border-bottom: 1px solid var(--c-ink); display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.oa-ss__header-left { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.oa-ss__n { font: 400 12px/1 ui-monospace, monospace; color: var(--c-graphite); }
+.oa-ss__name { font: 600 11px/1 var(--font); letter-spacing: .14em; text-transform: uppercase; color: var(--c-steel); }
+.oa-ss__lifecycle-label { font: 400 11px/1 ui-monospace, monospace; color: var(--c-graphite); white-space: nowrap; }
+.oa-ss__body { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px,100%), 1fr)); }
+.oa-ss__left { padding: 24px; display: flex; flex-direction: column; gap: 14px; }
+.oa-ss__pain { margin: 0; font: 600 clamp(22px, 3vw, 26px)/1.25 var(--font); letter-spacing: -.025em; color: var(--c-ink); }
+.oa-ss__para { margin: 0; font: 400 15px/1.55 var(--font); color: var(--c-graphite); }
+.oa-ss__limit { margin-top: auto; margin-bottom: 0; font: 400 13px/1.5 var(--font); color: var(--c-graphite); }
+.oa-ss__right { background: var(--c-bond); border-top: 1px solid var(--c-line); border-left: 1px solid var(--c-line); padding: 24px 20px; }
+.oa-ss__lc-head { font: 600 11px/1 var(--font); letter-spacing: .14em; text-transform: uppercase; color: var(--c-graphite); margin-bottom: 12px; }
+.oa-ss__lc-rule { border: none; border-top: 1px solid var(--c-ink); margin: 0 0 0; }
+.oa-ss__lc-list { margin: 0; padding: 0; }
+.oa-ss__lc-item { display: flex; align-items: baseline; gap: 10px; padding: 13px 0; border-bottom: 1px solid var(--c-line); font: 500 15px/1.3 var(--font); color: var(--c-ink); }
+.oa-ss__lc-item:last-child { border-bottom: none; }
+.oa-ss__lc-n { font: 400 11px/1 ui-monospace, monospace; color: var(--c-graphite); flex-shrink: 0; }
+.oa-ss__foot { background: var(--c-ink); padding: 18px 24px; display: flex; align-items: baseline; gap: 20px; flex-wrap: wrap; }
+.oa-ss__foot-label { font: 600 11px/1 var(--font); letter-spacing: .14em; text-transform: uppercase; color: var(--c-line); white-space: nowrap; }
+.oa-ss__foot-val { font: 500 15px/1.4 var(--font); color: var(--c-white); }
+
+/* Workflow plate grid */
+.oa-plates { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px,100%), 1fr)); gap: 30px; }
+.oa-plate { border: 1px solid var(--c-ink); background: var(--c-white); display: flex; flex-direction: column; }
+.oa-plate__label { padding: 14px 20px; border-bottom: 1px solid var(--c-line); display: flex; align-items: center; gap: 10px; }
+.oa-plate__n { font: 400 12px/1 ui-monospace, monospace; color: var(--c-graphite); flex-shrink: 0; }
+.oa-plate__wf-name { font: 600 11px/1 var(--font); letter-spacing: .14em; text-transform: uppercase; color: var(--c-steel); }
+.oa-plate__body { padding: 20px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+.oa-plate__pain { margin: 0; font: 600 22px/1.25 var(--font); letter-spacing: -.024em; color: var(--c-ink); text-wrap: balance; }
+.oa-plate__mech { margin: 0; font: 400 15px/1.55 var(--font); color: var(--c-graphite); }
+.oa-plate__outcome { border-top: 1px solid var(--c-line); background: var(--c-bond); padding: 16px 20px; font: 500 15px/1.4 var(--font); color: var(--c-ink); }
+
+/* ─── § 5 Not every workflow should be automated — Paper ─── */
+.oa-limits { background: var(--c-white); padding: 76px 0 80px; }
+.oa-limits__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px,100%), 1fr)); gap: 48px; align-items: start; container-type: inline-size; }
+.oa-limits__left { display: flex; flex-direction: column; }
+.oa-limits__h { margin: 0; font: 600 clamp(28px, 8cqi, 42px)/1.05 var(--font); letter-spacing: -.035em; color: var(--c-ink); text-wrap: balance; }
+.oa-limits__left-rule { border: none; border-top: 1px solid var(--c-line); margin: 28px 0 20px; }
+.oa-limits__left-body { margin: 0; font: 400 16px/1.6 var(--font); color: var(--c-graphite); }
+.oa-limits__right { border-top: 2px solid var(--c-ink); }
+.oa-limits__best { margin: 0; font: 500 16px/1.4 var(--font); color: var(--c-ink); padding: 16px 0 14px; }
+.oa-limits__criterion { display: flex; align-items: baseline; gap: 10px; padding: 14px 0; border-top: 1px solid var(--c-line); }
+.oa-limits__cn { font: 400 11px/1 ui-monospace, monospace; color: var(--c-graphite); flex-shrink: 0; }
+.oa-limits__ctext { font: 500 16px/1.4 var(--font); color: var(--c-ink); }
+.oa-limits__kicker { margin: 0; padding-left: 22px; border-left: 2px solid var(--c-steel); font: 600 19px/1.35 var(--font); color: var(--c-ink); margin-top: 20px; }
+
+/* ─── § 6 Built around how your company works — Bond ─────── */
+.oa-config { background: var(--c-bond); padding: 76px 0 80px; }
+.oa-config__head { container-type: inline-size; }
+.oa-config__heading { margin: 0; font: 600 clamp(26px, 7cqi, 38px)/1.05 var(--font); letter-spacing: -.032em; color: var(--c-ink); text-wrap: balance; }
+.oa-config__head-body { margin: 0 0 10px; font: 400 16px/1.6 var(--font); color: var(--c-graphite); }
+.oa-config__head-body2 { margin: 0; font: 500 17px/1.5 var(--font); color: var(--c-ink); }
+.oa-questions { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px,100%), 1fr)); column-gap: 32px; }
+.oa-question { border-top: 1px solid var(--c-line); padding: 20px 0; font: 600 19px/1.3 var(--font); letter-spacing: -.02em; color: var(--c-ink); }
+.oa-config__close { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px,100%), 1fr)); gap: 16px 48px; align-items: start; padding-top: 24px; }
+.oa-config__close-g { margin: 0; font: 400 16px/1.6 var(--font); color: var(--c-graphite); }
+.oa-config__close-emph { margin: 0; font: 600 19px/1.4 var(--font); letter-spacing: -.015em; color: var(--c-ink); }
+
+/* ─── § 7 Extension layer — Paper + § 7b Ink ────────────── */
+.oa-system { background: var(--c-white); padding-top: 76px; }
+.oa-system__head { container-type: inline-size; padding-bottom: 24px; }
+.oa-system__head-body { margin: 0; font: 400 16px/1.6 var(--font); color: var(--c-graphite); }
+.oa-products { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px,100%), 1fr)); column-gap: 40px; padding-bottom: 44px; }
+.oa-prod-card { border-top: 1px solid var(--c-line); padding: 26px 0 0; display: flex; flex-direction: column; gap: 12px; }
+.oa-prod-card__hrow { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 2px; }
+.oa-prod-card__n { font: 400 12px/1 ui-monospace, monospace; color: var(--c-graphite); flex-shrink: 0; }
+.oa-prod-card__name { font: 600 17px/1 var(--font); letter-spacing: -.015em; color: var(--c-ink); }
+.oa-prod-card__dev-tag { display: inline-flex; align-items: center; padding: 3px 6px; font: 600 10px/1 var(--font); letter-spacing: .1em; text-transform: uppercase; color: var(--c-graphite); border: 1px solid var(--c-line); white-space: nowrap; }
+.oa-prod-card__role { margin: 0; font: 600 21px/1.25 var(--font); letter-spacing: -.022em; color: var(--c-ink); }
+.oa-prod-card__desc { margin: 0; font: 400 15px/1.55 var(--font); color: var(--c-graphite); }
+.oa-prod-card__divider { border: none; border-top: 1px solid var(--c-line); margin: 0; }
+.oa-prod-card__tagline { margin: 0; font: 500 15px/1.4 var(--font); color: var(--c-ink); }
+.oa-prod-card__link { display: inline-flex; align-items: center; min-height: 40px; align-self: flex-start; font: 600 14px/1 var(--font); letter-spacing: -.01em; text-decoration: none; border-bottom: 2px solid var(--c-ink); padding-bottom: 3px; color: var(--c-ink); }
+.oa-prod-card__link:hover { color: var(--c-steel); border-color: var(--c-steel); }
+
+/* § 7b Ink band */
+.oa-system__band { background: var(--c-ink); }
+.oa-system__band-inner { padding: 38px 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px,100%), 1fr)); gap: 24px 48px; align-items: start; }
+.oa-system__band-left { display: flex; flex-direction: column; gap: 14px; }
+.oa-system__band-hrow { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.oa-system__band-n { font: 400 12px/1 ui-monospace, monospace; color: var(--c-line); flex-shrink: 0; }
+.oa-system__band-name { font: 600 17px/1 var(--font); color: var(--c-white); }
+.oa-system__band-role { margin: 0; font: 600 22px/1.25 var(--font); letter-spacing: -.022em; color: var(--c-white); }
+.oa-system__band-right { display: flex; flex-direction: column; }
+.oa-system__band-list { margin: 0 0 16px; font: 400 16px/1.6 var(--font); color: var(--c-line); }
+.oa-system__band-rule { border: none; border-top: 1px solid var(--c-graphite); margin: 0 0 14px; }
+.oa-system__band-tagline { margin: 0; font: 500 15px/1.4 var(--font); color: var(--c-white); }
+
+/* ─── § 8 Start with the workflow — Bond ─────────────────── */
+.oa-start { background: var(--c-bond); padding: 76px 0 80px; }
+.oa-start__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px,100%), 1fr)); gap: 48px; align-items: start; container-type: inline-size; }
+.oa-start__left { display: flex; flex-direction: column; gap: 0; }
+.oa-start__h { margin: 0; font: 600 clamp(28px, 8cqi, 42px)/1.05 var(--font); letter-spacing: -.035em; color: var(--c-ink); text-wrap: balance; }
+.oa-start__left-rule { border: none; border-top: 1px solid var(--c-line); margin: 28px 0 20px; }
+.oa-start__intro { margin: 0; font: 500 17px/1.5 var(--font); color: var(--c-ink); }
+.oa-start__right { border-top: 2px solid var(--c-ink); }
+.oa-start__candidate { padding: 16px 0; border-bottom: 1px solid var(--c-line); font: 500 17px/1.4 var(--font); color: var(--c-ink); }
+.oa-start__candidate:last-of-type { border-bottom: none; }
+.oa-start__kicker { margin: 20px 0 0; padding-left: 22px; border-left: 2px solid var(--c-steel); font: 600 19px/1.35 var(--font); color: var(--c-ink); }
+
+/* ─── § 9 Closing CTA — Ink ──────────────────────────────── */
+.oa-close { background: var(--c-ink); padding: 88px 0 80px; }
+.oa-close__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(340px,100%), 1fr)); gap: 56px; align-items: start; container-type: inline-size; }
+.oa-close__lockup { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 28px; }
+.oa-close__lockup-name { font: 600 14px/1 var(--font); letter-spacing: .14em; text-transform: uppercase; color: var(--c-white); white-space: nowrap; }
+.oa-close__lockup-rule { flex: 1; height: 1px; background: var(--c-graphite); min-width: 20px; }
+.oa-close__h { margin: 0 0 24px; font: 600 clamp(34px, 11cqi, 64px)/0.98 var(--font); letter-spacing: -.042em; color: var(--c-white); text-wrap: balance; }
+.oa-close__body1 { margin: 0 0 14px; max-width: 46ch; font: 400 19px/1.55 var(--font); color: var(--c-line); }
+.oa-close__body2 { margin: 0; max-width: 46ch; font: 400 16px/1.6 var(--font); color: var(--c-line); }
+.oa-close__index-label { font: 500 12px/1 var(--font); letter-spacing: .12em; text-transform: uppercase; color: var(--c-line); margin: 0 0 14px; }
+.oa-close__index-rule { height: 1px; background: var(--c-graphite); margin: 0 0 0; }
+.oa-close__index-row { display: flex; align-items: center; gap: 12px; padding: 16px 0; border-bottom: 1px solid var(--c-graphite); }
+.oa-close__index-row:last-child { border-bottom: none; }
+.oa-close__index-n { font: 400 12px/1 ui-monospace, monospace; color: var(--c-line); flex-shrink: 0; }
+.oa-close__index-name { font: 600 17px/1 var(--font); color: var(--c-white); }
+.oa-close__index-tag { display: inline-flex; align-items: center; padding: 3px 6px; font: 600 10px/1 var(--font); letter-spacing: .12em; text-transform: uppercase; color: var(--c-line); border: 1px solid var(--c-graphite); margin-left: 8px; white-space: nowrap; }
+
+/* ─── Footer ─────────────────────────────────────────────── */
+.cos-footer { background: var(--c-white); border-top: 1px solid var(--c-line); }
+.cos-footer__inner { padding-top: 52px; }
+.cos-footer__cols { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 40px; }
+.cos-footer__brand { display: flex; flex-direction: column; gap: 14px; }
+.cos-footer__lockup { display: flex; align-items: center; gap: 10px; text-decoration: none; font: 600 15px/1 var(--font); letter-spacing: -.015em; color: var(--c-ink); }
+.cos-footer__tagline { margin: 0; font: 400 13px/1.5 var(--font); color: var(--c-graphite); max-width: 26ch; }
+.cos-footer__cta-link { align-self: flex-start; font: 600 13px/1 var(--font); color: var(--c-ink); text-decoration: none; border-bottom: 1px solid var(--c-ink); padding-bottom: 2px; }
+.cos-footer__cta-link:hover { color: var(--c-steel); border-bottom-color: var(--c-steel); }
+.cos-footer__col { display: flex; flex-direction: column; gap: 10px; }
+.cos-footer__col-head { font: 600 11px/1 var(--font); letter-spacing: .14em; text-transform: uppercase; color: var(--c-graphite); margin-bottom: 4px; }
+.cos-footer__col-item { display: flex; align-items: baseline; gap: 8px; font: 400 14px/1 var(--font); color: var(--c-graphite); text-decoration: none; }
+.cos-footer__col-item:hover { color: var(--c-ink); }
+.cos-footer__col-item--current { font-weight: 600; color: var(--c-ink); }
+.cos-footer__col-n { font: 400 11px/1 ui-monospace, monospace; color: var(--c-line); flex-shrink: 0; }
+.cos-footer__bottom { border-top: 1px solid var(--c-line); padding: 20px 0; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.cos-footer__copy { font: 400 12px/1 var(--font); color: var(--c-graphite); }
+.cos-footer__policy { font: 400 12px/1 var(--font); color: var(--c-graphite); text-decoration: none; }
+.cos-footer__policy:hover { color: var(--c-ink); }
+.cos-footer__title-block { border-top: 1px solid var(--c-line); display: flex; flex-wrap: wrap; }
+.cos-footer__title-cell { font: 400 10px/1 ui-monospace, monospace; letter-spacing: .08em; text-transform: uppercase; color: var(--c-graphite); padding: 12px 16px; border-right: 1px solid var(--c-line); white-space: nowrap; }
+.cos-footer__title-cell:first-child { padding-left: 0; }
+.cos-footer__title-cell:last-child { border-right: 0; }
+
+/* ─── Mobile nav ─────────────────────────────────────────── */
+@media (max-width: 760px) {
+  .cos-header__toggle { display: flex; }
+  .cos-nav { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--c-white); border-top: 1px solid var(--c-line); border-bottom: 1px solid var(--c-line); flex-direction: column; align-items: stretch; gap: 0; }
+  .cos-nav.is-open { display: flex; }
+  .cos-nav > li { border-bottom: 1px solid var(--c-line); }
+  .cos-nav > li:last-child { border-bottom: none; }
+  .cos-nav a:not(.cos-header__cta) { padding: 14px 24px; display: block; }
+  .cos-header__cta { display: none; }
+  .cos-nav__trigger { padding: 12px 24px; width: 100%; justify-content: space-between; }
+  .cos-nav__panel { position: static; min-width: 0; border: none; border-top: 1px solid var(--c-line); }
+  .cos-footer__cols { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .cos-footer__title-block { flex-direction: column; }
+  .cos-footer__title-cell { padding: 6px 0; border-right: 0; border-bottom: 1px solid var(--c-line); }
+  .cos-footer__title-cell:last-child { border-bottom: 0; }
+  .oa-hero { padding: 56px 0 48px; }
+  .oa-hero__rule { margin-top: 32px; }
+}
+@media (max-width: 900px) {
+  .cos-footer__cols { grid-template-columns: 1fr 1fr; gap: 32px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Header (Paper, sticky) -->
+<header class="cos-header" id="top">
+  <div class="cos-container">
+    <div class="cos-header__inner">
+
+      <a class="cos-logo" href="/">
+        <svg viewBox="0 0 100 100" width="22" height="22" aria-hidden="true">
+          <polyline points="14,56 14,14 56,14" fill="none" stroke="currentColor" stroke-width="13"/>
+          <polyline points="86,44 86,86 44,86" fill="none" stroke="currentColor" stroke-width="13"/>
+          <rect x="32" y="32" width="36" height="36" fill="#C43230"/>
+        </svg>
+        Construction OS
+      </a>
+
+      <button class="cos-header__toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav">
+        <span></span><span></span>
+      </button>
+
+      <ul class="cos-nav" id="main-nav" role="list">
+        <li class="cos-nav__dropdown">
+          <button class="cos-nav__trigger" aria-expanded="false" aria-haspopup="true">Products</button>
+          <div class="cos-nav__panel" role="region">
+            <a class="cos-nav__item" href="/products/document-workbench.html">
+              <span class="cos-nav__item-name"><span class="cos-nav__item-tag">01</span>Document Workbench</span>
+              <span class="cos-nav__item-desc">Construction documents from project information</span>
+            </a>
+            <a class="cos-nav__item" href="/products/construction-intelligence.html">
+              <span class="cos-nav__item-name"><span class="cos-nav__item-tag">02</span>Construction Intelligence</span>
+              <span class="cos-nav__item-desc">Company-specific answers, source-backed</span>
+            </a>
+            <a class="cos-nav__item" href="/products/project-intelligence.html">
+              <span class="cos-nav__item-name">
+                <span class="cos-nav__item-tag">03</span>
+                Project Intelligence
+                <span class="cos-nav__item-tag" style="color:#476776">In development</span>
+              </span>
+              <span class="cos-nav__item-desc">Attention where it&rsquo;s needed, before it&rsquo;s urgent</span>
+            </a>
+            <a class="cos-nav__item" href="/products/operations-automation.html" aria-current="page">
+              <span class="cos-nav__item-name"><span class="cos-nav__item-tag">&mdash;&mdash;</span>Operations Automation</span>
+              <span class="cos-nav__item-desc">Extension layer across the system</span>
+            </a>
+          </div>
+        </li>
+        <li><a href="/#services">Services</a></li>
+        <li class="cos-nav__dropdown">
+          <button class="cos-nav__trigger" aria-expanded="false" aria-haspopup="true">Resources</button>
+          <div class="cos-nav__panel" role="region">
+            <a class="cos-nav__item" href="#">
+              <span class="cos-nav__item-name">Case Studies</span>
+              <span class="cos-nav__item-desc">How construction teams use Construction OS</span>
+            </a>
+            <a class="cos-nav__item" href="#">
+              <span class="cos-nav__item-name">Insights</span>
+              <span class="cos-nav__item-desc">Operations thinking for construction companies</span>
+            </a>
+          </div>
+        </li>
+        <li><a href="/#about">About</a></li>
+        <li><a class="cos-header__cta" href="https://cal.com/justinyurasits">Book a demo</a></li>
+      </ul>
+
+    </div>
+  </div>
+</header>
+
+
+<!-- § 1. Hero — Paper -->
+<section class="oa-hero">
+  <div class="cos-container">
+    <div class="oa-hero__col">
+
+      <!-- Tag row: —— · rule · CONSTRUCTION OS · EXTENSION LAYER tag -->
+      <p class="oa-hero__tag">
+        <span class="oa-hero__tag-n">&mdash;&mdash;</span>
+        <span class="oa-hero__tag-rule"></span>
+        <span>Construction OS</span>
+        <span class="oa-ext-tag">Extension Layer</span>
+      </p>
+
+      <!-- Product name with OA icon at .72em -->
+      <h1 class="oa-hero__name">
+        <!-- icon-less-repetitive-work at .72em: 3 dashes + baseline run, currentColor, no hairlines, no red -->
+        <svg viewBox="0 0 100 100" style="width:.72em;height:.72em;flex:none" aria-hidden="true">
+          <line x1="14" y1="28" x2="34" y2="28" stroke="currentColor" stroke-width="11"/>
+          <line x1="42" y1="28" x2="62" y2="28" stroke="currentColor" stroke-width="11"/>
+          <line x1="70" y1="28" x2="90" y2="28" stroke="currentColor" stroke-width="11"/>
+          <line x1="14" y1="74" x2="90" y2="74" stroke="currentColor" stroke-width="11"/>
+        </svg>
+        Operations Automation
+      </h1>
+
+      <!-- Headline -->
+      <p class="oa-hero__headline">Automate the repetitive work around the job.</p>
+
+      <!-- Body -->
+      <p class="oa-hero__body">Your PMs, superintendents, estimators, and operations teams still spend valuable time rekeying information, assembling paperwork, tracking requirements, comparing files, and following up on routine processes.</p>
+
+      <!-- Body 2 -->
+      <p class="oa-hero__body2">Operations Automation adds purpose-built workflows to Construction OS that take more of that repeatable work off the team.</p>
+
+      <!-- Kicker -->
+      <p class="oa-hero__kicker">Automate the predictable work. Keep judgment where it belongs.</p>
+
+      <!-- CTA row -->
+      <div class="oa-cta-row">
+        <a class="oa-btn oa-btn--ink" href="https://cal.com/justinyurasits">Book a demo</a>
+        <a class="oa-link oa-link--ink" href="#workflows">See example workflows</a>
+      </div>
+
+    </div>
+
+    <!-- Three capability points under 2px Ink rule -->
+    <hr class="oa-hero__rule" aria-hidden="true">
+    <div class="oa-hero__caps" aria-label="Key capabilities">
+      <div class="oa-hero__cap">
+        <span class="oa-hero__cap-n">01</span>
+        <h2 class="oa-hero__cap-title">Built around your process</h2>
+        <p class="oa-hero__cap-body">Automate the way your company actually works&mdash;not somebody else&rsquo;s generic workflow.</p>
+      </div>
+      <div class="oa-hero__cap">
+        <span class="oa-hero__cap-n">02</span>
+        <h2 class="oa-hero__cap-title">Start where the pain is</h2>
+        <p class="oa-hero__cap-body">Fix one repetitive bottleneck first. Prove the value. Expand from there.</p>
+      </div>
+      <div class="oa-hero__cap">
+        <span class="oa-hero__cap-n">03</span>
+        <h2 class="oa-hero__cap-title">Keep people in control</h2>
+        <p class="oa-hero__cap-body">Automate production, tracking, and information handling while keeping review, approval, and judgment with your team.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- § 2. The work around the job — Bond + § 2b Ink band -->
+<section class="oa-problem">
+  <div class="cos-container">
+
+    <div class="oa-problem__head">
+      <p class="oa-eyebrow">The Problem</p>
+      <h2 class="oa-problem__heading">The work around the job has become a job of its own.</h2>
+    </div>
+    <hr class="oa-rule-2px" style="margin-bottom:20px" aria-hidden="true">
+
+    <!-- Seven frictions -->
+    <ul class="oa-friction-grid" role="list">
+      <li class="oa-friction">An invoice arrives and someone rekeys it.</li>
+      <li class="oa-friction">The superintendent finishes the day and still has to write the report.</li>
+      <li class="oa-friction">Three subcontractor bids come in three different formats.</li>
+      <li class="oa-friction">A pay app is due and somebody rebuilds the package.</li>
+      <li class="oa-friction">Safety requirements need to be understood, documented, trained, and tracked.</li>
+      <li class="oa-friction">A vendor&rsquo;s paperwork is missing and somebody has to notice.</li>
+      <li class="oa-friction">A client selection is late and somebody has to chase it.</li>
+    </ul>
+
+    <!-- Two-column close -->
+    <hr class="oa-rule-2px" style="margin-top:30px" aria-hidden="true">
+    <div class="oa-problem__close-wrap">
+      <div class="oa-problem__close">
+        <div class="oa-problem__close-left">
+          <p class="oa-problem__close-g">None of these tasks is especially complicated.</p>
+          <p class="oa-problem__close-emph">The problem is that they happen over and over.</p>
+        </div>
+        <p class="oa-problem__close-right">Every time they do, someone on your team stops managing construction to handle another repeatable administrative task.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- § 2b. Premise band — Ink (full-bleed inside Bond section) -->
+  <div class="oa-problem__band">
+    <div class="cos-container oa-problem__band-inner">
+      <p class="oa-band__text">That&rsquo;s where automation can earn its keep.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- § 3. Automate the work that follows a pattern — Paper -->
+<section class="oa-shape">
+  <div class="cos-container">
+
+    <!-- Header block -->
+    <div class="oa-section-head oa-shape__head">
+      <div>
+        <p class="oa-eyebrow">The Shape of the Work</p>
+        <h2 class="oa-h2">Automate the work that follows a pattern.</h2>
+      </div>
+      <div>
+        <p class="oa-shape__head-body">Most good automation opportunities have the same basic shape.</p>
+      </div>
+    </div>
+    <hr class="oa-rule-2px" style="margin-bottom:30px" aria-hidden="true">
+
+    <!-- Three steps -->
+    <div class="oa-steps">
+      <div class="oa-step">
+        <span class="oa-step__n">01</span>
+        <h3 class="oa-step__title">Information comes in.</h3>
+        <p class="oa-step__body">A bid. An invoice. A field note. A photo. A form. A regulation. A project update. A client decision.</p>
+      </div>
+      <div class="oa-step">
+        <span class="oa-step__n">02</span>
+        <h3 class="oa-step__title">Your company&rsquo;s rules and project context get applied.</h3>
+        <p class="oa-step__body">What matters? What needs to be checked? What standard applies? Who reviews it? What needs to happen next?</p>
+      </div>
+      <div class="oa-step">
+        <span class="oa-step__n">03</span>
+        <h3 class="oa-step__title">Something useful comes out.</h3>
+        <p class="oa-step__body">Structured information. A draft. A comparison. A plan. A compliance record. A status. A billing package. A workflow ready for the next step.</p>
+      </div>
+    </div>
+
+    <hr class="oa-rule-2px" aria-hidden="true">
+    <p class="oa-shape__close">Stop paying skilled people to manually repeat work the company already knows how to do.</p>
+
+  </div>
+</section>
+
+
+<!-- § 4. Where automation can earn its keep — Bond -->
+<section class="oa-catalogue" id="workflows">
+  <div class="cos-container">
+
+    <!-- Header block -->
+    <div class="oa-section-head oa-catalogue__head">
+      <div>
+        <p class="oa-eyebrow">Example Automation Workflows</p>
+        <h2 class="oa-h2">Where automation can earn its keep.</h2>
+      </div>
+      <div>
+        <p class="oa-catalogue__head-body">The right starting point depends on where your company is losing time. These are examples of the kinds of workflows Operations Automation can support.</p>
+      </div>
+    </div>
+    <hr class="oa-rule-2px" style="margin-bottom:34px" aria-hidden="true">
+
+    <!-- Site Safety featured panel (02) -->
+    <div class="oa-ss" aria-label="Site Safety workflow">
+
+      <div class="oa-ss__header">
+        <div class="oa-ss__header-left">
+          <span class="oa-ss__n">02</span>
+          <span class="oa-ss__name">Site Safety</span>
+          <span class="oa-ext-tag" style="font-size:10px;letter-spacing:.12em">Full Lifecycle</span>
+        </div>
+        <span class="oa-ss__lifecycle-label">PLAN &rarr; TRAIN &rarr; TRACK &rarr; RECORD</span>
+      </div>
+
+      <div class="oa-ss__body">
+        <!-- Left: pain + paras + limitation note -->
+        <div class="oa-ss__left">
+          <h3 class="oa-ss__pain">Plan the work. Know the requirements. Keep the record.</h3>
+          <p class="oa-ss__para">Use project conditions and relevant OSHA requirements to help develop the site safety plan and training plan before work begins.</p>
+          <p class="oa-ss__para">Then track day-to-day safety activity by vendor using field photos, uploaded documentation, training records, and other required evidence.</p>
+          <p class="oa-ss__para">See what has been completed, what is missing, and where follow-up is needed&mdash;while maintaining a record by vendor and by day.</p>
+          <p class="oa-ss__limit">Supports planning, documentation, and recordkeeping. Your team determines compliance.</p>
+        </div>
+
+        <!-- Right: lifecycle rail -->
+        <div class="oa-ss__right">
+          <p class="oa-ss__lc-head">The Lifecycle</p>
+          <hr class="oa-ss__lc-rule" aria-hidden="true">
+          <ul class="oa-ss__lc-list" role="list">
+            <li class="oa-ss__lc-item"><span class="oa-ss__lc-n">01</span>OSHA requirements</li>
+            <li class="oa-ss__lc-item"><span class="oa-ss__lc-n">02</span>Safety planning</li>
+            <li class="oa-ss__lc-item"><span class="oa-ss__lc-n">03</span>Training plan</li>
+            <li class="oa-ss__lc-item"><span class="oa-ss__lc-n">04</span>Daily vendor evidence</li>
+            <li class="oa-ss__lc-item"><span class="oa-ss__lc-n">05</span>Ongoing compliance record</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Ink footer band -->
+      <div class="oa-ss__foot">
+        <span class="oa-ss__foot-label">What You Get</span>
+        <span class="oa-ss__foot-val">Better planning up front. Clearer daily compliance tracking. A documented safety record throughout the job.</span>
+      </div>
+
+    </div>
+
+    <!-- Seven remaining workflow plates: 01, 03-08 -->
+    <div class="oa-plates">
+
+      <div class="oa-plate">
+        <div class="oa-plate__label">
+          <span class="oa-plate__n">01</span>
+          <span class="oa-plate__wf-name">Invoice Intake</span>
+        </div>
+        <div class="oa-plate__body">
+          <h3 class="oa-plate__pain">Stop rekeying invoices and receipts.</h3>
+          <p class="oa-plate__mech">Turn incoming invoices and receipts into structured cost information ready for review.</p>
+        </div>
+        <div class="oa-plate__outcome">Less data entry. Faster access to usable cost information.</div>
+      </div>
+
+      <div class="oa-plate">
+        <div class="oa-plate__label">
+          <span class="oa-plate__n">03</span>
+          <span class="oa-plate__wf-name">Field Reports</span>
+        </div>
+        <div class="oa-plate__body">
+          <h3 class="oa-plate__pain">Stop reconstructing the day after it&rsquo;s over.</h3>
+          <p class="oa-plate__mech">Capture what happened while it is still fresh and turn voice notes or field notes into a structured daily report ready for review.</p>
+        </div>
+        <div class="oa-plate__outcome">Less end-of-day paperwork. Better documentation of what actually happened in the field.</div>
+      </div>
+
+      <div class="oa-plate">
+        <div class="oa-plate__label">
+          <span class="oa-plate__n">04</span>
+          <span class="oa-plate__wf-name">Bid Comparison</span>
+        </div>
+        <div class="oa-plate__body">
+          <h3 class="oa-plate__pain">Stop comparing apples to oranges.</h3>
+          <p class="oa-plate__mech">Normalize subcontractor proposals into a consistent comparison so scope differences, exclusions, allowances, and gaps are easier to spot.</p>
+        </div>
+        <div class="oa-plate__outcome">Spend less time formatting bids. More time evaluating what you&rsquo;re actually buying.</div>
+      </div>
+
+      <div class="oa-plate">
+        <div class="oa-plate__label">
+          <span class="oa-plate__n">05</span>
+          <span class="oa-plate__wf-name">Pay App Preparation</span>
+        </div>
+        <div class="oa-plate__body">
+          <h3 class="oa-plate__pain">Stop rebuilding the billing package every month.</h3>
+          <p class="oa-plate__mech">Use the schedule of values, current progress, and project information to help prepare the next billing package.</p>
+        </div>
+        <div class="oa-plate__outcome">Spend less time assembling billing. Get it ready for review faster.</div>
+      </div>
+
+      <div class="oa-plate">
+        <div class="oa-plate__label">
+          <span class="oa-plate__n">06</span>
+          <span class="oa-plate__wf-name">Change Order Drafting</span>
+        </div>
+        <div class="oa-plate__body">
+          <h3 class="oa-plate__pain">Capture the change while the details are still fresh.</h3>
+          <p class="oa-plate__mech">Turn field information, scope changes, pricing details, and project context into a professional change-order draft for review.</p>
+        </div>
+        <div class="oa-plate__outcome">Reduce the gap between recognizing a change and documenting it properly.</div>
+      </div>
+
+      <div class="oa-plate">
+        <div class="oa-plate__label">
+          <span class="oa-plate__n">07</span>
+          <span class="oa-plate__wf-name">Subcontractor Compliance</span>
+        </div>
+        <div class="oa-plate__body">
+          <h3 class="oa-plate__pain">Know who&rsquo;s ready&mdash;and who needs follow-up.</h3>
+          <p class="oa-plate__mech">Track COIs, W-9s, licenses, waivers, and other required vendor documentation.</p>
+          <p class="oa-plate__mech">See what is current, what is missing, and what needs attention without repeatedly checking folders and spreadsheets.</p>
+        </div>
+        <div class="oa-plate__outcome">Stop chasing paperwork. Focus on the exceptions.</div>
+      </div>
+
+      <div class="oa-plate">
+        <div class="oa-plate__label">
+          <span class="oa-plate__n">08</span>
+          <span class="oa-plate__wf-name">Client Selections</span>
+        </div>
+        <div class="oa-plate__body">
+          <h3 class="oa-plate__pain">Keep decisions from becoming schedule problems.</h3>
+          <p class="oa-plate__mech">Track selections, allowances, approvals, and lead times so unresolved client decisions are easier to see before they affect procurement or schedule.</p>
+        </div>
+        <div class="oa-plate__outcome">Turn scattered selections into decisions the project team can actually manage.</div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- § 5. Not every workflow should be automated — Paper -->
+<section class="oa-limits">
+  <div class="cos-container">
+    <div class="oa-limits__grid">
+
+      <!-- Left -->
+      <div class="oa-limits__left">
+        <p class="oa-eyebrow">The Limits</p>
+        <h2 class="oa-limits__h">Not every workflow should be automated.</h2>
+        <hr class="oa-limits__left-rule" aria-hidden="true">
+        <p class="oa-limits__left-body">If every situation is different and judgment drives the work, automation may not be the answer.</p>
+      </div>
+
+      <!-- Right -->
+      <div class="oa-limits__right">
+        <p class="oa-limits__best">The best candidates:</p>
+        <div class="oa-limits__criterion">
+          <span class="oa-limits__cn">01</span>
+          <span class="oa-limits__ctext">happen frequently,</span>
+        </div>
+        <div class="oa-limits__criterion">
+          <span class="oa-limits__cn">02</span>
+          <span class="oa-limits__ctext">follow repeatable steps,</span>
+        </div>
+        <div class="oa-limits__criterion">
+          <span class="oa-limits__cn">03</span>
+          <span class="oa-limits__ctext">use understood rules,</span>
+        </div>
+        <div class="oa-limits__criterion">
+          <span class="oa-limits__cn">04</span>
+          <span class="oa-limits__ctext">and consume skilled time without requiring skilled judgment at every step.</span>
+        </div>
+        <p class="oa-limits__kicker">Automate the predictable parts. Keep judgment where it creates value.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- § 6. Built around how your company already works — Bond -->
+<section class="oa-config">
+  <div class="cos-container">
+
+    <!-- Header block -->
+    <div class="oa-section-head oa-config__head" style="margin-bottom:20px">
+      <div>
+        <p class="oa-eyebrow">Configuration</p>
+        <h2 class="oa-config__heading">Built around how your company already works.</h2>
+      </div>
+      <div>
+        <p class="oa-config__head-body">Operations Automation is not a collection of generic bots that forces your team into somebody else&rsquo;s process.</p>
+        <p class="oa-config__head-body2">We start with the workflow you already have:</p>
+      </div>
+    </div>
+    <hr class="oa-rule-2px" style="margin-bottom:0" aria-hidden="true">
+
+    <!-- Five configuration questions -->
+    <div class="oa-questions">
+      <div class="oa-question">What triggers it?</div>
+      <div class="oa-question">What information comes in?</div>
+      <div class="oa-question">What rules apply?</div>
+      <div class="oa-question">Who reviews it?</div>
+      <div class="oa-question">What needs to happen next?</div>
+    </div>
+
+    <!-- Close -->
+    <hr class="oa-rule-2px" style="margin-top:30px;margin-bottom:0" aria-hidden="true">
+    <div class="oa-config__close">
+      <p class="oa-config__close-g">Then we identify where the process can become faster, more consistent, and less manual.</p>
+      <p class="oa-config__close-emph">Your operation is the starting point. Automation is applied where it actually helps.</p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- § 7. The extension layer — Paper + § 7b Ink band -->
+<section class="oa-system">
+  <div class="cos-container">
+
+    <!-- Header block -->
+    <div class="oa-section-head oa-system__head">
+      <div>
+        <p class="oa-eyebrow">The System</p>
+        <h2 class="oa-h2">The extension layer around Construction OS.</h2>
+      </div>
+      <div>
+        <p class="oa-system__head-body">Operations Automation handles repeatable work around the three core Construction OS products.</p>
+      </div>
+    </div>
+    <hr class="oa-rule-2px" style="margin-bottom:30px" aria-hidden="true">
+
+    <!-- Three core product cards -->
+    <div class="oa-products">
+
+      <!-- 01 Document Workbench -->
+      <div class="oa-prod-card">
+        <div class="oa-prod-card__hrow">
+          <span class="oa-prod-card__n">01</span>
+          <!-- icon-less-paperwork at 15px: one sheet only (≤24px), currentColor -->
+          <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true">
+            <rect x="14" y="26" width="52" height="60" fill="none" stroke="currentColor" stroke-width="12"/>
+          </svg>
+          <span class="oa-prod-card__name">Document Workbench</span>
+        </div>
+        <p class="oa-prod-card__role">Produce what the work requires.</p>
+        <p class="oa-prod-card__desc">When a workflow needs a construction document, Document Workbench provides the document-production layer.</p>
+        <hr class="oa-prod-card__divider" aria-hidden="true">
+        <p class="oa-prod-card__tagline">Produce the documents that run the job.</p>
+        <a class="oa-prod-card__link" href="/products/document-workbench.html">Explore Document Workbench &rarr;</a>
+      </div>
+
+      <!-- 02 Construction Intelligence -->
+      <div class="oa-prod-card">
+        <div class="oa-prod-card__hrow">
+          <span class="oa-prod-card__n">02</span>
+          <!-- icon-fewer-bottlenecks at 15px: two polylines only, currentColor -->
+          <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true">
+            <polyline points="8,20 40,20 54,42 94,42" fill="none" stroke="currentColor" stroke-width="11"/>
+            <polyline points="8,80 40,80 54,58 94,58" fill="none" stroke="currentColor" stroke-width="11"/>
+          </svg>
+          <span class="oa-prod-card__name">Construction Intelligence</span>
+        </div>
+        <p class="oa-prod-card__role">Apply how your company does the work.</p>
+        <p class="oa-prod-card__desc">When a workflow depends on procedures, standards, pricing rules, regulatory requirements, or company knowledge, Construction Intelligence provides the context behind the decision.</p>
+        <hr class="oa-prod-card__divider" aria-hidden="true">
+        <p class="oa-prod-card__tagline">Get the answer. See what it&rsquo;s based on. Know what comes next.</p>
+        <a class="oa-prod-card__link" href="/products/construction-intelligence.html">Explore Construction Intelligence &rarr;</a>
+      </div>
+
+      <!-- 03 Project Intelligence (In Development) -->
+      <div class="oa-prod-card">
+        <div class="oa-prod-card__hrow">
+          <span class="oa-prod-card__n">03</span>
+          <!-- icon-better-visibility at 15px: baseline + 3 bars, no hairline rect, no red, currentColor -->
+          <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true">
+            <line x1="18" y1="70" x2="82" y2="70" stroke="currentColor" stroke-width="11"/>
+            <line x1="30" y1="70" x2="30" y2="56" stroke="currentColor" stroke-width="11"/>
+            <line x1="50" y1="70" x2="50" y2="44" stroke="currentColor" stroke-width="11"/>
+            <line x1="70" y1="70" x2="70" y2="32" stroke="currentColor" stroke-width="11"/>
+          </svg>
+          <span class="oa-prod-card__name">Project Intelligence</span>
+          <span class="oa-prod-card__dev-tag">In Development</span>
+        </div>
+        <p class="oa-prod-card__role">Surface what needs intervention.</p>
+        <p class="oa-prod-card__desc">Project Intelligence is designed to identify the open items, aging issues, missing approvals, and other exceptions across active projects that need attention.</p>
+        <hr class="oa-prod-card__divider" aria-hidden="true">
+        <p class="oa-prod-card__tagline">Know what needs attention.</p>
+        <a class="oa-prod-card__link" href="/products/project-intelligence.html">Explore Project Intelligence &rarr;</a>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- § 7b. Operations Automation's role — Ink band (full-bleed inside Paper section) -->
+  <div class="oa-system__band">
+    <div class="cos-container oa-system__band-inner">
+
+      <!-- Left: header row + role -->
+      <div class="oa-system__band-left">
+        <div class="oa-system__band-hrow">
+          <span class="oa-system__band-n">&mdash;&mdash;</span>
+          <!-- OA icon at 15px: Paper dashes, Line gray baseline, no hairlines -->
+          <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true">
+            <line x1="14" y1="28" x2="34" y2="28" stroke="#ffffff" stroke-width="11"/>
+            <line x1="42" y1="28" x2="62" y2="28" stroke="#ffffff" stroke-width="11"/>
+            <line x1="70" y1="28" x2="90" y2="28" stroke="#ffffff" stroke-width="11"/>
+            <line x1="14" y1="74" x2="90" y2="74" stroke="#B8B9B5" stroke-width="11"/>
+          </svg>
+          <span class="oa-system__band-name">Operations Automation</span>
+          <span class="oa-ext-tag oa-ext-tag--ink oa-ext-tag--sm">Extension Layer</span>
+        </div>
+        <p class="oa-system__band-role">Handle the repeatable work around it.</p>
+      </div>
+
+      <!-- Right: description + tagline -->
+      <div class="oa-system__band-right">
+        <p class="oa-system__band-list">Move information. Capture evidence. Prepare drafts. Structure data. Track recurring requirements. Maintain records. Reduce manual steps.</p>
+        <hr class="oa-system__band-rule" aria-hidden="true">
+        <p class="oa-system__band-tagline">Take repetitive operational work off the team.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- § 8. Start with the workflow everyone is tired of — Bond -->
+<section class="oa-start">
+  <div class="cos-container">
+    <div class="oa-start__grid">
+
+      <!-- Left -->
+      <div class="oa-start__left">
+        <p class="oa-eyebrow">Where to Start</p>
+        <h2 class="oa-start__h">Start with the workflow everyone is tired of doing by hand.</h2>
+        <hr class="oa-start__left-rule" aria-hidden="true">
+        <p class="oa-start__intro">You don&rsquo;t need to automate the whole company.</p>
+      </div>
+
+      <!-- Right -->
+      <div class="oa-start__right">
+        <p class="oa-start__candidate">Start with the process that happens every week.</p>
+        <p class="oa-start__candidate">The task everyone complains about.</p>
+        <p class="oa-start__candidate">The work that gets delayed because nobody wants to do it.</p>
+        <p class="oa-start__candidate">The administrative process that consumes skilled time without requiring skilled judgment.</p>
+        <p class="oa-start__kicker">Solve one real problem. Prove the value. Expand from there.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- § 9. Closing CTA — Ink -->
+<section class="oa-close" id="cta">
+  <div class="cos-container">
+    <div class="oa-close__grid">
+
+      <!-- Left column -->
+      <div>
+        <!-- Lockup: OA icon + name + EXTENSION LAYER tag + Graphite rule -->
+        <div class="oa-close__lockup">
+          <!-- OA icon at 24px: Paper dashes, Line gray baseline, no hairlines, no red -->
+          <svg viewBox="0 0 100 100" width="24" height="24" aria-hidden="true">
+            <line x1="14" y1="28" x2="34" y2="28" stroke="#ffffff" stroke-width="11"/>
+            <line x1="42" y1="28" x2="62" y2="28" stroke="#ffffff" stroke-width="11"/>
+            <line x1="70" y1="28" x2="90" y2="28" stroke="#ffffff" stroke-width="11"/>
+            <line x1="14" y1="74" x2="90" y2="74" stroke="#B8B9B5" stroke-width="11"/>
+          </svg>
+          <span class="oa-close__lockup-name">Operations Automation</span>
+          <span class="oa-ext-tag oa-ext-tag--ink oa-ext-tag--sm">Extension Layer</span>
+          <span class="oa-close__lockup-rule"></span>
+        </div>
+
+        <h2 class="oa-close__h">Take repetitive work off the team.</h2>
+        <p class="oa-close__body1">Your project managers, superintendents, estimators, and operations leaders should spend their time managing construction&mdash;not rebuilding the same administrative workflows over and over.</p>
+        <p class="oa-close__body2">See where purpose-built automation can remove manual work from your operation.</p>
+
+        <div class="oa-cta-row" style="margin-top:32px">
+          <a class="oa-btn oa-btn--paper" href="https://cal.com/justinyurasits">Book a demo</a>
+          <a class="oa-link oa-link--paper" href="/">Explore Construction OS &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Right column: core products -->
+      <div>
+        <p class="oa-close__index-label">The core products</p>
+        <div class="oa-close__index-rule"></div>
+
+        <!-- 01 Document Workbench -->
+        <div class="oa-close__index-row">
+          <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true">
+            <rect x="14" y="26" width="52" height="60" fill="none" stroke="#ffffff" stroke-width="12"/>
+          </svg>
+          <span class="oa-close__index-n">01</span>
+          <span class="oa-close__index-name">Document Workbench</span>
+        </div>
+
+        <!-- 02 Construction Intelligence -->
+        <div class="oa-close__index-row">
+          <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true">
+            <polyline points="8,20 40,20 54,42 94,42" fill="none" stroke="#ffffff" stroke-width="11"/>
+            <polyline points="8,80 40,80 54,58 94,58" fill="none" stroke="#ffffff" stroke-width="11"/>
+          </svg>
+          <span class="oa-close__index-n">02</span>
+          <span class="oa-close__index-name">Construction Intelligence</span>
+        </div>
+
+        <!-- 03 Project Intelligence -->
+        <div class="oa-close__index-row">
+          <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true">
+            <line x1="18" y1="70" x2="82" y2="70" stroke="#ffffff" stroke-width="11"/>
+            <line x1="30" y1="70" x2="30" y2="56" stroke="#ffffff" stroke-width="11"/>
+            <line x1="50" y1="70" x2="50" y2="44" stroke="#ffffff" stroke-width="11"/>
+            <line x1="70" y1="70" x2="70" y2="32" stroke="#ffffff" stroke-width="11"/>
+          </svg>
+          <span class="oa-close__index-n">03</span>
+          <span class="oa-close__index-name">Project Intelligence</span>
+          <span class="oa-close__index-tag">In Development</span>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- Footer — Paper -->
+<footer class="cos-footer">
+  <div class="cos-footer__inner cos-container">
+    <div class="cos-footer__cols">
+
+      <div class="cos-footer__brand">
+        <a class="cos-footer__lockup" href="/">
+          <svg viewBox="0 0 100 100" width="22" height="22" aria-hidden="true" style="flex:none">
+            <polyline points="14,56 14,14 56,14" fill="none" stroke="currentColor" stroke-width="13"/>
+            <polyline points="86,44 86,86 44,86" fill="none" stroke="currentColor" stroke-width="13"/>
+            <rect x="32" y="32" width="36" height="36" fill="#C43230"/>
+          </svg>
+          Construction OS
+        </a>
+        <p class="cos-footer__tagline">Three products. One construction operating system.</p>
+        <a class="cos-footer__cta-link" href="https://cal.com/justinyurasits">Book a demo</a>
+      </div>
+
+      <div class="cos-footer__col">
+        <span class="cos-footer__col-head">Products</span>
+        <a class="cos-footer__col-item" href="/products/document-workbench.html">
+          <span class="cos-footer__col-n">01</span>Document Workbench
+        </a>
+        <a class="cos-footer__col-item" href="/products/construction-intelligence.html">
+          <span class="cos-footer__col-n">02</span>Construction Intelligence
+        </a>
+        <a class="cos-footer__col-item" href="/products/project-intelligence.html">
+          <span class="cos-footer__col-n">03</span>Project Intelligence
+        </a>
+        <a class="cos-footer__col-item cos-footer__col-item--current" href="/products/operations-automation.html" aria-current="page">
+          <span class="cos-footer__col-n">&mdash;&mdash;</span>Operations Automation
+        </a>
+      </div>
+
+      <div class="cos-footer__col">
+        <span class="cos-footer__col-head">Company</span>
+        <a class="cos-footer__col-item" href="/#services">Services</a>
+        <a class="cos-footer__col-item" href="/#about">About</a>
+        <a class="cos-footer__col-item" href="https://cal.com/justinyurasits">Book a demo</a>
+      </div>
+
+      <div class="cos-footer__col">
+        <span class="cos-footer__col-head">Resources</span>
+        <a class="cos-footer__col-item" href="#">Case Studies</a>
+        <a class="cos-footer__col-item" href="#">Insights</a>
+      </div>
+
+    </div>
+
+    <div class="cos-footer__bottom">
+      <span class="cos-footer__copy">&copy; 2026 Construction OS</span>
+      <a class="cos-footer__policy" href="#">Privacy</a>
+    </div>
+
+    <!-- Title block -->
+    <div class="cos-footer__title-block" aria-label="Document title block">
+      <span class="cos-footer__title-cell">Sheet&nbsp;&nbsp;Construction OS</span>
+      <span class="cos-footer__title-cell">Page&nbsp;&nbsp;Operations Automation</span>
+      <span class="cos-footer__title-cell">Issued&nbsp;&nbsp;2026-09-06</span>
+      <span class="cos-footer__title-cell">Rev&nbsp;&nbsp;01</span>
+      <span class="cos-footer__title-cell">Status&nbsp;&nbsp;Issued For Review</span>
+    </div>
+
+  </div>
+</footer>
+
+
+<script>
+(function () {
+  var header = document.querySelector('.cos-header');
+  var toggle = header.querySelector('.cos-header__toggle');
+  var nav    = header.querySelector('.cos-nav');
+
+  toggle.addEventListener('click', function () {
+    var open = nav.classList.toggle('is-open');
+    toggle.setAttribute('aria-expanded', open);
+  });
+
+  var dropdowns = Array.prototype.slice.call(header.querySelectorAll('.cos-nav__dropdown'));
+  dropdowns.forEach(function (dd) {
+    var btn = dd.querySelector('.cos-nav__trigger');
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var isOpen = dd.classList.contains('is-open');
+      dropdowns.forEach(function (other) {
+        if (other !== dd) {
+          other.classList.remove('is-open');
+          other.querySelector('.cos-nav__trigger').setAttribute('aria-expanded', 'false');
+        }
+      });
+      dd.classList.toggle('is-open', !isOpen);
+      btn.setAttribute('aria-expanded', !isOpen);
+    });
+  });
+
+  document.addEventListener('click', function () {
+    dropdowns.forEach(function (dd) {
+      dd.classList.remove('is-open');
+      dd.querySelector('.cos-nav__trigger').setAttribute('aria-expanded', 'false');
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

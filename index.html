@@ -1,1276 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Construction OS — Give your construction team time back</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,300..600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="brand-kit/tokens.css">
-<link rel="stylesheet" href="brand-kit/brand.css">
-<link rel="stylesheet" href="/brand-kit/cos-header.css">
-<link rel="stylesheet" href="/brand-kit/cos-footer.css">
-<style>
-/* Container */
-.cos-container { max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px); }
-
-/* Hero */
-.hero-section { padding: 64px 0 0; }
-.hero-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-  gap: 56px;
-  align-items: start;
-}
-.hero-col { display: flex; flex-direction: column; gap: 28px; }
-.hero-eyebrow {
-  margin: 0;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  min-height: 26px;
-  font-family: var(--font-display);
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 1;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--c-ink);
-}
-.hero-eyebrow i { flex: 1; height: 1px; background: var(--c-line); font-style: normal; }
-.hero-title {
-  margin: 0;
-  max-width: 22ch;
-  font-family: var(--font-display);
-  font-size: clamp(38px, 5.4vw, 68px);
-  font-weight: 600;
-  line-height: 0.98;
-  letter-spacing: -0.042em;
-  color: var(--c-ink);
-  text-wrap: balance;
-}
-.hero-body {
-  margin: 0;
-  max-width: 46ch;
-  font-family: var(--font-display);
-  font-size: 17px;
-  font-weight: 400;
-  line-height: 1.6;
-  color: var(--c-graphite);
-}
-.hero-kicker {
-  border-left: 2px solid var(--c-steel);
-  padding-left: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-.hero-kicker p { margin: 0; font-family: var(--font-display); font-size: 15px; line-height: 1.5; }
-.hero-kicker p:first-child { font-weight: 400; color: var(--c-graphite); }
-.hero-kicker p:last-child { font-weight: 600; letter-spacing: -0.01em; color: var(--c-ink); }
-.hero-cta { display: flex; gap: 16px; flex-wrap: wrap; }
-.hero-btn {
-  display: inline-flex;
-  align-items: center;
-  min-height: 48px;
-  padding: 15px 26px;
-  font-family: var(--font-display);
-  font-size: 15px;
-  font-weight: 600;
-  line-height: 1;
-  letter-spacing: -0.01em;
-  text-decoration: none;
-  border: 1px solid transparent;
-}
-.hero-btn--primary { background: var(--c-ink); color: var(--c-white); border-color: var(--c-ink); }
-.hero-btn--primary:hover { background: var(--c-steel); border-color: var(--c-steel); color: var(--c-white); }
-.hero-btn--ghost { border-color: var(--c-ink); color: var(--c-ink); background: transparent; }
-.hero-btn--ghost:hover { background: var(--c-ink); color: var(--c-white); }
-.hero-doc-fig { display: flex; flex-direction: column; gap: 12px; }
-.hero-doc-cap {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  min-height: 26px;
-  font: 400 11px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace;
-  letter-spacing: 0.04em;
-  color: var(--c-graphite);
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-.hero-doc-cap span + span { color: var(--c-steel); }
-.hero-doc {
-  position: relative;
-  height: 520px;
-  overflow: hidden;
-  border: 1px solid var(--c-ink);
-  background: var(--c-white);
-}
-.hero-doc__corner { position: absolute; width: 14px; height: 14px; }
-.hero-doc__corner--tr { top: 10px; right: 10px; border-top: 2px solid var(--c-line); border-right: 2px solid var(--c-line); }
-.hero-doc__corner--bl { bottom: 10px; left: 10px; border-bottom: 2px solid var(--c-line); border-left: 2px solid var(--c-line); }
-.hero-doc img { display: block; width: 100%; height: auto; }
-.hero-doc-stack {
-  position: relative;
-  margin-right: 16px;
-  margin-bottom: 16px;
-}
-.hero-doc-sheet {
-  position: absolute;
-  inset: 0;
-  border: 1px solid var(--c-ink);
-  background: var(--c-white);
-}
-.hero-doc-sheet:nth-child(1) { transform: translate(16px, 16px); z-index: 0; }
-.hero-doc-sheet:nth-child(2) { transform: translate(8px,  8px);  z-index: 1; }
-.hero-doc-sheet span {
-  position: absolute;
-  top: 8px; right: 10px;
-  font: 400 11px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace;
-  color: var(--c-graphite);
-}
-.hero-doc-stack .cos-doc { position: relative; z-index: 2; }
-.hero-doc__fade {
-  position: absolute;
-  inset: auto 0 0 0;
-  height: 84px;
-  pointer-events: none;
-  background: linear-gradient(to bottom, rgba(255,255,255,0), #ffffff 62%);
-}
-.hero-doc__foot {
-  position: absolute;
-  inset: auto 0 0 0;
-  border-top: 1px solid var(--c-line);
-  background: var(--c-white);
-  padding: 10px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  font: 400 11px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace;
-  color: var(--c-graphite);
-}
-.hero-doc__foot a {
-  font-family: var(--font-display);
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  color: var(--c-ink);
-  text-decoration: none;
-  border-bottom: 1px solid var(--c-ink);
-}
-.hero-doc__foot a:hover { color: var(--c-steel); border-bottom-color: var(--c-steel); }
-.hero-fold {
-  margin: 60px 0 0;
-  padding: 0;
-  list-style: none;
-  border-top: 2px solid var(--c-ink);
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(260px,100%), 1fr));
-  column-gap: 40px;
-}
-.hero-fold li {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 22px 0;
-  font-family: var(--font-display);
-  font-size: 17px;
-  font-weight: 600;
-  line-height: 1;
-  letter-spacing: -0.015em;
-  color: var(--c-ink);
-}
-.hero-fold li a { color: inherit; text-decoration: none; }
-.hero-fold li a:hover { color: var(--c-steel); }
-.hero-fold li span {
-  font: 400 11px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace;
-  letter-spacing: 0;
-  color: var(--c-graphite);
-  font-variant-numeric: tabular-nums;
-}
-
-/* Proof band */
-.proof-strip {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-}
-.proof-cell {
-  padding: var(--s-7) var(--s-6);
-  display: flex;
-  flex-direction: column;
-}
-.proof-cell + .proof-cell {
-  border-left: var(--w-dimension) solid var(--rule-dimension);
-}
-.proof-cell__figure {
-  margin: 0 0 var(--s-3);
-  font-family: var(--font-display);
-  font-size: 17px;
-  font-weight: 500;
-  letter-spacing: -0.005em;
-  line-height: 1.25;
-  color: var(--fg);
-}
-.proof-cell__body {
-  font-family: var(--font-display);
-  font-size: 14px;
-  line-height: 1.5;
-  color: var(--fg-muted);
-  margin: 0;
-  max-width: 26ch;
-}
-
-/* Spec list — problems */
-.spec-list { border-bottom: var(--w-dimension) solid var(--rule-dimension); margin-top: var(--s-6); }
-.spec-row {
-  display: grid;
-  grid-template-columns: 2fr 5fr 5fr;
-  gap: var(--s-6);
-  padding-block: var(--s-5);
-  border-top: var(--w-dimension) solid var(--rule-dimension);
-  align-items: start;
-}
-.spec-row p { margin: 0; }
-
-/* Step list — change order */
-.step-list { border-bottom: var(--w-dimension) solid var(--rule-dimension); }
-.step-row {
-  display: grid;
-  grid-template-columns: var(--s-7) 1fr;
-  gap: var(--s-4);
-  padding-block: var(--s-4);
-  border-top: var(--w-dimension) solid var(--rule-dimension);
-  align-items: start;
-}
-.step-row p { margin: 0; }
-
-/* Configuration section */
-/* Configuration section — ledger */
-.cfg-section { padding-block: 72px 80px; }
-.cfg-eyebrow {
-  font-family: var(--font-display);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--c-steel);
-  margin: 0 0 16px;
-}
-.cfg-head {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: var(--s-6);
-  align-items: end;
-  border-bottom: 2px solid var(--c-ink);
-  padding-bottom: 26px;
-  margin-bottom: 44px;
-}
-.cfg-title {
-  font-family: var(--font-display);
-  font-size: clamp(32px, 4.4vw, 48px);
-  font-weight: 600;
-  line-height: 1.02;
-  letter-spacing: -0.035em;
-  color: var(--c-ink);
-  text-wrap: balance;
-  max-width: 15ch;
-  margin: 0;
-}
-.cfg-deck {
-  font-family: var(--font-display);
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 1.5;
-  color: var(--c-graphite);
-  max-width: 34ch;
-  margin: 0;
-}
-.cfg-cols {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-}
-.cfg-group {
-  display: flex;
-  flex-direction: column;
-  padding: 0 36px;
-  border-left: 1px solid var(--c-line);
-  min-width: 0;
-}
-.cfg-group:first-child { padding-left: 0; border-left: none; }
-.cfg-group:last-child { padding-right: 0; }
-.cfg-group-label {
-  font-family: var(--font-display);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--c-ink);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin: 0 0 30px;
-}
-.cfg-dot { width: 7px; height: 7px; flex: none; background: var(--c-ink); }
-.cfg-dot--rev { background: var(--c-revision); }
-.cfg-row { display: flex; gap: 16px; }
-.cfg-rule { border: none; height: 1px; background: var(--c-line); margin: 26px 0; }
-.cfg-row-n {
-  flex: none;
-  padding-top: 5px;
-  font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace;
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 1;
-  color: var(--c-line);
-  font-variant-numeric: tabular-nums;
-}
-.cfg-row-n--rev { color: var(--c-revision); padding-top: 7px; }
-.cfg-row-t {
-  font-family: var(--font-display);
-  font-size: 17px;
-  font-weight: 500;
-  line-height: 1.45;
-  letter-spacing: -0.01em;
-  color: var(--c-ink);
-  text-wrap: pretty;
-  margin: 0;
-}
-.cfg-row-t--lead {
-  font-size: 22px;
-  font-weight: 600;
-  line-height: 1.3;
-  letter-spacing: -0.02em;
-}
-@media (max-width: 900px) {
-  .cfg-section { padding-block: 56px 64px; }
-  .cfg-group { padding: 32px 0; border-left: none; border-top: 1px solid var(--c-line); }
-  .cfg-group:first-child { padding-top: 0; border-top: none; }
-}
-
-/* Familiar section — four-row ledger */
-.fam-section {
-  padding-block: 72px 76px;
-  --fam-hairline: var(--c-steel);
-  --fam-red: transparent;
-}
-.fam-head {
-  display: grid;
-  gap: 32px;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  align-items: end;
-  border-bottom: 2px solid var(--c-ink);
-  padding-bottom: 24px;
-  margin-bottom: 40px;
-}
-.fam-eyebrow {
-  margin: 0 0 14px;
-  font-family: var(--font-display);
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 1;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--c-steel);
-}
-.fam-title {
-  margin: 0;
-  max-width: 18ch;
-  font-family: var(--font-display);
-  font-size: clamp(30px, 4.6vw, 44px);
-  font-weight: 600;
-  line-height: 1.02;
-  letter-spacing: -0.035em;
-  color: var(--c-ink);
-  text-wrap: balance;
-}
-.fam-count {
-  margin: 0;
-  font-family: var(--font-display);
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 1;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--c-graphite);
-}
-.fam-pain {
-  display: grid;
-  column-gap: 28px;
-  align-items: start;
-  grid-template-columns: 46px minmax(160px, .7fr) minmax(240px, 1.3fr) minmax(240px, 1.3fr);
-  padding: 30px 0;
-}
-.fam-pain:first-child { padding-top: 0; }
-.fam-pain:last-child { padding-bottom: 0; }
-.fam-rule { border: 0; height: 1px; background: var(--c-line); margin: 0; }
-.fam-n {
-  padding-top: 8px;
-  font: 400 12px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace;
-  color: var(--c-graphite);
-  font-variant-numeric: tabular-nums;
-}
-.fam-cat {
-  margin: 0;
-  padding-top: 4px;
-  min-width: 0;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-family: var(--font-display);
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 1;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--c-ink);
-}
-.fam-cat svg { flex: none; }
-.fam-stmt {
-  margin: 0;
-  min-width: 0;
-  font-family: var(--font-display);
-  font-size: 22px;
-  font-weight: 600;
-  line-height: 1.3;
-  letter-spacing: -0.02em;
-  color: var(--c-ink);
-  text-wrap: pretty;
-}
-.fam-detail {
-  margin: 0;
-  padding-top: 4px;
-  min-width: 0;
-  font-family: var(--font-display);
-  font-size: 15px;
-  font-weight: 400;
-  line-height: 1.6;
-  color: var(--c-graphite);
-  text-wrap: pretty;
-}
-.fam-answer {
-  margin-top: 40px;
-  background: var(--c-ink);
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-  --fam-hairline: var(--c-line);
-  --fam-red: var(--c-revision);
-}
-.fam-answer p {
-  margin: 0;
-  padding: 26px 24px;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  border-left: 1px solid var(--c-graphite);
-  font-family: var(--font-display);
-  font-size: 15px;
-  font-weight: 600;
-  line-height: 1;
-  letter-spacing: -0.015em;
-  color: var(--c-white);
-}
-.fam-answer p:first-child { border-left: 0; }
-.fam-answer svg { flex: none; color: var(--c-white); }
-@media (max-width: 900px) {
-  .fam-section { padding-block: 56px 64px; }
-  .fam-pain { grid-template-columns: 1fr; row-gap: 14px; }
-  .fam-n { padding-top: 0; }
-  .fam-answer p { border-left: 0; border-top: 1px solid var(--c-graphite); }
-  .fam-answer p:first-child { border-top: 0; }
-}
-
-/* Real-world proof */
-.prf-intro {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
-  gap: 40px;
-  align-items: start;
-  margin-bottom: 40px;
-}
-.prf-intro-head-cell { container-type: inline-size; min-width: 0; }
-.prf-intro-head {
-  font: 600 clamp(26px, 7cqi, 38px)/1.08 var(--font-display), sans-serif;
-  letter-spacing: -0.032em;
-  color: var(--c-ink);
-  text-wrap: balance;
-  margin: 0;
-  max-width: 22ch;
-}
-.prf-intro-copy {
-  font: 400 16px/1.6 var(--font-display), sans-serif;
-  color: var(--c-graphite);
-  margin: 0;
-  max-width: 44ch;
-  text-wrap: pretty;
-}
-.prf-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
-  column-gap: 40px;
-  border-top: 2px solid var(--c-ink);
-  align-items: start;
-}
-.prf-stat {
-  padding: 26px 0;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  border-right: 1px solid var(--c-line);
-}
-.prf-stat:last-child { border-right: none; }
-.prf-before {
-  font: 400 12px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace;
-  letter-spacing: .04em;
-  color: var(--c-graphite);
-  margin: 0;
-}
-.prf-figure {
-  font: 600 38px/1 var(--font-display), sans-serif;
-  letter-spacing: -0.035em;
-  color: var(--c-ink);
-  margin: 0;
-}
-.prf-figure--red { color: var(--c-revision); }
-.prf-label {
-  font: 400 14px/1.5 var(--font-display), sans-serif;
-  color: var(--c-graphite);
-  margin: 0;
-}
-.prf-foot {
-  margin-top: 32px;
-  padding-top: 18px;
-  border-top: 1px solid var(--c-line);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-.prf-case { font: 400 11px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace; letter-spacing: .04em; text-transform: uppercase; color: var(--c-graphite); }
-.prf-case-link { font: 600 14px/1 var(--font-display), sans-serif; letter-spacing: -.01em; color: var(--c-ink); text-decoration: none; border-bottom: 2px solid var(--c-ink); padding-bottom: 2px; }
-.prf-case-link:hover { color: var(--c-steel); border-bottom-color: var(--c-steel); }
-@media (max-width: 600px) {
-  .prf-grid { grid-template-columns: 1fr; }
-  .prf-stat { border-bottom: 1px solid var(--c-line); border-right: none; }
-  .prf-stat:last-child { border-bottom: 0; }
-  .prf-foot { flex-direction: column; gap: 12px; }
-}
-
-/* Products — shared intro grammar */
-.prod-section { padding: 72px 0 64px; }
-.prod-split {
-  display: grid;
-  grid-template-columns: minmax(340px, 1fr) minmax(340px, 1.15fr);
-  gap: 48px;
-  align-items: start;
-}
-
-.prod-index {
-  display: flex;
-  align-items: center;
-  gap: var(--s-3);
-  font-family: var(--font-display);
-  font-size: var(--fs-annotation);
-  letter-spacing: var(--tr-annotation);
-  color: var(--fg-muted);
-  margin: 0;
-}
-.prod-index::after {
-  content: '';
-  display: block;
-  flex: 1;
-  border-top: var(--w-cut) solid var(--rule-cut);
-}
-.prod-intro { container-type: inline-size; }
-.prod-name {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: .4em;
-  font: 600 clamp(22px, 7.2cqi, 38px)/1.05 var(--font-display), sans-serif;
-  letter-spacing: -.032em;
-  white-space: nowrap;
-  color: var(--c-ink);
-  margin: 0;
-}
-.prod-name svg { width: .72em; height: .72em; flex: none; }
-.cos-tag--dev {
-  border: 1px solid var(--c-steel);
-  color: var(--c-steel);
-  background: none;
-  font: 600 11px/1 var(--font-display), sans-serif;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  padding: 4px 8px;
-  white-space: nowrap;
-}
-.prod-promise {
-  font-family: var(--font-display);
-  font-size: 20px;
-  font-weight: 500;
-  line-height: 1.4;
-  letter-spacing: -0.015em;
-  color: var(--c-ink);
-  margin: var(--s-5) 0 0;
-  max-width: 34ch;
-  text-wrap: balance;
-}
-.prod-body {
-  font-family: var(--font-display);
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 1.6;
-  color: var(--c-graphite);
-  margin: var(--s-4) 0 0;
-  max-width: 46ch;
-}
-/* Document Workbench section */
-.cos-products { background: var(--c-white); padding: 72px 0 64px; }
-.cos-products__head { margin-bottom: 30px; }
-.cos-products__head h2 { margin: 0 0 12px; display: flex; align-items: center; gap: 16px; font: 600 clamp(34px, 5vw, 52px)/1 var(--font-display), sans-serif; letter-spacing: -.035em; color: var(--c-ink); }
-.cos-products__head p { margin: 0; font: 500 20px/1.4 var(--font-display), sans-serif; letter-spacing: -.015em; color: var(--c-graphite); }
-.cos-index { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); border-top: 2px solid var(--c-ink); border-bottom: 1px solid var(--c-line); }
-.cos-index a { display: flex; flex-direction: column; gap: 12px; padding: 20px 28px 22px; border-left: 1px solid var(--c-line); text-decoration: none; }
-.cos-index li:first-child a { padding-left: 0; border-left: 0; }
-.cos-index__n { font: 400 12px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace; color: var(--c-ink); }
-.cos-index__layer { font: 600 11px/1 var(--font-display), sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--c-steel); }
-.cos-index__promise { font: 600 20px/1.25 var(--font-display), sans-serif; letter-spacing: -.02em; color: var(--c-ink); }
-.cos-index__product { font: 500 13px/1 var(--font-display), sans-serif; color: var(--c-graphite); }
-.cos-index a:hover .cos-index__promise { color: var(--c-steel); }
-.cos-product { display: grid; grid-template-columns: minmax(340px, 1fr) minmax(340px, 1.15fr); gap: 48px; align-items: start; }
-.cos-product__col { display: flex; flex-direction: column; gap: 26px; min-width: 0; container-type: inline-size; }
-.cos-product__tag { margin: 0; display: flex; align-items: center; gap: 12px; min-height: 26px; font: 600 11px/1 var(--font-display), sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--c-steel); }
-.cos-product__tag span { font: 400 12px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace; color: var(--c-graphite); letter-spacing: 0; }
-.cos-product__tag i { width: 40px; height: 1px; background: var(--c-ink); }
-.cos-product__name { display: flex; align-items: center; gap: .4em; font: 600 clamp(22px, 7.2cqi, 38px)/1.05 var(--font-display), sans-serif; letter-spacing: -.032em; white-space: nowrap; color: var(--c-ink); margin: 0; }
-.cos-product__name svg { width: .72em; height: .72em; flex: none; }
-.cos-product__lead { margin: 0; max-width: 34ch; text-wrap: balance; font: 500 20px/1.4 var(--font-display), sans-serif; letter-spacing: -.015em; color: var(--c-ink); }
-.cos-product__body { margin: 0; max-width: 46ch; font: 400 16px/1.6 var(--font-display), sans-serif; color: var(--c-graphite); text-wrap: pretty; }
-.cos-product__cta { margin: 0; display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
-.cos-link { font: 600 15px/1 var(--font-display), sans-serif; letter-spacing: -.01em; color: var(--c-ink); text-decoration: none; border-bottom: 2px solid var(--c-ink); padding-bottom: 3px; }
-.cos-link:hover { color: var(--c-steel); border-bottom-color: var(--c-steel); }
-.cos-proof { margin: 0; border-top: 2px solid var(--c-ink); }
-.cos-proof > div { padding: 22px 0 20px; border-bottom: 1px solid var(--c-line); }
-.cos-proof > div:last-child { border-bottom: 0; padding-bottom: 0; }
-.cos-proof dt { margin: 0 0 6px; font: 600 28px/1.1 var(--font-display), sans-serif; letter-spacing: -.03em; color: var(--c-ink); }
-.cos-proof dt.is-sm { font-size: 20px; letter-spacing: -.02em; line-height: 1.25; }
-.cos-proof dt .is-delta { color: var(--c-revision); }
-.cos-proof dd { margin: 0; font: 400 14px/1.5 var(--font-display), sans-serif; color: var(--c-graphite); }
-.cos-product__name-row { display: flex; align-items: center; gap: 14px; }
-.cos-product__name-group { display: flex; flex-direction: column; gap: 14px; }
-.cos-index__nrow { display: flex; align-items: center; gap: 8px; }
-.cos-index__nrow svg { flex: none; }
-.cos-product__doc { display: flex; flex-direction: column; gap: 12px; }
-.cos-doc-cap { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font: 400 11px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace; letter-spacing: 0.04em; color: var(--c-graphite); text-transform: uppercase; }
-.cos-doc-cap span + span { color: var(--c-steel); }
-.cos-doc { position: relative; height: 560px; overflow: hidden; border: 1px solid var(--c-ink); background: var(--c-white); }
-.cos-doc .dw-artifact { border: 0; position: static; }
-.cos-doc__corner { position: absolute; width: 14px; height: 14px; }
-.cos-doc__corner--tr { top: 10px; right: 10px; border-top: 2px solid var(--c-line); border-right: 2px solid var(--c-line); }
-.cos-doc__corner--bl { bottom: 10px; left: 10px; border-bottom: 2px solid var(--c-line); border-left: 2px solid var(--c-line); }
-.cos-doc__fade { position: absolute; inset: auto 0 0 0; height: 88px; pointer-events: none; background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0.95) 50%, #ffffff 70%); }
-.cos-doc__foot { position: absolute; inset: auto 0 0 0; border-top: 1px solid var(--c-line); background: var(--c-white); padding: 10px 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px; font: 400 11px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace; color: var(--c-graphite); }
-.cos-doc__foot a { font: 500 12px/1 var(--font-display), sans-serif; letter-spacing: -.01em; color: var(--c-ink); text-decoration: none; border-bottom: 1px solid var(--c-ink); }
-.cos-doc__foot a:hover { color: var(--c-steel); border-bottom-color: var(--c-steel); }
-.cos-products__next { margin-top: 30px; padding-top: 22px; border-top: 1px solid var(--c-line); display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
-.cos-products__next > span { font: 500 12px/1 var(--font-display), sans-serif; letter-spacing: .12em; text-transform: uppercase; color: var(--c-graphite); }
-.cos-products__next div { display: flex; gap: 28px; flex-wrap: wrap; }
-.cos-products__next a { display: flex; align-items: baseline; gap: 10px; font: 600 15px/1 var(--font-display), sans-serif; letter-spacing: -.015em; color: var(--c-ink); text-decoration: none; }
-.cos-products__next a i { font: 400 12px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace; font-style: normal; color: var(--c-graphite); }
-.cos-products__next a:hover { color: var(--c-steel); }
-.prod-outcome {
-  font-family: var(--font-display);
-  font-size: 15px;
-  font-weight: 500;
-  line-height: 1.4;
-  color: var(--fg);
-  margin: var(--s-5) 0 0;
-  max-width: 38ch;
-}
-/* Construction Intelligence capability rows */
-.ci-rows { margin-top: 24px; border-top: 2px solid var(--c-ink); }
-.ci-row { padding: 18px 0; border-bottom: 1px solid var(--c-line); }
-.ci-row:last-child { border-bottom: 0; padding-bottom: 0; }
-.ci-row-title { font: 600 20px/1.25 var(--font-display), sans-serif; letter-spacing: -0.02em; color: var(--c-ink); margin: 0 0 6px; }
-.ci-row-desc { font: 400 14px/1.5 var(--font-display), sans-serif; color: var(--c-graphite); margin: 0; }
-
-/* Product CTAs */
-.prod-cta { display: flex; align-items: center; gap: var(--s-5); margin-top: var(--s-5); flex-wrap: wrap; }
-.prod-link { font-family: var(--font-display); font-size: var(--fs-small); font-weight: 500; color: var(--fg-muted); }
-
-/* Document Workbench proof */
-.dw-artifact {
-  position: relative;
-  display: grid;
-  grid-template-columns: 65fr 35fr;
-  border: var(--w-cut) solid var(--c-ink);
-  background: var(--c-white);
-  overflow: hidden;
-}
-.dw-main {
-  background: var(--c-white);
-  padding: 18px 20px 16px;
-  box-sizing: border-box;
-  font-family: var(--font-display);
-  display: flex;
-  flex-direction: column;
-}
-.dw-tb-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  flex-wrap: wrap;
-  gap: var(--s-1) var(--s-3);
-  padding-bottom: 7px;
-  border-bottom: var(--w-dimension) solid var(--c-line);
-  font-size: 8px;
-  letter-spacing: 0.05em;
-  color: var(--c-graphite);
-}
-.dw-exhibit-name {
-  font-size: 16px;
-  font-weight: 600;
-  letter-spacing: -0.012em;
-  line-height: 1.1;
-  color: var(--c-ink);
-  margin: 10px 0 2px;
-}
-.dw-exhibit-sub {
-  font-size: 9px;
-  font-weight: 400;
-  color: var(--c-graphite);
-  margin: 0;
-}
-.dw-main-rule { border: none; border-top: var(--w-cut) solid var(--c-ink); margin: 9px 0 9px; }
-.dw-art-rule  { border: none; border-top: var(--w-dimension) solid var(--c-line); margin: 7px 0 9px; }
-.dw-meta { font-size: 8.5px; color: var(--c-graphite); margin: 0 0 9px; }
-.dw-art-head { font-size: 10px; font-weight: 600; margin: 9px 0 3px; color: var(--c-ink); }
-.dw-art-body { font-size: 8.5px; line-height: 1.55; color: var(--c-ink); margin: 0 0 5px; }
-.dw-sched { width: 100%; border-collapse: collapse; font-size: 9px; font-variant-numeric: tabular-nums; }
-.dw-sched th { font-weight: 500; font-size: 8.5px; color: var(--c-graphite); text-align: left; padding: 4px 10px 4px 0; border-bottom: var(--w-dimension) solid var(--c-line); }
-.dw-sched td { text-align: left; padding: 3px 10px 3px 0; color: var(--c-ink); vertical-align: top; }
-.dw-sched .u { text-align: right; padding-right: 0; }
-.dw-rail {
-  display: flex;
-  flex-direction: column;
-  border-left: var(--w-cut) solid var(--c-ink);
-}
-.dw-rp {
-  flex: 1;
-  padding: 12px 13px;
-  box-sizing: border-box;
-  overflow: hidden;
-  font-family: var(--font-display);
-  min-height: 110px;
-  background: var(--c-bond);
-}
-.dw-rp + .dw-rp { border-top: var(--w-cut) solid var(--c-ink); }
-.dw-rp-hdr {
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  color: var(--c-ink);
-  padding-bottom: 6px;
-  border-bottom: var(--w-cut) solid var(--c-ink);
-  margin-bottom: 8px;
-}
-.dw-rp-body { font-size: 9px; line-height: 1.5; color: var(--c-graphite); margin: 0 0 4px; }
-.dw-rp-body:last-child { margin-bottom: 0; }
-.dw-rp-row { display: flex; justify-content: space-between; align-items: baseline; gap: 6px; margin-bottom: 4px; font-size: 8.5px; }
-.dw-rp-row:last-child { margin-bottom: 0; }
-.dw-rp-k { font-weight: 500; color: var(--c-ink); white-space: nowrap; flex-shrink: 0; }
-.dw-rp-v { color: var(--c-graphite); text-align: right; }
-
-/* Construction Intelligence proof */
-.ci-name-row { display: flex; align-items: center; gap: 14px; }
-.ci-name-row svg { flex: none; }
-.ci-card-cap { display: flex; justify-content: space-between; align-items: center; gap: 12px; min-height: 26px; font: 400 11px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace; letter-spacing: 0.04em; color: var(--c-graphite); text-transform: uppercase; white-space: nowrap; margin-bottom: 12px; }
-.ci-card-cap span + span { color: var(--c-steel); }
-.ci-proof {
-  border: 1px solid var(--c-ink);
-  background: var(--c-white);
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-.ci-q-band {
-  padding: 20px 24px 22px;
-  border-bottom: 1px solid var(--c-ink);
-}
-.ci-q-tag {
-  font: 400 11px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace;
-  letter-spacing: 0.04em;
-  color: var(--c-steel);
-  text-transform: uppercase;
-  margin: 0 0 10px;
-}
-.ci-question {
-  font: 600 21px/1.28 var(--font-display), sans-serif;
-  letter-spacing: -0.022em;
-  color: var(--c-ink);
-  margin: 0;
-}
-.ci-body {
-  display: grid;
-  grid-template-columns: minmax(260px, 1.5fr) minmax(200px, 1fr);
-  align-items: start;
-}
-.ci-answer {
-  padding: 22px 24px 26px;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-.ci-para-lead {
-  font: 500 16px/1.5 var(--font-display), sans-serif;
-  letter-spacing: -0.01em;
-  color: var(--c-ink);
-  margin: 0;
-}
-.ci-para {
-  font: 400 15px/1.6 var(--font-display), sans-serif;
-  color: var(--c-graphite);
-  margin: 0;
-}
-.ci-sources {
-  border-left: 1px solid var(--c-line);
-  background: var(--c-bond);
-  display: flex;
-  flex-direction: column;
-  align-self: stretch;
-}
-.ci-src-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 12px;
-  padding: 12px 16px;
-  border-bottom: 1px solid var(--c-ink);
-  font: 600 11px/1 var(--font-display), sans-serif;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--c-ink);
-}
-.ci-src-head span {
-  font: 400 11px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace;
-  letter-spacing: 0;
-  text-transform: none;
-  color: var(--c-graphite);
-}
-.ci-src-entry { padding: 8px 16px; }
-.ci-src-entry + .ci-src-entry { border-top: 1px solid var(--c-line); }
-.ci-src-code {
-  font: 400 12px/1.4 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace;
-  color: var(--c-ink);
-  display: block;
-}
-.ci-src-desc {
-  font: 400 13px/1.4 var(--font-display), sans-serif;
-  color: var(--c-graphite);
-  display: block;
-  margin-top: 2px;
-}
-.ci-src-foot {
-  margin-top: auto;
-  padding: 12px 16px;
-  border-top: 1px solid var(--c-line);
-}
-.ci-src-foot-label {
-  font: 600 11px/1 var(--font-display), sans-serif;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--c-steel);
-  display: block;
-  margin: 0 0 4px;
-}
-.ci-src-foot-val {
-  font: 400 13px/1.4 var(--font-display), sans-serif;
-  color: var(--c-graphite);
-  display: block;
-  margin: 0;
-}
-.ci-caveat {
-  background: var(--c-ink);
-  padding: 18px 24px;
-}
-.ci-caveat-label {
-  font: 600 11px/1 var(--font-display), sans-serif;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--c-line);
-  display: block;
-  margin: 0 0 6px;
-}
-.ci-caveat-text {
-  font: 500 15px/1.4 var(--font-display), sans-serif;
-  color: var(--c-white);
-  margin: 0;
-  display: block;
-}
-
-/* Project Intelligence proof */
-.pi-name-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
-.pi-name-row svg { flex: none; }
-.pi-proof {
-  border: 1px solid var(--c-ink);
-  background: var(--c-white);
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-.cos-attn__row {
-  display: grid;
-  grid-template-columns: minmax(150px, 1fr) minmax(180px, 1.4fr) 52px minmax(78px, .55fr);
-  border-bottom: 1px solid var(--c-line);
-}
-.cos-attn__row > * { padding: 14px 14px 16px; }
-.cos-attn__row > *:first-child { padding-left: 24px; }
-.cos-attn__row > *:last-child { padding-right: 24px; }
-.cos-attn .cos-attn__row:last-child { border-bottom: 1px solid var(--c-ink); }
-.cos-attn__hdr > * {
-  font: 600 10px/1 var(--font-display), sans-serif;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--c-graphite);
-  padding-top: 0;
-  padding-bottom: 8px;
-}
-.cos-attn__project { font: 500 15px/1.3 var(--font-display), sans-serif; letter-spacing: -.01em; color: var(--c-ink); display: block; }
-.cos-attn__owner { font: 400 13px/1.4 var(--font-display), sans-serif; color: var(--c-graphite); display: block; margin-top: 2px; }
-.cos-attn__age { font: 400 14px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace; text-align: right; display: block; }
-.cos-attn__status { font: 500 13px/1 var(--font-display), sans-serif; color: var(--c-graphite); display: block; }
-.cos-attn__status--exception { font-weight: 600; color: var(--c-revision); }
-.pi-hdr-strip {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 20px;
-  border-bottom: 2px solid var(--c-ink);
-  white-space: nowrap;
-  font: 400 11px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--c-ink);
-}
-.pi-hdr-meta { color: var(--c-steel); }
-.pi-body { padding: 20px; display: flex; flex-direction: column; gap: 16px; }
-.pi-summary {
-  font: 600 21px/1.28 var(--font-display), sans-serif;
-  letter-spacing: -0.022em;
-  color: var(--c-ink);
-  margin: 0;
-  padding-bottom: 16px;
-  border-bottom: 2px solid var(--c-ink);
-}
-.pi-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
-.pi-col-proj { width: 28%; }
-.pi-col-desc { width: 42%; }
-.pi-col-age  { width: 52px; }
-.pi-col-status { width: auto; }
-.pi-table th:last-child, .pi-table td:last-child { padding-right: 0; }
-.pi-table th {
-  font: 600 10px/1 var(--font-display), sans-serif;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--c-graphite);
-  text-align: left;
-  padding: 0 12px 8px 0;
-  border-bottom: 1px solid var(--c-line);
-}
-.pi-table td {
-  padding: 10px 12px 10px 0;
-  border-bottom: 1px solid var(--c-line);
-  vertical-align: top;
-}
-.pi-table tbody tr:last-child td { border-bottom: 0; }
-.pi-table .pi-col-age { text-align: right; }
-.pi-proj-name {
-  font: 500 15px/1.35 var(--font-display), sans-serif;
-  color: var(--c-ink);
-  display: block;
-}
-.pi-proj-owner {
-  font: 400 13px/1.4 var(--font-display), sans-serif;
-  color: var(--c-graphite);
-  display: block;
-  margin-top: 2px;
-}
-.pi-need {
-  font: 400 14px/1.4 var(--font-display), sans-serif;
-  color: var(--c-graphite);
-  display: block;
-}
-.pi-age {
-  font: 400 14px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace;
-  display: block;
-  font-variant-numeric: tabular-nums;
-  color: var(--c-graphite);
-}
-.pi-status {
-  font: 500 13px/1 var(--font-display), sans-serif;
-  display: block;
-  color: var(--c-graphite);
-}
-.pi-row--overdue .pi-status,
-.pi-row--blocked .pi-status { color: var(--c-revision); font-weight: 600; }
-.pi-footer {
-  background: var(--c-ink);
-  padding: 18px 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-.pi-footer-label {
-  font: 600 11px/1 var(--font-display), sans-serif;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--c-line);
-  display: block;
-}
-.pi-footer-val {
-  font: 500 15px/1.4 var(--font-display), sans-serif;
-  color: var(--c-white);
-  display: block;
-}
-.pi-next { margin-top: 30px; padding-top: 22px; border-top: 1px solid var(--c-line); display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
-.pi-next > span { font: 500 12px/1 var(--font-display), sans-serif; letter-spacing: .12em; text-transform: uppercase; color: var(--c-graphite); }
-.pi-next div { display: flex; gap: 28px; flex-wrap: wrap; }
-.pi-next a { display: flex; align-items: center; gap: 10px; font: 600 15px/1 var(--font-display), sans-serif; letter-spacing: -.015em; color: var(--c-ink); text-decoration: none; }
-.pi-next a i { font: 500 12px/1 var(--font-display), sans-serif; font-style: normal; color: var(--c-steel); }
-.pi-next a svg { width: .72em; height: .72em; flex: none; }
-.pi-next a:hover { color: var(--c-steel); }
-
-/* Operations Automation */
-/* Operations Automation */
-.ops-block { padding: 76px 0 0; }
-.ops-grid {
-  display: grid;
-  gap: 44px;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  align-items: start;
-}
-.ops-rail { display: flex; flex-direction: column; gap: 20px; min-width: 0; }
-.ops-eyebrow {
-  margin: 0;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding-bottom: 14px;
-  border-bottom: 1px solid var(--c-line);
-  font-family: var(--font-display);
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 1;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--c-steel);
-}
-.ops-title {
-  margin: 0;
-  max-width: 14ch;
-  font-family: var(--font-display);
-  font-size: clamp(30px, 4vw, 42px);
-  font-weight: 600;
-  line-height: 1.04;
-  letter-spacing: -0.035em;
-  color: var(--c-ink);
-  text-wrap: balance;
-}
-.ops-lead {
-  margin: 0;
-  max-width: 26ch;
-  font-family: var(--font-display);
-  font-size: 19px;
-  font-weight: 500;
-  line-height: 1.4;
-  letter-spacing: -0.015em;
-  color: var(--c-ink);
-}
-.ops-body {
-  margin: 0;
-  max-width: 40ch;
-  font-family: var(--font-display);
-  font-size: 15px;
-  font-weight: 400;
-  line-height: 1.6;
-  color: var(--c-graphite);
-  text-wrap: pretty;
-}
-.ops-figure { margin: 8px 0 0; display: flex; align-items: center; gap: 12px; padding-top: 8px; }
-.ops-figure b {
-  font-family: var(--font-display);
-  font-size: 34px;
-  font-weight: 600;
-  line-height: 1.45;
-  letter-spacing: -0.03em;
-  color: var(--c-ink);
-  flex: none;
-}
-.ops-figure span {
-  font-family: var(--font-display);
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 1.45;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--c-graphite);
-  min-width: 0;
-}
-.ops-col { display: flex; flex-direction: column; min-width: 0; }
-.ops-col--divided { border-left: 1px solid var(--c-line); padding-left: 44px; }
-.ops-cap { height: 2px; background: var(--c-ink); }
-.ops-mod { display: flex; gap: 16px; padding: 26px 0; }
-.ops-mod:first-of-type { padding-top: 24px; }
-.ops-mod-n {
-  flex: none;
-  padding-top: 6px;
-  font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace;
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 1;
-  color: var(--c-line);
-  font-variant-numeric: tabular-nums;
-}
-.ops-mod-name {
-  margin: 0 0 8px;
-  font-family: var(--font-display);
-  font-size: 18px;
-  font-weight: 600;
-  line-height: 1.25;
-  letter-spacing: -0.015em;
-  color: var(--c-ink);
-}
-.ops-mod-copy {
-  margin: 0;
-  font-family: var(--font-display);
-  font-size: 15px;
-  font-weight: 400;
-  line-height: 1.55;
-  color: var(--c-graphite);
-  text-wrap: pretty;
-}
-.ops-hr { border: none; height: 1px; background: var(--c-line); margin: 0; }
-.ops-foot {
-  margin-top: 56px;
-  padding: 22px 0 30px;
-  border-top: 1px solid var(--c-line);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  flex-wrap: wrap;
-}
-.ops-foot p { margin: 0; font-family: var(--font-display); font-size: 14px; font-weight: 500; line-height: 1.5; color: var(--c-graphite); }
-.ops-foot a {
-  font-family: var(--font-display);
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 1.5;
-  letter-spacing: -0.01em;
-  color: var(--c-ink);
-  text-decoration: none;
-  border-bottom: 2px solid var(--c-ink);
-  padding-bottom: 3px;
-}
-.ops-foot a:hover { color: var(--c-steel); border-bottom-color: var(--c-steel); }
-
-/* Closing CTA */
-.cos-close { background: #111111; padding: 88px 0 80px; }
-.cos-close__grid {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-  gap: 56px; align-items: start;
-}
-.cos-close__col { container-type: inline-size; display: flex; flex-direction: column; gap: 28px; min-width: 0; }
-.cos-close__lockup { display: flex; align-items: center; gap: 10px; min-height: 26px; }
-.cos-close__lockup-name { font: 600 14px/1 var(--font-display), sans-serif; letter-spacing: .14em; text-transform: uppercase; color: #ffffff; white-space: nowrap; }
-.cos-close__lockup-rule { flex: 1; height: 1px; background: #5F6466; }
-.cos-close__headline { font: 600 clamp(34px, 12cqi, 76px)/0.98 var(--font-display), sans-serif; letter-spacing: -.042em; color: #ffffff; text-wrap: balance; margin: 0; }
-.cos-close__subhead { font: 400 19px/1.55 var(--font-display), sans-serif; color: #B8B9B5; max-width: 44ch; margin: 0; }
-.cos-close__cta { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
-.cos-close__btn-primary { display: inline-flex; align-items: center; min-height: 48px; padding: 15px 26px; font: 600 15px/1 var(--font-display), sans-serif; letter-spacing: -.01em; text-decoration: none; background: #ffffff; color: #111111; }
-.cos-close__btn-link { font: 600 15px/1 var(--font-display), sans-serif; letter-spacing: -.01em; color: #ffffff; text-decoration: none; border-bottom: 2px solid #ffffff; padding-bottom: 3px; }
-.cos-close__index-label { font: 500 12px/1 var(--font-display), sans-serif; letter-spacing: .12em; text-transform: uppercase; color: #B8B9B5; margin: 0; }
-.cos-close__index-rule { height: 1px; background: #5F6466; }
-.cos-close__index-row { display: flex; align-items: center; gap: 14px; padding: 18px 0; border-bottom: 1px solid #5F6466; }
-.cos-close__index-row:last-child { border-bottom: 0; }
-.cos-close__index-n { font: 400 12px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace; color: #B8B9B5; flex-shrink: 0; }
-.cos-close__index-name { font: 600 17px/1.2 var(--font-display), sans-serif; letter-spacing: -.015em; color: #ffffff; }
-.cos-close__index-tag { border: 1px solid #5F6466; color: #B8B9B5; font: 600 10px/1 var(--font-display), sans-serif; letter-spacing: .12em; text-transform: uppercase; padding: 3px 6px; white-space: nowrap; }
-.cos-close__index-ext { font: 500 10px/1 var(--font-display), sans-serif; letter-spacing: .12em; text-transform: uppercase; color: #B8B9B5; white-space: nowrap; }
-
-/* Responsive */
-@media (max-width: 1023px) {
-  .proof-strip { grid-template-columns: repeat(2, 1fr); }
-  .proof-cell:nth-child(3) { border-left: none; border-top: var(--w-dimension) solid var(--rule-dimension); }
-  .proof-cell:nth-child(4) { border-top: var(--w-dimension) solid var(--rule-dimension); }
-}
-@media (max-width: 900px) {
-  .prod-split,
-  .cos-product { grid-template-columns: 1fr; gap: 32px; }
-  .prod-section,
-  .cos-products { padding: 56px 0 48px; }
-  .cos-close { padding: 64px 0 56px; }
-  .cos-index a { padding-left: 0; border-left: 0; border-top: 1px solid var(--c-line); }
-  .cos-index li:first-child a { border-top: 0; }
-  .cos-doc { height: 420px; }
-  .ci-body { grid-template-columns: 1fr; }
-  .ci-sources { border-left: none; border-top: 1px solid var(--c-line); }
-  .hero-doc { height: 380px; }
-.ops-block { padding-top: 56px; }
-  .ops-col--divided { border-left: none; padding-left: 0; border-top: 1px solid var(--c-line); margin-top: 8px; }
-  .ops-col--divided .ops-cap { display: none; }
-}
-@media (max-width: 600px) {
-  .prod-name { white-space: normal; }
-  .dw-artifact { grid-template-columns: 1fr; }
-  .dw-rail { border-left: none; border-top: var(--w-cut) solid var(--c-ink); }
-  .pi-table, .pi-table thead, .pi-table tbody, .pi-table tr, .pi-table td { display: block; }
-  .pi-table thead { display: none; }
-  .pi-table tr { display: flex; flex-direction: column; gap: 4px; padding: 10px 0; border-bottom: 1px solid var(--c-line); }
-  .pi-table tbody tr:last-child { border-bottom: 0; }
-  .pi-table td { border-bottom: none; padding: 0; width: auto !important; text-align: left; }
-  .pi-col-age, .pi-col-status { display: inline; }
-}
-@media (max-width: 480px) {
-  .proof-strip { grid-template-columns: 1fr; }
-  .proof-cell + .proof-cell { border-left: none; border-top: var(--w-dimension) solid var(--rule-dimension); }
-  .proof-cell:nth-child(3), .proof-cell:nth-child(4) { border-top: var(--w-dimension) solid var(--rule-dimension); }
-}
-@media (max-width: 899px) {
-  .spec-row { grid-template-columns: 1fr; gap: var(--s-3); }
-}
-
-/* ── Ink intro + register lines (product section) ── */
-.cos-intro { background: var(--c-ink); padding: 72px 0 0; color: var(--c-white); }
-.cos-intro__brand { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
-.cos-intro__name { font: 600 clamp(30px,8cqi,46px)/1 var(--font-display),sans-serif; letter-spacing: -.038em; color: var(--c-white); }
-.cos-intro__tagline { margin: 0 0 44px; font: 400 19px/1 var(--font-display),sans-serif; color: var(--c-line); max-width: 46ch; }
-.cos-intro__index { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px,100%),1fr)); column-gap: 40px; row-gap: 4px; border-top: 1px solid var(--c-graphite); }
-.cos-intro__cell { padding: 26px 0 30px; }
-.cos-intro__cell-top { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
-.cos-intro__cell-n { font: 400 12px/1 ui-monospace,'Cascadia Code','Source Code Pro',monospace; color: var(--c-line); }
-.cos-intro__cell-cat { font: 600 11px/1 var(--font-display),sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--c-line); }
-.cos-intro__cell-promise { margin: 0; font: 600 22px/1.25 var(--font-display),sans-serif; letter-spacing: -.024em; color: var(--c-white); }
-.cos-reg { display: flex; align-items: center; gap: 8px; padding-bottom: 30px; }
-.cos-reg__n { font: 400 12px/1 ui-monospace,'Cascadia Code','Source Code Pro',monospace; color: var(--c-graphite); white-space: nowrap; }
-.cos-reg__rule40 { width: 40px; flex: none; height: 0; border-top: 1px solid var(--c-ink); }
-.cos-reg__cat { font: 600 11px/1 var(--font-display),sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--c-steel); white-space: nowrap; }
-.cos-reg__rule-flex { flex: 1; min-width: 20px; height: 0; border-top: 1px solid var(--c-line); }
-.cos-reg__pos { font: 400 11px/1 ui-monospace,'Cascadia Code','Source Code Pro',monospace; color: var(--c-graphite); white-space: nowrap; }
-/* ── Product section — NEXT nav links ────────────── */
-.cos-next { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--c-line); display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
-.cos-next__label { font: 500 12px/1 var(--font-display),sans-serif; letter-spacing: .12em; text-transform: uppercase; color: var(--c-graphite); }
-.cos-next__link { display: flex; align-items: baseline; gap: 10px; text-decoration: none; }
-.cos-next__n { font: 400 12px/1 ui-monospace,'Cascadia Code','Source Code Pro',monospace; color: var(--c-graphite); }
-.cos-next__name { font: 600 17px/1 var(--font-display),sans-serif; letter-spacing: -.015em; color: var(--c-ink); }
-.cos-next__link:hover .cos-next__name { color: var(--c-steel); }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Construction OS — AI operating system for construction</title>
+  <meta name="description" content="Construction OS is a system configured around your company's documents, standards, pricing rules, knowledge, and workflows—so your team can produce project documents, get company-specific answers, and automate repeatable work.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/brand-kit/cos-header.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; background: #FFFFFF; font-family: Archivo, Helvetica, sans-serif; color: #111111; -webkit-font-smoothing: antialiased; }
+    a { text-decoration: none; }
+  </style>
+</head>
 <body>
 
 <!-- header:start -->
@@ -1310,23 +54,7 @@
           </nav>
         </li>
         <li><a href="/services.html">Engagements</a></li>
-        <li class="cos-nav__dropdown" id="dd-resources">
-          <button class="cos-nav__trigger" aria-expanded="false" aria-haspopup="true" aria-controls="resources-panel">Resources<span class="cos-nav__caret" aria-hidden="true">▾</span></button>
-          <nav class="cos-nav__panel cos-nav__panel--resources" id="resources-panel" aria-label="Resources">
-            <a class="cos-nav__item cos-menu__item" href="/case-studies.html">
-              <span class="cos-nav__name">Case studies</span>
-              <span class="cos-menu__gloss">Real construction applications and measured results.</span>
-            </a>
-            <a class="cos-nav__item cos-menu__item" href="/insights.html">
-              <span class="cos-nav__name">Insights</span>
-              <span class="cos-menu__gloss">Articles on AI, construction operations, documentation, knowledge, and workflow improvement.</span>
-            </a>
-            <a class="cos-nav__item cos-menu__item" href="/guides.html">
-              <span class="cos-nav__name">Guides &amp; white papers</span>
-              <span class="cos-menu__gloss">Longer practical resources for construction operators.</span>
-            </a>
-          </nav>
-        </li>
+        <li><a href="/insights.html">Insights</a></li>
         <li><a href="/about.html">About</a></li>
         <li><a class="cos-header__cta" href="https://cal.com/justinyurasits">Book a call</a></li>
       </ul>
@@ -1335,895 +63,410 @@
 </header>
 <!-- header:end -->
 
-<!-- Hero -->
-<section class="surface--white hero-section" id="hero">
-  <div class="cos-container">
-    <div class="hero-grid">
-      <div class="hero-col">
-        <p class="hero-eyebrow">
-          <svg viewBox="0 0 100 100" width="24" height="24" aria-label="Construction OS">
-            <polyline points="16,54 16,16 54,16" fill="none" stroke="currentColor" stroke-width="7"/>
-            <polyline points="84,46 84,84 46,84" fill="none" stroke="currentColor" stroke-width="7"/>
-            <rect x="32" y="32" width="36" height="36" fill="var(--c-revision)" stroke="var(--c-steel)" stroke-width="4"/>
-          </svg>
-          Construction OS<i></i>
-        </p>
-        <h1 class="hero-title">Give your construction team time back.</h1>
-        <p class="hero-body">Your best people shouldn&rsquo;t spend their day producing paperwork, answering the same questions, and chasing project status. Construction OS gives them the documents, company knowledge, and project visibility to keep work moving.</p>
-        <div class="hero-kicker">
-          <p>Built around how construction works.</p>
-          <p>Configured around how your company works.</p>
-        </div>
-        <div class="hero-cta">
-          <a class="hero-btn hero-btn--primary" href="https://cal.com/justinyurasits">Book a demo</a>
-          <a class="hero-btn hero-btn--ghost" href="https://draftconstructionchangeorder.com">See it work</a>
-        </div>
+<!-- ===== §1 HERO ===== -->
+<div style="background: #FFFFFF; padding: 72px 0 76px;">
+  <div style="max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr)); gap: 48px; align-items: start;">
+
+    <div style="container-type: inline-size; min-width: 0; display: flex; flex-direction: column; gap: 24px;">
+      <h1 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(30px, 10cqi, 60px); line-height: 0.99; letter-spacing: -0.042em; color: #111111; text-wrap: balance;">Give your construction team time back.</h1>
+      <p style="margin: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 17px; line-height: 1.6; color: #5F6466; max-width: 48ch;">Your best people shouldn&rsquo;t spend their day producing paperwork, answering the same questions, and chasing project status.</p>
+      <p style="margin: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.6; color: #5F6466; max-width: 52ch;">Construction OS is a system I configure around your company&rsquo;s documents, standards, pricing rules, knowledge, and workflows&mdash;<wbr>so your team can produce project documents, get company-specific answers, and automate repeatable work.</p>
+      <div style="border-left: 2px solid #476776; padding-left: 16px; display: flex; flex-direction: column; gap: 4px;">
+        <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.5; color: #5F6466;">Built around construction.</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 15px; line-height: 1.5; letter-spacing: -0.01em; color: #111111;">Configured around your business.</div>
       </div>
-
-      <figure class="hero-doc-fig">
-        <figcaption class="cos-doc-cap">
-          <span>Exhibit A &mdash; Scope of Work</span>
-          <span>Rev. 2 &middot; Cost-plus w/ GMP</span>
-        </figcaption>
-        <div class="hero-doc-stack">
-          <div class="hero-doc-sheet" aria-hidden="true"><span>Page 3 of 6</span></div>
-          <div class="hero-doc-sheet" aria-hidden="true"><span>Page 2 of 6</span></div>
-          <div class="cos-doc">
-            <span class="cos-doc__corner cos-doc__corner--tr"></span>
-            <span class="cos-doc__corner cos-doc__corner--bl"></span>
-            <div class="dw-artifact">
-              <div class="dw-main">
-                <div class="dw-tb-row">
-                  <span>Residential renovation</span>
-                  <span>Page 1 of 6</span>
-                </div>
-                <p class="dw-exhibit-name">Exhibit A &mdash; Scope of work</p>
-                <p class="dw-exhibit-sub">Contract dated 14 Aug 2026 &ndash; Rev. 2 &ndash; Cost-plus w/ GMP</p>
-                <hr class="dw-main-rule">
-                <p class="dw-art-head">1.&ensp;General</p>
-                <p class="dw-art-body">1.1&ensp;The Contractor shall furnish all labor, materials, equipment, tools, and supervision necessary to complete the scope described herein, in strict accordance with the Contract Documents and all applicable codes and regulations.</p>
-                <p class="dw-art-body">1.2&ensp;Work shall be executed in a workmanlike manner consistent with industry standards. All materials shall be new unless noted otherwise. Substitutions require prior written approval from the Owner&rsquo;s representative.</p>
-                <p class="dw-art-body">1.3&ensp;The Owner shall have reasonable access to the site during working hours. Contractor shall maintain a clean, safe, and orderly site at all times and shall protect adjacent finishes and occupied areas throughout construction.</p>
-                <hr class="dw-art-rule">
-                <p class="dw-art-head">2.&ensp;Millwork &amp; finish carpentry</p>
-                <table class="dw-sched">
-                  <thead><tr><th>Item</th><th>Description</th><th class="u">Unit</th></tr></thead>
-                  <tbody>
-                    <tr><td>2.1a</td><td>Kitchen casework, stain-grade</td><td class="u">LS</td></tr>
-                    <tr><td>2.1b</td><td>Library shelving and panel walls</td><td class="u">LS</td></tr>
-                    <tr><td>2.2</td><td>Painted-grade trim, Levels 1&ndash;3</td><td class="u">LF</td></tr>
-                    <tr><td>2.3</td><td>Built-in window seats, primary bedroom</td><td class="u">EA</td></tr>
-                    <tr><td>2.4</td><td>Crown molding, main level</td><td class="u">LF</td></tr>
-                  </tbody>
-                </table>
-                <hr class="dw-art-rule">
-                <p class="dw-art-head">3.&ensp;Doors &amp; hardware</p>
-                <p class="dw-art-body">3.1&ensp;Contractor shall furnish and install all interior doors, frames, and hardware per the door schedule issued by the Architect. All hardware finishes shall be brushed nickel unless otherwise noted on the schedule.</p>
-                <p class="dw-art-body">3.2&ensp;Existing door frames to remain shall be repaired, shimmed, and refinished to match new work. Owner to confirm selections from hardware samples prior to order.</p>
-              </div>
-              <div class="dw-rail">
-                <div class="dw-rp">
-                  <p class="dw-rp-hdr">Proposal letter</p>
-                  <p class="dw-rp-body">Re: Interior renovation &mdash; 214 Commonwealth Ave.</p>
-                  <p class="dw-rp-body">We are pleased to submit this proposal for the interior renovation under a cost-plus contract with GMP. Our fee is established at 18% of direct costs, inclusive of all general conditions.</p>
-                  <p class="dw-rp-body">This proposal supersedes all prior correspondence. Acceptance constitutes agreement to the terms of the attached contract.</p>
-                </div>
-                <div class="dw-rp">
-                  <p class="dw-rp-hdr">Site visit &amp; existing conditions</p>
-                  <p class="dw-rp-body">Existing casework: to remain in place. Protect in place &mdash; contractor responsible for any damage during construction.</p>
-                  <p class="dw-rp-body">Structural: wall at grid line C confirmed load-bearing. Beam sizing to be determined by structural engineer prior to demo permit.</p>
-                  <p class="dw-rp-body">MEP: routing conflicts at ceiling level require coordination with MEP sub prior to rough-in.</p>
-                </div>
-                <div class="dw-rp">
-                  <p class="dw-rp-hdr">Preliminary schedule</p>
-                  <div class="dw-rp-row"><span class="dw-rp-k">Mobilization</span><span class="dw-rp-v">01 Sep 2026</span></div>
-                  <div class="dw-rp-row"><span class="dw-rp-k">Demo &amp; rough framing</span><span class="dw-rp-v">15 Sep</span></div>
-                  <div class="dw-rp-row"><span class="dw-rp-k">MEP rough-in</span><span class="dw-rp-v">29 Sep</span></div>
-                  <div class="dw-rp-row"><span class="dw-rp-k">Millwork delivery</span><span class="dw-rp-v">20 Oct</span></div>
-                  <div class="dw-rp-row"><span class="dw-rp-k">Punch list complete</span><span class="dw-rp-v">07 Nov</span></div>
-                  <div class="dw-rp-row"><span class="dw-rp-k">Substantial completion</span><span class="dw-rp-v">14 Nov 2026</span></div>
-                </div>
-              </div>
-            </div>
-            <span class="cos-doc__fade"></span>
-            <div class="cos-doc__foot">
-              <span>Page 1 of 6 &middot; Residential renovation</span>
-              <a href="#">Open the full exhibit</a>
-            </div>
-          </div>
-        </div>
-      </figure>
-    </div>
-
-    <ol class="hero-fold">
-      <li><span>01</span> <a href="/products/document-workbench.html">Document Workbench</a></li>
-      <li><span>02</span> <a href="/products/construction-intelligence.html">Construction Intelligence</a></li>
-      <li><span>03</span> <a href="/products/project-intelligence.html">Project Intelligence</a></li>
-    </ol>
-  </div>
-</section>
-
-<!-- Problems — Does any of this sound familiar? -->
-<section class="surface--bond fam-section" id="familiar">
-  <div class="cos-container">
-    <header class="fam-head">
-      <div>
-        <p class="fam-eyebrow">The current state</p>
-        <h2 class="fam-title">Does any of this sound familiar?</h2>
-      </div>
-      <p class="fam-count">Four places it shows up</p>
-    </header>
-
-    <div class="fam-rows">
-
-      <article class="fam-pain">
-        <span class="fam-n">01</span>
-        <p class="fam-cat">
-          <svg viewBox="0 0 100 100" width="20" height="20" aria-hidden="true">
-            <polyline points="30,14 86,14 86,72" fill="none" stroke="var(--fam-hairline)" stroke-width="4"/>
-            <rect x="14" y="26" width="52" height="60" fill="none" stroke="currentColor" stroke-width="8"/>
-          </svg>
-          Paperwork
-        </p>
-        <h3 class="fam-stmt">Your PMs spend their best hours producing paperwork.</h3>
-        <p class="fam-detail">Change orders, RFIs, meeting minutes, reports, submittals, billing documentation, contract packages.</p>
-      </article>
-      <hr class="fam-rule">
-
-      <article class="fam-pain">
-        <span class="fam-n">02</span>
-        <p class="fam-cat">
-          <svg viewBox="0 0 100 100" width="20" height="20" aria-hidden="true">
-            <line x1="6" y1="50" x2="96" y2="50" stroke="var(--fam-hairline)" stroke-width="4"/>
-            <polyline points="8,20 40,20 54,42 94,42" fill="none" stroke="currentColor" stroke-width="8"/>
-            <polyline points="8,80 40,80 54,58 94,58" fill="none" stroke="currentColor" stroke-width="8"/>
-          </svg>
-          Knowledge
-        </p>
-        <h3 class="fam-stmt">Your best people are the only ones who know how the company works.</h3>
-        <p class="fam-detail">The senior PM everyone calls. The COO who answers every operational question. The estimator with thirty years of pricing judgment.</p>
-      </article>
-      <hr class="fam-rule">
-
-      <article class="fam-pain">
-        <span class="fam-n">03</span>
-        <p class="fam-cat">
-          <svg viewBox="0 0 100 100" width="20" height="20" aria-hidden="true">
-            <rect x="6" y="18" width="88" height="64" fill="none" stroke="var(--fam-hairline)" stroke-width="4"/>
-            <line x1="18" y1="70" x2="82" y2="70" stroke="currentColor" stroke-width="8"/>
-            <line x1="30" y1="70" x2="30" y2="56" stroke="currentColor" stroke-width="8"/>
-            <line x1="50" y1="70" x2="50" y2="44" stroke="currentColor" stroke-width="8"/>
-            <line x1="70" y1="70" x2="70" y2="32" stroke="var(--fam-hairline)" stroke-width="8"/>
-          </svg>
-          Visibility
-        </p>
-        <h3 class="fam-stmt">You&rsquo;re chasing people to figure out what needs attention.</h3>
-        <p class="fam-detail">Open changes, aging RFIs, missing approvals, unsigned contracts, schedule issues, unresolved decisions.</p>
-      </article>
-      <hr class="fam-rule">
-
-      <article class="fam-pain">
-        <span class="fam-n">04</span>
-        <p class="fam-cat">
-          <svg viewBox="0 0 100 100" width="20" height="20" aria-hidden="true">
-            <line x1="14" y1="28" x2="34" y2="28" stroke="currentColor" stroke-width="8"/>
-            <line x1="42" y1="28" x2="62" y2="28" stroke="currentColor" stroke-width="8"/>
-            <line x1="70" y1="28" x2="90" y2="28" stroke="currentColor" stroke-width="8"/>
-            <line x1="24" y1="34" x2="24" y2="66" stroke="var(--fam-hairline)" stroke-width="4"/>
-            <line x1="52" y1="34" x2="52" y2="66" stroke="var(--fam-hairline)" stroke-width="4"/>
-            <line x1="80" y1="34" x2="80" y2="66" stroke="var(--fam-hairline)" stroke-width="4"/>
-            <line x1="14" y1="74" x2="90" y2="74" stroke="var(--fam-hairline)" stroke-width="8"/>
-          </svg>
-          Operations
-        </p>
-        <h3 class="fam-stmt">Too much routine operational work is still being done by hand.</h3>
-        <p class="fam-detail">Invoices and receipts get entered manually. Safety documentation gets assembled one form at a time. Field reports, bid comparisons, pay apps, and other repetitive workflows still depend on someone remembering to do them.</p>
-      </article>
-
-    </div>
-
-    <div class="fam-answer">
-      <p>
-        <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true">
-          <polyline points="30,14 86,14 86,72" fill="none" stroke="var(--fam-hairline)" stroke-width="4"/>
-          <rect x="14" y="26" width="52" height="60" fill="none" stroke="currentColor" stroke-width="8"/>
-        </svg>
-        Less paperwork
-      </p>
-      <p>
-        <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true">
-          <line x1="6" y1="50" x2="96" y2="50" stroke="var(--fam-hairline)" stroke-width="4"/>
-          <polyline points="8,20 40,20 54,42 94,42" fill="none" stroke="currentColor" stroke-width="8"/>
-          <polyline points="8,80 40,80 54,58 94,58" fill="none" stroke="currentColor" stroke-width="8"/>
-        </svg>
-        Fewer bottlenecks
-      </p>
-      <p>
-        <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true">
-          <rect x="6" y="18" width="88" height="64" fill="none" stroke="var(--fam-hairline)" stroke-width="4"/>
-          <line x1="18" y1="70" x2="82" y2="70" stroke="currentColor" stroke-width="8"/>
-          <line x1="30" y1="70" x2="30" y2="56" stroke="currentColor" stroke-width="8"/>
-          <line x1="50" y1="70" x2="50" y2="44" stroke="currentColor" stroke-width="8"/>
-          <line x1="70" y1="70" x2="70" y2="32" stroke="var(--fam-hairline)" stroke-width="8"/>
-        </svg>
-        Better visibility
-      </p>
-      <p>
-        <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true">
-          <line x1="14" y1="28" x2="34" y2="28" stroke="currentColor" stroke-width="8"/>
-          <line x1="42" y1="28" x2="62" y2="28" stroke="currentColor" stroke-width="8"/>
-          <line x1="70" y1="28" x2="90" y2="28" stroke="currentColor" stroke-width="8"/>
-          <line x1="24" y1="34" x2="24" y2="66" stroke="var(--fam-hairline)" stroke-width="4"/>
-          <line x1="52" y1="34" x2="52" y2="66" stroke="var(--fam-hairline)" stroke-width="4"/>
-          <line x1="80" y1="34" x2="80" y2="66" stroke="var(--fam-hairline)" stroke-width="4"/>
-          <line x1="14" y1="74" x2="90" y2="74" stroke="var(--fam-hairline)" stroke-width="8"/>
-        </svg>
-        Less repetitive work
-      </p>
-    </div>
-  </div>
-</section>
-
-
-<!-- Products -->
-
-<!-- Ink intro -->
-<section class="cos-intro" id="products">
-  <div class="cos-container">
-    <div class="cos-intro__brand">
-      <svg viewBox="0 0 100 100" width="30" height="30" aria-label="Construction OS">
-        <polyline points="16,54 16,16 54,16" fill="none" stroke="currentColor" stroke-width="8"/>
-        <polyline points="84,46 84,84 46,84" fill="none" stroke="currentColor" stroke-width="8"/>
-        <rect x="32" y="32" width="36" height="36" fill="var(--c-revision)" stroke="none"/>
-      </svg>
-      <span class="cos-intro__name">Construction OS</span>
-    </div>
-    <p class="cos-intro__tagline">Three products. One construction operating system.</p>
-    <ol class="cos-intro__index">
-      <li class="cos-intro__cell">
-        <div class="cos-intro__cell-top">
-          <span class="cos-intro__cell-n">01</span>
-          <svg viewBox="0 0 100 100" width="16" height="16" aria-hidden="true">
-            <polyline points="30,14 86,14 86,72" fill="none" stroke="var(--c-line)" stroke-width="4"/>
-            <rect x="14" y="26" width="52" height="60" fill="none" stroke="currentColor" stroke-width="8"/>
-          </svg>
-          <span class="cos-intro__cell-cat">Documents</span>
-        </div>
-        <p class="cos-intro__cell-promise">Produce the documents.</p>
-      </li>
-      <li class="cos-intro__cell">
-        <div class="cos-intro__cell-top">
-          <span class="cos-intro__cell-n">02</span>
-          <svg viewBox="0 0 100 100" width="16" height="16" aria-hidden="true">
-            <line x1="6" y1="50" x2="96" y2="50" stroke="var(--c-line)" stroke-width="4"/>
-            <polyline points="8,20 40,20 54,42 94,42" fill="none" stroke="currentColor" stroke-width="8"/>
-            <polyline points="8,80 40,80 54,58 94,58" fill="none" stroke="currentColor" stroke-width="8"/>
-          </svg>
-          <span class="cos-intro__cell-cat">Knowledge</span>
-        </div>
-        <p class="cos-intro__cell-promise">Get the right answer.</p>
-      </li>
-      <li class="cos-intro__cell">
-        <div class="cos-intro__cell-top">
-          <span class="cos-intro__cell-n">03</span>
-          <svg viewBox="0 0 100 100" width="16" height="16" aria-hidden="true">
-            <rect x="6" y="18" width="88" height="64" fill="none" stroke="var(--c-line)" stroke-width="4"/>
-            <line x1="18" y1="70" x2="82" y2="70" stroke="currentColor" stroke-width="8"/>
-            <line x1="30" y1="70" x2="30" y2="56" stroke="currentColor" stroke-width="8"/>
-            <line x1="50" y1="70" x2="50" y2="44" stroke="currentColor" stroke-width="8"/>
-            <line x1="70" y1="70" x2="70" y2="32" stroke="var(--c-line)" stroke-width="8"/>
-          </svg>
-          <span class="cos-intro__cell-cat">Attention</span>
-        </div>
-        <p class="cos-intro__cell-promise">Know what needs attention.</p>
-      </li>
-    </ol>
-  </div>
-</section>
-
-<!-- 01 Document Workbench — white -->
-<section class="surface--white prod-section" style="padding-top: 80px;">
-  <div class="cos-container">
-    <div class="cos-reg">
-      <span class="cos-reg__n">01</span>
-      <div class="cos-reg__rule40"></div>
-      <span class="cos-reg__cat">Documents</span>
-      <div class="cos-reg__rule-flex"></div>
-      <span class="cos-reg__pos">01 / 03</span>
-    </div>
-    <div class="cos-product" id="product-01">
-      <div class="cos-product__col">
-        <div class="cos-product__name-group">
-          <h3 class="cos-product__name">
-            <svg viewBox="0 0 100 100" aria-hidden="true">
-              <rect x="14" y="26" width="52" height="60" fill="none" stroke="currentColor" stroke-width="9"/>
-              <polyline points="30,14 86,14 86,72" fill="none" stroke="var(--c-steel)" stroke-width="4"/>
-            </svg>
-            Document Workbench
-          </h3>
-          <p class="cos-product__lead">Produce the documents that run the job.</p>
-        </div>
-        <p class="cos-product__body">From first walkthrough through closeout, turn project information into company-standard construction documents without starting from scratch every time.</p>
-        <p class="prod-outcome">Spend less time producing paperwork. More time managing the job.</p>
-        <p class="cos-product__cta">
-          <a class="hero-btn hero-btn--primary" href="/products/document-workbench.html">Explore Document Workbench &rarr;</a>
-          <a class="cos-link" href="https://draftconstructionchangeorder.com">See it work</a>
-        </p>
-        <dl class="cos-proof">
-          <div>
-            <dt>150+ standard document types</dt>
-            <dd>Across the full construction lifecycle</dd>
-          </div>
-          <div>
-            <dt><b>4&ndash;8 hours</b> <b class="is-delta">&rarr; ~30 minutes</b></dt>
-            <dd>Initial contract package preparation</dd>
-          </div>
-          <div>
-            <dt class="is-sm">Built around how your company works</dt>
-            <dd>Your templates, scope language, pricing structure, and terminology</dd>
-          </div>
-        </dl>
-      </div>
-
-      <figure class="cos-product__doc">
-        <figcaption class="cos-doc-cap">
-          <span>Exhibit A &mdash; Scope of Work</span>
-          <span>Example View</span>
-        </figcaption>
-        <div class="cos-doc">
-          <span class="cos-doc__corner cos-doc__corner--tr"></span>
-          <span class="cos-doc__corner cos-doc__corner--bl"></span>
-          <div class="dw-artifact">
-          <!-- Exhibit A — Scope of Work -->
-          <div class="dw-main">
-            <div class="dw-tb-row">
-              <span>Residential renovation</span>
-              <span>Page 1 of 6</span>
-            </div>
-            <p class="dw-exhibit-name">Exhibit A &mdash; Scope of work</p>
-            <p class="dw-exhibit-sub">Contract dated 14 Aug 2026 &ndash; Rev. 2 &ndash; Cost-plus w/ GMP</p>
-            <hr class="dw-main-rule">
-            <p class="dw-art-head">1.&ensp;General</p>
-            <p class="dw-art-body">1.1&ensp;The Contractor shall furnish all labor, materials, equipment, tools, and supervision necessary to complete the scope described herein, in strict accordance with the Contract Documents and all applicable codes and regulations.</p>
-            <p class="dw-art-body">1.2&ensp;Work shall be executed in a workmanlike manner consistent with industry standards. All materials shall be new unless noted otherwise. Substitutions require prior written approval from the Owner&rsquo;s representative.</p>
-            <p class="dw-art-body">1.3&ensp;The Owner shall have reasonable access to the site during working hours. Contractor shall maintain a clean, safe, and orderly site at all times and shall protect adjacent finishes and occupied areas throughout construction.</p>
-            <hr class="dw-art-rule">
-            <p class="dw-art-head">2.&ensp;Millwork &amp; finish carpentry</p>
-            <table class="dw-sched">
-              <thead><tr><th>Item</th><th>Description</th><th class="u">Unit</th></tr></thead>
-              <tbody>
-                <tr><td>2.1a</td><td>Kitchen casework, stain-grade</td><td class="u">LS</td></tr>
-                <tr><td>2.1b</td><td>Library shelving and panel walls</td><td class="u">LS</td></tr>
-                <tr><td>2.2</td><td>Painted-grade trim, Levels 1&ndash;3</td><td class="u">LF</td></tr>
-                <tr><td>2.3</td><td>Built-in window seats, primary bedroom</td><td class="u">EA</td></tr>
-                <tr><td>2.4</td><td>Crown molding, main level</td><td class="u">LF</td></tr>
-              </tbody>
-            </table>
-            <hr class="dw-art-rule">
-            <p class="dw-art-head">3.&ensp;Doors &amp; hardware</p>
-            <p class="dw-art-body">3.1&ensp;Contractor shall furnish and install all interior doors, frames, and hardware per the door schedule issued by the Architect. All hardware finishes shall be brushed nickel unless otherwise noted on the schedule.</p>
-            <p class="dw-art-body">3.2&ensp;Existing door frames to remain shall be repaired, shimmed, and refinished to match new work. Owner to confirm selections from hardware samples prior to order.</p>
-          </div>
-          <!-- Right rail: three supporting documents -->
-          <div class="dw-rail">
-            <div class="dw-rp">
-              <p class="dw-rp-hdr">Proposal letter</p>
-              <p class="dw-rp-body">Re: Interior renovation &mdash; 214 Commonwealth Ave.</p>
-              <p class="dw-rp-body">We are pleased to submit this proposal for the interior renovation under a cost-plus contract with GMP. Our fee is established at 18% of direct costs, inclusive of all general conditions.</p>
-              <p class="dw-rp-body">This proposal supersedes all prior correspondence. Acceptance constitutes agreement to the terms of the attached contract.</p>
-            </div>
-            <div class="dw-rp">
-              <p class="dw-rp-hdr">Site visit &amp; existing conditions</p>
-              <p class="dw-rp-body">Existing casework: to remain in place. Protect in place &mdash; contractor responsible for any damage during construction.</p>
-              <p class="dw-rp-body">Structural: wall at grid line C confirmed load-bearing. Beam sizing to be determined by structural engineer prior to demo permit.</p>
-              <p class="dw-rp-body">MEP: routing conflicts at ceiling level require coordination with MEP sub prior to rough-in.</p>
-            </div>
-            <div class="dw-rp">
-              <p class="dw-rp-hdr">Preliminary schedule</p>
-              <div class="dw-rp-row"><span class="dw-rp-k">Mobilization</span><span class="dw-rp-v">01 Sep 2026</span></div>
-              <div class="dw-rp-row"><span class="dw-rp-k">Demo &amp; rough framing</span><span class="dw-rp-v">15 Sep</span></div>
-              <div class="dw-rp-row"><span class="dw-rp-k">MEP rough-in</span><span class="dw-rp-v">29 Sep</span></div>
-              <div class="dw-rp-row"><span class="dw-rp-k">Millwork delivery</span><span class="dw-rp-v">20 Oct</span></div>
-              <div class="dw-rp-row"><span class="dw-rp-k">Punch list complete</span><span class="dw-rp-v">07 Nov</span></div>
-              <div class="dw-rp-row"><span class="dw-rp-k">Substantial completion</span><span class="dw-rp-v">14 Nov 2026</span></div>
-            </div>
-          </div>
-        </div>
-          <span class="cos-doc__fade"></span>
-          <div class="cos-doc__foot">
-            <span>Page 1 of 6 &middot; Residential renovation</span>
-            <a href="#">Open the full exhibit</a>
-          </div>
-        </div>
-      </figure>
-    </div>
-    <div class="cos-next">
-      <span class="cos-next__label">NEXT</span>
-      <a class="cos-next__link" href="#product-02">
-        <span class="cos-next__n">02</span>
-        <span class="cos-next__name">Construction Intelligence</span>
-      </a>
-    </div>
-  </div>
-</section>
-
-
-<!-- 02 Construction Intelligence — bond -->
-<section class="surface--bond prod-section" id="product-02">
-  <div class="cos-container">
-    <div class="cos-reg">
-      <span class="cos-reg__n">02</span>
-      <div class="cos-reg__rule40"></div>
-      <span class="cos-reg__cat">Knowledge</span>
-      <div class="cos-reg__rule-flex"></div>
-      <span class="cos-reg__pos">02 / 03</span>
-    </div>
-    <div class="prod-split prod-split--ci">
-      <!-- Intro -->
-      <div class="prod-intro">
-        <div class="cos-product__name-group">
-          <h3 class="prod-name">
-            <svg viewBox="0 0 100 100" aria-hidden="true">
-              <line x1="6" y1="50" x2="96" y2="50" stroke="#476776" stroke-width="4"/>
-              <polyline points="8,20 40,20 54,42 94,42" fill="none" stroke="currentColor" stroke-width="9"/>
-              <polyline points="8,80 40,80 54,58 94,58" fill="none" stroke="currentColor" stroke-width="9"/>
-            </svg>
-            Construction Intelligence
-          </h3>
-          <p class="prod-promise">Put your company&rsquo;s knowledge to work.</p>
-        </div>
-        <p class="prod-body">Combine construction know-how with your procedures, pricing rules, standards, templates, and project history&mdash;so your team gets company-specific answers without searching through folders or tracking down the person who knows.</p>
-        <p class="prod-outcome">Get the answer. See what it&rsquo;s based on. Know what comes next.</p>
-        <div class="prod-cta">
-          <a class="hero-btn hero-btn--primary" href="/products/construction-intelligence.html">Explore Construction Intelligence &rarr;</a>
-          <a class="cos-link" href="https://draftconstructionchangeorder.com">See it work</a>
-        </div>
-        <div class="ci-rows">
-          <div class="ci-row">
-            <p class="ci-row-title">Company-specific answers</p>
-            <p class="ci-row-desc">Grounded in your procedures, pricing rules, standards, templates, and project history</p>
-          </div>
-          <div class="ci-row">
-            <p class="ci-row-title">Source-backed reasoning</p>
-            <p class="ci-row-desc">See the procedure, standard, or reference behind the answer</p>
-          </div>
-          <div class="ci-row">
-            <p class="ci-row-title">From answer to action</p>
-            <p class="ci-row-desc">When the answer requires a document or next step, guide the PM to the right workflow in Document Workbench</p>
-          </div>
-        </div>
-      </div>
-      <!-- Proof -->
-      <div>
-        <div class="ci-card-cap">
-          <span>Construction Intelligence &mdash; Answer</span>
-          <span>Example View</span>
-        </div>
-        <div class="ci-proof" aria-hidden="true">
-        <div class="ci-q-band">
-          <p class="ci-q-tag">Question</p>
-          <p class="ci-question">How should we price an owner-requested millwork change on a cost-plus project?</p>
-        </div>
-        <div class="ci-body">
-          <div class="ci-answer">
-            <p class="ci-para-lead">On cost-plus, the PCO is still required &mdash; it establishes owner consent that the costs are eligible and defines whether fee applies.</p>
-            <p class="ci-para">For subcontracted millwork, price from the shop quote, write the scope internally, apply contract fee without compounding and show it separately, state schedule impact in calendar days, and get written authorization before fabrication begins.</p>
-            <p class="ci-para">If pricing is not final and the owner wants the shop released, authorize in writing as NTE or T&amp;M &mdash; never verbally.</p>
-          </div>
-          <div class="ci-sources">
-            <div class="ci-src-head">Sources <span>4</span></div>
-            <div class="ci-src-entry">
-              <span class="ci-src-code">FCM-03 §8.2</span>
-              <span class="ci-src-desc">Cost-plus change authorization and fee treatment</span>
-            </div>
-            <div class="ci-src-entry">
-              <span class="ci-src-code">CHG-53 §8.6&thinsp;/&thinsp;§9.2</span>
-              <span class="ci-src-desc">PCO pricing presentation and contractor-written scope</span>
-            </div>
-            <div class="ci-src-entry">
-              <span class="ci-src-code">CON-16 §7.4</span>
-              <span class="ci-src-desc">Fee and markup rules</span>
-            </div>
-            <div class="ci-src-entry">
-              <span class="ci-src-code">CHG-59</span>
-              <span class="ci-src-desc">NTE&thinsp;/&thinsp;T&amp;M authorization</span>
-            </div>
-            <div class="ci-src-foot">
-              <span class="ci-src-foot-label">Answered from</span>
-              <span class="ci-src-foot-val">Your company&rsquo;s procedures and standards</span>
-            </div>
-          </div>
-        </div>
-        <div class="ci-caveat">
-          <span class="ci-caveat-label">What changes the answer</span>
-          <span class="ci-caveat-text">Subcontracted vs. self-performed millwork; whether the project has a GMP cap.</span>
-        </div>
-        </div>
+      <div style="display: flex; align-items: center; gap: 22px; flex-wrap: wrap; padding-top: 4px;">
+        <a href="https://draftconstructionchangeorder.com" style="box-sizing: border-box; background: #111111; color: #FFFFFF; font-family: Archivo, sans-serif; font-weight: 600; font-size: 15px; letter-spacing: -0.01em; padding: 15px 26px; min-height: 48px; display: flex; align-items: center;">See it work</a>
+        <a href="/services.html" style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 15px; letter-spacing: -0.01em; color: #111111; border-bottom: 2px solid #111111; padding-bottom: 3px;">How an engagement works &rarr;</a>
       </div>
     </div>
-    <div class="cos-next">
-      <span class="cos-next__label">NEXT</span>
-      <a class="cos-next__link" href="#product-03">
-        <span class="cos-next__n">03</span>
-        <span class="cos-next__name">Project Intelligence</span>
-      </a>
-    </div>
-  </div>
-</section>
 
-
-<!-- 03 Project Intelligence — white -->
-<section class="surface--white prod-section" id="product-03">
-  <div class="cos-container">
-    <div class="cos-reg">
-      <span class="cos-reg__n">03</span>
-      <div class="cos-reg__rule40"></div>
-      <span class="cos-reg__cat">Attention</span>
-      <div class="cos-reg__rule-flex"></div>
-      <span class="cos-reg__pos">03 / 03</span>
-    </div>
-    <div class="prod-split prod-split--pi">
-      <!-- Intro -->
-      <div class="prod-intro">
-        <div class="cos-product__name-group">
-          <h3 class="prod-name">
-            <svg viewBox="0 0 100 100" aria-hidden="true">
-              <rect x="6" y="18" width="88" height="64" fill="none" stroke="#476776" stroke-width="4"/>
-              <line x1="18" y1="70" x2="82" y2="70" stroke="currentColor" stroke-width="9"/>
-              <line x1="30" y1="70" x2="30" y2="56" stroke="currentColor" stroke-width="9"/>
-              <line x1="50" y1="70" x2="50" y2="44" stroke="currentColor" stroke-width="9"/>
-              <line x1="70" y1="70" x2="70" y2="32" stroke="currentColor" stroke-width="9"/>
-            </svg>
-            Project Intelligence
-            <span class="cos-tag--dev">In development</span>
-          </h3>
-          <p class="prod-promise">Know what needs attention.</p>
-        </div>
-        <p class="prod-body">Surface the open decisions, aging changes, missing approvals, unresolved RFIs, and schedule issues that need attention across active projects.</p>
-        <p class="prod-outcome">Manage the exceptions instead of chasing status.</p>
-        <p class="prod-cta">
-          <a class="hero-btn hero-btn--primary" href="/products/project-intelligence.html">Explore Project Intelligence &rarr;</a>
-        </p>
-        <div class="ci-rows">
-          <div class="ci-row">
-            <p class="ci-row-title">What needs attention, in one place</p>
-            <p class="ci-row-desc">Open changes, approvals, RFIs, agreements, decisions, and schedule issues across active projects</p>
-          </div>
-          <div class="ci-row">
-            <p class="ci-row-title">Prioritized by urgency</p>
-            <p class="ci-row-desc">See what is overdue, blocked, waiting, or due soon</p>
-          </div>
-          <div class="ci-row">
-            <p class="ci-row-title">Manage by exception</p>
-            <p class="ci-row-desc">Spend leadership time on the jobs and decisions that actually need intervention</p>
-          </div>
-        </div>
+    <div style="min-width: 0;">
+      <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 20px; padding-bottom: 10px;">
+        <div style="font-family: ui-monospace, monospace; font-size: 11px; letter-spacing: 0.06em; color: #5F6466;">EXHIBIT A &mdash; SCOPE OF WORK</div>
+        <div style="font-family: ui-monospace, monospace; font-size: 11px; letter-spacing: 0.06em; color: #476776;">EXAMPLE VIEW</div>
       </div>
-      <!-- Proof -->
-      <div>
-        <div class="ci-card-cap">
-          <span>Project attention</span>
-          <span>Example View</span>
-        </div>
-        <div class="pi-proof" aria-hidden="true">
-          <div class="pi-body">
-            <p class="pi-summary">5 items need attention across 4 active projects</p>
+      <div style="box-sizing: border-box; position: relative; border: 1px solid #111111; background: #FFFFFF; height: 560px; overflow: hidden;">
+        <div style="position: absolute; top: 10px; right: 10px; width: 14px; height: 14px; border-top: 2px solid #B8B9B5; border-right: 2px solid #B8B9B5; z-index: 2;" aria-hidden="true"></div>
+        <div style="position: absolute; bottom: 10px; left: 10px; width: 14px; height: 14px; border-bottom: 2px solid #B8B9B5; border-left: 2px solid #B8B9B5; z-index: 3;" aria-hidden="true"></div>
+
+        <div style="display: grid; grid-template-columns: 1.55fr 1fr; height: 100%;">
+          <div style="padding: 24px 24px 0; display: flex; flex-direction: column; gap: 12px; min-width: 0;">
+            <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px; border-bottom: 1px solid #B8B9B5; padding-bottom: 9px;">
+              <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 11px; color: #5F6466;">Residential renovation</div>
+              <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 11px; color: #5F6466;">Page 1 of 6</div>
+            </div>
+            <div>
+              <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 17px; letter-spacing: -0.02em; color: #111111;">Exhibit A &mdash; Scope of work</div>
+              <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 11px; color: #5F6466; padding-top: 4px;">Contract dated 14 Aug 2026 &middot; Rev. 2 &middot; Cost-plus w/ GMP</div>
+            </div>
+            <div style="height: 1px; background: #111111;"></div>
+            <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 12px; color: #111111;">1.&nbsp;&nbsp;General</div>
+            <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 11.5px; line-height: 1.55; color: #5F6466;">1.1&nbsp;&nbsp;The Contractor shall furnish all labor, materials, equipment, tools, and supervision necessary to complete the scope described herein, in strict accordance with the Contract Documents and all applicable codes.</div>
+            <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 11.5px; line-height: 1.55; color: #5F6466;">1.2&nbsp;&nbsp;Work shall be executed in a workmanlike manner consistent with industry standards. Substitutions require prior written approval from the Owner&rsquo;s representative.</div>
+            <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 11.5px; line-height: 1.55; color: #5F6466;">1.3&nbsp;&nbsp;The Owner shall have reasonable access to the site during working hours. Contractor shall maintain a clean, safe, and orderly site at all times.</div>
+            <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 12px; color: #111111; padding-top: 2px;">2.&nbsp;&nbsp;Millwork &amp; finish carpentry</div>
+            <div style="display: grid; grid-template-columns: 40px minmax(0, 1fr) 34px; gap: 6px 10px; font-family: Archivo, sans-serif; font-size: 11px; color: #5F6466;">
+              <div style="font-weight: 500; color: #111111;">Item</div><div style="font-weight: 500; color: #111111;">Description</div><div style="font-weight: 500; color: #111111; text-align: right;">Unit</div>
+              <div>2.1a</div><div>Kitchen casework, stain-grade</div><div style="text-align: right;">LS</div>
+              <div>2.1b</div><div>Library shelving and panel walls</div><div style="text-align: right;">LS</div>
+              <div>2.2</div><div>Painted-grade trim, Levels 1&ndash;3</div><div style="text-align: right;">LF</div>
+              <div>2.3</div><div>Built-in window seats, primary bedroom</div><div style="text-align: right;">EA</div>
+              <div>2.4</div><div>Crown molding, main level</div><div style="text-align: right;">LF</div>
+            </div>
+            <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 12px; color: #111111; padding-top: 2px;">3.&nbsp;&nbsp;Doors &amp; hardware</div>
           </div>
-          <div class="cos-attn">
-            <div class="cos-attn__row cos-attn__hdr">
-              <div>Project</div>
-              <div>Needs attention</div>
-              <div>Age</div>
-              <div>Status</div>
+
+          <div style="border-left: 1px solid #B8B9B5; background: #EFEFEB; padding: 24px 20px 0; display: flex; flex-direction: column; gap: 18px; min-width: 0;">
+            <div style="display: flex; flex-direction: column; gap: 7px;">
+              <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11.5px; letter-spacing: -0.01em; color: #111111;">Proposal letter</div>
+              <div style="height: 1px; background: #B8B9B5;"></div>
+              <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 11px; line-height: 1.5; color: #5F6466;">Re: Interior renovation &mdash; 214 Commonwealth Ave.</div>
+              <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 11px; line-height: 1.5; color: #5F6466;">We are pleased to submit this proposal for the interior renovation under a cost-plus contract with GMP. Our fee is established at 18% of direct costs, inclusive of all general conditions.</div>
+              <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 11px; line-height: 1.5; color: #5F6466;">This proposal supersedes all prior correspondence.</div>
             </div>
-            <div class="cos-attn__row">
-              <div><span class="cos-attn__project">Residential Renovation</span><span class="cos-attn__owner">PM</span></div>
-              <div><span class="pi-need">Owner approval &mdash; millwork change</span></div>
-              <div><span class="cos-attn__age">12d</span></div>
-              <div><span class="cos-attn__status cos-attn__status--exception">Overdue</span></div>
+            <div style="display: flex; flex-direction: column; gap: 7px;">
+              <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11.5px; letter-spacing: -0.01em; color: #111111;">Site visit &amp; existing conditions</div>
+              <div style="height: 1px; background: #B8B9B5;"></div>
+              <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 11px; line-height: 1.5; color: #5F6466;">Existing casework: to remain in place. Protect in place &mdash; contractor responsible for any damage during construction.</div>
+              <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 11px; line-height: 1.5; color: #5F6466;">Structural: wall at grid line C confirmed load-bearing. Beam sizing to be determined by structural engineer prior to demo permit.</div>
             </div>
-            <div class="cos-attn__row">
-              <div><span class="cos-attn__project">Cambridge Renovation</span><span class="cos-attn__owner">Ops</span></div>
-              <div><span class="pi-need">Subcontract agreement</span></div>
-              <div><span class="cos-attn__age">6d</span></div>
-              <div><span class="cos-attn__status cos-attn__status--exception">Blocked</span></div>
-            </div>
-            <div class="cos-attn__row">
-              <div><span class="cos-attn__project">High-Rise Residence</span><span class="cos-attn__owner">Architect</span></div>
-              <div><span class="pi-need">RFI 027 &mdash; ceiling coordination</span></div>
-              <div><span class="cos-attn__age">8d</span></div>
-              <div><span class="cos-attn__status">Waiting</span></div>
-            </div>
-            <div class="cos-attn__row">
-              <div><span class="cos-attn__project">Back Bay Residence</span><span class="cos-attn__owner">PM</span></div>
-              <div><span class="pi-need">Client finish selection</span></div>
-              <div><span class="cos-attn__age">5d</span></div>
-              <div><span class="cos-attn__status">Due soon</span></div>
-            </div>
-            <div class="cos-attn__row">
-              <div><span class="cos-attn__project">Townhouse Renovation</span><span class="cos-attn__owner">Estimator</span></div>
-              <div><span class="pi-need">Change pricing not issued</span></div>
-              <div><span class="cos-attn__age">4d</span></div>
-              <div><span class="cos-attn__status">Open</span></div>
+            <div style="display: flex; flex-direction: column; gap: 7px;">
+              <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11.5px; letter-spacing: -0.01em; color: #111111;">Preliminary schedule</div>
+              <div style="height: 1px; background: #B8B9B5;"></div>
+              <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 11px; line-height: 1.5; color: #5F6466;">Mobilization &mdash; 01 Sep 2026</div>
+              <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 11px; line-height: 1.5; color: #5F6466;">Demo &amp; rough framing &mdash; 15 Sep</div>
+              <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 11px; line-height: 1.5; color: #5F6466;">Millwork release &mdash; 06 Oct</div>
             </div>
           </div>
-          <div class="pi-footer">
-            <span class="pi-footer-val">Everything else is running to plan.</span>
-          </div>
         </div>
-      </div>
-    </div>
-    <div class="cos-next">
-      <span class="cos-next__label">NEXT</span>
-      <a class="cos-next__link" href="#ops">
-        <span class="cos-next__name">Operations Automation</span>
-      </a>
-    </div>
-  </div>
-</section>
 
-<!-- Operations Automation -->
-<section class="ops-block surface--bond" id="ops">
-  <div class="cos-container">
-    <div class="ops-grid">
-
-      <aside class="ops-rail">
-        <p class="ops-eyebrow">
-          <svg viewBox="0 0 100 100" width="16" height="16" aria-hidden="true">
-            <polyline points="12,58 12,12 58,12" fill="none" stroke="currentColor" stroke-width="16"/>
-            <polyline points="88,42 88,88 42,88" fill="none" stroke="currentColor" stroke-width="16"/>
-          </svg>
-          Construction OS / Extension layer
-        </p>
-        <h2 class="ops-title">Operations Automation</h2>
-        <p class="ops-lead">Automate the repetitive work around the job.</p>
-        <p class="ops-body">Construction OS can be extended with purpose-built automations for the workflows your team still handles by hand&mdash;from invoices and field reports to billing, compliance, and client decisions.</p>
-        <p class="ops-figure"><b>6</b><span>Modules live today<br>&mdash; turned on per company</span></p>
-      </aside>
-
-      <div class="ops-col">
-        <div class="ops-cap"></div>
-        <article class="ops-mod">
-          <span class="ops-mod-n">01</span>
-          <div>
-            <h3 class="ops-mod-name">Invoice Intake</h3>
-            <p class="ops-mod-copy">Stop rekeying invoices and receipts. Get structured cost data ready for review.</p>
-          </div>
-        </article>
-        <hr class="ops-hr">
-        <article class="ops-mod">
-          <span class="ops-mod-n">02</span>
-          <div>
-            <h3 class="ops-mod-name">Field Reports</h3>
-            <p class="ops-mod-copy">Stop reconstructing the day at 5 PM. Turn voice notes into a finished daily report.</p>
-          </div>
-        </article>
-        <hr class="ops-hr">
-        <article class="ops-mod">
-          <span class="ops-mod-n">03</span>
-          <div>
-            <h3 class="ops-mod-name">Change Order Drafting</h3>
-            <p class="ops-mod-copy">Capture the change while the details are fresh. Turn field notes into a professional change-order draft.</p>
-          </div>
-        </article>
-      </div>
-
-      <div class="ops-col ops-col--divided">
-        <div class="ops-cap"></div>
-        <article class="ops-mod">
-          <span class="ops-mod-n">04</span>
-          <div>
-            <h3 class="ops-mod-name">Site Safety</h3>
-            <p class="ops-mod-copy">Stop building safety paperwork form by form. Generate the required documentation from project conditions.</p>
-          </div>
-        </article>
-        <hr class="ops-hr">
-        <article class="ops-mod">
-          <span class="ops-mod-n">05</span>
-          <div>
-            <h3 class="ops-mod-name">Bid Comparison</h3>
-            <p class="ops-mod-copy">Stop comparing apples to oranges. Normalize bids so scope gaps and exclusions stand out.</p>
-          </div>
-        </article>
-        <hr class="ops-hr">
-        <article class="ops-mod">
-          <span class="ops-mod-n">06</span>
-          <div>
-            <h3 class="ops-mod-name">Subcontractor Compliance</h3>
-            <p class="ops-mod-copy">Know who is cleared to work. See who is missing COIs, W-9s, licenses, or waivers.</p>
-          </div>
-        </article>
-      </div>
-
-    </div>
-    <footer class="ops-foot">
-      <p>Modules run on your templates, your rates, and your approval chain.</p>
-      <a href="/products/operations-automation.html">See the extension layer</a>
-    </footer>
-  </div>
-</section>
-
-
-<!-- Real-world proof -->
-<section class="surface--white zone--tight" id="proof">
-  <div class="cos-container">
-    <div class="prf-intro">
-      <div class="prf-intro-head-cell">
-        <h2 class="prf-intro-head">Built in real construction operations.</h2>
-      </div>
-      <p class="prf-intro-copy">Construction OS grew out of hands-on construction management&mdash;learning where the work breaks down, then building and applying systems to fix it.</p>
-    </div>
-    <div class="prf-grid">
-      <div class="prf-stat">
-        <p class="prf-before">4&ndash;8 hrs &rarr;</p>
-        <p class="prf-figure prf-figure--red">~30 min</p>
-        <p class="prf-label">Initial contract package preparation</p>
-      </div>
-      <div class="prf-stat">
-        <p class="prf-before">~10 days &rarr;</p>
-        <p class="prf-figure prf-figure--red">~3 days</p>
-        <p class="prf-label">Change-order turnaround</p>
-      </div>
-      <div class="prf-stat">
-        <p class="prf-figure">150+</p>
-        <p class="prf-label">Standard construction document types</p>
-      </div>
-    </div>
-    <div class="prf-foot">
-      <span class="prf-case">CASE-001 &sol; RESIDENTIAL GC &sol; BOSTON</span>
-      <a class="prf-case-link" href="#">Read the case study &rarr;</a>
-    </div>
-  </div>
-</section>
-
-
-<!-- Configuration -->
-<section class="surface--bond cfg-section" id="config">
-  <div class="cos-container">
-    <header class="cfg-head">
-      <div>
-        <p class="cfg-eyebrow">Configuration</p>
-        <h2 class="cfg-title">Configured around your company</h2>
-      </div>
-      <p class="cfg-deck">Your company already has a way of working. Construction OS uses it.</p>
-    </header>
-    <div class="cfg-cols">
-      <div class="cfg-group">
-        <p class="cfg-group-label"><span class="cfg-dot"></span>Documents &amp; delivery</p>
-        <div class="cfg-row">
-          <span class="cfg-row-n">01</span>
-          <p class="cfg-row-t">Your contract templates, scope language, and document standards</p>
-        </div>
-        <hr class="cfg-rule">
-        <div class="cfg-row">
-          <span class="cfg-row-n">02</span>
-          <p class="cfg-row-t">Your project phases, logs, and handoff process</p>
-        </div>
-      </div>
-      <div class="cfg-group">
-        <p class="cfg-group-label"><span class="cfg-dot"></span>Pricing &amp; operations</p>
-        <div class="cfg-row">
-          <span class="cfg-row-n">03</span>
-          <p class="cfg-row-t">Your pricing rules, markups, and rate cards</p>
-        </div>
-        <hr class="cfg-rule">
-        <div class="cfg-row">
-          <span class="cfg-row-n">04</span>
-          <p class="cfg-row-t">Your SOPs, approvals, and operating procedures</p>
-        </div>
-      </div>
-      <div class="cfg-group">
-        <p class="cfg-group-label"><span class="cfg-dot cfg-dot--rev"></span>Company knowledge</p>
-        <div class="cfg-row">
-          <span class="cfg-row-n">05</span>
-          <p class="cfg-row-t">Your historical project knowledge and lessons learned</p>
-        </div>
-        <hr class="cfg-rule">
-        <div class="cfg-row">
-          <span class="cfg-row-n cfg-row-n--rev">06</span>
-          <p class="cfg-row-t cfg-row-t--lead">The judgment your best people carry around in their heads</p>
+        <div style="position: absolute; left: 0; right: 0; bottom: 0; height: 88px; background: linear-gradient(to bottom, rgba(255,255,255,0), #FFFFFF 62%); pointer-events: none;" aria-hidden="true"></div>
+        <div style="position: absolute; left: 0; right: 0; bottom: 0; border-top: 1px solid #B8B9B5; background: #FFFFFF; padding: 10px 24px; display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+          <div style="font-family: ui-monospace, monospace; font-size: 11px; letter-spacing: 0.04em; color: #5F6466; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">PAGE 1 OF 6 &middot; RESIDENTIAL RENOVATION</div>
+          <a href="#" style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 12px; letter-spacing: -0.01em; color: #111111; border-bottom: 1px solid #111111; white-space: nowrap; flex: none;">Open the full exhibit</a>
         </div>
       </div>
     </div>
   </div>
-</section>
+</div>
 
-
-<!-- CTA -->
-<section class="cos-close" id="cta">
-  <div class="cos-container">
-  <div class="cos-close__grid">
-
-    <!-- Left column -->
-    <div class="cos-close__col">
-
-      <!-- Lockup -->
-      <div class="cos-close__lockup">
-        <svg viewBox="0 0 100 100" width="24" height="24" aria-label="Construction OS">
-          <polyline points="16,54 16,16 54,16" fill="none" stroke="#ffffff" stroke-width="7"/>
-          <polyline points="84,46 84,84 46,84" fill="none" stroke="#ffffff" stroke-width="7"/>
-          <rect x="32" y="32" width="36" height="36" fill="#C43230" stroke="#B8B9B5" stroke-width="4"/>
-        </svg>
-        <span class="cos-close__lockup-name">Construction OS</span>
-        <span class="cos-close__lockup-rule"></span>
+<!-- ===== §2 PAIN ===== -->
+<div style="background: #EFEFEB; padding: 76px 0 80px;">
+  <div style="max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px);">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 20px 48px; align-items: end; border-bottom: 2px solid #111111; padding-bottom: 26px;">
+      <div style="container-type: inline-size; min-width: 0;">
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #476776; padding-bottom: 16px;">The current state</div>
+        <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(28px, 8cqi, 42px); line-height: 1.05; letter-spacing: -0.035em; color: #111111; max-width: 18ch; text-wrap: balance;">Does any of this sound familiar?</h2>
       </div>
-
-      <!-- Headline -->
-      <h2 class="cos-close__headline">Give your team time back.</h2>
-
-      <!-- Subhead -->
-      <p class="cos-close__subhead">See how Construction OS can reduce the paperwork, repeat questions, and status chasing that consume your team&rsquo;s day.</p>
-
-      <!-- CTAs -->
-      <div class="cos-close__cta">
-        <a class="cos-close__btn-primary" href="https://cal.com/justinyurasits">Book a demo</a>
-        <a class="cos-close__btn-link" href="https://draftconstructionchangeorder.com">See it work &rarr;</a>
-      </div>
-
+      <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: #5F6466; text-align: right; white-space: nowrap;">Four&nbsp;places it&nbsp;shows&nbsp;up</div>
     </div>
 
-    <!-- Right column — product index -->
-    <div class="cos-close__col">
-      <p class="cos-close__index-label">What you get</p>
-      <div class="cos-close__index-rule"></div>
+    <div style="display: flex; flex-direction: column; padding-bottom: 44px;">
+      <div style="display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 0 16px; padding: 26px 0 28px;">
+        <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: #5F6466; padding-top: 7px;">01</div>
+        <div style="min-width: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 10px 40px; align-items: start;">
+          <div style="min-width: 0; display: flex; flex-direction: column; gap: 10px;">
+            <div style="display: flex; align-items: center; gap: 12px; min-width: 0;">
+              <svg viewBox="0 0 100 100" width="26" height="26" aria-hidden="true" style="flex: none;">
+                <polyline points="30,14 86,14 86,72" fill="none" stroke="#476776" stroke-width="5"></polyline>
+                <rect x="14" y="26" width="52" height="60" fill="none" stroke="#111111" stroke-width="9"></rect>
+              </svg>
+              <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #111111;">Paperwork</div>
+            </div>
+            <h3 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 22px; line-height: 1.3; letter-spacing: -0.02em; color: #111111; text-wrap: balance;">Your PMs spend their best hours producing paperwork.</h3>
+          </div>
+          <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">Change orders, RFIs, meeting minutes, reports, submittals, billing documentation&mdash;rebuilt from scratch, job after job.</div>
+        </div>
+      </div>
+      <div style="display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 0 16px; padding: 26px 0 28px; border-top: 1px solid #B8B9B5;">
+        <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: #5F6466; padding-top: 7px;">02</div>
+        <div style="min-width: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 10px 40px; align-items: start;">
+          <div style="min-width: 0; display: flex; flex-direction: column; gap: 10px;">
+            <div style="display: flex; align-items: center; gap: 12px; min-width: 0;">
+              <svg viewBox="0 0 100 100" width="26" height="26" aria-hidden="true" style="flex: none;">
+                <line x1="6" y1="50" x2="96" y2="50" stroke="#476776" stroke-width="5"></line>
+                <polyline points="8,20 40,20 54,42 94,42" fill="none" stroke="#111111" stroke-width="9"></polyline>
+                <polyline points="8,80 40,80 54,58 94,58" fill="none" stroke="#111111" stroke-width="9"></polyline>
+              </svg>
+              <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #111111;">Knowledge</div>
+            </div>
+            <h3 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 22px; line-height: 1.3; letter-spacing: -0.02em; color: #111111; text-wrap: balance;">Your best people are the only ones who know how the company works.</h3>
+          </div>
+          <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">The senior PM everyone calls. The COO who answers every operational question. The estimator whose pricing judgment nobody else has.</div>
+        </div>
+      </div>
+      <div style="display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 0 16px; padding: 26px 0 28px; border-top: 1px solid #B8B9B5;">
+        <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: #5F6466; padding-top: 7px;">03</div>
+        <div style="min-width: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 10px 40px; align-items: start;">
+          <div style="min-width: 0; display: flex; flex-direction: column; gap: 10px;">
+            <div style="display: flex; align-items: center; gap: 12px; min-width: 0;">
+              <svg viewBox="0 0 100 100" width="26" height="26" aria-hidden="true" style="flex: none;">
+                <rect x="6" y="18" width="88" height="64" fill="none" stroke="#476776" stroke-width="5"></rect>
+                <line x1="18" y1="70" x2="82" y2="70" stroke="#111111" stroke-width="9"></line>
+                <line x1="30" y1="70" x2="30" y2="56" stroke="#111111" stroke-width="9"></line>
+                <line x1="50" y1="70" x2="50" y2="44" stroke="#111111" stroke-width="9"></line>
+                <line x1="70" y1="70" x2="70" y2="32" stroke="#C43230" stroke-width="9"></line>
+              </svg>
+              <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #111111;">Visibility</div>
+            </div>
+            <h3 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 22px; line-height: 1.3; letter-spacing: -0.02em; color: #111111; text-wrap: balance;">You&rsquo;re chasing people to figure out what needs attention.</h3>
+          </div>
+          <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">Open changes, aging RFIs, missing approvals, unsigned contracts, schedule risk&mdash;assembled by hand, one conversation at a time.</div>
+        </div>
+      </div>
+      <div style="display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 0 16px; padding: 26px 0 28px; border-top: 1px solid #B8B9B5;">
+        <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: #5F6466; padding-top: 7px;">04</div>
+        <div style="min-width: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 10px 40px; align-items: start;">
+          <div style="min-width: 0; display: flex; flex-direction: column; gap: 10px;">
+            <div style="display: flex; align-items: center; gap: 12px; min-width: 0;">
+              <svg viewBox="0 0 100 100" width="26" height="26" aria-hidden="true" style="flex: none;">
+                <line x1="14" y1="28" x2="34" y2="28" stroke="#111111" stroke-width="9"></line>
+                <line x1="42" y1="28" x2="62" y2="28" stroke="#111111" stroke-width="9"></line>
+                <line x1="70" y1="28" x2="90" y2="28" stroke="#111111" stroke-width="9"></line>
+                <line x1="14" y1="74" x2="90" y2="74" stroke="#C43230" stroke-width="9"></line>
+              </svg>
+              <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #111111;">Operations</div>
+            </div>
+            <h3 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 22px; line-height: 1.3; letter-spacing: -0.02em; color: #111111; text-wrap: balance;">Too much routine operational work is still manual.</h3>
+          </div>
+          <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">Invoices and receipts entered by hand. Safety documentation chased. Billing packages assembled the same way every month.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
+<!-- ===== §3 THE SYSTEM ===== -->
+<div style="background: #FFFFFF; padding: 76px 0 80px;">
+  <div style="max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px);">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 24px 48px; align-items: start; border-bottom: 2px solid #111111; padding-bottom: 26px;">
+      <div style="container-type: inline-size; min-width: 0;">
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #476776; padding-bottom: 16px;">The system</div>
+        <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
+          <svg viewBox="0 0 100 100" width="44" height="44" aria-hidden="true" style="flex: none;">
+            <polyline points="16,54 16,16 54,16" fill="none" stroke="#111111" stroke-width="9"></polyline>
+            <polyline points="84,46 84,84 46,84" fill="none" stroke="#111111" stroke-width="9"></polyline>
+            <rect x="32" y="32" width="36" height="36" fill="#C43230" stroke="#476776" stroke-width="5"></rect>
+          </svg>
+          <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(28px, 8cqi, 42px); line-height: 1.05; letter-spacing: -0.035em; color: #111111; text-wrap: balance;">Construction OS</h2>
+        </div>
+      </div>
+      <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: 17px; line-height: 1.5; letter-spacing: -0.015em; color: #111111; padding-top: 5px;">Put more of how your company works into a system your team can use.</div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; padding-top: 4px;">
       <!-- 01 Document Workbench -->
-      <div class="cos-close__index-row">
-        <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true">
-          <polyline points="30,14 86,14 86,72" fill="none" stroke="#B8B9B5" stroke-width="5"/>
-          <rect x="14" y="26" width="52" height="60" fill="none" stroke="#ffffff" stroke-width="12"/>
-        </svg>
-        <span class="cos-close__index-n">01</span>
-        <span class="cos-close__index-name">Document Workbench</span>
+      <div style="display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 0 16px; padding: 24px 0 26px;">
+        <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: #5F6466; padding-top: 6px;">01</div>
+        <div style="min-width: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 10px 40px; align-items: start;">
+          <div style="min-width: 0; display: flex; flex-direction: column; gap: 8px;">
+            <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+              <svg viewBox="0 0 100 100" width="26" height="26" aria-hidden="true" style="flex: none;">
+                <polyline points="30,14 86,14 86,72" fill="none" stroke="#476776" stroke-width="5"></polyline>
+                <rect x="14" y="26" width="52" height="60" fill="none" stroke="#111111" stroke-width="9"></rect>
+              </svg>
+              <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 24px; line-height: 1.2; letter-spacing: -0.026em; color: #111111; text-wrap: balance;">Document Workbench</div>
+            </div>
+            <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 17px; line-height: 1.4; letter-spacing: -0.015em; color: #476776;">Produce the documents.</div>
+          </div>
+          <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">Turn project information into company-standard construction documents from first walkthrough through closeout.</div>
+          <div style="grid-column: 1 / -1; display: flex; align-items: center; gap: 18px; flex-wrap: wrap; padding-top: 4px;">
+            <a href="/products/document-workbench.html" style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 14px; letter-spacing: -0.01em; color: #111111; border-bottom: 2px solid #111111; padding-bottom: 3px;">Explore Document Workbench &rarr;</a>
+            <a href="https://draftconstructionchangeorder.com" style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 14px; letter-spacing: -0.01em; color: #476776; border-bottom: 1px solid #B8B9B5; padding-bottom: 3px;">See it work</a>
+          </div>
+        </div>
       </div>
-
       <!-- 02 Construction Intelligence -->
-      <div class="cos-close__index-row">
-        <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true">
-          <line x1="6" y1="50" x2="96" y2="50" stroke="#B8B9B5" stroke-width="5"/>
-          <polyline points="8,20 40,20 54,42 94,42" fill="none" stroke="#ffffff" stroke-width="12"/>
-          <polyline points="8,80 40,80 54,58 94,58" fill="none" stroke="#ffffff" stroke-width="12"/>
-        </svg>
-        <span class="cos-close__index-n">02</span>
-        <span class="cos-close__index-name">Construction Intelligence</span>
+      <div style="display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 0 16px; border-top: 1px solid #B8B9B5; padding: 24px 0 26px;">
+        <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: #5F6466; padding-top: 6px;">02</div>
+        <div style="min-width: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 10px 40px; align-items: start;">
+          <div style="min-width: 0; display: flex; flex-direction: column; gap: 8px;">
+            <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+              <svg viewBox="0 0 100 100" width="26" height="26" aria-hidden="true" style="flex: none;">
+                <line x1="6" y1="50" x2="96" y2="50" stroke="#476776" stroke-width="5"></line>
+                <polyline points="8,20 40,20 54,42 94,42" fill="none" stroke="#111111" stroke-width="9"></polyline>
+                <polyline points="8,80 40,80 54,58 94,58" fill="none" stroke="#111111" stroke-width="9"></polyline>
+              </svg>
+              <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 24px; line-height: 1.2; letter-spacing: -0.026em; color: #111111; text-wrap: balance;">Construction Intelligence</div>
+            </div>
+            <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 17px; line-height: 1.4; letter-spacing: -0.015em; color: #476776;">Put company knowledge to work.</div>
+          </div>
+          <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">Give the team company-specific answers grounded in your procedures, standards, pricing rules, and project history.</div>
+          <div style="grid-column: 1 / -1; display: flex; align-items: center; gap: 18px; flex-wrap: wrap; padding-top: 4px;">
+            <a href="/products/construction-intelligence.html" style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 14px; letter-spacing: -0.01em; color: #111111; border-bottom: 2px solid #111111; padding-bottom: 3px;">Explore Construction Intelligence &rarr;</a>
+            <a href="#" style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 14px; letter-spacing: -0.01em; color: #476776; border-bottom: 1px solid #B8B9B5; padding-bottom: 3px;">See an example answer &rarr;</a>
+          </div>
+        </div>
       </div>
-
       <!-- 03 Project Intelligence -->
-      <div class="cos-close__index-row">
-        <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true">
-          <rect x="6" y="18" width="88" height="64" fill="none" stroke="#B8B9B5" stroke-width="5"/>
-          <line x1="18" y1="70" x2="82" y2="70" stroke="#ffffff" stroke-width="12"/>
-          <line x1="30" y1="70" x2="30" y2="56" stroke="#ffffff" stroke-width="12"/>
-          <line x1="50" y1="70" x2="50" y2="44" stroke="#ffffff" stroke-width="12"/>
-          <line x1="70" y1="70" x2="70" y2="32" stroke="#ffffff" stroke-width="12"/>
-        </svg>
-        <span class="cos-close__index-n">03</span>
-        <span class="cos-close__index-name">Project Intelligence</span>
-        <span class="cos-close__index-tag">In development</span>
+      <div style="display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 0 16px; border-top: 1px solid #B8B9B5; padding: 24px 0 26px;">
+        <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: #5F6466; padding-top: 6px;">03</div>
+        <div style="min-width: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 10px 40px; align-items: start;">
+          <div style="min-width: 0; display: flex; flex-direction: column; gap: 8px;">
+            <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+              <svg viewBox="0 0 100 100" width="26" height="26" aria-hidden="true" style="flex: none;">
+                <rect x="6" y="18" width="88" height="64" fill="none" stroke="#476776" stroke-width="5"></rect>
+                <line x1="18" y1="70" x2="82" y2="70" stroke="#111111" stroke-width="9"></line>
+                <line x1="30" y1="70" x2="30" y2="56" stroke="#111111" stroke-width="9"></line>
+                <line x1="50" y1="70" x2="50" y2="44" stroke="#111111" stroke-width="9"></line>
+                <line x1="70" y1="70" x2="70" y2="32" stroke="#C43230" stroke-width="9"></line>
+              </svg>
+              <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 24px; line-height: 1.2; letter-spacing: -0.026em; color: #111111; text-wrap: balance;">Project Intelligence</div>
+              <div style="box-sizing: border-box; font-family: Archivo, sans-serif; font-weight: 600; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #5F6466; border: 1px solid #B8B9B5; padding: 3px 7px;">In development</div>
+            </div>
+            <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 17px; line-height: 1.4; letter-spacing: -0.015em; color: #476776;">Know what needs attention.</div>
+          </div>
+          <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">Surface the open items and exceptions that need intervention across active projects.</div>
+          <div style="grid-column: 1 / -1; display: flex; align-items: center; gap: 18px; flex-wrap: wrap; padding-top: 4px;">
+            <a href="/products/project-intelligence.html" style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 14px; letter-spacing: -0.01em; color: #111111; border-bottom: 2px solid #111111; padding-bottom: 3px;">Explore Project Intelligence &rarr;</a>
+          </div>
+        </div>
       </div>
+    </div>
 
-      <!-- Operations Automation -->
-      <div class="cos-close__index-row">
-        <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true">
-          <line x1="14" y1="28" x2="34" y2="28" stroke="#ffffff" stroke-width="12"/>
-          <line x1="42" y1="28" x2="62" y2="28" stroke="#ffffff" stroke-width="12"/>
-          <line x1="70" y1="28" x2="90" y2="28" stroke="#ffffff" stroke-width="12"/>
-          <line x1="24" y1="34" x2="24" y2="66" stroke="#B8B9B5" stroke-width="5"/>
-          <line x1="52" y1="34" x2="52" y2="66" stroke="#B8B9B5" stroke-width="5"/>
-          <line x1="80" y1="34" x2="80" y2="66" stroke="#B8B9B5" stroke-width="5"/>
-          <line x1="14" y1="74" x2="90" y2="74" stroke="#ffffff" stroke-width="12"/>
-        </svg>
-        <span class="cos-close__index-n">&mdash;&mdash;</span>
-        <span class="cos-close__index-name">Operations Automation</span>
-        <span class="cos-close__index-ext">Extension layer</span>
+    <!-- Extension layer -->
+    <div style="border-top: 2px solid #111111; margin-top: 30px; padding-top: 26px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 20px 48px; align-items: start;">
+      <div style="min-width: 0; display: flex; flex-direction: column; gap: 8px;">
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #5F6466;">Extension layer</div>
+        <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+          <svg viewBox="0 0 100 100" width="26" height="26" aria-hidden="true" style="flex: none;">
+            <line x1="14" y1="28" x2="34" y2="28" stroke="#111111" stroke-width="9"></line>
+            <line x1="42" y1="28" x2="62" y2="28" stroke="#111111" stroke-width="9"></line>
+            <line x1="70" y1="28" x2="90" y2="28" stroke="#111111" stroke-width="9"></line>
+            <line x1="24" y1="34" x2="24" y2="66" stroke="#476776" stroke-width="5"></line>
+            <line x1="52" y1="34" x2="52" y2="66" stroke="#476776" stroke-width="5"></line>
+            <line x1="80" y1="34" x2="80" y2="66" stroke="#476776" stroke-width="5"></line>
+            <line x1="14" y1="74" x2="90" y2="74" stroke="#C43230" stroke-width="9"></line>
+          </svg>
+          <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 19px; line-height: 1.35; letter-spacing: -0.02em; color: #111111;">Automate the repetitive work.</div>
+        </div>
       </div>
+      <div style="min-width: 0; display: flex; flex-direction: column; gap: 16px; align-items: flex-start;">
+        <p style="margin: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">Purpose-built workflows handle recurring operational work around invoices, field reporting, safety, billing, compliance, and changes.</p>
+        <div style="display: flex; align-items: center; gap: 18px; flex-wrap: wrap;">
+          <a href="/products/operations-automation.html" style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 14px; letter-spacing: -0.01em; color: #111111; border-bottom: 2px solid #111111; padding-bottom: 3px;">Explore Operations Automation &rarr;</a>
+          <a href="/products/custom-solutions.html" style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 14px; letter-spacing: -0.01em; color: #476776; border-bottom: 1px solid #B8B9B5; padding-bottom: 3px;">Custom Solutions</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
+<!-- ===== §4 PROOF ===== -->
+<div style="background: #EFEFEB; padding: 76px 0 80px;">
+  <div style="max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px);">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 24px 48px; align-items: start;">
+      <div style="container-type: inline-size; min-width: 0;">
+        <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(26px, 7cqi, 38px); line-height: 1.08; letter-spacing: -0.032em; color: #111111; max-width: 22ch; text-wrap: balance;">Built in real construction operations.</h2>
+      </div>
+      <div style="min-width: 0; display: flex; flex-direction: column; gap: 16px; align-items: flex-start; padding-top: 4px;">
+        <p style="margin: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.6; color: #5F6466;">Construction OS grew out of solving these problems while working inside a residential GC&mdash;<wbr>not from taking a generic AI product and looking for a construction use case.</p>
+        <a href="/about.html" style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 15px; letter-spacing: -0.01em; color: #111111; border-bottom: 2px solid #111111; padding-bottom: 3px;">Read the story &rarr;</a>
+      </div>
+    </div>
+
+    <div style="border-top: 2px solid #111111; margin-top: 32px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); align-items: start;">
+      <div style="min-width: 0; padding: 26px 32px 28px 0; display: flex; flex-direction: column; gap: 10px;">
+        <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: #5F6466;">4&ndash;8 hrs &rarr;</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 38px; line-height: 1; letter-spacing: -0.035em; color: #C43230;">~30 min</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.5; color: #5F6466;">Contract package preparation</div>
+      </div>
+      <div style="min-width: 0; padding: 26px 32px 28px; border-left: 1px solid #B8B9B5; display: flex; flex-direction: column; gap: 10px;">
+        <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: #5F6466;">~10 days &rarr;</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 38px; line-height: 1; letter-spacing: -0.035em; color: #C43230;">~3 days</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.5; color: #5F6466;">Change-order turnaround</div>
+      </div>
+      <div style="min-width: 0; padding: 26px 0 28px 32px; border-left: 1px solid #B8B9B5; display: flex; flex-direction: column; gap: 10px;">
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 38px; line-height: 1; letter-spacing: -0.035em; color: #111111;">150+</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.5; color: #5F6466;">Standard construction document types across the lifecycle</div>
+      </div>
+    </div>
+
+    <div style="border-top: 1px solid #B8B9B5; padding-top: 20px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;">
+      <div style="font-family: ui-monospace, monospace; font-size: 11px; letter-spacing: 0.04em; color: #5F6466;">CASE-001 / RESIDENTIAL GC / BOSTON</div>
+      <a href="#" style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 14px; letter-spacing: -0.01em; color: #111111; border-bottom: 2px solid #111111; padding-bottom: 3px;">Read the case study &rarr;</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== §5 HOW YOU GET IT ===== -->
+<div style="background: #FFFFFF; padding: 76px 0 84px;">
+  <div style="max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px);">
+
+    <div style="container-type: inline-size; display: flex; flex-direction: column; gap: 20px; border-bottom: 2px solid #111111; padding-bottom: 32px;">
+      <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #476776;">How you get it</div>
+      <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(28px, 8cqi, 46px); line-height: 1.02; letter-spacing: -0.038em; color: #111111; max-width: 26ch; text-wrap: balance;">Built around your business.</h2>
+      <div style="display: flex; flex-direction: column; gap: 12px; max-width: 64ch;">
+        <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 17px; line-height: 1.5; letter-spacing: -0.015em; color: #111111;">Construction OS isn&rsquo;t self-service software that asks you to reshape the company around it.</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.6; color: #5F6466;">I start with the way your business actually works&mdash;<wbr>your documents, standards, knowledge, workflows, and bottlenecks&mdash;<wbr>then configure and build around the problems worth solving.</div>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column;">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 10px 48px; padding: 26px 0 28px; align-items: baseline;">
+        <div style="min-width: 0; display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 0 14px; align-items: baseline;">
+          <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: #5F6466;">01</div>
+          <h3 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 22px; line-height: 1.25; letter-spacing: -0.024em; color: #111111; text-wrap: balance;">Start with a real problem.</h3>
+        </div>
+        <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">Not an abstract AI initiative. We pick the workflow that is actually costing your team time.</div>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 10px 48px; padding: 26px 0 28px; border-top: 1px solid #B8B9B5; align-items: baseline;">
+        <div style="min-width: 0; display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 0 14px; align-items: baseline;">
+          <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: #5F6466;">02</div>
+          <h3 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 22px; line-height: 1.25; letter-spacing: -0.024em; color: #111111; text-wrap: balance;">Prove it in real work.</h3>
+        </div>
+        <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">Your actual documents, workflows, terminology, and company context&mdash;<wbr>in the hands of the people who do the work.</div>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 10px 48px; padding: 26px 0 28px; border-top: 1px solid #B8B9B5; align-items: baseline;">
+        <div style="min-width: 0; display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 0 14px; align-items: baseline;">
+          <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: #5F6466;">03</div>
+          <h3 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 22px; line-height: 1.25; letter-spacing: -0.024em; color: #111111; text-wrap: balance;">Expand what works.</h3>
+        </div>
+        <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">Once a workflow proves valuable, apply it to the next team, project type, or part of the business.</div>
+      </div>
+    </div>
+
+    <div style="border-top: 2px solid #111111; padding-top: 30px; display: flex; flex-direction: column; gap: 22px; align-items: flex-start;">
+      <div style="border-left: 2px solid #476776; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; max-width: 66ch;">
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 20px; line-height: 1.35; letter-spacing: -0.022em; color: #111111;">Not every workflow should be automated.</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.6; color: #5F6466;">If existing software already solves the problem well, use it. If judgment creates the value, keep the judgment.</div>
+      </div>
+      <a href="/services.html" style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 15px; letter-spacing: -0.01em; color: #111111; border-bottom: 2px solid #111111; padding-bottom: 3px;">See how an engagement works &rarr;</a>
     </div>
 
   </div>
-  </div><!-- /.cos-container -->
-</section>
+</div>
 
+<!-- ===== §6 CLOSING CTA ===== -->
+<div style="background: #111111; padding: 84px 0 80px;">
+  <div style="max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr)); gap: 48px; align-items: start;">
+    <div style="container-type: inline-size; min-width: 0; display: flex; flex-direction: column; gap: 26px;">
+      <div style="display: flex; align-items: center; gap: 14px;">
+        <svg viewBox="0 0 100 100" width="24" height="24" aria-hidden="true" style="flex: none;">
+          <polyline points="16,54 16,16 54,16" fill="none" stroke="#FFFFFF" stroke-width="10"></polyline>
+          <polyline points="84,46 84,84 46,84" fill="none" stroke="#FFFFFF" stroke-width="10"></polyline>
+          <rect x="34" y="34" width="32" height="32" fill="#C43230"></rect>
+        </svg>
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: #FFFFFF;">Construction OS</div>
+        <div style="height: 1px; flex: 1; background: #5F6466;" aria-hidden="true"></div>
+      </div>
+      <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(32px, 11cqi, 60px); line-height: 0.99; letter-spacing: -0.042em; color: #FFFFFF; text-wrap: balance;">Give your team time back.</h2>
+      <p style="margin: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 17px; line-height: 1.6; color: #B8B9B5; max-width: 46ch;">Bring me the workflow, paperwork, knowledge bottleneck, or repetitive process your team is tired of dealing with.</p>
+      <div style="display: flex; align-items: center; gap: 22px; flex-wrap: wrap; padding-top: 4px;">
+        <a href="https://cal.com/justinyurasits" style="box-sizing: border-box; background: #FFFFFF; color: #111111; font-family: Archivo, sans-serif; font-weight: 600; font-size: 15px; letter-spacing: -0.01em; padding: 15px 26px; min-height: 48px; display: flex; align-items: center;">Book a 30-minute call</a>
+        <a href="https://draftconstructionchangeorder.com" style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 15px; letter-spacing: -0.01em; color: #FFFFFF; border-bottom: 2px solid #FFFFFF; padding-bottom: 3px;">See it work &rarr;</a>
+      </div>
+    </div>
+
+    <div style="min-width: 0; display: flex; flex-direction: column;">
+      <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: #B8B9B5; padding-bottom: 14px;">What a call covers</div>
+      <div style="border-top: 1px solid #5F6466; padding: 16px 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: 16px; line-height: 1.5; color: #FFFFFF;">Where the work actually slows down</div>
+      <div style="border-top: 1px solid #5F6466; padding: 16px 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: 16px; line-height: 1.5; color: #FFFFFF;">Which problem is worth solving first</div>
+      <div style="border-top: 1px solid #5F6466; padding: 16px 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: 16px; line-height: 1.5; color: #FFFFFF;">What a first engagement would look like</div>
+    </div>
+  </div>
+</div>
 
 <!-- footer:start -->
 <footer class="cos-footer">
@@ -2266,23 +509,20 @@
       <!-- Company -->
       <nav class="cos-footer__col" aria-label="Company">
         <span class="cos-footer__col-head">Company</span>
-        <a class="cos-footer__col-item" href="/services.html">Services</a>
+        <a class="cos-footer__col-item" href="/services.html">Engagements</a>
         <a class="cos-footer__col-item" href="/about.html">About</a>
       </nav>
 
       <!-- Resources -->
       <nav class="cos-footer__col" aria-label="Resources">
         <span class="cos-footer__col-head">Resources</span>
-        <a class="cos-footer__col-item" href="/case-studies.html">Case studies</a>
         <a class="cos-footer__col-item" href="/insights.html">Insights</a>
-        <a class="cos-footer__col-item" href="/guides.html">Guides &amp; white papers</a>
       </nav>
 
       <!-- Contact -->
       <div class="cos-footer__col">
-        <span class="cos-footer__col-head">Talk to us</span>
+        <span class="cos-footer__col-head">Get in touch</span>
         <a class="cos-footer__contact-email" href="mailto:justin@justinyurasits.com">justin@justinyurasits.com</a>
-        <a class="cos-footer__col-item" href="tel:8572481365">857-248-1365</a>
         <a class="cos-footer__col-item" href="https://linkedin.com/in/justinyurasits">LinkedIn</a>
       </div>
 
@@ -2326,6 +566,5 @@
 <!-- footer:end -->
 
 <script src="/brand-kit/cos-nav.js"></script>
-
 </body>
 </html>

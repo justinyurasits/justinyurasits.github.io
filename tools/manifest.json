@@ -112,7 +112,7 @@
     },
     {
       "path": "insights.html",
-      "active": "resources",
+      "active": "insights",
       "activeProduct": null,
       "footer": {
         "current": "insights",

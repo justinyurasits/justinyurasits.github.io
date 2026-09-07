@@ -27,7 +27,6 @@ function productItem(href, marker, name, key, activeProduct) {
 
 function buildHeader(active, activeProduct) {
   const productsTriggerCur = active === 'products' ? ' is-current' : '';
-  const resourcesTriggerCur = active === 'resources' ? ' is-current' : '';
 
   function navA(href, label, key) {
     const cur = active === key ? ' aria-current="page"' : '';
@@ -60,23 +59,7 @@ ${productItem('/products/custom-solutions.html', '——', 'Custom Solutions', '
           </nav>
         </li>
 ${navA('/services.html', 'Engagements', 'services')}
-        <li class="cos-nav__dropdown" id="dd-resources">
-          <button class="cos-nav__trigger${resourcesTriggerCur}" aria-expanded="false" aria-haspopup="true" aria-controls="resources-panel">Resources<span class="cos-nav__caret" aria-hidden="true">▾</span></button>
-          <nav class="cos-nav__panel cos-nav__panel--resources" id="resources-panel" aria-label="Resources">
-            <a class="cos-nav__item cos-menu__item" href="/case-studies.html">
-              <span class="cos-nav__name">Case studies</span>
-              <span class="cos-menu__gloss">Real construction applications and measured results.</span>
-            </a>
-            <a class="cos-nav__item cos-menu__item" href="/insights.html">
-              <span class="cos-nav__name">Insights</span>
-              <span class="cos-menu__gloss">Articles on AI, construction operations, documentation, knowledge, and workflow improvement.</span>
-            </a>
-            <a class="cos-nav__item cos-menu__item" href="/guides.html">
-              <span class="cos-nav__name">Guides &amp; white papers</span>
-              <span class="cos-menu__gloss">Longer practical resources for construction operators.</span>
-            </a>
-          </nav>
-        </li>
+${navA('/insights.html', 'Insights', 'insights')}
 ${navA('/about.html', 'About', 'about')}
         <li><a class="cos-header__cta" href="${calLink}">Book a call</a></li>
       </ul>
@@ -142,8 +125,8 @@ ${footerItem('/products/custom-solutions.html', '——', 'Custom Solutions', cu
       <nav class="cos-footer__col" aria-label="Company">
         <span class="cos-footer__col-head">Company</span>
         ${current === 'services'
-          ? '<span class="cos-footer__col-item cos-footer__col-item--ink" aria-current="page">Services</span>'
-          : '<a class="cos-footer__col-item" href="/services.html">Services</a>'}
+          ? '<span class="cos-footer__col-item cos-footer__col-item--ink" aria-current="page">Engagements</span>'
+          : '<a class="cos-footer__col-item" href="/services.html">Engagements</a>'}
         ${current === 'about'
           ? '<span class="cos-footer__col-item cos-footer__col-item--ink" aria-current="page">About</span>'
           : '<a class="cos-footer__col-item" href="/about.html">About</a>'}
@@ -152,16 +135,13 @@ ${footerItem('/products/custom-solutions.html', '——', 'Custom Solutions', cu
       <!-- Resources -->
       <nav class="cos-footer__col" aria-label="Resources">
         <span class="cos-footer__col-head">Resources</span>
-${resourcesFooterItem('/case-studies.html', 'case-studies', 'Case studies', current)}
 ${resourcesFooterItem('/insights.html', 'insights', 'Insights', current)}
-${resourcesFooterItem('/guides.html', 'guides', 'Guides &amp; white papers', current)}
       </nav>
 
       <!-- Contact -->
       <div class="cos-footer__col">
-        <span class="cos-footer__col-head">Talk to us</span>
+        <span class="cos-footer__col-head">Get in touch</span>
         <a class="cos-footer__contact-email" href="mailto:${email}">${email}</a>
-        <a class="cos-footer__col-item" href="tel:8572481365">857-248-1365</a>
         <a class="cos-footer__col-item" href="https://linkedin.com/in/justinyurasits">LinkedIn</a>
       </div>
 

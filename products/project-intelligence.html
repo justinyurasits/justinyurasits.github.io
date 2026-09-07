@@ -173,11 +173,19 @@ img { max-width: 100%; display: block; }
 .pi-loop__card-body p:first-child { font-weight: 500; color: var(--c-ink); }
 
 /* § 8b Ink strip */
-.pi-loop__strip { background: var(--c-ink); padding: 34px 0; }
-.pi-loop__strip-inner { display: grid; grid-template-columns: auto 1fr; gap: 0 28px; align-items: baseline; }
-.pi-loop__strip-label { font: 600 11px/1 var(--font-display), sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--c-line); white-space: nowrap; align-self: center; }
-.pi-loop__strip-value { font: 600 22px/1.2 var(--font-display), sans-serif; letter-spacing: -.022em; color: var(--c-white); }
-.pi-loop__strip-sub { margin-top: 6px; font: 500 15px/1.4 var(--font-display), sans-serif; color: var(--c-line); }
+.pi-loop__strip { background: var(--c-ink); }
+.pi-loop__strip-inner { padding-block: 44px 48px; }
+.pi-loop__strip-head { display: flex; align-items: baseline; justify-content: space-between; gap: 20px 40px; flex-wrap: wrap; border-bottom: 1px solid #5F6466; padding-bottom: 22px; }
+.pi-loop__strip-eyebrow { font: 600 11px/1 var(--font-display), sans-serif; letter-spacing: .14em; text-transform: uppercase; color: #B8B9B5; }
+.pi-loop__strip-kicker { font: 400 14px/1 var(--font-display), sans-serif; color: #B8B9B5; }
+.pi-loop__beats { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); padding-top: 30px; }
+.pi-loop__beat { display: flex; flex-direction: column; gap: 10px; padding: 0 32px; }
+.pi-loop__beat:first-child { padding-left: 0; }
+.pi-loop__beat:last-child { padding-right: 0; }
+.pi-loop__beat--divider { border-left: 1px solid #5F6466; }
+.pi-loop__beat-n { font: 400 12px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace; letter-spacing: .04em; color: #B8B9B5; }
+.pi-loop__beat-title { margin: 0; font: 600 24px/1.2 var(--font-display), sans-serif; letter-spacing: -.026em; color: #FFFFFF; text-wrap: balance; }
+.pi-loop__beat-gloss { margin: 0; font: 400 14px/1.55 var(--font-display), sans-serif; color: #B8B9B5; }
 
 /* ─── § 9 Three products — Bond ──────────────────────────── */
 .pi-system { background: var(--c-bond); padding: 76px 0 80px; }
@@ -239,12 +247,14 @@ img { max-width: 100%; display: block; }
 
 /* ─── Responsive ─────────────────────────────────────────── */
 @media (max-width: 900px) {
-  .pi-loop__strip-inner { grid-template-columns: 1fr; }
 }
 @media (max-width: 760px) {
   .pi-hero { padding: 56px 0 48px; }
   .pi-hero__rule { margin-top: 32px; }
-  .pi-loop__strip-inner { grid-template-columns: 1fr; }
+}
+@media (max-width: 540px) {
+  .pi-loop__beat--divider { border-left: none; }
+  .pi-loop__beat { padding-inline: 0; }
 }
 </style>
 <link rel="stylesheet" href="../brand-kit/cos-header.css">
@@ -737,12 +747,26 @@ img { max-width: 100%; display: block; }
 
   <!-- § 8b. Ink strip — full-bleed inside Paper section -->
   <div class="pi-loop__strip">
-    <div class="cos-container">
-      <div class="pi-loop__strip-inner">
-        <span class="pi-loop__strip-label">The Construction OS Loop</span>
-        <div>
-          <p class="pi-loop__strip-value">See the exception. Know what to do. Produce what the job needs.</p>
-          <p class="pi-loop__strip-sub">That is the Construction OS loop.</p>
+    <div class="pi-loop__strip-inner cos-container">
+      <div class="pi-loop__strip-head">
+        <span class="pi-loop__strip-eyebrow">THE CONSTRUCTION OS LOOP</span>
+        <span class="pi-loop__strip-kicker">Three products, one sequence.</span>
+      </div>
+      <div class="pi-loop__beats">
+        <div class="pi-loop__beat">
+          <span class="pi-loop__beat-n">01</span>
+          <p class="pi-loop__beat-title">See the exception.</p>
+          <p class="pi-loop__beat-gloss">Project Intelligence surfaces what needs attention.</p>
+        </div>
+        <div class="pi-loop__beat pi-loop__beat--divider">
+          <span class="pi-loop__beat-n">02</span>
+          <p class="pi-loop__beat-title">Know what to do.</p>
+          <p class="pi-loop__beat-gloss">Construction Intelligence answers it your company&rsquo;s way.</p>
+        </div>
+        <div class="pi-loop__beat pi-loop__beat--divider">
+          <span class="pi-loop__beat-n">03</span>
+          <p class="pi-loop__beat-title">Produce what the job needs.</p>
+          <p class="pi-loop__beat-gloss">Document Workbench issues the document.</p>
         </div>
       </div>
     </div>

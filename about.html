@@ -712,6 +712,35 @@
 <!-- footer:end -->
 
 <script>
+(function () {
+  var header = document.querySelector('.cos-header');
+  var toggle = header.querySelector('.cos-header__toggle');
+  var nav    = header.querySelector('.cos-nav');
+  var dd     = header.querySelector('.cos-nav__dropdown');
+  var btn    = dd ? dd.querySelector('.cos-nav__trigger') : null;
+  var panel  = dd ? dd.querySelector('.cos-nav__panel') : null;
+
+  toggle.addEventListener('click', function () {
+    var open = nav.classList.toggle('is-open');
+    toggle.setAttribute('aria-expanded', open);
+  });
+
+  if (!dd) return;
+
+  var openTimer, closeTimer;
+
+  function openPanel() {
+    clearTimeout(closeTimer);
+    dd.classList.add('is-open');
+    btn.setAttribute('aria-expanded', 'true');
+  }
+
+  function closePanel() {
+    clearTimeout(openTimer);
+    dd.classList.remove('is-open');
+    btn.setAttribute('aria-expanded', 'false');
+  }
+
   btn.addEventListener('click', function (e) {
     e.stopPropagation();
     clearTimeout(openTimer); clearTimeout(closeTimer);

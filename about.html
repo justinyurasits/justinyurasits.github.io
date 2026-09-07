@@ -292,7 +292,426 @@
     dd.classList.remove('is-open');
     btn.setAttribute('aria-expanded', 'false');
   }
+</style>
+<body>
 
+<!-- header:start -->
+<header class="cos-header" id="cos-header">
+  <div class="cos-container">
+    <div class="cos-header__inner">
+      <a class="cos-logo" href="/">
+        <svg viewBox="0 0 100 100" width="22" height="22" aria-hidden="true">
+          <polyline points="14,56 14,14 56,14" fill="none" stroke="currentColor" stroke-width="13"/>
+          <polyline points="86,44 86,86 44,86" fill="none" stroke="currentColor" stroke-width="13"/>
+          <rect x="32" y="32" width="36" height="36" fill="#C43230"/>
+        </svg>
+        Construction OS
+      </a>
+      <button class="cos-header__toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav">Menu</button>
+      <ul class="cos-nav" id="main-nav" role="list">
+        <li class="cos-nav__dropdown">
+          <button class="cos-nav__trigger" aria-expanded="false" aria-haspopup="true" aria-controls="products-panel">Products</button>
+          <nav class="cos-nav__panel" id="products-panel">
+            <span class="cos-nav__group-label">Core Products</span>
+            <a class="cos-nav__item" href="/products/document-workbench.html">
+              <span class="cos-nav__marker">01</span><span class="cos-nav__name">Document Workbench</span>
+            </a>
+            <a class="cos-nav__item" href="/products/construction-intelligence.html">
+              <span class="cos-nav__marker">02</span><span class="cos-nav__name">Construction Intelligence</span>
+            </a>
+            <a class="cos-nav__item" href="/products/project-intelligence.html">
+              <span class="cos-nav__marker">03</span><span class="cos-nav__name">Project Intelligence</span>
+            </a>
+            <span class="cos-nav__group-label">Extension Layer</span>
+            <a class="cos-nav__item" href="/products/operations-automation.html">
+              <span class="cos-nav__marker">——</span><span class="cos-nav__name">Operations Automation</span>
+            </a>
+            <a class="cos-nav__item" href="/products/custom-solutions.html">
+              <span class="cos-nav__marker">——</span><span class="cos-nav__name">Custom Solutions</span>
+            </a>
+          </nav>
+        </li>
+        <li><a href="/services.html">Services</a></li>
+        <li><a href="/about.html" aria-current="page">About</a></li>
+        <li><a class="cos-header__cta" href="https://cal.com/justinyurasits">Book a demo</a></li>
+      </ul>
+    </div>
+  </div>
+</header>
+<!-- header:end -->
+
+<main>
+
+<!-- ══════════════════════════════════════════════════════
+     §1 Hero — Paper
+     ══════════════════════════════════════════════════════ -->
+<section class="ab-paper ab-section--hero">
+  <div class="cos-container">
+    <div class="ab-hero-col">
+      <div class="ab-hero-tag" aria-hidden="true">
+        <span>——</span>
+        <span class="ab-hero-tag__rule"></span>
+        <span class="ab-hero-tag__label">About</span>
+      </div>
+      <h1 class="ab-hero-h1">Twelve years in enterprise product leadership. Several years inside construction operations. One problem that connected both.</h1>
+      <p class="ab-hero-lead">I've spent my career building software products and working inside the operations they're meant to serve.</p>
+      <p class="ab-hero-body">My background in enterprise product leadership gave me a way of thinking about how to turn operational complexity into tools people can use. Working inside construction operations showed me what actually needed to be built.</p>
+      <p class="ab-hero-kicker">The work informed the tools. The tools are designed around the work.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     §2 I didn't enter construction as an AI consultant — Bond
+     ══════════════════════════════════════════════════════ -->
+<section class="ab-bond ab-section">
+  <div class="cos-container">
+    <div class="ab-two-col">
+      <div class="ab-col-left">
+        <p class="ab-eyebrow" style="margin-bottom: 8px">The Turn</p>
+        <h2 class="ab-section-h2">I didn't enter construction as an AI consultant.</h2>
+      </div>
+      <div class="ab-col-right">
+        <p class="ab-prose-500">My background is in enterprise product leadership. For more than a decade, I built and managed software products — working with technical teams, understanding user needs, and figuring out how to turn operational complexity into tools people could actually use.</p>
+        <p class="ab-prose-400">Then I moved directly into construction operations. I wanted to understand how the work actually happened — not from the outside, but from inside it. I worked on projects. I learned how estimates get built, how documents get produced, how information moves between the office and the field, and where experienced judgment is the only thing keeping a process running.</p>
+        <p class="ab-prose-400">That combination — product thinking applied from inside the operation — is where Construction OS came from.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     §3 What I found wasn't really a software problem — Paper
+     ══════════════════════════════════════════════════════ -->
+<section class="ab-paper ab-section">
+  <div class="cos-container">
+    <div class="ab-head-block">
+      <div>
+        <h2 class="ab-section-h2">What I found wasn't really a software problem.</h2>
+      </div>
+      <div class="ab-head-right">
+        <p class="ab-text-500">The software existed. The problem was that the operation hadn't been made legible enough for it to work.</p>
+      </div>
+    </div>
+
+    <ul class="ab-findings-grid">
+      <li class="ab-finding-cell">Valuable knowledge lived in experienced people — and left with them when they did.</li>
+      <li class="ab-finding-cell">Operating standards existed, but not in a form anyone could consistently use.</li>
+      <li class="ab-finding-cell">Repetitive production work consumed time that should have gone to judgment.</li>
+      <li class="ab-finding-cell">Most tools required the work to adapt to the software, not the other way around.</li>
+      <li class="ab-finding-cell">The business couldn't scale its best practices because they weren't written down anywhere useful.</li>
+    </ul>
+
+    <p class="ab-pull-quote">The technology was ready. The operating knowledge wasn't in a form the technology could use.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     §4 You can't automate what the business hasn't made legible — Ink
+     ══════════════════════════════════════════════════════ -->
+<section class="ab-ink ab-section">
+  <div class="cos-container">
+    <h2 class="ab-ink-head">You can't automate what the business hasn't made legible.</h2>
+    <div class="ab-ledger-grid">
+      <div class="ab-ledger-row">
+        <span class="ab-ledger-n">01</span>
+        <p class="ab-ledger-text">The first job is making the operation legible — capturing the knowledge, standards, and judgment that currently live in people's heads and putting it somewhere the work can use it.</p>
+      </div>
+      <div class="ab-ledger-row">
+        <span class="ab-ledger-n">02</span>
+        <p class="ab-ledger-text">Once the knowledge is legible, you can build systems that reflect how the business actually works — not how a generic software product assumes it should work.</p>
+      </div>
+      <div class="ab-ledger-row">
+        <span class="ab-ledger-n">03</span>
+        <p class="ab-ledger-text">Then automation follows structure. When the operation is well-defined, you can take the predictable work off the team and put people's attention where it actually matters.</p>
+      </div>
+    </div>
+    <p class="ab-ink-kicker">That is the premise Construction OS is built on.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     §5 Construction OS grew out of solving real operating problems — Bond
+     ══════════════════════════════════════════════════════ -->
+<section class="ab-bond ab-section">
+  <div class="cos-container">
+    <div style="border-bottom: 2px solid #111111; padding-bottom: 26px; margin-bottom: 30px;">
+      <h2 class="ab-section-h2">Construction OS grew out of solving real operating problems.</h2>
+    </div>
+
+    <ul class="ab-q-grid">
+      <li class="ab-q-cell">What if the business's best practices were built into the tool, not just remembered by senior people?</li>
+      <li class="ab-q-cell">What if the right answer was available before someone had to track down the person who knew it?</li>
+      <li class="ab-q-cell">What if production documents reflected company standards — not a blank template?</li>
+      <li class="ab-q-cell">What if the team could see what needed attention across projects before it became a problem?</li>
+    </ul>
+
+    <div class="ab-products-rule">
+      <div class="ab-products-grid">
+
+        <div class="ab-product-card">
+          <div class="ab-product-card__icon-row">
+            <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true" style="color: #111111; flex: none">
+              <polyline points="30,14 86,14 86,72" fill="none" stroke="var(--cos-revision, currentColor)" stroke-width="4"/>
+              <rect x="14" y="26" width="52" height="60" fill="none" stroke="currentColor" stroke-width="8"/>
+            </svg>
+            <p class="ab-product-card__name">Document Workbench</p>
+          </div>
+          <p class="ab-product-card__desc">Produce company-standard construction documents from first walkthrough through closeout.</p>
+        </div>
+
+        <div class="ab-product-card">
+          <div class="ab-product-card__icon-row">
+            <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true" style="color: #111111; flex: none">
+              <line x1="6" y1="50" x2="96" y2="50" stroke="var(--cos-revision, currentColor)" stroke-width="4"/>
+              <polyline points="8,20 40,20 54,42 94,42" fill="none" stroke="currentColor" stroke-width="8"/>
+              <polyline points="8,80 40,80 54,58 94,58" fill="none" stroke="currentColor" stroke-width="8"/>
+            </svg>
+            <p class="ab-product-card__name">Construction Intelligence</p>
+          </div>
+          <p class="ab-product-card__desc">Put your company's procedures, standards, pricing judgment, and operating knowledge within reach of the team.</p>
+        </div>
+
+        <div class="ab-product-card">
+          <div class="ab-product-card__icon-row">
+            <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true" style="color: #111111; flex: none">
+              <rect x="6" y="18" width="88" height="64" fill="none" stroke="var(--cos-hairline, #476776)" stroke-width="4"/>
+              <line x1="18" y1="70" x2="82" y2="70" stroke="currentColor" stroke-width="8"/>
+              <line x1="30" y1="70" x2="30" y2="56" stroke="currentColor" stroke-width="8"/>
+              <line x1="50" y1="70" x2="50" y2="44" stroke="currentColor" stroke-width="8"/>
+              <line x1="70" y1="70" x2="70" y2="32" stroke="var(--cos-revision, currentColor)" stroke-width="8"/>
+            </svg>
+            <p class="ab-product-card__name">Project Intelligence</p>
+          </div>
+          <p class="ab-product-card__desc">Surface the exceptions and unresolved work that need attention across active projects.</p>
+        </div>
+
+      </div>
+      <p class="ab-extension-line">Operations Automation and Custom Solutions extend the platform to recurring workflows and purpose-built needs.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     §6 Built from both sides of the problem — Paper
+     ══════════════════════════════════════════════════════ -->
+<section class="ab-paper ab-section">
+  <div class="cos-container">
+    <div style="border-bottom: 2px solid #111111; padding-bottom: 26px; margin-bottom: 34px;">
+      <h2 class="ab-section-h2">Built from both sides of the problem.</h2>
+    </div>
+
+    <div class="ab-knowledge-grid">
+      <div class="ab-knowledge-col">
+        <p class="ab-knowledge-head">Product &amp; software</p>
+        <p class="ab-knowledge-item"><span class="ab-knowledge-n">01</span>Enterprise software product leadership</p>
+        <p class="ab-knowledge-item"><span class="ab-knowledge-n">02</span>Technical architecture and systems design</p>
+        <p class="ab-knowledge-item"><span class="ab-knowledge-n">03</span>AI product development and deployment</p>
+        <p class="ab-knowledge-item"><span class="ab-knowledge-n">04</span>Workflow analysis and process design</p>
+      </div>
+      <div class="ab-knowledge-col">
+        <p class="ab-knowledge-head">Construction operations</p>
+        <p class="ab-knowledge-item"><span class="ab-knowledge-n">01</span>Field coordination and construction management</p>
+        <p class="ab-knowledge-item"><span class="ab-knowledge-n">02</span>Estimating and scope management</p>
+        <p class="ab-knowledge-item"><span class="ab-knowledge-n">03</span>Construction documentation and submittals</p>
+        <p class="ab-knowledge-item"><span class="ab-knowledge-n">04</span>Subcontractor and vendor management</p>
+        <p class="ab-knowledge-item"><span class="ab-knowledge-n">05</span>Project controls and scheduling</p>
+        <p class="ab-knowledge-item"><span class="ab-knowledge-n">06</span>Quality management and closeout</p>
+        <p class="ab-knowledge-item"><span class="ab-knowledge-n">07</span>Operating knowledge capture and standards development</p>
+      </div>
+    </div>
+
+    <p class="ab-knowledge-close">That combination is what makes Construction OS different from tools built by people who have only ever worked in software.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     §7 That is how I work with clients today — Bond
+     ══════════════════════════════════════════════════════ -->
+<section class="ab-bond ab-section">
+  <div class="cos-container">
+    <div class="ab-today-head">
+      <p class="ab-eyebrow" style="margin-bottom: 12px">Today</p>
+      <h2 class="ab-section-h2">That is how I work with clients today.</h2>
+    </div>
+    <ul class="ab-sometimes-list">
+      <li class="ab-sometimes-line">Sometimes that means a demo with your actual documents, built around your standards and terminology.</li>
+      <li class="ab-sometimes-line">Sometimes that means a strategy engagement to find the two or three problems worth solving first.</li>
+      <li class="ab-sometimes-line">Sometimes that means implementing Construction OS around your company's operating practices.</li>
+      <li class="ab-sometimes-line">Sometimes that means building a purpose-built tool for the workflow that doesn't fit anything off-the-shelf.</li>
+    </ul>
+    <p class="ab-section-kicker">Start with the problem. Build from there.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     §8 Closing CTA — Ink
+     ══════════════════════════════════════════════════════ -->
+<section class="ab-ink ab-section--closing">
+  <div class="cos-container">
+    <div class="ab-closing-grid">
+
+      <!-- Left column -->
+      <div class="ab-closing-col">
+        <div class="ab-closing-lockup">
+          <svg viewBox="0 0 100 100" width="24" height="24" aria-hidden="true" style="flex: none; color: #FFFFFF">
+            <polyline points="14,56 14,14 56,14" fill="none" stroke="currentColor" stroke-width="13"/>
+            <polyline points="86,44 86,86 44,86" fill="none" stroke="currentColor" stroke-width="13"/>
+            <rect x="32" y="32" width="36" height="36" fill="#C43230"/>
+          </svg>
+          <span class="ab-closing-label">About</span>
+          <span class="ab-closing-lockup__rule"></span>
+        </div>
+
+        <h2 class="ab-closing-h2">Tell me about the problem.</h2>
+
+        <ul class="ab-candidates">
+          <li>You have more work than time to do it well.</li>
+          <li>A process is held together by one person's experience.</li>
+          <li>The same question gets asked — and re-answered — every week.</li>
+          <li>Production is slower than it should be.</li>
+          <li>You're not sure what's falling through the cracks on active projects.</li>
+          <li>The business has grown but the way the work gets done hasn't kept up.</li>
+        </ul>
+
+        <div class="ab-cta-row">
+          <a class="ab-btn-primary" href="https://cal.com/justinyurasits">Book a demo</a>
+          <a class="ab-btn-secondary" href="/services.html">See how I work →</a>
+        </div>
+      </div>
+
+      <!-- Right column — Background rail -->
+      <div class="ab-rail">
+        <p class="ab-rail-label">Background</p>
+        <div class="ab-rail-row">
+          <span class="ab-rail-n">01</span>
+          <div class="ab-rail-stack">
+            <p class="ab-rail-name">Enterprise Product Leadership</p>
+            <p class="ab-rail-detail">More than a decade building software products across enterprise operations.</p>
+          </div>
+        </div>
+        <div class="ab-rail-row">
+          <span class="ab-rail-n">02</span>
+          <div class="ab-rail-stack">
+            <p class="ab-rail-name">Construction Operations</p>
+            <p class="ab-rail-detail">Direct field and office work — estimating, documentation, coordination, and project management.</p>
+          </div>
+        </div>
+        <div class="ab-rail-row">
+          <span class="ab-rail-n">03</span>
+          <div class="ab-rail-stack">
+            <p class="ab-rail-name">AI Product Development</p>
+            <p class="ab-rail-detail">Building AI-powered operational tools from inside the work they support.</p>
+          </div>
+        </div>
+        <div class="ab-rail-row">
+          <span class="ab-rail-n">04</span>
+          <div class="ab-rail-stack">
+            <p class="ab-rail-name">Construction OS</p>
+            <p class="ab-rail-detail">Founder. A construction operating system built from both sides of the problem.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- footer:start -->
+<footer class="cos-footer">
+  <div class="cos-footer__inner cos-container">
+    <div class="cos-footer__cols">
+
+      <!-- Identity -->
+      <div class="cos-footer__brand">
+        <a class="cos-footer__lockup" href="/">
+          <svg viewBox="0 0 100 100" width="22" height="22" aria-hidden="true" style="color:#111111;flex:none">
+            <polyline points="14,56 14,14 56,14" fill="none" stroke="currentColor" stroke-width="13"/>
+            <polyline points="86,44 86,86 44,86" fill="none" stroke="currentColor" stroke-width="13"/>
+            <rect x="32" y="32" width="36" height="36" fill="#C43230"/>
+          </svg>
+          Construction OS
+        </a>
+        <p class="cos-footer__tagline">Three products. One construction operating system.</p>
+      </div>
+
+      <!-- Products -->
+      <div class="cos-footer__col">
+        <span class="cos-footer__col-head">Products</span>
+        <a class="cos-footer__col-item" href="/products/document-workbench.html">
+          <span class="cos-footer__col-n">01</span>Document Workbench
+        </a>
+        <a class="cos-footer__col-item" href="/products/construction-intelligence.html">
+          <span class="cos-footer__col-n">02</span>Construction Intelligence
+        </a>
+        <a class="cos-footer__col-item" href="/products/project-intelligence.html">
+          <span class="cos-footer__col-n">03</span>Project Intelligence
+        </a>
+        <a class="cos-footer__col-item" href="/products/operations-automation.html">
+          <span class="cos-footer__col-dash">——</span>Operations Automation
+        </a>
+        <a class="cos-footer__col-item" href="/products/custom-solutions.html">
+          <span class="cos-footer__col-dash">——</span>Custom Solutions
+        </a>
+      </div>
+
+      <!-- Company -->
+      <div class="cos-footer__col">
+        <span class="cos-footer__col-head">Company</span>
+        <a class="cos-footer__col-item" href="/services.html">Services</a>
+        <span class="cos-footer__col-item cos-footer__col-item--ink" aria-current="page">About</span>
+      </div>
+
+      <!-- Contact -->
+      <div class="cos-footer__col">
+        <span class="cos-footer__col-head">Talk to us</span>
+        <a class="cos-footer__contact-email" href="mailto:justin@justinyurasits.com">justin@justinyurasits.com</a>
+        <a class="cos-footer__col-item" href="tel:8572481365">857-248-1365</a>
+        <a class="cos-footer__col-item" href="https://linkedin.com/in/justinyurasits">LinkedIn</a>
+      </div>
+
+    </div>
+
+    <!-- Title block -->
+    <div class="cos-titleblock">
+      <div class="cos-titleblock__cell">
+        <span class="cos-titleblock__label">Sheet</span>
+        <span class="cos-titleblock__value">CONSTRUCTION OS</span>
+      </div>
+      <div class="cos-titleblock__cell">
+        <span class="cos-titleblock__label">Page</span>
+        <span class="cos-titleblock__value">ABOUT</span>
+      </div>
+      <div class="cos-titleblock__cell">
+        <span class="cos-titleblock__label">Issued</span>
+        <span class="cos-titleblock__value">2026-09-06</span>
+      </div>
+      <div class="cos-titleblock__cell">
+        <span class="cos-titleblock__label">Rev</span>
+        <span class="cos-titleblock__value">01</span>
+      </div>
+      <div class="cos-titleblock__cell">
+        <span class="cos-titleblock__label">Status</span>
+        <span class="cos-titleblock__value">ISSUED FOR REVIEW</span>
+      </div>
+    </div>
+
+    <!-- Legal -->
+    <div class="cos-footer__legal">
+      <span>&copy; 2026 Justin Yurasits. All rights reserved.</span>
+      <span>
+        <a href="/privacy.html" class="cos-footer__legal-link">Privacy Policy</a>
+        &nbsp;&middot;&nbsp;
+        <a href="/terms.html" class="cos-footer__legal-link">Terms</a>
+      </span>
+    </div>
+  </div>
+</footer>
+<!-- footer:end -->
+
+<script>
   btn.addEventListener('click', function (e) {
     e.stopPropagation();
     clearTimeout(openTimer); clearTimeout(closeTimer);

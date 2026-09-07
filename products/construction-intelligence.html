@@ -75,7 +75,7 @@ a { color: inherit; }
 .ci-problem__head { padding-bottom: 24px; }
 .ci-problem__body-g { margin: 0 0 12px; font: 400 16px/1.6 var(--font); color: var(--c-graphite); }
 .ci-problem__body-emph { margin: 0; font: 500 17px/1.5 var(--font); color: var(--c-ink); }
-.ci-ledger { border-top: 2px solid var(--c-ink); }
+.ci-ledger {}
 .ci-ledger__row { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px,100%), 1fr)); gap: 0 28px; align-items: baseline; padding: 28px 0; border-bottom: 1px solid var(--c-line); }
 .ci-ledger__row--last { padding-bottom: 46px; border-bottom: 0; }
 .ci-ledger__cell1 { display: flex; align-items: baseline; gap: 0; }
@@ -142,7 +142,7 @@ a { color: inherit; }
 .ci-questions { background: var(--c-white); padding: 76px 0 80px; }
 .ci-questions__head { padding-bottom: 24px; }
 .ci-questions__head-body { margin: 0; font: 400 16px/1.6 var(--font); color: var(--c-graphite); }
-.ci-question-rows { border-top: 2px solid var(--c-ink); }
+.ci-question-rows {}
 .ci-question-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px,100%), 1fr)); gap: 16px 28px; align-items: baseline; padding: 26px 0; border-bottom: 1px solid var(--c-line); }
 .ci-question-row--last { border-bottom: 0; }
 .ci-qcell1 { display: flex; flex-direction: column; gap: 10px; }
@@ -153,7 +153,7 @@ a { color: inherit; }
 .ci-qcell2 { display: flex; align-items: baseline; gap: 10px; }
 .ci-qcell2__ask { font: 600 11px/1 var(--font); letter-spacing: .1em; text-transform: uppercase; color: var(--c-ink); flex: none; }
 .ci-qcell2__q { margin: 0; font: 600 21px/1.25 var(--font); letter-spacing: -.022em; color: var(--c-ink); }
-.ci-questions__close { margin: 0; max-width: 70ch; font: 600 19px/1.4 var(--font); letter-spacing: -.015em; color: var(--c-ink); padding-top: 24px; }
+.ci-questions__close { margin: 0; max-width: 70ch; font: 600 19px/1.4 var(--font); letter-spacing: -.015em; color: var(--c-ink); border-top: 2px solid #111111; padding-top: 20px; }
 
 /* ─── § 6 Answer shouldn't end the workflow — Bond ───────── */
 .ci-workflow { background: var(--c-bond); padding-top: 76px; }
@@ -620,7 +620,6 @@ a { color: inherit; }
 
     </div>
 
-    <hr class="ci-rule-2px" style="margin-top:30px" aria-hidden="true">
     <p class="ci-questions__close">These aren&rsquo;t just knowledge questions. They&rsquo;re operating questions.</p>
 
   </div>

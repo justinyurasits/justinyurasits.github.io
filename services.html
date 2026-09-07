@@ -23,7 +23,7 @@
 /* Section spacing */
 .srv-section { padding: 76px 0 80px; }
 .srv-section--hero { padding: 76px 0 64px; }
-.srv-section--closing { padding: 88px 0 80px; }
+.srv-section--closing { padding: 72px 0 80px; }
 .srv-section--thin { padding: 34px 0; }
 
 /* Eyebrow */
@@ -339,14 +339,6 @@
 .srv-bg-lead { margin:0; font: 500 17px/1.5 var(--font-display),sans-serif; color:#111111; }
 .srv-bg-body { margin:0; font: 400 16px/1.6 var(--font-display),sans-serif; color:#5F6466; }
 
-/* ── §9b Thesis band ────────────────────────────────── */
-.srv-thesis-band {
-  background:#111111; padding:34px 0;
-}
-.srv-thesis {
-  margin:0; font: 600 clamp(22px,3.4vw,30px)/1.25 var(--font-display),sans-serif;
-  letter-spacing:-.028em; color:#FFFFFF; max-width:32ch; text-wrap:balance;
-}
 
 /* ── §10 Closing CTA ────────────────────────────────── */
 .srv-closing-grid {
@@ -849,12 +841,6 @@ a:hover { color:#111111; }
     </div>
   </div>
 
-  <!-- §9b Thesis band — full-bleed Ink inside the Paper section -->
-  <div class="srv-thesis-band">
-    <div class="cos-container">
-      <p class="srv-thesis">The technology matters. Understanding the operation matters more.</p>
-    </div>
-  </div>
 </section>
 
 <!-- ══════════════════════════════════════════════════════
@@ -862,6 +848,11 @@ a:hover { color:#111111; }
      ══════════════════════════════════════════════════════ -->
 <section class="srv-ink srv-section--closing">
   <div class="cos-container">
+    <div style="border-bottom: 1px solid #5F6466; padding-bottom: 30px; margin-bottom: 44px;
+                font-family: Archivo, sans-serif; font-weight: 600;
+                font-size: clamp(22px, 3.4vw, 30px); line-height: 1.25;
+                letter-spacing: -0.028em; color: #FFFFFF; max-width: 34ch;
+                text-wrap: balance;">The technology matters. Understanding the operation matters more.</div>
     <div class="srv-closing-grid">
 
       <!-- Left column -->

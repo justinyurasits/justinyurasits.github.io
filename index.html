@@ -1101,23 +1101,25 @@
   color: var(--c-graphite);
   text-wrap: pretty;
 }
-.ops-figure { margin: 8px 0 0; display: flex; align-items: baseline; gap: 10px; }
+.ops-figure { margin: 8px 0 0; display: flex; align-items: center; gap: 12px; padding-top: 8px; }
 .ops-figure b {
   font-family: var(--font-display);
   font-size: 34px;
   font-weight: 600;
-  line-height: 1;
+  line-height: 1.45;
   letter-spacing: -0.03em;
   color: var(--c-ink);
+  flex: none;
 }
 .ops-figure span {
   font-family: var(--font-display);
   font-size: 12px;
   font-weight: 500;
-  line-height: 1.4;
+  line-height: 1.45;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--c-graphite);
+  min-width: 0;
 }
 .ops-col { display: flex; flex-direction: column; min-width: 0; }
 .ops-col--divided { border-left: 1px solid var(--c-line); padding-left: 44px; }
@@ -2058,7 +2060,7 @@
         <h2 class="ops-title">Operations Automation</h2>
         <p class="ops-lead">Automate the repetitive work around the job.</p>
         <p class="ops-body">Construction OS can be extended with purpose-built automations for the workflows your team still handles by hand&mdash;from invoices and field reports to billing, compliance, and client decisions.</p>
-        <p class="ops-figure"><b>6</b><span>modules live today &mdash; turned on per company</span></p>
+        <p class="ops-figure"><b>6</b><span>Modules live today<br>&mdash; turned on per company</span></p>
       </aside>
 
       <div class="ops-col">

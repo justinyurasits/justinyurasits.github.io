@@ -165,28 +165,29 @@
   margin: 60px 0 0;
   padding: 0;
   list-style: none;
-  border-top: 1px solid var(--c-ink);
+  border-top: 2px solid var(--c-ink);
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(min(260px,100%), 1fr));
+  column-gap: 40px;
 }
 .hero-fold li {
   display: flex;
   align-items: center;
   gap: 14px;
-  padding: 22px 26px;
-  border-left: 1px solid var(--c-line);
+  padding: 22px 0;
   font-family: var(--font-display);
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 600;
   line-height: 1;
   letter-spacing: -0.015em;
   color: var(--c-ink);
 }
-.hero-fold li:first-child { border-left: none; padding-left: 0; }
+.hero-fold li a { color: inherit; text-decoration: none; }
+.hero-fold li a:hover { color: var(--c-steel); }
 .hero-fold li span {
   font: 400 11px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace;
   letter-spacing: 0;
-  color: var(--c-steel);
+  color: var(--c-graphite);
   font-variant-numeric: tabular-nums;
 }
 
@@ -1231,10 +1232,7 @@
   .ci-body { grid-template-columns: 1fr; }
   .ci-sources { border-left: none; border-top: 1px solid var(--c-line); }
   .hero-doc { height: 380px; }
-  .hero-fold { grid-template-columns: 1fr; }
-  .hero-fold li { border-left: none; border-top: 1px solid var(--c-line); padding-left: 0; }
-  .hero-fold li:first-child { border-top: none; }
-  .ops-block { padding-top: 56px; }
+.ops-block { padding-top: 56px; }
   .ops-col--divided { border-left: none; padding-left: 0; border-top: 1px solid var(--c-line); margin-top: 8px; }
   .ops-col--divided .ops-cap { display: none; }
   .cos-footer__inner { padding-top: 40px; }
@@ -1352,6 +1350,34 @@
 }
 .cos-footer__legal a { color: inherit; text-decoration: underline; text-decoration-color: #B8B9B5; }
 .cos-footer__legal a:hover { color: #111111; text-decoration-color: #111111; }
+
+/* === Ink intro === */
+.cos-intro { background: var(--c-ink); padding: 72px 0 0; color: var(--c-white); }
+.cos-intro__brand { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+.cos-intro__name { font: 600 clamp(30px,8cqi,46px)/1 var(--font-display),sans-serif; letter-spacing: -.038em; color: var(--c-white); }
+.cos-intro__tagline { margin: 0 0 44px; font: 400 19px/1 var(--font-display),sans-serif; color: var(--c-line); max-width: 46ch; }
+.cos-intro__index { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px,100%),1fr)); column-gap: 40px; row-gap: 4px; border-top: 1px solid var(--c-graphite); }
+.cos-intro__cell { padding: 26px 0 30px; }
+.cos-intro__cell-top { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+.cos-intro__cell-n { font: 400 12px/1 ui-monospace,'Cascadia Code','Source Code Pro',monospace; color: var(--c-line); }
+.cos-intro__cell-cat { font: 600 11px/1 var(--font-display),sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--c-line); }
+.cos-intro__cell-promise { margin: 0; font: 600 22px/1.25 var(--font-display),sans-serif; letter-spacing: -.024em; color: var(--c-white); }
+
+/* === Register line === */
+.cos-reg { display: flex; align-items: center; gap: 8px; padding-bottom: 30px; }
+.cos-reg__n { font: 400 12px/1 ui-monospace,'Cascadia Code','Source Code Pro',monospace; color: var(--c-graphite); white-space: nowrap; }
+.cos-reg__rule40 { width: 40px; flex: none; height: 0; border-top: 1px solid var(--c-ink); }
+.cos-reg__cat { font: 600 11px/1 var(--font-display),sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--c-steel); white-space: nowrap; }
+.cos-reg__rule-flex { flex: 1; min-width: 20px; height: 0; border-top: 1px solid var(--c-line); }
+.cos-reg__pos { font: 400 11px/1 ui-monospace,'Cascadia Code','Source Code Pro',monospace; color: var(--c-graphite); white-space: nowrap; }
+
+/* === NEXT rule === */
+.cos-next { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--c-line); display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+.cos-next__label { font: 500 12px/1 var(--font-display),sans-serif; letter-spacing: .12em; text-transform: uppercase; color: var(--c-graphite); }
+.cos-next__link { display: flex; align-items: baseline; gap: 10px; text-decoration: none; }
+.cos-next__n { font: 400 12px/1 ui-monospace,'Cascadia Code','Source Code Pro',monospace; color: var(--c-graphite); }
+.cos-next__name { font: 600 17px/1 var(--font-display),sans-serif; letter-spacing: -.015em; color: var(--c-ink); }
+.cos-next__link:hover .cos-next__name { color: var(--c-steel); }
 </style>
 </head>
 <body>
@@ -1502,9 +1528,9 @@
     </div>
 
     <ol class="hero-fold">
-      <li><span>01</span> Document Workbench</li>
-      <li><span>02</span> Construction Intelligence</li>
-      <li><span>03</span> Project Intelligence</li>
+      <li><span>01</span> <a href="/products/document-workbench.html">Document Workbench</a></li>
+      <li><span>02</span> <a href="/products/construction-intelligence.html">Construction Intelligence</a></li>
+      <li><span>03</span> <a href="/products/project-intelligence.html">Project Intelligence</a></li>
     </ol>
   </div>
 </section>
@@ -1525,10 +1551,9 @@
       <article class="fam-pain">
         <span class="fam-n">01</span>
         <p class="fam-cat">
-          <svg viewBox="0 0 100 100" width="26" height="26" aria-hidden="true">
-            <polyline points="30,14 86,14 86,72" fill="none" stroke="var(--fam-hairline)" stroke-width="5"/>
-            <rect x="14" y="26" width="52" height="60" fill="none" stroke="currentColor" stroke-width="9"/>
-            <line x1="26" y1="56" x2="54" y2="56" stroke="var(--fam-red)" stroke-width="5"/>
+          <svg viewBox="0 0 100 100" width="20" height="20" aria-hidden="true">
+            <polyline points="30,14 86,14 86,72" fill="none" stroke="var(--fam-hairline)" stroke-width="4"/>
+            <rect x="14" y="26" width="52" height="60" fill="none" stroke="currentColor" stroke-width="8"/>
           </svg>
           Paperwork
         </p>
@@ -1540,12 +1565,10 @@
       <article class="fam-pain">
         <span class="fam-n">02</span>
         <p class="fam-cat">
-          <svg viewBox="0 0 100 100" width="26" height="26" aria-hidden="true">
-            <circle cx="50" cy="50" r="16" fill="none" stroke="currentColor" stroke-width="9"/>
-            <line x1="50" y1="10" x2="50" y2="34" stroke="var(--fam-hairline)" stroke-width="5"/>
-            <line x1="14" y1="74" x2="34" y2="62" stroke="var(--fam-hairline)" stroke-width="5"/>
-            <line x1="66" y1="62" x2="86" y2="74" stroke="var(--fam-hairline)" stroke-width="5"/>
-            <circle cx="50" cy="10" r="5" fill="var(--fam-red)" stroke="none"/>
+          <svg viewBox="0 0 100 100" width="20" height="20" aria-hidden="true">
+            <line x1="6" y1="50" x2="96" y2="50" stroke="var(--fam-hairline)" stroke-width="4"/>
+            <polyline points="8,20 40,20 54,42 94,42" fill="none" stroke="currentColor" stroke-width="8"/>
+            <polyline points="8,80 40,80 54,58 94,58" fill="none" stroke="currentColor" stroke-width="8"/>
           </svg>
           Knowledge
         </p>
@@ -1557,14 +1580,12 @@
       <article class="fam-pain">
         <span class="fam-n">03</span>
         <p class="fam-cat">
-          <svg viewBox="0 0 100 100" width="26" height="26" aria-hidden="true">
-            <rect x="22" y="22" width="56" height="56" fill="none" stroke="currentColor" stroke-width="9"/>
-            <line x1="22" y1="10" x2="22" y2="22" stroke="var(--fam-hairline)" stroke-width="5"/>
-            <line x1="78" y1="10" x2="78" y2="22" stroke="var(--fam-hairline)" stroke-width="5"/>
-            <line x1="10" y1="22" x2="22" y2="22" stroke="var(--fam-hairline)" stroke-width="5"/>
-            <line x1="78" y1="22" x2="90" y2="22" stroke="var(--fam-hairline)" stroke-width="5"/>
-            <line x1="50" y1="38" x2="50" y2="62" stroke="var(--fam-red)" stroke-width="5"/>
-            <line x1="38" y1="50" x2="62" y2="50" stroke="var(--fam-red)" stroke-width="5"/>
+          <svg viewBox="0 0 100 100" width="20" height="20" aria-hidden="true">
+            <rect x="6" y="18" width="88" height="64" fill="none" stroke="var(--fam-hairline)" stroke-width="4"/>
+            <line x1="18" y1="70" x2="82" y2="70" stroke="currentColor" stroke-width="8"/>
+            <line x1="30" y1="70" x2="30" y2="56" stroke="currentColor" stroke-width="8"/>
+            <line x1="50" y1="70" x2="50" y2="44" stroke="currentColor" stroke-width="8"/>
+            <line x1="70" y1="70" x2="70" y2="32" stroke="var(--fam-hairline)" stroke-width="8"/>
           </svg>
           Visibility
         </p>
@@ -1576,11 +1597,14 @@
       <article class="fam-pain">
         <span class="fam-n">04</span>
         <p class="fam-cat">
-          <svg viewBox="0 0 100 100" width="26" height="26" aria-hidden="true">
-            <polyline points="20,64 20,36 80,36 80,64" fill="none" stroke="currentColor" stroke-width="9"/>
-            <polyline points="30,76 20,64 10,76" fill="none" stroke="var(--fam-hairline)" stroke-width="5"/>
-            <polyline points="70,24 80,36 90,24" fill="none" stroke="var(--fam-hairline)" stroke-width="5"/>
-            <line x1="32" y1="36" x2="68" y2="36" stroke="var(--fam-red)" stroke-width="5"/>
+          <svg viewBox="0 0 100 100" width="20" height="20" aria-hidden="true">
+            <line x1="14" y1="28" x2="34" y2="28" stroke="currentColor" stroke-width="8"/>
+            <line x1="42" y1="28" x2="62" y2="28" stroke="currentColor" stroke-width="8"/>
+            <line x1="70" y1="28" x2="90" y2="28" stroke="currentColor" stroke-width="8"/>
+            <line x1="24" y1="34" x2="24" y2="66" stroke="var(--fam-hairline)" stroke-width="4"/>
+            <line x1="52" y1="34" x2="52" y2="66" stroke="var(--fam-hairline)" stroke-width="4"/>
+            <line x1="80" y1="34" x2="80" y2="66" stroke="var(--fam-hairline)" stroke-width="4"/>
+            <line x1="14" y1="74" x2="90" y2="74" stroke="var(--fam-hairline)" stroke-width="8"/>
           </svg>
           Operations
         </p>
@@ -1592,41 +1616,39 @@
 
     <div class="fam-answer">
       <p>
-        <svg viewBox="0 0 100 100" width="24" height="24" aria-hidden="true">
-          <polyline points="30,14 86,14 86,72" fill="none" stroke="var(--fam-hairline)" stroke-width="5"/>
-          <rect x="14" y="26" width="52" height="60" fill="none" stroke="currentColor" stroke-width="9"/>
-          <line x1="26" y1="56" x2="54" y2="56" stroke="var(--fam-red)" stroke-width="5"/>
+        <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true">
+          <polyline points="30,14 86,14 86,72" fill="none" stroke="var(--fam-hairline)" stroke-width="4"/>
+          <rect x="14" y="26" width="52" height="60" fill="none" stroke="currentColor" stroke-width="8"/>
         </svg>
         Less paperwork
       </p>
       <p>
-        <svg viewBox="0 0 100 100" width="24" height="24" aria-hidden="true">
-          <circle cx="50" cy="50" r="16" fill="none" stroke="currentColor" stroke-width="9"/>
-          <line x1="50" y1="10" x2="50" y2="34" stroke="var(--fam-hairline)" stroke-width="5"/>
-          <line x1="14" y1="74" x2="34" y2="62" stroke="var(--fam-hairline)" stroke-width="5"/>
-          <line x1="66" y1="62" x2="86" y2="74" stroke="var(--fam-hairline)" stroke-width="5"/>
-          <circle cx="50" cy="10" r="5" fill="var(--fam-red)" stroke="none"/>
+        <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true">
+          <line x1="6" y1="50" x2="96" y2="50" stroke="var(--fam-hairline)" stroke-width="4"/>
+          <polyline points="8,20 40,20 54,42 94,42" fill="none" stroke="currentColor" stroke-width="8"/>
+          <polyline points="8,80 40,80 54,58 94,58" fill="none" stroke="currentColor" stroke-width="8"/>
         </svg>
         Fewer bottlenecks
       </p>
       <p>
-        <svg viewBox="0 0 100 100" width="24" height="24" aria-hidden="true">
-          <rect x="22" y="22" width="56" height="56" fill="none" stroke="currentColor" stroke-width="9"/>
-          <line x1="22" y1="10" x2="22" y2="22" stroke="var(--fam-hairline)" stroke-width="5"/>
-          <line x1="78" y1="10" x2="78" y2="22" stroke="var(--fam-hairline)" stroke-width="5"/>
-          <line x1="10" y1="22" x2="22" y2="22" stroke="var(--fam-hairline)" stroke-width="5"/>
-          <line x1="78" y1="22" x2="90" y2="22" stroke="var(--fam-hairline)" stroke-width="5"/>
-          <line x1="50" y1="38" x2="50" y2="62" stroke="var(--fam-red)" stroke-width="5"/>
-          <line x1="38" y1="50" x2="62" y2="50" stroke="var(--fam-red)" stroke-width="5"/>
+        <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true">
+          <rect x="6" y="18" width="88" height="64" fill="none" stroke="var(--fam-hairline)" stroke-width="4"/>
+          <line x1="18" y1="70" x2="82" y2="70" stroke="currentColor" stroke-width="8"/>
+          <line x1="30" y1="70" x2="30" y2="56" stroke="currentColor" stroke-width="8"/>
+          <line x1="50" y1="70" x2="50" y2="44" stroke="currentColor" stroke-width="8"/>
+          <line x1="70" y1="70" x2="70" y2="32" stroke="var(--fam-hairline)" stroke-width="8"/>
         </svg>
         Better visibility
       </p>
       <p>
-        <svg viewBox="0 0 100 100" width="24" height="24" aria-hidden="true">
-          <polyline points="20,64 20,36 80,36 80,64" fill="none" stroke="currentColor" stroke-width="9"/>
-          <polyline points="30,76 20,64 10,76" fill="none" stroke="var(--fam-hairline)" stroke-width="5"/>
-          <polyline points="70,24 80,36 90,24" fill="none" stroke="var(--fam-hairline)" stroke-width="5"/>
-          <line x1="32" y1="36" x2="68" y2="36" stroke="var(--fam-red)" stroke-width="5"/>
+        <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true">
+          <line x1="14" y1="28" x2="34" y2="28" stroke="currentColor" stroke-width="8"/>
+          <line x1="42" y1="28" x2="62" y2="28" stroke="currentColor" stroke-width="8"/>
+          <line x1="70" y1="28" x2="90" y2="28" stroke="currentColor" stroke-width="8"/>
+          <line x1="24" y1="34" x2="24" y2="66" stroke="var(--fam-hairline)" stroke-width="4"/>
+          <line x1="52" y1="34" x2="52" y2="66" stroke="var(--fam-hairline)" stroke-width="4"/>
+          <line x1="80" y1="34" x2="80" y2="66" stroke="var(--fam-hairline)" stroke-width="4"/>
+          <line x1="14" y1="74" x2="90" y2="74" stroke="var(--fam-hairline)" stroke-width="8"/>
         </svg>
         Less repetitive work
       </p>
@@ -1637,62 +1659,70 @@
 
 <!-- Products -->
 
-<!-- 01 Document Workbench — bond -->
-<section class="surface--white cos-products" id="products">
+<!-- Ink intro -->
+<section class="cos-intro" id="products">
   <div class="cos-container">
-    <header class="cos-products__head">
-      <h2>
-        <svg viewBox="0 0 100 100" width="38" height="38" aria-label="Construction OS">
-          <polyline points="16,54 16,16 54,16" fill="none" stroke="currentColor" stroke-width="8"/>
-          <polyline points="84,46 84,84 46,84" fill="none" stroke="currentColor" stroke-width="8"/>
-          <rect x="32" y="32" width="36" height="36" fill="var(--c-revision)" stroke="var(--c-steel)" stroke-width="4"/>
-        </svg>
-        Construction OS
-      </h2>
-      <p>Three products. One construction operating system.</p>
-    </header>
-
-    <ol class="cos-index">
-      <li><a href="#product-01">
-        <span class="cos-index__nrow">
-          <span class="cos-index__n">01</span>
-          <svg viewBox="0 0 100 100" width="14" height="14" aria-hidden="true">
-            <rect x="14" y="26" width="52" height="60" fill="none" stroke="currentColor" stroke-width="9"/>
-            <polyline points="30,14 86,14 86,72" fill="none" stroke="var(--c-steel)" stroke-width="4"/>
+    <div class="cos-intro__brand">
+      <svg viewBox="0 0 100 100" width="30" height="30" aria-label="Construction OS">
+        <polyline points="16,54 16,16 54,16" fill="none" stroke="currentColor" stroke-width="8"/>
+        <polyline points="84,46 84,84 46,84" fill="none" stroke="currentColor" stroke-width="8"/>
+        <rect x="32" y="32" width="36" height="36" fill="var(--c-revision)" stroke="none"/>
+      </svg>
+      <span class="cos-intro__name">Construction OS</span>
+    </div>
+    <p class="cos-intro__tagline">Three products. One construction operating system.</p>
+    <ol class="cos-intro__index">
+      <li class="cos-intro__cell">
+        <div class="cos-intro__cell-top">
+          <span class="cos-intro__cell-n">01</span>
+          <svg viewBox="0 0 100 100" width="16" height="16" aria-hidden="true">
+            <polyline points="30,14 86,14 86,72" fill="none" stroke="var(--c-line)" stroke-width="4"/>
+            <rect x="14" y="26" width="52" height="60" fill="none" stroke="currentColor" stroke-width="8"/>
           </svg>
-        </span>
-        <span class="cos-index__layer">Documents</span>
-        <span class="cos-index__promise">Produce the documents.</span>
-        <span class="cos-index__product">Document Workbench</span>
-      </a></li>
-      <li><a href="#product-02">
-        <span class="cos-index__nrow">
-          <span class="cos-index__n">02</span>
-          <svg viewBox="0 0 100 100" width="14" height="14" aria-hidden="true">
-            <polyline points="8,20 40,20 54,42 94,42" fill="none" stroke="currentColor" stroke-width="11"/>
-            <polyline points="8,80 40,80 54,58 94,58" fill="none" stroke="currentColor" stroke-width="11"/>
+          <span class="cos-intro__cell-cat">Documents</span>
+        </div>
+        <p class="cos-intro__cell-promise">Produce the documents.</p>
+      </li>
+      <li class="cos-intro__cell">
+        <div class="cos-intro__cell-top">
+          <span class="cos-intro__cell-n">02</span>
+          <svg viewBox="0 0 100 100" width="16" height="16" aria-hidden="true">
+            <line x1="6" y1="50" x2="96" y2="50" stroke="var(--c-line)" stroke-width="4"/>
+            <polyline points="8,20 40,20 54,42 94,42" fill="none" stroke="currentColor" stroke-width="8"/>
+            <polyline points="8,80 40,80 54,58 94,58" fill="none" stroke="currentColor" stroke-width="8"/>
           </svg>
-        </span>
-        <span class="cos-index__layer">Knowledge</span>
-        <span class="cos-index__promise">Get the right answer.</span>
-        <span class="cos-index__product">Construction Intelligence</span>
-      </a></li>
-      <li><a href="#product-03">
-        <span class="cos-index__nrow">
-          <span class="cos-index__n">03</span>
-          <svg viewBox="0 0 100 100" width="14" height="14" aria-hidden="true">
-            <line x1="18" y1="70" x2="82" y2="70" stroke="currentColor" stroke-width="11"/>
-            <line x1="30" y1="70" x2="30" y2="56" stroke="currentColor" stroke-width="11"/>
-            <line x1="50" y1="70" x2="50" y2="44" stroke="currentColor" stroke-width="11"/>
-            <line x1="70" y1="70" x2="70" y2="32" stroke="currentColor" stroke-width="11"/>
+          <span class="cos-intro__cell-cat">Knowledge</span>
+        </div>
+        <p class="cos-intro__cell-promise">Get the right answer.</p>
+      </li>
+      <li class="cos-intro__cell">
+        <div class="cos-intro__cell-top">
+          <span class="cos-intro__cell-n">03</span>
+          <svg viewBox="0 0 100 100" width="16" height="16" aria-hidden="true">
+            <rect x="6" y="18" width="88" height="64" fill="none" stroke="var(--c-line)" stroke-width="4"/>
+            <line x1="18" y1="70" x2="82" y2="70" stroke="currentColor" stroke-width="8"/>
+            <line x1="30" y1="70" x2="30" y2="56" stroke="currentColor" stroke-width="8"/>
+            <line x1="50" y1="70" x2="50" y2="44" stroke="currentColor" stroke-width="8"/>
+            <line x1="70" y1="70" x2="70" y2="32" stroke="var(--c-line)" stroke-width="8"/>
           </svg>
-        </span>
-        <span class="cos-index__layer">Attention</span>
-        <span class="cos-index__promise">Know what needs attention.</span>
-        <span class="cos-index__product">Project Intelligence</span>
-      </a></li>
+          <span class="cos-intro__cell-cat">Attention</span>
+        </div>
+        <p class="cos-intro__cell-promise">Know what needs attention.</p>
+      </li>
     </ol>
+  </div>
+</section>
 
+<!-- 01 Document Workbench — white -->
+<section class="surface--white prod-section" style="padding-top: 80px;">
+  <div class="cos-container">
+    <div class="cos-reg">
+      <span class="cos-reg__n">01</span>
+      <div class="cos-reg__rule40"></div>
+      <span class="cos-reg__cat">Documents</span>
+      <div class="cos-reg__rule-flex"></div>
+      <span class="cos-reg__pos">01 / 03</span>
+    </div>
     <div class="cos-product" id="product-01">
       <div class="cos-product__col">
         <p class="cos-product__tag"><span>01</span><i></i>Documents</p>
@@ -1799,13 +1829,13 @@
         </div>
       </figure>
     </div>
-    <nav class="cos-products__next">
-      <span>Next</span>
-      <div>
-        <a href="#product-02"><i>02</i> Construction Intelligence</a>
-        <a href="#product-03"><i>03</i> Project Intelligence</a>
-      </div>
-    </nav>
+    <div class="cos-next">
+      <span class="cos-next__label">NEXT</span>
+      <a class="cos-next__link" href="#product-02">
+        <span class="cos-next__n">02</span>
+        <span class="cos-next__name">Construction Intelligence</span>
+      </a>
+    </div>
   </div>
 </section>
 
@@ -1813,6 +1843,13 @@
 <!-- 02 Construction Intelligence — bond -->
 <section class="surface--bond prod-section" id="product-02">
   <div class="cos-container">
+    <div class="cos-reg">
+      <span class="cos-reg__n">02</span>
+      <div class="cos-reg__rule40"></div>
+      <span class="cos-reg__cat">Knowledge</span>
+      <div class="cos-reg__rule-flex"></div>
+      <span class="cos-reg__pos">02 / 03</span>
+    </div>
     <div class="prod-split prod-split--ci">
       <!-- Intro -->
       <div class="prod-intro">
@@ -1897,12 +1934,13 @@
         </div>
       </div>
     </div>
-    <nav class="cos-products__next">
-      <span>Next</span>
-      <div>
-        <a href="#product-03"><i>03</i> Project Intelligence</a>
-      </div>
-    </nav>
+    <div class="cos-next">
+      <span class="cos-next__label">NEXT</span>
+      <a class="cos-next__link" href="#product-03">
+        <span class="cos-next__n">03</span>
+        <span class="cos-next__name">Project Intelligence</span>
+      </a>
+    </div>
   </div>
 </section>
 
@@ -1910,6 +1948,13 @@
 <!-- 03 Project Intelligence — white -->
 <section class="surface--white prod-section" id="product-03">
   <div class="cos-container">
+    <div class="cos-reg">
+      <span class="cos-reg__n">03</span>
+      <div class="cos-reg__rule40"></div>
+      <span class="cos-reg__cat">Attention</span>
+      <div class="cos-reg__rule-flex"></div>
+      <span class="cos-reg__pos">03 / 03</span>
+    </div>
     <div class="prod-split prod-split--pi">
       <!-- Intro -->
       <div class="prod-intro">
@@ -2001,20 +2046,13 @@
         </div>
       </div>
     </div>
-    <nav class="pi-next">
-      <span>Next</span>
-      <div>
-        <a href="#ops">
-          <svg viewBox="0 0 100 100" aria-hidden="true">
-            <line x1="14" y1="28" x2="34" y2="28" stroke="currentColor" stroke-width="11"/>
-            <line x1="42" y1="28" x2="62" y2="28" stroke="currentColor" stroke-width="11"/>
-            <line x1="70" y1="28" x2="90" y2="28" stroke="currentColor" stroke-width="11"/>
-            <line x1="14" y1="74" x2="90" y2="74" stroke="currentColor" stroke-width="11"/>
-          </svg>
-          Operations Automation<i>Extension layer</i>
-        </a>
-      </div>
-    </nav>
+    <div class="cos-next">
+      <span class="cos-next__label">NEXT</span>
+      <a class="cos-next__link" href="#ops">
+        <span class="cos-next__n">——</span>
+        <span class="cos-next__name">Operations Automation</span>
+      </a>
+    </div>
   </div>
 </section>
 

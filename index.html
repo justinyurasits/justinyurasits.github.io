@@ -629,6 +629,8 @@
   letter-spacing: -0.015em;
   color: var(--c-ink);
   margin: var(--s-5) 0 0;
+  max-width: 34ch;
+  text-wrap: balance;
 }
 .prod-body {
   font-family: var(--font-display);
@@ -659,7 +661,7 @@
 .cos-product__tag i { width: 40px; height: 1px; background: var(--c-ink); }
 .cos-product__name { display: flex; align-items: center; gap: .4em; font: 600 clamp(22px, 7.2cqi, 38px)/1.05 var(--font-display), sans-serif; letter-spacing: -.032em; white-space: nowrap; color: var(--c-ink); margin: 0; }
 .cos-product__name svg { width: .72em; height: .72em; flex: none; }
-.cos-product__lead { margin: 0; max-width: 30ch; font: 500 20px/1.4 var(--font-display), sans-serif; letter-spacing: -.015em; color: var(--c-ink); }
+.cos-product__lead { margin: 0; max-width: 34ch; text-wrap: balance; font: 500 20px/1.4 var(--font-display), sans-serif; letter-spacing: -.015em; color: var(--c-ink); }
 .cos-product__body { margin: 0; max-width: 46ch; font: 400 16px/1.6 var(--font-display), sans-serif; color: var(--c-graphite); text-wrap: pretty; }
 .cos-product__cta { margin: 0; display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
 .cos-link { font: 600 15px/1 var(--font-display), sans-serif; letter-spacing: -.01em; color: var(--c-ink); text-decoration: none; border-bottom: 2px solid var(--c-ink); padding-bottom: 3px; }
@@ -683,7 +685,7 @@
 .cos-doc__corner { position: absolute; width: 14px; height: 14px; }
 .cos-doc__corner--tr { top: 10px; right: 10px; border-top: 2px solid var(--c-line); border-right: 2px solid var(--c-line); }
 .cos-doc__corner--bl { bottom: 10px; left: 10px; border-bottom: 2px solid var(--c-line); border-left: 2px solid var(--c-line); }
-.cos-doc__fade { position: absolute; inset: auto 0 0 0; height: 88px; pointer-events: none; background: linear-gradient(to bottom, rgba(255,255,255,0), #ffffff 62%); }
+.cos-doc__fade { position: absolute; inset: auto 0 0 0; height: 88px; pointer-events: none; background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0.95) 50%, #ffffff 70%); }
 .cos-doc__foot { position: absolute; inset: auto 0 0 0; border-top: 1px solid var(--c-line); background: var(--c-white); padding: 10px 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px; font: 400 11px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace; color: var(--c-graphite); }
 .cos-doc__foot a { font: 500 12px/1 var(--font-display), sans-serif; letter-spacing: -.01em; color: var(--c-ink); text-decoration: none; border-bottom: 1px solid var(--c-ink); }
 .cos-doc__foot a:hover { color: var(--c-steel); border-bottom-color: var(--c-steel); }
@@ -1238,6 +1240,7 @@
   .cos-footer__inner { padding-top: 40px; }
 }
 @media (max-width: 600px) {
+  .prod-name { white-space: normal; }
   .dw-artifact { grid-template-columns: 1fr; }
   .dw-rail { border-left: none; border-top: var(--w-cut) solid var(--c-ink); }
   .pi-table, .pi-table thead, .pi-table tbody, .pi-table tr, .pi-table td { display: block; }
@@ -1725,7 +1728,6 @@
     </div>
     <div class="cos-product" id="product-01">
       <div class="cos-product__col">
-        <p class="cos-product__tag"><span>01</span><i></i>Documents</p>
         <div class="cos-product__name-group">
           <h3 class="cos-product__name">
             <svg viewBox="0 0 100 100" aria-hidden="true">
@@ -1736,7 +1738,8 @@
           </h3>
           <p class="cos-product__lead">Produce the documents that run the job.</p>
         </div>
-        <p class="cos-product__body">From first walkthrough through closeout, turn project information into company-standard construction documents without starting from scratch every time. Spend less time producing paperwork and more time managing the job.</p>
+        <p class="cos-product__body">From first walkthrough through closeout, turn project information into company-standard construction documents without starting from scratch every time.</p>
+        <p class="prod-outcome">Spend less time producing paperwork. More time managing the job.</p>
         <p class="cos-product__cta">
           <a class="hero-btn hero-btn--primary" href="#">Explore Document Workbench &rarr;</a>
           <a class="cos-link" href="https://draftconstructionchangeorder.com">See it work</a>
@@ -1760,7 +1763,7 @@
       <figure class="cos-product__doc">
         <figcaption class="cos-doc-cap">
           <span>Exhibit A &mdash; Scope of Work</span>
-          <span>Rev. 2 &middot; Cost-plus w/ GMP</span>
+          <span>Example View</span>
         </figcaption>
         <div class="cos-doc">
           <span class="cos-doc__corner cos-doc__corner--tr"></span>
@@ -1853,7 +1856,6 @@
     <div class="prod-split prod-split--ci">
       <!-- Intro -->
       <div class="prod-intro">
-        <p class="cos-product__tag"><span>02</span><i></i>Knowledge</p>
         <div class="cos-product__name-group">
           <h3 class="prod-name">
             <svg viewBox="0 0 100 100" aria-hidden="true">
@@ -1890,7 +1892,7 @@
       <div>
         <div class="ci-card-cap">
           <span>Construction Intelligence &mdash; Answer</span>
-          <span>Example Answer</span>
+          <span>Example View</span>
         </div>
         <div class="ci-proof" aria-hidden="true">
         <div class="ci-q-band">
@@ -1958,7 +1960,6 @@
     <div class="prod-split prod-split--pi">
       <!-- Intro -->
       <div class="prod-intro">
-        <p class="cos-product__tag"><span>03</span><i></i>Attention</p>
         <div class="cos-product__name-group">
           <h3 class="prod-name">
             <svg viewBox="0 0 100 100" aria-hidden="true">
@@ -1974,6 +1975,7 @@
           <p class="prod-promise">Know what needs attention.</p>
         </div>
         <p class="prod-body">Surface the open decisions, aging changes, missing approvals, unresolved RFIs, and schedule issues that need attention across active projects.</p>
+        <p class="prod-outcome">Manage the exceptions instead of chasing status.</p>
         <p class="prod-cta">
           <a class="hero-btn hero-btn--primary" href="#">Explore Project Intelligence &rarr;</a>
         </p>
@@ -1996,7 +1998,7 @@
       <div>
         <div class="ci-card-cap">
           <span>Project attention</span>
-          <span>Example view</span>
+          <span>Example View</span>
         </div>
         <div class="pi-proof" aria-hidden="true">
           <div class="pi-body">
@@ -2041,7 +2043,7 @@
             </div>
           </div>
           <div class="pi-footer">
-            <span class="pi-footer-val">Nothing running to plan needs your attention.</span>
+            <span class="pi-footer-val">Everything else is running to plan.</span>
           </div>
         </div>
       </div>
@@ -2049,7 +2051,6 @@
     <div class="cos-next">
       <span class="cos-next__label">NEXT</span>
       <a class="cos-next__link" href="#ops">
-        <span class="cos-next__n">——</span>
         <span class="cos-next__name">Operations Automation</span>
       </a>
     </div>

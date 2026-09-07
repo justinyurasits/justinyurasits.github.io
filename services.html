@@ -206,10 +206,12 @@
 /* ── §5 Implementation + product cards ─────────────── */
 .srv-impl-close {
   border-top:2px solid #111111; margin-top:32px; padding-top:26px;
-  display:flex; flex-direction:column; gap:10px; max-width:76ch;
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(320px,100%),1fr));
+  gap:20px 48px; align-items:start;
 }
 .srv-impl-close__sm { margin:0; font: 400 16px/1.6 var(--font-display),sans-serif; color:#5F6466; }
-.srv-impl-close__lg { margin:0; font: 600 19px/1.35 var(--font-display),sans-serif; letter-spacing:-.015em; color:#111111; }
+.srv-impl-close__lg { margin:0; font: 600 19px/1.35 var(--font-display),sans-serif; letter-spacing:-.015em; color:#111111; border-left:2px solid #476776; padding-left:16px; }
 /* ── §5 two-list body ─────────────────────────────── */
 .srv-impl-lists {
   padding-top:30px;
@@ -235,6 +237,7 @@
 .srv-impl-prod-arrow { font-weight:500; color:#476776; }
 .srv-impl-prod-gloss { font: 400 15px/1.55 var(--font-display),sans-serif; color:#5F6466; margin:0; }
 .srv-kicker {
+  border-left:2px solid #476776; padding-left:14px;
   font: 600 19px/1.35 var(--font-display),sans-serif; color:#111111; margin:0;
 }
 .srv-kicker--sm { font-size:17px; }

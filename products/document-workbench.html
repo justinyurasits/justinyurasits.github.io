@@ -180,53 +180,51 @@
 /* ─── Lifecycle ──────────────────────────────────────────── */
 .dw-lifecycle { padding: 76px 0 0; background: var(--c-white); }
 .dw-lifecycle__hdr {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 20px;
-  flex-wrap: wrap;
-  padding-bottom: 20px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 20px 36px;
+  align-items: start;
   border-bottom: 2px solid var(--c-ink);
-  margin-bottom: 0;
+  padding-bottom: 24px;
 }
-.dw-lifecycle__hdr-left { display: flex; flex-direction: column; gap: 10px; }
-.dw-lifecycle__eyebrow { font: 600 11px/1 var(--font-display), sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--c-steel); margin: 0; }
+.dw-lifecycle__hdr-left { container-type: inline-size; min-width: 0; display: flex; flex-direction: column; }
+.dw-lifecycle__eyebrow { font: 600 11px/1 var(--font-display), sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--c-steel); margin: 0; padding-bottom: 16px; }
 .dw-lifecycle__heading {
-  font: 600 clamp(28px, 4vw, 40px)/1.05 var(--font-display), sans-serif;
-  letter-spacing: -.032em;
+  font: 600 clamp(28px, 8cqi, 42px)/1.05 var(--font-display), sans-serif;
+  letter-spacing: -.035em;
   color: var(--c-ink);
   text-wrap: balance;
   margin: 0;
-  max-width: 26ch;
+  max-width: 22ch;
 }
-.dw-lifecycle__count { font: 500 12px/1 var(--font-display), sans-serif; letter-spacing: .12em; text-transform: uppercase; color: var(--c-graphite); white-space: nowrap; }
+.dw-lifecycle__count { font: 500 12px/1 var(--font-display), sans-serif; letter-spacing: .12em; text-transform: uppercase; color: var(--c-graphite); white-space: nowrap; text-align: right; }
 
 .dw-phase {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  padding: 30px 0;
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  gap: 0 24px;
+  padding: 36px 0;
   border-bottom: 1px solid var(--c-line);
 }
-.dw-phase:last-child { border-bottom: 0; padding-bottom: 0; }
-.dw-phase-hdr { display: flex; align-items: flex-start; }
-.dw-phase-n { flex: none; width: 46px; padding-top: 6px; font: 400 12px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace; color: var(--c-graphite); font-variant-numeric: tabular-nums; }
-.dw-phase-content { flex: 1; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
-.dw-phase-name { font: 600 22px/1.1 var(--font-display), sans-serif; letter-spacing: -.022em; color: var(--c-ink); margin: 0; }
-.dw-phase-desc { font: 400 15px/1.55 var(--font-display), sans-serif; color: var(--c-graphite); margin: 0; text-wrap: pretty; }
+.dw-phase:first-child { padding-top: 34px; }
+.dw-phase:last-child { border-bottom: none; }
+.dw-phase-n { font: 400 12px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace; letter-spacing: .04em; color: var(--c-line); padding-top: 8px; }
+.dw-phase-content { min-width: 0; display: flex; flex-direction: column; gap: 22px; }
+.dw-phase-text { display: flex; flex-direction: column; gap: 8px; }
+.dw-phase-name { font: 600 23px/1.2 var(--font-display), sans-serif; letter-spacing: -.025em; color: var(--c-ink); margin: 0; text-wrap: balance; }
+.dw-phase-desc { font: 400 15px/1.6 var(--font-display), sans-serif; color: var(--c-graphite); margin: 0; max-width: 44ch; }
 .dw-doclist {
-  padding-left: 46px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
-  column-gap: 40px;
-  row-gap: 0;
+  gap: 0 28px;
   align-content: start;
 }
 .dw-doclist-item {
-  font: 400 15px/1.5 var(--font-display), sans-serif;
+  font: 500 15px/1.4 var(--font-display), sans-serif;
+  letter-spacing: -.008em;
   color: var(--c-ink);
-  padding: 10px 0;
-  border-top: 1px solid #B8B9B5;
+  padding: 9px 0 13px;
+  border-top: 1px solid var(--c-line);
 }
 
 /* ─── 150+ strip ─────────────────────────────────────────── */
@@ -639,90 +637,90 @@
     </header>
 
     <div class="dw-phase">
-      <div class="dw-phase-hdr">
-        <span class="dw-phase-n">01</span>
-        <div class="dw-phase-content">
+      <span class="dw-phase-n">01</span>
+      <div class="dw-phase-content">
+        <div class="dw-phase-text">
           <h3 class="dw-phase-name">Preconstruction &amp; sales</h3>
           <p class="dw-phase-desc">Turn early project information into the documents that move an opportunity forward.</p>
         </div>
-      </div>
-      <div class="dw-doclist" aria-label="Documents">
-        <span class="dw-doclist-item">Site visit reports</span>
-        <span class="dw-doclist-item">Existing conditions documentation</span>
-        <span class="dw-doclist-item">Preliminary estimates and budgets</span>
-        <span class="dw-doclist-item">Proposal letters</span>
-        <span class="dw-doclist-item">Scope documents</span>
-        <span class="dw-doclist-item">Contract exhibits</span>
+        <div class="dw-doclist" aria-label="Documents">
+          <span class="dw-doclist-item">Site visit reports</span>
+          <span class="dw-doclist-item">Existing conditions documentation</span>
+          <span class="dw-doclist-item">Preliminary estimates and budgets</span>
+          <span class="dw-doclist-item">Proposal letters</span>
+          <span class="dw-doclist-item">Scope documents</span>
+          <span class="dw-doclist-item">Contract exhibits</span>
+        </div>
       </div>
     </div>
 
     <div class="dw-phase">
-      <div class="dw-phase-hdr">
-        <span class="dw-phase-n">02</span>
-        <div class="dw-phase-content">
+      <span class="dw-phase-n">02</span>
+      <div class="dw-phase-content">
+        <div class="dw-phase-text">
           <h3 class="dw-phase-name">Contracting &amp; buyout</h3>
           <p class="dw-phase-desc">Build clear, consistent contract documentation without rebuilding every scope and agreement from scratch.</p>
         </div>
-      </div>
-      <div class="dw-doclist" aria-label="Documents">
-        <span class="dw-doclist-item">Contract packages</span>
-        <span class="dw-doclist-item">Scopes of work</span>
-        <span class="dw-doclist-item">Contract exhibits</span>
-        <span class="dw-doclist-item">Subcontractor scope documents</span>
-        <span class="dw-doclist-item">Agreements and supporting documentation</span>
+        <div class="dw-doclist" aria-label="Documents">
+          <span class="dw-doclist-item">Contract packages</span>
+          <span class="dw-doclist-item">Scopes of work</span>
+          <span class="dw-doclist-item">Contract exhibits</span>
+          <span class="dw-doclist-item">Subcontractor scope documents</span>
+          <span class="dw-doclist-item">Agreements and supporting documentation</span>
+        </div>
       </div>
     </div>
 
     <div class="dw-phase">
-      <div class="dw-phase-hdr">
-        <span class="dw-phase-n">03</span>
-        <div class="dw-phase-content">
+      <span class="dw-phase-n">03</span>
+      <div class="dw-phase-content">
+        <div class="dw-phase-text">
           <h3 class="dw-phase-name">Project execution</h3>
           <p class="dw-phase-desc">Keep the documentation moving as the job changes.</p>
         </div>
-      </div>
-      <div class="dw-doclist" aria-label="Documents">
-        <span class="dw-doclist-item">RFIs</span>
-        <span class="dw-doclist-item">Submittals</span>
-        <span class="dw-doclist-item">Change orders</span>
-        <span class="dw-doclist-item">Meeting minutes</span>
-        <span class="dw-doclist-item">Field reports</span>
-        <span class="dw-doclist-item">Decision documentation</span>
-        <span class="dw-doclist-item">Project correspondence</span>
+        <div class="dw-doclist" aria-label="Documents">
+          <span class="dw-doclist-item">RFIs</span>
+          <span class="dw-doclist-item">Submittals</span>
+          <span class="dw-doclist-item">Change orders</span>
+          <span class="dw-doclist-item">Meeting minutes</span>
+          <span class="dw-doclist-item">Field reports</span>
+          <span class="dw-doclist-item">Decision documentation</span>
+          <span class="dw-doclist-item">Project correspondence</span>
+        </div>
       </div>
     </div>
 
     <div class="dw-phase">
-      <div class="dw-phase-hdr">
-        <span class="dw-phase-n">04</span>
-        <div class="dw-phase-content">
+      <span class="dw-phase-n">04</span>
+      <div class="dw-phase-content">
+        <div class="dw-phase-text">
           <h3 class="dw-phase-name">Billing &amp; project controls</h3>
           <p class="dw-phase-desc">Turn current project information into the documentation needed to manage cost and get paid.</p>
         </div>
-      </div>
-      <div class="dw-doclist" aria-label="Documents">
-        <span class="dw-doclist-item">Billing documentation</span>
-        <span class="dw-doclist-item">Pay application support</span>
-        <span class="dw-doclist-item">Change documentation</span>
-        <span class="dw-doclist-item">Allowance and cost-control documents</span>
-        <span class="dw-doclist-item">Project reporting</span>
+        <div class="dw-doclist" aria-label="Documents">
+          <span class="dw-doclist-item">Billing documentation</span>
+          <span class="dw-doclist-item">Pay application support</span>
+          <span class="dw-doclist-item">Change documentation</span>
+          <span class="dw-doclist-item">Allowance and cost-control documents</span>
+          <span class="dw-doclist-item">Project reporting</span>
+        </div>
       </div>
     </div>
 
     <div class="dw-phase">
-      <div class="dw-phase-hdr">
-        <span class="dw-phase-n">05</span>
-        <div class="dw-phase-content">
+      <span class="dw-phase-n">05</span>
+      <div class="dw-phase-content">
+        <div class="dw-phase-text">
           <h3 class="dw-phase-name">Closeout &amp; handoff</h3>
           <p class="dw-phase-desc">Finish the paperwork with the same consistency you brought to the job.</p>
         </div>
-      </div>
-      <div class="dw-doclist" aria-label="Documents">
-        <span class="dw-doclist-item">Punch documentation</span>
-        <span class="dw-doclist-item">Closeout packages</span>
-        <span class="dw-doclist-item">Warranty documentation</span>
-        <span class="dw-doclist-item">Handoff documents</span>
-        <span class="dw-doclist-item">Final project records</span>
+        <div class="dw-doclist" aria-label="Documents">
+          <span class="dw-doclist-item">Punch documentation</span>
+          <span class="dw-doclist-item">Closeout packages</span>
+          <span class="dw-doclist-item">Warranty documentation</span>
+          <span class="dw-doclist-item">Handoff documents</span>
+          <span class="dw-doclist-item">Final project records</span>
+        </div>
       </div>
     </div>
 

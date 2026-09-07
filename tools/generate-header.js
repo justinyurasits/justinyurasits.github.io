@@ -59,7 +59,7 @@ ${productItem('/products/operations-automation.html', '——', 'Operations Auto
 ${productItem('/products/custom-solutions.html', '——', 'Custom Solutions', 'custom-solutions', activeProduct)}
           </nav>
         </li>
-${navA('/services.html', 'Services', 'services')}
+${navA('/services.html', 'Engagements', 'services')}
         <li class="cos-nav__dropdown" id="dd-resources">
           <button class="cos-nav__trigger${resourcesTriggerCur}" aria-expanded="false" aria-haspopup="true" aria-controls="resources-panel">Resources<span class="cos-nav__caret" aria-hidden="true">▾</span></button>
           <nav class="cos-nav__panel cos-nav__panel--resources" id="resources-panel" aria-label="Resources">
@@ -78,7 +78,7 @@ ${navA('/services.html', 'Services', 'services')}
           </nav>
         </li>
 ${navA('/about.html', 'About', 'about')}
-        <li><a class="cos-header__cta" href="${calLink}">Book a demo</a></li>
+        <li><a class="cos-header__cta" href="${calLink}">Book a call</a></li>
       </ul>
     </div>
   </div>

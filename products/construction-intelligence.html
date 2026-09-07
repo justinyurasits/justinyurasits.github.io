@@ -7,235 +7,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-/* ─── Tokens ─────────────────────────────────────────────── */
-:root {
-  --c-ink:       #111111;
-  --c-white:     #FFFFFF;
-  --c-bond:      #EFEFEB;
-  --c-steel:     #476776;
-  --c-graphite:  #5F6466;
-  --c-line:      #B8B9B5;
-  --c-revision:  #C43230;
-  --font:        'Archivo', Helvetica, sans-serif;
-}
-
-/* ─── Reset & base ───────────────────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; }
-body { margin: 0; font-family: var(--font); background: var(--c-white); color: var(--c-ink); -webkit-font-smoothing: antialiased; }
-ul, ol { list-style: none; margin: 0; padding: 0; }
-a { color: inherit; }
-
-/* ─── Container ──────────────────────────────────────────── */
-.cos-container { max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px); }
-
-/* ─── Shared CTA scale ───────────────────────────────────── */
-.ci-btn { display: inline-flex; align-items: center; min-height: 44px; padding: 13px 20px; font: 600 14px/1 var(--font); letter-spacing: -.01em; text-decoration: none; white-space: nowrap; }
-.ci-btn--ink { background: var(--c-ink); color: var(--c-white); }
-.ci-btn--ink:hover { background: var(--c-steel); }
-.ci-btn--paper { background: var(--c-white); color: var(--c-ink); }
-.ci-btn--paper:hover { background: var(--c-bond); }
-.ci-link { display: inline-flex; align-items: center; min-height: 40px; font: 600 14px/1 var(--font); letter-spacing: -.01em; text-decoration: none; border-bottom: 2px solid; padding-bottom: 3px; }
-.ci-link--ink { color: var(--c-ink); border-color: var(--c-ink); }
-.ci-link--ink:hover { color: var(--c-steel); border-color: var(--c-steel); }
-.ci-link--paper { color: var(--c-white); border-color: var(--c-white); }
-.ci-link--paper:hover { color: var(--c-line); border-color: var(--c-line); }
-.ci-cta-row { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
-
-/* ─── Shared type ────────────────────────────────────────── */
-.ci-eyebrow { margin: 0 0 14px; font: 600 11px/1 var(--font); letter-spacing: .16em; text-transform: uppercase; color: var(--c-steel); }
-.ci-eyebrow--line { color: var(--c-line); }
-.ci-h2 { margin: 0; font: 600 clamp(28px, 8cqi, 42px)/1.05 var(--font); letter-spacing: -.035em; color: var(--c-ink); text-wrap: balance; }
-.ci-h2--no-balance { margin: 0; font: 600 clamp(28px, 8cqi, 42px)/1.05 var(--font); letter-spacing: -.035em; color: var(--c-ink); }
-.ci-rule-2px { border: none; border-top: 2px solid var(--c-ink); }
-.ci-rule-1px { border: none; border-top: 1px solid var(--c-line); }
-
-/* ─── Two-column section header ──────────────────────────── */
-.ci-section-head { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px,100%), 1fr)); gap: 24px 48px; align-items: start; container-type: inline-size; }
-
-/* ─── § 1 Hero — Paper ───────────────────────────────────── */
-.ci-hero { background: var(--c-white); padding: 76px 0 64px; }
-.ci-hero__col { max-width: 64ch; container-type: inline-size; display: flex; flex-direction: column; gap: 26px; }
-.ci-hero__tag { margin: 0; display: flex; align-items: center; gap: 12px; font: 600 11px/1 var(--font); letter-spacing: .16em; text-transform: uppercase; color: var(--c-steel); }
-.ci-hero__tag-n { font: 400 12px/1 ui-monospace, monospace; color: var(--c-graphite); letter-spacing: 0; }
-.ci-hero__tag-rule { width: 40px; height: 1px; background: var(--c-ink); flex-shrink: 0; }
-.ci-hero__name { margin: 0; font: 600 clamp(22px, 6cqi, 34px)/1.05 var(--font); letter-spacing: -.032em; color: var(--c-ink); display: flex; align-items: center; gap: .35em; white-space: nowrap; }
-.ci-hero__headline { margin: 0; font: 600 clamp(30px, 9cqi, 48px)/1.02 var(--font); letter-spacing: -.038em; color: var(--c-ink); text-wrap: balance; }
-.ci-hero__body { margin: 0; max-width: 56ch; font: 400 17px/1.55 var(--font); color: var(--c-graphite); }
-.ci-hero__outcome { margin: 0; padding-left: 16px; border-left: 2px solid var(--c-steel); font: 600 18px/1.35 var(--font); color: var(--c-ink); }
-.ci-hero__rule { border: none; border-top: 2px solid var(--c-ink); margin: 48px 0 0; }
-.ci-hero__caps { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px,100%), 1fr)); column-gap: 40px; row-gap: 8px; }
-.ci-hero__cap { padding: 26px 0; border-top: 1px solid var(--c-line); }
-.ci-hero__cap-n { display: block; margin-bottom: 8px; font: 400 12px/1 ui-monospace, monospace; color: var(--c-graphite); }
-.ci-hero__cap-title { margin: 0 0 8px; font: 600 20px/1.25 var(--font); letter-spacing: -.02em; color: var(--c-ink); }
-.ci-hero__cap-body { margin: 0; font: 400 15px/1.55 var(--font); color: var(--c-graphite); }
-
-/* ─── § 2 Your best people — Bond ───────────────────────── */
-.ci-problem { background: var(--c-bond); padding-top: 76px; }
-.ci-problem__head { padding-bottom: 24px; }
-.ci-problem__body-g { margin: 0 0 12px; font: 400 16px/1.6 var(--font); color: var(--c-graphite); }
-.ci-problem__body-emph { margin: 0; font: 500 17px/1.5 var(--font); color: var(--c-ink); }
-.ci-ledger {}
-.ci-ledger__row { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px,100%), 1fr)); gap: 0 28px; align-items: baseline; padding: 28px 0; border-bottom: 1px solid var(--c-line); }
-.ci-ledger__row--last { padding-bottom: 46px; border-bottom: 0; }
-.ci-ledger__cell1 { display: flex; align-items: baseline; gap: 0; }
-.ci-ledger__n { width: 46px; flex: none; font: 400 12px/1 ui-monospace, monospace; color: var(--c-graphite); }
-.ci-ledger__claim { margin: 0; font: 600 21px/1.25 var(--font); letter-spacing: -.022em; color: var(--c-ink); }
-.ci-ledger__con { margin: 0; font: 400 16px/1.6 var(--font); color: var(--c-graphite); }
-
-/* 2b Ink band */
-.ci-problem__band { background: var(--c-ink); }
-.ci-problem__band-inner { padding-block: 34px; }
-.ci-band__text { margin: 0; max-width: 32ch; font: 600 clamp(22px, 3.4vw, 30px)/1.25 var(--font); letter-spacing: -.028em; color: var(--c-white); text-wrap: balance; }
-
-/* ─── § 3 Turn what your company knows — Paper ───────────── */
-.ci-product { background: var(--c-white); padding: 76px 0 80px; }
-.ci-product__head { padding-bottom: 24px; }
-.ci-product__head-body { margin: 0; font: 400 16px/1.6 var(--font); color: var(--c-graphite); }
-.ci-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px,100%), 1fr)); column-gap: 40px; padding-bottom: 30px; }
-.ci-step { border-top: 1px solid var(--c-line); padding: 26px 0; display: flex; flex-direction: column; gap: 10px; }
-.ci-step__n { font: 400 12px/1 ui-monospace, monospace; color: var(--c-graphite); }
-.ci-step__title { margin: 0; font: 600 21px/1.25 var(--font); letter-spacing: -.022em; color: var(--c-ink); }
-.ci-step__body { margin: 0; font: 400 15px/1.55 var(--font); color: var(--c-graphite); }
-.ci-product__close { margin: 0; max-width: 70ch; font: 600 19px/1.4 var(--font); letter-spacing: -.015em; color: var(--c-ink); padding-top: 24px; }
-
-/* ─── § 4 Get the answer — Bond ──────────────────────────── */
-.ci-specimen-sec { background: var(--c-bond); padding: 76px 0 80px; }
-.ci-specimen-sec__head { padding-bottom: 24px; }
-.ci-specimen-sec__caption { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
-.ci-specimen-sec__cap-line { font: 400 11px/1 ui-monospace, monospace; color: var(--c-graphite); text-transform: uppercase; letter-spacing: .04em; white-space: nowrap; }
-.ci-specimen-sec__cap-spec { font: 400 11px/1 ui-monospace, monospace; color: var(--c-steel); text-transform: uppercase; letter-spacing: .04em; }
-.ci-specimen-sec__head-wrap { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
-
-/* Answer specimen */
-.ci-specimen { border: 1px solid var(--c-ink); background: var(--c-white); }
-.ci-specimen__q-band { padding: 20px 24px 22px; border-bottom: 1px solid var(--c-ink); display: flex; flex-direction: column; gap: 8px; }
-.ci-specimen__q-label { font: 600 11px/1 ui-monospace, monospace; letter-spacing: .1em; text-transform: uppercase; color: var(--c-steel); }
-.ci-specimen__q-text { margin: 0; font: 600 21px/1.25 var(--font); letter-spacing: -.022em; color: var(--c-ink); }
-.ci-specimen__body { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px,100%), 1fr)); }
-.ci-answer { padding: 24px; display: flex; flex-direction: column; gap: 15px; }
-.ci-answer p { margin: 0; }
-.ci-answer p:first-child { font: 500 16px/1.55 var(--font); letter-spacing: -.01em; color: var(--c-ink); }
-.ci-answer p:not(:first-child) { font: 400 15px/1.6 var(--font); color: var(--c-graphite); }
-.ci-sources { border-top: 1px solid var(--c-line); border-left: 1px solid var(--c-line); background: var(--c-bond); display: flex; flex-direction: column; }
-.ci-sources__head { padding: 16px 20px 0; display: flex; align-items: baseline; gap: 8px; }
-.ci-sources__label { font: 600 11px/1 var(--font); letter-spacing: .14em; text-transform: uppercase; color: var(--c-graphite); }
-.ci-sources__count { font: 400 11px/1 ui-monospace, monospace; color: var(--c-graphite); }
-.ci-sources__divider { margin: 12px 20px 0; border: none; border-top: 1px solid var(--c-ink); }
-.ci-sources__list { flex: 1; display: flex; flex-direction: column; }
-.ci-source-row { padding: 12px 20px 14px; border-bottom: 1px solid var(--c-line); display: flex; align-items: baseline; gap: 12px; }
-.ci-source-row:last-child { border-bottom: none; }
-.ci-source-row__code { font: 400 12px/1 ui-monospace, monospace; color: var(--c-graphite); flex-shrink: 0; white-space: nowrap; }
-.ci-source-row__gloss { font: 400 13px/1.45 var(--font); color: var(--c-graphite); }
-.ci-sources__foot { margin-top: auto; padding: 14px 20px; }
-.ci-sources__foot-rule { border: none; border-top: 1px solid var(--c-line); margin-bottom: 12px; }
-.ci-sources__foot-label { display: block; margin-bottom: 5px; font: 600 11px/1 var(--font); letter-spacing: .14em; text-transform: uppercase; color: var(--c-steel); }
-.ci-sources__foot-val { margin: 0; font: 400 13px/1.4 var(--font); color: var(--c-graphite); }
-.ci-specimen__footer { background: var(--c-ink); padding: 18px 24px; display: grid; grid-template-columns: auto 1fr; gap: 10px 24px; align-items: baseline; }
-.ci-specimen__footer-label { font: 600 11px/1 var(--font); letter-spacing: .14em; text-transform: uppercase; color: var(--c-line); white-space: nowrap; }
-.ci-specimen__footer-val { font: 500 15px/1.4 var(--font); color: var(--c-white); }
-.ci-specimen-sec__note { margin-top: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px,100%), 1fr)); gap: 8px 40px; }
-.ci-specimen-sec__note-strong { margin: 0; font: 500 16px/1.5 var(--font); color: var(--c-ink); }
-.ci-specimen-sec__note-body { margin: 0; font: 400 15px/1.55 var(--font); color: var(--c-graphite); }
-
-/* ─── § 5 Ask how your company does the work — Paper ─────── */
-.ci-questions { background: var(--c-white); padding: 76px 0 80px; }
-.ci-questions__head { padding-bottom: 24px; }
-.ci-questions__head-body { margin: 0; font: 400 16px/1.6 var(--font); color: var(--c-graphite); }
-.ci-question-rows {}
-.ci-question-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px,100%), 1fr)); gap: 16px 28px; align-items: baseline; padding: 26px 0; border-bottom: 1px solid var(--c-line); }
-.ci-question-row--last { border-bottom: 0; }
-.ci-qcell1 { display: flex; flex-direction: column; gap: 10px; }
-.ci-qcell1__cat { font: 600 11px/1 var(--font); letter-spacing: .14em; text-transform: uppercase; color: var(--c-steel); }
-.ci-qcell1__pair { display: flex; align-items: baseline; gap: 10px; }
-.ci-qcell1__io { font: 500 11px/1 var(--font); letter-spacing: .1em; text-transform: uppercase; color: var(--c-graphite); flex: none; }
-.ci-qcell1__q { margin: 0; font: 400 16px/1.5 var(--font); color: var(--c-graphite); }
-.ci-qcell2 { display: flex; align-items: baseline; gap: 10px; }
-.ci-qcell2__ask { font: 600 11px/1 var(--font); letter-spacing: .1em; text-transform: uppercase; color: var(--c-ink); flex: none; }
-.ci-qcell2__q { margin: 0; font: 600 21px/1.25 var(--font); letter-spacing: -.022em; color: var(--c-ink); }
-.ci-questions__close { margin: 0; max-width: 70ch; font: 600 19px/1.4 var(--font); letter-spacing: -.015em; color: var(--c-ink); border-top: 2px solid #111111; padding-top: 20px; }
-
-/* ─── § 6 Answer shouldn't end the workflow — Bond ───────── */
-.ci-workflow { background: var(--c-bond); padding-top: 76px; }
-.ci-workflow__head { padding-bottom: 24px; }
-.ci-workflow__head-body { margin: 0; font: 400 16px/1.6 var(--font); color: var(--c-graphite); }
-.ci-workflow__subhead { margin: 14px 0 0; font: 500 20px/1.35 var(--font); letter-spacing: -.02em; color: var(--c-ink); }
-.ci-flows { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px,100%), 1fr)); column-gap: 40px; padding-bottom: 40px; }
-.ci-flow { border-top: 1px solid var(--c-line); padding: 26px 0 0; display: flex; flex-direction: column; gap: 16px; }
-.ci-flow__name { margin: 0; font: 600 21px/1.25 var(--font); letter-spacing: -.022em; color: var(--c-ink); }
-.ci-flow__step { display: flex; flex-direction: column; gap: 8px; }
-.ci-flow__step-label { display: flex; align-items: center; gap: 8px; }
-.ci-flow__step-prod { font: 600 11px/1 var(--font); letter-spacing: .14em; text-transform: uppercase; color: var(--c-steel); }
-.ci-flow__step-ci { margin: 0; font: 500 16px/1.45 var(--font); color: var(--c-ink); }
-.ci-flow__connector { font: 400 16px/1 ui-monospace, monospace; color: var(--c-steel); }
-.ci-flow__step-dw { margin: 0; font: 400 15px/1.55 var(--font); color: var(--c-graphite); }
-
-/* 6b Ink band */
-.ci-workflow__band { background: var(--c-ink); }
-.ci-workflow__band-inner { padding-block: 34px; display: flex; flex-direction: column; gap: 22px; }
-.ci-workflow__band-label { font: 600 11px/1 var(--font); letter-spacing: .14em; text-transform: uppercase; color: #B8B9B5; border-bottom: 1px solid #5F6466; padding-bottom: 20px; }
-.ci-workflow__band-body { min-width: 0; display: flex; flex-direction: column; gap: 14px; max-width: 46ch; }
-.ci-workflow__band-val { margin: 0; font: 600 22px/1.2 var(--font); letter-spacing: -.022em; color: var(--c-white); }
-.ci-workflow__band-sub { margin: 0; font: 500 15px/1.4 var(--font); color: #B8B9B5; }
-
-/* ─── § 7 Keep what your company has learned — Paper ─────── */
-.ci-continuity { background: var(--c-white); padding: 76px 0 80px; }
-.ci-continuity__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px,100%), 1fr)); gap: 48px; align-items: start; container-type: inline-size; }
-.ci-continuity__left { display: flex; flex-direction: column; }
-.ci-continuity__left-rule { border: none; border-top: 1px solid var(--c-line); margin: 28px 0 20px; }
-.ci-continuity__p { margin: 0 0 14px; font: 400 16px/1.6 var(--font); color: var(--c-graphite); }
-.ci-continuity__p:last-child { margin-bottom: 0; }
-.ci-continuity__right { border-top: 2px solid var(--c-ink); }
-.ci-continuity-outcome { padding: 22px 0; border-bottom: 1px solid var(--c-line); }
-.ci-continuity-outcome--last { border-bottom: none; }
-.ci-continuity-outcome__title { margin: 0 0 8px; font: 600 21px/1.25 var(--font); letter-spacing: -.022em; color: var(--c-ink); }
-.ci-continuity-outcome__body { margin: 0; font: 400 15px/1.55 var(--font); color: var(--c-graphite); }
-.ci-continuity__imp-rule { border: none; border-top: 1px solid var(--c-line); margin: 0; }
-.ci-imperatives { padding: 0; }
-.ci-imperative { margin: 0; padding: 8px 0; font: 600 20px/1.35 var(--font); letter-spacing: -.02em; color: var(--c-ink); }
-
-/* ─── § 8 Not a generic chatbot — Bond ───────────────────── */
-.ci-config { background: var(--c-bond); padding: 76px 0 80px; }
-.ci-config__head { padding-bottom: 24px; }
-.ci-config__head-body { margin: 0; font: 400 16px/1.6 var(--font); color: var(--c-graphite); }
-.ci-config__diff-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px,100%), 1fr)); gap: 20px 48px; align-items: start; margin-bottom: 32px; }
-.ci-config__diff-intro { margin: 0; font: 500 17px/1.55 var(--font); color: var(--c-ink); }
-.ci-config__diff-q { margin: 0; padding-left: 22px; border-left: 2px solid var(--c-steel); font: 600 22px/1.25 var(--font); letter-spacing: -.022em; color: var(--c-ink); }
-.ci-config__inputs-intro { margin: 0 0 12px; font: 500 16px/1.5 var(--font); color: var(--c-ink); padding-top: 24px; }
-.ci-inputs { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px,100%), 1fr)); gap: 0 32px; }
-.ci-input-item { display: flex; align-items: baseline; gap: 10px; padding: 14px 0; border-bottom: 1px solid var(--c-line); }
-.ci-input-item__n { font: 400 11px/1 ui-monospace, monospace; color: var(--c-graphite); flex-shrink: 0; }
-.ci-input-item__label { font: 500 16px/1.3 var(--font); color: var(--c-ink); }
-.ci-config__close { margin: 34px 0 0; max-width: 70ch; font: 600 19px/1.4 var(--font); letter-spacing: -.015em; color: var(--c-ink); }
-
-/* ─── § 9 Closing CTA — Ink ──────────────────────────────── */
-.ci-close { background: var(--c-ink); padding: 88px 0 80px; }
-.ci-close__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(340px,100%), 1fr)); gap: 56px; align-items: start; container-type: inline-size; }
-.ci-close__lockup { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; flex-wrap: wrap; }
-.ci-close__lockup-name { font: 600 14px/1 var(--font); letter-spacing: .14em; text-transform: uppercase; color: var(--c-white); white-space: nowrap; }
-.ci-close__lockup-rule { flex: 1; height: 1px; background: var(--c-graphite); min-width: 20px; }
-.ci-close__h { margin: 0 0 24px; font: 600 clamp(34px, 11cqi, 64px)/0.98 var(--font); letter-spacing: -.042em; color: var(--c-white); text-wrap: balance; }
-.ci-close__body1 { margin: 0 0 14px; max-width: 46ch; font: 400 19px/1.55 var(--font); color: var(--c-line); }
-.ci-close__body2 { margin: 0; max-width: 46ch; font: 400 16px/1.6 var(--font); color: var(--c-line); }
-.ci-close__index-label { margin: 0 0 0; font: 500 12px/1 var(--font); letter-spacing: .12em; text-transform: uppercase; color: var(--c-line); }
-.ci-close__index-rule { height: 1px; background: var(--c-graphite); margin: 14px 0 0; }
-.ci-close__index-row { display: flex; align-items: center; gap: 12px; padding: 16px 0; border-bottom: 1px solid var(--c-graphite); }
-.ci-close__index-row:last-child { border-bottom: 0; }
-.ci-close__index-n { font: 400 12px/1 ui-monospace, monospace; color: var(--c-line); flex-shrink: 0; }
-.ci-close__index-name { font: 600 17px/1 var(--font); color: var(--c-white); }
-.ci-close__index-tag { display: inline-flex; align-items: center; padding: 3px 6px; font: 600 10px/1 var(--font); letter-spacing: .12em; text-transform: uppercase; color: var(--c-line); border: 1px solid var(--c-graphite); margin-left: 8px; white-space: nowrap; }
-.ci-close__index-ext { font: 500 10px/1 var(--font); letter-spacing: .1em; text-transform: uppercase; color: var(--c-graphite); margin-left: auto; }
-
-/* ─── Footer ─────────────────────────────────────────────── */
-
-  .ci-hero { padding: 56px 0 48px; }
-  .ci-hero__rule { margin-top: 32px; }
-}
-@media (max-width: 900px) {
-}
-</style>
+<link rel="stylesheet" href="../brand-kit/tokens.css">
+<link rel="stylesheet" href="../brand-kit/brand.css">
 <link rel="stylesheet" href="../brand-kit/cos-header.css">
 <link rel="stylesheet" href="../brand-kit/cos-footer.css">
+<style>
+body { margin: 0; }
+</style>
 </head>
 <body>
 
@@ -285,645 +63,318 @@ a { color: inherit; }
 </header>
 <!-- header:end -->
 
-<!-- § 1. Hero — Paper -->
-<section class="ci-hero">
-  <div class="cos-container">
-    <div class="ci-hero__col">
-
-      <!-- Masterbrand tag row -->
-      <p class="ci-hero__tag">
-        <span class="ci-hero__tag-n">02</span>
-        <span class="ci-hero__tag-rule"></span>
-        <span>Construction OS</span>
-      </p>
-
-      <!-- Product name with CI icon at .72em -->
-      <h1 class="ci-hero__name">
-        <!-- icon-fewer-bottlenecks at .72em, two polylines only (below 24px: drop hairline) -->
-        <svg viewBox="0 0 100 100" style="width:.72em;height:.72em;flex:none" aria-hidden="true">
-          <polyline points="8,20 40,20 54,42 94,42" fill="none" stroke="currentColor" stroke-width="11"/>
-          <polyline points="8,80 40,80 54,58 94,58" fill="none" stroke="currentColor" stroke-width="11"/>
+<!-- ================= 1. HERO ================= -->
+<div style="background: #FFFFFF; padding: 72px 0 76px;">
+  <div style="max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px);">
+    <div style="container-type: inline-size; display: flex; flex-direction: column; gap: 22px; max-width: 76ch;">
+      <div style="display: flex; align-items: center; gap: 14px;">
+        <svg viewBox="0 0 100 100" width="26" height="26" aria-hidden="true" style="flex: none;">
+          <line x1="6" y1="50" x2="96" y2="50" stroke="#476776" stroke-width="5"></line>
+          <polyline points="8,20 40,20 54,42 94,42" fill="none" stroke="#111111" stroke-width="9"></polyline>
+          <polyline points="8,80 40,80 54,58 94,58" fill="none" stroke="#111111" stroke-width="9"></polyline>
         </svg>
-        Construction Intelligence
-      </h1>
-
-      <!-- Headline -->
-      <p class="ci-hero__headline">Put your company's knowledge to work.</p>
-
-      <!-- Body -->
-      <p class="ci-hero__body">Your company has spent years learning how to price work, manage changes, write scopes, solve problems, and run projects. Construction Intelligence combines that know-how with your procedures, pricing rules, standards, templates, and project history&mdash;so your team can get company-specific answers without tracking down the person who knows.</p>
-
-      <!-- Outcome line (2px Steel left border) -->
-      <p class="ci-hero__outcome">Get the answer. See what it&rsquo;s based on. Know what comes next.</p>
-
-      <!-- CTA row -->
-      <div class="ci-cta-row">
-        <a class="ci-btn ci-btn--ink" href="https://cal.com/justinyurasits">Book a demo</a>
-        <a class="ci-link ci-link--ink" href="#specimen">See an answer</a>
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #476776;">Construction Intelligence</div>
       </div>
-
-    </div>
-
-    <!-- Three capability points under 2px Ink rule -->
-    <hr class="ci-hero__rule" aria-hidden="true">
-    <div class="ci-hero__caps" aria-label="Key capabilities">
-      <div class="ci-hero__cap">
-        <span class="ci-hero__cap-n">01</span>
-        <h2 class="ci-hero__cap-title">Company-specific answers</h2>
-        <p class="ci-hero__cap-body">Grounded in your procedures, pricing rules, standards, templates, and project history.</p>
-      </div>
-      <div class="ci-hero__cap">
-        <span class="ci-hero__cap-n">02</span>
-        <h2 class="ci-hero__cap-title">Source-backed reasoning</h2>
-        <p class="ci-hero__cap-body">See the procedure, standard, or reference behind the answer.</p>
-      </div>
-      <div class="ci-hero__cap">
-        <span class="ci-hero__cap-n">03</span>
-        <h2 class="ci-hero__cap-title">From answer to action</h2>
-        <p class="ci-hero__cap-body">When the answer requires a document or next step, guide the PM to the right workflow in Document Workbench.</p>
+      <h1 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(30px, 9cqi, 56px); line-height: 1.0; letter-spacing: -0.04em; color: #111111; text-wrap: balance;">Put your company&rsquo;s knowledge to work.</h1>
+      <p style="margin: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 17px; line-height: 1.6; color: #5F6466; max-width: 64ch;">Construction Intelligence answers company-specific operating questions using your procedures, standards, pricing rules, templates, and project history&mdash;<wbr>so your team can get the answer without tracking down the person who knows.</p>
+      <div style="border-left: 2px solid #476776; padding-left: 18px; font-family: Archivo, sans-serif; font-weight: 600; font-size: 19px; line-height: 1.45; letter-spacing: -0.02em; color: #111111; max-width: 46ch;">Get the answer. See what it&rsquo;s based on. Know what comes next.</div>
+      <div style="display: flex; align-items: center; gap: 22px; flex-wrap: wrap; padding-top: 4px;">
+        <a href="https://cal.com/justinyurasits" style="box-sizing: border-box; background: #111111; color: #FFFFFF; font-family: Archivo, sans-serif; font-weight: 600; font-size: 15px; letter-spacing: -0.01em; padding: 15px 26px; min-height: 48px; display: inline-flex; align-items: center; text-decoration: none;">Book a 30-minute call</a>
+        <a href="#example-answer" style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 15px; letter-spacing: -0.01em; color: #111111; border-bottom: 2px solid #111111; padding-bottom: 3px; text-decoration: none;">See an example answer &rarr;</a>
       </div>
     </div>
   </div>
-</section>
+</div>
 
-<!-- § 2. Your best people (Bond) + 2b Ink transition band -->
-<section class="ci-problem">
-  <div class="cos-container">
+<!-- ================= 2. ANSWER SPECIMEN ================= -->
+<div id="example-answer" style="background: #EFEFEB; padding: 76px 0 80px;">
+  <div style="max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px);">
 
-    <!-- Header block -->
-    <div class="ci-section-head ci-problem__head">
-      <div>
-        <p class="ci-eyebrow">The Problem</p>
-        <h2 class="ci-h2">Your best people shouldn&rsquo;t be the only path to an answer.</h2>
+    <!-- Section header -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 24px 48px; align-items: start; border-bottom: 2px solid #111111; padding-bottom: 28px;">
+      <div style="container-type: inline-size; min-width: 0;">
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #476776; padding-bottom: 16px;">See an example answer</div>
+        <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(26px, 7cqi, 40px); line-height: 1.05; letter-spacing: -0.034em; color: #111111; max-width: 24ch; text-wrap: balance;">Get the answer&mdash;<wbr>and see what it&rsquo;s based on.</h2>
       </div>
-      <div>
-        <p class="ci-problem__body-g">Every construction company has people everyone depends on. The senior PM who knows how a difficult change should be handled. The estimator whose pricing judgment everyone trusts. The COO who knows the procedure nobody else can find.</p>
-        <p class="ci-problem__body-emph">Their experience is valuable. The problem is when the whole company has to go through them to use it.</p>
-      </div>
-    </div>
-    <hr class="ci-rule-2px" style="margin-bottom:30px" aria-hidden="true">
-
-    <!-- Ledger -->
-    <div class="ci-ledger">
-
-      <div class="ci-ledger__row">
-        <div class="ci-ledger__cell1">
-          <span class="ci-ledger__n">01</span>
-          <h3 class="ci-ledger__claim">Your best people become bottlenecks.</h3>
-        </div>
-        <div>
-          <p class="ci-ledger__con">The same experienced people get interrupted all day to answer questions the company has already answered before.</p>
-        </div>
-      </div>
-
-      <div class="ci-ledger__row">
-        <div class="ci-ledger__cell1">
-          <span class="ci-ledger__n">02</span>
-          <h3 class="ci-ledger__claim">Experienced people leave&mdash;<wbr>and the knowledge leaves with them.</h3>
-        </div>
-        <div>
-          <p class="ci-ledger__con">Retirement, turnover, and succession can take decades of accumulated judgment out of the business.</p>
-        </div>
-      </div>
-
-      <div class="ci-ledger__row">
-        <div class="ci-ledger__cell1">
-          <span class="ci-ledger__n">03</span>
-          <h3 class="ci-ledger__claim">New people know construction. They don&rsquo;t know your company yet.</h3>
-        </div>
-        <div>
-          <p class="ci-ledger__con">They still need to learn your pricing philosophy, standards, contract practices, approval requirements, and the lessons your team learned the hard way.</p>
-        </div>
-      </div>
-
-      <div class="ci-ledger__row ci-ledger__row--last">
-        <div class="ci-ledger__cell1">
-          <span class="ci-ledger__n">04</span>
-          <h3 class="ci-ledger__claim">The answer exists. Nobody can find it.</h3>
-        </div>
-        <div>
-          <p class="ci-ledger__con">Procedures, pricing guidance, examples, and project lessons are scattered across folders, documents, and past jobs&mdash;so asking a person is often easier than finding the answer.</p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- 2b. Transition band — Ink (full-bleed inside Bond section) -->
-  <div class="ci-problem__band">
-    <div class="cos-container ci-problem__band-inner">
-      <p class="ci-band__text">Your company already knows more than it can consistently use.</p>
-    </div>
-  </div>
-</section>
-
-<!-- § 3. Turn what your company knows — Paper -->
-<section class="ci-product">
-  <div class="cos-container">
-
-    <!-- Header block -->
-    <div class="ci-section-head ci-product__head">
-      <div>
-        <p class="ci-eyebrow">The Product</p>
-        <h2 class="ci-h2">Turn what your company knows into something the whole team can use.</h2>
-      </div>
-      <div>
-        <p class="ci-product__head-body">Construction Intelligence combines construction know-how with the knowledge specific to your business: your procedures, pricing rules, standards, templates, contract language, project examples, and documented operating judgment.</p>
-      </div>
-    </div>
-    <hr class="ci-rule-2px" style="margin-bottom:30px" aria-hidden="true">
-
-    <!-- Three steps -->
-    <div class="ci-steps">
-      <div class="ci-step">
-        <span class="ci-step__n">01</span>
-        <h3 class="ci-step__title">Ask the real question</h3>
-        <p class="ci-step__body">Ask in normal construction language, with the project and contract details that actually matter.</p>
-      </div>
-      <div class="ci-step">
-        <span class="ci-step__n">02</span>
-        <h3 class="ci-step__title">Get the company-specific answer</h3>
-        <p class="ci-step__body">Apply the procedures, standards, pricing rules, references, and context relevant to the question.</p>
-      </div>
-      <div class="ci-step">
-        <span class="ci-step__n">03</span>
-        <h3 class="ci-step__title">See why&mdash;<wbr>and what happens next</h3>
-        <p class="ci-step__body">See the sources behind the guidance, understand the conditions that could change the answer, and identify the next action when one is required.</p>
-      </div>
+      <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.6; color: #5F6466; padding-top: 5px;">One real question, answered from a real construction library. The source references below are actual documents, not illustrative citations written for a website.</div>
     </div>
 
-    <hr class="ci-rule-2px" aria-hidden="true">
-    <p class="ci-product__close">The goal isn&rsquo;t to replace experienced people. It&rsquo;s to stop making them the only way the company can access what it already knows.</p>
-
-  </div>
-</section>
-
-<!-- § 4. Get the answer—and see what it's based on. — Bond -->
-<section class="ci-specimen-sec" id="specimen">
-  <div class="cos-container">
-
-    <!-- Header block -->
-    <div class="ci-specimen-sec__head-wrap ci-specimen-sec__head">
-      <div>
-        <p class="ci-eyebrow">The Answer</p>
-        <h2 class="ci-h2">Get the answer&mdash;and see what it&rsquo;s based on.</h2>
-      </div>
-      <div class="ci-specimen-sec__caption">
-        <span class="ci-specimen-sec__cap-line">Construction Intelligence &mdash; Answer</span>
-        <span class="ci-specimen-sec__cap-spec">Specimen</span>
-      </div>
-    </div>
-    <hr class="ci-rule-2px" style="margin-bottom:34px" aria-hidden="true">
-
-    <!-- Answer specimen -->
-    <div class="ci-specimen" role="region" aria-label="Answer specimen">
-
-      <!-- Question band -->
-      <div class="ci-specimen__q-band">
-        <span class="ci-specimen__q-label">Question</span>
-        <p class="ci-specimen__q-text">How should we price an owner-requested millwork change on a cost-plus project?</p>
+    <!-- Specimen artifact -->
+    <div style="padding-top: 32px;">
+      <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding-bottom: 12px;">
+        <div style="font-family: ui-monospace, monospace; font-size: 11px; letter-spacing: 0.1em; color: #476776;">EXAMPLE ANSWER</div>
+        <div style="font-family: ui-monospace, monospace; font-size: 11px; letter-spacing: 0.04em; color: #5F6466;">RESIDENTIAL GC LIBRARY &middot; COST-PLUS</div>
       </div>
 
-      <!-- Body: auto-fit grid (answer + sources) -->
-      <div class="ci-specimen__body">
+      <div style="box-sizing: border-box; border: 1px solid #111111; background: #FFFFFF; position: relative;">
+        <!-- Registration bracket -->
+        <div style="position: absolute; top: 10px; right: 10px; width: 14px; height: 14px; border-top: 2px solid #B8B9B5; border-right: 2px solid #B8B9B5;"></div>
 
-        <!-- Answer column -->
-        <div class="ci-answer">
-          <p>On cost-plus, the PCO is still required&mdash;it establishes owner consent that the costs are eligible and defines whether fee applies.</p>
-          <p>For subcontracted millwork, price from the shop quote, write the scope internally, apply contract fee without compounding and show it separately, state schedule impact in calendar days, and get written authorization before fabrication begins.</p>
-          <p>If pricing is not final and the owner wants the shop released, authorize in writing as NTE or T&M&mdash;never verbally.</p>
+        <!-- Band 1: Question -->
+        <div style="border-bottom: 1px solid #111111; padding: 24px 30px 26px; display: flex; flex-direction: column; gap: 10px;">
+          <div style="font-family: ui-monospace, monospace; font-size: 11px; letter-spacing: 0.1em; color: #5F6466;">QUESTION</div>
+          <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 19px; line-height: 1.45; letter-spacing: -0.018em; color: #111111; max-width: 54ch;">How should we price an owner-requested millwork change on a cost-plus project?</div>
         </div>
 
-        <!-- Sources rail -->
-        <div class="ci-sources">
-          <div class="ci-sources__head">
-            <span class="ci-sources__label">Sources</span>
-            <span class="ci-sources__count">4</span>
+        <!-- Band 2: Answer -->
+        <div style="padding: 26px 30px 28px; display: flex; flex-direction: column; gap: 14px;">
+          <div style="font-family: ui-monospace, monospace; font-size: 11px; letter-spacing: 0.1em; color: #476776;">ANSWER</div>
+          <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.65; color: #111111; max-width: 74ch;">On cost-plus, the PCO is still required&mdash;<wbr>it establishes owner consent that the costs are eligible and defines whether fee applies.</div>
+          <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.65; color: #111111; max-width: 74ch;">For subcontracted millwork, price from the shop quote, write the scope internally, apply contract fee without compounding and show it separately, state schedule impact in calendar days, and get written authorization before fabrication begins.</div>
+          <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.65; color: #111111; max-width: 74ch;">If pricing is not final and the owner wants the shop released, authorize in writing as NTE or T&amp;M&mdash;<wbr>never verbally.</div>
+        </div>
+
+        <!-- Band 3: Sources -->
+        <div style="border-top: 1px solid #111111; padding: 24px 30px 26px; display: flex; flex-direction: column; gap: 14px;">
+          <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
+            <div style="font-family: ui-monospace, monospace; font-size: 11px; letter-spacing: 0.1em; color: #476776;">SOURCES</div>
+            <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 12.5px; color: #5F6466;">Four documents from the operating library</div>
           </div>
-          <hr class="ci-sources__divider" aria-hidden="true">
-          <div class="ci-sources__list">
-            <div class="ci-source-row">
-              <span class="ci-source-row__code">FCM-03 §8.2</span>
-              <span class="ci-source-row__gloss">Cost-plus change authorization and fee treatment</span>
+          <!-- Sources grid: border-top on every cell is correct here — cells sit under a band boundary in a multi-column auto-fit grid -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr)); gap: 0 32px;">
+            <div style="min-width: 0; border-top: 1px solid #B8B9B5; padding: 12px 0 13px; display: flex; flex-direction: column; gap: 5px;">
+              <div style="font-family: ui-monospace, monospace; font-size: 12.5px; letter-spacing: 0.03em; color: #111111;">FCM-03 &sect;8.2</div>
+              <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 13px; line-height: 1.5; color: #5F6466;">Cost-plus change authorization and fee treatment</div>
             </div>
-            <div class="ci-source-row">
-              <span class="ci-source-row__code">CHG-53 §8.6 / §9.2</span>
-              <span class="ci-source-row__gloss">PCO pricing presentation and contractor-written scope</span>
+            <div style="min-width: 0; border-top: 1px solid #B8B9B5; padding: 12px 0 13px; display: flex; flex-direction: column; gap: 5px;">
+              <div style="font-family: ui-monospace, monospace; font-size: 12.5px; letter-spacing: 0.03em; color: #111111;">CHG-53 &sect;8.6 / &sect;9.2</div>
+              <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 13px; line-height: 1.5; color: #5F6466;">PCO pricing presentation and contractor-written scope</div>
             </div>
-            <div class="ci-source-row">
-              <span class="ci-source-row__code">CON-16 §7.4</span>
-              <span class="ci-source-row__gloss">Fee and markup rules</span>
+            <div style="min-width: 0; border-top: 1px solid #B8B9B5; padding: 12px 0 13px; display: flex; flex-direction: column; gap: 5px;">
+              <div style="font-family: ui-monospace, monospace; font-size: 12.5px; letter-spacing: 0.03em; color: #111111;">CON-16 &sect;7.4</div>
+              <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 13px; line-height: 1.5; color: #5F6466;">Fee and markup rules</div>
             </div>
-            <div class="ci-source-row">
-              <span class="ci-source-row__code">CHG-59</span>
-              <span class="ci-source-row__gloss">NTE / T&M authorization</span>
+            <div style="min-width: 0; border-top: 1px solid #B8B9B5; padding: 12px 0 13px; display: flex; flex-direction: column; gap: 5px;">
+              <div style="font-family: ui-monospace, monospace; font-size: 12.5px; letter-spacing: 0.03em; color: #111111;">CHG-59</div>
+              <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 13px; line-height: 1.5; color: #5F6466;">NTE / T&amp;M authorization</div>
             </div>
           </div>
-          <div class="ci-sources__foot">
-            <hr class="ci-sources__foot-rule" aria-hidden="true">
-            <span class="ci-sources__foot-label">Answered From</span>
-            <p class="ci-sources__foot-val">Your company&rsquo;s procedures and standards</p>
-          </div>
+        </div>
+
+        <!-- Band 4: What changes the answer -->
+        <div style="border-top: 1px solid #111111; padding: 22px 30px 24px; display: flex; flex-wrap: wrap; gap: 12px 32px; align-items: baseline;">
+          <div style="flex: 1 1 220px; min-width: 0; font-family: ui-monospace, monospace; font-size: 11px; letter-spacing: 0.1em; color: #476776;">WHAT CHANGES THE ANSWER</div>
+          <div style="flex: 2 1 380px; min-width: 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: 16px; line-height: 1.55; letter-spacing: -0.012em; color: #111111;">Subcontracted vs. self-performed millwork; whether the project has a GMP cap.</div>
         </div>
 
       </div>
-
-      <!-- Ink footer band -->
-      <div class="ci-specimen__footer">
-        <span class="ci-specimen__footer-label">What Changes The Answer</span>
-        <p class="ci-specimen__footer-val">Subcontracted vs. self-performed millwork; whether the project has a GMP cap.</p>
-      </div>
-
     </div>
 
-    <!-- Proof note below specimen -->
-    <div class="ci-specimen-sec__note">
-      <p class="ci-specimen-sec__note-strong">An answer, the basis for it, and the conditions that would change it.</p>
-      <p class="ci-specimen-sec__note-body">Not a retrieved document, and not an unexplained response.</p>
+    <!-- Credibility block -->
+    <div style="border-top: 2px solid #111111; margin-top: 36px; padding-top: 28px; display: flex; flex-wrap: wrap; gap: 24px 48px; align-items: flex-start;">
+      <div style="flex: 1 1 300px; min-width: 0; container-type: inline-size; font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(22px, 6cqi, 28px); line-height: 1.15; letter-spacing: -0.028em; color: #111111; text-wrap: balance;">Real sources. Real operating documents.</div>
+      <div style="flex: 1.25 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 14px;">
+        <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.6; color: #5F6466;">This example is grounded in the real construction library I use at a Boston-area residential GC. FCM-03, CHG-53, CON-16, and CHG-59 are real document references&mdash;<wbr>not illustrative citations invented for the website.</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 17px; line-height: 1.5; letter-spacing: -0.015em; color: #111111;">The point is not simply to produce an answer. It is to show the company knowledge behind it and the conditions that could change it.</div>
+      </div>
     </div>
 
   </div>
-</section>
+</div>
 
-<!-- § 5. Ask how your company does the work. — Paper -->
-<section class="ci-questions">
-  <div class="cos-container">
+<!-- ================= 3. WHAT IT IS GROUNDED IN ================= -->
+<div style="background: #FFFFFF; padding: 76px 0 80px;">
+  <div style="max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px);">
 
-    <!-- Header block -->
-    <div class="ci-section-head ci-questions__head">
-      <div>
-        <p class="ci-eyebrow">The Questions</p>
-        <h2 class="ci-h2">Ask how your company does the work.</h2>
+    <!-- Section header -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 24px 48px; align-items: start; border-bottom: 2px solid #111111; padding-bottom: 28px;">
+      <div style="container-type: inline-size; min-width: 0;">
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #476776; padding-bottom: 16px;">What it is grounded in</div>
+        <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(28px, 8cqi, 42px); line-height: 1.05; letter-spacing: -0.035em; color: #111111; max-width: 22ch; text-wrap: balance;">Built on the knowledge your company already has.</h2>
       </div>
-      <div>
-        <p class="ci-questions__head-body">Generic construction questions are easy. The valuable questions are the ones where the answer depends on both construction knowledge and how your company operates.</p>
+      <div style="min-width: 0; display: flex; flex-direction: column; gap: 12px; padding-top: 5px;">
+        <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.6; color: #5F6466;">Generic AI knows a lot about construction. It does not automatically know how your company does the work.</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 17px; line-height: 1.5; letter-spacing: -0.015em; color: #111111;">Construction Intelligence is configured around the operating knowledge already inside the business:</div>
       </div>
     </div>
-    <hr class="ci-rule-2px" aria-hidden="true">
 
-    <!-- Four paired rows -->
-    <div class="ci-question-rows">
-
-      <div class="ci-question-row">
-        <div class="ci-qcell1">
-          <span class="ci-qcell1__cat">Changes</span>
-          <div class="ci-qcell1__pair">
-            <span class="ci-qcell1__io">Instead&nbsp;of</span>
-            <p class="ci-qcell1__q">How do you price a change order?</p>
-          </div>
-        </div>
-        <div class="ci-qcell2">
-          <span class="ci-qcell2__ask">Ask</span>
-          <p class="ci-qcell2__q">How should we price this owner-requested millwork change on this type of contract?</p>
-        </div>
+    <!-- Corpus: 3 figures -->
+    <div style="padding-top: 34px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); gap: 28px 44px;">
+      <div style="min-width: 0; border-top: 1px solid #B8B9B5; padding: 20px 0 0; display: flex; flex-direction: column; gap: 10px;">
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 40px; line-height: 1; letter-spacing: -0.038em; color: #111111;">110</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.5; color: #5F6466;">Distinct construction document types</div>
       </div>
-
-      <div class="ci-question-row">
-        <div class="ci-qcell1">
-          <span class="ci-qcell1__cat">Contracts</span>
-          <div class="ci-qcell1__pair">
-            <span class="ci-qcell1__io">Instead&nbsp;of</span>
-            <p class="ci-qcell1__q">What belongs in a subcontract?</p>
-          </div>
-        </div>
-        <div class="ci-qcell2">
-          <span class="ci-qcell2__ask">Ask</span>
-          <p class="ci-qcell2__q">What does our company require before this subcontract can be issued?</p>
-        </div>
+      <div style="min-width: 0; border-top: 1px solid #B8B9B5; padding: 20px 0 0; display: flex; flex-direction: column; gap: 10px;">
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 40px; line-height: 1; letter-spacing: -0.038em; color: #111111;">38</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.5; color: #5F6466;">Document categories</div>
       </div>
-
-      <div class="ci-question-row">
-        <div class="ci-qcell1">
-          <span class="ci-qcell1__cat">RFIs</span>
-          <div class="ci-qcell1__pair">
-            <span class="ci-qcell1__io">Instead&nbsp;of</span>
-            <p class="ci-qcell1__q">What is an RFI?</p>
-          </div>
-        </div>
-        <div class="ci-qcell2">
-          <span class="ci-qcell2__ask">Ask</span>
-          <p class="ci-qcell2__q">Based on this condition and our process, should we issue an RFI?</p>
-        </div>
+      <div style="min-width: 0; border-top: 1px solid #B8B9B5; padding: 20px 0 0; display: flex; flex-direction: column; gap: 10px;">
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 40px; line-height: 1; letter-spacing: -0.038em; color: #111111;">5</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.5; color: #5F6466;">Construction lifecycle phases</div>
       </div>
-
-      <div class="ci-question-row ci-question-row--last">
-        <div class="ci-qcell1">
-          <span class="ci-qcell1__cat">Company Process</span>
-          <div class="ci-qcell1__pair">
-            <span class="ci-qcell1__io">Instead&nbsp;of</span>
-            <p class="ci-qcell1__q">What is the standard procedure?</p>
-          </div>
-        </div>
-        <div class="ci-qcell2">
-          <span class="ci-qcell2__ask">Ask</span>
-          <p class="ci-qcell2__q">How are we expected to handle this here?</p>
-        </div>
-      </div>
-
     </div>
 
-    <p class="ci-questions__close">These aren&rsquo;t just knowledge questions. They&rsquo;re operating questions.</p>
+    <!-- Along with your -->
+    <div style="padding-top: 40px; display: flex; flex-wrap: wrap; gap: 20px 44px; align-items: flex-start;">
+      <div style="flex: 1 1 220px; min-width: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #5F6466; padding-top: 8px;">Along with your</div>
+      <div style="flex: 2.4 1 460px; min-width: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(230px, 100%), 1fr)); gap: 0 32px; align-content: start;">
+        <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 15px; line-height: 1.45; letter-spacing: -0.008em; color: #111111; border-bottom: 1px solid #B8B9B5; padding: 6px 0 7px;">Procedures and SOPs</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 15px; line-height: 1.45; letter-spacing: -0.008em; color: #111111; border-bottom: 1px solid #B8B9B5; padding: 6px 0 7px;">Pricing rules and references</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 15px; line-height: 1.45; letter-spacing: -0.008em; color: #111111; border-bottom: 1px solid #B8B9B5; padding: 6px 0 7px;">Contract language</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 15px; line-height: 1.45; letter-spacing: -0.008em; color: #111111; border-bottom: 1px solid #B8B9B5; padding: 6px 0 7px;">Templates and standards</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 15px; line-height: 1.45; letter-spacing: -0.008em; color: #111111; border-bottom: 1px solid #B8B9B5; padding: 6px 0 7px;">Project examples</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 15px; line-height: 1.45; letter-spacing: -0.008em; color: #111111; border-bottom: 1px solid #B8B9B5; padding: 6px 0 7px;">Documented lessons and decision guidance</div>
+      </div>
+    </div>
+
+    <!-- Closing row -->
+    <div style="border-top: 2px solid #111111; margin-top: 36px; padding-top: 24px; display: flex; flex-wrap: wrap; gap: 20px 40px; align-items: baseline; justify-content: space-between;">
+      <div style="flex: 1 1 380px; min-width: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 19px; line-height: 1.45; letter-spacing: -0.018em; color: #111111;">The answer gets better because the company context is there.</div>
+      <a href="#" style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 15px; letter-spacing: -0.01em; color: #111111; border-bottom: 2px solid #111111; padding-bottom: 3px; text-decoration: none; flex: none;">View the construction document index &rarr;</a>
+    </div>
 
   </div>
-</section>
+</div>
 
-<!-- § 6. The answer shouldn't be the end of the workflow. — Bond + 6b Ink band -->
-<section class="ci-workflow">
-  <div class="cos-container">
+<!-- ================= 4. COMPANY-SPECIFIC QUESTIONS ================= -->
+<div style="background: #EFEFEB; padding: 76px 0 80px;">
+  <div style="max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px);">
 
-    <!-- Header block -->
-    <div class="ci-section-head ci-workflow__head">
-      <div>
-        <p class="ci-eyebrow">Construction OS Connection</p>
-        <h2 class="ci-h2--no-balance">The answer shouldn&rsquo;t be the end of the workflow.</h2>
-        <p class="ci-workflow__subhead">Know what to do. Then do it.</p>
-      </div>
-      <div>
-        <p class="ci-workflow__head-body">When an answer requires documentation, approval, or another project action, Construction Intelligence can guide the PM toward the appropriate document or workflow in Document Workbench.</p>
-      </div>
+    <!-- Single-column header -->
+    <div style="container-type: inline-size; display: flex; flex-direction: column; gap: 20px; border-bottom: 2px solid #111111; padding-bottom: 30px;">
+      <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #476776;">The questions that matter</div>
+      <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(28px, 8cqi, 42px); line-height: 1.05; letter-spacing: -0.035em; color: #111111; max-width: 24ch; text-wrap: balance;">Ask how your company does the work.</h2>
+      <p style="margin: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.6; color: #5F6466; max-width: 66ch;">The useful questions usually aren&rsquo;t generic construction questions. They&rsquo;re questions where the answer depends on construction knowledge and the way your company operates.</p>
     </div>
-    <hr class="ci-rule-2px" style="margin-bottom:30px" aria-hidden="true">
 
-    <!-- Three flows -->
-    <div class="ci-flows">
+    <!-- Two question blocks -->
+    <div style="padding-top: 34px; display: flex; flex-wrap: wrap; gap: 36px 48px; align-items: flex-start;">
 
-      <!-- Flow 1: Owner-requested change -->
-      <div class="ci-flow">
-        <h3 class="ci-flow__name">Owner-requested change</h3>
-
-        <!-- CI step -->
-        <div class="ci-flow__step">
-          <div class="ci-flow__step-label">
-            <svg viewBox="0 0 100 100" width="14" height="14" aria-hidden="true" style="flex:none;color:var(--c-steel)">
-              <polyline points="8,20 40,20 54,42 94,42" fill="none" stroke="currentColor" stroke-width="11"/>
-              <polyline points="8,80 40,80 54,58 94,58" fill="none" stroke="currentColor" stroke-width="11"/>
-            </svg>
-            <span class="ci-flow__step-prod">Construction Intelligence</span>
-          </div>
-          <p class="ci-flow__step-ci">Determine the required authorization, pricing treatment, and relevant company procedure.</p>
+      <!-- Changes -->
+      <div style="flex: 1 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 16px;">
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #5F6466; border-bottom: 1px solid #B8B9B5; padding-bottom: 12px;">Changes</div>
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+          <div style="font-family: ui-monospace, monospace; font-size: 11px; letter-spacing: 0.08em; color: #5F6466;">INSTEAD OF</div>
+          <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.5; color: #B8B9B5;">How do you price a change order?</div>
         </div>
-
-        <span class="ci-flow__connector" aria-hidden="true">↓</span>
-
-        <!-- DW step -->
-        <div class="ci-flow__step">
-          <div class="ci-flow__step-label">
-            <svg viewBox="0 0 100 100" width="14" height="14" aria-hidden="true" style="flex:none;color:var(--c-steel)">
-              <rect x="14" y="26" width="52" height="60" fill="none" stroke="currentColor" stroke-width="11"/>
-            </svg>
-            <span class="ci-flow__step-prod">Document Workbench</span>
-          </div>
-          <p class="ci-flow__step-dw">Guide the PM toward the appropriate change documentation.</p>
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+          <div style="font-family: ui-monospace, monospace; font-size: 11px; letter-spacing: 0.08em; color: #476776;">ASK</div>
+          <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 18px; line-height: 1.4; letter-spacing: -0.018em; color: #111111; text-wrap: pretty;">How should we price this owner-requested millwork change on this type of contract?</div>
         </div>
       </div>
 
-      <!-- Flow 2: Subcontract readiness -->
-      <div class="ci-flow">
-        <h3 class="ci-flow__name">Subcontract readiness</h3>
-
-        <div class="ci-flow__step">
-          <div class="ci-flow__step-label">
-            <svg viewBox="0 0 100 100" width="14" height="14" aria-hidden="true" style="flex:none;color:var(--c-steel)">
-              <polyline points="8,20 40,20 54,42 94,42" fill="none" stroke="currentColor" stroke-width="11"/>
-              <polyline points="8,80 40,80 54,58 94,58" fill="none" stroke="currentColor" stroke-width="11"/>
-            </svg>
-            <span class="ci-flow__step-prod">Construction Intelligence</span>
-          </div>
-          <p class="ci-flow__step-ci">Identify requirements or approvals that are still missing.</p>
+      <!-- Contracts -->
+      <div style="flex: 1 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 16px;">
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #5F6466; border-bottom: 1px solid #B8B9B5; padding-bottom: 12px;">Contracts</div>
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+          <div style="font-family: ui-monospace, monospace; font-size: 11px; letter-spacing: 0.08em; color: #5F6466;">INSTEAD OF</div>
+          <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.5; color: #B8B9B5;">What belongs in a subcontract?</div>
         </div>
-
-        <span class="ci-flow__connector" aria-hidden="true">↓</span>
-
-        <div class="ci-flow__step">
-          <div class="ci-flow__step-label">
-            <svg viewBox="0 0 100 100" width="14" height="14" aria-hidden="true" style="flex:none;color:var(--c-steel)">
-              <rect x="14" y="26" width="52" height="60" fill="none" stroke="currentColor" stroke-width="11"/>
-            </svg>
-            <span class="ci-flow__step-prod">Document Workbench</span>
-          </div>
-          <p class="ci-flow__step-dw">Guide the PM toward the appropriate subcontract or supporting documentation.</p>
-        </div>
-      </div>
-
-      <!-- Flow 3: Potential RFI -->
-      <div class="ci-flow">
-        <h3 class="ci-flow__name">Potential RFI</h3>
-
-        <div class="ci-flow__step">
-          <div class="ci-flow__step-label">
-            <svg viewBox="0 0 100 100" width="14" height="14" aria-hidden="true" style="flex:none;color:var(--c-steel)">
-              <polyline points="8,20 40,20 54,42 94,42" fill="none" stroke="currentColor" stroke-width="11"/>
-              <polyline points="8,80 40,80 54,58 94,58" fill="none" stroke="currentColor" stroke-width="11"/>
-            </svg>
-            <span class="ci-flow__step-prod">Construction Intelligence</span>
-          </div>
-          <p class="ci-flow__step-ci">Determine whether the condition requires formal clarification.</p>
-        </div>
-
-        <span class="ci-flow__connector" aria-hidden="true">↓</span>
-
-        <div class="ci-flow__step">
-          <div class="ci-flow__step-label">
-            <svg viewBox="0 0 100 100" width="14" height="14" aria-hidden="true" style="flex:none;color:var(--c-steel)">
-              <rect x="14" y="26" width="52" height="60" fill="none" stroke="currentColor" stroke-width="11"/>
-            </svg>
-            <span class="ci-flow__step-prod">Document Workbench</span>
-          </div>
-          <p class="ci-flow__step-dw">Guide the PM toward the appropriate RFI workflow when one is needed.</p>
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+          <div style="font-family: ui-monospace, monospace; font-size: 11px; letter-spacing: 0.08em; color: #476776;">ASK</div>
+          <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 18px; line-height: 1.4; letter-spacing: -0.018em; color: #111111; text-wrap: pretty;">What does our company require before this subcontract can be issued?</div>
         </div>
       </div>
 
     </div>
   </div>
+</div>
 
-  <!-- 6b. Knowledge to action — Ink band (full-bleed inside Bond section) -->
-  <div class="ci-workflow__band">
-    <div class="cos-container ci-workflow__band-inner">
-      <span class="ci-workflow__band-label">Knowledge to Action</span>
-      <div class="ci-workflow__band-body">
-        <p class="ci-workflow__band-val">Ask the question. Understand the requirement. Build the document that moves the job forward.</p>
-        <p class="ci-workflow__band-sub">The answer tells the team what happens next.</p>
+<!-- ================= 5. FROM ANSWER TO ACTION ================= -->
+<div style="background: #FFFFFF; padding: 76px 0 80px;">
+  <div style="max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px);">
+
+    <!-- Section header -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 24px 48px; align-items: start; border-bottom: 2px solid #111111; padding-bottom: 28px;">
+      <div style="container-type: inline-size; min-width: 0;">
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #476776; padding-bottom: 16px;">From answer to action</div>
+        <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(28px, 8cqi, 42px); line-height: 1.05; letter-spacing: -0.035em; color: #111111; max-width: 22ch; text-wrap: balance;">The answer shouldn&rsquo;t be the end of the workflow.</h2>
+      </div>
+      <div style="min-width: 0; display: flex; flex-direction: column; gap: 12px; padding-top: 5px;">
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 19px; line-height: 1.4; letter-spacing: -0.02em; color: #111111;">Know what to do. Then do it.</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.6; color: #5F6466;">When the answer requires documentation or another project action, Construction Intelligence can point the PM toward the appropriate document or workflow in Document Workbench.</div>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- § 7. Keep what your company has learned. — Paper -->
-<section class="ci-continuity">
-  <div class="cos-container">
-    <div class="ci-continuity__grid">
+    <!-- Three rows: row 01 no border-top, rows 02–03 have 1px Line gray -->
+    <div style="display: flex; flex-direction: column;">
 
-      <!-- Left: eyebrow + heading + rule + paragraphs -->
-      <div class="ci-continuity__left">
-        <p class="ci-eyebrow">Continuity</p>
-        <h2 class="ci-h2">Keep what your company has learned.</h2>
-        <hr class="ci-continuity__left-rule" aria-hidden="true">
-        <p class="ci-continuity__p">Some of a construction company's most valuable knowledge was accumulated over ten, twenty, or thirty years. Much of it was never designed to survive the person who learned it.</p>
-        <p class="ci-continuity__p">Retirement, turnover, and succession make that a business problem. So does bringing a new PM into a company whose standards, pricing judgment, and operating practices may take years to absorb informally.</p>
-      </div>
-
-      <!-- Right: 2px Ink top rule + outcomes + imperatives -->
-      <div class="ci-continuity__right">
-        <div class="ci-continuity-outcome">
-          <h3 class="ci-continuity-outcome__title">Preserve more of the experience.</h3>
-          <p class="ci-continuity-outcome__body">Document procedures, examples, standards, decision guidance, and lessons while experienced people are still available to explain them.</p>
-        </div>
-        <div class="ci-continuity-outcome ci-continuity-outcome--last">
-          <h3 class="ci-continuity-outcome__title">Give new people a better way to learn.</h3>
-          <p class="ci-continuity-outcome__body">Let PMs find company-specific guidance in the context of the work they are actually doing instead of depending on someone being available to explain everything.</p>
-        </div>
-        <hr class="ci-continuity__imp-rule" aria-hidden="true">
-        <div class="ci-imperatives" aria-label="Three imperatives">
-          <p class="ci-imperative">Preserve the lessons.</p>
-          <p class="ci-imperative">Pass on the judgment.</p>
-          <p class="ci-imperative">Keep the company from starting over.</p>
+      <!-- Row 01: Owner-requested change -->
+      <div style="padding: 26px 0 28px; display: flex; flex-direction: column; gap: 16px;">
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 18px; line-height: 1.35; letter-spacing: -0.018em; color: #111111;">Owner-requested change</div>
+        <div style="display: flex; flex-wrap: wrap; gap: 20px 32px; align-items: flex-start;">
+          <div style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 7px;">
+            <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #476776;">Construction Intelligence</div>
+            <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">Determine the authorization, pricing treatment, and company procedure.</div>
+          </div>
+          <div style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 7px;">
+            <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #476776;">Document Workbench</div>
+            <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">Prepare the appropriate change documentation.</div>
+          </div>
         </div>
       </div>
 
-    </div>
-  </div>
-</section>
+      <!-- Row 02: Contract requirement -->
+      <div style="padding: 26px 0 28px; border-top: 1px solid #B8B9B5; display: flex; flex-direction: column; gap: 16px;">
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 18px; line-height: 1.35; letter-spacing: -0.018em; color: #111111;">Contract requirement</div>
+        <div style="display: flex; flex-wrap: wrap; gap: 20px 32px; align-items: flex-start;">
+          <div style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 7px;">
+            <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #476776;">Construction Intelligence</div>
+            <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">Identify what is required before the agreement can move forward.</div>
+          </div>
+          <div style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 7px;">
+            <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #476776;">Document Workbench</div>
+            <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">Prepare the appropriate subcontract or supporting documents.</div>
+          </div>
+        </div>
+      </div>
 
-<!-- § 8. Not a generic chatbot. — Bond -->
-<section class="ci-config">
-  <div class="cos-container">
+      <!-- Row 03: Potential RFI -->
+      <div style="padding: 26px 0 28px; border-top: 1px solid #B8B9B5; display: flex; flex-direction: column; gap: 16px;">
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 18px; line-height: 1.35; letter-spacing: -0.018em; color: #111111;">Potential RFI</div>
+        <div style="display: flex; flex-wrap: wrap; gap: 20px 32px; align-items: flex-start;">
+          <div style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 7px;">
+            <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #476776;">Construction Intelligence</div>
+            <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">Determine whether formal clarification is required.</div>
+          </div>
+          <div style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 7px;">
+            <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #476776;">Document Workbench</div>
+            <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">Move into the appropriate RFI workflow when needed.</div>
+          </div>
+        </div>
+      </div>
 
-    <!-- Header block -->
-    <div class="ci-section-head ci-config__head">
-      <div>
-        <p class="ci-eyebrow">The Distinction</p>
-        <h2 class="ci-h2--no-balance">Not a generic chatbot.</h2>
-      </div>
-      <div>
-        <p class="ci-config__head-body">Generic AI knows a lot about construction. It does not automatically know your pricing rules, contract language, approval process, preferred scope structure, documentation standards, operating procedures, or the lessons your company learned on previous jobs.</p>
-      </div>
-    </div>
-    <hr class="ci-rule-2px" style="margin-bottom:30px" aria-hidden="true">
-
-    <!-- The different question — two columns -->
-    <div class="ci-config__diff-row">
-      <p class="ci-config__diff-intro">Construction Intelligence starts with a different question:</p>
-      <p class="ci-config__diff-q">What should our team do, based on what construction requires and how our company operates?</p>
-    </div>
-
-    <hr class="ci-rule-2px" aria-hidden="true">
-
-    <!-- Eight inputs -->
-    <p class="ci-config__inputs-intro">I configure Construction Intelligence around the knowledge your company already has:</p>
-    <div class="ci-inputs" role="list">
-      <div class="ci-input-item" role="listitem">
-        <span class="ci-input-item__n">01</span>
-        <span class="ci-input-item__label">Procedures and SOPs</span>
-      </div>
-      <div class="ci-input-item" role="listitem">
-        <span class="ci-input-item__n">02</span>
-        <span class="ci-input-item__label">Templates and standard documents</span>
-      </div>
-      <div class="ci-input-item" role="listitem">
-        <span class="ci-input-item__n">03</span>
-        <span class="ci-input-item__label">Pricing references and rules</span>
-      </div>
-      <div class="ci-input-item" role="listitem">
-        <span class="ci-input-item__n">04</span>
-        <span class="ci-input-item__label">Contract language</span>
-      </div>
-      <div class="ci-input-item" role="listitem">
-        <span class="ci-input-item__n">05</span>
-        <span class="ci-input-item__label">Company standards</span>
-      </div>
-      <div class="ci-input-item" role="listitem">
-        <span class="ci-input-item__n">06</span>
-        <span class="ci-input-item__label">Project examples</span>
-      </div>
-      <div class="ci-input-item" role="listitem">
-        <span class="ci-input-item__n">07</span>
-        <span class="ci-input-item__label">Lessons learned</span>
-      </div>
-      <div class="ci-input-item" role="listitem">
-        <span class="ci-input-item__n">08</span>
-        <span class="ci-input-item__label">Documented decision guidance</span>
-      </div>
     </div>
 
-    <p class="ci-config__close">Your company&rsquo;s knowledge becomes something the whole team can use&mdash;not something they have to know who to ask for.</p>
+    <!-- Closing statement: border-top on outer element, max-width: 70ch on text -->
+    <div style="border-top: 2px solid #111111; padding-top: 24px; font-family: Archivo, sans-serif; font-weight: 600; font-size: 19px; line-height: 1.45; letter-spacing: -0.018em; color: #111111; max-width: 70ch;">Ask the question. Understand the requirement. Produce what the job needs next.</div>
 
   </div>
-</section>
+</div>
 
-<!-- § 9. Closing CTA — Ink -->
-<section class="ci-close" id="cta">
-  <div class="cos-container">
-    <div class="ci-close__grid">
+<!-- ================= 6. CLOSING CTA (Ink) ================= -->
+<div style="background: #111111; padding: 84px 0 80px;">
+  <div style="max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr)); gap: 48px; align-items: start;">
 
-      <!-- Left column -->
-      <div>
-        <!-- Lockup: product icon + name + rule -->
-        <div class="ci-close__lockup">
-          <!-- icon-fewer-bottlenecks at 24px: Paper strokes, Line gray axis line, no red -->
-          <svg viewBox="0 0 100 100" width="24" height="24" aria-hidden="true">
-            <line x1="6" y1="50" x2="96" y2="50" stroke="#B8B9B5" stroke-width="5"/>
-            <polyline points="8,20 40,20 54,42 94,42" fill="none" stroke="#ffffff" stroke-width="11"/>
-            <polyline points="8,80 40,80 54,58 94,58" fill="none" stroke="#ffffff" stroke-width="11"/>
-          </svg>
-          <span class="ci-close__lockup-name">Construction Intelligence</span>
-          <span class="ci-close__lockup-rule"></span>
-        </div>
-
-        <h2 class="ci-close__h">Put your best people&rsquo;s judgment in reach of the whole team.</h2>
-        <p class="ci-close__body1">Your senior people should spend their time on the decisions that actually require their experience&mdash;not repeatedly retrieving information the company already knows.</p>
-        <p class="ci-close__body2">Give your team a better path to the answer, the reasoning behind it, and the work that needs to happen next.</p>
-
-        <div class="ci-cta-row" style="margin-top:32px">
-          <a class="ci-btn ci-btn--paper" href="https://cal.com/justinyurasits">Book a demo</a>
-          <a class="ci-link ci-link--paper" href="/products/document-workbench.html">Explore Document Workbench &rarr;</a>
-        </div>
+    <!-- Left column -->
+    <div style="container-type: inline-size; min-width: 0; display: flex; flex-direction: column; gap: 26px;">
+      <div style="display: flex; align-items: center; gap: 14px;">
+        <svg viewBox="0 0 100 100" width="24" height="24" aria-hidden="true" style="flex: none;">
+          <line x1="6" y1="50" x2="96" y2="50" stroke="#B8B9B5" stroke-width="5"></line>
+          <polyline points="8,20 40,20 54,42 94,42" fill="none" stroke="#FFFFFF" stroke-width="10"></polyline>
+          <polyline points="8,80 40,80 54,58 94,58" fill="none" stroke="#FFFFFF" stroke-width="10"></polyline>
+        </svg>
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: #FFFFFF;">Construction Intelligence</div>
+        <div style="height: 1px; flex: 1; background: #5F6466;"></div>
       </div>
-
-      <!-- Right column: the rest of the system -->
-      <div>
-        <p class="ci-close__index-label">The rest of the system</p>
-        <div class="ci-close__index-rule"></div>
-
-        <!-- 01 Document Workbench -->
-        <div class="ci-close__index-row">
-          <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true">
-            <rect x="14" y="26" width="52" height="60" fill="none" stroke="#ffffff" stroke-width="12"/>
-          </svg>
-          <span class="ci-close__index-n">01</span>
-          <span class="ci-close__index-name">Document Workbench</span>
-        </div>
-
-        <!-- 03 Project Intelligence (in development) -->
-        <div class="ci-close__index-row">
-          <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true">
-            <line x1="18" y1="70" x2="82" y2="70" stroke="#ffffff" stroke-width="12"/>
-            <line x1="30" y1="70" x2="30" y2="56" stroke="#ffffff" stroke-width="12"/>
-            <line x1="50" y1="70" x2="50" y2="44" stroke="#ffffff" stroke-width="12"/>
-            <line x1="70" y1="70" x2="70" y2="32" stroke="#ffffff" stroke-width="12"/>
-          </svg>
-          <span class="ci-close__index-n">03</span>
-          <span class="ci-close__index-name">Project Intelligence</span>
-          <span class="ci-close__index-tag">In Development</span>
-        </div>
-
-        <!-- Operations Automation -->
-        <div class="ci-close__index-row">
-          <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true">
-            <line x1="14" y1="28" x2="34" y2="28" stroke="#ffffff" stroke-width="12"/>
-            <line x1="42" y1="28" x2="62" y2="28" stroke="#ffffff" stroke-width="12"/>
-            <line x1="70" y1="28" x2="90" y2="28" stroke="#ffffff" stroke-width="12"/>
-            <line x1="14" y1="74" x2="90" y2="74" stroke="#ffffff" stroke-width="12"/>
-          </svg>
-          <span class="ci-close__index-n">&mdash;&mdash;</span>
-          <span class="ci-close__index-name">Operations Automation</span>
-          <span class="ci-close__index-ext">Extension Layer</span>
-        </div>
-
+      <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(30px, 10cqi, 52px); line-height: 1.0; letter-spacing: -0.04em; color: #FFFFFF; text-wrap: balance;">Bring me the question your team keeps asking the same person.</h2>
+      <p style="margin: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 17px; line-height: 1.6; color: #B8B9B5; max-width: 48ch;">Construction Intelligence gives the team another path to the answer&mdash;<wbr>grounded in the way your company actually works.</p>
+      <div style="display: flex; align-items: center; gap: 22px; flex-wrap: wrap; padding-top: 4px;">
+        <a href="https://cal.com/justinyurasits" style="box-sizing: border-box; background: #FFFFFF; color: #111111; font-family: Archivo, sans-serif; font-weight: 600; font-size: 15px; letter-spacing: -0.01em; padding: 15px 26px; min-height: 48px; display: inline-flex; align-items: center; text-decoration: none;">Book a 30-minute call</a>
+        <a href="/products/document-workbench.html" style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 15px; letter-spacing: -0.01em; color: #FFFFFF; border-bottom: 2px solid #FFFFFF; padding-bottom: 3px; text-decoration: none;">Explore Document Workbench &rarr;</a>
       </div>
-
     </div>
+
+    <!-- Right column -->
+    <div style="min-width: 0; display: flex; flex-direction: column;">
+      <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: #B8B9B5; padding-bottom: 14px;">The questions that keep coming back</div>
+      <div style="border-top: 1px solid #5F6466; padding: 16px 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: 16px; line-height: 1.5; color: #FFFFFF;">The pricing question that always goes back to the estimator.</div>
+      <div style="border-top: 1px solid #5F6466; padding: 16px 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: 16px; line-height: 1.5; color: #FFFFFF;">The contract question that always goes back to the owner.</div>
+      <div style="border-top: 1px solid #5F6466; padding: 16px 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: 16px; line-height: 1.5; color: #FFFFFF;">The process question that always goes back to the senior PM.</div>
+    </div>
+
   </div>
-</section>
+</div>
 
 <!-- footer:start -->
 <footer class="cos-footer">
@@ -997,15 +448,15 @@ a { color: inherit; }
       </div>
       <div class="cos-titleblock__cell">
         <span class="cos-titleblock__label">Issued</span>
-        <span class="cos-titleblock__value">2026-09-06</span>
+        <span class="cos-titleblock__value">2026-09-07</span>
       </div>
       <div class="cos-titleblock__cell">
         <span class="cos-titleblock__label">Rev</span>
-        <span class="cos-titleblock__value">03</span>
+        <span class="cos-titleblock__value">02</span>
       </div>
       <div class="cos-titleblock__cell">
         <span class="cos-titleblock__label">Status</span>
-        <span class="cos-titleblock__value">ISSUED FOR CONSTRUCTION</span>
+        <span class="cos-titleblock__value">ISSUED FOR REVIEW</span>
       </div>
     </div>
 

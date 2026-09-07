@@ -76,7 +76,7 @@ function footerItem(href, marker, name, current) {
   const markerCls = marker === '——' ? 'cos-footer__col-dash' : 'cos-footer__col-n';
   if (isCur) {
     // Current page — plain text, no link
-    return `        <span class="cos-footer__col-item cos-footer__col-item--ink">
+    return `        <span class="cos-footer__col-item cos-footer__col-item--ink" aria-current="page">
           <span class="${markerCls}">${marker}</span>${name}
         </span>`;
   }
@@ -103,7 +103,6 @@ function buildFooter(footerConfig) {
           Construction OS
         </a>
         <p class="cos-footer__tagline">Three products. One construction operating system.</p>
-        <a class="cos-footer__cta-link" href="${calLink}">Book a demo</a>
       </div>
 
       <!-- Products -->
@@ -119,14 +118,11 @@ ${footerItem('/products/custom-solutions.html', '——', 'Custom Solutions', cu
       <!-- Company -->
       <div class="cos-footer__col">
         <span class="cos-footer__col-head">Company</span>
-        ${current === 'work'
-          ? '<span class="cos-footer__col-item cos-footer__col-item--ink">Work</span>'
-          : '<a class="cos-footer__col-item" href="/work.html">Work</a>'}
         ${current === 'services'
-          ? '<span class="cos-footer__col-item cos-footer__col-item--ink">Services</span>'
+          ? '<span class="cos-footer__col-item cos-footer__col-item--ink" aria-current="page">Services</span>'
           : '<a class="cos-footer__col-item" href="/services.html">Services</a>'}
         ${current === 'about'
-          ? '<span class="cos-footer__col-item cos-footer__col-item--ink">About</span>'
+          ? '<span class="cos-footer__col-item cos-footer__col-item--ink" aria-current="page">About</span>'
           : '<a class="cos-footer__col-item" href="/about.html">About</a>'}
       </div>
 
@@ -166,7 +162,7 @@ ${footerItem('/products/custom-solutions.html', '——', 'Custom Solutions', cu
 
     <!-- Legal -->
     <div class="cos-footer__legal">
-      <span>&copy; 2026 Construction OS</span>
+      <span>&copy; 2026 Justin Yurasits. All rights reserved.</span>
       <span>
         <a href="/privacy.html" class="cos-footer__legal-link">Privacy Policy</a>
         &nbsp;&middot;&nbsp;

@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Construction OS Brand System</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&display=swap">
+  <style>
+    /* Pinned to Paper — swatches require a fixed ground */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:       #111111;
+      --paper:     #FFFFFF;
+      --bond:      #EFEFEB;
+      --steel:     #476776;
+      --revision:  #C43230;
+      --graphite:  #5F6466;
+      --line:      #B8B9B5;
+
+      --f-display: 'Archivo', Helvetica, sans-serif;
+      --pad: clamp(24px, 5vw, 72px);
+    }
+
+    body {
+      font-family: var(--f-display);
+      background: var(--paper);
+      color: var(--ink);
+      font-size: 14px;
+      line-height: 1.5;
+      padding: 0 0 80px;
+    }
+
+    /* ── Layout shell ───────────────────────────────────── */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-inline: var(--pad);
+    }
+
+    /* ── Section headers ────────────────────────────────── */
+    .section {
+      padding-top: 36px;
+      border-top: 2px solid var(--ink);
+      margin-top: 36px;
+    }
+    .section-label {
+      font: 600 10px/1 var(--f-display);
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--steel);
+      padding-bottom: 20px;
+    }
+
+    /* ── HEADER ─────────────────────────────────────────── */
+    .page-header {
+      padding: 40px 0 32px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+      border-bottom: 2px solid var(--ink);
+    }
+    .brand-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .brand-mark svg { display: block; }
+    .brand-wordmark {
+      font: 600 24px/1 var(--f-display);
+      letter-spacing: -.025em;
+      color: var(--ink);
+    }
+    .brand-sub {
+      font: 400 13px/1.5 var(--f-display);
+      color: var(--graphite);
+      margin-top: 6px;
+    }
+    .header-meta {
+      text-align: right;
+      font: 400 11px/1.6 ui-monospace, monospace;
+      color: var(--graphite);
+      letter-spacing: .04em;
+    }
+
+    /* ── PALETTE ────────────────────────────────────────── */
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 0;
+    }
+    @media (max-width: 700px) {
+      .palette-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+    .swatch { display: flex; flex-direction: column; }
+    .swatch-color { height: 80px; border: 1px solid rgba(0,0,0,.08); }
+    .swatch-info { padding: 10px 0 0; }
+    .swatch-name { font: 600 12px/1 var(--f-display); color: var(--ink); letter-spacing: -.005em; }
+    .swatch-hex  { font: 400 11px/1 ui-monospace, monospace; color: var(--graphite); letter-spacing: .03em; margin-top: 3px; }
+    .swatch-token { font: 400 10px/1 ui-monospace, monospace; color: var(--line); letter-spacing: .02em; margin-top: 3px; }
+    .swatch-role  { font: 400 11px/1.4 var(--f-display); color: var(--graphite); margin-top: 6px; }
+
+    /* ── SURFACE RULE ───────────────────────────────────── */
+    .surfaces {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0 1px;
+      background: var(--line);
+      margin-top: 24px;
+    }
+    @media (max-width: 600px) {
+      .surfaces { grid-template-columns: 1fr; gap: 1px 0; }
+    }
+    .surface-panel { padding: 20px 22px 22px; }
+    .surface-panel--paper { background: var(--paper); }
+    .surface-panel--bond  { background: var(--bond); }
+    .surface-panel--ink   { background: var(--ink); }
+
+    .surface-label {
+      font: 600 10px/1 var(--f-display);
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .surface-panel--paper .surface-label,
+    .surface-panel--bond  .surface-label { color: var(--steel); }
+    .surface-panel--ink   .surface-label { color: var(--line); }
+
+    .surface-row { display: flex; align-items: center; gap: 10px; padding: 5px 0; border-top: 1px solid; }
+    .surface-panel--paper .surface-row,
+    .surface-panel--bond  .surface-row  { border-color: var(--line); }
+    .surface-panel--ink   .surface-row  { border-color: var(--graphite); }
+
+    .surface-dot { width: 8px; height: 8px; border-radius: 50%; flex: none; }
+    .surface-desc { font: 400 11px/1 var(--f-display); }
+    .surface-panel--paper .surface-desc,
+    .surface-panel--bond  .surface-desc { color: var(--graphite); }
+    .surface-panel--ink   .surface-desc { color: var(--line); }
+
+    /* ── TYPOGRAPHY ─────────────────────────────────────── */
+    .type-row {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 0 32px;
+      padding: 16px 0;
+      border-top: 1px solid var(--line);
+      align-items: baseline;
+    }
+    .type-row:last-child { border-bottom: 1px solid var(--line); }
+    .type-meta { display: flex; flex-direction: column; gap: 3px; }
+    .type-role { font: 500 11px/1 var(--f-display); color: var(--graphite); letter-spacing: .06em; text-transform: uppercase; }
+    .type-spec { font: 400 10px/1.4 ui-monospace, monospace; color: var(--line); letter-spacing: .02em; }
+    .type-sample { min-width: 0; }
+
+    .ts-display { font: 600 42px/1.05 var(--f-display); letter-spacing: -.022em; color: var(--ink); }
+    .ts-h1      { font: 600 25px/1.18 var(--f-display); letter-spacing: -.015em; color: var(--ink); }
+    .ts-subhead { font: 500 18px/1.35 var(--f-display); letter-spacing: -.01em;  color: var(--ink); }
+    .ts-body    { font: 400 16px/1.62 var(--f-display); color: var(--graphite); }
+    .ts-small   { font: 400 14px/1.5  var(--f-display); color: var(--graphite); }
+    .ts-label   { font: 600 11px/1    var(--f-display); letter-spacing: .16em; text-transform: uppercase; color: var(--steel); }
+    .ts-mono    { font: 400 12px/1    ui-monospace, 'Cascadia Code', monospace; letter-spacing: .04em; color: var(--graphite); }
+    .ts-fig     { font: 600 38px/1    var(--f-display); letter-spacing: -.035em; color: var(--revision); }
+
+    /* ── ICONS ──────────────────────────────────────────── */
+    .icons-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(140px, 100%), 1fr));
+      gap: 0;
+      background: var(--line);
+    }
+    .icon-cell {
+      background: var(--paper);
+      padding: 28px 24px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .icon-cell--ink { background: var(--ink); }
+    .icon-cell svg { flex: none; }
+    .icon-name { font: 600 12px/1.3 var(--f-display); color: var(--ink); letter-spacing: -.005em; }
+    .icon-cell--ink .icon-name { color: var(--paper); }
+    .icon-product { font: 400 11px/1 ui-monospace, monospace; color: var(--graphite); letter-spacing: .04em; margin-top: 2px; }
+    .icon-cell--ink .icon-product { color: var(--line); }
+
+    /* ── SPACING ────────────────────────────────────────── */
+    .spacing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(80px, 100%), 1fr));
+      gap: 0 1px;
+      background: var(--line);
+    }
+    .spacing-cell {
+      background: var(--paper);
+      padding: 16px 0 14px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .spacing-bar   { background: var(--ink); height: 4px; }
+    .spacing-token { font: 400 10px/1 ui-monospace, monospace; color: var(--graphite); letter-spacing: .03em; }
+    .spacing-val   { font: 600 12px/1 var(--f-display); color: var(--ink); }
+
+    /* ── RULES ──────────────────────────────────────────── */
+    .rules-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+      gap: 0 1px;
+      background: var(--line);
+    }
+    .rule-cell { background: var(--paper); padding: 20px 22px; }
+    .rule-heading { font: 600 13px/1 var(--f-display); color: var(--ink); letter-spacing: -.01em; margin-bottom: 10px; }
+    .rule-list { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+    .rule-list li {
+      font: 400 12px/1.5 var(--f-display);
+      color: var(--graphite);
+      padding-left: 14px;
+      position: relative;
+    }
+    .rule-list li::before { content: '—'; position: absolute; left: 0; color: var(--line); font-size: 11px; }
+    .rule-list code { font: 400 11px/1 ui-monospace, monospace; background: var(--bond); padding: 1px 4px; letter-spacing: .02em; color: var(--ink); }
+
+    /* ── PROMPT ─────────────────────────────────────────── */
+    .prompt-block {
+      background: var(--bond);
+      border-left: 2px solid var(--ink);
+      padding: 16px 20px;
+      margin-top: 24px;
+    }
+    .prompt-label {
+      font: 600 10px/1 var(--f-display);
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--steel);
+      margin-bottom: 10px;
+    }
+    .prompt-text {
+      font: 400 13px/1.6 ui-monospace, monospace;
+      color: var(--ink);
+      letter-spacing: .01em;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <header class="page-header">
+    <div>
+      <div class="brand-row">
+        <div class="brand-mark">
+          <svg viewBox="0 0 100 100" width="36" height="36" fill="none" role="img" aria-label="Construction OS">
+            <polyline points="16,54 16,16 54,16" fill="none" stroke="#111111" stroke-width="7"/>
+            <polyline points="84,46 84,84 46,84" fill="none" stroke="#111111" stroke-width="7"/>
+            <rect x="32" y="32" width="36" height="36" fill="#C43230" stroke="#476776" stroke-width="4"/>
+          </svg>
+        </div>
+        <div>
+          <div class="brand-wordmark">Construction OS</div>
+          <div class="brand-sub">Brand System Reference</div>
+        </div>
+      </div>
+    </div>
+    <div class="header-meta">
+      Archivo 600 / 500 / 400<br>
+      Seven palette tokens<br>
+      Drawing-set linework
+    </div>
+  </header>
+
+  <!-- PALETTE -->
+  <section class="section">
+    <div class="section-label">Palette — seven tokens</div>
+    <div class="palette-grid">
+      <div class="swatch">
+        <div class="swatch-color" style="background:#111111"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Ink</div>
+          <div class="swatch-hex">#111111</div>
+          <div class="swatch-token">--cos-ink</div>
+          <div class="swatch-role">Primary text · figures · primary buttons</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#FFFFFF"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Paper</div>
+          <div class="swatch-hex">#FFFFFF</div>
+          <div class="swatch-token">--cos-paper</div>
+          <div class="swatch-role">Default surface · product blocks</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#EFEFEB"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Bond</div>
+          <div class="swatch-hex">#EFEFEB</div>
+          <div class="swatch-token">--cos-bond</div>
+          <div class="swatch-role">Document / section surface</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#476776"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Steel</div>
+          <div class="swatch-hex">#476776</div>
+          <div class="swatch-token">--cos-steel</div>
+          <div class="swatch-role">Eyebrows · category labels · icon accents</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#C43230"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Revision</div>
+          <div class="swatch-hex">#C43230</div>
+          <div class="swatch-token">--cos-revision</div>
+          <div class="swatch-role">Measured changes only · never accent</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#5F6466"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Graphite</div>
+          <div class="swatch-hex">#5F6466</div>
+          <div class="swatch-token">--cos-graphite</div>
+          <div class="swatch-role">Secondary text · body copy on Paper</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#B8B9B5"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Line</div>
+          <div class="swatch-hex">#B8B9B5</div>
+          <div class="swatch-token">--cos-line</div>
+          <div class="swatch-role">Hairlines on Paper · text on Ink</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Surface pairing rule -->
+    <div class="surfaces">
+      <div class="surface-panel surface-panel--paper">
+        <div class="surface-label">Paper / Bond surface</div>
+        <div class="surface-row">
+          <div class="surface-dot" style="background:#111111"></div>
+          <span class="surface-desc">Ink — primary text</span>
+        </div>
+        <div class="surface-row">
+          <div class="surface-dot" style="background:#5F6466"></div>
+          <span class="surface-desc">Graphite — secondary text (5.4:1)</span>
+        </div>
+        <div class="surface-row">
+          <div class="surface-dot" style="background:#B8B9B5"></div>
+          <span class="surface-desc">Line gray — hairlines only</span>
+        </div>
+        <div class="surface-row">
+          <div class="surface-dot" style="background:#476776"></div>
+          <span class="surface-desc">Steel — eyebrows · icon accent</span>
+        </div>
+      </div>
+      <div class="surface-panel surface-panel--ink">
+        <div class="surface-label">Ink surface</div>
+        <div class="surface-row">
+          <div class="surface-dot" style="background:#FFFFFF"></div>
+          <span class="surface-desc">Paper — primary text</span>
+        </div>
+        <div class="surface-row">
+          <div class="surface-dot" style="background:#B8B9B5"></div>
+          <span class="surface-desc">Line gray — secondary text (8:1)</span>
+        </div>
+        <div class="surface-row">
+          <div class="surface-dot" style="background:#5F6466"></div>
+          <span class="surface-desc">Graphite — hairlines only</span>
+        </div>
+        <div class="surface-row">
+          <div class="surface-dot" style="background:#476776"></div>
+          <span class="surface-desc">Steel — icon accent</span>
+        </div>
+      </div>
+      <div class="surface-panel surface-panel--bond">
+        <div class="surface-label">Swap rule</div>
+        <div class="surface-row" style="border-color: var(--line);">
+          <span class="surface-desc" style="font-size:12px; line-height:1.5; color:#5F6466;">
+            Graphite and Line gray swap roles across surfaces. Line gray text on Bond = 1.7:1 — fails. Graphite text on Ink = 3.1:1 — fails. The swap is a paired constraint, not a preference.
+          </span>
+        </div>
+        <div class="surface-row" style="border-color: var(--line); margin-top:8px;">
+          <span class="surface-desc" style="font-size:12px; line-height:1.5; color:#5F6466;">
+            Revision red marks a delta only. If nothing is changing, red does not appear.
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TYPOGRAPHY -->
+  <section class="section">
+    <div class="section-label">Typography — Archivo only</div>
+    <div class="type-row">
+      <div class="type-meta">
+        <div class="type-role">Display</div>
+        <div class="type-spec">600 · clamp(44–84px) · -.022em</div>
+      </div>
+      <div class="type-sample"><span class="ts-display">From first walkthrough</span></div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">
+        <div class="type-role">Heading</div>
+        <div class="type-spec">600 · 21–25px · -.015em · lh 1.18</div>
+      </div>
+      <div class="type-sample"><span class="ts-h1">Start with the information you already have.</span></div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">
+        <div class="type-role">Subhead</div>
+        <div class="type-spec">500 · 18px · -.01em · lh 1.35</div>
+      </div>
+      <div class="type-sample"><span class="ts-subhead">Bring the project context</span></div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">
+        <div class="type-role">Body</div>
+        <div class="type-spec">400 · 16px · 0 · lh 1.62 · Graphite</div>
+      </div>
+      <div class="type-sample"><span class="ts-body">From first walkthrough through closeout, turn project information into company-standard construction documents without starting from scratch every time.</span></div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">
+        <div class="type-role">Small / caption</div>
+        <div class="type-spec">400 · 14px · 0 · lh 1.5 · Graphite</div>
+      </div>
+      <div class="type-sample"><span class="ts-small">Initial contract package preparation · Change-order turnaround</span></div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">
+        <div class="type-role">Eyebrow / label</div>
+        <div class="type-spec">600 · 11px · .16em · UPPERCASE · Steel</div>
+      </div>
+      <div class="type-sample"><span class="ts-label">Documents &nbsp;·&nbsp; How It Works &nbsp;·&nbsp; Coverage</span></div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">
+        <div class="type-role">Mono / index</div>
+        <div class="type-spec">ui-monospace · 12px · .04em · Graphite</div>
+      </div>
+      <div class="type-sample"><span class="ts-mono">01 &nbsp;&nbsp; 02 &nbsp;&nbsp; 03 &nbsp;&nbsp; CASE-001 / RESIDENTIAL GC / BOSTON</span></div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">
+        <div class="type-role">Stat figure</div>
+        <div class="type-spec">600 · 38px · -.035em · lh 1 · Revision red</div>
+      </div>
+      <div class="type-sample"><span class="ts-fig">~30 min</span></div>
+    </div>
+  </section>
+
+  <!-- ICONS -->
+  <section class="section">
+    <div class="section-label">Mark &amp; product icons — stroke only, viewBox 0 0 100 100</div>
+    <div class="icons-grid">
+      <div class="icon-cell">
+        <svg viewBox="0 0 100 100" width="40" height="40" fill="none">
+          <polyline points="16,54 16,16 54,16" stroke="#111111" stroke-width="7"/>
+          <polyline points="84,46 84,84 46,84" stroke="#111111" stroke-width="7"/>
+          <rect x="32" y="32" width="36" height="36" fill="#C43230" stroke="#476776" stroke-width="4"/>
+        </svg>
+        <div>
+          <div class="icon-name">Construction OS mark</div>
+          <div class="icon-product">Paper surface · Ink strokes · Steel accent</div>
+        </div>
+      </div>
+      <div class="icon-cell icon-cell--ink">
+        <svg viewBox="0 0 100 100" width="40" height="40" fill="none">
+          <polyline points="16,54 16,16 54,16" stroke="#FFFFFF" stroke-width="7"/>
+          <polyline points="84,46 84,84 46,84" stroke="#FFFFFF" stroke-width="7"/>
+          <rect x="32" y="32" width="36" height="36" fill="#C43230" stroke="#B8B9B5" stroke-width="4"/>
+        </svg>
+        <div>
+          <div class="icon-name">Construction OS mark</div>
+          <div class="icon-product">Ink surface · Paper strokes · Line accent</div>
+        </div>
+      </div>
+      <div class="icon-cell">
+        <svg viewBox="0 0 100 100" width="40" height="40" fill="none">
+          <polyline points="30,14 86,14 86,72" stroke="#C43230" stroke-width="4"/>
+          <rect x="14" y="26" width="52" height="60" stroke="#111111" stroke-width="8"/>
+        </svg>
+        <div>
+          <div class="icon-name">Less paperwork</div>
+          <div class="icon-product">Document Workbench</div>
+        </div>
+      </div>
+      <div class="icon-cell">
+        <svg viewBox="0 0 100 100" width="40" height="40" fill="none">
+          <line x1="6" y1="50" x2="96" y2="50" stroke="#C43230" stroke-width="4"/>
+          <polyline points="8,20 40,20 54,42 94,42" fill="none" stroke="#111111" stroke-width="8"/>
+          <polyline points="8,80 40,80 54,58 94,58" fill="none" stroke="#111111" stroke-width="8"/>
+        </svg>
+        <div>
+          <div class="icon-name">Fewer bottlenecks</div>
+          <div class="icon-product">Construction Intelligence</div>
+        </div>
+      </div>
+      <div class="icon-cell">
+        <svg viewBox="0 0 100 100" width="40" height="40" fill="none">
+          <rect x="6" y="18" width="88" height="64" stroke="#476776" stroke-width="4"/>
+          <line x1="18" y1="70" x2="82" y2="70" stroke="#111111" stroke-width="8"/>
+          <line x1="30" y1="70" x2="30" y2="56" stroke="#111111" stroke-width="8"/>
+          <line x1="50" y1="70" x2="50" y2="44" stroke="#111111" stroke-width="8"/>
+          <line x1="70" y1="70" x2="70" y2="32" stroke="#C43230" stroke-width="8"/>
+        </svg>
+        <div>
+          <div class="icon-name">Better visibility</div>
+          <div class="icon-product">Project Intelligence</div>
+        </div>
+      </div>
+      <div class="icon-cell">
+        <svg viewBox="0 0 100 100" width="40" height="40" fill="none">
+          <line x1="14" y1="28" x2="34" y2="28" stroke="#111111" stroke-width="8"/>
+          <line x1="42" y1="28" x2="62" y2="28" stroke="#111111" stroke-width="8"/>
+          <line x1="70" y1="28" x2="90" y2="28" stroke="#111111" stroke-width="8"/>
+          <line x1="24" y1="34" x2="24" y2="66" stroke="#476776" stroke-width="4"/>
+          <line x1="52" y1="34" x2="52" y2="66" stroke="#476776" stroke-width="4"/>
+          <line x1="80" y1="34" x2="80" y2="66" stroke="#476776" stroke-width="4"/>
+          <line x1="14" y1="74" x2="90" y2="74" stroke="#C43230" stroke-width="8"/>
+        </svg>
+        <div>
+          <div class="icon-name">Less repetitive work</div>
+          <div class="icon-product">Operations Automation</div>
+        </div>
+      </div>
+      <div class="icon-cell">
+        <svg viewBox="0 0 100 100" width="40" height="40" fill="none">
+          <rect x="8" y="8" width="56" height="56" stroke="#111111" stroke-width="10"/>
+          <rect x="52" y="52" width="40" height="40" stroke="#476776" stroke-width="7"/>
+        </svg>
+        <div>
+          <div class="icon-name">Custom solutions</div>
+          <div class="icon-product">Custom Solutions</div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:12px; font: 400 11px/1.5 ui-monospace, monospace; color: var(--graphite); letter-spacing:.02em;">
+      All icons: <code style="background:var(--bond);padding:1px 4px;">fill="none"</code> on &lt;svg&gt;. Stroke widths 4–10 are calibrated to the 100-unit box — do not override to 1–2px. Recolor by stroke only. Never apply fills.
+    </div>
+  </section>
+
+  <!-- SPACING -->
+  <section class="section">
+    <div class="section-label">Spacing scale</div>
+    <div class="spacing-grid">
+      <div class="spacing-cell"><div class="spacing-bar" style="width:4px"></div><div class="spacing-token">--s-1</div><div class="spacing-val">4px</div></div>
+      <div class="spacing-cell"><div class="spacing-bar" style="width:8px"></div><div class="spacing-token">--s-2</div><div class="spacing-val">8px</div></div>
+      <div class="spacing-cell"><div class="spacing-bar" style="width:12px"></div><div class="spacing-token">--s-3</div><div class="spacing-val">12px</div></div>
+      <div class="spacing-cell"><div class="spacing-bar" style="width:16px"></div><div class="spacing-token">--s-4</div><div class="spacing-val">16px</div></div>
+      <div class="spacing-cell"><div class="spacing-bar" style="width:24px"></div><div class="spacing-token">--s-5</div><div class="spacing-val">24px</div></div>
+      <div class="spacing-cell"><div class="spacing-bar" style="width:32px"></div><div class="spacing-token">--s-6</div><div class="spacing-val">32px</div></div>
+      <div class="spacing-cell"><div class="spacing-bar" style="width:48px"></div><div class="spacing-token">--s-7</div><div class="spacing-val">48px</div></div>
+      <div class="spacing-cell"><div class="spacing-bar" style="width:56px"></div><div class="spacing-token">--s-8</div><div class="spacing-val">64px</div></div>
+      <div class="spacing-cell"><div class="spacing-bar" style="width:72px"></div><div class="spacing-token">--s-9</div><div class="spacing-val">96px</div></div>
+      <div class="spacing-cell"><div class="spacing-bar" style="width:80px"></div><div class="spacing-token">--s-10</div><div class="spacing-val">128px</div></div>
+    </div>
+  </section>
+
+  <!-- RULES -->
+  <section class="section">
+    <div class="section-label">Build rules — what the system enforces</div>
+    <div class="rules-grid">
+      <div class="rule-cell">
+        <div class="rule-heading">Palette</div>
+        <ul class="rule-list">
+          <li>Seven tokens only — no grays, blues, or purples outside this set</li>
+          <li>Revision <code>#C43230</code> marks a measured delta only — never accent, never background</li>
+          <li>Graphite / Line gray swap by surface (see pairing table above)</li>
+          <li>Line gray text on Bond = 1.7:1 — never do this</li>
+        </ul>
+      </div>
+      <div class="rule-cell">
+        <div class="rule-heading">Typography</div>
+        <ul class="rule-list">
+          <li>Archivo only — no second typeface</li>
+          <li>600 headings · 500 labels/eyebrows · 400 body</li>
+          <li>Sentence case everywhere, including the wordmark</li>
+          <li>Never set "OS" apart in caps, another color, or a block</li>
+        </ul>
+      </div>
+      <div class="rule-cell">
+        <div class="rule-heading">Layout &amp; geometry</div>
+        <ul class="rule-list">
+          <li>No gradients, rounded containers, drop shadows, or icon tiles</li>
+          <li>Linework only — <code>fill="none"</code>, stroke geometry, 1–2px rules</li>
+          <li>Rules span containers, not grid cells — a section divider goes on the wrapper</li>
+          <li>In <code>auto-fit</code> grids, every cell carries identical padding and borders</li>
+        </ul>
+      </div>
+      <div class="rule-cell">
+        <div class="rule-heading">Icons</div>
+        <ul class="rule-list">
+          <li>Keep <code>viewBox="0 0 100 100"</code> — altering it clips the geometry</li>
+          <li>Stroke widths (4–12) are calibrated to the 100-unit box — do not override</li>
+          <li>On Ink surfaces: Paper strokes, Line gray accent</li>
+          <li>On Paper/Bond: Ink strokes, Steel accent</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="prompt-block">
+      <div class="prompt-label">Starter prompt — paste at the top of any new session</div>
+      <pre class="prompt-text">Read CONSTRUCTION-OS-BRAND-KIT.md and tokens.css before writing any CSS.
+Palette: Ink #111111 · Paper #FFFFFF · Bond #EFEFEB · Steel #476776 · Revision #C43230 · Graphite #5F6466 · Line #B8B9B5.
+Typeface: Archivo 600 / 500 / 400 only. No second typeface.
+No gradients, rounded containers, drop shadows, or fills on icons (stroke only).
+Rules span containers — never scope a section divider to a grid cell.
+Revision red marks a measured change only — never use it as an accent.</pre>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>

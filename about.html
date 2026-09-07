@@ -1,605 +1,830 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About — Justin Yurasits</title>
-  <meta name="description" content="Twelve years in enterprise product leadership. Several years in the field. One operating problem that connected both.">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-
-  <style>
-    :root {
-      --navy:      #0F1E2E;
-      --navy-1:    #152333;
-      --teal:      #00A896;
-      --teal-dk:   #008E7E;
-      --offwhite:  #E8EDF2;
-      --muted:     #5E7F9A;
-      --light-bg:  #F7F8FA;
-      --body-dark: #1A2D3F;
-    }
-
-    *, *::before, *::after { box-sizing: border-box; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      margin: 0;
-      font-family: 'Inter', system-ui, sans-serif;
-      background: var(--light-bg);
-      color: var(--body-dark);
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* ─── NAV ─────────────────────────────────────────── */
-
-    .site-nav {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: var(--navy);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-    }
-
-    .nav-inner {
-      max-width: 72rem;
-      margin: 0 auto;
-      padding: 0 1.5rem;
-      height: 4rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .wordmark {
-      font-family: 'Spectral', Georgia, serif;
-      font-weight: 600;
-      font-size: 1.0625rem;
-      color: var(--offwhite);
-      text-decoration: none;
-      letter-spacing: -0.01em;
-    }
-
-    .wordmark:hover { color: #fff; }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    .nav-links a {
-      font-size: 0.875rem;
-      font-weight: 500;
-      color: var(--muted);
-      text-decoration: none;
-      letter-spacing: 0.01em;
-      transition: color 0.15s;
-    }
-
-    .nav-links a:hover { color: var(--offwhite); }
-
-    .nav-links a[aria-current="page"] { color: var(--offwhite); }
-
-    .btn-book {
-      display: inline-block;
-      background: var(--teal);
-      color: #fff;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.875rem;
-      font-weight: 600;
-      letter-spacing: 0.01em;
-      padding: 0.5rem 1.125rem;
-      border-radius: 3px;
-      text-decoration: none;
-      transition: background 0.15s;
-      white-space: nowrap;
-    }
-
-    .btn-book:hover { background: var(--teal-dk); }
-    .btn-book:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
-
-    /* hamburger */
-    .nav-toggle {
-      display: none;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 0.25rem;
-      color: var(--muted);
-      transition: color 0.15s;
-    }
-    .nav-toggle:hover { color: var(--offwhite); }
-
-    /* mobile drawer */
-    .mobile-menu {
-      background: var(--navy-1);
-      border-top: 1px solid rgba(255,255,255,0.06);
-    }
-
-    .mobile-menu-inner {
-      max-width: 72rem;
-      margin: 0 auto;
-      padding: 1.25rem 1.5rem 1.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.25rem;
-    }
-
-    .mobile-menu a {
-      font-size: 1rem;
-      font-weight: 500;
-      color: var(--muted);
-      text-decoration: none;
-      padding: 0.625rem 0;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      transition: color 0.15s;
-    }
-
-    .mobile-menu a:last-child { border-bottom: none; }
-    .mobile-menu a:hover { color: var(--offwhite); }
-
-    .mobile-menu .btn-book {
-      margin-top: 1rem;
-      text-align: center;
-      font-size: 1rem;
-      padding: 0.75rem 1.5rem;
-    }
-
-    /* ─── EYEBROW ─────────────────────────────────────── */
-
-    .eyebrow {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.6875rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--teal);
-      margin: 0 0 1.25rem;
-    }
-
-    /* ─── ABOUT HERO ──────────────────────────────────── */
-
-    .about-hero {
-      background: var(--navy);
-      padding: 5rem 1.5rem;
-    }
-
-    .about-hero-inner {
-      max-width: 72rem;
-      margin: 0 auto;
-    }
-
-    .about-hero h1 {
-      font-family: 'Spectral', Georgia, serif;
-      font-weight: 700;
-      font-size: clamp(2rem, 4vw, 3rem);
-      line-height: 1.1;
-      letter-spacing: -0.02em;
-      color: var(--offwhite);
-      margin: 0 0 1rem;
-    }
-
-    .about-hero-sub {
-      font-family: 'Inter', sans-serif;
-      font-size: 1.0625rem;
-      font-weight: 400;
-      line-height: 1.65;
-      color: var(--muted);
-      margin: 0;
-      max-width: 50ch;
-    }
-
-    /* ─── STORY SECTION ───────────────────────────────── */
-
-    .story-section {
-      background: var(--light-bg);
-      padding: 5.5rem 1.5rem;
-    }
-
-    .story-inner {
-      max-width: 72rem;
-      margin: 0 auto;
-    }
-
-    .story-layout {
-      display: grid;
-      grid-template-columns: 1fr 380px;
-      gap: 4rem;
-      align-items: start;
-      margin-top: 2rem;
-    }
-
-    .story-body p {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.9375rem;
-      font-weight: 400;
-      line-height: 1.75;
-      color: #3D5468;
-      margin: 0 0 1.375rem;
-    }
-
-    .story-body p:last-child {
-      margin-bottom: 0;
-    }
-
-    .story-body p.story-tagline {
-      font-size: 1.0625rem;
-      font-weight: 600;
-      color: var(--navy);
-      line-height: 1.5;
-      margin-bottom: 2rem;
-    }
-
-    .story-photo {
-      background: #D5DAE0;
-      border-radius: 4px;
-      height: 380px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #8A9BAC;
-      font-size: 0.8125rem;
-      letter-spacing: 0.04em;
-      font-family: 'Inter', sans-serif;
-    }
-
-    /* ─── CREDIBILITY SECTION ─────────────────────────── */
-
-    .cred-section {
-      background: var(--navy);
-      padding: 5.5rem 1.5rem;
-      border-top: 1px solid rgba(255,255,255,0.05);
-    }
-
-    .cred-inner {
-      max-width: 72rem;
-      margin: 0 auto;
-    }
-
-    .cred-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      margin-top: 2rem;
-    }
-
-    .cred-col-heading {
-      font-family: 'Spectral', Georgia, serif;
-      font-weight: 700;
-      font-size: 1.25rem;
-      line-height: 1.25;
-      color: var(--offwhite);
-      margin: 0 0 1.5rem;
-    }
-
-    .cred-list {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 0.875rem;
-    }
-
-    .cred-list li {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.9375rem;
-      font-weight: 500;
-      color: var(--offwhite);
-      line-height: 1.5;
-    }
-
-    .cred-list li .cred-descriptor {
-      font-weight: 400;
-      color: var(--muted);
-    }
-
-    /* ─── CTA SECTION ─────────────────────────────────── */
-
-    .cta-section {
-      background: var(--navy);
-      padding: 7rem 1.5rem;
-      text-align: center;
-      border-top: 1px solid rgba(255,255,255,0.05);
-    }
-
-    .cta-heading {
-      font-family: 'Spectral', Georgia, serif;
-      font-weight: 700;
-      font-size: clamp(1.75rem, 4vw, 2.75rem);
-      line-height: 1.15;
-      letter-spacing: -0.02em;
-      color: var(--offwhite);
-      text-wrap: balance;
-      margin: 0 auto 1.25rem;
-      max-width: 24rem;
-    }
-
-    .cta-body {
-      font-family: 'Inter', sans-serif;
-      font-size: 1rem;
-      line-height: 1.7;
-      color: var(--muted);
-      margin: 0 auto 2.5rem;
-      max-width: 38ch;
-    }
-
-    .btn-cta {
-      display: inline-block;
-      background: var(--teal);
-      color: #fff;
-      font-family: 'Inter', sans-serif;
-      font-size: 1rem;
-      font-weight: 600;
-      letter-spacing: 0.01em;
-      padding: 0.875rem 2rem;
-      border-radius: 3px;
-      text-decoration: none;
-      transition: background 0.15s;
-    }
-
-    .btn-cta:hover { background: var(--teal-dk); }
-    .btn-cta:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
-
-    /* ─── FOOTER ─────────────────────────────────────── */
-
-    .site-footer {
-      background: var(--navy);
-      border-top: 1px solid #1E3A4F;
-      padding: 2.5rem 1.5rem 2rem;
-    }
-
-    .footer-inner {
-      max-width: 72rem;
-      margin: 0 auto;
-    }
-
-    .footer-cols {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 2rem;
-      margin-bottom: 2rem;
-    }
-
-    .footer-wordmark {
-      font-family: 'Spectral', Georgia, serif;
-      font-weight: 600;
-      font-size: 1rem;
-      color: var(--offwhite);
-      display: block;
-      margin-bottom: 0.25rem;
-    }
-
-    .footer-descriptor {
-      font-size: 0.8125rem;
-      color: var(--muted);
-    }
-
-    .footer-links {
-      display: flex;
-      align-items: center;
-      gap: 1.25rem;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
-
-    .footer-links a {
-      font-size: 0.8125rem;
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.15s;
-    }
-
-    .footer-links a:hover { color: var(--offwhite); }
-
-    .footer-sep {
-      color: #1E3A4F;
-      font-size: 0.8125rem;
-    }
-
-    .footer-copy {
-      font-size: 0.75rem;
-      color: #2A4560;
-      text-align: center;
-      border-top: 1px solid #152333;
-      padding-top: 1.5rem;
-    }
-
-    /* ─── RESPONSIVE ─────────────────────────────────── */
-
-    @media (max-width: 767px) {
-      .nav-links { display: none; }
-      .nav-toggle { display: flex; }
-
-      .about-hero { padding: 3.5rem 1.5rem 4rem; }
-
-      .story-section { padding: 4rem 1.5rem; }
-      .story-layout {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-      }
-      .story-photo { height: 260px; }
-
-      .cred-section { padding: 4rem 1.5rem; }
-      .cred-grid {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-      }
-
-      .cta-section { padding: 5.5rem 1.5rem; }
-
-      .footer-cols { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
-      .footer-links { justify-content: flex-start; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      * { transition: none !important; }
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About — Construction OS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="brand-kit/tokens.css">
+<link rel="stylesheet" href="brand-kit/brand.css">
+<link rel="stylesheet" href="/brand-kit/cos-header.css">
+<style>
+.cos-container { max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px); }
+
+/* ── About page ──────────────────────────────────────────── */
+/* Surfaces */
+.ab-paper { background: #FFFFFF; }
+.ab-bond  { background: #EFEFEB; }
+.ab-ink   { background: #111111; color: #FFFFFF; }
+
+/* Section spacing */
+.ab-section         { padding: 76px 0 80px; }
+.ab-section--hero   { padding: 76px 0 64px; }
+.ab-section--closing { padding: 88px 0 80px; }
+
+/* Eyebrow */
+.ab-eyebrow {
+  margin: 0; font: 600 11px/1 var(--font-display), sans-serif;
+  letter-spacing: .16em; text-transform: uppercase; color: #476776;
+}
+
+/* §1 Hero */
+.ab-hero-col {
+  max-width: 64ch; container-type: inline-size;
+  display: flex; flex-direction: column; gap: 26px;
+}
+.ab-hero-tag {
+  display: flex; align-items: center; gap: 10px;
+  font: 400 12px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace;
+  color: #111111;
+}
+.ab-hero-tag__rule { flex: none; width: 40px; height: 1px; background: #111111; }
+.ab-hero-tag__label {
+  font: 600 11px/1 var(--font-display), sans-serif;
+  letter-spacing: .16em; text-transform: uppercase; color: #476776; margin: 0;
+}
+.ab-hero-h1 {
+  margin: 0; font: 600 clamp(30px, 9cqi, 48px)/1.02 var(--font-display), sans-serif;
+  letter-spacing: -.038em; color: #111111; text-wrap: balance;
+}
+.ab-hero-lead {
+  margin: 0; font: 500 18px/1.4 var(--font-display), sans-serif;
+  letter-spacing: -.018em; color: #111111; max-width: 52ch;
+}
+.ab-hero-body {
+  margin: 0; font: 400 17px/1.6 var(--font-display), sans-serif;
+  color: #5F6466; max-width: 56ch;
+}
+.ab-hero-kicker {
+  border-left: 2px solid #476776; padding-left: 16px;
+  font: 600 18px/1.35 var(--font-display), sans-serif; color: #111111; margin: 0;
+}
+
+/* §2 Two-column (The Turn) */
+.ab-two-col {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+  gap: 28px 48px; align-items: start;
+}
+.ab-col-left { display: flex; flex-direction: column; gap: 16px; }
+.ab-col-right { display: flex; flex-direction: column; gap: 18px; }
+.ab-section-h2 {
+  margin: 0; font: 600 clamp(28px, 8cqi, 42px)/1.05 var(--font-display), sans-serif;
+  letter-spacing: -.035em; color: #111111; text-wrap: balance;
+}
+.ab-prose-500 { margin: 0; font: 500 17px/1.6 var(--font-display), sans-serif; color: #111111; }
+.ab-prose-400 { margin: 0; font: 400 17px/1.6 var(--font-display), sans-serif; color: #5F6466; }
+
+/* §3 Head block */
+.ab-head-block {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+  gap: 28px 48px; align-items: end;
+  border-bottom: 2px solid #111111; padding-bottom: 30px; margin-bottom: 34px;
+}
+.ab-head-right { display: flex; flex-direction: column; gap: 10px; }
+.ab-head-right p { margin: 0; }
+.ab-text-500 { font: 500 17px/1.5 var(--font-display), sans-serif; color: #111111; }
+
+/* §3 Findings grid */
+.ab-findings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+  column-gap: 40px; list-style: none; padding: 0; margin: 0;
+}
+.ab-finding-cell {
+  border-top: 1px solid #B8B9B5; padding: 20px 0;
+  font: 500 16px/1.5 var(--font-display), sans-serif; color: #111111; margin: 0;
+}
+
+/* §3 Pull quote */
+.ab-pull-quote {
+  margin: 34px 0 0; padding-top: 30px; border-top: 2px solid #111111;
+  font: 600 22px/1.25 var(--font-display), sans-serif;
+  letter-spacing: -.024em; color: #111111; max-width: 48ch;
+}
+
+/* §4 Ink section */
+.ab-ink-head {
+  margin: 0 0 34px; font: 600 clamp(28px, 8cqi, 42px)/1.05 var(--font-display), sans-serif;
+  letter-spacing: -.035em; color: #FFFFFF; text-wrap: balance; max-width: 38ch;
+}
+.ab-ledger-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+  gap: 0 28px;
+}
+.ab-ledger-row {
+  display: flex; align-items: baseline; gap: 16px;
+  padding: 22px 0; border-top: 1px solid #476776;
+}
+.ab-ledger-n {
+  font: 400 12px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace;
+  color: #B8B9B5; flex: none; width: 28px;
+}
+.ab-ledger-text {
+  font: 500 17px/1.55 var(--font-display), sans-serif; color: #FFFFFF; margin: 0;
+}
+.ab-ink-kicker {
+  margin-top: 34px; padding-top: 30px; border-top: 2px solid #476776;
+  font: 600 19px/1.35 var(--font-display), sans-serif; color: #FFFFFF; margin-bottom: 0;
+}
+
+/* §5 Questions grid */
+.ab-q-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+  column-gap: 40px; list-style: none; padding: 0; margin: 0;
+}
+.ab-q-cell {
+  border-top: 1px solid #B8B9B5; padding: 20px 0;
+  font: 600 19px/1.35 var(--font-display), sans-serif;
+  letter-spacing: -.02em; color: #111111; margin: 0;
+}
+
+/* §5 Product cards */
+.ab-products-rule { margin-top: 34px; padding-top: 34px; border-top: 2px solid #111111; }
+.ab-products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+  column-gap: 40px; row-gap: 34px;
+  --cos-revision: #476776;
+  --cos-hairline: #476776;
+}
+.ab-product-card {
+  display: flex; flex-direction: column; gap: 12px;
+  padding-top: 26px; border-top: 1px solid #B8B9B5;
+}
+.ab-product-card__icon-row {
+  display: flex; align-items: center; gap: 10px;
+}
+.ab-product-card__name {
+  margin: 0; font: 600 18px/1.2 var(--font-display), sans-serif;
+  letter-spacing: -.018em; color: #111111;
+}
+.ab-product-card__desc {
+  margin: 0; font: 400 15px/1.55 var(--font-display), sans-serif; color: #5F6466;
+}
+.ab-extension-line {
+  margin-top: 28px; padding-top: 20px; border-top: 1px solid #B8B9B5;
+  font: 400 15px/1.55 var(--font-display), sans-serif; color: #5F6466; margin-bottom: 0;
+}
+
+/* §6 Knowledge lists */
+.ab-knowledge-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 0 48px; align-items: start;
+}
+@media (max-width: 700px) {
+  .ab-knowledge-grid { grid-template-columns: 1fr; gap: 32px 0; }
+}
+.ab-knowledge-col { display: flex; flex-direction: column; }
+.ab-knowledge-head {
+  font: 600 11px/1 var(--font-display), sans-serif;
+  letter-spacing: .14em; text-transform: uppercase; color: #476776;
+  margin: 0; padding-bottom: 12px; border-bottom: 1px solid #B8B9B5;
+}
+.ab-knowledge-item {
+  display: flex; align-items: baseline; gap: 12px;
+  padding: 13px 0; border-bottom: 1px solid #B8B9B5;
+  font: 500 16px/1.4 var(--font-display), sans-serif; color: #111111; margin: 0;
+}
+.ab-knowledge-n {
+  font: 400 11px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace;
+  color: #5F6466; flex: none; width: 24px;
+}
+.ab-knowledge-close {
+  margin-top: 40px; font: 600 22px/1.25 var(--font-display), sans-serif;
+  letter-spacing: -.022em; color: #111111; max-width: 52ch;
+}
+
+/* §7 Today section */
+.ab-today-head { border-bottom: 2px solid #111111; padding-bottom: 26px; margin-bottom: 30px; }
+.ab-sometimes-list { list-style: none; padding: 0; margin: 0; }
+.ab-sometimes-line {
+  font: 500 18px/1.4 var(--font-display), sans-serif; color: #111111;
+  padding: 18px 0; border-top: 1px solid #B8B9B5; margin: 0; max-width: 64ch;
+}
+.ab-section-kicker {
+  margin-top: 30px; border-left: 2px solid #476776; padding-left: 14px;
+  font: 600 19px/1.35 var(--font-display), sans-serif; color: #111111;
+}
+
+/* §8 Closing CTA */
+.ab-closing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr));
+  gap: 36px 56px; align-items: start;
+}
+.ab-closing-col { container-type: inline-size; }
+.ab-closing-lockup {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 28px;
+}
+.ab-closing-lockup__rule { flex: 1; height: 1px; background: #5F6466; }
+.ab-closing-label {
+  font: 600 14px/1 var(--font-display), sans-serif;
+  letter-spacing: .14em; text-transform: uppercase; color: #FFFFFF; margin: 0; white-space: nowrap;
+}
+.ab-closing-h2 {
+  margin: 0; font: 600 clamp(32px, 10cqi, 58px)/0.99 var(--font-display), sans-serif;
+  letter-spacing: -.042em; color: #FFFFFF; text-wrap: balance;
+}
+.ab-candidates { list-style: none; padding: 0; margin: 24px 0; }
+.ab-candidates li {
+  font: 500 16px/1.4 var(--font-display), sans-serif; color: #FFFFFF;
+  padding: 13px 0; border-top: 1px solid #5F6466;
+}
+.ab-cta-row { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+.ab-btn-primary {
+  display: inline-flex; align-items: center; min-height: 44px;
+  padding: 13px 20px; font: 600 14px/1 var(--font-display), sans-serif;
+  letter-spacing: -.01em; text-decoration: none;
+  background: #FFFFFF; color: #111111;
+  white-space: nowrap;
+}
+.ab-btn-primary:hover { background: #EFEFEB; }
+.ab-btn-secondary {
+  display: inline-flex; align-items: center; min-height: 40px;
+  font: 600 14px/1 var(--font-display), sans-serif; letter-spacing: -.01em;
+  text-decoration: none; color: #FFFFFF;
+  border-bottom: 2px solid #FFFFFF; padding-bottom: 3px; white-space: nowrap;
+}
+.ab-btn-secondary:hover { color: #B8B9B5; border-bottom-color: #B8B9B5; }
+
+/* §8 Background rail */
+.ab-rail { display: flex; flex-direction: column; }
+.ab-rail-label {
+  font: 500 12px/1 var(--font-display), sans-serif; letter-spacing: .12em;
+  text-transform: uppercase; color: #B8B9B5; margin: 0 0 16px;
+}
+.ab-rail-row {
+  display: flex; align-items: baseline; gap: 12px;
+  padding: 16px 0; border-top: 1px solid #5F6466;
+}
+.ab-rail-n {
+  font: 400 12px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace;
+  color: #B8B9B5; flex: none;
+}
+.ab-rail-stack { display: flex; flex-direction: column; gap: 4px; }
+.ab-rail-name { margin: 0; font: 600 17px/1.2 var(--font-display), sans-serif; color: #FFFFFF; }
+.ab-rail-detail { margin: 0; font: 400 14px/1.4 var(--font-display), sans-serif; color: #B8B9B5; }
+
+/* Footer */
+.cos-footer { background: #FFFFFF; border-top: 1px solid #B8B9B5; }
+.cos-footer__inner { padding-top: 56px; }
+.cos-footer__cols {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 40px;
+  padding-bottom: 48px;
+}
+.cos-footer__brand { display: flex; flex-direction: column; gap: 16px; }
+.cos-footer__lockup {
+  display: inline-flex; align-items: center; gap: 10px; text-decoration: none;
+  font: 600 17px/1 var(--font-display), sans-serif; letter-spacing: -.02em; color: #111111;
+}
+.cos-footer__tagline { font: 400 14px/1.55 var(--font-display), sans-serif; color: #5F6466; max-width: 30ch; margin: 0; }
+.cos-footer__col { display: flex; flex-direction: column; }
+.cos-footer__col-head {
+  font: 600 11px/1 var(--font-display), sans-serif; letter-spacing: .14em;
+  text-transform: uppercase; color: #111111; padding-bottom: 12px; border-bottom: 1px solid #B8B9B5;
+}
+.cos-footer__col-item {
+  display: flex; align-items: center; gap: 10px;
+  font: 500 14px/1 var(--font-display), sans-serif; letter-spacing: -.005em;
+  color: #5F6466; text-decoration: none; padding-top: 12px;
+}
+.cos-footer__col-item:hover { color: #111111; }
+.cos-footer__col-item--ink { color: #111111; }
+.cos-footer__contact-email {
+  display: inline-block; font: 600 17px/1 var(--font-display), sans-serif;
+  letter-spacing: -.015em; color: #111111; text-decoration: none;
+  border-bottom: 2px solid #111111; padding-bottom: 3px; margin-top: 14px;
+}
+.cos-footer__contact-email:hover { color: #476776; border-bottom-color: #476776; }
+.cos-footer__col-n { font: 400 11px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace; color: #5F6466; flex: none; }
+.cos-footer__col-dash { font: 400 11px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace; color: #5F6466; flex: none; }
+.cos-titleblock {
+  border: 1px solid #111111; background: #FFFFFF;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+.cos-titleblock__cell {
+  padding: 12px 16px; border-right: 1px solid #B8B9B5;
+  display: flex; flex-direction: column; gap: 5px;
+}
+.cos-titleblock__cell:last-child { border-right: 0; }
+.cos-titleblock__label {
+  font: 600 10px/1 var(--font-display), sans-serif; letter-spacing: .12em;
+  text-transform: uppercase; color: #5F6466;
+}
+.cos-titleblock__value { font: 400 12px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace; color: #111111; }
+.cos-footer__legal {
+  padding: 18px 0 40px; display: flex; justify-content: space-between;
+  gap: 20px; flex-wrap: wrap;
+  font: 400 13px/1 var(--font-display), sans-serif; color: #5F6466;
+}
+.cos-footer__legal a { color: inherit; text-decoration: underline; text-decoration-color: #B8B9B5; }
+.cos-footer__legal a:hover { color: #111111; text-decoration-color: #111111; }
+
+a { color: #476776; }
+a:hover { color: #111111; }
+</style>
 </head>
-
 <body>
 
-  <!-- ─── NAV ─────────────────────────────────────────── -->
-  <header class="site-nav" x-data="{ open: false }">
-    <div class="nav-inner">
-      <a href="/" class="wordmark">Justin Yurasits</a>
-
-      <ul class="nav-links" role="list">
-        <li><a href="/work.html">Work</a></li>
-        <li><a href="/products/document-workbench.html">Products</a></li>
+<!-- header:start -->
+<header class="cos-header" id="cos-header">
+  <div class="cos-container">
+    <div class="cos-header__inner">
+      <a class="cos-logo" href="/">
+        <svg viewBox="0 0 100 100" width="22" height="22" aria-hidden="true">
+          <polyline points="14,56 14,14 56,14" fill="none" stroke="currentColor" stroke-width="13"/>
+          <polyline points="86,44 86,86 44,86" fill="none" stroke="currentColor" stroke-width="13"/>
+          <rect x="32" y="32" width="36" height="36" fill="#C43230"/>
+        </svg>
+        Construction OS
+      </a>
+      <button class="cos-header__toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav">Menu</button>
+      <ul class="cos-nav" id="main-nav" role="list">
+        <li class="cos-nav__dropdown">
+          <button class="cos-nav__trigger" aria-expanded="false" aria-haspopup="true" aria-controls="products-panel">Products</button>
+          <nav class="cos-nav__panel" id="products-panel">
+            <span class="cos-nav__group-label">Core Products</span>
+            <a class="cos-nav__item" href="/products/document-workbench.html">
+              <span class="cos-nav__marker">01</span><span class="cos-nav__name">Document Workbench</span>
+            </a>
+            <a class="cos-nav__item" href="/products/construction-intelligence.html">
+              <span class="cos-nav__marker">02</span><span class="cos-nav__name">Construction Intelligence</span>
+            </a>
+            <a class="cos-nav__item" href="/products/project-intelligence.html">
+              <span class="cos-nav__marker">03</span><span class="cos-nav__name">Project Intelligence</span>
+            </a>
+            <span class="cos-nav__group-label">Extension Layer</span>
+            <a class="cos-nav__item" href="/products/operations-automation.html">
+              <span class="cos-nav__marker">——</span><span class="cos-nav__name">Operations Automation</span>
+            </a>
+            <a class="cos-nav__item" href="/products/custom-solutions.html">
+              <span class="cos-nav__marker">——</span><span class="cos-nav__name">Custom Solutions</span>
+            </a>
+          </nav>
+        </li>
         <li><a href="/services.html">Services</a></li>
         <li><a href="/about.html" aria-current="page">About</a></li>
-        <li><a href="/insights.html">Insights</a></li>
-        <li><a href="https://cal.com/justinyurasits" class="btn-book">Book a Call</a></li>
+        <li><a class="cos-header__cta" href="https://cal.com/justinyurasits">Book a demo</a></li>
       </ul>
-
-      <button
-        class="nav-toggle"
-        @click="open = !open"
-        :aria-expanded="open.toString()"
-        aria-controls="mobile-menu"
-        aria-label="Toggle navigation"
-      >
-        <svg x-show="!open" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24" aria-hidden="true">
-          <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
-        </svg>
-        <svg x-show="open" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24" aria-hidden="true" style="display:none">
-          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
-        </svg>
-      </button>
     </div>
+  </div>
+</header>
+<!-- header:end -->
 
-    <div
-      id="mobile-menu"
-      class="mobile-menu"
-      x-show="open"
-      x-transition:enter="transition ease-out duration-150"
-      x-transition:enter-start="opacity-0 -translate-y-1"
-      x-transition:enter-end="opacity-100 translate-y-0"
-      x-transition:leave="transition ease-in duration-100"
-      x-transition:leave-start="opacity-100 translate-y-0"
-      x-transition:leave-end="opacity-0 -translate-y-1"
-      style="display:none"
-    >
-      <nav class="mobile-menu-inner" aria-label="Mobile navigation">
-        <a href="/work.html">Work</a>
-        <a href="/products/document-workbench.html">Products</a>
-        <a href="/services.html">Services</a>
-        <a href="/about.html" aria-current="page">About</a>
-        <a href="/insights.html">Insights</a>
-        <a href="https://cal.com/justinyurasits" class="btn-book">Book a Call</a>
-      </nav>
+<main>
+
+<!-- ══════════════════════════════════════════════════════
+     §1 Hero — Paper
+     ══════════════════════════════════════════════════════ -->
+<section class="ab-paper ab-section--hero">
+  <div class="cos-container">
+    <div class="ab-hero-col">
+      <div class="ab-hero-tag" aria-hidden="true">
+        <span>——</span>
+        <span class="ab-hero-tag__rule"></span>
+        <span class="ab-hero-tag__label">About</span>
+      </div>
+      <h1 class="ab-hero-h1">Twelve years in enterprise product leadership. Several years inside construction operations. One problem that connected both.</h1>
+      <p class="ab-hero-lead">I've spent my career building software products and working inside the operations they're meant to serve.</p>
+      <p class="ab-hero-body">My background in enterprise product leadership gave me a way of thinking about how to turn operational complexity into tools people can use. Working inside construction operations showed me what actually needed to be built.</p>
+      <p class="ab-hero-kicker">The work informed the tools. The tools are designed around the work.</p>
     </div>
-  </header>
+  </div>
+</section>
 
-  <!-- ─── HERO ─────────────────────────────────────────── -->
-  <section class="about-hero" aria-labelledby="about-heading">
-    <div class="about-hero-inner">
-      <h1 id="about-heading">About</h1>
-      <p class="about-hero-sub">Twelve years in enterprise product leadership. Several years in the field. One operating problem that connected both.</p>
-    </div>
-  </section>
-
-  <!-- ─── STORY ─────────────────────────────────────────── -->
-  <section class="story-section" aria-labelledby="story-heading">
-    <div class="story-inner">
-      <p class="eyebrow">The Work</p>
-      <div class="story-layout">
-        <div class="story-body">
-          <p class="story-tagline">Most AI consultants have never carried responsibility for operational outcomes. Most construction operators have never built AI systems. I've spent time on both sides — as a licensed construction supervisor in Massachusetts and as an enterprise product leader who has worked at the intersection of AI and operations.</p>
-
-          <p>I spent twelve years leading enterprise software and product initiatives at companies including Citizens Bank, Fidelity Investments, Optimizely, and Jabra. Over the last four to five years that work shifted increasingly toward AI — contact center intelligence, personalization engines, predictive models. I know how AI projects get scoped, how they get sold internally, and how often they fail to deliver what was promised.</p>
-          <p>My background in enterprise product management also taught me how to translate complex operational problems into systems people actually use. That turned out to be exactly the skill the next chapter required.</p>
-
-          <p>A few years ago I stepped out of software and into the field.</p>
-          <p>I joined a high-end residential general contractor in Boston and spent the next several years working as a Site Supervisor and Construction Project Manager, helping deliver more than $30 million of luxury residential construction projects. I hold a construction supervisor license in Massachusetts.</p>
-          <p>I wasn't brought in as an AI consultant. I was there to run projects, coordinate trades, solve field problems, process change orders, build estimates, manage client relationships, and carry responsibility for project outcomes.</p>
-
-          <p>What I found inside the business surprised me.</p>
-          <p>The company had software, processes, and documents. What it didn't have was a structured way to capture and transfer the operational judgment that experienced people used every day. Pricing logic lived in the owner's head. Every document started from scratch. New project managers needed months before they could work independently — not because they weren't capable, but because there was no way to transfer what the experienced people knew.</p>
-          <p>The owner was in every conversation because no one else had the context to answer client questions.</p>
-          <p>I'd been around enough AI projects to recognize what was actually happening. The problem wasn't that they needed better AI. The problem was that the business wasn't legible — not to AI, not to new hires, not to the owner when he wanted to step back.</p>
-          <p>You can't automate what hasn't been documented. You can't delegate what hasn't been described. The gap wasn't technological. It was structural.</p>
-
-          <p>That realization led to Construction OS — an AI operating system that combines documented SOPs, pricing intelligence built from real project history, and document automation into a single operational foundation. Contract packages that took four to eight hours now take thirty minutes. Preliminary estimates that took half a day now take an hour. New project managers ramp significantly faster because the institutional knowledge is in the system, not locked inside experienced employees.</p>
-          <p>The estimating, change ordering, documentation, and communication challenges that Construction OS addresses aren't theoretical. They're the same problems I dealt with personally on active projects.</p>
-
-          <p>I now work with service businesses — primarily in construction and related trades — to document how they actually operate, structure that knowledge into the right containers, and build AI systems on top of something solid.</p>
-          <p>The result isn't just automation. It's a business that becomes easier to scale, easier to train, and less dependent on any single individual. AI that actually works because the operational knowledge is there for it to work from.</p>
-          <p>I lead every engagement directly and bring in trusted specialists when implementation requires additional engineering, design, or integration expertise.</p>
-          <p>If what you're reading sounds like a problem you're living, a 30-minute conversation is the right first step.</p>
-        </div>
-        <div class="story-photo" aria-label="Photo placeholder">[ photo ]</div>
+<!-- ══════════════════════════════════════════════════════
+     §2 I didn't enter construction as an AI consultant — Bond
+     ══════════════════════════════════════════════════════ -->
+<section class="ab-bond ab-section">
+  <div class="cos-container">
+    <div class="ab-two-col">
+      <div class="ab-col-left">
+        <p class="ab-eyebrow" style="margin-bottom: 8px">The Turn</p>
+        <h2 class="ab-section-h2">I didn't enter construction as an AI consultant.</h2>
+      </div>
+      <div class="ab-col-right">
+        <p class="ab-prose-500">My background is in enterprise product leadership. For more than a decade, I built and managed software products — working with technical teams, understanding user needs, and figuring out how to turn operational complexity into tools people could actually use.</p>
+        <p class="ab-prose-400">Then I moved directly into construction operations. I wanted to understand how the work actually happened — not from the outside, but from inside it. I worked on projects. I learned how estimates get built, how documents get produced, how information moves between the office and the field, and where experienced judgment is the only thing keeping a process running.</p>
+        <p class="ab-prose-400">That combination — product thinking applied from inside the operation — is where Construction OS came from.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ─── CREDIBILITY ────────────────────────────────────── -->
-  <section class="cred-section" aria-labelledby="cred-heading">
-    <div class="cred-inner">
-      <p class="eyebrow">Background</p>
-      <div class="cred-grid">
+<!-- ══════════════════════════════════════════════════════
+     §3 What I found wasn't really a software problem — Paper
+     ══════════════════════════════════════════════════════ -->
+<section class="ab-paper ab-section">
+  <div class="cos-container">
+    <div class="ab-head-block">
+      <div>
+        <h2 class="ab-section-h2">What I found wasn't really a software problem.</h2>
+      </div>
+      <div class="ab-head-right">
+        <p class="ab-text-500">The software existed. The problem was that the operation hadn't been made legible enough for it to work.</p>
+      </div>
+    </div>
 
-        <div>
-          <h2 class="cred-col-heading" id="cred-heading">Construction Operations</h2>
-          <ul class="cred-list">
-            <li>Site Supervisor &middot; Construction Project Manager</li>
-            <li>$30M+ luxury residential construction delivered</li>
-            <li>Licensed Construction Supervisor, Massachusetts</li>
-            <li>High-end residential GC, Boston</li>
-          </ul>
+    <ul class="ab-findings-grid">
+      <li class="ab-finding-cell">Valuable knowledge lived in experienced people — and left with them when they did.</li>
+      <li class="ab-finding-cell">Operating standards existed, but not in a form anyone could consistently use.</li>
+      <li class="ab-finding-cell">Repetitive production work consumed time that should have gone to judgment.</li>
+      <li class="ab-finding-cell">Most tools required the work to adapt to the software, not the other way around.</li>
+      <li class="ab-finding-cell">The business couldn't scale its best practices because they weren't written down anywhere useful.</li>
+    </ul>
+
+    <p class="ab-pull-quote">The technology was ready. The operating knowledge wasn't in a form the technology could use.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     §4 You can't automate what the business hasn't made legible — Ink
+     ══════════════════════════════════════════════════════ -->
+<section class="ab-ink ab-section">
+  <div class="cos-container">
+    <h2 class="ab-ink-head">You can't automate what the business hasn't made legible.</h2>
+    <div class="ab-ledger-grid">
+      <div class="ab-ledger-row">
+        <span class="ab-ledger-n">01</span>
+        <p class="ab-ledger-text">The first job is making the operation legible — capturing the knowledge, standards, and judgment that currently live in people's heads and putting it somewhere the work can use it.</p>
+      </div>
+      <div class="ab-ledger-row">
+        <span class="ab-ledger-n">02</span>
+        <p class="ab-ledger-text">Once the knowledge is legible, you can build systems that reflect how the business actually works — not how a generic software product assumes it should work.</p>
+      </div>
+      <div class="ab-ledger-row">
+        <span class="ab-ledger-n">03</span>
+        <p class="ab-ledger-text">Then automation follows structure. When the operation is well-defined, you can take the predictable work off the team and put people's attention where it actually matters.</p>
+      </div>
+    </div>
+    <p class="ab-ink-kicker">That is the premise Construction OS is built on.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     §5 Construction OS grew out of solving real operating problems — Bond
+     ══════════════════════════════════════════════════════ -->
+<section class="ab-bond ab-section">
+  <div class="cos-container">
+    <div style="border-bottom: 2px solid #111111; padding-bottom: 26px; margin-bottom: 30px;">
+      <h2 class="ab-section-h2">Construction OS grew out of solving real operating problems.</h2>
+    </div>
+
+    <ul class="ab-q-grid">
+      <li class="ab-q-cell">What if the business's best practices were built into the tool, not just remembered by senior people?</li>
+      <li class="ab-q-cell">What if the right answer was available before someone had to track down the person who knew it?</li>
+      <li class="ab-q-cell">What if production documents reflected company standards — not a blank template?</li>
+      <li class="ab-q-cell">What if the team could see what needed attention across projects before it became a problem?</li>
+    </ul>
+
+    <div class="ab-products-rule">
+      <div class="ab-products-grid">
+
+        <div class="ab-product-card">
+          <div class="ab-product-card__icon-row">
+            <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true" style="color: #111111; flex: none">
+              <polyline points="30,14 86,14 86,72" fill="none" stroke="var(--cos-revision, currentColor)" stroke-width="4"/>
+              <rect x="14" y="26" width="52" height="60" fill="none" stroke="currentColor" stroke-width="8"/>
+            </svg>
+            <p class="ab-product-card__name">Document Workbench</p>
+          </div>
+          <p class="ab-product-card__desc">Produce company-standard construction documents from first walkthrough through closeout.</p>
         </div>
 
-        <div>
-          <h2 class="cred-col-heading">Enterprise Product &amp; AI</h2>
-          <ul class="cred-list">
-            <li>Citizens Bank <span class="cred-descriptor">— contact center AI</span></li>
-            <li>Fidelity Investments <span class="cred-descriptor">— financial technology</span></li>
-            <li>Optimizely <span class="cred-descriptor">— experimentation and personalization</span></li>
-            <li>Jabra <span class="cred-descriptor">— communications products</span></li>
-          </ul>
+        <div class="ab-product-card">
+          <div class="ab-product-card__icon-row">
+            <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true" style="color: #111111; flex: none">
+              <line x1="6" y1="50" x2="96" y2="50" stroke="var(--cos-revision, currentColor)" stroke-width="4"/>
+              <polyline points="8,20 40,20 54,42 94,42" fill="none" stroke="currentColor" stroke-width="8"/>
+              <polyline points="8,80 40,80 54,58 94,58" fill="none" stroke="currentColor" stroke-width="8"/>
+            </svg>
+            <p class="ab-product-card__name">Construction Intelligence</p>
+          </div>
+          <p class="ab-product-card__desc">Put your company's procedures, standards, pricing judgment, and operating knowledge within reach of the team.</p>
+        </div>
+
+        <div class="ab-product-card">
+          <div class="ab-product-card__icon-row">
+            <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true" style="color: #111111; flex: none">
+              <rect x="6" y="18" width="88" height="64" fill="none" stroke="var(--cos-hairline, #476776)" stroke-width="4"/>
+              <line x1="18" y1="70" x2="82" y2="70" stroke="currentColor" stroke-width="8"/>
+              <line x1="30" y1="70" x2="30" y2="56" stroke="currentColor" stroke-width="8"/>
+              <line x1="50" y1="70" x2="50" y2="44" stroke="currentColor" stroke-width="8"/>
+              <line x1="70" y1="70" x2="70" y2="32" stroke="var(--cos-revision, currentColor)" stroke-width="8"/>
+            </svg>
+            <p class="ab-product-card__name">Project Intelligence</p>
+          </div>
+          <p class="ab-product-card__desc">Surface the exceptions and unresolved work that need attention across active projects.</p>
         </div>
 
       </div>
+      <p class="ab-extension-line">Operations Automation and Custom Solutions extend the platform to recurring workflows and purpose-built needs.</p>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ─── CTA ───────────────────────────────────────────── -->
-  <section class="cta-section" aria-labelledby="cta-heading">
-    <h2 class="cta-heading" id="cta-heading">If this resonates, let's talk.</h2>
-    <p class="cta-body">A 30-minute conversation. No pitch. No commitment.</p>
-    <a href="https://cal.com/justinyurasits" class="btn-cta">Book a 30-Minute Call</a>
-  </section>
+<!-- ══════════════════════════════════════════════════════
+     §6 Built from both sides of the problem — Paper
+     ══════════════════════════════════════════════════════ -->
+<section class="ab-paper ab-section">
+  <div class="cos-container">
+    <div style="border-bottom: 2px solid #111111; padding-bottom: 26px; margin-bottom: 34px;">
+      <h2 class="ab-section-h2">Built from both sides of the problem.</h2>
+    </div>
 
-  <!-- ─── FOOTER ────────────────────────────────────────── -->
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <div class="footer-cols">
-        <div>
-          <span class="footer-wordmark">Justin Yurasits</span>
-          <span class="footer-descriptor">Operational Intelligence for Construction, Trades, and Field Services</span>
+    <div class="ab-knowledge-grid">
+      <div class="ab-knowledge-col">
+        <p class="ab-knowledge-head">Product &amp; software</p>
+        <p class="ab-knowledge-item"><span class="ab-knowledge-n">01</span>Enterprise software product leadership</p>
+        <p class="ab-knowledge-item"><span class="ab-knowledge-n">02</span>Technical architecture and systems design</p>
+        <p class="ab-knowledge-item"><span class="ab-knowledge-n">03</span>AI product development and deployment</p>
+        <p class="ab-knowledge-item"><span class="ab-knowledge-n">04</span>Workflow analysis and process design</p>
+      </div>
+      <div class="ab-knowledge-col">
+        <p class="ab-knowledge-head">Construction operations</p>
+        <p class="ab-knowledge-item"><span class="ab-knowledge-n">01</span>Field coordination and construction management</p>
+        <p class="ab-knowledge-item"><span class="ab-knowledge-n">02</span>Estimating and scope management</p>
+        <p class="ab-knowledge-item"><span class="ab-knowledge-n">03</span>Construction documentation and submittals</p>
+        <p class="ab-knowledge-item"><span class="ab-knowledge-n">04</span>Subcontractor and vendor management</p>
+        <p class="ab-knowledge-item"><span class="ab-knowledge-n">05</span>Project controls and scheduling</p>
+        <p class="ab-knowledge-item"><span class="ab-knowledge-n">06</span>Quality management and closeout</p>
+        <p class="ab-knowledge-item"><span class="ab-knowledge-n">07</span>Operating knowledge capture and standards development</p>
+      </div>
+    </div>
+
+    <p class="ab-knowledge-close">That combination is what makes Construction OS different from tools built by people who have only ever worked in software.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     §7 That is how I work with clients today — Bond
+     ══════════════════════════════════════════════════════ -->
+<section class="ab-bond ab-section">
+  <div class="cos-container">
+    <div class="ab-today-head">
+      <p class="ab-eyebrow" style="margin-bottom: 12px">Today</p>
+      <h2 class="ab-section-h2">That is how I work with clients today.</h2>
+    </div>
+    <ul class="ab-sometimes-list">
+      <li class="ab-sometimes-line">Sometimes that means a demo with your actual documents, built around your standards and terminology.</li>
+      <li class="ab-sometimes-line">Sometimes that means a strategy engagement to find the two or three problems worth solving first.</li>
+      <li class="ab-sometimes-line">Sometimes that means implementing Construction OS around your company's operating practices.</li>
+      <li class="ab-sometimes-line">Sometimes that means building a purpose-built tool for the workflow that doesn't fit anything off-the-shelf.</li>
+    </ul>
+    <p class="ab-section-kicker">Start with the problem. Build from there.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     §8 Closing CTA — Ink
+     ══════════════════════════════════════════════════════ -->
+<section class="ab-ink ab-section--closing">
+  <div class="cos-container">
+    <div class="ab-closing-grid">
+
+      <!-- Left column -->
+      <div class="ab-closing-col">
+        <div class="ab-closing-lockup">
+          <svg viewBox="0 0 100 100" width="24" height="24" aria-hidden="true" style="flex: none; color: #FFFFFF">
+            <polyline points="14,56 14,14 56,14" fill="none" stroke="currentColor" stroke-width="13"/>
+            <polyline points="86,44 86,86 44,86" fill="none" stroke="currentColor" stroke-width="13"/>
+            <rect x="32" y="32" width="36" height="36" fill="#C43230"/>
+          </svg>
+          <span class="ab-closing-label">About</span>
+          <span class="ab-closing-lockup__rule"></span>
         </div>
-        <div class="footer-links">
-          <a href="mailto:justin@justinyurasits.com">justin@justinyurasits.com</a>
-          <span class="footer-sep">&middot;</span>
-          <a href="https://linkedin.com/in/justinyurasits">linkedin.com/in/justinyurasits</a>
+
+        <h2 class="ab-closing-h2">Tell me about the problem.</h2>
+
+        <ul class="ab-candidates">
+          <li>You have more work than time to do it well.</li>
+          <li>A process is held together by one person's experience.</li>
+          <li>The same question gets asked — and re-answered — every week.</li>
+          <li>Production is slower than it should be.</li>
+          <li>You're not sure what's falling through the cracks on active projects.</li>
+          <li>The business has grown but the way the work gets done hasn't kept up.</li>
+        </ul>
+
+        <div class="ab-cta-row">
+          <a class="ab-btn-primary" href="https://cal.com/justinyurasits">Book a demo</a>
+          <a class="ab-btn-secondary" href="/services.html">See how I work →</a>
         </div>
       </div>
-      <p class="footer-copy">&copy; 2026 Justin Yurasits. All rights reserved.</p>
+
+      <!-- Right column — Background rail -->
+      <div class="ab-rail">
+        <p class="ab-rail-label">Background</p>
+        <div class="ab-rail-row">
+          <span class="ab-rail-n">01</span>
+          <div class="ab-rail-stack">
+            <p class="ab-rail-name">Enterprise Product Leadership</p>
+            <p class="ab-rail-detail">More than a decade building software products across enterprise operations.</p>
+          </div>
+        </div>
+        <div class="ab-rail-row">
+          <span class="ab-rail-n">02</span>
+          <div class="ab-rail-stack">
+            <p class="ab-rail-name">Construction Operations</p>
+            <p class="ab-rail-detail">Direct field and office work — estimating, documentation, coordination, and project management.</p>
+          </div>
+        </div>
+        <div class="ab-rail-row">
+          <span class="ab-rail-n">03</span>
+          <div class="ab-rail-stack">
+            <p class="ab-rail-name">AI Product Development</p>
+            <p class="ab-rail-detail">Building AI-powered operational tools from inside the work they support.</p>
+          </div>
+        </div>
+        <div class="ab-rail-row">
+          <span class="ab-rail-n">04</span>
+          <div class="ab-rail-stack">
+            <p class="ab-rail-name">Construction OS</p>
+            <p class="ab-rail-detail">Founder. A construction operating system built from both sides of the problem.</p>
+          </div>
+        </div>
+      </div>
+
     </div>
-  </footer>
+  </div>
+</section>
+
+</main>
+
+<!-- footer:start -->
+<footer class="cos-footer">
+  <div class="cos-footer__inner cos-container">
+    <div class="cos-footer__cols">
+
+      <!-- Identity -->
+      <div class="cos-footer__brand">
+        <a class="cos-footer__lockup" href="/">
+          <svg viewBox="0 0 100 100" width="22" height="22" aria-hidden="true" style="color:#111111;flex:none">
+            <polyline points="14,56 14,14 56,14" fill="none" stroke="currentColor" stroke-width="13"/>
+            <polyline points="86,44 86,86 44,86" fill="none" stroke="currentColor" stroke-width="13"/>
+            <rect x="32" y="32" width="36" height="36" fill="#C43230"/>
+          </svg>
+          Construction OS
+        </a>
+        <p class="cos-footer__tagline">Three products. One construction operating system.</p>
+      </div>
+
+      <!-- Products -->
+      <div class="cos-footer__col">
+        <span class="cos-footer__col-head">Products</span>
+        <a class="cos-footer__col-item" href="/products/document-workbench.html">
+          <span class="cos-footer__col-n">01</span>Document Workbench
+        </a>
+        <a class="cos-footer__col-item" href="/products/construction-intelligence.html">
+          <span class="cos-footer__col-n">02</span>Construction Intelligence
+        </a>
+        <a class="cos-footer__col-item" href="/products/project-intelligence.html">
+          <span class="cos-footer__col-n">03</span>Project Intelligence
+        </a>
+        <a class="cos-footer__col-item" href="/products/operations-automation.html">
+          <span class="cos-footer__col-dash">——</span>Operations Automation
+        </a>
+        <a class="cos-footer__col-item" href="/products/custom-solutions.html">
+          <span class="cos-footer__col-dash">——</span>Custom Solutions
+        </a>
+      </div>
+
+      <!-- Company -->
+      <div class="cos-footer__col">
+        <span class="cos-footer__col-head">Company</span>
+        <a class="cos-footer__col-item" href="/services.html">Services</a>
+        <span class="cos-footer__col-item cos-footer__col-item--ink" aria-current="page">About</span>
+      </div>
+
+      <!-- Contact -->
+      <div class="cos-footer__col">
+        <span class="cos-footer__col-head">Talk to us</span>
+        <a class="cos-footer__contact-email" href="mailto:justin@justinyurasits.com">justin@justinyurasits.com</a>
+        <a class="cos-footer__col-item" href="tel:8572481365">857-248-1365</a>
+        <a class="cos-footer__col-item" href="https://linkedin.com/in/justinyurasits">LinkedIn</a>
+      </div>
+
+    </div>
+
+    <!-- Title block -->
+    <div class="cos-titleblock">
+      <div class="cos-titleblock__cell">
+        <span class="cos-titleblock__label">Sheet</span>
+        <span class="cos-titleblock__value">CONSTRUCTION OS</span>
+      </div>
+      <div class="cos-titleblock__cell">
+        <span class="cos-titleblock__label">Page</span>
+        <span class="cos-titleblock__value">ABOUT</span>
+      </div>
+      <div class="cos-titleblock__cell">
+        <span class="cos-titleblock__label">Issued</span>
+        <span class="cos-titleblock__value">2026-09-06</span>
+      </div>
+      <div class="cos-titleblock__cell">
+        <span class="cos-titleblock__label">Rev</span>
+        <span class="cos-titleblock__value">01</span>
+      </div>
+      <div class="cos-titleblock__cell">
+        <span class="cos-titleblock__label">Status</span>
+        <span class="cos-titleblock__value">ISSUED FOR REVIEW</span>
+      </div>
+    </div>
+
+    <!-- Legal -->
+    <div class="cos-footer__legal">
+      <span>&copy; 2026 Justin Yurasits. All rights reserved.</span>
+      <span>
+        <a href="/privacy.html" class="cos-footer__legal-link">Privacy Policy</a>
+        &nbsp;&middot;&nbsp;
+        <a href="/terms.html" class="cos-footer__legal-link">Terms</a>
+      </span>
+    </div>
+  </div>
+</footer>
+<!-- footer:end -->
+
+<script>
+(function () {
+  var header = document.getElementById('cos-header');
+  if (!header) return;
+  var toggle = header.querySelector('.cos-header__toggle');
+  var nav    = header.querySelector('.cos-nav');
+  var dd     = header.querySelector('.cos-nav__dropdown');
+  var btn    = dd ? dd.querySelector('.cos-nav__trigger') : null;
+  var panel  = dd ? dd.querySelector('.cos-nav__panel') : null;
+
+  toggle.addEventListener('click', function () {
+    var open = nav.classList.toggle('is-open');
+    toggle.setAttribute('aria-expanded', open);
+  });
+
+  if (!dd) return;
+
+  var openTimer, closeTimer;
+
+  function openPanel() {
+    clearTimeout(closeTimer);
+    dd.classList.add('is-open');
+    btn.setAttribute('aria-expanded', 'true');
+  }
+
+  function closePanel() {
+    clearTimeout(openTimer);
+    dd.classList.remove('is-open');
+    btn.setAttribute('aria-expanded', 'false');
+  }
+
+  btn.addEventListener('click', function (e) {
+    e.stopPropagation();
+    clearTimeout(openTimer); clearTimeout(closeTimer);
+    dd.classList.contains('is-open') ? closePanel() : openPanel();
+  });
+
+  btn.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); dd.classList.contains('is-open') ? closePanel() : openPanel(); }
+  });
+
+  dd.addEventListener('mouseenter', function () {
+    if (window.innerWidth < 900) return;
+    clearTimeout(closeTimer);
+    openTimer = setTimeout(openPanel, 120);
+  });
+
+  dd.addEventListener('mouseleave', function () {
+    if (window.innerWidth < 900) return;
+    clearTimeout(openTimer);
+    closeTimer = setTimeout(closePanel, 200);
+  });
+
+  btn.addEventListener('keydown', function (e) {
+    if (!dd.classList.contains('is-open')) return;
+    var items = Array.prototype.slice.call(panel.querySelectorAll('.cos-nav__item'));
+    if (e.key === 'ArrowDown') { e.preventDefault(); if (items[0]) items[0].focus(); }
+    if (e.key === 'Escape') { closePanel(); btn.focus(); }
+  });
+
+  panel.addEventListener('keydown', function (e) {
+    var items = Array.prototype.slice.call(panel.querySelectorAll('.cos-nav__item'));
+    var idx = items.indexOf(document.activeElement);
+    if (e.key === 'ArrowDown') { e.preventDefault(); if (idx < items.length - 1) items[idx + 1].focus(); }
+    if (e.key === 'ArrowUp') { e.preventDefault(); if (idx > 0) items[idx - 1].focus(); else btn.focus(); }
+    if (e.key === 'Escape') { e.preventDefault(); closePanel(); btn.focus(); }
+    if (e.key === 'Tab') { closePanel(); }
+  });
+
+  document.addEventListener('click', function (e) {
+    if (!dd.contains(e.target)) closePanel();
+  });
+})();
+</script>
 
 </body>
 </html>

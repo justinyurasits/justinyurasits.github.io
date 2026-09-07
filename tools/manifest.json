@@ -85,6 +85,18 @@
         "rev": "01",
         "status": "Issued For Review"
       }
+    },
+    {
+      "path": "about.html",
+      "active": "about",
+      "activeProduct": null,
+      "footer": {
+        "current": "about",
+        "page": "ABOUT",
+        "issued": "2026-09-06",
+        "rev": "01",
+        "status": "Issued For Review"
+      }
     }
   ]
 }

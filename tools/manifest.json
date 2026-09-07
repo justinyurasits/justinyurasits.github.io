@@ -8,10 +8,10 @@
       "activeProduct": null,
       "footer": {
         "current": "none",
-        "page": "Construction OS",
+        "page": "Home",
         "issued": "2026-09-06",
         "rev": "01",
-        "status": "Issued For Review"
+        "status": "Issued For Construction"
       }
     },
     {
@@ -23,7 +23,7 @@
         "page": "Document Workbench",
         "issued": "2026-09-06",
         "rev": "03",
-        "status": "Issued For Review"
+        "status": "Issued For Construction"
       }
     },
     {
@@ -35,7 +35,7 @@
         "page": "Construction Intelligence",
         "issued": "2026-09-06",
         "rev": "03",
-        "status": "Issued For Review"
+        "status": "Issued For Construction"
       }
     },
     {
@@ -47,7 +47,7 @@
         "page": "Project Intelligence",
         "issued": "2026-09-06",
         "rev": "03",
-        "status": "Issued For Review"
+        "status": "In Development"
       }
     },
     {
@@ -59,7 +59,7 @@
         "page": "Operations Automation",
         "issued": "2026-09-06",
         "rev": "01",
-        "status": "Issued For Review"
+        "status": "Issued For Construction"
       }
     },
     {
@@ -71,7 +71,7 @@
         "page": "Custom Solutions",
         "issued": "2026-09-06",
         "rev": "01",
-        "status": "Issued For Review"
+        "status": "Issued For Construction"
       }
     },
     {
@@ -83,7 +83,7 @@
         "page": "Services",
         "issued": "2026-09-06",
         "rev": "01",
-        "status": "Issued For Review"
+        "status": "Issued For Construction"
       }
     },
     {
@@ -95,7 +95,43 @@
         "page": "ABOUT",
         "issued": "2026-09-06",
         "rev": "01",
-        "status": "Issued For Review"
+        "status": "Issued For Construction"
+      }
+    },
+    {
+      "path": "case-studies.html",
+      "active": "resources",
+      "activeProduct": null,
+      "footer": {
+        "current": "case-studies",
+        "page": "Case Studies",
+        "issued": "2026-09-07",
+        "rev": "01",
+        "status": "Issued For Construction"
+      }
+    },
+    {
+      "path": "insights.html",
+      "active": "resources",
+      "activeProduct": null,
+      "footer": {
+        "current": "insights",
+        "page": "Insights",
+        "issued": "2026-09-07",
+        "rev": "01",
+        "status": "Issued For Construction"
+      }
+    },
+    {
+      "path": "guides.html",
+      "active": "resources",
+      "activeProduct": null,
+      "footer": {
+        "current": "guides",
+        "page": "Guides",
+        "issued": "2026-09-07",
+        "rev": "01",
+        "status": "Issued For Construction"
       }
     }
   ]

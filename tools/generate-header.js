@@ -26,7 +26,8 @@ function productItem(href, marker, name, key, activeProduct) {
 }
 
 function buildHeader(active, activeProduct) {
-  const triggerCur = active === 'products' ? ' is-current' : '';
+  const productsTriggerCur = active === 'products' ? ' is-current' : '';
+  const resourcesTriggerCur = active === 'resources' ? ' is-current' : '';
 
   function navA(href, label, key) {
     const cur = active === key ? ' aria-current="page"' : '';
@@ -46,9 +47,9 @@ function buildHeader(active, activeProduct) {
       </a>
       <button class="cos-header__toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav">Menu</button>
       <ul class="cos-nav" id="main-nav" role="list">
-        <li class="cos-nav__dropdown">
-          <button class="cos-nav__trigger${triggerCur}" aria-expanded="false" aria-haspopup="true" aria-controls="products-panel">Products</button>
-          <nav class="cos-nav__panel" id="products-panel">
+        <li class="cos-nav__dropdown" id="dd-products">
+          <button class="cos-nav__trigger${productsTriggerCur}" aria-expanded="false" aria-haspopup="true" aria-controls="products-panel">Products<span class="cos-nav__caret" aria-hidden="true">▾</span></button>
+          <nav class="cos-nav__panel" id="products-panel" aria-label="Products">
             <span class="cos-nav__group-label">Core Products</span>
 ${productItem('/products/document-workbench.html', '01', 'Document Workbench', 'document-workbench', activeProduct)}
 ${productItem('/products/construction-intelligence.html', '02', 'Construction Intelligence', 'construction-intelligence', activeProduct)}
@@ -59,6 +60,23 @@ ${productItem('/products/custom-solutions.html', '——', 'Custom Solutions', '
           </nav>
         </li>
 ${navA('/services.html', 'Services', 'services')}
+        <li class="cos-nav__dropdown" id="dd-resources">
+          <button class="cos-nav__trigger${resourcesTriggerCur}" aria-expanded="false" aria-haspopup="true" aria-controls="resources-panel">Resources<span class="cos-nav__caret" aria-hidden="true">▾</span></button>
+          <nav class="cos-nav__panel cos-nav__panel--resources" id="resources-panel" aria-label="Resources">
+            <a class="cos-nav__item cos-menu__item" href="/case-studies.html">
+              <span class="cos-nav__name">Case studies</span>
+              <span class="cos-menu__gloss">Real construction applications and measured results.</span>
+            </a>
+            <a class="cos-nav__item cos-menu__item" href="/insights.html">
+              <span class="cos-nav__name">Insights</span>
+              <span class="cos-menu__gloss">Articles on AI, construction operations, documentation, knowledge, and workflow improvement.</span>
+            </a>
+            <a class="cos-nav__item cos-menu__item" href="/guides.html">
+              <span class="cos-nav__name">Guides &amp; white papers</span>
+              <span class="cos-menu__gloss">Longer practical resources for construction operators.</span>
+            </a>
+          </nav>
+        </li>
 ${navA('/about.html', 'About', 'about')}
         <li><a class="cos-header__cta" href="${calLink}">Book a demo</a></li>
       </ul>
@@ -71,7 +89,6 @@ ${navA('/about.html', 'About', 'about')}
 
 function footerItem(href, marker, name, current) {
   const isCur = current === href.replace(/^\/products\//, '').replace(/\.html$/, '');
-  const cls = isCur ? ' cos-footer__col-item cos-footer__col-item--ink' : ' cos-footer__col-item';
   const markerCls = marker === '——' ? 'cos-footer__col-dash' : 'cos-footer__col-n';
   if (isCur) {
     // Current page — plain text, no link
@@ -82,6 +99,13 @@ function footerItem(href, marker, name, current) {
   return `        <a class="cos-footer__col-item" href="${href}">
           <span class="${markerCls}">${marker}</span>${name}
         </a>`;
+}
+
+function resourcesFooterItem(href, slug, label, current) {
+  if (current === slug) {
+    return `        <span class="cos-footer__col-item cos-footer__col-item--ink" aria-current="page">${label}</span>`;
+  }
+  return `        <a class="cos-footer__col-item" href="${href}">${label}</a>`;
 }
 
 function buildFooter(footerConfig) {
@@ -115,7 +139,7 @@ ${footerItem('/products/custom-solutions.html', '——', 'Custom Solutions', cu
       </div>
 
       <!-- Company -->
-      <div class="cos-footer__col">
+      <nav class="cos-footer__col" aria-label="Company">
         <span class="cos-footer__col-head">Company</span>
         ${current === 'services'
           ? '<span class="cos-footer__col-item cos-footer__col-item--ink" aria-current="page">Services</span>'
@@ -123,7 +147,15 @@ ${footerItem('/products/custom-solutions.html', '——', 'Custom Solutions', cu
         ${current === 'about'
           ? '<span class="cos-footer__col-item cos-footer__col-item--ink" aria-current="page">About</span>'
           : '<a class="cos-footer__col-item" href="/about.html">About</a>'}
-      </div>
+      </nav>
+
+      <!-- Resources -->
+      <nav class="cos-footer__col" aria-label="Resources">
+        <span class="cos-footer__col-head">Resources</span>
+${resourcesFooterItem('/case-studies.html', 'case-studies', 'Case studies', current)}
+${resourcesFooterItem('/insights.html', 'insights', 'Insights', current)}
+${resourcesFooterItem('/guides.html', 'guides', 'Guides &amp; white papers', current)}
+      </nav>
 
       <!-- Contact -->
       <div class="cos-footer__col">

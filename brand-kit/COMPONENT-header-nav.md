@@ -7,17 +7,12 @@ in two tiers, and Custom Solutions has no way in.
 
 Read with `CONSTRUCTION-OS-BRAND-KIT.md`.
 
-> **Note:** §1 below reflects the original spec. The work order (`WORKORDER-header-rollout.md`
-> §3) supersedes the nav label: the third item is `Services` routing to `/services`, not
-> `Engagements`. All other spec details apply as written.
-
 ---
 
 ## 1. What changes
 
 The header's `Products` item becomes a **menu**. Everything else in the header is unchanged:
-mark + wordmark left; `Work` · `Products` · `Services` · `About` and the `Book a demo` CTA
-right; `min-height: 72px`; 1px `#B8B9B5` bottom rule; sticky
+mark + wordmark left; `Products` · `Services` · `About` and the `Book a demo` CTA right; `min-height: 72px`; 1px `#B8B9B5` bottom rule; sticky
 (`position: sticky; top: 0; z-index: 50`); no scroll-state change, no shadow, no shrink.
 
 ### ⚠ Menu rows are the product name only
@@ -106,6 +101,8 @@ compact index, not a page.
 
 ## 4. States and behavior
 
+**Nav label set is `Products` · `Services` · `About`** — three items and the CTA, nothing else. **There is no `Work` item**: no such page exists, so it is not in the header or the footer. `Services` (not "Engagements") routes to `/services`. Do not ship a header where the label set differs between pages.
+
 - **Trigger.** `Products` keeps its current type (15px/500). When the menu is open or the
   current page is any product page, it wears the existing active treatment: Ink text with
   `border-bottom: 2px solid #111111; padding-bottom: 2px`. Other nav items stay Graphite
@@ -159,8 +156,9 @@ Every product page currently renders its nav and cross-links as static text. Wir
 | Explore Operations Automation → | `/products/operations-automation` |
 | Explore Construction OS → | `/#products` (homepage products section) |
 | Footer product list (5 items) | the five product routes |
-| Footer: Work · Services · About | their routes |
-| justin@justinyurasits.com | `mailto:` |
+| Services (header + footer) | `/services` |
+| Footer: Services · About | their routes |
+| justin@justinyurasits.com | `mailto:justin@justinyurasits.com` |
 | LinkedIn · Privacy · Terms | their destinations |
 
 Rules for these links: **the current page's own name is never a link** — in the footer product

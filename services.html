@@ -13,6 +13,377 @@
 <style>
 .cos-container { max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px); }
 
+/* ── Services page ────────────────────────────────────── */
+/* Surfaces */
+.srv-paper { background:#FFFFFF; }
+.srv-bond  { background:#EFEFEB; }
+.srv-ink   { background:#111111; color:#FFFFFF; }
+
+/* Section spacing */
+.srv-section { padding: 76px 0 80px; }
+.srv-section--hero { padding: 76px 0 64px; }
+.srv-section--closing { padding: 88px 0 80px; }
+.srv-section--thin { padding: 34px 0; }
+
+/* Eyebrow */
+.srv-eyebrow {
+  margin:0; font: 600 11px/1 var(--font-display),sans-serif;
+  letter-spacing:.16em; text-transform:uppercase; color:#476776;
+}
+.srv-eyebrow--limits { letter-spacing:.14em; }
+
+/* Hero column */
+.srv-hero-col {
+  max-width:64ch; container-type:inline-size;
+  display:flex; flex-direction:column; gap:26px;
+}
+.srv-hero-tag {
+  display:flex; align-items:center; gap:10px;
+  font: 400 12px/1 ui-monospace,'Cascadia Code','Source Code Pro',monospace;
+  color:#111111;
+}
+.srv-hero-tag__rule { flex:none; width:40px; height:1px; background:#111111; }
+.srv-hero-tag__label {
+  font: 600 11px/1 var(--font-display),sans-serif;
+  letter-spacing:.16em; text-transform:uppercase; color:#476776; margin:0;
+}
+.srv-hero-h1 {
+  margin:0; font: 600 clamp(30px,9cqi,48px)/1.02 var(--font-display),sans-serif;
+  letter-spacing:-.038em; color:#111111; text-wrap:balance;
+}
+.srv-hero-lead {
+  margin:0; font: 500 20px/1.4 var(--font-display),sans-serif;
+  letter-spacing:-.02em; color:#111111; max-width:46ch;
+}
+.srv-hero-body {
+  margin:0; font: 400 17px/1.6 var(--font-display),sans-serif;
+  color:#5F6466; max-width:56ch;
+}
+.srv-hero-kicker {
+  border-left:2px solid #476776; padding-left:16px;
+  font: 600 18px/1.35 var(--font-display),sans-serif; color:#111111; margin:0;
+}
+
+/* CTA row */
+.srv-cta-row { display:flex; align-items:center; gap:22px; flex-wrap:wrap; }
+.srv-btn-primary {
+  display:inline-flex; align-items:center; min-height:44px;
+  padding:13px 20px; font: 600 14px/1 var(--font-display),sans-serif;
+  letter-spacing:-.01em; text-decoration:none; background:#111111; color:#FFFFFF;
+  border:none; cursor:pointer; white-space:nowrap;
+}
+.srv-btn-primary:hover { background:#476776; }
+.srv-btn-secondary {
+  display:inline-flex; align-items:center; min-height:40px;
+  font: 600 14px/1 var(--font-display),sans-serif; letter-spacing:-.01em;
+  text-decoration:none; color:#111111; border-bottom:2px solid #111111;
+  padding-bottom:3px; background:none; border-top:none; border-left:none; border-right:none;
+  cursor:pointer; white-space:nowrap;
+}
+.srv-btn-secondary:hover { color:#476776; border-bottom-color:#476776; }
+/* Ink-surface CTAs */
+.srv-ink .srv-btn-primary {
+  background:#FFFFFF; color:#111111;
+}
+.srv-ink .srv-btn-primary:hover { background:#EFEFEB; }
+.srv-ink .srv-btn-secondary { color:#FFFFFF; border-bottom-color:#FFFFFF; }
+.srv-ink .srv-btn-secondary:hover { color:#B8B9B5; border-bottom-color:#B8B9B5; }
+
+/* ── Section heading block ──────────────────────────── */
+.srv-head-block {
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(280px,100%),1fr));
+  gap:28px 48px; align-items:end;
+  border-bottom:2px solid #111111; padding-bottom:30px; margin-bottom:34px;
+}
+.srv-head-block--pb26 { padding-bottom:26px; margin-bottom:30px; }
+
+.srv-section-h2 {
+  margin:0; font: 600 clamp(28px,8cqi,42px)/1.05 var(--font-display),sans-serif;
+  letter-spacing:-.035em; color:#111111; text-wrap:balance;
+}
+.srv-section-h2--sm {
+  font-size:clamp(26px,7cqi,38px); letter-spacing:-.032em; line-height:1.05;
+}
+.srv-head-right { display:flex; flex-direction:column; gap:10px; }
+.srv-head-right p { margin:0; }
+.srv-text-500 { font: 500 17px/1.5 var(--font-display),sans-serif; color:#111111; }
+.srv-text-400-graphite { font: 400 16px/1.6 var(--font-display),sans-serif; color:#5F6466; }
+
+/* ── Marker row (service headings) ─────────────────── */
+.srv-marker-row {
+  display:flex; align-items:center; gap:12px; margin-bottom:12px;
+}
+.srv-marker-n {
+  font: 400 12px/1 ui-monospace,'Cascadia Code','Source Code Pro',monospace; color:#111111;
+}
+.srv-marker-label {
+  font: 600 11px/1 var(--font-display),sans-serif;
+  letter-spacing:.16em; text-transform:uppercase; color:#476776; margin:0;
+}
+.srv-service-h2 {
+  margin:0; font: 600 clamp(26px,7.5cqi,40px)/1.05 var(--font-display),sans-serif;
+  letter-spacing:-.034em; color:#111111; text-wrap:balance;
+}
+
+/* ── Divided item grids (signals, questions, reasons) ─ */
+.srv-item-grid {
+  display:grid;
+  column-gap:40px;
+}
+.srv-item-grid--signals { grid-template-columns: repeat(auto-fit, minmax(min(300px,100%),1fr)); }
+.srv-item-grid--questions { grid-template-columns: repeat(auto-fit, minmax(min(280px,100%),1fr)); }
+.srv-item-grid--reasons { grid-template-columns: repeat(auto-fit, minmax(min(280px,100%),1fr)); }
+.srv-item-grid--inputs { grid-template-columns: repeat(auto-fit, minmax(min(240px,100%),1fr)); column-gap:32px; }
+
+.srv-signal-cell {
+  border-top:1px solid #B8B9B5; padding:18px 0;
+  font: 500 16px/1.5 var(--font-display),sans-serif; color:#111111; margin:0;
+}
+.srv-q-cell {
+  border-top:1px solid #B8B9B5; padding:20px 0;
+  font: 600 19px/1.35 var(--font-display),sans-serif; letter-spacing:-.02em; color:#111111; margin:0;
+}
+.srv-reason-cell {
+  border-top:1px solid #B8B9B5; padding:20px 0;
+  font: 600 19px/1.35 var(--font-display),sans-serif; letter-spacing:-.02em; color:#111111; margin:0;
+}
+.srv-input-cell {
+  display:flex; align-items:baseline; gap:12px;
+  border-top:1px solid #B8B9B5; padding:14px 0;
+}
+.srv-input-n {
+  font: 400 11px/1 ui-monospace,'Cascadia Code','Source Code Pro',monospace;
+  color:#5F6466; flex:none;
+}
+.srv-input-label { font: 500 16px/1.4 var(--font-display),sans-serif; color:#111111; margin:0; }
+
+/* ── Section close (two-column under Ink rule) ──────── */
+.srv-section-close {
+  margin-top:30px; padding-top:30px; border-top:2px solid #111111;
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(260px,100%),1fr));
+  gap:28px 48px; align-items:start;
+}
+.srv-close-stack { display:flex; flex-direction:column; }
+.srv-close-stack--8 { gap:8px; }
+.srv-close-stack--10 { gap:10px; }
+.srv-close-stack--12 { gap:12px; }
+.srv-close-left-h { margin:0; font: 600 22px/1.2 var(--font-display),sans-serif; letter-spacing:-.024em; color:#111111; }
+.srv-close-left-sm { margin:0; font: 400 16px/1.5 var(--font-display),sans-serif; color:#5F6466; }
+.srv-close-right-500 { margin:0; font: 500 17px/1.5 var(--font-display),sans-serif; color:#111111; }
+.srv-close-right-600 { margin:0; font: 600 19px/1.35 var(--font-display),sans-serif; color:#111111; }
+.srv-close-right-400 { margin:0; font: 400 16px/1.5 var(--font-display),sans-serif; color:#5F6466; }
+.srv-close-outcome-sm { margin:0; font: 400 16px/1.5 var(--font-display),sans-serif; color:#5F6466; }
+.srv-close-outcome-lg { margin:0; font: 600 19px/1.35 var(--font-display),sans-serif; color:#111111; }
+.srv-typical-label {
+  font: 600 11px/1 var(--font-display),sans-serif; letter-spacing:.14em;
+  text-transform:uppercase; color:#5F6466; margin:0;
+}
+.srv-typical-body { margin:0; font: 400 15px/1.55 var(--font-display),sans-serif; color:#5F6466; }
+.srv-typical-cta { margin:0; font: 500 16px/1.4 var(--font-display),sans-serif; color:#111111; padding-top:10px; border-top:1px solid #B8B9B5; }
+
+/* ── §3 Index rows ──────────────────────────────────── */
+.srv-index-grid {
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(300px,100%),1fr));
+  gap:0 28px;
+}
+.srv-index-row {
+  display:flex; align-items:baseline; gap:0;
+  padding:24px 0; border-top:1px solid #B8B9B5;
+}
+.srv-index-row:first-child { border-top:none; }
+.srv-index-cell1 { display:flex; align-items:baseline; gap:12px; flex:1; }
+.srv-index-n {
+  font: 400 12px/1 ui-monospace,'Cascadia Code','Source Code Pro',monospace;
+  color:#5F6466; width:46px; flex:none;
+}
+.srv-index-name { margin:0; font: 600 21px/1.2 var(--font-display),sans-serif; letter-spacing:-.022em; color:#111111; }
+.srv-index-promise { margin:0; font: 400 16px/1.5 var(--font-display),sans-serif; color:#5F6466; padding-top:4px; }
+
+/* ── §5 Implementation + product cards ─────────────── */
+.srv-impl-close {
+  margin-top:26px;
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(260px,100%),1fr));
+  gap:20px 48px; align-items:start;
+}
+.srv-kicker {
+  border-left:2px solid #476776; padding-left:14px;
+  font: 600 19px/1.35 var(--font-display),sans-serif; color:#111111; margin:0;
+}
+.srv-kicker--sm { font-size:17px; }
+.srv-products-rule { margin-top:34px; padding-top:34px; border-top:2px solid #111111; }
+.srv-products-grid {
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(280px,100%),1fr));
+  column-gap:40px; row-gap:34px;
+  /* Suppress red on these product-card icons — services page has zero red except mark plates */
+  --cos-revision: #476776;
+  --cos-hairline: #476776;
+}
+.srv-product-card {
+  display:flex; flex-direction:column; gap:12px;
+  padding-top:26px; border-top:1px solid #B8B9B5;
+}
+.srv-product-card__icon-row {
+  display:flex; align-items:center; gap:10px;
+}
+.srv-product-card__name {
+  margin:0; font: 600 18px/1.2 var(--font-display),sans-serif; letter-spacing:-.018em; color:#111111;
+}
+.srv-product-card__desc {
+  margin:0; font: 400 15px/1.55 var(--font-display),sans-serif; color:#5F6466; flex:1;
+}
+.srv-product-card__link {
+  font: 600 14px/1 var(--font-display),sans-serif; color:#111111;
+  text-decoration:none; border-bottom:2px solid #111111; padding-bottom:2px;
+  align-self:flex-start; width:fit-content;
+}
+.srv-product-card__link:hover { color:#476776; border-bottom-color:#476776; }
+
+/* ── §6 Custom Solutions ────────────────────────────── */
+.srv-custom-grid {
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(320px,100%),1fr));
+  gap:28px 48px; align-items:start;
+}
+.srv-custom-left { display:flex; flex-direction:column; }
+.srv-custom-left-head { display:flex; flex-direction:column; gap:0; }
+.srv-custom-divider { margin:28px 0 20px; border:0; height:1px; background:#B8B9B5; }
+.srv-custom-right {
+  border-top:2px solid #111111;
+}
+.srv-workflow-line {
+  font: 500 16px/1.4 var(--font-display),sans-serif; color:#111111; margin:0;
+  padding:14px 0; border-bottom:1px solid #B8B9B5;
+}
+.srv-workflow-line:last-of-type { border-bottom:none; }
+.srv-custom-body-stack { display:flex; flex-direction:column; gap:14px; margin-top:20px; }
+.srv-custom-body { margin:0; font: 400 16px/1.6 var(--font-display),sans-serif; color:#5F6466; }
+.srv-custom-kicker-wrap { margin-top:18px; }
+
+/* ── §7 Process ledger ──────────────────────────────── */
+.srv-ledger-grid {
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(300px,100%),1fr));
+  gap:0 28px;
+}
+.srv-ledger-row {
+  display:grid;
+  grid-template-columns: auto 1fr;
+  gap:0 0;
+  padding:28px 0; border-top:1px solid #B8B9B5; align-items:baseline;
+}
+.srv-ledger-row:first-child { border-top:none; }
+.srv-ledger-cell1 { display:flex; align-items:baseline; gap:0; padding-right:16px; }
+.srv-ledger-n {
+  font: 400 12px/1 ui-monospace,'Cascadia Code','Source Code Pro',monospace;
+  color:#5F6466; width:46px; flex:none;
+}
+.srv-ledger-name-stack { display:flex; flex-direction:column; gap:6px; }
+.srv-ledger-name { margin:0; font: 600 21px/1.2 var(--font-display),sans-serif; letter-spacing:-.022em; color:#111111; }
+.srv-ledger-imp { margin:0; font: 500 16px/1.4 var(--font-display),sans-serif; color:#111111; }
+.srv-ledger-body { font: 400 15px/1.6 var(--font-display),sans-serif; color:#5F6466; margin:0; }
+.srv-ledger-qs { display:flex; flex-direction:column; gap:6px; }
+.srv-ledger-q { margin:0; font: 400 15px/1.5 var(--font-display),sans-serif; color:#5F6466; }
+.srv-process-close {
+  margin-top:30px; padding-top:30px; border-top:2px solid #111111;
+  font: 600 19px/1.35 var(--font-display),sans-serif; letter-spacing:-.015em; color:#111111; margin-bottom:0;
+}
+
+/* ── §8 Limits — close kicker ───────────────────────── */
+.srv-limits-kicker {
+  border-left:2px solid #476776; padding-left:14px;
+  font: 600 19px/1.35 var(--font-display),sans-serif; color:#111111; margin:0;
+}
+
+/* ── §9 Background ──────────────────────────────────── */
+.srv-bg-two-col {
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(280px,100%),1fr));
+  gap:28px 48px; align-items:start;
+  padding-bottom:44px;
+}
+.srv-bg-right {
+  border-top:2px solid #111111; padding-top:24px;
+  display:flex; flex-direction:column; gap:16px;
+}
+.srv-bg-lead { margin:0; font: 500 17px/1.5 var(--font-display),sans-serif; color:#111111; }
+.srv-bg-body { margin:0; font: 400 16px/1.6 var(--font-display),sans-serif; color:#5F6466; }
+
+/* ── §9b Thesis band ────────────────────────────────── */
+.srv-thesis-band {
+  background:#111111; padding:34px 0;
+}
+.srv-thesis {
+  margin:0; font: 600 clamp(22px,3.4vw,30px)/1.25 var(--font-display),sans-serif;
+  letter-spacing:-.028em; color:#FFFFFF; max-width:32ch; text-wrap:balance;
+}
+
+/* ── §10 Closing CTA ────────────────────────────────── */
+.srv-closing-grid {
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(340px,100%),1fr));
+  gap:36px 56px; align-items:start;
+}
+.srv-closing-lockup {
+  display:flex; align-items:center; gap:10px; margin-bottom:28px;
+}
+.srv-closing-lockup__rule { flex:1; height:1px; background:#5F6466; }
+.srv-closing-label {
+  font: 600 14px/1 var(--font-display),sans-serif; letter-spacing:.14em;
+  text-transform:uppercase; color:#FFFFFF; margin:0; white-space:nowrap;
+}
+.srv-closing-h2 {
+  margin:0; font: 600 clamp(32px,10cqi,58px)/0.99 var(--font-display),sans-serif;
+  letter-spacing:-.042em; color:#FFFFFF; text-wrap:balance;
+}
+.srv-closing-col { container-type:inline-size; }
+.srv-candidates { list-style:none; padding:0; margin:24px 0 24px; }
+.srv-candidates li {
+  font: 500 16px/1.4 var(--font-display),sans-serif; color:#FFFFFF;
+  padding:13px 0; border-top:1px solid #5F6466;
+}
+.srv-candidates li:last-child { border-bottom:none; }
+.srv-closing-note {
+  margin:0 0 20px; font: 400 19px/1.4 var(--font-display),sans-serif;
+  color:#B8B9B5; max-width:46ch;
+}
+.srv-closing-kicker {
+  border-left:2px solid #FFFFFF; padding-left:12px;
+  display:flex; flex-direction:column; gap:8px; margin-bottom:28px;
+}
+.srv-closing-kicker__main {
+  margin:0; font: 600 19px/1.35 var(--font-display),sans-serif; color:#FFFFFF;
+}
+.srv-closing-kicker__sub {
+  margin:0; font: 400 16px/1.5 var(--font-display),sans-serif; color:#B8B9B5;
+}
+
+/* Rail (right column) */
+.srv-rail { display:flex; flex-direction:column; }
+.srv-rail-label {
+  font: 500 12px/1 var(--font-display),sans-serif; letter-spacing:.12em;
+  text-transform:uppercase; color:#B8B9B5; margin:0 0 16px;
+}
+.srv-rail-row {
+  display:flex; align-items:baseline; gap:12px;
+  padding:16px 0; border-top:1px solid #5F6466;
+}
+.srv-rail-n {
+  font: 400 12px/1 ui-monospace,'Cascadia Code','Source Code Pro',monospace;
+  color:#B8B9B5; flex:none;
+}
+.srv-rail-stack { display:flex; flex-direction:column; gap:4px; }
+.srv-rail-name { margin:0; font: 600 17px/1.2 var(--font-display),sans-serif; color:#FFFFFF; }
+.srv-rail-promise { margin:0; font: 400 14px/1.4 var(--font-display),sans-serif; color:#B8B9B5; }
+
+/* General link style */
+a { color:#476776; }
+a:hover { color:#111111; }
+
 /* Footer */
 .cos-footer { background: #FFFFFF; border-top: 1px solid #B8B9B5; }
 .cos-footer__inner { padding-top: 56px; }
@@ -158,7 +529,502 @@
 <!-- header:end -->
 
 <main>
-  <!-- Services body content — pending spec build from PAGE-services.md -->
+
+<!-- ══════════════════════════════════════════════════════
+     §1 Hero — Paper
+     ══════════════════════════════════════════════════════ -->
+<section class="srv-paper srv-section--hero">
+  <div class="cos-container">
+    <div class="srv-hero-col">
+      <div class="srv-hero-tag" aria-hidden="true">
+        <span>——</span>
+        <span class="srv-hero-tag__rule"></span>
+        <span class="srv-hero-tag__label">Services</span>
+      </div>
+      <h1 class="srv-hero-h1">Turn operational pain into working systems.</h1>
+      <p class="srv-hero-lead">You don't need an AI strategy deck.</p>
+      <p class="srv-hero-body">You need to know where your business is losing time, what is creating unnecessary dependency or friction, and which problems are actually worth fixing.</p>
+      <p class="srv-hero-body">I help construction companies find those opportunities, configure Construction OS around the way they operate, and build purpose-built solutions where off-the-shelf software doesn't fit.</p>
+      <p class="srv-hero-kicker">Find the problem. Build the solution. Put it to work.</p>
+      <div class="srv-cta-row">
+        <a class="srv-btn-primary" href="https://cal.com/justinyurasits">Book a demo</a>
+        <a class="srv-btn-secondary" href="#process">See how it works</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     §2 Where is the business still doing work the hard way? — Bond
+     ══════════════════════════════════════════════════════ -->
+<section class="srv-bond srv-section">
+  <div class="cos-container">
+    <div class="srv-head-block">
+      <div>
+        <p class="srv-eyebrow" style="margin-bottom:12px">Where to Look</p>
+        <h2 class="srv-section-h2">Where is the business still doing work the hard way?</h2>
+      </div>
+      <div class="srv-head-right">
+        <p class="srv-text-500">The best opportunities are usually already visible.</p>
+      </div>
+    </div>
+
+    <ul class="srv-item-grid srv-item-grid--signals" style="list-style:none;padding:0;margin:0">
+      <li class="srv-signal-cell">Your PMs spend too much time producing paperwork.</li>
+      <li class="srv-signal-cell">The same senior people answer the same questions every week.</li>
+      <li class="srv-signal-cell">Important project information lives across email, spreadsheets, folders, and people's heads.</li>
+      <li class="srv-signal-cell">A recurring process takes hours because none of your systems quite handles it.</li>
+      <li class="srv-signal-cell">Work gets copied from one system into another.</li>
+      <li class="srv-signal-cell">A workflow depends on somebody remembering what happens next.</li>
+      <li class="srv-signal-cell">The business has grown, but the way the work gets done hasn't kept up.</li>
+    </ul>
+
+    <div class="srv-section-close">
+      <div class="srv-close-stack srv-close-stack--8">
+        <p class="srv-close-left-h">Start there.</p>
+        <p class="srv-close-left-sm">Not with a list of AI ideas.</p>
+      </div>
+      <div>
+        <p class="srv-close-right-500">With the operational problem that is already costing you time, capacity, consistency, or visibility.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     §3 Three ways to put this to work — Paper
+     ══════════════════════════════════════════════════════ -->
+<section class="srv-paper srv-section">
+  <div class="cos-container">
+    <div style="border-bottom:2px solid #111111; padding-bottom:26px; margin-bottom:30px;">
+      <p class="srv-eyebrow" style="margin-bottom:12px">Services</p>
+      <h2 class="srv-section-h2">Three ways to put this to work.</h2>
+    </div>
+
+    <div class="srv-index-grid">
+      <div class="srv-index-row">
+        <div class="srv-index-cell1">
+          <span class="srv-index-n">01</span>
+          <p class="srv-index-name">AI &amp; Operations Strategy</p>
+        </div>
+        <p class="srv-index-promise">Find the problems worth solving.</p>
+      </div>
+      <div class="srv-index-row">
+        <div class="srv-index-cell1">
+          <span class="srv-index-n">02</span>
+          <p class="srv-index-name">Construction OS Implementation</p>
+        </div>
+        <p class="srv-index-promise">Put Construction OS to work inside your company.</p>
+      </div>
+      <div class="srv-index-row">
+        <div class="srv-index-cell1">
+          <span class="srv-index-n">03</span>
+          <p class="srv-index-name">Custom Solutions</p>
+        </div>
+        <p class="srv-index-promise">Build around the workflow that doesn't fit.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     §4 01 — AI & Operations Strategy — Bond
+     ══════════════════════════════════════════════════════ -->
+<section class="srv-bond srv-section">
+  <div class="cos-container">
+    <div class="srv-head-block">
+      <div>
+        <div class="srv-marker-row">
+          <span class="srv-marker-n">01</span>
+          <span class="srv-marker-label">AI &amp; Operations Strategy</span>
+        </div>
+        <h2 class="srv-service-h2">Find the problems worth solving.</h2>
+      </div>
+      <div class="srv-head-right">
+        <p class="srv-text-500">Not every inefficient process needs AI. Not every automation is worth building.</p>
+        <p class="srv-text-400-graphite">I look at how work actually moves through the business and find the places where better systems can create meaningful leverage.</p>
+      </div>
+    </div>
+
+    <p style="margin:0 0 24px; font:400 16px/1.6 var(--font-display),sans-serif; color:#5F6466;">That often means questions like:</p>
+
+    <ul class="srv-item-grid srv-item-grid--questions" style="list-style:none;padding:0;margin:0">
+      <li class="srv-q-cell">Where are skilled people spending time on low-value production?</li>
+      <li class="srv-q-cell">What depends too heavily on one person?</li>
+      <li class="srv-q-cell">Where is information difficult to find or reuse?</li>
+      <li class="srv-q-cell">Which recurring workflows create the most friction?</li>
+      <li class="srv-q-cell">Where does work stall because of manual handoffs or poor visibility?</li>
+      <li class="srv-q-cell">Which problem should be fixed first?</li>
+    </ul>
+
+    <div class="srv-section-close">
+      <div class="srv-close-stack srv-close-stack--10">
+        <p class="srv-close-outcome-sm">The outcome is not a long AI roadmap.</p>
+        <p class="srv-close-outcome-lg">It's a clear view of what is worth solving—and what a better way of working could look like.</p>
+      </div>
+      <div class="srv-close-stack srv-close-stack--12">
+        <p class="srv-typical-label">Typical Work</p>
+        <p class="srv-typical-body">Operational discovery, workflow analysis, knowledge mapping, opportunity prioritization, pilot definition, and implementation planning.</p>
+        <p class="srv-typical-cta">Start with the problems that matter enough to fix.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     §5 02 — Construction OS Implementation — Paper
+     ══════════════════════════════════════════════════════ -->
+<section class="srv-paper srv-section">
+  <div class="cos-container">
+    <div class="srv-head-block">
+      <div>
+        <div class="srv-marker-row">
+          <span class="srv-marker-n">02</span>
+          <span class="srv-marker-label">Construction OS Implementation</span>
+        </div>
+        <h2 class="srv-service-h2">Put Construction OS to work inside your company.</h2>
+      </div>
+      <div class="srv-head-right">
+        <p class="srv-text-400-graphite">Construction OS is built around construction—but it becomes valuable when it reflects how your company works.</p>
+        <p class="srv-text-500">I configure the system around the operating knowledge and standards your team already depends on:</p>
+      </div>
+    </div>
+
+    <ul class="srv-item-grid srv-item-grid--inputs" style="list-style:none;padding:0;margin:0">
+      <li class="srv-input-cell"><span class="srv-input-n">01</span><p class="srv-input-label">Your document templates</p></li>
+      <li class="srv-input-cell"><span class="srv-input-n">02</span><p class="srv-input-label">Your scope and contract language</p></li>
+      <li class="srv-input-cell"><span class="srv-input-n">03</span><p class="srv-input-label">Your procedures and SOPs</p></li>
+      <li class="srv-input-cell"><span class="srv-input-n">04</span><p class="srv-input-label">Your pricing rules and references</p></li>
+      <li class="srv-input-cell"><span class="srv-input-n">05</span><p class="srv-input-label">Your terminology</p></li>
+      <li class="srv-input-cell"><span class="srv-input-n">06</span><p class="srv-input-label">Your project-management practices</p></li>
+      <li class="srv-input-cell"><span class="srv-input-n">07</span><p class="srv-input-label">Your historical examples and lessons</p></li>
+      <li class="srv-input-cell"><span class="srv-input-n">08</span><p class="srv-input-label">Your recurring workflows</p></li>
+    </ul>
+
+    <div class="srv-impl-close">
+      <p style="margin:0; font:400 16px/1.6 var(--font-display),sans-serif; color:#5F6466;">Then it gets applied to real work with the people who will actually use it.</p>
+      <p class="srv-kicker">Construction OS fits around your operation—not the other way around.</p>
+    </div>
+
+    <!-- §5a Four product cards -->
+    <div class="srv-products-rule">
+      <div class="srv-products-grid">
+
+        <div class="srv-product-card">
+          <div class="srv-product-card__icon-row">
+            <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true" style="color:#111111;flex:none">
+              <polyline points="30,14 86,14 86,72" fill="none" stroke="var(--cos-revision,currentColor)" stroke-width="4"/>
+              <rect x="14" y="26" width="52" height="60" fill="none" stroke="currentColor" stroke-width="8"/>
+            </svg>
+            <p class="srv-product-card__name">Document Workbench</p>
+          </div>
+          <p class="srv-product-card__desc">Produce company-standard construction documents from first walkthrough through closeout.</p>
+          <a class="srv-product-card__link" href="/products/document-workbench.html">Explore Document Workbench →</a>
+        </div>
+
+        <div class="srv-product-card">
+          <div class="srv-product-card__icon-row">
+            <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true" style="color:#111111;flex:none">
+              <line x1="6" y1="50" x2="96" y2="50" stroke="var(--cos-revision,currentColor)" stroke-width="4"/>
+              <polyline points="8,20 40,20 54,42 94,42" fill="none" stroke="currentColor" stroke-width="8"/>
+              <polyline points="8,80 40,80 54,58 94,58" fill="none" stroke="currentColor" stroke-width="8"/>
+            </svg>
+            <p class="srv-product-card__name">Construction Intelligence</p>
+          </div>
+          <p class="srv-product-card__desc">Put your company's procedures, standards, pricing judgment, and operating knowledge within reach of the team.</p>
+          <a class="srv-product-card__link" href="/products/construction-intelligence.html">Explore Construction Intelligence →</a>
+        </div>
+
+        <div class="srv-product-card">
+          <div class="srv-product-card__icon-row">
+            <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true" style="color:#111111;flex:none">
+              <rect x="6" y="18" width="88" height="64" fill="none" stroke="var(--cos-hairline,#476776)" stroke-width="4"/>
+              <line x1="18" y1="70" x2="82" y2="70" stroke="currentColor" stroke-width="8"/>
+              <line x1="30" y1="70" x2="30" y2="56" stroke="currentColor" stroke-width="8"/>
+              <line x1="50" y1="70" x2="50" y2="44" stroke="currentColor" stroke-width="8"/>
+              <line x1="70" y1="70" x2="70" y2="32" stroke="var(--cos-revision,currentColor)" stroke-width="8"/>
+            </svg>
+            <p class="srv-product-card__name">Project Intelligence</p>
+          </div>
+          <p class="srv-product-card__desc">Surface the exceptions and unresolved work that need attention across active projects.</p>
+          <a class="srv-product-card__link" href="/products/project-intelligence.html">Explore Project Intelligence →</a>
+        </div>
+
+        <div class="srv-product-card">
+          <div class="srv-product-card__icon-row">
+            <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true" style="color:#111111;flex:none">
+              <line x1="14" y1="28" x2="34" y2="28" stroke="currentColor" stroke-width="8"/>
+              <line x1="42" y1="28" x2="62" y2="28" stroke="currentColor" stroke-width="8"/>
+              <line x1="70" y1="28" x2="90" y2="28" stroke="currentColor" stroke-width="8"/>
+              <line x1="24" y1="34" x2="24" y2="66" stroke="var(--cos-hairline,#476776)" stroke-width="4"/>
+              <line x1="52" y1="34" x2="52" y2="66" stroke="var(--cos-hairline,#476776)" stroke-width="4"/>
+              <line x1="80" y1="34" x2="80" y2="66" stroke="var(--cos-hairline,#476776)" stroke-width="4"/>
+              <line x1="14" y1="74" x2="90" y2="74" stroke="var(--cos-revision,currentColor)" stroke-width="8"/>
+            </svg>
+            <p class="srv-product-card__name">Operations Automation</p>
+          </div>
+          <p class="srv-product-card__desc">Take repetitive operational work off the team.</p>
+          <a class="srv-product-card__link" href="/products/operations-automation.html">Explore Operations Automation →</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     §6 03 — Custom Solutions — Bond
+     ══════════════════════════════════════════════════════ -->
+<section class="srv-bond srv-section">
+  <div class="cos-container">
+    <div class="srv-custom-grid">
+
+      <div class="srv-custom-left">
+        <div class="srv-marker-row">
+          <span class="srv-marker-n">03</span>
+          <span class="srv-marker-label">Custom Solutions</span>
+        </div>
+        <h2 class="srv-service-h2" style="margin:0 0 0">Build around the workflow that doesn't fit.</h2>
+        <hr class="srv-custom-divider">
+        <p class="srv-text-500">Every contractor has work that falls between the systems it already uses.</p>
+      </div>
+
+      <div class="srv-custom-right">
+        <ul style="list-style:none;padding:0;margin:0">
+          <li class="srv-workflow-line">The spreadsheet nobody wants to maintain.</li>
+          <li class="srv-workflow-line">The report somebody rebuilds every Friday.</li>
+          <li class="srv-workflow-line">The approval process living in email.</li>
+          <li class="srv-workflow-line">The information entered in two or three different places.</li>
+          <li class="srv-workflow-line" style="border-bottom:none">The process that only works because one person remembers how to run it.</li>
+        </ul>
+        <div class="srv-custom-body-stack">
+          <p class="srv-custom-body">When the problem is important enough to solve but too specific for an off-the-shelf product, I can build around it.</p>
+          <p class="srv-custom-body">That may mean a purpose-built AI tool, automation, workflow, integration, internal system, or a combination of Construction OS capabilities.</p>
+        </div>
+        <div class="srv-custom-kicker-wrap">
+          <p class="srv-kicker" style="margin-bottom:12px">Software should fit your business. Your business shouldn't have to fit the software.</p>
+          <a class="srv-btn-secondary" href="/products/custom-solutions.html">Explore Custom Solutions →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     §7 From problem to working system — Paper
+     ══════════════════════════════════════════════════════ -->
+<section class="srv-paper srv-section" id="process">
+  <div class="cos-container">
+    <div style="border-bottom:2px solid #111111; padding-bottom:26px; margin-bottom:30px;">
+      <p class="srv-eyebrow" style="margin-bottom:12px">The Process</p>
+      <h2 class="srv-section-h2">From problem to working system.</h2>
+    </div>
+
+    <div class="srv-ledger-grid">
+
+      <div class="srv-ledger-row">
+        <div class="srv-ledger-cell1">
+          <span class="srv-ledger-n">01</span>
+          <div class="srv-ledger-name-stack">
+            <p class="srv-ledger-name">Problem</p>
+            <p class="srv-ledger-imp">Start with something real.</p>
+          </div>
+        </div>
+        <div class="srv-ledger-qs">
+          <p class="srv-ledger-q">What takes too long?</p>
+          <p class="srv-ledger-q">What keeps breaking?</p>
+          <p class="srv-ledger-q">What does the team complain about?</p>
+          <p class="srv-ledger-q">Where is expensive human time being wasted?</p>
+          <p class="srv-ledger-q">What depends too heavily on one person?</p>
+        </div>
+      </div>
+
+      <div class="srv-ledger-row">
+        <div class="srv-ledger-cell1">
+          <span class="srv-ledger-n">02</span>
+          <div class="srv-ledger-name-stack">
+            <p class="srv-ledger-name">Demo</p>
+            <p class="srv-ledger-imp">Make the idea tangible.</p>
+          </div>
+        </div>
+        <p class="srv-ledger-body">Use your actual documents, workflow, terminology, and business context to show what a better version of the work could look like.</p>
+      </div>
+
+      <div class="srv-ledger-row">
+        <div class="srv-ledger-cell1">
+          <span class="srv-ledger-n">03</span>
+          <div class="srv-ledger-name-stack">
+            <p class="srv-ledger-name">Pilot</p>
+            <p class="srv-ledger-imp">Start narrow.</p>
+          </div>
+        </div>
+        <p class="srv-ledger-body">Put the solution into a real workflow with the people who actually perform the work and find out whether it makes the process meaningfully better.</p>
+      </div>
+
+      <div class="srv-ledger-row">
+        <div class="srv-ledger-cell1">
+          <span class="srv-ledger-n">04</span>
+          <div class="srv-ledger-name-stack">
+            <p class="srv-ledger-name">Implementation</p>
+          </div>
+        </div>
+        <p class="srv-ledger-body">Configure the knowledge, documents, rules, workflows, and operating practices required to make the solution useful beyond a demo.</p>
+      </div>
+
+      <div class="srv-ledger-row">
+        <div class="srv-ledger-cell1">
+          <span class="srv-ledger-n">05</span>
+          <div class="srv-ledger-name-stack">
+            <p class="srv-ledger-name">Expansion</p>
+          </div>
+        </div>
+        <p class="srv-ledger-body">Once the value is proven, apply what works to the next workflow, team, or part of the business.</p>
+      </div>
+
+    </div>
+
+    <p class="srv-process-close">Solve one real problem. Prove the value. Expand from there.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     §8 Build where the business case is real — Bond
+     ══════════════════════════════════════════════════════ -->
+<section class="srv-bond srv-section">
+  <div class="cos-container">
+    <div class="srv-head-block">
+      <div>
+        <p class="srv-eyebrow srv-eyebrow--limits" style="margin-bottom:12px">The Limits</p>
+        <h2 class="srv-section-h2">Build where the business case is real.</h2>
+      </div>
+      <div class="srv-head-right">
+        <p class="srv-text-500">I'm not interested in automating something simply because AI can do it.</p>
+        <p class="srv-text-400-graphite">A good solution should have a clear operational reason to exist.</p>
+      </div>
+    </div>
+
+    <ul class="srv-item-grid srv-item-grid--reasons" style="list-style:none;padding:0;margin:0">
+      <li class="srv-reason-cell">Save meaningful time.</li>
+      <li class="srv-reason-cell">Reduce unnecessary manual work.</li>
+      <li class="srv-reason-cell">Remove a recurring bottleneck.</li>
+      <li class="srv-reason-cell">Make an important process more consistent.</li>
+      <li class="srv-reason-cell">Reduce dependency on one person.</li>
+      <li class="srv-reason-cell">Make company knowledge easier to use.</li>
+      <li class="srv-reason-cell">Give leadership better visibility into what needs attention.</li>
+    </ul>
+
+    <div class="srv-section-close">
+      <div class="srv-close-stack srv-close-stack--10">
+        <p class="srv-close-left-sm">If the software you already have solves the problem well, use it.</p>
+        <p class="srv-close-left-sm">If experienced judgment is what creates the value, keep the judgment.</p>
+      </div>
+      <div>
+        <p class="srv-limits-kicker">Automate the predictable work. Keep people focused on the work that actually needs them.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     §9 Built from both sides of the problem — Paper (contains Ink band)
+     ══════════════════════════════════════════════════════ -->
+<section class="srv-paper" style="padding-top:76px">
+  <div class="cos-container">
+    <div class="srv-bg-two-col">
+      <div>
+        <p class="srv-eyebrow" style="margin-bottom:12px">Background</p>
+        <h2 class="srv-section-h2 srv-section-h2--sm">Built from both sides of the problem.</h2>
+      </div>
+      <div class="srv-bg-right">
+        <p class="srv-bg-lead">My background spans enterprise product leadership and hands-on construction management.</p>
+        <p class="srv-bg-body">I've spent years building software products—and then worked directly inside construction operations, where I saw how much valuable time gets consumed by paperwork, fragmented knowledge, manual coordination, and processes held together by individual experience.</p>
+        <p class="srv-bg-body">Construction OS grew out of applying product thinking and AI to those problems from inside the work.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- §9b Thesis band — full-bleed Ink inside the Paper section -->
+  <div class="srv-thesis-band">
+    <div class="cos-container">
+      <p class="srv-thesis">The technology matters. Understanding the operation matters more.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     §10 Closing CTA — Ink
+     ══════════════════════════════════════════════════════ -->
+<section class="srv-ink srv-section--closing">
+  <div class="cos-container">
+    <div class="srv-closing-grid">
+
+      <!-- Left column -->
+      <div class="srv-closing-col">
+        <div class="srv-closing-lockup">
+          <svg viewBox="0 0 100 100" width="24" height="24" aria-hidden="true" style="flex:none;color:#FFFFFF">
+            <polyline points="14,56 14,14 56,14" fill="none" stroke="currentColor" stroke-width="13"/>
+            <polyline points="86,44 86,86 44,86" fill="none" stroke="currentColor" stroke-width="13"/>
+            <rect x="32" y="32" width="36" height="36" fill="#C43230"/>
+          </svg>
+          <span class="srv-closing-label">Services</span>
+          <span class="srv-closing-lockup__rule"></span>
+        </div>
+
+        <h2 class="srv-closing-h2">Bring me the problem everyone already knows about.</h2>
+
+        <ul class="srv-candidates">
+          <li>The workflow your team complains about.</li>
+          <li>The administrative work consuming your PMs' time.</li>
+          <li>The process that takes five emails and three people.</li>
+          <li>The information somebody keeps entering twice.</li>
+          <li>The knowledge that always goes back to the same person.</li>
+          <li>The part of the business still running through spreadsheets, inboxes, folders, and memory.</li>
+        </ul>
+
+        <p class="srv-closing-note">You don't need to arrive with an AI use case.</p>
+
+        <div class="srv-closing-kicker">
+          <p class="srv-closing-kicker__main">Show me how the work happens today.</p>
+          <p class="srv-closing-kicker__sub">I'll help determine what is worth changing and build a practical way to improve it.</p>
+        </div>
+
+        <div class="srv-cta-row">
+          <a class="srv-btn-primary" href="https://cal.com/justinyurasits">Book a demo</a>
+          <a class="srv-btn-secondary" href="/#products">Explore Construction OS →</a>
+        </div>
+      </div>
+
+      <!-- Right column — rail -->
+      <div class="srv-rail">
+        <p class="srv-rail-label">Three ways to put this to work</p>
+        <div class="srv-rail-row">
+          <span class="srv-rail-n">01</span>
+          <div class="srv-rail-stack">
+            <p class="srv-rail-name">AI &amp; Operations Strategy</p>
+            <p class="srv-rail-promise">Find the problems worth solving.</p>
+          </div>
+        </div>
+        <div class="srv-rail-row">
+          <span class="srv-rail-n">02</span>
+          <div class="srv-rail-stack">
+            <p class="srv-rail-name">Construction OS Implementation</p>
+            <p class="srv-rail-promise">Put Construction OS to work inside your company.</p>
+          </div>
+        </div>
+        <div class="srv-rail-row">
+          <span class="srv-rail-n">03</span>
+          <div class="srv-rail-stack">
+            <p class="srv-rail-name">Custom Solutions</p>
+            <p class="srv-rail-promise">Build around the workflow that doesn't fit.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 </main>
 
 <!-- footer:start -->
@@ -204,7 +1070,7 @@
       <div class="cos-footer__col">
         <span class="cos-footer__col-head">Company</span>
         <a class="cos-footer__col-item" href="/work.html">Work</a>
-        <a class="cos-footer__col-item" href="/services.html">Services</a>
+        <span class="cos-footer__col-item cos-footer__col-item--ink">Services</span>
         <a class="cos-footer__col-item" href="/about.html">About</a>
       </div>
 

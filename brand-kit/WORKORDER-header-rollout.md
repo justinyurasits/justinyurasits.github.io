@@ -56,7 +56,6 @@ with an empty `<style>` or `<script>` block, delete the block.
 | `products/operations-automation.html` | `products` |
 | `products/custom-solutions.html` | `products` |
 | `services.html` | `services` |
-| `work.html` / any case-study or work page | `work` |
 | `about.html` | `about` |
 | anything else (legal, 404, etc.) | `none` |
 
@@ -72,12 +71,12 @@ that active treatment.
 
 ## 3. Nav label set — do not improvise
 
-`Work` · `Products` · `Services` · `About` + the `Book a demo` CTA.
+`Products` · `Services` · `About` + the `Book a demo` CTA. **No `Work` item** — that page does not exist; remove it from any header or footer that still has one.
 
 - The third item is **`Services`**, routing to `/services`. It is **not** "Engagements" — that
   label existed in an earlier build and is retired. Search the repo for `Engagements` and
   replace every instance (header **and** the footer Company column).
-- No other top-level items. No "Blog", no "Contact", no "Pricing".
+- No other top-level items.
 
 ---
 
@@ -103,21 +102,57 @@ Everything in `COMPONENT-header-nav.md` §2–§4 applies. The short version:
 
 ## 5. Footer + links, same pass
 
-The footer is also shared — same branch decision, same "one copy" rule. Changes:
+The footer is a component too — same branch decision, same "one copy" rule. It is ~70 lines
+repeated on every page, so hand-maintaining it has exactly the divergence risk the header had.
+
+It takes **five inputs**, all of which vary per page:
+
+| Input | What it drives | Example |
+|---|---|---|
+| `current` | which item renders Ink-weight instead of Graphite, and gets no link | `construction-intelligence` |
+| `page` | the title block's `PAGE` cell | `CONSTRUCTION INTELLIGENCE` |
+| `issued` | the `ISSUED` cell | `2026-09-06` |
+| `rev` | the `REV` cell | `03` |
+| `status` | the `STATUS` cell | `ISSUED FOR REVIEW` |
+
+`current` accepts any of `document-workbench` · `construction-intelligence` ·
+`project-intelligence` · `operations-automation` · `custom-solutions` · `services` · `about` ·
+`none`. Everything else in the footer is identical on every page.
+
+Per-page values for the six built pages:
+
+| Page | `current` | `page` | `issued` | `rev` | `status` |
+|---|---|---|---|---|---|
+| Document Workbench | `document-workbench` | DOCUMENT WORKBENCH | 2026-09-05 | 01 | ISSUED FOR REVIEW |
+| Construction Intelligence | `construction-intelligence` | CONSTRUCTION INTELLIGENCE | 2026-09-06 | 03 | ISSUED FOR REVIEW |
+| Project Intelligence | `project-intelligence` | PROJECT INTELLIGENCE | 2026-09-06 | 01 | **IN DEVELOPMENT** |
+| Operations Automation | `operations-automation` | OPERATIONS AUTOMATION | 2026-09-06 | 01 | ISSUED FOR REVIEW |
+| Custom Solutions | `custom-solutions` | CUSTOM SOLUTIONS | 2026-09-06 | 01 | ISSUED FOR REVIEW |
+| Services | `services` | SERVICES | 2026-09-06 | 01 | ISSUED FOR REVIEW |
+
+Home, about and any other page: `current` per the manifest in §2, `page` set to that
+page's name, and the same issued/rev/status convention.
+
+Content rules:
 
 - Products column lists **five** items: `01` Document Workbench · `02` Construction
   Intelligence · `03` Project Intelligence · `——` Operations Automation · `——` Custom
   Solutions.
-- Company column is `Work` · `Services` · `About`.
+- Company column is `Services` · `About`.
 - Tagline stays "Three products. One construction operating system." — the two extension layers
   are not counted as products.
-- The title block's `PAGE` cell is the one thing that varies per page; pass it in the same way
-  you pass `active`.
 - Wire every link per `COMPONENT-header-nav.md` §6, and honor the rule that **the current page
   never links to itself** — Ink-weight plain text in the footer product list, `aria-current` in
   the nav.
-- Footer bottom: **Privacy Policy** and **Terms** links.
-- Site-wide email: `justin@justinyurasits.com`.
+- **Contact email is `justin@justinyurasits.com`, site-wide.** It is the only address; remove
+  `hello@constructionos.com` wherever it appears.
+- Legal line reads **"© 2026 Justin Yurasits. All rights reserved."**
+- Add **Privacy Policy** and **Terms** links to the legal row. If the site runs analytics or a
+  demo form that collects names or email addresses, the privacy policy is required, not optional.
+
+The design reference is `Site Footer.dc.html`, which takes exactly these five props. **Full
+footer spec: `COMPONENT-footer.md`** — geometry, the link set, the title block, prohibitions, and
+its own acceptance check.
 
 ---
 
@@ -125,12 +160,12 @@ The footer is also shared — same branch decision, same "one copy" rule. Change
 
 1. Decide the branch. Say which one.
 2. Build the header component + its CSS/JS in one place. Get it right on one page.
-3. Build the footer component the same way.
-4. Swap all pages to the components and **delete** their old markup/CSS/JS.
+3. Build the footer component the same way — five inputs, per §5.
+4. Swap all 14 pages to both components and **delete** their old markup/CSS/JS.
 5. Run the checks in §7 and report the results.
 
-Do not start step 4 until step 2 is reviewed — that's the step that costs us if the pattern is
-wrong.
+Do not start step 4 until steps 2–3 are reviewed — that's the step that costs us if the pattern
+is wrong.
 
 ---
 
@@ -139,10 +174,10 @@ wrong.
 1. `grep -r "Engagements"` returns nothing.
 2. `grep -r "All products"` and `grep -rn 'href="/products"'` return nothing.
 3. Header markup appears in the repo **once** (or once per generator template). Same for the
-   footer.
-4. No page has its own nav CSS or nav JS.
-5. Every page's `active` value matches the manifest, and the current top-level item is
-   Ink-underlined on each.
+   footer — `grep` for the footer's title-block label `Sheet` should hit one file.
+4. No page has its own nav CSS, nav JS, or footer markup.
+5. Every page's `active` value matches the manifest, the current top-level item is
+   Ink-underlined, and the footer's `page`/`rev`/`status` cells match §5.
 6. Menu opens on hover and click; `Escape` closes and restores focus; arrows navigate;
    `aria-expanded` tracks state.
 7. `document.documentElement.scrollWidth === clientWidth` at 375 / 800 / 1440px with the menu

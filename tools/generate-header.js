@@ -119,9 +119,15 @@ ${footerItem('/products/custom-solutions.html', '——', 'Custom Solutions', cu
       <!-- Company -->
       <div class="cos-footer__col">
         <span class="cos-footer__col-head">Company</span>
-        <a class="cos-footer__col-item" href="/work.html">Work</a>
-        <a class="cos-footer__col-item" href="/services.html">Services</a>
-        <a class="cos-footer__col-item" href="/about.html">About</a>
+        ${current === 'work'
+          ? '<span class="cos-footer__col-item cos-footer__col-item--ink">Work</span>'
+          : '<a class="cos-footer__col-item" href="/work.html">Work</a>'}
+        ${current === 'services'
+          ? '<span class="cos-footer__col-item cos-footer__col-item--ink">Services</span>'
+          : '<a class="cos-footer__col-item" href="/services.html">Services</a>'}
+        ${current === 'about'
+          ? '<span class="cos-footer__col-item cos-footer__col-item--ink">About</span>'
+          : '<a class="cos-footer__col-item" href="/about.html">About</a>'}
       </div>
 
       <!-- Contact -->

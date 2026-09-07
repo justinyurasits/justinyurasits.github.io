@@ -37,8 +37,12 @@ never soften it, never move it below the closing CTA.
 Five product destinations in two tiers no longer fit behind a flat `Products` link, and Custom
 Solutions currently has **no route into it from the nav**. Implement
 **`COMPONENT-header-nav.md`** as part of this work: `Products` becomes a two-tier menu (core
-products `01`–`03`, extension layer `——`/`——`). It is a shared component — the change lands on
-every page, not just this one.
+products `01`–`03`, extension layer `——`/`——`), rows carrying the product name only. It is a
+shared component — the change lands on every page, not just this one. The prototype in
+`Custom Solutions Page.dc.html` still shows the old flat header; the nav spec supersedes it.
+
+Note there is **no products index page** — nothing links to `/products`. "Explore Construction
+OS →" resolves to the homepage products section (`/#products`).
 
 ### Visual system
 
@@ -281,7 +285,8 @@ vertical padding, `align-items:baseline`, hairline between rows only: the action
 | Surface the exception | Instead of making someone check everything. |
 | Keep the record | Instead of leaving evidence scattered across inboxes, spreadsheets, and folders. |
 
-The weight and color difference between the columns *is* the argument. **No icons, arrows,
+The weight and color difference between the columns *is* the argument — same device as the
+Construction Intelligence question pairs, so the family reads consistently. **No icons, arrows,
 checkmarks, crosses, or color coding**, and keep the word "Instead of" in the copy even though
 the column is labelled.
 
@@ -398,6 +403,9 @@ Graphite rules — glyphs at 15px, markers mono Line gray, names 17px/600 Paper:
 Workbench · 02 Construction Intelligence · 03 Project Intelligence `[IN DEVELOPMENT]` ·
 —— Operations Automation.
 
+The right column's label is "What we build on", not "The rest of the system" — this page's
+argument is that custom work stands on the platform.
+
 ---
 
 ## 11. Footer
@@ -408,7 +416,7 @@ Shared component. Title-block cells: `SHEET CONSTRUCTION OS` · `PAGE CUSTOM SOL
 The Products column now lists **five** items: 01 Document Workbench · 02 Construction
 Intelligence · 03 Project Intelligence · —— Operations Automation · —— Custom Solutions, with
 Custom Solutions as the Ink-weight current item. The footer tagline still reads "Three products.
-One construction operating system."
+One construction operating system." — neither extension layer is counted as a product.
 
 ---
 
@@ -419,21 +427,44 @@ One construction operating system."
 - "Book a demo" (both) → the site's demo route/modal. "See how we work" → anchor to §7. The four
   `Explore … →` links → the respective product routes. "Explore Construction OS →" → the
   products overview.
+- Hover/focus states are not in the prototype — add them in the site's convention, quiet: no
+  lifts, no scale, no color washes. The problem-area and reason cells are **not** clickable and
+  get no hover state. Global `a`/`a:hover` are Steel `#476776` → Ink `#111111`. Every CTA and
+  link needs a visible keyboard focus ring.
 - **No animation** in the page body. Nothing enters on scroll, counts up, parallaxes, or types
   itself out.
-- Semantics: use `<header>`, `<nav>`, `<main>`, `<section>`, `<footer>`, `<h1>`–`<h3>`,
-  `<a>`/`<button>` for CTAs, `<ul>`/`<ol>` for lists.
+- Semantics: the prototype renders everything as `<div>`. In production use `<header>`, `<nav>`,
+  `<main>`, `<section>`, `<footer>`, `<h1>`–`<h3>`, `<a>`/`<button>` for CTAs, `<ul>`/`<ol>` for
+  the workaround list, questions, problem areas, paired outcomes, process steps, reasons, and
+  closing candidates.
+- The prototype's inline styles are an artifact of our preview tool — convert to the codebase's
+  normal styling layer.
 
 ---
 
 ## Acceptance check
 
-1. `document.documentElement.scrollWidth === clientWidth` at **375px**, 800px, 909px and 1440px.
+1. `document.documentElement.scrollWidth === clientWidth` at **375px**, 800px, 909px and
+   1440px — including with the Products menu open. Probe every grid, not just the page shell.
 2. No grid track is floored at a bare px value; no row places two or more px-floored tracks side
    by side.
-3. **Every grid that wraps has a `row-gap`.**
-4. `#C43230` appears exactly **twice** — the mark's plate in the header and footer.
-5. Custom Solutions and Operations Automation are never numbered `04`/`05`.
-6. The header's Products menu exists, shows both tiers with `——` markers on the extension layer.
-7. §9 (the limits) is present, unshortened, and above the closing CTA.
-8. Zero serif characters, zero rounded corners, zero box shadows, zero gradients.
+3. **Every grid that wraps has a `row-gap`.** §8's four-card grid must show clear separation
+   between its two rows at 800px — no card's `border-top` touching the row above's CTA underline.
+4. At 800px content width every `auto-fit` grid resolves cleanly: no cell shows a left border, a
+   left indent, a half-width rule, or a gray block in an unfilled slot.
+5. Neither lockup (hero, closing) renders a collapsed rule stub beside its `EXTENSION LAYER` tag.
+6. `#C43230` appears exactly **twice** — the mark's plate in the header and footer.
+7. Custom Solutions and Operations Automation are never numbered `04`/`05`, in the page, the
+   footer, or the nav; both always carry an `EXTENSION LAYER` tag or label.
+8. The header's Products menu exists, shows both tiers with `——` markers on the extension layer,
+   and reaches all five product routes. Nothing links to `/products` — that route does not exist.
+9. The word "AI" appears only where the approved copy uses it (hero paragraph, §4 heading, §4b
+   band, hero capability 03). No added AI/agentic/LLM language or model names.
+10. §9 (the limits) is present, unshortened, and above the closing CTA.
+11. Zero serif characters, zero rounded corners, zero box shadows, zero gradients.
+12. No robot, agent, gear, brain, spark, wand, puzzle-piece, or wrench iconography; no fake
+    dashboards or screenshots; no client logos.
+13. No text lighter than `#5F6466` on Paper/Bond; on Ink nothing darker than `#B8B9B5`.
+14. No two adjacent sections share a background; no border between differing surfaces.
+15. Both CTA rows use the 14px / 13×20 / 44px primary and the 2px-underlined 14px secondary.
+16. Every section closes on a rule, a band, or a footer row — none ends on whitespace.

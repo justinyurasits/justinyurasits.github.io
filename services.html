@@ -205,13 +205,36 @@
 
 /* ── §5 Implementation + product cards ─────────────── */
 .srv-impl-close {
-  margin-top:26px;
-  display:grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(260px,100%),1fr));
-  gap:20px 48px; align-items:start;
+  border-top:2px solid #111111; margin-top:32px; padding-top:26px;
+  display:flex; flex-direction:column; gap:10px; max-width:76ch;
 }
+.srv-impl-close__sm { margin:0; font: 400 16px/1.6 var(--font-display),sans-serif; color:#5F6466; }
+.srv-impl-close__lg { margin:0; font: 600 19px/1.35 var(--font-display),sans-serif; letter-spacing:-.015em; color:#111111; }
+/* ── §5 two-list body ─────────────────────────────── */
+.srv-impl-lists {
+  padding-top:30px;
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(340px,100%),1fr));
+  gap:34px 56px; align-items:start;
+}
+.srv-impl-list-label {
+  font: 600 11px/1 var(--font-display),sans-serif; letter-spacing:.14em;
+  text-transform:uppercase; color:#5F6466; padding-bottom:16px; margin:0;
+}
+.srv-impl-cfg-row {
+  display:grid; grid-template-columns:26px minmax(0,1fr); gap:0 14px;
+  border-top:1px solid #B8B9B5; padding:12px 0 13px;
+}
+.srv-impl-cfg-n {
+  font: 400 12px/1 ui-monospace,'Cascadia Code','Source Code Pro',monospace;
+  color:#5F6466; padding-top:3px;
+}
+.srv-impl-cfg-text { font: 500 16px/1.45 var(--font-display),sans-serif; letter-spacing:-.012em; color:#111111; margin:0; }
+.srv-impl-prod-row { border-top:1px solid #B8B9B5; padding:14px 0 16px; display:flex; flex-direction:column; gap:5px; }
+.srv-impl-prod-name { font: 600 17px/1.35 var(--font-display),sans-serif; letter-spacing:-.018em; color:#111111; text-decoration:none; display:block; }
+.srv-impl-prod-arrow { font-weight:500; color:#476776; }
+.srv-impl-prod-gloss { font: 400 15px/1.55 var(--font-display),sans-serif; color:#5F6466; margin:0; }
 .srv-kicker {
-  border-left:2px solid #476776; padding-left:14px;
   font: 600 19px/1.35 var(--font-display),sans-serif; color:#111111; margin:0;
 }
 .srv-kicker--sm { font-size:17px; }
@@ -607,89 +630,47 @@ a:hover { color:#111111; }
         <h2 class="srv-service-h2">Put Construction OS to work inside your company.</h2>
       </div>
       <div class="srv-head-right">
-        <p class="srv-text-400-graphite">Construction OS is built around construction—but it becomes valuable when it reflects how your company works.</p>
-        <p class="srv-text-500">I configure the system around the operating knowledge and standards your team already depends on:</p>
+        <p class="srv-text-400-graphite">Construction OS is built around construction&mdash;<wbr>but it becomes valuable when it reflects how your company works.</p>
+        <p class="srv-text-500">I configure the system around the operating knowledge and standards your team already depends on.</p>
       </div>
     </div>
 
-    <ul class="srv-item-grid srv-item-grid--inputs" style="list-style:none;padding:0;margin:0">
-      <li class="srv-input-cell"><span class="srv-input-n">01</span><p class="srv-input-label">Your document templates</p></li>
-      <li class="srv-input-cell"><span class="srv-input-n">02</span><p class="srv-input-label">Your scope and contract language</p></li>
-      <li class="srv-input-cell"><span class="srv-input-n">03</span><p class="srv-input-label">Your procedures and SOPs</p></li>
-      <li class="srv-input-cell"><span class="srv-input-n">04</span><p class="srv-input-label">Your pricing rules and references</p></li>
-      <li class="srv-input-cell"><span class="srv-input-n">05</span><p class="srv-input-label">Your terminology</p></li>
-      <li class="srv-input-cell"><span class="srv-input-n">06</span><p class="srv-input-label">Your project-management practices</p></li>
-      <li class="srv-input-cell"><span class="srv-input-n">07</span><p class="srv-input-label">Your historical examples and lessons</p></li>
-      <li class="srv-input-cell"><span class="srv-input-n">08</span><p class="srv-input-label">Your recurring workflows</p></li>
-    </ul>
+    <div class="srv-impl-lists">
+      <div>
+        <p class="srv-impl-list-label">What gets configured</p>
+        <div class="srv-impl-cfg-row"><span class="srv-impl-cfg-n">01</span><p class="srv-impl-cfg-text">Your document templates</p></div>
+        <div class="srv-impl-cfg-row"><span class="srv-impl-cfg-n">02</span><p class="srv-impl-cfg-text">Your scope and contract language</p></div>
+        <div class="srv-impl-cfg-row"><span class="srv-impl-cfg-n">03</span><p class="srv-impl-cfg-text">Your procedures and SOPs</p></div>
+        <div class="srv-impl-cfg-row"><span class="srv-impl-cfg-n">04</span><p class="srv-impl-cfg-text">Your pricing rules and references</p></div>
+        <div class="srv-impl-cfg-row"><span class="srv-impl-cfg-n">05</span><p class="srv-impl-cfg-text">Your terminology</p></div>
+        <div class="srv-impl-cfg-row"><span class="srv-impl-cfg-n">06</span><p class="srv-impl-cfg-text">Your project-management practices</p></div>
+        <div class="srv-impl-cfg-row"><span class="srv-impl-cfg-n">07</span><p class="srv-impl-cfg-text">Your historical examples and lessons</p></div>
+        <div class="srv-impl-cfg-row"><span class="srv-impl-cfg-n">08</span><p class="srv-impl-cfg-text">Your recurring workflows</p></div>
+      </div>
+      <div>
+        <p class="srv-impl-list-label">Applies across the system</p>
+        <div class="srv-impl-prod-row">
+          <a class="srv-impl-prod-name" href="/products/document-workbench.html">Document Workbench <span class="srv-impl-prod-arrow">→</span></a>
+          <p class="srv-impl-prod-gloss">Produce company-standard construction documents from first walkthrough through closeout.</p>
+        </div>
+        <div class="srv-impl-prod-row">
+          <a class="srv-impl-prod-name" href="/products/construction-intelligence.html">Construction Intelligence <span class="srv-impl-prod-arrow">→</span></a>
+          <p class="srv-impl-prod-gloss">Put your company's procedures, standards, pricing judgment, and operating knowledge within reach of the team.</p>
+        </div>
+        <div class="srv-impl-prod-row">
+          <a class="srv-impl-prod-name" href="/products/project-intelligence.html">Project Intelligence <span class="srv-impl-prod-arrow">→</span></a>
+          <p class="srv-impl-prod-gloss">Surface the exceptions and unresolved work that need attention across active projects.</p>
+        </div>
+        <div class="srv-impl-prod-row">
+          <a class="srv-impl-prod-name" href="/products/operations-automation.html">Operations Automation <span class="srv-impl-prod-arrow">→</span></a>
+          <p class="srv-impl-prod-gloss">Take repetitive operational work off the team.</p>
+        </div>
+      </div>
+    </div>
 
     <div class="srv-impl-close">
-      <p style="margin:0; font:400 16px/1.6 var(--font-display),sans-serif; color:#5F6466;">Then it gets applied to real work with the people who will actually use it.</p>
-      <p class="srv-kicker">Construction OS fits around your operation—not the other way around.</p>
-    </div>
-
-    <!-- §5a Four product cards -->
-    <div class="srv-products-rule">
-      <div class="srv-products-grid">
-
-        <div class="srv-product-card">
-          <div class="srv-product-card__icon-row">
-            <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true" style="color:#111111;flex:none">
-              <polyline points="30,14 86,14 86,72" fill="none" stroke="var(--cos-revision,currentColor)" stroke-width="4"/>
-              <rect x="14" y="26" width="52" height="60" fill="none" stroke="currentColor" stroke-width="8"/>
-            </svg>
-            <p class="srv-product-card__name">Document Workbench</p>
-          </div>
-          <p class="srv-product-card__desc">Produce company-standard construction documents from first walkthrough through closeout.</p>
-          <a class="srv-product-card__link" href="/products/document-workbench.html">Explore Document Workbench →</a>
-        </div>
-
-        <div class="srv-product-card">
-          <div class="srv-product-card__icon-row">
-            <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true" style="color:#111111;flex:none">
-              <line x1="6" y1="50" x2="96" y2="50" stroke="var(--cos-revision,currentColor)" stroke-width="4"/>
-              <polyline points="8,20 40,20 54,42 94,42" fill="none" stroke="currentColor" stroke-width="8"/>
-              <polyline points="8,80 40,80 54,58 94,58" fill="none" stroke="currentColor" stroke-width="8"/>
-            </svg>
-            <p class="srv-product-card__name">Construction Intelligence</p>
-          </div>
-          <p class="srv-product-card__desc">Put your company's procedures, standards, pricing judgment, and operating knowledge within reach of the team.</p>
-          <a class="srv-product-card__link" href="/products/construction-intelligence.html">Explore Construction Intelligence →</a>
-        </div>
-
-        <div class="srv-product-card">
-          <div class="srv-product-card__icon-row">
-            <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true" style="color:#111111;flex:none">
-              <rect x="6" y="18" width="88" height="64" fill="none" stroke="var(--cos-hairline,#476776)" stroke-width="4"/>
-              <line x1="18" y1="70" x2="82" y2="70" stroke="currentColor" stroke-width="8"/>
-              <line x1="30" y1="70" x2="30" y2="56" stroke="currentColor" stroke-width="8"/>
-              <line x1="50" y1="70" x2="50" y2="44" stroke="currentColor" stroke-width="8"/>
-              <line x1="70" y1="70" x2="70" y2="32" stroke="var(--cos-revision,currentColor)" stroke-width="8"/>
-            </svg>
-            <p class="srv-product-card__name">Project Intelligence</p>
-          </div>
-          <p class="srv-product-card__desc">Surface the exceptions and unresolved work that need attention across active projects.</p>
-          <a class="srv-product-card__link" href="/products/project-intelligence.html">Explore Project Intelligence →</a>
-        </div>
-
-        <div class="srv-product-card">
-          <div class="srv-product-card__icon-row">
-            <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true" style="color:#111111;flex:none">
-              <line x1="14" y1="28" x2="34" y2="28" stroke="currentColor" stroke-width="8"/>
-              <line x1="42" y1="28" x2="62" y2="28" stroke="currentColor" stroke-width="8"/>
-              <line x1="70" y1="28" x2="90" y2="28" stroke="currentColor" stroke-width="8"/>
-              <line x1="24" y1="34" x2="24" y2="66" stroke="var(--cos-hairline,#476776)" stroke-width="4"/>
-              <line x1="52" y1="34" x2="52" y2="66" stroke="var(--cos-hairline,#476776)" stroke-width="4"/>
-              <line x1="80" y1="34" x2="80" y2="66" stroke="var(--cos-hairline,#476776)" stroke-width="4"/>
-              <line x1="14" y1="74" x2="90" y2="74" stroke="var(--cos-revision,currentColor)" stroke-width="8"/>
-            </svg>
-            <p class="srv-product-card__name">Operations Automation</p>
-          </div>
-          <p class="srv-product-card__desc">Take repetitive operational work off the team.</p>
-          <a class="srv-product-card__link" href="/products/operations-automation.html">Explore Operations Automation →</a>
-        </div>
-
-      </div>
+      <p class="srv-impl-close__sm">Then it gets applied to real work with the people who will actually use it.</p>
+      <p class="srv-impl-close__lg">Construction OS fits around your operation&mdash;<wbr>not the other way around.</p>
     </div>
   </div>
 </section>

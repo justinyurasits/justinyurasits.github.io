@@ -269,17 +269,16 @@
 /* ─── Configuration ──────────────────────────────────────── */
 .dw-config { padding: 76px 0 80px; background: var(--c-white); }
 .dw-config__hdr {
-  display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
-  gap: 20px 44px;
-  align-items: start;
+  container-type: inline-size;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
   padding-bottom: 26px;
+  max-width: 88ch;
 }
-.dw-config__hdr-left { container-type: inline-size; min-width: 0; }
-.dw-config__heading { font: 600 clamp(26px, 7cqi, 38px)/1.06 var(--font-display), sans-serif; letter-spacing: -.034em; color: var(--c-ink); text-wrap: balance; margin: 0; max-width: 24ch; }
-.dw-config__hdr-right { display: flex; flex-direction: column; gap: 8px; padding-top: 5px; }
-.dw-config__deck { font: 400 16px/1.6 var(--font-display), sans-serif; color: var(--c-graphite); margin: 0; }
-.dw-config__deck--bold { font: 600 17px/1.5 var(--font-display), sans-serif; letter-spacing: -.015em; color: var(--c-ink); margin: 0; }
+.dw-config__heading { font: 600 clamp(26px, 7cqi, 38px)/1.06 var(--font-display), sans-serif; letter-spacing: -.034em; color: var(--c-ink); text-wrap: balance; margin: 0; max-width: 26ch; }
+.dw-config__deck { font: 400 16px/1.6 var(--font-display), sans-serif; color: var(--c-graphite); margin: 0; max-width: 62ch; }
+.dw-config__deck-bold { font-weight: 600; color: var(--c-ink); }
 .dw-config__list { display: flex; flex-direction: column; border-top: 2px solid var(--c-ink); max-width: 88ch; }
 .dw-config-row {
   display: grid;
@@ -764,13 +763,8 @@
 <section class="dw-config" id="configuration">
   <div class="cos-container">
     <header class="dw-config__hdr">
-      <div class="dw-config__hdr-left">
-        <h2 class="dw-config__heading">Not a generic template library. Not a blank chatbot.</h2>
-      </div>
-      <div class="dw-config__hdr-right">
-        <p class="dw-config__deck">Your company already has a way of doing the work.</p>
-        <p class="dw-config__deck--bold">Document Workbench is configured around it.</p>
-      </div>
+      <h2 class="dw-config__heading">Not a generic template library. Not a blank chatbot.</h2>
+      <p class="dw-config__deck">Your company already has a way of doing the work. <span class="dw-config__deck-bold">Document Workbench is configured around it.</span></p>
     </header>
     <div class="dw-config__list">
       <div class="dw-config-row">

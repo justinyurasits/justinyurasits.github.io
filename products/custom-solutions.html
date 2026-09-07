@@ -93,10 +93,11 @@ a { color: inherit; }
 
 /* § 3b Ink band */
 .cs-approach__band { background: var(--c-ink); }
-.cs-approach__band-inner { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px,100%), 1fr)); gap: 16px 48px; align-items: start; padding: 38px 0; }
-.cs-band-label { font: 600 11px/1 var(--font); letter-spacing: .14em; text-transform: uppercase; color: var(--c-line); padding-top: 4px; }
-.cs-band-q-light { margin: 0 0 10px; font: 400 clamp(19px, 2.4vw, 22px)/1.4 var(--font); letter-spacing: -.02em; color: var(--c-line); }
-.cs-band-q-bold { margin: 0; font: 600 clamp(22px, 3vw, 28px)/1.3 var(--font); letter-spacing: -.028em; color: var(--c-white); }
+.cs-approach__band-inner { padding-block: 38px; display: flex; flex-direction: column; gap: 22px; }
+.cs-band-label { font: 600 11px/1 var(--font); letter-spacing: .14em; text-transform: uppercase; color: #B8B9B5; border-bottom: 1px solid #5F6466; padding-bottom: 20px; }
+.cs-band-statement { min-width: 0; display: flex; flex-direction: column; gap: 14px; max-width: 46ch; }
+.cs-band-q-light { margin: 0; font: 400 clamp(19px, 2.4vw, 22px)/1.4 var(--font); letter-spacing: -.02em; color: #B8B9B5; }
+.cs-band-q-bold { margin: 0; font: 600 clamp(22px, 3vw, 28px)/1.3 var(--font); letter-spacing: -.028em; color: #FFFFFF; }
 
 /* ─── § 4 Build around the problems — Bond ───────────────── */
 .cs-problems { background: var(--c-bond); padding: 76px 0 80px; }
@@ -385,7 +386,7 @@ a { color: inherit; }
   <div class="cs-approach__band">
     <div class="cos-container cs-approach__band-inner">
       <span class="cs-band-label">The Real Question</span>
-      <div>
+      <div class="cs-band-statement">
         <p class="cs-band-q-light">The question isn&rsquo;t &ldquo;Where can we add AI?&rdquo;</p>
         <p class="cs-band-q-bold">It&rsquo;s &ldquo;Why is your team still doing this the hard way?&rdquo;</p>
       </div>

@@ -172,10 +172,11 @@ a { color: inherit; }
 
 /* 6b Ink band */
 .ci-workflow__band { background: var(--c-ink); }
-.ci-workflow__band-inner { padding-block: 34px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px,100%), 1fr)); gap: 12px 40px; align-items: baseline; }
-.ci-workflow__band-label { font: 600 11px/1 var(--font); letter-spacing: .14em; text-transform: uppercase; color: var(--c-line); white-space: nowrap; align-self: center; }
-.ci-workflow__band-val { font: 600 22px/1.2 var(--font); letter-spacing: -.022em; color: var(--c-white); }
-.ci-workflow__band-sub { margin-top: 8px; font: 500 15px/1.4 var(--font); color: var(--c-line); }
+.ci-workflow__band-inner { padding-block: 34px; display: flex; flex-direction: column; gap: 22px; }
+.ci-workflow__band-label { font: 600 11px/1 var(--font); letter-spacing: .14em; text-transform: uppercase; color: #B8B9B5; border-bottom: 1px solid #5F6466; padding-bottom: 20px; }
+.ci-workflow__band-body { min-width: 0; display: flex; flex-direction: column; gap: 14px; max-width: 46ch; }
+.ci-workflow__band-val { margin: 0; font: 600 22px/1.2 var(--font); letter-spacing: -.022em; color: var(--c-white); }
+.ci-workflow__band-sub { margin: 0; font: 500 15px/1.4 var(--font); color: #B8B9B5; }
 
 /* ─── § 7 Keep what your company has learned — Paper ─────── */
 .ci-continuity { background: var(--c-white); padding: 76px 0 80px; }
@@ -738,7 +739,7 @@ a { color: inherit; }
   <div class="ci-workflow__band">
     <div class="cos-container ci-workflow__band-inner">
       <span class="ci-workflow__band-label">Knowledge to Action</span>
-      <div>
+      <div class="ci-workflow__band-body">
         <p class="ci-workflow__band-val">Ask the question. Understand the requirement. Build the document that moves the job forward.</p>
         <p class="ci-workflow__band-sub">The answer tells the team what happens next.</p>
       </div>

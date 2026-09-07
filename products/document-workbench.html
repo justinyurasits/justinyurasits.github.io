@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="../brand-kit/tokens.css">
 <link rel="stylesheet" href="../brand-kit/brand.css">
 <link rel="stylesheet" href="../brand-kit/cos-header.css">
+<link rel="stylesheet" href="../brand-kit/cos-footer.css">
 <style>
 /* ─── Tokens ─────────────────────────────────────────────── */
 :root {
@@ -26,7 +27,6 @@
 
 /* ─── Container ──────────────────────────────────────────── */
 .cos-container { max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px); }
-
 
 /* ─── Product block (shared) ──────────────────────────────── */
 .cos-product { display: grid; grid-template-columns: minmax(340px, 1fr) minmax(340px, 1.15fr); gap: 48px; align-items: start; }
@@ -121,27 +121,6 @@
 .cos-close__index-ext { font: 500 10px/1 var(--font-display), sans-serif; letter-spacing: .12em; text-transform: uppercase; color: #B8B9B5; white-space: nowrap; }
 
 /* ─── Footer (shared) ────────────────────────────────────── */
-.cos-footer { background: #FFFFFF; border-top: 1px solid #B8B9B5; }
-.cos-footer__inner { padding-top: 56px; }
-.cos-footer__cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; padding-bottom: 48px; }
-.cos-footer__brand { display: flex; flex-direction: column; gap: 16px; }
-.cos-footer__lockup { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font: 600 17px/1 var(--font-display), sans-serif; letter-spacing: -.02em; color: #111111; }
-.cos-footer__tagline { font: 400 14px/1.55 var(--font-display), sans-serif; color: #5F6466; max-width: 30ch; margin: 0; }
-.cos-footer__cta-link { font: 600 14px/1 var(--font-display), sans-serif; color: #111111; text-decoration: none; border-bottom: 2px solid #111111; padding-bottom: 3px; width: fit-content; }
-.cos-footer__col { display: flex; flex-direction: column; }
-.cos-footer__col-head { font: 600 11px/1 var(--font-display), sans-serif; letter-spacing: .14em; text-transform: uppercase; color: #111111; padding-bottom: 12px; border-bottom: 1px solid #B8B9B5; }
-.cos-footer__col-item { display: flex; align-items: center; gap: 10px; font: 500 14px/1 var(--font-display), sans-serif; letter-spacing: -.005em; color: #5F6466; text-decoration: none; padding-top: 12px; }
-.cos-footer__col-item:hover { color: #111111; }
-.cos-footer__contact-email { display: inline-block; font: 600 17px/1 var(--font-display), sans-serif; letter-spacing: -.015em; color: #111111; text-decoration: none; border-bottom: 2px solid #111111; padding-bottom: 3px; margin-top: 14px; }
-.cos-footer__contact-email:hover { color: #476776; border-bottom-color: #476776; }
-.cos-footer__col-n { font: 400 11px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace; color: #5F6466; flex: none; }
-.cos-footer__col-dash { font: 400 11px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace; color: #5F6466; flex: none; }
-.cos-titleblock { border: 1px solid #111111; background: #FFFFFF; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
-.cos-titleblock__cell { padding: 12px 16px; border-right: 1px solid #B8B9B5; display: flex; flex-direction: column; gap: 5px; }
-.cos-titleblock__cell:last-child { border-right: 0; }
-.cos-titleblock__label { font: 600 9px/1 var(--font-display), sans-serif; letter-spacing: .16em; text-transform: uppercase; color: #5F6466; }
-.cos-titleblock__value { font: 400 12px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace; color: #111111; }
-.cos-footer__legal { padding: 18px 0 40px; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; font: 400 13px/1 var(--font-display), sans-serif; color: #5F6466; }
 
 /* ─── Page-level: hero ───────────────────────────────────── */
 .dw-hero { padding: 72px 0 64px; background: var(--c-white); border-bottom: 1px solid var(--c-line); }
@@ -422,7 +401,6 @@
   .dw-demo { padding: 60px 0 64px; }
   .dw-built { padding: 60px 0 64px; }
   .dw-configured { padding: 60px 0 64px; }
-.cos-footer__inner { padding-top: 40px; }
   .dw-step, .dw-step:nth-child(1), .dw-step:nth-child(2), .dw-step:nth-child(3) { padding: 24px 0; border-left: none; border-top: 1px solid var(--c-line); }
   .dw-step:first-child { border-top: 0; padding-top: 0; }
   .dw-stats { grid-template-columns: 1fr; }
@@ -481,7 +459,6 @@
   </div>
 </header>
 <!-- header:end -->
-
 
 <!-- 2. Hero — Paper -->
 <section class="dw-hero" id="hero">
@@ -598,7 +575,6 @@
   </div>
 </section>
 
-
 <!-- 3. Current state — Bond -->
 <section class="dw-current" id="current-state">
   <div class="cos-container">
@@ -615,7 +591,6 @@
     </div>
   </div>
 </section>
-
 
 <!-- 4. Lifecycle — Paper -->
 <section class="dw-lifecycle" id="lifecycle">
@@ -719,7 +694,6 @@
   </div>
 </div>
 
-
 <!-- 5. How it works — Bond -->
 <section class="dw-how" id="how-it-works">
   <div class="cos-container">
@@ -758,7 +732,6 @@
   </div>
 </section>
 
-
 <!-- 6. Configuration — Paper -->
 <section class="dw-config" id="configuration">
   <div class="cos-container">
@@ -791,7 +764,6 @@
     <p class="dw-config__close"><span class="dw-config__close-p1">The result is not simply faster document drafting.</span> It is a more consistent way to turn how your company works into the paperwork that runs the project.</p>
   </div>
 </section>
-
 
 <!-- 7. See it work — Bond -->
 <section class="dw-demo" id="see-it-work">
@@ -870,7 +842,6 @@
   </div>
 </section>
 
-
 <!-- 8. Built from inside — Paper -->
 <section class="dw-built" id="built-from">
   <div class="cos-container">
@@ -901,7 +872,6 @@
   </div>
 </section>
 
-
 <!-- 9. Configured around your company — Bond -->
 <section class="dw-configured" id="configured-around">
   <div class="cos-container">
@@ -918,7 +888,6 @@
     <p class="dw-configured__close">Your company&rsquo;s way of working becomes the starting point, not something the software asks you to replace.</p>
   </div>
 </section>
-
 
 <!-- 10. Closing CTA — Ink -->
 <section class="cos-close" id="cta">
@@ -996,7 +965,6 @@
     </div>
   </div>
 </section>
-
 
 <!-- 11. Footer -->
 <!-- footer:start -->
@@ -1090,7 +1058,6 @@
   </div>
 </footer>
 <!-- footer:end -->
-
 
 <script>
 (function () {

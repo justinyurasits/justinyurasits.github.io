@@ -30,7 +30,6 @@ img { max-width: 100%; display: block; }
 /* ─── Container ──────────────────────────────────────────── */
 .cos-container { max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px); }
 
-
 /* ─── Shared CTA scale ───────────────────────────────────── */
 .pi-btn { display: inline-flex; align-items: center; min-height: 44px; padding: 13px 20px; font: 600 14px/1 var(--font-display), sans-serif; letter-spacing: -.01em; text-decoration: none; white-space: nowrap; }
 .pi-btn--ink { background: var(--c-ink); color: var(--c-white); }
@@ -235,44 +234,21 @@ img { max-width: 100%; display: block; }
 .pi-close__index-ext { font: 400 11px/1 var(--font-display), sans-serif; color: var(--c-graphite); margin-left: auto; }
 
 /* ─── Footer ─────────────────────────────────────────────── */
-.cos-footer { background: var(--c-white); border-top: 1px solid var(--c-line); }
-.cos-footer__inner { padding-top: 52px; padding-bottom: 0; }
-.cos-footer__cols { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 40px; }
-.cos-footer__brand { display: flex; flex-direction: column; gap: 14px; }
-.cos-footer__lockup { display: flex; align-items: center; gap: 10px; text-decoration: none; font: 600 15px/1 var(--font-display), sans-serif; letter-spacing: -.015em; color: var(--c-ink); }
-.cos-footer__tagline { margin: 0; font: 400 13px/1.5 var(--font-display), sans-serif; color: var(--c-graphite); max-width: 26ch; }
-.cos-footer__cta-link { align-self: flex-start; font: 600 13px/1 var(--font-display), sans-serif; color: var(--c-ink); text-decoration: none; border-bottom: 1px solid var(--c-ink); padding-bottom: 2px; }
-.cos-footer__cta-link:hover { color: var(--c-steel); border-bottom-color: var(--c-steel); }
-.cos-footer__col { display: flex; flex-direction: column; gap: 10px; }
-.cos-footer__col-head { font: 600 11px/1 var(--font-display), sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--c-graphite); margin-bottom: 4px; }
-.cos-footer__col-item { display: flex; align-items: baseline; gap: 8px; font: 400 14px/1 var(--font-display), sans-serif; color: var(--c-graphite); text-decoration: none; }
-.cos-footer__col-item:hover { color: var(--c-ink); }
-.cos-footer__col-item--current { font-weight: 600; color: var(--c-ink); }
-.cos-footer__col-n { font: 400 11px/1 ui-monospace, monospace; color: var(--c-line); flex-shrink: 0; }
-.cos-titleblock { border: 1px solid #111111; background: #FFFFFF; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
-.cos-titleblock__cell { padding: 12px 16px; border-right: 1px solid #B8B9B5; display: flex; flex-direction: column; gap: 5px; }
-.cos-titleblock__cell:last-child { border-right: 0; }
-.cos-titleblock__label { font: 600 9px/1 var(--font-display), sans-serif; letter-spacing: .16em; text-transform: uppercase; color: #5F6466; }
-.cos-titleblock__value { font: 400 12px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace; color: #111111; }
-.cos-footer__legal { padding: 18px 0 40px; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; font: 400 13px/1 var(--font-display), sans-serif; color: #5F6466; }
-.cos-footer__legal a { color: inherit; text-decoration: underline; text-decoration-color: #B8B9B5; }
-.cos-footer__legal a:hover { color: #111111; text-decoration-color: #111111; }
 
 }
 
 /* ─── Responsive ─────────────────────────────────────────── */
 @media (max-width: 900px) {
-  .cos-footer__cols { grid-template-columns: 1fr 1fr; gap: 32px; }
   .pi-loop__strip-inner { grid-template-columns: 1fr; }
 }
 @media (max-width: 760px) {
   .pi-hero { padding: 56px 0 48px; }
   .pi-hero__rule { margin-top: 32px; }
   .pi-loop__strip-inner { grid-template-columns: 1fr; }
-  .cos-footer__cols { grid-template-columns: 1fr; }
 }
 </style>
 <link rel="stylesheet" href="../brand-kit/cos-header.css">
+<link rel="stylesheet" href="../brand-kit/cos-footer.css">
 </head>
 <body>
 
@@ -320,7 +296,6 @@ img { max-width: 100%; display: block; }
   </div>
 </header>
 <!-- header:end -->
-
 
 <!-- § 2. Hero — Paper -->
 <section class="pi-hero">
@@ -398,7 +373,6 @@ img { max-width: 100%; display: block; }
   </div>
 </section>
 
-
 <!-- § 3. Status meeting — Bond -->
 <section class="pi-status">
   <div class="cos-container">
@@ -429,7 +403,6 @@ img { max-width: 100%; display: block; }
     </div>
   </div>
 </section>
-
 
 <!-- § 4. Management time — Paper -->
 <section class="pi-pattern">
@@ -495,7 +468,6 @@ img { max-width: 100%; display: block; }
   </div>
 </section>
 
-
 <!-- § 5. Most systems — Bond -->
 <section class="pi-premise">
   <div class="cos-container">
@@ -551,7 +523,6 @@ img { max-width: 100%; display: block; }
     </div>
   </div>
 </section>
-
 
 <!-- § 6. Attention register — Paper -->
 <section class="pi-register" id="register">
@@ -653,7 +624,6 @@ img { max-width: 100%; display: block; }
   </div>
 </section>
 
-
 <!-- § 7. From attention to action — Bond -->
 <section class="pi-action">
   <div class="cos-container">
@@ -693,7 +663,6 @@ img { max-width: 100%; display: block; }
     </div>
   </div>
 </section>
-
 
 <!-- § 8. See it. Understand it. Act on it. — Paper + Ink strip -->
 <section class="pi-loop" id="loop">
@@ -780,7 +749,6 @@ img { max-width: 100%; display: block; }
   </div>
 </section>
 
-
 <!-- § 9. Three products. One operating system. — Bond -->
 <section class="pi-system">
   <div class="cos-container">
@@ -815,7 +783,6 @@ img { max-width: 100%; display: block; }
   </div>
 </section>
 
-
 <!-- § 10. Manage by exception — Paper -->
 <section class="pi-questions-sec">
   <div class="cos-container">
@@ -844,7 +811,6 @@ img { max-width: 100%; display: block; }
 
   </div>
 </section>
-
 
 <!-- § 11. Know where the risk is building — Bond -->
 <section class="pi-aging">
@@ -881,7 +847,6 @@ img { max-width: 100%; display: block; }
     </div>
   </div>
 </section>
-
 
 <!-- § 12. Closing CTA — Ink -->
 <section class="pi-close" id="cta">
@@ -960,7 +925,6 @@ img { max-width: 100%; display: block; }
     </div>
   </div>
 </section>
-
 
 <!-- § 13. Footer — Paper -->
 <!-- footer:start -->
@@ -1054,7 +1018,6 @@ img { max-width: 100%; display: block; }
   </div>
 </footer>
 <!-- footer:end -->
-
 
 <script>
 (function () {

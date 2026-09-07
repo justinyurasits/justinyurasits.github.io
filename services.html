@@ -186,22 +186,23 @@
 
 /* ── §3 Index rows ──────────────────────────────────── */
 .srv-index-grid {
-  display:grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(300px,100%),1fr));
-  gap:0 28px;
+  display:flex;
+  flex-direction:column;
 }
 .srv-index-row {
-  display:flex; align-items:baseline; gap:0;
-  padding:24px 0; border-top:1px solid #B8B9B5;
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(300px,100%),1fr));
+  gap:10px 28px;
+  padding:24px 0; border-bottom:1px solid #B8B9B5; align-items:baseline;
 }
-.srv-index-row:first-child { border-top:none; }
-.srv-index-cell1 { display:flex; align-items:baseline; gap:12px; flex:1; }
+.srv-index-row:last-child { border-bottom:none; }
+.srv-index-cell1 { display:flex; align-items:baseline; gap:0; min-width:0; }
 .srv-index-n {
   font: 400 12px/1 ui-monospace,'Cascadia Code','Source Code Pro',monospace;
   color:#5F6466; width:46px; flex:none;
 }
-.srv-index-name { margin:0; font: 600 21px/1.2 var(--font-display),sans-serif; letter-spacing:-.022em; color:#111111; }
-.srv-index-promise { margin:0; font: 400 16px/1.5 var(--font-display),sans-serif; color:#5F6466; padding-top:4px; }
+.srv-index-name { margin:0; font: 600 21px/1.3 var(--font-display),sans-serif; letter-spacing:-.022em; color:#111111; min-width:0; }
+.srv-index-promise { margin:0; font: 400 16px/1.55 var(--font-display),sans-serif; color:#5F6466; min-width:0; }
 
 /* ── §5 Implementation + product cards ─────────────── */
 .srv-impl-close {
@@ -519,7 +520,7 @@ a:hover { color:#111111; }
      ══════════════════════════════════════════════════════ -->
 <section class="srv-paper srv-section">
   <div class="cos-container">
-    <div style="border-bottom:2px solid #111111; padding-bottom:26px; margin-bottom:30px;">
+    <div style="container-type:inline-size; border-bottom:2px solid #111111; padding-bottom:26px;">
       <p class="srv-eyebrow" style="margin-bottom:12px">Services</p>
       <h2 class="srv-section-h2">Three ways to put this to work.</h2>
     </div>

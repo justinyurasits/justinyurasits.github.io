@@ -2301,6 +2301,15 @@
 <!-- footer:end -->
 
 <script>
+(function () {
+  var header = document.getElementById('cos-header');
+  var toggle = header.querySelector('.cos-header__toggle');
+  var nav    = header.querySelector('.cos-nav');
+  var dd     = header.querySelector('.cos-nav__dropdown');
+  var btn    = dd ? dd.querySelector('.cos-nav__trigger') : null;
+  var panel  = dd ? dd.querySelector('.cos-nav__panel') : null;
+
+  toggle.addEventListener('click', function () {
     var open = nav.classList.toggle('is-open');
     toggle.setAttribute('aria-expanded', open);
   });

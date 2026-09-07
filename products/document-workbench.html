@@ -235,36 +235,37 @@
 
 /* ─── How it works ───────────────────────────────────────── */
 .dw-how { padding: 76px 0 80px; background: var(--c-bond); }
-.dw-how__hdr { display: flex; flex-direction: column; gap: 12px; border-bottom: 2px solid var(--c-ink); padding-bottom: 0; margin-bottom: 40px; }
-.dw-how__eyebrow { font: 600 11px/1 var(--font-display), sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--c-steel); margin: 0; padding-bottom: 0; }
-.dw-how__heading { font: 600 clamp(26px, 4vw, 36px)/1.1 var(--font-display), sans-serif; letter-spacing: -.028em; color: var(--c-ink); text-wrap: balance; margin: 0; max-width: 22ch; padding-bottom: 20px; }
+.dw-how__hdr { container-type: inline-size; display: flex; flex-direction: column; border-bottom: 2px solid var(--c-ink); padding-bottom: 26px; }
+.dw-how__eyebrow { font: 600 11px/1 var(--font-display), sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--c-steel); margin: 0; padding-bottom: 16px; }
+.dw-how__heading { font: 600 clamp(28px, 8cqi, 42px)/1.05 var(--font-display), sans-serif; letter-spacing: -.035em; color: var(--c-ink); text-wrap: balance; margin: 0; max-width: 22ch; }
 .dw-how__cols {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  column-gap: 40px;
-  align-items: start;
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+  padding-top: 8px;
 }
 .dw-step {
-  padding: 26px 0 0;
   display: flex;
   flex-direction: column;
   gap: 14px;
   min-width: 0;
 }
+.dw-step:nth-child(1) { padding: 30px 32px 30px 0; }
+.dw-step:nth-child(2) { padding: 30px 32px; border-left: 1px solid var(--c-line); }
+.dw-step:nth-child(3) { padding: 30px 0 30px 32px; border-left: 1px solid var(--c-line); }
 .dw-step-n-rule { display: flex; align-items: center; gap: 12px; }
-.dw-step-n { font: 400 12px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace; color: var(--c-graphite); }
-.dw-step-rule { height: 28px; width: 2px; background: var(--c-ink); flex: none; }
+.dw-step-n { font: 400 12px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace; color: var(--c-graphite); flex: none; }
+.dw-step-rule { height: 1px; flex: 1; min-width: 20px; background: var(--c-line); }
 .dw-step-name { font: 600 20px/1.25 var(--font-display), sans-serif; letter-spacing: -.02em; color: var(--c-ink); margin: 0; }
-.dw-step-lead { font: 500 15px/1.55 var(--font-display), sans-serif; color: var(--c-ink); margin: 0; }
-.dw-step-body { font: 400 15px/1.55 var(--font-display), sans-serif; color: var(--c-graphite); margin: 0; }
-.dw-how__close-rule { margin-top: 44px; border-top: 1px solid var(--c-line); }
+.dw-step-lead { font: 500 15px/1.6 var(--font-display), sans-serif; color: var(--c-ink); margin: 0; }
+.dw-step-body { font: 400 15px/1.6 var(--font-display), sans-serif; color: var(--c-graphite); margin: 0; }
 .dw-how__close {
+  border-top: 1px solid var(--c-line);
   padding-top: 22px;
+  margin-top: 44px;
   font: 500 17px/1.5 var(--font-display), sans-serif;
   letter-spacing: -.015em;
   color: var(--c-ink);
   max-width: 64ch;
-  margin: 0;
 }
 
 /* ─── Configuration ──────────────────────────────────────── */
@@ -431,7 +432,7 @@
   .dw-config-row { grid-template-columns: 46px 1fr; }
   .dw-config-row > *:last-child { grid-column: 2 / -1; }
   .cos-footer__inner { padding-top: 40px; }
-  .dw-step { padding: 24px 0; border-top: 1px solid var(--c-line); }
+  .dw-step, .dw-step:nth-child(1), .dw-step:nth-child(2), .dw-step:nth-child(3) { padding: 24px 0; border-left: none; border-top: 1px solid var(--c-line); }
   .dw-step:first-child { border-top: 0; padding-top: 0; }
   .dw-stats { grid-template-columns: 1fr; }
   .dw-stat { border-bottom: 1px solid var(--c-line); border-right: none; }
@@ -761,7 +762,7 @@
           <span class="dw-step-rule"></span>
         </div>
         <h3 class="dw-step-name">Apply how your company works</h3>
-        <p class="dw-step-lead">Your templates, terminology, standard language, pricing structure, document conventions, and operating procedures become part of how the work is produced.</p>
+        <p class="dw-step-body">Your templates, terminology, standard language, pricing structure, document conventions, and operating procedures become part of how the work is produced.</p>
       </div>
       <div class="dw-step">
         <div class="dw-step-n-rule">
@@ -769,10 +770,9 @@
           <span class="dw-step-rule"></span>
         </div>
         <h3 class="dw-step-name">Produce a company-ready draft</h3>
-        <p class="dw-step-lead">Turn that information into structured construction documentation ready for your team to review, revise, and issue.</p>
+        <p class="dw-step-body">Turn that information into structured construction documentation ready for your team to review, revise, and issue.</p>
       </div>
     </div>
-    <div class="dw-how__close-rule"></div>
     <p class="dw-how__close">Less blank-page work. Less copying and pasting. Less rebuilding the same document for the next job.</p>
   </div>
 </section>

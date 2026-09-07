@@ -270,42 +270,38 @@
 .dw-config { padding: 76px 0 80px; background: var(--c-white); }
 .dw-config__hdr {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 32px;
-  align-items: end;
-  border-bottom: 2px solid var(--c-ink);
-  padding-bottom: 24px;
-  margin-bottom: 0;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: 20px 44px;
+  align-items: start;
+  padding-bottom: 26px;
 }
-.dw-config__hdr-left { display: flex; flex-direction: column; gap: 10px; }
-.dw-config__eyebrow { font: 600 11px/1 var(--font-display), sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--c-steel); margin: 0; }
-.dw-config__heading { font: 600 clamp(26px, 4vw, 38px)/1.05 var(--font-display), sans-serif; letter-spacing: -.03em; color: var(--c-ink); text-wrap: balance; margin: 0; max-width: 20ch; }
-.dw-config__deck { font: 400 16px/1.6 var(--font-display), sans-serif; color: var(--c-graphite); margin: 0 0 8px; max-width: 38ch; }
+.dw-config__hdr-left { container-type: inline-size; min-width: 0; }
+.dw-config__heading { font: 600 clamp(26px, 7cqi, 38px)/1.06 var(--font-display), sans-serif; letter-spacing: -.034em; color: var(--c-ink); text-wrap: balance; margin: 0; max-width: 24ch; }
+.dw-config__hdr-right { display: flex; flex-direction: column; gap: 8px; padding-top: 5px; }
+.dw-config__deck { font: 400 16px/1.6 var(--font-display), sans-serif; color: var(--c-graphite); margin: 0; }
 .dw-config__deck--bold { font: 600 17px/1.5 var(--font-display), sans-serif; letter-spacing: -.015em; color: var(--c-ink); margin: 0; }
-.dw-config__rows { margin-top: 0; }
+.dw-config__list { display: flex; flex-direction: column; border-top: 2px solid var(--c-ink); max-width: 88ch; }
 .dw-config-row {
   display: grid;
-  grid-template-columns: 46px minmax(200px, .9fr) minmax(240px, 1.2fr);
-  column-gap: 28px;
-  padding: 24px 0;
-  border-top: 1px solid var(--c-line);
-  align-items: baseline;
+  grid-template-columns: 26px minmax(0, 1fr);
+  gap: 0 20px;
+  padding: 13px 0 14px;
 }
-.dw-config-row:first-child { border-top: 0; }
-.dw-config-row-n { font: 400 12px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace; color: var(--c-graphite); padding-top: 3px; }
-.dw-config-row-name { font: 600 19px/1.3 var(--font-display), sans-serif; letter-spacing: -.02em; color: var(--c-ink); margin: 0; }
-.dw-config-row-desc { font: 400 15px/1.55 var(--font-display), sans-serif; color: var(--c-graphite); margin: 0; }
+.dw-config-row + .dw-config-row { border-top: 1px solid var(--c-line); }
+.dw-config-row-n { font: 400 12px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace; letter-spacing: .04em; color: var(--c-graphite); padding-top: 3px; }
+.dw-config-row-text { font: 400 16px/1.5 var(--font-display), sans-serif; letter-spacing: -.014em; color: var(--c-graphite); margin: 0; text-wrap: pretty; }
+.dw-config-row-term { font-weight: 600; color: var(--c-ink); }
+.dw-config-row-sep { color: var(--c-line); }
 .dw-config__close {
-  margin-top: 30px;
-  padding-top: 24px;
+  margin: 26px 0 0;
+  padding-top: 20px;
   border-top: 2px solid var(--c-ink);
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 16px;
-  align-items: start;
+  font: 500 17px/1.5 var(--font-display), sans-serif;
+  letter-spacing: -.015em;
+  color: var(--c-ink);
+  max-width: 88ch;
 }
-.dw-config__close-p1 { font: 400 16px/1.6 var(--font-display), sans-serif; color: var(--c-graphite); margin: 0; max-width: 44ch; }
-.dw-config__close-p2 { font: 600 19px/1.5 var(--font-display), sans-serif; letter-spacing: -.018em; color: var(--c-ink); margin: 0; max-width: 44ch; text-wrap: pretty; }
+.dw-config__close-p1 { font-weight: 400; color: var(--c-graphite); }
 
 /* ─── See it work (demo) ─────────────────────────────────── */
 .dw-demo { padding: 76px 0 80px; background: var(--c-bond); }
@@ -427,9 +423,7 @@
   .dw-demo { padding: 60px 0 64px; }
   .dw-built { padding: 60px 0 64px; }
   .dw-configured { padding: 60px 0 64px; }
-  .dw-config-row { grid-template-columns: 46px 1fr; }
-  .dw-config-row > *:last-child { grid-column: 2 / -1; }
-  .cos-footer__inner { padding-top: 40px; }
+.cos-footer__inner { padding-top: 40px; }
   .dw-step, .dw-step:nth-child(1), .dw-step:nth-child(2), .dw-step:nth-child(3) { padding: 24px 0; border-left: none; border-top: 1px solid var(--c-line); }
   .dw-step:first-child { border-top: 0; padding-top: 0; }
   .dw-stats { grid-template-columns: 1fr; }
@@ -771,45 +765,36 @@
   <div class="cos-container">
     <header class="dw-config__hdr">
       <div class="dw-config__hdr-left">
-        <p class="dw-config__eyebrow">Configuration</p>
         <h2 class="dw-config__heading">Not a generic template library. Not a blank chatbot.</h2>
       </div>
-      <div>
+      <div class="dw-config__hdr-right">
         <p class="dw-config__deck">Your company already has a way of doing the work.</p>
         <p class="dw-config__deck--bold">Document Workbench is configured around it.</p>
       </div>
     </header>
-    <div class="dw-config__rows">
+    <div class="dw-config__list">
       <div class="dw-config-row">
         <span class="dw-config-row-n">01</span>
-        <p class="dw-config-row-name">Your contract templates</p>
-        <p class="dw-config-row-desc">Not generic agreements and exhibits.</p>
+        <p class="dw-config-row-text"><span class="dw-config-row-term">Your contract templates</span><span class="dw-config-row-sep"> &mdash; </span>Not generic agreements and exhibits.</p>
       </div>
       <div class="dw-config-row">
         <span class="dw-config-row-n">02</span>
-        <p class="dw-config-row-name">Your scope language</p>
-        <p class="dw-config-row-desc">The way your team actually describes the work.</p>
+        <p class="dw-config-row-text"><span class="dw-config-row-term">Your scope language</span><span class="dw-config-row-sep"> &mdash; </span>The way your team actually describes the work.</p>
       </div>
       <div class="dw-config-row">
         <span class="dw-config-row-n">03</span>
-        <p class="dw-config-row-name">Your pricing and markup structure</p>
-        <p class="dw-config-row-desc">The rules and conventions your team already uses.</p>
+        <p class="dw-config-row-text"><span class="dw-config-row-term">Your pricing and markup structure</span><span class="dw-config-row-sep"> &mdash; </span>The rules and conventions your team already uses.</p>
       </div>
       <div class="dw-config-row">
         <span class="dw-config-row-n">04</span>
-        <p class="dw-config-row-name">Your terminology and standards</p>
-        <p class="dw-config-row-desc">Documents that read like they came from your company.</p>
+        <p class="dw-config-row-text"><span class="dw-config-row-term">Your terminology and standards</span><span class="dw-config-row-sep"> &mdash; </span>Documents that read like they came from your company.</p>
       </div>
       <div class="dw-config-row">
         <span class="dw-config-row-n">05</span>
-        <p class="dw-config-row-name">Your project context</p>
-        <p class="dw-config-row-desc">The specific information that makes each document useful on the actual job.</p>
+        <p class="dw-config-row-text"><span class="dw-config-row-term">Your project context</span><span class="dw-config-row-sep"> &mdash; </span>The specific information that makes each document useful on the actual job.</p>
       </div>
     </div>
-    <div class="dw-config__close">
-      <p class="dw-config__close-p1">The result is not simply faster document drafting.</p>
-      <p class="dw-config__close-p2">It is a more consistent way to turn how your company works into the paperwork that runs the project.</p>
-    </div>
+    <p class="dw-config__close"><span class="dw-config__close-p1">The result is not simply faster document drafting.</span> It is a more consistent way to turn how your company works into the paperwork that runs the project.</p>
   </div>
 </section>
 

@@ -7,258 +7,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-/* ─── Tokens ─────────────────────────────────────────────── */
-:root {
-  --c-ink:       #111111;
-  --c-white:     #FFFFFF;
-  --c-bond:      #EFEFEB;
-  --c-steel:     #476776;
-  --c-graphite:  #5F6466;
-  --c-line:      #B8B9B5;
-  --c-revision:  #C43230;
-  --font-display: 'Archivo';
-}
-
-/* ─── Reset & base ───────────────────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; }
-body { margin: 0; font-family: var(--font-display), Helvetica, sans-serif; background: var(--c-white); color: var(--c-ink); -webkit-font-smoothing: antialiased; }
-ul, ol { list-style: none; margin: 0; padding: 0; }
-a { color: inherit; }
-img { max-width: 100%; display: block; }
-
-/* ─── Container ──────────────────────────────────────────── */
-.cos-container { max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px); }
-
-/* ─── Shared CTA scale ───────────────────────────────────── */
-.pi-btn { display: inline-flex; align-items: center; min-height: 44px; padding: 13px 20px; font: 600 14px/1 var(--font-display), sans-serif; letter-spacing: -.01em; text-decoration: none; white-space: nowrap; }
-.pi-btn--ink { background: var(--c-ink); color: var(--c-white); }
-.pi-btn--ink:hover { background: var(--c-steel); }
-.pi-btn--paper { background: var(--c-white); color: var(--c-ink); }
-.pi-btn--paper:hover { background: var(--c-bond); }
-.pi-link { display: inline-flex; align-items: center; min-height: 40px; font: 600 14px/1 var(--font-display), sans-serif; letter-spacing: -.01em; text-decoration: none; border-bottom: 2px solid; padding-bottom: 3px; }
-.pi-link--ink { color: var(--c-ink); border-color: var(--c-ink); }
-.pi-link--ink:hover { color: var(--c-steel); border-color: var(--c-steel); }
-.pi-link--paper { color: var(--c-white); border-color: var(--c-white); }
-.pi-link--paper:hover { color: var(--c-line); border-color: var(--c-line); }
-.pi-cta-row { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
-
-/* ─── Shared kicker ──────────────────────────────────────── */
-.pi-kicker { margin: 0; border-left: 2px solid var(--c-steel); padding-left: 14px; font: 600 19px/1.35 var(--font-display), sans-serif; letter-spacing: -.015em; color: var(--c-ink); }
-.pi-kicker--paper { border-color: rgba(255,255,255,.6); color: var(--c-white); }
-
-/* ─── Shared section headings ────────────────────────────── */
-.pi-eyebrow { margin: 0 0 14px; font: 600 11px/1 var(--font-display), sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--c-steel); }
-.pi-eyebrow--line { color: var(--c-line); }
-.pi-h2 { margin: 0; font: 600 clamp(26px, 7cqi, 38px)/1.1 var(--font-display), sans-serif; letter-spacing: -.032em; color: var(--c-ink); text-wrap: balance; }
-
-/* ─── § 2 Hero ───────────────────────────────────────────── */
-.pi-hero { background: var(--c-white); padding: 76px 0 64px; }
-.pi-hero__col { max-width: 64ch; container-type: inline-size; display: flex; flex-direction: column; gap: 26px; }
-.pi-hero__tag { margin: 0; display: flex; align-items: center; gap: 12px; font: 600 11px/1 var(--font-display), sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--c-steel); }
-.pi-hero__tag-n { font: 400 12px/1 ui-monospace, monospace; color: var(--c-graphite); letter-spacing: 0; }
-.pi-hero__tag-rule { width: 40px; height: 1px; background: var(--c-ink); flex-shrink: 0; }
-.pi-hero__name-wrap { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
-.pi-hero__name { margin: 0; font: 600 clamp(22px, 6cqi, 34px)/1.05 var(--font-display), sans-serif; letter-spacing: -.032em; white-space: nowrap; color: var(--c-ink); display: flex; align-items: center; gap: .35em; }
-.pi-hero__name svg { flex: none; }
-.pi-dev-tag { display: inline-flex; align-items: center; padding: 4px 8px; font: 600 11px/1 var(--font-display), sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--c-steel); border: 1px solid var(--c-steel); white-space: nowrap; }
-.pi-hero__headline { margin: 0; font: 600 clamp(30px, 9cqi, 48px)/1.02 var(--font-display), sans-serif; letter-spacing: -.038em; color: var(--c-ink); text-wrap: balance; }
-.pi-hero__body { margin: 0; max-width: 52ch; font: 400 17px/1.55 var(--font-display), sans-serif; color: var(--c-graphite); text-wrap: pretty; }
-.pi-hero__emph { margin: 0; max-width: 52ch; font: 500 18px/1.5 var(--font-display), sans-serif; color: var(--c-ink); }
-.pi-status-note { padding: 16px 18px; border: 1px solid var(--c-steel); display: flex; flex-direction: column; gap: 8px; }
-.pi-status-note__label { margin: 0; font: 600 11px/1 var(--font-display), sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--c-steel); }
-.pi-status-note__body { margin: 0; font: 500 15px/1.5 var(--font-display), sans-serif; color: var(--c-ink); }
-
-/* Hero value props */
-.pi-hero__rule { border: none; border-top: 2px solid var(--c-ink); margin: 48px 0 0; }
-.pi-hero__props { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px,100%), 1fr)); column-gap: 40px; row-gap: 8px; }
-.pi-hero__prop { padding: 26px 0; border-top: 1px solid var(--c-line); }
-.pi-hero__prop-n { display: block; margin-bottom: 8px; font: 400 12px/1 ui-monospace, monospace; color: var(--c-graphite); }
-.pi-hero__prop-title { margin: 0 0 8px; font: 600 20px/1.25 var(--font-display), sans-serif; letter-spacing: -.02em; color: var(--c-ink); }
-.pi-hero__prop-body { margin: 0; font: 400 15px/1.55 var(--font-display), sans-serif; color: var(--c-graphite); }
-
-/* ─── § 3 Status meeting — Bond ──────────────────────────── */
-.pi-status { background: var(--c-bond); padding: 76px 0 80px; }
-.pi-status__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px,100%), 1fr)); gap: 48px; align-items: start; container-type: inline-size; }
-.pi-status__heading { margin: 0 0 16px; font: 600 clamp(28px, 8cqi, 42px)/1.1 var(--font-display), sans-serif; letter-spacing: -.035em; color: var(--c-ink); text-wrap: balance; }
-.pi-status__rule-line { border: none; border-top: 1px solid var(--c-line); margin: 0 0 16px; }
-.pi-status__body { margin: 0; font: 400 16px/1.6 var(--font-display), sans-serif; color: var(--c-graphite); }
-.pi-issues { border-top: 2px solid var(--c-ink); margin: 0; padding: 0; }
-.pi-issues__row { padding: 16px 0; border-bottom: 1px solid var(--c-line); font: 500 17px/1.45 var(--font-display), sans-serif; color: var(--c-ink); margin: 0; }
-.pi-issues__row:last-of-type { border-bottom: 0; }
-.pi-status__stack { display: flex; flex-direction: column; gap: 8px; margin: 20px 0 20px; }
-.pi-status__stack p { margin: 0; font: 400 16px/1.5 var(--font-display), sans-serif; color: var(--c-graphite); }
-
-/* ─── § 4 Management time — Paper ───────────────────────── */
-.pi-pattern { background: var(--c-white); padding: 76px 0 80px; }
-.pi-pattern__head { margin-bottom: 40px; }
-.pi-ledger { border-top: 2px solid var(--c-ink); }
-.pi-ledger__row { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px,100%), 1fr)); gap: 0 28px; align-items: baseline; padding: 28px 0; border-bottom: 1px solid var(--c-line); }
-.pi-ledger__row:last-child { border-bottom: 0; padding-bottom: 0; }
-.pi-ledger__title { display: flex; align-items: baseline; gap: 0; }
-.pi-ledger__n { width: 46px; flex: none; font: 400 12px/1 ui-monospace, monospace; color: var(--c-graphite); }
-.pi-ledger__name { margin: 0; font: 600 20px/1.25 var(--font-display), sans-serif; letter-spacing: -.02em; color: var(--c-ink); }
-.pi-ledger__detail { display: flex; flex-direction: column; gap: 8px; }
-.pi-ledger__sit { margin: 0; font: 400 15px/1.55 var(--font-display), sans-serif; color: var(--c-graphite); }
-.pi-ledger__qs { display: flex; flex-direction: column; gap: 6px; margin: 4px 0 0; }
-.pi-ledger__q { margin: 0; font: 500 15px/1.4 var(--font-display), sans-serif; color: var(--c-ink); }
-.pi-ledger__con { margin: 0; font: 500 15px/1.55 var(--font-display), sans-serif; color: var(--c-ink); }
-
-/* ─── § 5 Most systems — Bond ────────────────────────────── */
-.pi-premise { background: var(--c-bond); padding: 76px 0 80px; }
-.pi-premise__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px,100%), 1fr)); gap: 48px; align-items: start; container-type: inline-size; }
-.pi-premise__h-dim { margin: 0 0 8px; font: 400 clamp(24px, 6.6cqi, 34px)/1.12 var(--font-display), sans-serif; letter-spacing: -.03em; color: var(--c-graphite); }
-.pi-premise__h-bold { margin: 0; font: 600 clamp(28px, 8cqi, 42px)/1.05 var(--font-display), sans-serif; letter-spacing: -.035em; color: var(--c-ink); text-wrap: balance; }
-.pi-premise__rule { border: none; border-top: 1px solid var(--c-line); margin: 20px 0 16px; }
-.pi-premise__body1 { margin: 0 0 8px; font: 500 17px/1.5 var(--font-display), sans-serif; color: var(--c-ink); }
-.pi-premise__body2 { margin: 0; font: 400 16px/1.6 var(--font-display), sans-serif; color: var(--c-graphite); }
-.pi-exception-list { border-top: 2px solid var(--c-ink); }
-.pi-exception-row { display: flex; align-items: baseline; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--c-line); }
-.pi-exception-row:last-child { border-bottom: 0; }
-.pi-exception-n { font: 400 11px/1 ui-monospace, monospace; color: var(--c-graphite); flex: none; }
-.pi-exception-name { margin: 0; font: 500 16px/1.3 var(--font-display), sans-serif; color: var(--c-ink); }
-
-/* ─── § 6 Register — Paper ───────────────────────────────── */
-.pi-register { background: var(--c-white); padding: 76px 0 80px; }
-.pi-register__head { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; flex-wrap: wrap; margin-bottom: 34px; }
-.pi-register__caption { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; font: 400 11px/1 ui-monospace, monospace; color: var(--c-graphite); text-transform: uppercase; letter-spacing: .04em; white-space: nowrap; }
-.pi-register__caption span + span { color: var(--c-steel); }
-.pi-register__wrap { overflow-x: auto; }
-.pi-reg-card { border: 1px solid var(--c-ink); background: var(--c-white); min-width: 560px; }
-.pi-reg-card__title { padding: 20px 24px 22px; border-bottom: 1px solid var(--c-ink); font: 600 21px/1.25 var(--font-display), sans-serif; letter-spacing: -.022em; color: var(--c-ink); }
-.pi-reg-cols { display: grid; grid-template-columns: minmax(120px, 0.9fr) minmax(160px, 1.5fr) 52px minmax(78px, 0.6fr); }
-.pi-reg-head { background: var(--c-bond); border-bottom: 1px solid var(--c-line); }
-.pi-reg-head .pi-reg-cell { padding: 12px 14px; font: 600 10px/1 var(--font-display), sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--c-graphite); }
-.pi-reg-head .pi-reg-cell--age { text-align: right; }
-.pi-reg-row { border-bottom: 1px solid var(--c-line); align-items: baseline; }
-.pi-reg-row--last { border-bottom: 1px solid var(--c-ink); }
-.pi-reg-cell { padding: 14px 14px 16px; }
-.pi-reg-cell--proj { font: 500 15px/1.3 var(--font-display), sans-serif; color: var(--c-ink); }
-.pi-reg-cell--proj small { display: block; font: 400 13px/1.3 var(--font-display), sans-serif; color: var(--c-graphite); margin-top: 2px; }
-.pi-reg-cell--need { font: 400 15px/1.45 var(--font-display), sans-serif; color: var(--c-graphite); }
-.pi-reg-cell--age { font: 400 14px/1 ui-monospace, monospace; text-align: right; color: var(--c-ink); }
-.pi-reg-cell--status-over { font: 600 13px/1 var(--font-display), sans-serif; color: var(--c-revision); }
-.pi-reg-cell--status-block { font: 600 13px/1 var(--font-display), sans-serif; color: var(--c-revision); }
-.pi-reg-cell--status { font: 500 13px/1 var(--font-display), sans-serif; color: var(--c-graphite); }
-.pi-reg-footer { background: var(--c-ink); padding: 18px 24px; display: grid; grid-template-columns: auto 1fr; gap: 10px 24px; align-items: baseline; }
-.pi-reg-footer__label { font: 600 11px/1 var(--font-display), sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--c-line); white-space: nowrap; }
-.pi-reg-footer__value { font: 500 15px/1.4 var(--font-display), sans-serif; color: var(--c-white); }
-.pi-register__note { margin-top: 14px; font: 400 13px/1.45 var(--font-display), sans-serif; color: var(--c-graphite); }
-
-/* ─── § 7 From attention to action — Bond ────────────────── */
-.pi-action { background: var(--c-bond); padding: 76px 0 80px; }
-.pi-action__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px,100%), 1fr)); gap: 48px; align-items: start; }
-.pi-action__rule { border: none; border-top: 1px solid var(--c-line); margin: 14px 0 16px; }
-.pi-action__body { margin: 0; font: 400 16px/1.6 var(--font-display), sans-serif; color: var(--c-graphite); }
-.pi-action__intro { margin: 0 0 20px; font: 400 16px/1.6 var(--font-display), sans-serif; color: var(--c-graphite); }
-.pi-surfaced { border: 1px solid var(--c-ink); background: var(--c-white); padding: 18px 20px; display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
-.pi-surfaced__name { font: 600 17px/1.25 var(--font-display), sans-serif; letter-spacing: -.015em; color: var(--c-ink); }
-.pi-surfaced__age { font: 600 13px/1 var(--font-display), sans-serif; color: var(--c-revision); flex: none; }
-.pi-action__question { margin: 0 0 16px; font: 500 17px/1.45 var(--font-display), sans-serif; color: var(--c-ink); }
-.pi-question-rows { border-top: 2px solid var(--c-ink); }
-.pi-question-rows__row { padding: 13px 0; border-bottom: 1px solid var(--c-line); font: 500 16px/1.4 var(--font-display), sans-serif; color: var(--c-ink); margin: 0; }
-.pi-question-rows__row:last-child { border-bottom: 0; }
-
-/* ─── § 8 See it / Understand / Act — Paper + Ink strip ─── */
-.pi-loop { background: var(--c-white); padding: 76px 0 0; }
-.pi-loop__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px,100%), 1fr)); column-gap: 40px; padding-bottom: 40px; }
-.pi-loop__card { padding: 26px 0; display: flex; flex-direction: column; gap: 14px; }
-.pi-loop__card-head { display: flex; align-items: center; gap: 10px; }
-.pi-loop__card-n { font: 400 12px/1 ui-monospace, monospace; color: var(--c-graphite); }
-.pi-loop__card-prod { font: 600 11px/1 var(--font-display), sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--c-steel); }
-.pi-loop__card-q { margin: 0; font: 600 21px/1.25 var(--font-display), sans-serif; letter-spacing: -.022em; color: var(--c-ink); }
-.pi-loop__card-rule { border: none; border-top: 1px solid var(--c-line); }
-.pi-loop__card-body { display: flex; flex-direction: column; gap: 10px; }
-.pi-loop__card-body p { margin: 0; font: 400 15px/1.55 var(--font-display), sans-serif; color: var(--c-graphite); }
-.pi-loop__card-body p:first-child { font-weight: 500; color: var(--c-ink); }
-
-/* § 8b Ink strip */
-.pi-loop__strip { background: var(--c-ink); }
-.pi-loop__strip-inner { padding-block: 44px 48px; }
-.pi-loop__strip-head { display: flex; align-items: baseline; justify-content: space-between; gap: 20px 40px; flex-wrap: wrap; border-bottom: 1px solid #5F6466; padding-bottom: 22px; }
-.pi-loop__strip-eyebrow { font: 600 11px/1 var(--font-display), sans-serif; letter-spacing: .14em; text-transform: uppercase; color: #B8B9B5; }
-.pi-loop__strip-kicker { font: 400 14px/1 var(--font-display), sans-serif; color: #B8B9B5; }
-.pi-loop__beats { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); padding-top: 30px; }
-.pi-loop__beat { display: flex; flex-direction: column; gap: 10px; padding: 0 32px; }
-.pi-loop__beat:first-child { padding-left: 0; }
-.pi-loop__beat:last-child { padding-right: 0; }
-.pi-loop__beat--divider { border-left: 1px solid #5F6466; }
-.pi-loop__beat-n { font: 400 12px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace; letter-spacing: .04em; color: #B8B9B5; }
-.pi-loop__beat-title { margin: 0; font: 600 24px/1.2 var(--font-display), sans-serif; letter-spacing: -.026em; color: #FFFFFF; text-wrap: balance; }
-.pi-loop__beat-gloss { margin: 0; font: 400 14px/1.55 var(--font-display), sans-serif; color: #B8B9B5; }
-
-/* ─── § 9 Three products — Bond ──────────────────────────── */
-.pi-system { background: var(--c-bond); padding: 76px 0 80px; }
-.pi-system__rule-top { border: none; border-top: 2px solid var(--c-ink); margin: 24px 0 0; }
-.pi-system__rows { margin: 0; }
-.pi-system__row { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(220px,100%), 1fr)); gap: 18px 28px; align-items: baseline; padding: 26px 0; border-bottom: 1px solid var(--c-line); }
-.pi-system__row:last-child { border-bottom: 0; }
-.pi-system__name { font: 600 19px/1.2 var(--font-display), sans-serif; letter-spacing: -.02em; color: var(--c-ink); }
-.pi-system__promise { font: 500 16px/1.45 var(--font-display), sans-serif; color: var(--c-ink); }
-.pi-system__question { font: 400 15px/1.5 var(--font-display), sans-serif; color: var(--c-graphite); }
-.pi-system__close-rule { border: none; border-top: 2px solid var(--c-ink); margin: 0; }
-.pi-system__close { margin: 20px 0 0; max-width: 70ch; font: 500 17px/1.55 var(--font-display), sans-serif; color: var(--c-ink); }
-
-/* ─── § 10 Manage by exception — Paper ──────────────────── */
-.pi-questions-sec { background: var(--c-white); padding: 76px 0 80px; }
-.pi-questions-sec__head { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px,100%), 1fr)); gap: 24px; align-items: baseline; margin-bottom: 32px; }
-.pi-questions-sec__right { font: 400 16px/1.6 var(--font-display), sans-serif; color: var(--c-graphite); }
-.pi-questions-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px,100%), 1fr)); column-gap: 40px; padding-bottom: 30px; }
-.pi-questions-grid__cell { padding: 22px 0; font: 600 19px/1.25 var(--font-display), sans-serif; letter-spacing: -.02em; color: var(--c-ink); }
-.pi-questions-sec__rule { border: none; border-top: 2px solid var(--c-ink); }
-.pi-questions-sec__close { margin: 20px 0 0; max-width: 70ch; font: 500 17px/1.55 var(--font-display), sans-serif; color: var(--c-ink); }
-
-/* ─── § 11 Know where risk is — Bond ────────────────────── */
-.pi-aging { background: var(--c-bond); padding: 76px 0 80px; }
-.pi-aging__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px,100%), 1fr)); gap: 48px; align-items: start; }
-.pi-aging__rule { border: none; border-top: 1px solid var(--c-line); margin: 14px 0 16px; }
-.pi-aging__body { margin: 0; font: 500 17px/1.5 var(--font-display), sans-serif; color: var(--c-ink); }
-.pi-escalation { display: flex; align-items: baseline; flex-wrap: wrap; gap: 18px; margin: 20px 0 14px; }
-.pi-escalation__n { font: 400 28px/1 ui-monospace, monospace; letter-spacing: -.02em; color: var(--c-ink); }
-.pi-escalation__n--breach { color: var(--c-revision); }
-.pi-escalation__then { font: 400 15px/1 var(--font-display), sans-serif; color: var(--c-graphite); }
-.pi-aging__caption { margin: 0; font: 400 15px/1.55 var(--font-display), sans-serif; color: var(--c-graphite); }
-.pi-aging-rows { border-top: 2px solid var(--c-ink); }
-.pi-aging-row { padding: 16px 0; border-bottom: 1px solid var(--c-line); font: 500 16px/1.5 var(--font-display), sans-serif; color: var(--c-ink); margin: 0; }
-.pi-aging-row:last-child { border-bottom: 0; }
-
-/* ─── § 12 Closing CTA — Ink ─────────────────────────────── */
-.pi-close { background: var(--c-ink); padding: 88px 0 80px; }
-.pi-close__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(340px,100%), 1fr)); gap: 56px; align-items: start; container-type: inline-size; }
-.pi-close__lockup { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; flex-wrap: wrap; }
-.pi-close__lockup-name { font: 600 14px/1 var(--font-display), sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--c-white); white-space: nowrap; }
-.pi-close__lockup-dev { display: inline-flex; align-items: center; padding: 3px 7px; font: 600 10px/1 var(--font-display), sans-serif; letter-spacing: .12em; text-transform: uppercase; color: var(--c-line); border: 1px solid var(--c-graphite); white-space: nowrap; }
-.pi-close__lockup-rule { flex: 1; height: 1px; background: var(--c-graphite); min-width: 20px; }
-.pi-close__h { margin: 0 0 24px; font: 600 clamp(34px, 11cqi, 64px)/0.98 var(--font-display), sans-serif; letter-spacing: -.042em; color: var(--c-white); text-wrap: balance; }
-.pi-close__body1 { margin: 0 0 14px; max-width: 46ch; font: 400 19px/1.55 var(--font-display), sans-serif; color: var(--c-line); text-wrap: pretty; }
-.pi-close__body2 { margin: 0; max-width: 46ch; font: 400 16px/1.6 var(--font-display), sans-serif; color: var(--c-line); text-wrap: pretty; }
-.pi-close__kicker { margin: 24px 0 0; border-left: 2px solid var(--c-white); padding-left: 14px; font: 600 19px/1.35 var(--font-display), sans-serif; color: var(--c-white); }
-.pi-close__index-label { margin: 0 0 0; font: 500 12px/1 var(--font-display), sans-serif; letter-spacing: .12em; text-transform: uppercase; color: var(--c-line); }
-.pi-close__index-rule { height: 1px; background: var(--c-graphite); margin: 14px 0 0; }
-.pi-close__index-row { display: flex; align-items: center; gap: 12px; padding: 16px 0; border-bottom: 1px solid var(--c-graphite); }
-.pi-close__index-row:last-child { border-bottom: 0; }
-.pi-close__index-n { font: 400 12px/1 ui-monospace, monospace; color: var(--c-line); flex-shrink: 0; }
-.pi-close__index-name { font: 600 17px/1 var(--font-display), sans-serif; color: var(--c-white); }
-.pi-close__index-ext { font: 400 11px/1 var(--font-display), sans-serif; color: var(--c-graphite); margin-left: auto; }
-
-/* ─── Footer ─────────────────────────────────────────────── */
-
-}
-
-/* ─── Responsive ─────────────────────────────────────────── */
-@media (max-width: 900px) {
-}
-@media (max-width: 760px) {
-  .pi-hero { padding: 56px 0 48px; }
-  .pi-hero__rule { margin-top: 32px; }
-}
-@media (max-width: 540px) {
-  .pi-loop__beat--divider { border-left: none; }
-  .pi-loop__beat { padding-inline: 0; }
-}
-</style>
+<link rel="stylesheet" href="../brand-kit/tokens.css">
+<link rel="stylesheet" href="../brand-kit/brand.css">
 <link rel="stylesheet" href="../brand-kit/cos-header.css">
 <link rel="stylesheet" href="../brand-kit/cos-footer.css">
+<style>
+body { margin: 0; }
+</style>
 </head>
 <body>
 
@@ -308,650 +63,243 @@ img { max-width: 100%; display: block; }
 </header>
 <!-- header:end -->
 
-<!-- § 2. Hero — Paper -->
-<section class="pi-hero">
-  <div class="cos-container">
-    <div class="pi-hero__col">
-
-      <!-- Tag row -->
-      <p class="pi-hero__tag">
-        <span class="pi-hero__tag-n">03</span>
-        <span class="pi-hero__tag-rule"></span>
-        <span>Attention</span>
-      </p>
-
-      <!-- Name row -->
-      <div class="pi-hero__name-wrap">
-        <h1 class="pi-hero__name">
-          <!-- icon-better-visibility at .78em, no red -->
-          <svg viewBox="0 0 100 100" style="width:.78em;height:.78em;flex:none" aria-hidden="true">
-            <rect x="6" y="18" width="88" height="64" fill="none" stroke="#476776" stroke-width="5"/>
-            <line x1="18" y1="70" x2="82" y2="70" stroke="currentColor" stroke-width="9"/>
-            <line x1="30" y1="70" x2="30" y2="56" stroke="currentColor" stroke-width="9"/>
-            <line x1="50" y1="70" x2="50" y2="44" stroke="currentColor" stroke-width="9"/>
-            <line x1="70" y1="70" x2="70" y2="32" stroke="currentColor" stroke-width="9"/>
-          </svg>
-          Project Intelligence
-        </h1>
-        <span class="pi-dev-tag" aria-label="In development">In Development</span>
+<!-- ================= 1. HERO ================= -->
+<div style="background: #FFFFFF; padding: 72px 0 72px;">
+  <div style="max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px);">
+    <div style="container-type: inline-size; display: flex; flex-direction: column; gap: 22px; max-width: 76ch;">
+      <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
+        <svg viewBox="0 0 100 100" width="26" height="26" aria-hidden="true" style="flex: none;">
+          <rect x="6" y="18" width="88" height="64" fill="none" stroke="#476776" stroke-width="5"></rect>
+          <line x1="18" y1="70" x2="82" y2="70" stroke="#111111" stroke-width="9"></line>
+          <line x1="30" y1="70" x2="30" y2="56" stroke="#111111" stroke-width="9"></line>
+          <line x1="50" y1="70" x2="50" y2="44" stroke="#111111" stroke-width="9"></line>
+          <line x1="70" y1="70" x2="70" y2="32" stroke="#C43230" stroke-width="9"></line>
+        </svg>
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #476776;">Project Intelligence</div>
+        <div style="box-sizing: border-box; font-family: Archivo, sans-serif; font-weight: 600; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: #5F6466; border: 1px solid #B8B9B5; padding: 4px 8px; flex: none;">In development</div>
       </div>
-
-      <!-- Headline -->
-      <p class="pi-hero__headline">Know what needs attention.</p>
-
-      <!-- Body -->
-      <p class="pi-hero__body">Across active projects, surface the open decisions, aging changes, missing approvals, unresolved RFIs, unsigned agreements, and schedule issues that need intervention.</p>
-
-      <!-- Emphasis -->
-      <p class="pi-hero__emph">Spend less time collecting status. More time resolving what&rsquo;s holding the work up.</p>
-
-      <!-- Kicker -->
-      <p class="pi-kicker">See what matters. Understand what needs to happen. Move the work forward.</p>
-
-      <!-- CTA row -->
-      <div class="pi-cta-row">
-        <a class="pi-btn pi-btn--ink" href="https://cal.com/justinyurasits">Book a Construction OS demo</a>
-        <a class="pi-link pi-link--ink" href="#register">See the attention view</a>
+      <h1 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(30px, 9cqi, 56px); line-height: 1.0; letter-spacing: -0.04em; color: #111111; text-wrap: balance;">Know what needs attention.</h1>
+      <p style="margin: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 17px; line-height: 1.6; color: #5F6466; max-width: 64ch;">Surface the open decisions, aging changes, missing approvals, unresolved RFIs, unsigned agreements, and schedule issues that need intervention across active projects.</p>
+      <div style="border-left: 2px solid #476776; padding-left: 18px; font-family: Archivo, sans-serif; font-weight: 600; font-size: 19px; line-height: 1.45; letter-spacing: -0.02em; color: #111111; max-width: 44ch;">Manage the exceptions instead of chasing status.</div>
+      <div style="display: flex; align-items: center; gap: 22px; flex-wrap: wrap; padding-top: 4px;">
+        <a href="https://cal.com/justinyurasits" style="box-sizing: border-box; background: #111111; color: #FFFFFF; font-family: Archivo, sans-serif; font-weight: 600; font-size: 15px; letter-spacing: -0.01em; padding: 15px 26px; min-height: 48px; display: inline-flex; align-items: center; text-decoration: none;">Book a call</a>
+        <a href="#attention-view" style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 15px; letter-spacing: -0.01em; color: #111111; border-bottom: 2px solid #111111; padding-bottom: 3px; text-decoration: none;">See the attention view &darr;</a>
       </div>
-
-      <!-- Product-status note (disclosure 2 of 4) -->
-      <div class="pi-status-note" role="note">
-        <p class="pi-status-note__label">Product Status</p>
-        <p class="pi-status-note__body">Project Intelligence is in development. The views shown here illustrate the intended product experience.</p>
-      </div>
-
     </div>
 
-    <!-- Value props — full-width under 2px Ink rule -->
-    <hr class="pi-hero__rule" aria-hidden="true">
-    <div class="pi-hero__props" aria-label="Key capabilities">
-      <div class="pi-hero__prop">
-        <span class="pi-hero__prop-n">01</span>
-        <h2 class="pi-hero__prop-title">What needs attention, in one place</h2>
-        <p class="pi-hero__prop-body">See the open items that require action across active projects.</p>
-      </div>
-      <div class="pi-hero__prop">
-        <span class="pi-hero__prop-n">02</span>
-        <h2 class="pi-hero__prop-title">Prioritized by urgency</h2>
-        <p class="pi-hero__prop-body">Know what is overdue, blocked, waiting, due soon, or beginning to age.</p>
-      </div>
-      <div class="pi-hero__prop">
-        <span class="pi-hero__prop-n">03</span>
-        <h2 class="pi-hero__prop-title">Manage by exception</h2>
-        <p class="pi-hero__prop-body">Spend leadership time on the projects and decisions that actually need intervention.</p>
-      </div>
+    <div style="border-top: 1px solid #B8B9B5; margin-top: 44px; padding-top: 18px; display: flex; flex-wrap: wrap; gap: 10px 32px; align-items: baseline;">
+      <div style="flex: none; font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #5F6466;">Product status</div>
+      <div style="flex: 1 1 380px; min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 14px; line-height: 1.55; color: #5F6466;">Project Intelligence is in development. The views shown here illustrate the intended product experience.</div>
     </div>
   </div>
-</section>
+</div>
 
-<!-- § 3. Status meeting — Bond -->
-<section class="pi-status">
-  <div class="cos-container">
-    <div class="pi-status__grid">
+<!-- ================= 2. THE ATTENTION VIEW ================= -->
+<div id="attention-view" style="background: #EFEFEB; padding: 76px 0 80px;">
+  <div style="max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px);">
 
-      <div>
-        <p class="pi-eyebrow">The Current State</p>
-        <h2 class="pi-status__heading">Your status meeting shouldn&rsquo;t be where you discover the problem.</h2>
-        <hr class="pi-status__rule-line">
-        <p class="pi-status__body">A project issue usually exists long before it becomes visible to leadership.</p>
+    <div style="container-type: inline-size; border-bottom: 2px solid #111111; padding-bottom: 28px;">
+      <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #476776; padding-bottom: 16px;">The attention view</div>
+      <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(28px, 8cqi, 42px); line-height: 1.05; letter-spacing: -0.035em; color: #111111; max-width: 22ch; text-wrap: balance;">Focus attention where it matters.</h2>
+    </div>
+
+    <div style="padding-top: 32px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); gap: 28px 40px;">
+      <div style="min-width: 0; display: flex; flex-direction: column; gap: 9px;">
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 19px; line-height: 1.3; letter-spacing: -0.02em; color: #111111; text-wrap: balance;">What needs attention, in one place</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">See the open items and exceptions that require action across active projects.</div>
+      </div>
+      <div style="min-width: 0; display: flex; flex-direction: column; gap: 9px;">
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 19px; line-height: 1.3; letter-spacing: -0.02em; color: #111111; text-wrap: balance;">Prioritized by urgency</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">Know what is overdue, blocked, waiting, due soon, or beginning to age.</div>
+      </div>
+      <div style="min-width: 0; display: flex; flex-direction: column; gap: 9px;">
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 19px; line-height: 1.3; letter-spacing: -0.02em; color: #111111; text-wrap: balance;">Manage by exception</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">Spend leadership time on the projects and decisions that actually need intervention.</div>
+      </div>
+    </div>
+
+    <div style="padding-top: 40px;">
+      <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding-bottom: 12px;">
+        <div style="font-family: ui-monospace, monospace; font-size: 11px; letter-spacing: 0.1em; color: #476776;">PROJECT ATTENTION</div>
+        <div style="font-family: ui-monospace, monospace; font-size: 11px; letter-spacing: 0.04em; color: #5F6466;">EXAMPLE VIEW &middot; IN DEVELOPMENT</div>
       </div>
 
-      <div>
-        <div class="pi-issues">
-          <p class="pi-issues__row">The owner approval has been sitting for twelve days.</p>
-          <p class="pi-issues__row">The subcontract still isn&rsquo;t signed.</p>
-          <p class="pi-issues__row">An RFI has been waiting on the architect for a week.</p>
-          <p class="pi-issues__row">A finish selection is starting to threaten procurement.</p>
+      <div style="box-sizing: border-box; border: 1px solid #111111; background: #FFFFFF; position: relative;">
+        <div style="position: absolute; top: 10px; right: 10px; width: 14px; height: 14px; border-top: 2px solid #B8B9B5; border-right: 2px solid #B8B9B5;"></div>
+
+        <div style="border-bottom: 1px solid #111111; padding: 22px 28px 20px; display: flex; flex-direction: column; gap: 6px;">
+          <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 18px; letter-spacing: -0.02em; color: #111111;">Project attention</div>
+          <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 13.5px; line-height: 1.45; color: #5F6466;">5 items need attention across 4 active projects</div>
         </div>
-        <div class="pi-status__stack">
-          <p>The PM may know.</p>
-          <p>Someone may have mentioned it in a meeting.</p>
-          <p>It may be sitting in an email, a log, a spreadsheet, or somebody&rsquo;s head.</p>
+
+        <div style="padding: 0 28px;">
+          <div style="overflow-x: auto;">
+            <div style="min-width: 580px;">
+              <!-- Header row -->
+              <div style="display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1.6fr) 62px 96px; column-gap: 20px; padding: 16px 0 10px;">
+                <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #5F6466;">Project / Owner</div>
+                <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #5F6466;">Needs attention</div>
+                <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #5F6466; text-align: right;">Age</div>
+                <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #5F6466; text-align: right;">Status</div>
+              </div>
+              <!-- Row 01 — Ink border closes header -->
+              <div style="display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1.6fr) 62px 96px; column-gap: 20px; border-top: 1px solid #111111; padding: 14px 0 15px;">
+                <div style="min-width: 0; display: flex; flex-direction: column; gap: 3px;">
+                  <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 14.5px; line-height: 1.35; letter-spacing: -0.014em; color: #111111;">Residential Renovation</div>
+                  <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 12.5px; line-height: 1.3; color: #5F6466;">PM</div>
+                </div>
+                <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 14.5px; line-height: 1.4; color: #5F6466;">Owner approval &mdash; millwork change</div>
+                <div style="min-width: 0; font-family: ui-monospace, monospace; font-size: 14px; letter-spacing: 0.02em; color: #111111; text-align: right; font-variant-numeric: tabular-nums;">12d</div>
+                <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 13.5px; line-height: 1.4; letter-spacing: 0.02em; color: #C43230; text-align: right;">Overdue</div>
+              </div>
+              <!-- Row 02 -->
+              <div style="display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1.6fr) 62px 96px; column-gap: 20px; border-top: 1px solid #B8B9B5; padding: 14px 0 15px;">
+                <div style="min-width: 0; display: flex; flex-direction: column; gap: 3px;">
+                  <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 14.5px; line-height: 1.35; letter-spacing: -0.014em; color: #111111;">Cambridge Renovation</div>
+                  <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 12.5px; line-height: 1.3; color: #5F6466;">Ops</div>
+                </div>
+                <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 14.5px; line-height: 1.4; color: #5F6466;">Subcontract agreement</div>
+                <div style="min-width: 0; font-family: ui-monospace, monospace; font-size: 14px; letter-spacing: 0.02em; color: #111111; text-align: right; font-variant-numeric: tabular-nums;">6d</div>
+                <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 13.5px; line-height: 1.4; letter-spacing: 0.02em; color: #C43230; text-align: right;">Blocked</div>
+              </div>
+              <!-- Row 03 -->
+              <div style="display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1.6fr) 62px 96px; column-gap: 20px; border-top: 1px solid #B8B9B5; padding: 14px 0 15px;">
+                <div style="min-width: 0; display: flex; flex-direction: column; gap: 3px;">
+                  <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 14.5px; line-height: 1.35; letter-spacing: -0.014em; color: #111111;">High-Rise Residence</div>
+                  <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 12.5px; line-height: 1.3; color: #5F6466;">Architect</div>
+                </div>
+                <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 14.5px; line-height: 1.4; color: #5F6466;">RFI 027 &mdash; ceiling coordination</div>
+                <div style="min-width: 0; font-family: ui-monospace, monospace; font-size: 14px; letter-spacing: 0.02em; color: #111111; text-align: right; font-variant-numeric: tabular-nums;">8d</div>
+                <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: 13.5px; line-height: 1.4; letter-spacing: 0.02em; color: #5F6466; text-align: right;">Waiting</div>
+              </div>
+              <!-- Row 04 -->
+              <div style="display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1.6fr) 62px 96px; column-gap: 20px; border-top: 1px solid #B8B9B5; padding: 14px 0 15px;">
+                <div style="min-width: 0; display: flex; flex-direction: column; gap: 3px;">
+                  <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 14.5px; line-height: 1.35; letter-spacing: -0.014em; color: #111111;">Back Bay Residence</div>
+                  <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 12.5px; line-height: 1.3; color: #5F6466;">PM</div>
+                </div>
+                <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 14.5px; line-height: 1.4; color: #5F6466;">Client finish selection</div>
+                <div style="min-width: 0; font-family: ui-monospace, monospace; font-size: 14px; letter-spacing: 0.02em; color: #111111; text-align: right; font-variant-numeric: tabular-nums;">5d</div>
+                <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: 13.5px; line-height: 1.4; letter-spacing: 0.02em; color: #5F6466; text-align: right;">Due soon</div>
+              </div>
+              <!-- Row 05 -->
+              <div style="display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1.6fr) 62px 96px; column-gap: 20px; border-top: 1px solid #B8B9B5; padding: 14px 0 15px;">
+                <div style="min-width: 0; display: flex; flex-direction: column; gap: 3px;">
+                  <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 14.5px; line-height: 1.35; letter-spacing: -0.014em; color: #111111;">Townhouse Renovation</div>
+                  <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 12.5px; line-height: 1.3; color: #5F6466;">Estimator</div>
+                </div>
+                <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 14.5px; line-height: 1.4; color: #5F6466;">Change pricing not issued</div>
+                <div style="min-width: 0; font-family: ui-monospace, monospace; font-size: 14px; letter-spacing: 0.02em; color: #111111; text-align: right; font-variant-numeric: tabular-nums;">4d</div>
+                <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: 13.5px; line-height: 1.4; letter-spacing: 0.02em; color: #111111; text-align: right;">Open</div>
+              </div>
+            </div>
+          </div>
         </div>
-        <p class="pi-kicker">The problem is knowing what needs attention before it becomes a bigger problem.</p>
+
+        <div style="border-top: 1px solid #111111; padding: 16px 28px; font-family: Archivo, sans-serif; font-weight: 500; font-size: 14.5px; line-height: 1.45; letter-spacing: -0.012em; color: #111111;">Nothing running to plan needs your attention.</div>
       </div>
 
+      <div style="padding-top: 14px; font-family: Archivo, sans-serif; font-weight: 400; font-size: 13.5px; line-height: 1.5; color: #5F6466;">Example project attention view. Project Intelligence is in development.</div>
     </div>
   </div>
-</section>
+</div>
 
-<!-- § 4. Management time — Paper -->
-<section class="pi-pattern">
-  <div class="cos-container">
-    <div class="pi-pattern__head">
-      <p class="pi-eyebrow">The Pattern</p>
-      <h2 class="pi-h2" style="max-width:26ch">Too much management time is spent finding out what&rsquo;s happening.</h2>
+<!-- ================= 3. WHERE IT FITS ================= -->
+<div style="background: #FFFFFF; padding: 76px 0 80px;">
+  <div style="max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px);">
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 24px 48px; align-items: start; border-bottom: 2px solid #111111; padding-bottom: 28px;">
+      <div style="container-type: inline-size; min-width: 0;">
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #476776; padding-bottom: 16px;">Where it fits</div>
+        <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(26px, 7cqi, 40px); line-height: 1.05; letter-spacing: -0.034em; color: #111111; max-width: 24ch; text-wrap: balance;">See the exception. Know what to do. Produce what comes next.</h2>
+      </div>
+      <div style="min-width: 0; display: flex; flex-direction: column; gap: 12px; padding-top: 5px;">
+        <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 17px; line-height: 1.5; letter-spacing: -0.015em; color: #111111;">Project Intelligence is designed to become the attention layer of Construction OS.</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.6; color: #5F6466;">It surfaces the exception. Construction Intelligence helps determine what should happen. Document Workbench helps produce the documentation needed to move the work forward.</div>
+      </div>
     </div>
-    <div class="pi-ledger">
 
-      <div class="pi-ledger__row">
-        <div class="pi-ledger__title">
-          <span class="pi-ledger__n">01</span>
-          <h3 class="pi-ledger__name">Every PM has a different mental dashboard.</h3>
+    <div style="padding-top: 36px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); gap: 32px 40px;">
+      <div style="min-width: 0; display: flex; flex-direction: column; gap: 12px;">
+        <div style="display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap;">
+          <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: #5F6466;">01</div>
+          <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #476776;">Project Intelligence</div>
         </div>
-        <div class="pi-ledger__detail">
-          <p class="pi-ledger__sit">One person tracks everything religiously. Another manages from email. Another remembers what matters because they&rsquo;ve been living inside the job for six months.</p>
-          <p class="pi-ledger__con">Leadership gets a different version of project status depending on who is answering.</p>
-        </div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 21px; line-height: 1.25; letter-spacing: -0.024em; color: #111111; text-wrap: balance;">See the exception.</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">Surface the item that needs attention.</div>
+        <div style="font-family: ui-monospace, monospace; font-size: 12px; line-height: 1.5; letter-spacing: 0.02em; color: #C43230; padding-top: 2px;">Owner approval &mdash; millwork change &middot; 12 days overdue</div>
       </div>
-
-      <div class="pi-ledger__row">
-        <div class="pi-ledger__title">
-          <span class="pi-ledger__n">02</span>
-          <h3 class="pi-ledger__name">Important issues age quietly.</h3>
+      <div style="min-width: 0; display: flex; flex-direction: column; gap: 12px;">
+        <div style="display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap;">
+          <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: #5F6466;">02</div>
+          <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #476776;">Construction Intelligence</div>
         </div>
-        <div class="pi-ledger__detail">
-          <p class="pi-ledger__sit">Changes wait for approval. RFIs sit unanswered. Agreements remain unsigned. Selections slip. Decisions stay open.</p>
-          <p class="pi-ledger__con">Nothing looks catastrophic yet&mdash;until the delay starts affecting cost, procurement, or schedule.</p>
-        </div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 21px; line-height: 1.25; letter-spacing: -0.024em; color: #111111; text-wrap: balance;">Know what to do.</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">Apply company procedures, pricing rules, standards, and construction knowledge to determine the appropriate response.</div>
       </div>
-
-      <div class="pi-ledger__row">
-        <div class="pi-ledger__title">
-          <span class="pi-ledger__n">03</span>
-          <h3 class="pi-ledger__name">Leadership becomes the status collector.</h3>
+      <div style="min-width: 0; display: flex; flex-direction: column; gap: 12px;">
+        <div style="display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap;">
+          <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: #5F6466;">03</div>
+          <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #476776;">Document Workbench</div>
         </div>
-        <div class="pi-ledger__detail">
-          <p class="pi-ledger__sit">Owners, COOs, and project executives spend too much time asking:</p>
-          <div class="pi-ledger__qs">
-            <p class="pi-ledger__q">Where does this stand?</p>
-            <p class="pi-ledger__q">Did the owner approve it?</p>
-            <p class="pi-ledger__q">Has that change been priced?</p>
-            <p class="pi-ledger__q">Why is this RFI still open?</p>
-            <p class="pi-ledger__q">Are we waiting on them or are they waiting on us?</p>
-          </div>
-          <p class="pi-ledger__con">That is time spent discovering the work instead of managing it.</p>
-        </div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 21px; line-height: 1.25; letter-spacing: -0.024em; color: #111111; text-wrap: balance;">Produce what the job needs.</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">Prepare the change documentation, RFI, agreement, approval, or other project document needed to move the issue forward.</div>
       </div>
+    </div>
 
-      <div class="pi-ledger__row">
-        <div class="pi-ledger__title">
-          <span class="pi-ledger__n">04</span>
-          <h3 class="pi-ledger__name">Everything competes for attention.</h3>
-        </div>
-        <div class="pi-ledger__detail">
-          <p class="pi-ledger__sit">Most projects have dozens or hundreds of things happening at once. Leadership does not need to see everything.</p>
-          <p class="pi-ledger__con">They need to know which few things are no longer running to plan.</p>
-        </div>
-      </div>
-
+    <div style="border-top: 1px solid #B8B9B5; margin-top: 40px; padding-top: 18px;">
+      <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 13.5px; line-height: 1.5; color: #5F6466; max-width: 70ch;">This illustrates the intended Construction OS sequence. Project Intelligence is still in development.</div>
     </div>
   </div>
-</section>
+</div>
 
-<!-- § 5. Most systems — Bond -->
-<section class="pi-premise">
-  <div class="cos-container">
-    <div class="pi-premise__grid">
+<!-- ================= 4. BUILT WHEN THE OPERATION CALLS FOR IT ================= -->
+<div style="background: #EFEFEB; padding: 76px 0 80px;">
+  <div style="max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px);">
+    <div style="container-type: inline-size; display: flex; flex-direction: column; gap: 20px; border-bottom: 2px solid #111111; padding-bottom: 30px;">
+      <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #476776;">Development approach</div>
+      <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(28px, 8cqi, 42px); line-height: 1.05; letter-spacing: -0.035em; color: #111111; max-width: 24ch; text-wrap: balance;">Built when the operation calls for it.</h2>
+    </div>
 
-      <div>
-        <p class="pi-eyebrow">The Product</p>
-        <p class="pi-premise__h-dim">Most systems show you everything.</p>
-        <h2 class="pi-premise__h-bold">Project Intelligence is designed to show you what matters now.</h2>
-        <hr class="pi-premise__rule">
-        <p class="pi-premise__body1">Project Intelligence is the attention layer of Construction OS.</p>
-        <p class="pi-premise__body2">Instead of asking leadership to interpret another dashboard full of project data, it is designed to surface the exceptions that deserve intervention.</p>
+    <div style="padding-top: 30px; display: flex; flex-wrap: wrap; gap: 24px 48px; align-items: flex-start;">
+      <div style="flex: 1.7 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 14px;">
+        <p style="margin: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.6; color: #5F6466;">Project Intelligence is not being built just to fill out a product roadmap.</p>
+        <p style="margin: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.6; color: #5F6466;">It will be developed where real client engagements show a need for better visibility across active projects&mdash;<wbr>when important issues are aging quietly, leadership is spending too much time collecting status, or existing systems make it difficult to see where intervention is actually needed.</p>
       </div>
-
-      <div>
-        <div class="pi-exception-list">
-          <div class="pi-exception-row">
-            <span class="pi-exception-n">01</span>
-            <p class="pi-exception-name">Open decisions.</p>
-          </div>
-          <div class="pi-exception-row">
-            <span class="pi-exception-n">02</span>
-            <p class="pi-exception-name">Aging changes.</p>
-          </div>
-          <div class="pi-exception-row">
-            <span class="pi-exception-n">03</span>
-            <p class="pi-exception-name">Missing approvals.</p>
-          </div>
-          <div class="pi-exception-row">
-            <span class="pi-exception-n">04</span>
-            <p class="pi-exception-name">Unresolved RFIs.</p>
-          </div>
-          <div class="pi-exception-row">
-            <span class="pi-exception-n">05</span>
-            <p class="pi-exception-name">Unsigned agreements.</p>
-          </div>
-          <div class="pi-exception-row">
-            <span class="pi-exception-n">06</span>
-            <p class="pi-exception-name">Client selections.</p>
-          </div>
-          <div class="pi-exception-row">
-            <span class="pi-exception-n">07</span>
-            <p class="pi-exception-name">Schedule issues.</p>
-          </div>
-          <div class="pi-exception-row">
-            <span class="pi-exception-n">08</span>
-            <p class="pi-exception-name">Other work that has stopped moving.</p>
-          </div>
-        </div>
-        <p class="pi-kicker" style="margin-top:24px">Nothing running to plan needs your attention.</p>
-      </div>
-
+      <div style="flex: 1 1 260px; min-width: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 21px; line-height: 1.4; letter-spacing: -0.024em; color: #111111; text-wrap: balance;">Build what the operation justifies.</div>
     </div>
   </div>
-</section>
+</div>
 
-<!-- § 6. Attention register — Paper -->
-<section class="pi-register" id="register">
-  <div class="cos-container">
-
-    <div class="pi-register__head">
-      <div>
-        <p class="pi-eyebrow">The View</p>
-        <h2 class="pi-h2">One view of the exceptions across active projects.</h2>
+<!-- ================= 5. CLOSING CTA ================= -->
+<div style="background: #111111; padding: 84px 0 80px;">
+  <div style="max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr)); gap: 48px; align-items: start;">
+    <div style="container-type: inline-size; min-width: 0; display: flex; flex-direction: column; gap: 26px;">
+      <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
+        <svg viewBox="0 0 100 100" width="24" height="24" aria-hidden="true" style="flex: none;">
+          <rect x="6" y="18" width="88" height="64" fill="none" stroke="#B8B9B5" stroke-width="5"></rect>
+          <line x1="18" y1="70" x2="82" y2="70" stroke="#FFFFFF" stroke-width="10"></line>
+          <line x1="30" y1="70" x2="30" y2="56" stroke="#FFFFFF" stroke-width="10"></line>
+          <line x1="50" y1="70" x2="50" y2="44" stroke="#FFFFFF" stroke-width="10"></line>
+          <line x1="70" y1="70" x2="70" y2="32" stroke="#C43230" stroke-width="10"></line>
+        </svg>
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: #FFFFFF;">Project Intelligence</div>
+        <div style="box-sizing: border-box; font-family: Archivo, sans-serif; font-weight: 600; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: #FFFFFF; border: 1px solid #5F6466; padding: 4px 8px; flex: none;">In development</div>
       </div>
-      <div class="pi-register__caption">
-        <span>Project Attention</span>
-        <span>Example View</span>
-      </div>
-    </div>
-
-    <!-- Register card -->
-    <div class="pi-register__wrap">
-      <div class="pi-reg-card" role="region" aria-label="Project attention register example">
-
-        <!-- Title band -->
-        <div class="pi-reg-card__title">5 items need attention across 4 active projects</div>
-
-        <!-- Column headers -->
-        <div class="pi-reg-cols pi-reg-head">
-          <div class="pi-reg-cell">Project</div>
-          <div class="pi-reg-cell">Needs Attention</div>
-          <div class="pi-reg-cell pi-reg-cell--age">Age</div>
-          <div class="pi-reg-cell">Status</div>
-        </div>
-
-        <!-- Row 1 — Overdue (red) -->
-        <div class="pi-reg-cols pi-reg-row">
-          <div class="pi-reg-cell pi-reg-cell--proj">
-            Residential Renovation
-            <small>PM</small>
-          </div>
-          <div class="pi-reg-cell pi-reg-cell--need">Owner approval &mdash; millwork change</div>
-          <div class="pi-reg-cell pi-reg-cell--age">12d</div>
-          <div class="pi-reg-cell pi-reg-cell--status-over">Overdue</div>
-        </div>
-
-        <!-- Row 2 — Blocked (red) -->
-        <div class="pi-reg-cols pi-reg-row">
-          <div class="pi-reg-cell pi-reg-cell--proj">
-            Cambridge Renovation
-            <small>Ops</small>
-          </div>
-          <div class="pi-reg-cell pi-reg-cell--need">Subcontract agreement</div>
-          <div class="pi-reg-cell pi-reg-cell--age">6d</div>
-          <div class="pi-reg-cell pi-reg-cell--status-block">Blocked</div>
-        </div>
-
-        <!-- Row 3 -->
-        <div class="pi-reg-cols pi-reg-row">
-          <div class="pi-reg-cell pi-reg-cell--proj">
-            High-Rise Residence
-            <small>Architect</small>
-          </div>
-          <div class="pi-reg-cell pi-reg-cell--need">RFI 027 &mdash; ceiling coordination</div>
-          <div class="pi-reg-cell pi-reg-cell--age">8d</div>
-          <div class="pi-reg-cell pi-reg-cell--status">Waiting</div>
-        </div>
-
-        <!-- Row 4 -->
-        <div class="pi-reg-cols pi-reg-row">
-          <div class="pi-reg-cell pi-reg-cell--proj">
-            Back Bay Residence
-            <small>PM</small>
-          </div>
-          <div class="pi-reg-cell pi-reg-cell--need">Client finish selection</div>
-          <div class="pi-reg-cell pi-reg-cell--age">5d</div>
-          <div class="pi-reg-cell pi-reg-cell--status">Due soon</div>
-        </div>
-
-        <!-- Row 5 — last, 1px Ink bottom -->
-        <div class="pi-reg-cols pi-reg-row pi-reg-row--last">
-          <div class="pi-reg-cell pi-reg-cell--proj">
-            Townhouse Renovation
-            <small>Estimator</small>
-          </div>
-          <div class="pi-reg-cell pi-reg-cell--need">Change pricing not issued</div>
-          <div class="pi-reg-cell pi-reg-cell--age">4d</div>
-          <div class="pi-reg-cell pi-reg-cell--status">Open</div>
-        </div>
-
-        <!-- Ink footer -->
-        <div class="pi-reg-footer">
-          <span class="pi-reg-footer__label">Manage by Exception</span>
-          <p class="pi-reg-footer__value">Nothing running to plan needs your attention.</p>
-        </div>
-
+      <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(28px, 9cqi, 46px); line-height: 1.05; letter-spacing: -0.038em; color: #FFFFFF; text-wrap: balance;">If this is already a problem inside your company, bring it to the conversation.</div>
+      <div style="display: flex; align-items: center; gap: 22px; flex-wrap: wrap; padding-top: 4px;">
+        <a href="https://cal.com/justinyurasits" style="box-sizing: border-box; background: #FFFFFF; color: #111111; font-family: Archivo, sans-serif; font-weight: 600; font-size: 15px; letter-spacing: -0.01em; padding: 15px 26px; min-height: 48px; display: inline-flex; align-items: center; text-decoration: none;">Book a call</a>
       </div>
     </div>
 
-    <!-- Disclosure caption (disclosure 3 of 4) -->
-    <p class="pi-register__note">Example project attention view. Project Intelligence is in development.</p>
-
-  </div>
-</section>
-
-<!-- § 7. From attention to action — Bond -->
-<section class="pi-action">
-  <div class="cos-container">
-    <div class="pi-action__grid">
-
-      <div>
-        <p class="pi-eyebrow">Seeing the Issue Is Only the Beginning</p>
-        <h2 class="pi-h2">From attention to action.</h2>
-        <hr class="pi-action__rule">
-        <p class="pi-action__body">This is where Project Intelligence becomes part of an operating system rather than another reporting tool.</p>
-      </div>
-
-      <div>
-        <div style="border-top:2px solid var(--c-ink);padding-top:24px;display:flex;flex-direction:column;gap:22px">
-          <p class="pi-action__intro">Imagine Project Intelligence surfaces:</p>
-
-          <!-- Surfaced item card — "12 days overdue" is red (permitted use) -->
-          <div class="pi-surfaced">
-            <span class="pi-surfaced__name">Owner approval &mdash; millwork change</span>
-            <span class="pi-surfaced__age">12 days overdue</span>
-          </div>
-
-          <p class="pi-action__question">Now the team needs more than a red status. They need to know:</p>
-
-          <div class="pi-question-rows">
-            <p class="pi-question-rows__row">What does our process require?</p>
-            <p class="pi-question-rows__row">Can the work proceed?</p>
-            <p class="pi-question-rows__row">What authorization is needed?</p>
-            <p class="pi-question-rows__row">How should the change be priced?</p>
-            <p class="pi-question-rows__row">What document needs to be issued?</p>
-          </div>
-
-          <p class="pi-kicker">That is where the other parts of Construction OS come in.</p>
-        </div>
-      </div>
-
+    <div style="min-width: 0; display: flex; flex-direction: column;">
+      <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: #B8B9B5; padding-bottom: 14px;">Available today</div>
+      <a href="/products/construction-intelligence.html" style="border-top: 1px solid #5F6466; padding: 18px 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 17px; line-height: 1.4; letter-spacing: -0.015em; color: #FFFFFF; text-decoration: none; display: block;">Explore Construction Intelligence &rarr;</a>
+      <a href="/products/document-workbench.html" style="border-top: 1px solid #5F6466; padding: 18px 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 17px; line-height: 1.4; letter-spacing: -0.015em; color: #FFFFFF; text-decoration: none; display: block;">Explore Document Workbench &rarr;</a>
     </div>
   </div>
-</section>
+</div>
 
-<!-- § 8. See it. Understand it. Act on it. — Paper + Ink strip -->
-<section class="pi-loop" id="loop">
-  <div class="cos-container">
-    <p class="pi-eyebrow">The Loop</p>
-    <h2 class="pi-h2">See it. Understand it. Act on it.</h2>
-    <div style="border-top:2px solid var(--c-ink);margin-top:24px"></div>
-
-    <div class="pi-loop__grid">
-
-      <!-- Card 01 — Project Intelligence -->
-      <div class="pi-loop__card">
-        <div class="pi-loop__card-head">
-          <span class="pi-loop__card-n">01</span>
-          <!-- icon-better-visibility at 15px, no red, no frame at this size -->
-          <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true">
-            <line x1="18" y1="70" x2="82" y2="70" stroke="currentColor" stroke-width="11"/>
-            <line x1="30" y1="70" x2="30" y2="56" stroke="currentColor" stroke-width="11"/>
-            <line x1="50" y1="70" x2="50" y2="44" stroke="currentColor" stroke-width="11"/>
-            <line x1="70" y1="70" x2="70" y2="32" stroke="currentColor" stroke-width="11"/>
-          </svg>
-          <span class="pi-loop__card-prod">Project Intelligence</span>
-        </div>
-        <h3 class="pi-loop__card-q">What needs attention?</h3>
-        <hr class="pi-loop__card-rule">
-        <div class="pi-loop__card-body">
-          <p>Surface the exception: owner-requested millwork change awaiting approval.</p>
-          <p>Identify that it is aging and requires intervention.</p>
-        </div>
-      </div>
-
-      <!-- Card 02 — Construction Intelligence -->
-      <div class="pi-loop__card">
-        <div class="pi-loop__card-head">
-          <span class="pi-loop__card-n">02</span>
-          <!-- icon-fewer-bottlenecks at 15px, no red, no hairline -->
-          <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true">
-            <polyline points="8,20 40,20 54,42 94,42" fill="none" stroke="currentColor" stroke-width="11"/>
-            <polyline points="8,80 40,80 54,58 94,58" fill="none" stroke="currentColor" stroke-width="11"/>
-          </svg>
-          <span class="pi-loop__card-prod">Construction Intelligence</span>
-        </div>
-        <h3 class="pi-loop__card-q">What should we do?</h3>
-        <hr class="pi-loop__card-rule">
-        <div class="pi-loop__card-body">
-          <p>Apply construction know-how and company-specific procedures.</p>
-          <p>Determine the required authorization, pricing treatment, applicable standards, and conditions that affect the answer.</p>
-          <p>Show the sources behind the guidance.</p>
-        </div>
-      </div>
-
-      <!-- Card 03 — Document Workbench -->
-      <div class="pi-loop__card">
-        <div class="pi-loop__card-head">
-          <span class="pi-loop__card-n">03</span>
-          <!-- icon-less-paperwork at 15px, no red, one sheet at this size -->
-          <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true">
-            <rect x="14" y="26" width="52" height="60" fill="none" stroke="currentColor" stroke-width="11"/>
-          </svg>
-          <span class="pi-loop__card-prod">Document Workbench</span>
-        </div>
-        <h3 class="pi-loop__card-q">What needs to be produced?</h3>
-        <hr class="pi-loop__card-rule">
-        <div class="pi-loop__card-body">
-          <p>Guide the PM toward the appropriate documentation.</p>
-          <p>Prepare the change documentation, authorization, RFI, agreement, meeting record, or other project document needed to move the issue forward.</p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- § 8b. Ink strip — full-bleed inside Paper section -->
-  <div class="pi-loop__strip">
-    <div class="pi-loop__strip-inner cos-container">
-      <div class="pi-loop__strip-head">
-        <span class="pi-loop__strip-eyebrow">THE CONSTRUCTION OS LOOP</span>
-        <span class="pi-loop__strip-kicker">Three products, one sequence.</span>
-      </div>
-      <div class="pi-loop__beats">
-        <div class="pi-loop__beat">
-          <span class="pi-loop__beat-n">01</span>
-          <p class="pi-loop__beat-title">See the exception.</p>
-          <p class="pi-loop__beat-gloss">Project Intelligence surfaces what needs attention.</p>
-        </div>
-        <div class="pi-loop__beat pi-loop__beat--divider">
-          <span class="pi-loop__beat-n">02</span>
-          <p class="pi-loop__beat-title">Know what to do.</p>
-          <p class="pi-loop__beat-gloss">Construction Intelligence answers it your company&rsquo;s way.</p>
-        </div>
-        <div class="pi-loop__beat pi-loop__beat--divider">
-          <span class="pi-loop__beat-n">03</span>
-          <p class="pi-loop__beat-title">Produce what the job needs.</p>
-          <p class="pi-loop__beat-gloss">Document Workbench issues the document.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- § 9. Three products. One operating system. — Bond -->
-<section class="pi-system">
-  <div class="cos-container">
-    <p class="pi-eyebrow">The System</p>
-    <h2 class="pi-h2">Three products. One operating system.</h2>
-    <hr class="pi-system__rule-top">
-
-    <div class="pi-system__rows">
-
-      <div class="pi-system__row">
-        <span class="pi-system__name">Project Intelligence</span>
-        <span class="pi-system__promise">Know what needs attention.</span>
-        <span class="pi-system__question">What across the active portfolio is no longer running to plan?</span>
-      </div>
-
-      <div class="pi-system__row">
-        <span class="pi-system__name">Construction Intelligence</span>
-        <span class="pi-system__promise">Know how the work should be handled.</span>
-        <span class="pi-system__question">What do our standards, procedures, contracts, pricing rules, and experience say we should do?</span>
-      </div>
-
-      <div class="pi-system__row">
-        <span class="pi-system__name">Document Workbench</span>
-        <span class="pi-system__promise">Produce the documents that move it forward.</span>
-        <span class="pi-system__question">What needs to be written, issued, approved, or documented next?</span>
-      </div>
-
-    </div>
-
-    <hr class="pi-system__close-rule" style="margin-top:0">
-    <p class="pi-system__close">Construction OS is designed to connect those three questions instead of leaving the PM to move manually between project status, company knowledge, and document production.</p>
-  </div>
-</section>
-
-<!-- § 10. Manage by exception — Paper -->
-<section class="pi-questions-sec">
-  <div class="cos-container">
-
-    <div class="pi-questions-sec__head">
-      <div>
-        <p class="pi-eyebrow">The Questions</p>
-        <h2 class="pi-h2" style="text-wrap: auto; max-width: 22ch;">Manage by exception&mdash;<wbr>not by inbox.</h2>
-      </div>
-      <p class="pi-questions-sec__right">Project Intelligence is designed for the moments when someone needs to know:</p>
-    </div>
-
-    <div style="border-top:2px solid var(--c-ink)"></div>
-
-    <div class="pi-questions-grid">
-      <div class="pi-questions-grid__cell">What changed?</div>
-      <div class="pi-questions-grid__cell">What is getting old?</div>
-      <div class="pi-questions-grid__cell">What is blocked?</div>
-      <div class="pi-questions-grid__cell">What are we waiting on?</div>
-      <div class="pi-questions-grid__cell">What is starting to threaten schedule or cost?</div>
-      <div class="pi-questions-grid__cell">Where does leadership need to intervene?</div>
-    </div>
-
-    <hr class="pi-questions-sec__rule">
-    <p class="pi-questions-sec__close">Instead of rebuilding that picture through emails, meetings, calls, and spreadsheets, the goal is a clearer view of the work that has stopped moving.</p>
-
-  </div>
-</section>
-
-<!-- § 11. Know where the risk is building — Bond -->
-<section class="pi-aging">
-  <div class="cos-container">
-    <div class="pi-aging__grid">
-
-      <div>
-        <p class="pi-eyebrow">Aging</p>
-        <h2 class="pi-h2">Know where the risk is building.</h2>
-        <hr class="pi-aging__rule">
-        <p class="pi-aging__body">Not every issue starts as a crisis.</p>
-
-        <!-- Escalation — 4d and 7d Ink, 12d red (permitted use) -->
-        <div class="pi-escalation" aria-label="Aging progression: 4 days, then 7 days, then 12 days overdue">
-          <span class="pi-escalation__n">4d</span>
-          <span class="pi-escalation__then">then</span>
-          <span class="pi-escalation__n">7d</span>
-          <span class="pi-escalation__then">then</span>
-          <span class="pi-escalation__n pi-escalation__n--breach">12d</span>
-        </div>
-
-        <p class="pi-aging__caption">An approval is four days old. Then seven. Then twelve.</p>
-      </div>
-
-      <div>
-        <div class="pi-aging-rows" style="border-top:2px solid var(--c-ink)">
-          <p class="pi-aging-row">A selection that felt early suddenly threatens a lead time.</p>
-          <p class="pi-aging-row">A change waits for pricing while the field keeps moving.</p>
-          <p class="pi-aging-row">A subcontract remains unsigned while mobilization approaches.</p>
-        </div>
-        <p class="pi-kicker" style="margin-top:24px">Project Intelligence is designed to make aging and unresolved work visible while there is still time to act.</p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- § 12. Closing CTA — Ink -->
-<section class="pi-close" id="cta">
-  <div class="cos-container">
-    <div class="pi-close__grid">
-
-      <!-- Left column -->
-      <div>
-        <!-- Lockup: product icon + name + in-dev tag + rule -->
-        <div class="pi-close__lockup">
-          <!-- icon-better-visibility at 24px, Paper strokes, Line gray frame, no red -->
-          <svg viewBox="0 0 100 100" width="24" height="24" aria-hidden="true">
-            <rect x="6" y="18" width="88" height="64" fill="none" stroke="#B8B9B5" stroke-width="5"/>
-            <line x1="18" y1="70" x2="82" y2="70" stroke="#ffffff" stroke-width="9"/>
-            <line x1="30" y1="70" x2="30" y2="56" stroke="#ffffff" stroke-width="9"/>
-            <line x1="50" y1="70" x2="50" y2="44" stroke="#ffffff" stroke-width="9"/>
-            <line x1="70" y1="70" x2="70" y2="32" stroke="#ffffff" stroke-width="9"/>
-          </svg>
-          <span class="pi-close__lockup-name">Project Intelligence</span>
-          <!-- In development tag (disclosure 4 of 4) -->
-          <span class="pi-close__lockup-dev">In Development</span>
-          <span class="pi-close__lockup-rule"></span>
-        </div>
-
-        <h2 class="pi-close__h">Give leadership its attention back.</h2>
-        <p class="pi-close__body1">Your leadership team should not have to chase five PMs to understand five projects.</p>
-        <p class="pi-close__body2">They should be able to focus on the decisions, problems, and exceptions where their experience can actually change the outcome.</p>
-        <p class="pi-close__kicker">Know what needs attention. Know what to do next. Keep the work moving.</p>
-
-        <div class="pi-cta-row" style="margin-top:32px">
-          <a class="pi-btn pi-btn--paper" href="https://cal.com/justinyurasits">Book a Construction OS demo</a>
-          <a class="pi-link pi-link--paper" href="/products/construction-intelligence.html">Explore Construction Intelligence &rarr;</a>
-          <a class="pi-link pi-link--paper" href="/products/document-workbench.html">Explore Document Workbench &rarr;</a>
-        </div>
-      </div>
-
-      <!-- Right column — rest of the system (PI not listed — you're on it) -->
-      <div>
-        <p class="pi-close__index-label">The rest of the system</p>
-        <div class="pi-close__index-rule"></div>
-
-        <!-- 01 Document Workbench -->
-        <div class="pi-close__index-row">
-          <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true">
-            <rect x="14" y="26" width="52" height="60" fill="none" stroke="#ffffff" stroke-width="12"/>
-          </svg>
-          <span class="pi-close__index-n">01</span>
-          <span class="pi-close__index-name">Document Workbench</span>
-        </div>
-
-        <!-- 02 Construction Intelligence -->
-        <div class="pi-close__index-row">
-          <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true">
-            <polyline points="8,20 40,20 54,42 94,42" fill="none" stroke="#ffffff" stroke-width="12"/>
-            <polyline points="8,80 40,80 54,58 94,58" fill="none" stroke="#ffffff" stroke-width="12"/>
-          </svg>
-          <span class="pi-close__index-n">02</span>
-          <span class="pi-close__index-name">Construction Intelligence</span>
-        </div>
-
-        <!-- Operations Automation -->
-        <div class="pi-close__index-row">
-          <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true">
-            <line x1="14" y1="28" x2="34" y2="28" stroke="#ffffff" stroke-width="12"/>
-            <line x1="42" y1="28" x2="62" y2="28" stroke="#ffffff" stroke-width="12"/>
-            <line x1="70" y1="28" x2="90" y2="28" stroke="#ffffff" stroke-width="12"/>
-            <line x1="14" y1="74" x2="90" y2="74" stroke="#ffffff" stroke-width="12"/>
-          </svg>
-          <span class="pi-close__index-n">&mdash;&mdash;</span>
-          <span class="pi-close__index-name">Operations Automation</span>
-          <span class="pi-close__index-ext">Extension layer</span>
-        </div>
-
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- § 13. Footer — Paper -->
 <!-- footer:start -->
 <footer class="cos-footer">
   <div class="cos-footer__inner cos-container">
@@ -1024,11 +372,11 @@ img { max-width: 100%; display: block; }
       </div>
       <div class="cos-titleblock__cell">
         <span class="cos-titleblock__label">Issued</span>
-        <span class="cos-titleblock__value">2026-09-06</span>
+        <span class="cos-titleblock__value">2026-09-07</span>
       </div>
       <div class="cos-titleblock__cell">
         <span class="cos-titleblock__label">Rev</span>
-        <span class="cos-titleblock__value">03</span>
+        <span class="cos-titleblock__value">02</span>
       </div>
       <div class="cos-titleblock__cell">
         <span class="cos-titleblock__label">Status</span>

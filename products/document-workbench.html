@@ -21,6 +21,7 @@
   --c-line:      #B8B9B5;
   --c-revision:  #C43230;
   --font-display: 'Archivo';
+  --font-body:    'Archivo', Helvetica, sans-serif;
 }
 
 /* ─── Container ──────────────────────────────────────────── */
@@ -377,11 +378,13 @@
   padding: 24px 0;
   display: flex;
   flex-direction: column;
+  gap: 6px;
+  border-right: 1px solid var(--c-line);
 }
-.dw-stat-before { font: 400 12px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace; color: var(--c-graphite); margin: 0 0 10px; }
-.dw-stat-figure { font: 600 clamp(28px, 3.4vw, 36px)/1 var(--font-display), sans-serif; letter-spacing: -.03em; color: var(--c-ink); margin: 0 0 12px; }
+.dw-stat:last-child { border-right: none; }
+.dw-stat-before { font: 400 12px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace; color: var(--c-graphite); margin: 0; }
+.dw-stat-figure { font: 600 38px/1 var(--font-display), sans-serif; letter-spacing: -.035em; color: var(--c-ink); margin: 0; }
 .dw-stat-figure--red { color: var(--c-revision); }
-.dw-stat-rule { border: none; border-top: 1px solid var(--c-line); margin: 0 0 12px; }
 .dw-stat-caption { font: 400 14px/1.5 var(--font-display), sans-serif; color: var(--c-graphite); margin: 0; }
 .dw-built__foot {
   margin-top: 32px;
@@ -433,7 +436,7 @@
   .dw-step { padding: 24px 0; border-top: 1px solid var(--c-line); }
   .dw-step:first-child { border-top: 0; padding-top: 0; }
   .dw-stats { grid-template-columns: 1fr; }
-  .dw-stat { border-bottom: 1px solid var(--c-line); }
+  .dw-stat { border-bottom: 1px solid var(--c-line); border-right: none; }
   .dw-stat:last-child { border-bottom: 0; }
 }
 @media (max-width: 600px) {
@@ -914,18 +917,15 @@
       <div class="dw-stat">
         <p class="dw-stat-before">4&ndash;8 hrs &rarr;</p>
         <p class="dw-stat-figure dw-stat-figure--red">~30 min</p>
-        <hr class="dw-stat-rule">
         <p class="dw-stat-caption">Initial contract package preparation</p>
       </div>
       <div class="dw-stat">
         <p class="dw-stat-before">~10 days &rarr;</p>
         <p class="dw-stat-figure dw-stat-figure--red">~3 days</p>
-        <hr class="dw-stat-rule">
         <p class="dw-stat-caption">Change-order turnaround</p>
       </div>
       <div class="dw-stat">
         <p class="dw-stat-figure">150+</p>
-        <hr class="dw-stat-rule">
         <p class="dw-stat-caption">Standard construction document types</p>
       </div>
     </div>

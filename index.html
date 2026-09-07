@@ -482,95 +482,80 @@
 }
 
 /* Real-world proof */
-.prf-intro { max-width: 52ch; }
+.prf-intro {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+  gap: 40px;
+  align-items: start;
+  margin-bottom: 40px;
+}
+.prf-intro-head-cell { container-type: inline-size; min-width: 0; }
 .prf-intro-head {
-  font-family: var(--font-display);
-  font-size: clamp(21px, 2.6vw, 26px);
-  font-weight: 500;
-  line-height: 1.18;
-  letter-spacing: -0.015em;
-  color: var(--fg);
+  font: 600 clamp(26px, 7cqi, 38px)/1.08 var(--font-display), sans-serif;
+  letter-spacing: -0.032em;
+  color: var(--c-ink);
+  text-wrap: balance;
   margin: 0;
+  max-width: 22ch;
 }
 .prf-intro-copy {
-  font-family: var(--font-body);
-  font-size: var(--fs-body);
-  line-height: var(--lh-body);
-  color: var(--fg-muted);
-  margin: var(--s-3) 0 0;
+  font: 400 16px/1.6 var(--font-display), sans-serif;
+  color: var(--c-graphite);
+  margin: 0;
+  max-width: 44ch;
+  text-wrap: pretty;
 }
 .prf-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  border-top: var(--w-cut) solid var(--rule-cut);
-  margin-top: var(--s-6);
+  grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+  column-gap: 40px;
+  border-top: 2px solid var(--c-ink);
+  align-items: start;
 }
 .prf-stat {
-  padding: var(--s-5) var(--s-6) var(--s-5) 0;
+  padding: 26px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border-right: 1px solid var(--c-line);
 }
-.prf-stat + .prf-stat {
-  padding-left: var(--s-6);
-  border-left: var(--w-dimension) solid var(--rule-dimension);
-}
-.prf-stat:last-child { padding-right: 0; }
+.prf-stat:last-child { border-right: none; }
 .prf-before {
-  font-family: var(--font-display);
-  font-size: var(--fs-annotation);
-  letter-spacing: var(--tr-annotation);
-  color: var(--fg-muted);
-  margin: 0 0 var(--s-3);
-  min-height: calc(1em * 1.35);
-}
-.prf-figure {
-  font-family: var(--font-display);
-  font-size: clamp(38px, 4.5vw, 56px);
-  font-weight: 600;
-  line-height: 1;
-  letter-spacing: -0.03em;
-  color: var(--fg);
+  font: 400 12px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace;
+  letter-spacing: .04em;
+  color: var(--c-graphite);
   margin: 0;
 }
-.prf-figure--red { color: var(--change); }
-.prf-label {
-  font-family: var(--font-display);
-  font-size: var(--fs-annotation);
-  letter-spacing: var(--tr-annotation);
-  color: var(--fg-muted);
-  margin: var(--s-4) 0 0;
-  padding-top: var(--s-3);
-  border-top: var(--w-dimension) solid var(--rule-dimension);
+.prf-figure {
+  font: 600 38px/1 var(--font-display), sans-serif;
+  letter-spacing: -0.035em;
+  color: var(--c-ink);
+  margin: 0;
 }
-.prf-sublabel {
-  font-family: var(--font-display);
-  font-size: var(--fs-annotation);
-  letter-spacing: var(--tr-annotation);
-  color: var(--fg-muted);
-  margin: var(--s-1) 0 0;
-  opacity: 0.65;
+.prf-figure--red { color: var(--c-revision); }
+.prf-label {
+  font: 400 14px/1.5 var(--font-display), sans-serif;
+  color: var(--c-graphite);
+  margin: 0;
 }
 .prf-foot {
+  margin-top: 32px;
+  padding-top: 18px;
+  border-top: 1px solid var(--c-line);
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
-  margin-top: var(--s-4);
-  padding-top: var(--s-4);
-  border-top: var(--w-dimension) solid var(--rule-dimension);
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
 }
-@media (max-width: 760px) {
-  .prf-grid { grid-template-columns: 1fr 1fr; }
-  .prf-stat:nth-child(3) {
-    border-left: none;
-    padding-left: 0;
-    padding-top: var(--s-5);
-    border-top: var(--w-dimension) solid var(--rule-dimension);
-    grid-column: 1 / -1;
-  }
-}
-@media (max-width: 480px) {
+.prf-case { font: 400 11px/1 ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace; letter-spacing: .04em; text-transform: uppercase; color: var(--c-graphite); }
+.prf-case-link { font: 600 14px/1 var(--font-display), sans-serif; letter-spacing: -.01em; color: var(--c-ink); text-decoration: none; border-bottom: 2px solid var(--c-ink); padding-bottom: 2px; }
+.prf-case-link:hover { color: var(--c-steel); border-bottom-color: var(--c-steel); }
+@media (max-width: 600px) {
   .prf-grid { grid-template-columns: 1fr; }
-  .prf-stat + .prf-stat { border-left: none; padding-left: 0; border-top: var(--w-dimension) solid var(--rule-dimension); }
-  .prf-stat:nth-child(3) { grid-column: auto; }
-  .prf-foot { flex-direction: column; gap: var(--s-3); }
+  .prf-stat { border-bottom: 1px solid var(--c-line); border-right: none; }
+  .prf-stat:last-child { border-bottom: 0; }
+  .prf-foot { flex-direction: column; gap: 12px; }
 }
 
 /* Products — shared intro grammar */
@@ -2143,14 +2128,16 @@
 <section class="surface--white zone--tight" id="proof">
   <div class="cos-container">
     <div class="prf-intro">
-      <h2 class="prf-intro-head">Built in real construction operations.</h2>
+      <div class="prf-intro-head-cell">
+        <h2 class="prf-intro-head">Built in real construction operations.</h2>
+      </div>
       <p class="prf-intro-copy">Construction OS grew out of hands-on construction management&mdash;learning where the work breaks down, then building and applying systems to fix it.</p>
     </div>
     <div class="prf-grid">
       <div class="prf-stat">
         <p class="prf-before">4&ndash;8 hrs &rarr;</p>
         <p class="prf-figure prf-figure--red">~30 min</p>
-        <p class="prf-label">Contract package preparation</p>
+        <p class="prf-label">Initial contract package preparation</p>
       </div>
       <div class="prf-stat">
         <p class="prf-before">~10 days &rarr;</p>
@@ -2158,15 +2145,13 @@
         <p class="prf-label">Change-order turnaround</p>
       </div>
       <div class="prf-stat">
-        <p class="prf-before">&nbsp;</p>
         <p class="prf-figure">150+</p>
         <p class="prf-label">Standard construction document types</p>
-        <p class="prf-sublabel">Across the full project lifecycle</p>
       </div>
     </div>
     <div class="prf-foot">
-      <span class="annotation">CASE-001 &sol; Residential GC &sol; Boston</span>
-      <a class="annotation" href="#">Read the case study &rarr;</a>
+      <span class="prf-case">CASE-001 &sol; RESIDENTIAL GC &sol; BOSTON</span>
+      <a class="prf-case-link" href="#">Read the case study &rarr;</a>
     </div>
   </div>
 </section>

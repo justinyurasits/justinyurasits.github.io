@@ -93,8 +93,8 @@
 /* ── Section heading block ──────────────────────────── */
 .srv-head-block {
   display:grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(280px,100%),1fr));
-  gap:28px 48px; align-items:end;
+  grid-template-columns: repeat(auto-fit, minmax(min(320px,100%),1fr));
+  gap:40px 48px; align-items:start;
   border-bottom:2px solid #111111; padding-bottom:30px; margin-bottom:34px;
 }
 .srv-head-block--pb26 { padding-bottom:26px; margin-bottom:30px; }
@@ -133,7 +133,7 @@
   column-gap:40px;
 }
 .srv-item-grid--signals { grid-template-columns: repeat(auto-fit, minmax(min(300px,100%),1fr)); }
-.srv-item-grid--questions { grid-template-columns: repeat(auto-fit, minmax(min(280px,100%),1fr)); }
+.srv-item-grid--questions { grid-template-columns: repeat(auto-fit, minmax(min(420px,100%),1fr)); column-gap:48px; padding-top:18px; }
 .srv-item-grid--reasons { grid-template-columns: repeat(auto-fit, minmax(min(280px,100%),1fr)); }
 .srv-item-grid--inputs { grid-template-columns: repeat(auto-fit, minmax(min(240px,100%),1fr)); column-gap:32px; }
 
@@ -142,8 +142,8 @@
   font: 500 16px/1.5 var(--font-display),sans-serif; color:#111111; margin:0;
 }
 .srv-q-cell {
-  border-top:1px solid #B8B9B5; padding:20px 0;
-  font: 600 19px/1.35 var(--font-display),sans-serif; letter-spacing:-.02em; color:#111111; margin:0;
+  border-top:1px solid #B8B9B5; padding:14px 0 16px;
+  font: 500 16px/1.45 var(--font-display),sans-serif; letter-spacing:-.012em; color:#111111; margin:0;
 }
 .srv-reason-cell {
   border-top:1px solid #B8B9B5; padding:20px 0;
@@ -161,10 +161,10 @@
 
 /* ── Section close (two-column under Ink rule) ──────── */
 .srv-section-close {
-  margin-top:30px; padding-top:30px; border-top:2px solid #111111;
+  margin-top:34px; padding-top:26px; border-top:2px solid #111111;
   display:grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(260px,100%),1fr));
-  gap:28px 48px; align-items:start;
+  grid-template-columns: repeat(auto-fit, minmax(min(320px,100%),1fr));
+  gap:24px 48px; align-items:start;
 }
 .srv-close-stack { display:flex; flex-direction:column; }
 .srv-close-stack--8 { gap:8px; }
@@ -182,7 +182,6 @@
   text-transform:uppercase; color:#5F6466; margin:0;
 }
 .srv-typical-body { margin:0; font: 400 15px/1.55 var(--font-display),sans-serif; color:#5F6466; }
-.srv-typical-cta { margin:0; font: 500 16px/1.4 var(--font-display),sans-serif; color:#111111; padding-top:10px; border-top:1px solid #B8B9B5; }
 
 /* ── §3 Index rows ──────────────────────────────────── */
 .srv-index-grid {
@@ -570,26 +569,25 @@ a:hover { color:#111111; }
       </div>
     </div>
 
-    <p style="margin:0 0 24px; font:400 16px/1.6 var(--font-display),sans-serif; color:#5F6466;">That often means questions like:</p>
+    <p style="padding-top:26px; margin:0; font:600 11px/1 var(--font-display),sans-serif; letter-spacing:.14em; text-transform:uppercase; color:#5F6466;">That often means questions like</p>
 
     <ul class="srv-item-grid srv-item-grid--questions" style="list-style:none;padding:0;margin:0">
       <li class="srv-q-cell">Where are skilled people spending time on low-value production?</li>
-      <li class="srv-q-cell">What depends too heavily on one person?</li>
-      <li class="srv-q-cell">Where is information difficult to find or reuse?</li>
       <li class="srv-q-cell">Which recurring workflows create the most friction?</li>
+      <li class="srv-q-cell">What depends too heavily on one person?</li>
       <li class="srv-q-cell">Where does work stall because of manual handoffs or poor visibility?</li>
+      <li class="srv-q-cell">Where is information difficult to find or reuse?</li>
       <li class="srv-q-cell">Which problem should be fixed first?</li>
     </ul>
 
     <div class="srv-section-close">
       <div class="srv-close-stack srv-close-stack--10">
         <p class="srv-close-outcome-sm">The outcome is not a long AI roadmap.</p>
-        <p class="srv-close-outcome-lg">It's a clear view of what is worth solving—and what a better way of working could look like.</p>
+        <p class="srv-close-outcome-lg">It's a clear view of what is worth solving&mdash;<wbr>and what a better way of working could look like.</p>
       </div>
       <div class="srv-close-stack srv-close-stack--12">
         <p class="srv-typical-label">Typical Work</p>
         <p class="srv-typical-body">Operational discovery, workflow analysis, knowledge mapping, opportunity prioritization, pilot definition, and implementation planning.</p>
-        <p class="srv-typical-cta">Start with the problems that matter enough to fix.</p>
       </div>
     </div>
   </div>

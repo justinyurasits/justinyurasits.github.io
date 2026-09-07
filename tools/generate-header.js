@@ -46,7 +46,6 @@ function buildHeader(active, activeProduct) {
       </a>
       <button class="cos-header__toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav">Menu</button>
       <ul class="cos-nav" id="main-nav" role="list">
-${navA('/work.html', 'Work', 'work')}
         <li class="cos-nav__dropdown">
           <button class="cos-nav__trigger${triggerCur}" aria-expanded="false" aria-haspopup="true" aria-controls="products-panel">Products</button>
           <nav class="cos-nav__panel" id="products-panel">

@@ -112,17 +112,16 @@ function buildFooter(footerConfig) {
       </div>
 
       <!-- Products -->
-      <div class="cos-footer__col">
+      <div class="cos-footer__col" style="flex: 1.2 1 150px; max-width: 280px; min-width: 0;">
         <span class="cos-footer__col-head">Products</span>
 ${footerItem('/products/document-workbench.html', '01', 'Document Workbench', current)}
 ${footerItem('/products/construction-intelligence.html', '02', 'Construction Intelligence', current)}
 ${footerItem('/products/project-intelligence.html', '03', 'Project Intelligence', current)}
 ${footerItem('/products/operations-automation.html', '——', 'Operations Automation', current)}
-${footerItem('/products/custom-solutions.html', '——', 'Custom Solutions', current)}
       </div>
 
       <!-- Company -->
-      <nav class="cos-footer__col" aria-label="Company">
+      <nav class="cos-footer__col" aria-label="Company" style="flex: 0.8 1 98px; max-width: 190px; min-width: 0;">
         <span class="cos-footer__col-head">Company</span>
         ${current === 'services'
           ? '<span class="cos-footer__col-item cos-footer__col-item--ink" aria-current="page">Engagements</span>'
@@ -133,13 +132,13 @@ ${footerItem('/products/custom-solutions.html', '——', 'Custom Solutions', cu
       </nav>
 
       <!-- Resources -->
-      <nav class="cos-footer__col" aria-label="Resources">
+      <nav class="cos-footer__col" aria-label="Resources" style="flex: 0.8 1 88px; max-width: 180px; min-width: 0;">
         <span class="cos-footer__col-head">Resources</span>
 ${resourcesFooterItem('/insights.html', 'insights', 'Insights', current)}
       </nav>
 
       <!-- Contact -->
-      <div class="cos-footer__col">
+      <div class="cos-footer__col" style="flex: 1.4 1 172px; max-width: 300px; min-width: 0;">
         <span class="cos-footer__col-head">Get in touch</span>
         <a class="cos-footer__contact-email" href="mailto:${email}">${email}</a>
         <a class="cos-footer__col-item" href="https://linkedin.com/in/justinyurasits">LinkedIn</a>

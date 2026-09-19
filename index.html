@@ -16,6 +16,167 @@
     body { margin: 0; background: #FFFFFF; font-family: Archivo, Helvetica, sans-serif; color: #111111; -webkit-font-smoothing: antialiased; }
     a { text-decoration: none; }
     .cos-container { max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px); }
+
+    /* --- Fee schedule --- */
+    .cos-fees { padding: var(--zone-pad) 0; }
+    .cos-fees__heading {
+      font-family: var(--font-display);
+      font-size: clamp(22px, 2.8vw, 32px);
+      font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: -0.022em;
+      color: var(--fg);
+      margin: 0 0 var(--s-8) 0;
+      max-width: 34ch;
+      text-wrap: balance;
+    }
+    .cos-fees__table {
+      width: 100%;
+      border-top: var(--w-cut) solid var(--rule-cut);
+    }
+    .cos-fees__row {
+      display: grid;
+      grid-template-areas: "stage time fee desc";
+      grid-template-columns: minmax(0, 8rem) minmax(0, 11rem) minmax(0, 10rem) minmax(0, 1fr);
+      align-items: start;
+    }
+    .cos-fees__row--header { border-bottom: var(--w-object) solid var(--rule-object); }
+    .cos-fees__row:not(.cos-fees__row--header) + .cos-fees__row:not(.cos-fees__row--header) {
+      border-top: var(--w-dimension) solid var(--rule-dimension);
+    }
+    .cos-fees__cell {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 1.55;
+      color: var(--fg);
+      padding: var(--s-5) var(--s-4) var(--s-5) 0;
+    }
+    .cos-fees__row--header .cos-fees__cell {
+      font-size: 11px;
+      font-weight: 400;
+      line-height: 1.35;
+      letter-spacing: 0.06em;
+      color: var(--fg-muted);
+      padding-top: var(--s-3);
+      padding-bottom: var(--s-3);
+    }
+    .cos-fees__cell--stage {
+      grid-area: stage;
+      display: flex;
+      align-items: baseline;
+      gap: var(--s-2);
+      font-weight: 600;
+    }
+    .cos-fees__row--header .cos-fees__cell--stage { font-weight: 400; }
+    .cos-fees__marker {
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      color: var(--fg-muted);
+      flex: none;
+      font-variant-numeric: tabular-nums;
+    }
+    .cos-fees__cell--time {
+      grid-area: time;
+      display: flex;
+      flex-direction: column;
+      gap: var(--s-1);
+    }
+    .cos-fees__cell--fee {
+      grid-area: fee;
+      display: flex;
+      flex-direction: column;
+      gap: var(--s-1);
+      font-variant-numeric: tabular-nums;
+    }
+    .cos-fees__cell--desc {
+      grid-area: desc;
+      color: var(--fg-muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .cos-fees__fee-val { white-space: nowrap; }
+    .cos-fees__time-val { white-space: nowrap; }
+    .cos-fees__in-label {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+    .cos-fees__footer {
+      display: grid;
+      grid-template-columns: 5fr 7fr;
+      gap: var(--s-7);
+      margin-top: var(--s-6);
+      padding-top: var(--s-6);
+      border-top: var(--w-object) solid var(--rule-object);
+      align-items: start;
+    }
+    .cos-fees__footer-q {
+      font-family: var(--font-display);
+      font-size: clamp(16px, 1.8vw, 20px);
+      font-weight: 600;
+      line-height: 1.35;
+      letter-spacing: -0.015em;
+      color: var(--fg);
+      margin: 0;
+    }
+    .cos-fees__footer-a {
+      display: flex;
+      flex-direction: column;
+      gap: var(--s-4);
+      font-family: var(--font-display);
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--fg-muted);
+    }
+    .cos-fees__footer-a p { margin: 0; }
+    .cos-fees__link {
+      display: inline;
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 15px;
+      letter-spacing: -0.01em;
+      color: var(--fg);
+      border-bottom: 2px solid var(--rule-cut);
+      padding-bottom: 2px;
+    }
+    @media (max-width: 859px) {
+      .cos-fees__row--header { display: none; }
+      .cos-fees__row {
+        grid-template-areas: "stage stage" "time fee" "desc desc";
+        grid-template-columns: 1fr 1fr;
+      }
+      .cos-fees__cell { padding: var(--s-3) var(--s-3) var(--s-3) 0; }
+      .cos-fees__cell--stage { padding-top: var(--s-5); }
+      .cos-fees__cell--desc { padding-bottom: var(--s-5); }
+      .cos-fees__in-label {
+        position: static;
+        width: auto;
+        height: auto;
+        margin: 0 0 var(--s-1) 0;
+        overflow: visible;
+        clip: auto;
+        white-space: normal;
+        display: block;
+        font-size: 11px;
+        font-weight: 400;
+        letter-spacing: 0.06em;
+        line-height: 1.35;
+        color: var(--fg-muted);
+      }
+      .cos-fees__footer {
+        grid-template-columns: 1fr;
+        gap: var(--s-4);
+      }
+    }
   </style>
 </head>
 <body>
@@ -445,6 +606,82 @@
 
   </div>
 </div>
+
+<!-- ===== §5a FEE SCHEDULE ===== -->
+<section class="surface--bond cos-fees" aria-labelledby="fees-heading">
+  <div class="cos-container">
+
+    <h2 id="fees-heading" class="cos-fees__heading">Three ways in. Start wherever the problem is clearest.</h2>
+
+    <div class="cos-fees__table">
+
+      <div class="cos-fees__row cos-fees__row--header" aria-hidden="true">
+        <div class="cos-fees__cell cos-fees__cell--stage">Stage</div>
+        <div class="cos-fees__cell cos-fees__cell--time">Time</div>
+        <div class="cos-fees__cell cos-fees__cell--fee">Fee</div>
+        <div class="cos-fees__cell cos-fees__cell--desc">What happens</div>
+      </div>
+
+      <div class="cos-fees__row">
+        <div class="cos-fees__cell cos-fees__cell--stage">
+          <span class="cos-fees__marker">01</span>
+          <span>Audit</span>
+        </div>
+        <div class="cos-fees__cell cos-fees__cell--time">
+          <span class="cos-fees__in-label">Time</span>
+          <span class="cos-fees__time-val">2–3 weeks</span>
+        </div>
+        <div class="cos-fees__cell cos-fees__cell--fee">
+          <span class="cos-fees__in-label">Fee</span>
+          <span class="cos-fees__fee-val">$4,000–6,000</span>
+        </div>
+        <div class="cos-fees__cell cos-fees__cell--desc">Interviews with your team, current-state workflow mapping, and a prioritized roadmap with a scoped proposal and a number. You keep all of it whether you build with us or not.</div>
+      </div>
+
+      <div class="cos-fees__row">
+        <div class="cos-fees__cell cos-fees__cell--stage">
+          <span class="cos-fees__marker">02</span>
+          <span>Build</span>
+        </div>
+        <div class="cos-fees__cell cos-fees__cell--time">
+          <span class="cos-fees__in-label">Time</span>
+          <span class="cos-fees__time-val">About a month</span>
+        </div>
+        <div class="cos-fees__cell cos-fees__cell--fee">
+          <span class="cos-fees__in-label">Fee</span>
+          <span class="cos-fees__fee-val">$12,000–15,000</span>
+        </div>
+        <div class="cos-fees__cell cos-fees__cell--desc">Your documents collected, your workflows mapped, the system configured to your standards, reviewed against real jobs, and handed over with training.</div>
+      </div>
+
+      <div class="cos-fees__row">
+        <div class="cos-fees__cell cos-fees__cell--stage">
+          <span class="cos-fees__marker">03</span>
+          <span>Monthly</span>
+        </div>
+        <div class="cos-fees__cell cos-fees__cell--time">
+          <span class="cos-fees__in-label">Time</span>
+          <span class="cos-fees__time-val">Per month, ongoing</span>
+        </div>
+        <div class="cos-fees__cell cos-fees__cell--fee">
+          <span class="cos-fees__in-label">Fee</span>
+          <span class="cos-fees__fee-val">From $2,000</span>
+        </div>
+        <div class="cos-fees__cell cos-fees__cell--desc">Your team uses the system. We keep it running and matched to your business as procedures, contracts, and standards change.</div>
+      </div>
+
+    </div>
+
+    <div class="cos-fees__footer">
+      <p class="cos-fees__footer-q">Already know what you need?</p>
+      <div class="cos-fees__footer-a">
+        <p>You don't have to start with an audit. If the problem is clear, we scope the build.</p>
+        <a href="https://cal.com/justinyurasits" class="cos-fees__link">Book a scoping call</a>
+      </div>
+    </div>
+
+  </div>
+</section>
 
 <!-- ===== §6 CLOSING CTA ===== -->
 <div style="background: #111111; padding: 84px 0 80px;">

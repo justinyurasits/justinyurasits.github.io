@@ -59,7 +59,6 @@ ${productItem('/products/custom-solutions.html', '——', 'Custom Solutions', '
           </nav>
         </li>
 ${navA('/services.html', 'Engagements', 'services')}
-${navA('/insights.html', 'Insights', 'insights')}
 ${navA('/about.html', 'About', 'about')}
         <li><a class="cos-header__cta" href="${calLink}">Book a call</a></li>
       </ul>
@@ -108,7 +107,7 @@ function buildFooter(footerConfig) {
           </svg>
           Construction OS
         </a>
-        <p class="cos-footer__tagline">Three products. One construction operating system.</p>
+        <p class="cos-footer__tagline">Three core products and an extension layer.</p>
       </div>
 
       <!-- Products -->
@@ -131,17 +130,11 @@ ${footerItem('/products/operations-automation.html', '——', 'Operations Autom
           : '<a class="cos-footer__col-item" href="/about.html">About</a>'}
       </nav>
 
-      <!-- Resources -->
-      <nav class="cos-footer__col" aria-label="Resources" style="flex: 0.8 1 88px; max-width: 180px; min-width: 0;">
-        <span class="cos-footer__col-head">Resources</span>
-${resourcesFooterItem('/insights.html', 'insights', 'Insights', current)}
-      </nav>
-
       <!-- Contact -->
       <div class="cos-footer__col" style="flex: 1.4 1 172px; max-width: 300px; min-width: 0;">
         <span class="cos-footer__col-head">Get in touch</span>
         <a class="cos-footer__contact-email" href="mailto:${email}">${email}</a>
-        <a class="cos-footer__col-item" href="https://linkedin.com/in/justinyurasits">LinkedIn</a>
+        <a class="cos-footer__col-item" href="https://linkedin.com/in/justinjyurasits">LinkedIn</a>
       </div>
 
     </div>

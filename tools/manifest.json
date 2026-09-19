@@ -133,6 +133,30 @@
         "rev": "01",
         "status": "Issued For Construction"
       }
+    },
+    {
+      "path": "privacy.html",
+      "active": "none",
+      "activeProduct": null,
+      "footer": {
+        "current": "none",
+        "page": "Privacy Policy",
+        "issued": "2026-09-19",
+        "rev": "01",
+        "status": "Issued For Construction"
+      }
+    },
+    {
+      "path": "terms.html",
+      "active": "none",
+      "activeProduct": null,
+      "footer": {
+        "current": "none",
+        "page": "Terms of Use",
+        "issued": "2026-09-19",
+        "rev": "01",
+        "status": "Issued For Construction"
+      }
     }
   ]
 }

@@ -99,36 +99,12 @@
       }
     },
     {
-      "path": "case-studies.html",
-      "active": "resources",
-      "activeProduct": null,
-      "footer": {
-        "current": "case-studies",
-        "page": "Case Studies",
-        "issued": "2026-09-07",
-        "rev": "01",
-        "status": "Issued For Construction"
-      }
-    },
-    {
       "path": "insights.html",
       "active": "insights",
       "activeProduct": null,
       "footer": {
         "current": "insights",
         "page": "Insights",
-        "issued": "2026-09-07",
-        "rev": "01",
-        "status": "Issued For Construction"
-      }
-    },
-    {
-      "path": "guides.html",
-      "active": "resources",
-      "activeProduct": null,
-      "footer": {
-        "current": "guides",
-        "page": "Guides",
         "issued": "2026-09-07",
         "rev": "01",
         "status": "Issued For Construction"

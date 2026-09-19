@@ -93,7 +93,7 @@ Nothing in the block uses a spacing value that isn't in this list.
 | Icon | `icon-less-paperwork.svg` | `icon-fewer-bottlenecks.svg` | `icon-better-visibility.svg` |
 | Status tag | — | — | "In development" |
 | Secondary link | "See it work" | "See it work" | — |
-| Proof figures | 2 (150+, 4–8 hours → ~30 minutes) | none | none |
+| Proof figures | 2 (110, 4–8 hours → ~30 minutes) | none | none |
 | Artifact | document render, cropped | answer card | attention table |
 | Caption row | Exhibit A — Scope of Work / Rev. 2 · Cost-plus w/ GMP | Construction Intelligence — answer / Example answer | Project attention / Example view |
 | Next rail | 02, 03 | 03 | Operations Automation (extension layer) |

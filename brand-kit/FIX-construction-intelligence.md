@@ -146,7 +146,7 @@ and a fabricated one is worse than none. So carry the weight with type instead:
 
 If a real metric appears later (procedures indexed, time to a sourced answer, share of
 answers citing a company document), drop it into row 1 at 28px/600/−.03em with the row
-name at 16px/600 beneath — the same shape as "150+ standard document types".
+name at 16px/600 beneath — the same shape as "110 distinct document types".
 
 ---
 

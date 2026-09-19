@@ -102,14 +102,14 @@ that don't.
 |---|---|---|
 | 4–8 hrs → | ~30 min | Initial contract package preparation |
 | ~10 days → | ~3 days | Change-order turnaround |
-| — | 150+ | Standard construction document types |
+| — | 110 | Distinct construction document types |
 
 The third cell has no before value — start it at the after value. **Do not emit an empty mono
 line as a spacer**; `align-items: start` handles the top alignment.
 
 ### ⚠ Red budget for this section
 `~30 min` and `~3 days` stay red `#C43230` — they are measured changes, which is precisely what
-revision red exists for. **`150+` stays Ink**: it is a capability count, not a change, and red
+revision red exists for. **`110` stays Ink**: it is a capability count, not a change, and red
 there dilutes the two figures that matter. The `→` arrows stay Graphite.
 
 The `CASE-001 / RESIDENTIAL GC / BOSTON` line and `Read the case study →` stay as one
@@ -206,9 +206,9 @@ cell, which reads as a rendering error.
 5. The stat row in §3 is three across at desktop, two then one as it narrows, with no rule
    between any number and its caption.
 6. `#C43230` on this page appears only on `~30 min`, `~3 days`, and the mark's plate in the
-   header and footer. `150+` is Ink.
+   header and footer. `110` is Ink.
 7. **No text node on the page computes to a serif `font-family`.** Archivo everywhere except the
-   mono labels (before values, `CASE-001 …`, and other spec'd mono strings).
+   mono labels (before values and other spec'd mono strings).
 8. In the provenance section: body paragraph 16px, stat numbers 38px, captions 14px and one line
    each, and the heading is not visually smaller than the numbers.
 9. Every section heading ends in a period. No section carries an eyebrow above

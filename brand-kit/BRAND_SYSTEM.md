@@ -1,8 +1,8 @@
 # Brand system
 
 **Sheet:** BRAND-002
-**Issued:** 2026-09-04
-**Revision:** 05
+**Issued:** 2026-09-19
+**Revision:** 06
 **Supersedes:** BRAND-001 (specimen)
 
 This file is the authority on what this brand looks like. It governs the website, PDFs, Word documents, decks, and carousels. When a rule here conflicts with anything else in this repository, or with an existing stylesheet, this file wins.
@@ -33,7 +33,7 @@ Raw values. Nothing in the site references these directly — all components use
 | `--c-white` | `#FFFFFF` | |
 | `--c-bond` | `#EFEFEB` | |
 | `--c-steel` | `#476776` | |
-| `--c-revision` | `#C73A32` | |
+| `--c-revision` | `#C43230` | 4.74:1 on bond, 5.46:1 on white — changed from `#C73A32` in rev 04 |
 | `--c-graphite` | `#5F6466` | Muted text on light surfaces |
 | `--c-line` | `#B8B9B5` | Rules on light surfaces |
 | `--c-revision-lift` | `#E2685E` | Revision on dark surfaces — 5.73:1 on ink |
@@ -264,3 +264,4 @@ Claude Code may not introduce a visual treatment not defined here. If a page nee
 | 03 | 2026-09-04 | Two-layer token architecture (palette → roles). Added steel surface and three derived dark-surface palette values. Surface classes replace inline background values. Dimension figures restricted to light surfaces (contrast failure on steel documented). Steel use rules added to §2.4 and §10. Surface rhythm rules added to §2.4 and §9. |
 | 04 | 2026-09-04 | `--c-revision` palette value changed from `#C73A32` to `#C43230` (bond contrast 4.47:1 → 4.73:1, white 5.46:1). Dimension figure prohibition narrowed from all dark surfaces to steel only — ink is permitted, with revision-lift at 5.72:1 on ink. §2.4, §8 rule 7, §10 updated. |
 | 05 | 2026-09-04 | `--c-graphite-lift` changed from `#D7E2E8` to `#949B9E` — 14.31:1 was indistinguishable from white fg; 6.69:1 creates usable hierarchy on ink. `--fg-muted` on steel set to white: 6.05:1 ceiling leaves no usable muted range. Rule added: steel carries single-level text only. Dimension tick height reduced 17px → 12px to prevent crowding on narrow spans. `.rule` constrained with `display:block; width:100%`. §2.1, §2.3, §2.4 updated. |
+| 06 | 2026-09-19 | §2.1 table corrected to `#C43230` to match rev 04. No token change. |

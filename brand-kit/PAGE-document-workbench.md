@@ -38,7 +38,7 @@ Surfaces alternate; Ink is used for one full band plus two card footers.
 | 2 | Hero | Paper | 72 / 64 |
 | 3 | The current state | Bond | 72 / 76 |
 | 4 | Lifecycle (five phases) | Paper | 76 / 0 |
-| 4b | "150+" strip | **Ink** | 28px |
+| 4b | "110" strip | **Ink** | 28px |
 | 5 | How it works (three steps) | Bond | 76 / 80 |
 | 6 | Configuration (five items) | Paper | 76 / 80 |
 | 7 | See it work (live demo) | Bond | 76 / 80 |
@@ -76,7 +76,7 @@ scale, same spacing as the product blocks on the home page. Left column:
 
    | figure/name | caption |
    |---|---|
-   | `150+ standard document types` (28px/600, −.03em) | Across the full construction lifecycle |
+   | `110 distinct document types` (28px/600, −.03em) | Across 38 categories and five lifecycle phases |
    | `4–8 hours` Ink + `→ ~30 minutes` **red** (28px/600) | Initial contract package preparation |
    | `Built around how your company works` (20px/600) | Your templates, scope language, pricing structure, and terminology |
 
@@ -162,11 +162,11 @@ card bottoms.
     · Final project records
 ```
 
-### 4b. The "150+" strip — Ink, full-bleed
+### 4b. The "110" strip — Ink, full-bleed
 
 Immediately after the last row, 12px gap, a full-bleed Ink band whose content sits in
-`.cos-container`: `150+` at Archivo 600 34px −.03em Paper, then
-"standard construction document types across the project lifecycle." at 17px/500 Paper,
+`.cos-container`: `110` at Archivo 600 34px −.03em Paper, then
+"distinct construction document types across 38 categories and five lifecycle phases." at 17px/500 Paper,
 baseline-aligned, 18px gap, 28px vertical padding.
 
 This line is the summary of the five lists above it; do not leave it as body text.
@@ -262,17 +262,14 @@ Heading left, paragraph right. Then a 2px Ink rule and three stat cells,
 ```
 4–8 hrs →        ~30 min   (38px/600, RED)     Initial contract package preparation
 ~10 days →       ~3 days   (38px/600, RED)     Change-order turnaround
-                 150+      (38px/600, INK)     Standard construction document types
+                 110       (38px/600, INK)     Distinct construction document types
 ```
 
 Before-value in mono 12px Graphite above; a 1px Line gray rule between figure and caption.
 The third cell needs an empty spacer where the others have their before-value, so all
 three figures sit on one baseline.
 
-**150+ is not red.** It states no change. Only the two before/after pairs are red.
-
-Footer row under a 1px Line gray rule: `CASE-001 / RESIDENTIAL GC / BOSTON` in mono 11px
-left, "Read the case study →" (Archivo 600 14px, 2px Ink underline) right.
+**110 is not red.** It states no change. Only the two before/after pairs are red.
 
 ---
 
@@ -330,7 +327,7 @@ Use real values or delete the element. Flag anything you removed.
 1. Zero serif characters on the page.
 2. `#C43230` appears exactly four times as text: the hero's `→ ~30 minutes`, the demo
    card's `→ ~3 days`, and the two stat figures in section 8 — plus the mark's plate in
-   the header, the closing lockup and the footer. Never on `150+`.
+   the header, the closing lockup and the footer. Never on `110`.
 3. No two adjacent sections share a background colour.
 4. Every section's first content element has the same left x-position (they all use
    `.cos-container`). Verify at 1440px, 1280px and 1024px.

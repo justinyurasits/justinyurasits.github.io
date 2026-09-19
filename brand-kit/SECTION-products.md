@@ -30,7 +30,7 @@ CTAs
   "See it work"                    (text link — demoted)
 
 Proof
-  "150+ standard document types" / "Across the full construction lifecycle"
+  "110 distinct document types" / "Across 38 categories and five lifecycle phases"
   "4–8 hours → ~30 minutes"      / "Initial contract package preparation"
   "Built around how your company works" /
     "Your templates, scope language, pricing structure, and terminology"
@@ -86,8 +86,8 @@ The three proof rows are the most persuasive lines in the section and are curren
 smallest type on screen. Rebuild as a bordered list under a 2px Ink rule:
 
 ```
-row 1   "150+ standard document types"        28px/600, −0.03em, Ink
-        "Across the full construction lifecycle"   14px/400, Graphite
+row 1   "110 distinct document types"           28px/600, −0.03em, Ink
+        "Across 38 categories and five lifecycle phases"  14px/400, Graphite
 row 2   "4–8 hours"  Ink 28px  +  "→ ~30 minutes"  Revision red 28px
         "Initial contract package preparation"     14px/400, Graphite
 row 3   "Built around how your company works"      20px/600, −0.02em, Ink
@@ -205,7 +205,7 @@ closing rail         1px Line gray top rule, 22px padding
         <a class="cos-link" href="/demo">See it work</a>
       </p>
       <dl class="cos-proof">
-        <div><dt>150+ standard document types</dt><dd>Across the full construction lifecycle</dd></div>
+        <div><dt>110 distinct document types</dt><dd>Across 38 categories and five lifecycle phases</dd></div>
         <div><dt><b>4&ndash;8 hours</b> <b class="is-delta">&rarr; ~30 minutes</b></dt>
              <dd>Initial contract package preparation</dd></div>
         <div><dt class="is-sm">Built around how your company works</dt>
@@ -322,7 +322,7 @@ counter at 420px tall. Index cells stack with horizontal hairlines. Nothing beco
 
 - No offset panel, shadow, radius, or gradient behind the artifact — only the crop fade.
 - No serif and no italics outside the document render.
-- No red beyond `→ ~30 minutes`. Not on "150+", not on the CTA, not on the index.
+- No red beyond `→ ~30 minutes`. Not on "110", not on the CTA, not on the index.
 - Don't let the proof stats stay smaller than the body copy.
 - Don't give "See it work" a button — one primary per product block.
 - Don't repeat the Documents/Knowledge/Attention row as an unnumbered preamble.
@@ -335,7 +335,7 @@ counter at 420px tall. Index cells stack with horizontal hairlines. Nothing beco
 1. The index row is numbered 01–03, names the product in each cell, and anchor-links to it.
 2. Product 01's tag reads `01 —— DOCUMENTS`, matching index cell 01.
 3. Exactly two prose levels in the product block: 20px lead and 16px paragraph.
-4. Proof figures render at 28px; "150+ standard document types" is larger than the paragraph above it.
+4. Proof figures render at 28px; "110 distinct document types" is larger than the paragraph above it.
 5. `→ ~30 minutes` is the only `#C43230` in the section.
 6. The artifact has a 1px Ink frame, two registration corners, a mono caption, a fade,
    and a page counter — and no panel behind it.

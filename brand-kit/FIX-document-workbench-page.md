@@ -112,9 +112,6 @@ line as a spacer**; `align-items: start` handles the top alignment.
 revision red exists for. **`110` stays Ink**: it is a capability count, not a change, and red
 there dilutes the two figures that matter. The `→` arrows stay Graphite.
 
-The `CASE-001 / RESIDENTIAL GC / BOSTON` line and `Read the case study →` stay as one
-container-width row with a single 1px Line gray rule above.
-
 ---
 
 ## 4. "Configured around your company" — restructure to the standard section pattern

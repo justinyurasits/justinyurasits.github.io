@@ -2,7 +2,7 @@
 
 **Sheet:** BRAND-002
 **Issued:** 2026-09-19
-**Revision:** 06
+**Revision:** 08
 **Supersedes:** BRAND-001 (specimen)
 
 This file is the authority on what this brand looks like. It governs the website, PDFs, Word documents, decks, and carousels. When a rule here conflicts with anything else in this repository, or with an existing stylesheet, this file wins.
@@ -29,17 +29,16 @@ Raw values. Nothing in the site references these directly — all components use
 
 | Token | Hex | Note |
 |---|---|---|
-| `--c-ink` | `#111111` | |
+| `--c-ink` | `#1E1A17` | Warm black |
 | `--c-white` | `#FFFFFF` | |
-| `--c-bond` | `#EFEFEB` | |
-| `--c-steel` | `#476776` | |
-| `--c-steel-deep` | `#2F4A57` | Deeper steel — 9.46:1 white contrast |
-| `--c-revision` | `#C43230` | 4.74:1 on bond, 5.46:1 on white — changed from `#C73A32` in rev 04 |
-| `--c-graphite` | `#5F6466` | Muted text on light surfaces |
-| `--c-line` | `#B8B9B5` | Rules on light surfaces |
-| `--c-revision-lift` | `#E2685E` | Revision on dark surfaces — 5.73:1 on ink |
-| `--c-graphite-lift` | `#949B9E` | Muted text on ink surface — 6.69:1 on ink |
-| `--c-line-dark` | `#B1BFC5` | Rules on dark surfaces — 10.01:1 on ink, 3.21:1 on steel |
+| `--c-bond` | `#F3F1EB` | Warm ivory |
+| `--c-navy` | `#1D2648` | |
+| `--c-oxblood` | `#692524` | Change mark on light — 11.11:1 on white, 9.83:1 on ivory |
+| `--c-graphite` | `#413833` | Muted text on light — 11.42:1 on white |
+| `--c-line` | `#BAB8B7` | Rules — all surfaces |
+| `--c-brass` | `#C08F58` | Dark surfaces only — 6.02:1 on ink, 5.14:1 on navy |
+| `--c-muted-dark` | `#B1A9A3` | Muted text on dark — 7.47:1 on ink, 6.38:1 on navy, 4.80:1 on oxblood |
+| `--c-change-lift` | `#D07A6A` | Change mark on dark — 5.49:1 on ink, 4.69:1 on navy |
 
 ### 2.2 Role tokens (Layer 2)
 
@@ -58,32 +57,30 @@ These are the only tokens components may use. Set per surface class; default val
 
 ### 2.3 Surfaces
 
-Four surfaces, applied as a class to the section wrapper element. Each redefines all role tokens.
+Five surfaces, applied as a class to the section wrapper element. Each redefines all role tokens.
 
 | Class | Background | Fg | Fg-muted | Buttons |
 |---|---|---|---|---|
 | `.surface--white` | `#FFFFFF` | ink | graphite | ink fill |
-| `.surface--bond` | `#EFEFEB` | ink | graphite | ink fill |
-| `.surface--ink` | `#111111` | white | graphite-lift | white fill, ink text |
-| `.surface--steel` | `#476776` | white | white | white fill, ink text |
-| `.surface--steel-deep` | `#2F4A57` | white | white | white fill, ink text |
-| `.surface--revision` | `#C43230` | white | white | white fill, ink text |
+| `.surface--bond` | `#F3F1EB` | ink | graphite | ink fill |
+| `.surface--ink` | `#1E1A17` | white | muted-dark | white fill, ink text |
+| `.surface--navy` | `#1D2648` | white | muted-dark | white fill, ink text |
+| `.surface--oxblood` | `#692524` | white | muted-dark | white fill, ink text |
 
-Steel's 6.05:1 ceiling leaves no usable secondary text range — `--fg-muted` is set to white on both steel surfaces. See §2.4.
+Ink and navy both carry two text levels: `--fg` (white) and `--fg-muted` (`--c-muted-dark`, 7.47:1 on ink / 6.38:1 on navy). Oxblood also carries muted-dark (4.80:1) but no change mark — a red indicator never appears on a red ground.
 
 ### 2.4 Surface rules
 
-- **White is the default.** Bond marks sections that behave like documents — evidence zones, case study frames, spec sheets. Ink and steel are deliberate high-contrast moments, used for weight, not as automatic section separators.
+- **White is the default.** Bond marks sections that behave like documents — evidence zones, case study frames, spec sheets. Ink, navy, and oxblood are deliberate high-contrast moments, used for weight, not as automatic section separators.
 - **No section may share a surface with the section directly above it.** Every surface change must be intentional.
 - **No more than three consecutive sections on one surface.** The page needs rhythm; monotone columns lose hierarchy.
-- **At least one dark surface (ink or steel) within the first two screens of any page.** The contrast keeps the page from reading as a document.
-- **Steel blue is a surface only.** Never a text color, never a button, never a decorative border, never an icon fill. Within a section on a light surface, steel may appear as a structural color inside technical diagrams, product illustrations, tables, and data visualizations — drawing frames, axes, table ruling, leader lines. It never carries data values, figures, or bars, which stay ink.
-- **Steel carries a single level of text.** Its 6.05:1 maximum contrast leaves no usable range for a secondary text level. Use steel for bands, figure grounds, and dividers — never for content sections requiring both primary and secondary text. `--fg-muted` on steel and steel-deep is set to white.
-- **Steel-deep follows steel's single-level rule.** Deeper contrast (9.46:1 for white) but same usage constraint — figure grounds and metric bands only.
-- **Revision as a surface is ground-only.** `surface--revision` may be used on a closing or call-to-action section whose primary purpose is a before-and-after or a call to act on a measured change. At most one revision surface per page, and never adjacent to another dark surface.
-- **No more than two dark sections per page.** Ink, steel, steel-deep, and revision all count as dark; overuse dilutes all of them.
-- **Never place dark sections adjacent to each other.** Ink directly above steel reads as one large dark field — the surface boundary disappears and the hierarchy collapses.
-- **Dimension figures belong on white, bond, and ink.** On ink the changed value uses `--c-revision-lift` (#E2685E, 5.72:1 on ink), and the change must be readable by position and label as well as color, never by color alone. Dimension figures are prohibited on steel: revision-lift reaches only 1.84:1 against that surface and no revision red at usable luminance can clear the 3:1 minimum.
+- **At least one dark surface (ink, navy, or oxblood) within the first two screens of any page.** The contrast keeps the page from reading as a document.
+- **No more than two dark sections per page.** Ink, navy, and oxblood all count as dark; overuse dilutes all of them.
+- **Never place dark sections adjacent to each other.** Ink directly above navy reads as one large dark field — the surface boundary disappears and the hierarchy collapses.
+- **Oxblood as a surface is ground-only.** `surface--oxblood` may be used on a closing plate whose primary purpose is a call to act. At most one oxblood surface per page, and never adjacent to another dark surface.
+- **Brass is a dark-surface-only accent.** `--c-brass` (#C08F58) may appear as an accent inside ink and navy sections only — decorative rules, annotation marks. Never as a text color on light surfaces (fails contrast floor), never as a button or link color.
+- **Identifier codes (annotation numbers) use `--fg-muted` on light surfaces.** On white and bond this resolves to graphite (`#413833`). On dark surfaces they use the primary `--fg` (white) since muted-dark has less contrast range for small numerals.
+- **Dimension figures belong on white, bond, ink, and navy.** On dark surfaces the change mark uses `--c-change-lift` (`#D07A6A`) and must be readable by position and label, not color alone. No change mark appears on oxblood — `--change` is `transparent` on that surface.
 
 ---
 
@@ -111,17 +108,17 @@ Sentence case everywhere in language. Capitals are reserved for identifiers that
 
 ---
 
-## 4. Revision red
+## 4. Oxblood — change mark and closing ground
 
-`revision` means change. Specifically: a before-and-after pair, a reduction, a delta, a revised state, a flagged exception, or a failure.
+`--c-oxblood` (`#692524`) plays two roles, never a third.
 
-It does not mean emphasis. It is not the accent color. Buttons are ink (or white on dark surfaces). Links are fg-colored with an underline. Nothing is red because a section felt flat.
+**As a change mark on light surfaces** — on white and bond, oxblood is `--change`. It marks a before-and-after pair, a delta, a flagged exception, or a revised value. It does not mean emphasis. Buttons are ink. Links are fg-colored with an underline. Nothing is oxblood because a section felt flat. Target: at most one change element per screen.
 
-Revision red may also be used as a section ground — `surface--revision` — when the section's entire purpose is a before-and-after, a call to act on a measured change, or a closing that is itself the result. This is the only form of revision red on a ground, and it is a ground-level commitment, not a colored box within a section.
+**As a section ground** — `surface--oxblood` is permitted on a closing plate whose primary purpose is a call to act. This is the only use of oxblood as a ground, and it is a ground-level commitment — not a colored box inside a section. At most one oxblood surface per page, never adjacent to another dark surface.
 
-Target: at most one red element per screen or page. The restraint is what makes it register.
+**No change mark on a red ground.** `--change` resolves to `transparent` inside `surface--oxblood`. A red indicator on a red ground is invisible; a before-and-after belongs on a light or ink section, not the closing plate.
 
-On dark surfaces the lifted red (`--c-revision-lift`, `#E2685E`) is used instead of `--c-revision`. Both are for change only. Neither is ever a call to action.
+On dark surfaces (ink, navy) the lifted variant `--c-change-lift` (`#D07A6A`) carries the change role — 5.49:1 on ink, 4.69:1 on navy. The change must always be readable by position and label, never by color alone.
 
 ---
 
@@ -273,3 +270,4 @@ Claude Code may not introduce a visual treatment not defined here. If a page nee
 | 05 | 2026-09-04 | `--c-graphite-lift` changed from `#D7E2E8` to `#949B9E` — 14.31:1 was indistinguishable from white fg; 6.69:1 creates usable hierarchy on ink. `--fg-muted` on steel set to white: 6.05:1 ceiling leaves no usable muted range. Rule added: steel carries single-level text only. Dimension tick height reduced 17px → 12px to prevent crowding on narrow spans. `.rule` constrained with `display:block; width:100%`. §2.1, §2.3, §2.4 updated. |
 | 06 | 2026-09-19 | §2.1 table corrected to `#C43230` to match rev 04. No token change. |
 | 07 | 2026-09-24 | Added `--c-steel-deep` (`#2F4A57`) to palette. Added `.surface--steel-deep` and `.surface--revision` surface classes to `tokens.css`. Stats band changed from `surface--ink` to `surface--steel-deep`. Closing CTA (§6) changed from inline `#111111` ground to `surface--revision`. §2.1, §2.3, §2.4, §4 updated with new surfaces and ground-only revision rule. |
+| 08 | 2026-09-24 | Palette replaced. Retired: steel (`#476776`), steel-deep (`#2F4A57`), revision red (`#C43230`), graphite-lift (`#949B9E`), line-dark (`#B1BFC5`), revision-lift (`#E2685E`). Added: warm black ink (`#1E1A17`), warm ivory bond (`#F3F1EB`), navy (`#1D2648`), oxblood (`#692524`), graphite (`#413833`), line (`#BAB8B7`), brass (`#C08F58`, dark surfaces only), muted-dark (`#B1A9A3`), change-lift (`#D07A6A`). Surface classes reduced from 6 → 5: `.surface--steel` and `.surface--steel-deep` removed, `.surface--revision` replaced by `.surface--oxblood`, `.surface--navy` added. Stats band changed to `surface--navy`, closing CTA to `surface--oxblood`. §2.1, §2.3, §2.4, §4 rewritten. |

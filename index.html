@@ -178,6 +178,99 @@
       }
     }
 
+    /* --- Product index (§3) --- */
+    .cos-index { padding: var(--zone-pad) 0; }
+    .cos-index__hd {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+      gap: var(--s-5) var(--s-8);
+      align-items: start;
+      border-bottom: var(--w-cut) solid var(--rule-cut);
+      padding-bottom: var(--s-5);
+    }
+    .cos-index__hd-left {
+      container-type: inline-size;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--s-4);
+    }
+    .cos-index__eyebrow {
+      font-family: var(--font-display);
+      font-size: 11px; font-weight: 600; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--fg-muted);
+    }
+    .cos-index__logo-row { display: flex; align-items: center; gap: var(--s-4); flex-wrap: wrap; }
+    .cos-index__heading {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: clamp(28px, 8cqi, 42px);
+      font-weight: 600; line-height: 1.05; letter-spacing: -0.035em;
+      color: var(--fg); text-wrap: balance;
+    }
+    .cos-index__lead {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: 17px; font-weight: 500; line-height: 1.5; letter-spacing: -0.015em;
+      color: var(--fg); padding-top: 5px; min-width: 0;
+    }
+    .cos-index__list { display: flex; flex-direction: column; }
+    .cos-index__row {
+      display: grid;
+      grid-template-columns: 44px minmax(0, 300px) 1fr;
+      grid-template-rows: auto auto;
+      column-gap: var(--s-5);
+      row-gap: var(--s-2);
+      padding: var(--s-5) 0;
+      border-top: var(--w-object) solid var(--rule-object);
+      text-decoration: none;
+      color: var(--fg);
+    }
+    .cos-index__row:last-child { border-bottom: var(--w-object) solid var(--rule-object); }
+    .cos-index__row:hover .cos-index__name { text-decoration: underline; text-underline-offset: 3px; }
+    .cos-index__num {
+      grid-column: 1; grid-row: 1;
+      font-family: var(--font-display);
+      font-size: 11px; font-weight: 400; letter-spacing: 0.06em;
+      color: var(--fg-muted); padding-top: 4px;
+    }
+    .cos-index__name {
+      grid-column: 2; grid-row: 1;
+      font-family: var(--font-display);
+      font-size: 22px; font-weight: 600;
+      line-height: 1.18; letter-spacing: -0.022em;
+      color: var(--fg);
+    }
+    .cos-index__mid {
+      grid-column: 3; grid-row: 1;
+      display: flex; align-items: baseline;
+      justify-content: space-between; gap: var(--s-5);
+      padding-top: 4px;
+    }
+    .cos-index__tagline {
+      font-family: var(--font-display);
+      font-size: var(--fs-small); font-weight: 400;
+      line-height: 1.5; color: var(--fg-muted);
+    }
+    .cos-index__status {
+      font-family: var(--font-display);
+      font-size: 11px; font-weight: 400; letter-spacing: 0.06em;
+      color: var(--fg-muted); white-space: nowrap;
+    }
+    .cos-index__sub {
+      grid-column: 2 / 4; grid-row: 2;
+      font-family: var(--font-display);
+      font-size: 15px; font-weight: 400;
+      line-height: 1.5; color: var(--fg-muted);
+    }
+    @media (max-width: 760px) {
+      .cos-index__row { grid-template-columns: 40px 1fr; }
+      .cos-index__num  { grid-column: 1; grid-row: 1; }
+      .cos-index__name { grid-column: 2; grid-row: 1; }
+      .cos-index__mid  { grid-column: 1 / 3; grid-row: 2; flex-direction: column; gap: var(--s-1); padding-top: 0; }
+      .cos-index__sub  { grid-column: 1 / 3; grid-row: 3; }
+    }
+
     /* --- System stats band --- */
     .cos-stats { padding: var(--zone-pad) 0; }
     .cos-stats__row {
@@ -374,7 +467,7 @@
 </div>
 
 <!-- ===== §1a STATS BAND ===== -->
-<section class="surface--steel-deep cos-stats" aria-label="System coverage">
+<section class="surface--navy cos-stats" aria-label="System coverage">
   <div class="cos-container">
     <div class="cos-stats__row">
       <div class="cos-stats__col">
@@ -471,135 +564,67 @@
 </div>
 
 <!-- ===== §3 THE SYSTEM ===== -->
-<div style="background: #FFFFFF; padding: 76px 0 80px;">
-  <div style="max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px);">
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 24px 48px; align-items: start; border-bottom: 2px solid #111111; padding-bottom: 26px;">
-      <div style="container-type: inline-size; min-width: 0;">
-        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #476776; padding-bottom: 16px;">The system</div>
-        <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
-          <svg viewBox="0 0 100 100" width="44" height="44" aria-hidden="true" style="flex: none;">
-            <polyline points="16,54 16,16 54,16" fill="none" stroke="#111111" stroke-width="9"></polyline>
-            <polyline points="84,46 84,84 46,84" fill="none" stroke="#111111" stroke-width="9"></polyline>
-            <rect x="32" y="32" width="36" height="36" fill="#C43230" stroke="#476776" stroke-width="5"></rect>
+<section class="surface--white cos-index">
+  <div class="cos-container">
+
+    <div class="cos-index__hd">
+      <div class="cos-index__hd-left">
+        <div class="cos-index__eyebrow">The system</div>
+        <div class="cos-index__logo-row">
+          <svg viewBox="0 0 100 100" width="44" height="44" aria-hidden="true" style="flex: none; color: var(--fg);">
+            <polyline points="16,54 16,16 54,16" fill="none" stroke="currentColor" stroke-width="9"></polyline>
+            <polyline points="84,46 84,84 46,84" fill="none" stroke="currentColor" stroke-width="9"></polyline>
+            <rect x="32" y="32" width="36" height="36" style="fill: var(--change); stroke: #476776; stroke-width: 5;"></rect>
           </svg>
-          <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(28px, 8cqi, 42px); line-height: 1.05; letter-spacing: -0.035em; color: #111111; text-wrap: balance;">Construction OS</h2>
+          <h2 class="cos-index__heading">Construction OS</h2>
         </div>
       </div>
-      <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: 17px; line-height: 1.5; letter-spacing: -0.015em; color: #111111; padding-top: 5px;">Put more of how your company works into a system your team can use.</div>
+      <p class="cos-index__lead">Put more of how your company works into a system your team can use.</p>
     </div>
 
-    <div style="display: flex; flex-direction: column; padding-top: 4px;">
-      <!-- 01 Document Workbench -->
-      <div style="display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 0 16px; padding: 24px 0 26px;">
-        <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: #5F6466; padding-top: 6px;">01</div>
-        <div style="min-width: 0; display: flex; flex-wrap: wrap; gap: 12px 40px; align-items: flex-start;">
-          <div style="flex: 1 1 360px; min-width: 0; display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 8px 12px; align-items: start;">
-            <div style="display: contents;">
-              <svg viewBox="0 0 100 100" width="26" height="26" aria-hidden="true" style="flex: none;">
-                <polyline points="30,14 86,14 86,72" fill="none" stroke="#476776" stroke-width="5"></polyline>
-                <rect x="14" y="26" width="52" height="60" fill="none" stroke="#111111" stroke-width="9"></rect>
-              </svg>
-              <div style="min-width: 0; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; min-height: 26px;">
-                <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 24px; line-height: 1.1; letter-spacing: -0.026em; color: #111111; text-wrap: balance;">Document Workbench</div>
-              </div>
-            </div>
-            <div></div>
-            <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 17px; line-height: 1.4; letter-spacing: -0.015em; color: #476776;">Produce the documents that run the job.</div>
-          </div>
-          <div style="flex: 1.25 1 340px; min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.6; color: #5F6466;">Turn project information into company-standard construction documents from first walkthrough through closeout.</div>
-          <div style="flex: 1 1 100%; display: flex; align-items: center; gap: 18px; flex-wrap: wrap; padding: 6px 0 0 38px;">
-            <a href="/products/document-workbench.html" style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 14px; letter-spacing: -0.01em; color: #111111; border-bottom: 2px solid #111111; padding-bottom: 3px;">Explore Document Workbench &rarr;</a>
-            <a href="https://draftconstructionchangeorder.com" style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 14px; letter-spacing: -0.01em; color: #476776; border-bottom: 1px solid #B8B9B5; padding-bottom: 3px;">See it work</a>
-          </div>
-        </div>
-      </div>
-      <!-- 02 Construction Intelligence -->
-      <div style="display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 0 16px; border-top: 1px solid #B8B9B5; padding: 24px 0 26px;">
-        <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: #5F6466; padding-top: 6px;">02</div>
-        <div style="min-width: 0; display: flex; flex-wrap: wrap; gap: 12px 40px; align-items: flex-start;">
-          <div style="flex: 1 1 360px; min-width: 0; display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 8px 12px; align-items: start;">
-            <div style="display: contents;">
-              <svg viewBox="0 0 100 100" width="26" height="26" aria-hidden="true" style="flex: none;">
-                <line x1="6" y1="50" x2="96" y2="50" stroke="#476776" stroke-width="5"></line>
-                <polyline points="8,20 40,20 54,42 94,42" fill="none" stroke="#111111" stroke-width="9"></polyline>
-                <polyline points="8,80 40,80 54,58 94,58" fill="none" stroke="#111111" stroke-width="9"></polyline>
-              </svg>
-              <div style="min-width: 0; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; min-height: 26px;">
-                <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 24px; line-height: 1.1; letter-spacing: -0.026em; color: #111111; text-wrap: balance;">Construction Intelligence</div>
-              </div>
-            </div>
-            <div></div>
-            <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 17px; line-height: 1.4; letter-spacing: -0.015em; color: #476776;">Get the answer. See what it&rsquo;s based on. Know what comes next.</div>
-          </div>
-          <div style="flex: 1.25 1 340px; min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.6; color: #5F6466;">Give the team company-specific answers grounded in your procedures, standards, pricing rules, and project history.</div>
-          <div style="flex: 1 1 100%; display: flex; align-items: center; gap: 18px; flex-wrap: wrap; padding: 6px 0 0 38px;">
-            <a href="/products/construction-intelligence.html" style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 14px; letter-spacing: -0.01em; color: #111111; border-bottom: 2px solid #111111; padding-bottom: 3px;">Explore Construction Intelligence &rarr;</a>
-            <a href="/products/construction-intelligence.html" style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 14px; letter-spacing: -0.01em; color: #476776; border-bottom: 1px solid #B8B9B5; padding-bottom: 3px;">See an example answer &rarr;</a>
-          </div>
-        </div>
-      </div>
-      <!-- 03 Project Intelligence -->
-      <div style="display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 0 16px; border-top: 1px solid #B8B9B5; padding: 24px 0 26px;">
-        <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: #5F6466; padding-top: 6px;">03</div>
-        <div style="min-width: 0; display: flex; flex-wrap: wrap; gap: 12px 40px; align-items: flex-start;">
-          <div style="flex: 1 1 360px; min-width: 0; display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 8px 12px; align-items: start;">
-            <div style="display: contents;">
-              <svg viewBox="0 0 100 100" width="26" height="26" aria-hidden="true" style="flex: none;">
-                <rect x="6" y="18" width="88" height="64" fill="none" stroke="#476776" stroke-width="5"></rect>
-                <line x1="18" y1="70" x2="82" y2="70" stroke="#111111" stroke-width="9"></line>
-                <line x1="30" y1="70" x2="30" y2="56" stroke="#111111" stroke-width="9"></line>
-                <line x1="50" y1="70" x2="50" y2="44" stroke="#111111" stroke-width="9"></line>
-                <line x1="70" y1="70" x2="70" y2="32" stroke="#C43230" stroke-width="9"></line>
-              </svg>
-              <div style="min-width: 0; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; min-height: 26px;">
-                <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 24px; line-height: 1.1; letter-spacing: -0.026em; color: #111111; text-wrap: balance;">Project Intelligence</div>
-              </div>
-            </div>
-            <div></div>
-            <div style="min-width: 0; display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;">
-              <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 17px; line-height: 1.4; letter-spacing: -0.015em; color: #476776;">Manage the exceptions instead of chasing status.</div>
-              <div style="box-sizing: border-box; font-family: Archivo, sans-serif; font-weight: 600; font-size: 9px; letter-spacing: 0.07em; text-transform: uppercase; color: #5F6466; border: 1px solid #B8B9B5; padding: 2px 5px; flex: none;">In development</div>
-            </div>
-          </div>
-          <div style="flex: 1.25 1 340px; min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.6; color: #5F6466;">Surface the open items and exceptions that need intervention across active projects.</div>
-          <div style="flex: 1 1 100%; display: flex; align-items: center; gap: 18px; flex-wrap: wrap; padding: 6px 0 0 38px;">
-            <a href="/products/project-intelligence.html" style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 14px; letter-spacing: -0.01em; color: #111111; border-bottom: 2px solid #111111; padding-bottom: 3px;">Explore Project Intelligence &rarr;</a>
-          </div>
-        </div>
-      </div>
+    <div class="cos-index__list">
+
+      <a href="/products/document-workbench.html" class="cos-index__row">
+        <span class="cos-index__num">01</span>
+        <span class="cos-index__name">Document Workbench</span>
+        <span class="cos-index__mid">
+          <span class="cos-index__tagline">Produce the documents that run the job.</span>
+        </span>
+        <span class="cos-index__sub">Turn project information into company-standard construction documents from first walkthrough through closeout.</span>
+      </a>
+
+      <a href="/products/construction-intelligence.html" class="cos-index__row">
+        <span class="cos-index__num">02</span>
+        <span class="cos-index__name">Construction Intelligence</span>
+        <span class="cos-index__mid">
+          <span class="cos-index__tagline">Get the answer. See what it&rsquo;s based on.</span>
+        </span>
+        <span class="cos-index__sub">Give the team company-specific answers grounded in your procedures, standards, pricing rules, and project history.</span>
+      </a>
+
+      <a href="/products/project-intelligence.html" class="cos-index__row">
+        <span class="cos-index__num">03</span>
+        <span class="cos-index__name">Project Intelligence</span>
+        <span class="cos-index__mid">
+          <span class="cos-index__tagline">Know what needs attention.</span>
+          <span class="cos-index__status">In development</span>
+        </span>
+        <span class="cos-index__sub">Surface the open items and exceptions that need intervention across active projects.</span>
+      </a>
+
+      <a href="/products/operations-automation.html" class="cos-index__row">
+        <span class="cos-index__num">EXT</span>
+        <span class="cos-index__name">Operations Automation</span>
+        <span class="cos-index__mid">
+          <span class="cos-index__tagline">Handle the repetitive work around it.</span>
+        </span>
+        <span class="cos-index__sub">Purpose-built workflows handle recurring operational work around invoices, field reporting, safety, billing, compliance, and changes.</span>
+      </a>
+
     </div>
 
-    <!-- Extension layer -->
-    <div style="border-top: 2px solid #111111; margin-top: 30px; padding-top: 26px; display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 0 16px;">
-      <div></div>
-      <div style="min-width: 0; display: flex; flex-wrap: wrap; gap: 12px 40px; align-items: flex-start;">
-        <div style="flex: 1 1 360px; min-width: 0; display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 8px 12px; align-items: start;">
-          <div></div>
-          <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #5F6466;">Extension layer</div>
-          <div style="display: contents;">
-            <svg viewBox="0 0 100 100" width="26" height="26" aria-hidden="true" style="flex: none; align-self: center;">
-              <line x1="14" y1="28" x2="34" y2="28" stroke="#111111" stroke-width="9"></line>
-              <line x1="42" y1="28" x2="62" y2="28" stroke="#111111" stroke-width="9"></line>
-              <line x1="70" y1="28" x2="90" y2="28" stroke="#111111" stroke-width="9"></line>
-              <line x1="24" y1="34" x2="24" y2="66" stroke="#476776" stroke-width="5"></line>
-              <line x1="52" y1="34" x2="52" y2="66" stroke="#476776" stroke-width="5"></line>
-              <line x1="80" y1="34" x2="80" y2="66" stroke="#476776" stroke-width="5"></line>
-              <line x1="14" y1="74" x2="90" y2="74" stroke="#C43230" stroke-width="9"></line>
-            </svg>
-            <div style="min-width: 0; display: flex; align-items: center; min-height: 26px; font-family: Archivo, sans-serif; font-weight: 600; font-size: 19px; line-height: 1.35; letter-spacing: -0.02em; color: #111111;">Automate the predictable work. Keep judgment where it belongs.</div>
-          </div>
-        </div>
-        <div style="flex: 1.25 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 16px; align-items: flex-start;">
-          <p style="margin: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.6; color: #5F6466;">Purpose-built workflows handle recurring operational work around invoices, field reporting, safety, billing, compliance, and changes.</p>
-        </div>
-        <div style="flex: 1 1 100%; display: flex; align-items: center; gap: 18px; flex-wrap: wrap; padding: 6px 0 0 38px;">
-          <a href="/products/operations-automation.html" style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 14px; letter-spacing: -0.01em; color: #111111; border-bottom: 2px solid #111111; padding-bottom: 3px;">Explore Operations Automation &rarr;</a>
-          <a href="/products/custom-solutions.html" style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 14px; letter-spacing: -0.01em; color: #476776; border-bottom: 1px solid #B8B9B5; padding-bottom: 3px;">Custom Solutions</a>
-        </div>
-      </div>
-    </div>
   </div>
-</div>
+</section>
 
 <!-- ===== §4 PROOF ===== -->
 <div style="background: #EFEFEB; padding: 76px 0 80px;">
@@ -763,7 +788,7 @@
 </section>
 
 <!-- ===== §6 CLOSING CTA ===== -->
-<div class="surface--revision" style="padding: 84px 0 80px;">
+<div class="surface--oxblood" style="padding: 84px 0 80px;">
   <div style="max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr)); gap: 48px; align-items: start;">
     <div style="container-type: inline-size; min-width: 0; display: flex; flex-direction: column; gap: 26px;">
       <div style="display: flex; align-items: center; gap: 14px;">

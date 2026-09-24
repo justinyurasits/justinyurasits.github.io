@@ -4,23 +4,16 @@
    ================================================================ */
 
 :root {
-  --c-ink:           #111111;
-  --c-white:         #FFFFFF;
-  --c-bond:          #EFEFEB;
-  --c-steel:         #476776;
-  --c-steel-deep:    #2F4A57;
-  --c-revision:      #C43230;
-  --c-graphite:      #5F6466;
-  --c-line:          #B8B9B5;
-
-  /* Derived — dark-surface values
-     --c-revision-lift  5.73:1 on ink  (#E2685E)
-     --c-graphite-lift  6.69:1 on ink  (#949B9E) — ink surface only; steel uses white for all text
-     --c-line-dark      10.01:1 on ink, 3.21:1 on steel  (#B1BFC5)
-  */
-  --c-revision-lift: #E2685E;
-  --c-graphite-lift: #949B9E;
-  --c-line-dark:     #B1BFC5;
+  --c-ink:          #1E1A17;   /* warm black */
+  --c-white:        #FFFFFF;
+  --c-bond:         #F3F1EB;   /* warm ivory */
+  --c-navy:         #1D2648;
+  --c-oxblood:      #692524;   /* change mark on light — 11.11:1 on white, 9.83:1 on ivory */
+  --c-graphite:     #413833;   /* muted text on light — 11.42:1 on white */
+  --c-line:         #BAB8B7;   /* rules */
+  --c-brass:        #C08F58;   /* dark surfaces only — 6.02:1 on ink, 5.14:1 on navy */
+  --c-muted-dark:   #B1A9A3;   /* muted text on dark — 7.47:1 on ink, 6.38:1 on navy, 4.80:1 on oxblood */
+  --c-change-lift:  #D07A6A;   /* change mark on dark — 5.49:1 on ink, 4.69:1 on navy */
 }
 
 
@@ -86,7 +79,7 @@
   --rule-cut:        var(--c-ink);
   --rule-object:     var(--c-graphite);
   --rule-dimension:  var(--c-line);
-  --change:          var(--c-revision);
+  --change:          var(--c-oxblood);
   --btn-bg:          var(--c-ink);
   --btn-fg:          var(--c-white);
   --btn-border:      var(--c-ink);
@@ -105,7 +98,7 @@
   --rule-cut:        var(--c-ink);
   --rule-object:     var(--c-graphite);
   --rule-dimension:  var(--c-line);
-  --change:          var(--c-revision);
+  --change:          var(--c-oxblood);
   --btn-bg:          var(--c-ink);
   --btn-fg:          var(--c-white);
   --btn-border:      var(--c-ink);
@@ -120,7 +113,7 @@
   --rule-cut:        var(--c-ink);
   --rule-object:     var(--c-graphite);
   --rule-dimension:  var(--c-line);
-  --change:          var(--c-revision);
+  --change:          var(--c-oxblood);
   --btn-bg:          var(--c-ink);
   --btn-fg:          var(--c-white);
   --btn-border:      var(--c-ink);
@@ -131,11 +124,11 @@
 .surface--ink {
   --surface:         var(--c-ink);
   --fg:              var(--c-white);
-  --fg-muted:        var(--c-graphite-lift);
-  --rule-cut:        var(--c-white);
-  --rule-object:     var(--c-line-dark);
-  --rule-dimension:  var(--c-line-dark);
-  --change:          var(--c-revision-lift);
+  --fg-muted:        var(--c-muted-dark);
+  --rule-cut:        var(--c-line);
+  --rule-object:     var(--c-line);
+  --rule-dimension:  var(--c-line);
+  --change:          var(--c-change-lift);
   --btn-bg:          var(--c-white);
   --btn-fg:          var(--c-ink);
   --btn-border:      var(--c-white);
@@ -143,47 +136,32 @@
   color:             var(--c-white);
 }
 
-.surface--steel {
-  --surface:         var(--c-steel);
+.surface--navy {
+  --surface:         var(--c-navy);
   --fg:              var(--c-white);
-  --fg-muted:        var(--c-white); /* 6.05:1 max — no usable muted range; steel is single-level text only */
-  --rule-cut:        var(--c-white);
-  --rule-object:     var(--c-line-dark);
-  --rule-dimension:  var(--c-line-dark);
-  --change:          var(--c-revision-lift);
+  --fg-muted:        var(--c-muted-dark);
+  --rule-cut:        var(--c-line);
+  --rule-object:     var(--c-line);
+  --rule-dimension:  var(--c-line);
+  --change:          var(--c-change-lift);
   --btn-bg:          var(--c-white);
   --btn-fg:          var(--c-ink);
   --btn-border:      var(--c-white);
-  background:        var(--c-steel);
+  background:        var(--c-navy);
   color:             var(--c-white);
 }
 
-.surface--steel-deep {
-  --surface:         var(--c-steel-deep);
+.surface--oxblood {
+  --surface:         var(--c-oxblood);
   --fg:              var(--c-white);
-  --fg-muted:        var(--c-white); /* single-level text — consistent with steel pattern */
-  --rule-cut:        var(--c-white);
-  --rule-object:     var(--c-line-dark);
-  --rule-dimension:  var(--c-line-dark);
-  --change:          var(--c-revision-lift);
+  --fg-muted:        var(--c-muted-dark);
+  --rule-cut:        var(--c-line);
+  --rule-object:     var(--c-line);
+  --rule-dimension:  var(--c-line);
+  --change:          transparent; /* no change mark on a red ground */
   --btn-bg:          var(--c-white);
   --btn-fg:          var(--c-ink);
   --btn-border:      var(--c-white);
-  background:        var(--c-steel-deep);
-  color:             var(--c-white);
-}
-
-.surface--revision {
-  --surface:         var(--c-revision);
-  --fg:              var(--c-white);
-  --fg-muted:        var(--c-white); /* no usable muted range on revision red */
-  --rule-cut:        var(--c-white);
-  --rule-object:     var(--c-white);
-  --rule-dimension:  var(--c-white);
-  --change:          var(--c-white);
-  --btn-bg:          var(--c-white);
-  --btn-fg:          var(--c-ink);
-  --btn-border:      var(--c-white);
-  background:        var(--c-revision);
+  background:        var(--c-oxblood);
   color:             var(--c-white);
 }

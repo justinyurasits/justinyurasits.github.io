@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="/brand-kit/cos-footer.css">
   <style>
     *, *::before, *::after { box-sizing: border-box; }
-    body { margin: 0; background: #FFFFFF; font-family: Archivo, Helvetica, sans-serif; color: #111111; -webkit-font-smoothing: antialiased; }
+    body { margin: 0; background: var(--surface); font-family: Archivo, Helvetica, sans-serif; color: var(--fg); -webkit-font-smoothing: antialiased; }
     a { text-decoration: none; }
     .cos-container { max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px); }
 
@@ -341,7 +341,7 @@
         <svg viewBox="0 0 100 100" width="22" height="22" aria-hidden="true">
           <polyline points="14,56 14,14 56,14" fill="none" stroke="currentColor" stroke-width="13"/>
           <polyline points="86,44 86,86 44,86" fill="none" stroke="currentColor" stroke-width="13"/>
-          <rect x="32" y="32" width="36" height="36" fill="#C43230"/>
+          <rect x="32" y="32" width="36" height="36" fill="var(--change)"/>
         </svg>
         Construction OS
       </a>
@@ -379,87 +379,87 @@
 <!-- header:end -->
 
 <!-- ===== §1 HERO ===== -->
-<div style="background: #FFFFFF; padding: 72px 0 76px;">
+<div class="surface--white" style="padding: 72px 0 76px;">
   <div style="max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr)); gap: 48px; align-items: start;">
 
     <div style="container-type: inline-size; min-width: 0; display: flex; flex-direction: column; gap: 24px;">
-      <h1 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(30px, 10cqi, 60px); line-height: 0.99; letter-spacing: -0.042em; color: #111111; text-wrap: balance;">Give your construction team time back.</h1>
-      <p style="margin: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 17px; line-height: 1.6; color: #5F6466; max-width: 48ch;">Your best people shouldn&rsquo;t spend their day producing paperwork, answering the same questions, and chasing project status.</p>
-      <p style="margin: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.6; color: #5F6466; max-width: 52ch;">Construction OS is a system I configure around your company&rsquo;s documents, standards, pricing rules, knowledge, and workflows.</p>
-      <div style="border-left: 2px solid #476776; padding-left: 16px; display: flex; flex-direction: column; gap: 4px;">
-        <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.5; color: #5F6466;">Built around construction.</div>
-        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 15px; line-height: 1.5; letter-spacing: -0.01em; color: #111111;">Configured around your business.</div>
+      <h1 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(30px, 10cqi, 60px); line-height: 0.99; letter-spacing: -0.042em; color: var(--fg); text-wrap: balance;">Give your construction team time back.</h1>
+      <p style="margin: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 17px; line-height: 1.6; color: var(--fg-muted); max-width: 48ch;">Your best people shouldn&rsquo;t spend their day producing paperwork, answering the same questions, and chasing project status.</p>
+      <p style="margin: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.6; color: var(--fg-muted); max-width: 52ch;">Construction OS is a system I configure around your company&rsquo;s documents, standards, pricing rules, knowledge, and workflows.</p>
+      <div style="border-left: 1.5px solid var(--fg); padding-left: 16px; display: flex; flex-direction: column; gap: 4px;">
+        <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.5; color: var(--fg-muted);">Built around construction.</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 15px; line-height: 1.5; letter-spacing: -0.01em; color: var(--fg);">Configured around your business.</div>
       </div>
       <div style="display: flex; align-items: center; gap: 22px; flex-wrap: wrap; padding-top: 4px;">
-        <a href="https://draftconstructionchangeorder.com" style="box-sizing: border-box; background: #111111; color: #FFFFFF; font-family: Archivo, sans-serif; font-weight: 600; font-size: 15px; letter-spacing: -0.01em; padding: 15px 26px; min-height: 48px; display: flex; align-items: center;">See it work</a>
-        <a href="/services.html" style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 15px; letter-spacing: -0.01em; color: #111111; border-bottom: 2px solid #111111; padding-bottom: 3px;">How an engagement works &rarr;</a>
+        <a href="https://draftconstructionchangeorder.com" style="box-sizing: border-box; background: var(--btn-bg); color: var(--btn-fg); font-family: Archivo, sans-serif; font-weight: 600; font-size: 15px; letter-spacing: -0.01em; padding: 15px 26px; min-height: 48px; display: flex; align-items: center;">See it work</a>
+        <a href="/services.html" style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 15px; letter-spacing: -0.01em; color: var(--fg); border-bottom: 2px solid var(--rule-cut); padding-bottom: 3px;">How an engagement works &rarr;</a>
       </div>
     </div>
 
     <div style="min-width: 0;">
       <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 20px; padding-bottom: 10px;">
-        <div style="font-family: ui-monospace, monospace; font-size: 11px; letter-spacing: 0.06em; color: #5F6466;">EXHIBIT A &mdash; SCOPE OF WORK</div>
-        <div style="font-family: ui-monospace, monospace; font-size: 11px; letter-spacing: 0.06em; color: #476776;">EXAMPLE VIEW</div>
+        <div style="font-family: ui-monospace, monospace; font-size: 11px; letter-spacing: 0.06em; color: var(--fg-muted);">EXHIBIT A &mdash; SCOPE OF WORK</div>
+        <div style="font-family: ui-monospace, monospace; font-size: 11px; letter-spacing: 0.06em; color: var(--fg-muted);">EXAMPLE VIEW</div>
       </div>
-      <div style="box-sizing: border-box; position: relative; border: 1px solid #111111; background: #FFFFFF; height: 560px; overflow: hidden;">
-        <div style="position: absolute; top: 10px; right: 10px; width: 14px; height: 14px; border-top: 2px solid #B8B9B5; border-right: 2px solid #B8B9B5; z-index: 2;" aria-hidden="true"></div>
-        <div style="position: absolute; bottom: 10px; left: 10px; width: 14px; height: 14px; border-bottom: 2px solid #B8B9B5; border-left: 2px solid #B8B9B5; z-index: 3;" aria-hidden="true"></div>
+      <div style="box-sizing: border-box; position: relative; border: 1px solid var(--rule-object); background: var(--surface); height: 560px; overflow: hidden;">
+        <div style="position: absolute; top: 10px; right: 10px; width: 14px; height: 14px; border-top: 2px solid var(--rule-dimension); border-right: 2px solid var(--rule-dimension); z-index: 2;" aria-hidden="true"></div>
+        <div style="position: absolute; bottom: 10px; left: 10px; width: 14px; height: 14px; border-bottom: 2px solid var(--rule-dimension); border-left: 2px solid var(--rule-dimension); z-index: 3;" aria-hidden="true"></div>
 
         <div style="display: grid; grid-template-columns: 1.55fr 1fr; height: 100%;">
           <div style="padding: 24px 24px 0; display: flex; flex-direction: column; gap: 12px; min-width: 0;">
-            <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px; border-bottom: 1px solid #B8B9B5; padding-bottom: 9px;">
-              <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 11px; color: #5F6466;">Residential renovation</div>
-              <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 11px; color: #5F6466;">Page 1 of 6</div>
+            <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px; border-bottom: 1px solid var(--rule-dimension); padding-bottom: 9px;">
+              <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 11px; color: var(--fg-muted);">Residential renovation</div>
+              <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 11px; color: var(--fg-muted);">Page 1 of 6</div>
             </div>
             <div>
-              <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 17px; letter-spacing: -0.02em; color: #111111;">Exhibit A &mdash; Scope of work</div>
-              <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 11px; color: #5F6466; padding-top: 4px;">Contract dated 14 Aug 2026 &middot; Rev. 2 &middot; Cost-plus w/ GMP</div>
+              <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 17px; letter-spacing: -0.02em; color: var(--fg);">Exhibit A &mdash; Scope of work</div>
+              <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 11px; color: var(--fg-muted); padding-top: 4px;">Contract dated 14 Aug 2026 &middot; Rev. 2 &middot; Cost-plus w/ GMP</div>
             </div>
-            <div style="height: 1px; background: #111111;"></div>
-            <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 12px; color: #111111;">1.&nbsp;&nbsp;General</div>
-            <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 11.5px; line-height: 1.55; color: #5F6466;">1.1&nbsp;&nbsp;The Contractor shall furnish all labor, materials, equipment, tools, and supervision necessary to complete the scope described herein, in strict accordance with the Contract Documents and all applicable codes.</div>
-            <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 11.5px; line-height: 1.55; color: #5F6466;">1.2&nbsp;&nbsp;Work shall be executed in a workmanlike manner consistent with industry standards. Substitutions require prior written approval from the Owner&rsquo;s representative.</div>
-            <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 11.5px; line-height: 1.55; color: #5F6466;">1.3&nbsp;&nbsp;The Owner shall have reasonable access to the site during working hours. Contractor shall maintain a clean, safe, and orderly site at all times.</div>
-            <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 12px; color: #111111; padding-top: 2px;">2.&nbsp;&nbsp;Millwork &amp; finish carpentry</div>
-            <div style="display: grid; grid-template-columns: 40px minmax(0, 1fr) 34px; gap: 6px 10px; font-family: Archivo, sans-serif; font-size: 11px; color: #5F6466;">
-              <div style="font-weight: 500; color: #111111;">Item</div><div style="font-weight: 500; color: #111111;">Description</div><div style="font-weight: 500; color: #111111; text-align: right;">Unit</div>
+            <div style="height: 1px; background: var(--rule-object);"></div>
+            <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 12px; color: var(--fg);">1.&nbsp;&nbsp;General</div>
+            <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 11.5px; line-height: 1.55; color: var(--fg-muted);">1.1&nbsp;&nbsp;The Contractor shall furnish all labor, materials, equipment, tools, and supervision necessary to complete the scope described herein, in strict accordance with the Contract Documents and all applicable codes.</div>
+            <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 11.5px; line-height: 1.55; color: var(--fg-muted);">1.2&nbsp;&nbsp;Work shall be executed in a workmanlike manner consistent with industry standards. Substitutions require prior written approval from the Owner&rsquo;s representative.</div>
+            <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 11.5px; line-height: 1.55; color: var(--fg-muted);">1.3&nbsp;&nbsp;The Owner shall have reasonable access to the site during working hours. Contractor shall maintain a clean, safe, and orderly site at all times.</div>
+            <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 12px; color: var(--fg); padding-top: 2px;">2.&nbsp;&nbsp;Millwork &amp; finish carpentry</div>
+            <div style="display: grid; grid-template-columns: 40px minmax(0, 1fr) 34px; gap: 6px 10px; font-family: Archivo, sans-serif; font-size: 11px; color: var(--fg-muted);">
+              <div style="font-weight: 500; color: var(--fg);">Item</div><div style="font-weight: 500; color: var(--fg);">Description</div><div style="font-weight: 500; color: var(--fg); text-align: right;">Unit</div>
               <div>2.1a</div><div>Kitchen casework, stain-grade</div><div style="text-align: right;">LS</div>
               <div>2.1b</div><div>Library shelving and panel walls</div><div style="text-align: right;">LS</div>
               <div>2.2</div><div>Painted-grade trim, Levels 1&ndash;3</div><div style="text-align: right;">LF</div>
               <div>2.3</div><div>Built-in window seats, primary bedroom</div><div style="text-align: right;">EA</div>
               <div>2.4</div><div>Crown molding, main level</div><div style="text-align: right;">LF</div>
             </div>
-            <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 12px; color: #111111; padding-top: 2px;">3.&nbsp;&nbsp;Doors &amp; hardware</div>
+            <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 12px; color: var(--fg); padding-top: 2px;">3.&nbsp;&nbsp;Doors &amp; hardware</div>
           </div>
 
-          <div style="border-left: 1px solid #B8B9B5; background: #EFEFEB; padding: 24px 20px 0; display: flex; flex-direction: column; gap: 18px; min-width: 0;">
+          <div class="surface--bond" style="border-left: 1px solid var(--rule-dimension); padding: 24px 20px 0; display: flex; flex-direction: column; gap: 18px; min-width: 0;">
             <div style="display: flex; flex-direction: column; gap: 7px;">
-              <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11.5px; letter-spacing: -0.01em; color: #111111;">Proposal letter</div>
-              <div style="height: 1px; background: #B8B9B5;"></div>
-              <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 11px; line-height: 1.5; color: #5F6466;">Re: Interior renovation &mdash; 214 Commonwealth Ave.</div>
-              <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 11px; line-height: 1.5; color: #5F6466;">We are pleased to submit this proposal for the interior renovation under a cost-plus contract with GMP. Our fee is established at 18% of direct costs, inclusive of all general conditions.</div>
-              <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 11px; line-height: 1.5; color: #5F6466;">This proposal supersedes all prior correspondence.</div>
+              <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11.5px; letter-spacing: -0.01em; color: var(--fg);">Proposal letter</div>
+              <div style="height: 1px; background: var(--rule-dimension);"></div>
+              <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 11px; line-height: 1.5; color: var(--fg-muted);">Re: Interior renovation &mdash; 214 Commonwealth Ave.</div>
+              <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 11px; line-height: 1.5; color: var(--fg-muted);">We are pleased to submit this proposal for the interior renovation under a cost-plus contract with GMP. Our fee is established at 18% of direct costs, inclusive of all general conditions.</div>
+              <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 11px; line-height: 1.5; color: var(--fg-muted);">This proposal supersedes all prior correspondence.</div>
             </div>
             <div style="display: flex; flex-direction: column; gap: 7px;">
-              <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11.5px; letter-spacing: -0.01em; color: #111111;">Site visit &amp; existing conditions</div>
-              <div style="height: 1px; background: #B8B9B5;"></div>
-              <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 11px; line-height: 1.5; color: #5F6466;">Existing casework: to remain in place. Protect in place &mdash; contractor responsible for any damage during construction.</div>
-              <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 11px; line-height: 1.5; color: #5F6466;">Structural: wall at grid line C confirmed load-bearing. Beam sizing to be determined by structural engineer prior to demo permit.</div>
+              <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11.5px; letter-spacing: -0.01em; color: var(--fg);">Site visit &amp; existing conditions</div>
+              <div style="height: 1px; background: var(--rule-dimension);"></div>
+              <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 11px; line-height: 1.5; color: var(--fg-muted);">Existing casework: to remain in place. Protect in place &mdash; contractor responsible for any damage during construction.</div>
+              <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 11px; line-height: 1.5; color: var(--fg-muted);">Structural: wall at grid line C confirmed load-bearing. Beam sizing to be determined by structural engineer prior to demo permit.</div>
             </div>
             <div style="display: flex; flex-direction: column; gap: 7px;">
-              <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11.5px; letter-spacing: -0.01em; color: #111111;">Preliminary schedule</div>
-              <div style="height: 1px; background: #B8B9B5;"></div>
-              <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 11px; line-height: 1.5; color: #5F6466;">Mobilization &mdash; 01 Sep 2026</div>
-              <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 11px; line-height: 1.5; color: #5F6466;">Demo &amp; rough framing &mdash; 15 Sep</div>
-              <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 11px; line-height: 1.5; color: #5F6466;">Millwork release &mdash; 06 Oct</div>
+              <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11.5px; letter-spacing: -0.01em; color: var(--fg);">Preliminary schedule</div>
+              <div style="height: 1px; background: var(--rule-dimension);"></div>
+              <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 11px; line-height: 1.5; color: var(--fg-muted);">Mobilization &mdash; 01 Sep 2026</div>
+              <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 11px; line-height: 1.5; color: var(--fg-muted);">Demo &amp; rough framing &mdash; 15 Sep</div>
+              <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 11px; line-height: 1.5; color: var(--fg-muted);">Millwork release &mdash; 06 Oct</div>
             </div>
           </div>
         </div>
 
-        <div style="position: absolute; left: 0; right: 0; bottom: 0; height: 88px; background: linear-gradient(to bottom, rgba(255,255,255,0), #FFFFFF 62%); pointer-events: none;" aria-hidden="true"></div>
-        <div style="position: absolute; left: 0; right: 0; bottom: 0; border-top: 1px solid #B8B9B5; background: #FFFFFF; padding: 10px 24px; display: flex; align-items: center; justify-content: space-between; gap: 12px;">
-          <div style="font-family: ui-monospace, monospace; font-size: 11px; letter-spacing: 0.04em; color: #5F6466; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">PAGE 1 OF 6 &middot; RESIDENTIAL RENOVATION</div>
-          <span style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 12px; letter-spacing: -0.01em; color: #5F6466; white-space: nowrap; flex: none;">Open the full exhibit</span>
+        <div style="position: absolute; left: 0; right: 0; bottom: 0; height: 88px; background: linear-gradient(to bottom, rgba(255,255,255,0), var(--surface) 62%); pointer-events: none;" aria-hidden="true"></div>
+        <div style="position: absolute; left: 0; right: 0; bottom: 0; border-top: 1px solid var(--rule-dimension); background: var(--surface); padding: 10px 24px; display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+          <div style="font-family: ui-monospace, monospace; font-size: 11px; letter-spacing: 0.04em; color: var(--fg-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">PAGE 1 OF 6 &middot; RESIDENTIAL RENOVATION</div>
+          <span style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 12px; letter-spacing: -0.01em; color: var(--fg-muted); white-space: nowrap; flex: none;">Open the full exhibit</span>
         </div>
       </div>
     </div>
@@ -491,71 +491,71 @@
 </section>
 
 <!-- ===== §2 PAIN ===== -->
-<div style="background: #EFEFEB; padding: 76px 0 80px;">
+<div class="surface--bond" style="padding: 76px 0 80px;">
   <div style="max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px);">
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 20px 48px; align-items: end; border-bottom: 2px solid #111111; padding-bottom: 26px;">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 20px 48px; align-items: end; border-bottom: 2px solid var(--rule-cut); padding-bottom: 26px;">
       <div style="container-type: inline-size; min-width: 0;">
-        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #476776; padding-bottom: 16px;">The current state</div>
-        <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(28px, 8cqi, 42px); line-height: 1.05; letter-spacing: -0.035em; color: #111111; max-width: 18ch; text-wrap: balance;">Does any of this sound familiar?</h2>
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--fg-muted); padding-bottom: 16px;">The current state</div>
+        <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(28px, 8cqi, 42px); line-height: 1.05; letter-spacing: -0.035em; color: var(--fg); max-width: 18ch; text-wrap: balance;">Does any of this sound familiar?</h2>
       </div>
-      <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: #5F6466; text-align: right; white-space: nowrap;">Four&nbsp;places it&nbsp;shows&nbsp;up</div>
+      <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fg-muted); text-align: right; white-space: nowrap;">Four&nbsp;places it&nbsp;shows&nbsp;up</div>
     </div>
 
     <div style="display: flex; flex-direction: column; padding-bottom: 44px;">
 
       <div style="display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 0 16px; padding: 26px 0 28px;">
-        <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: #5F6466; padding-top: 7px;">01</div>
+        <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: var(--fg-muted); padding-top: 7px;">01</div>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 10px 40px; align-items: start; min-width: 0;">
           <div style="display: flex; flex-direction: column; gap: 10px; min-width: 0;">
             <div style="display: flex; align-items: center; gap: 12px;">
-              <svg viewBox="0 0 100 100" width="26" height="26" aria-hidden="true" style="flex: none;"><polyline points="30,14 86,14 86,72" fill="none" stroke="#476776" stroke-width="5"></polyline><rect x="14" y="26" width="52" height="60" fill="none" stroke="#111111" stroke-width="9"></rect></svg>
-              <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #111111;">Paperwork</div>
+              <svg viewBox="0 0 100 100" width="26" height="26" aria-hidden="true" style="flex: none;"><polyline points="30,14 86,14 86,72" fill="none" stroke="var(--rule-object)" stroke-width="5"></polyline><rect x="14" y="26" width="52" height="60" fill="none" stroke="currentColor" stroke-width="9"></rect></svg>
+              <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg);">Paperwork</div>
             </div>
-            <h3 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 22px; line-height: 1.3; letter-spacing: -0.02em; color: #111111; text-wrap: balance;">Your PMs spend their best hours producing paperwork.</h3>
+            <h3 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 22px; line-height: 1.3; letter-spacing: -0.02em; color: var(--fg); text-wrap: balance;">Your PMs spend their best hours producing paperwork.</h3>
           </div>
-          <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466; min-width: 0;">Change orders, RFIs, meeting minutes, reports, submittals, billing documentation&mdash;rebuilt from scratch, job after job.</div>
+          <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: var(--fg-muted); min-width: 0;">Change orders, RFIs, meeting minutes, reports, submittals, billing documentation&mdash;rebuilt from scratch, job after job.</div>
         </div>
       </div>
 
-      <div style="display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 0 16px; padding: 26px 0 28px; border-top: 1px solid #B8B9B5;">
-        <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: #5F6466; padding-top: 7px;">02</div>
+      <div style="display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 0 16px; padding: 26px 0 28px; border-top: 1px solid var(--rule-dimension);">
+        <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: var(--fg-muted); padding-top: 7px;">02</div>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 10px 40px; align-items: start; min-width: 0;">
           <div style="display: flex; flex-direction: column; gap: 10px; min-width: 0;">
             <div style="display: flex; align-items: center; gap: 12px;">
-              <svg viewBox="0 0 100 100" width="26" height="26" aria-hidden="true" style="flex: none;"><line x1="6" y1="50" x2="96" y2="50" stroke="#476776" stroke-width="5"></line><polyline points="8,20 40,20 54,42 94,42" fill="none" stroke="#111111" stroke-width="9"></polyline><polyline points="8,80 40,80 54,58 94,58" fill="none" stroke="#111111" stroke-width="9"></polyline></svg>
-              <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #111111;">Knowledge</div>
+              <svg viewBox="0 0 100 100" width="26" height="26" aria-hidden="true" style="flex: none;"><line x1="6" y1="50" x2="96" y2="50" stroke="var(--rule-object)" stroke-width="5"></line><polyline points="8,20 40,20 54,42 94,42" fill="none" stroke="currentColor" stroke-width="9"></polyline><polyline points="8,80 40,80 54,58 94,58" fill="none" stroke="currentColor" stroke-width="9"></polyline></svg>
+              <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg);">Knowledge</div>
             </div>
-            <h3 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 22px; line-height: 1.3; letter-spacing: -0.02em; color: #111111; text-wrap: balance;">Your best people are the only ones who know how the company works.</h3>
+            <h3 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 22px; line-height: 1.3; letter-spacing: -0.02em; color: var(--fg); text-wrap: balance;">Your best people are the only ones who know how the company works.</h3>
           </div>
-          <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466; min-width: 0;">The senior PM everyone calls. The COO who answers every operational question. The estimator whose pricing judgment nobody else has.</div>
+          <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: var(--fg-muted); min-width: 0;">The senior PM everyone calls. The COO who answers every operational question. The estimator whose pricing judgment nobody else has.</div>
         </div>
       </div>
 
-      <div style="display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 0 16px; padding: 26px 0 28px; border-top: 1px solid #B8B9B5;">
-        <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: #5F6466; padding-top: 7px;">03</div>
+      <div style="display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 0 16px; padding: 26px 0 28px; border-top: 1px solid var(--rule-dimension);">
+        <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: var(--fg-muted); padding-top: 7px;">03</div>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 10px 40px; align-items: start; min-width: 0;">
           <div style="display: flex; flex-direction: column; gap: 10px; min-width: 0;">
             <div style="display: flex; align-items: center; gap: 12px;">
-              <svg viewBox="0 0 100 100" width="26" height="26" aria-hidden="true" style="flex: none;"><rect x="6" y="18" width="88" height="64" fill="none" stroke="#476776" stroke-width="5"></rect><line x1="18" y1="70" x2="82" y2="70" stroke="#111111" stroke-width="9"></line><line x1="30" y1="70" x2="30" y2="56" stroke="#111111" stroke-width="9"></line><line x1="50" y1="70" x2="50" y2="44" stroke="#111111" stroke-width="9"></line><line x1="70" y1="70" x2="70" y2="32" stroke="#C43230" stroke-width="9"></line></svg>
-              <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #111111;">Visibility</div>
+              <svg viewBox="0 0 100 100" width="26" height="26" aria-hidden="true" style="flex: none;"><rect x="6" y="18" width="88" height="64" fill="none" stroke="var(--rule-object)" stroke-width="5"></rect><line x1="18" y1="70" x2="82" y2="70" stroke="currentColor" stroke-width="9"></line><line x1="30" y1="70" x2="30" y2="56" stroke="currentColor" stroke-width="9"></line><line x1="50" y1="70" x2="50" y2="44" stroke="currentColor" stroke-width="9"></line><line x1="70" y1="70" x2="70" y2="32" stroke="var(--change)" stroke-width="9"></line></svg>
+              <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg);">Visibility</div>
             </div>
-            <h3 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 22px; line-height: 1.3; letter-spacing: -0.02em; color: #111111; text-wrap: balance;">You&rsquo;re chasing people to figure out what needs attention.</h3>
+            <h3 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 22px; line-height: 1.3; letter-spacing: -0.02em; color: var(--fg); text-wrap: balance;">You&rsquo;re chasing people to figure out what needs attention.</h3>
           </div>
-          <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466; min-width: 0;">Open changes, aging RFIs, missing approvals, unsigned contracts, schedule risk&mdash;assembled by hand, one conversation at a time.</div>
+          <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: var(--fg-muted); min-width: 0;">Open changes, aging RFIs, missing approvals, unsigned contracts, schedule risk&mdash;assembled by hand, one conversation at a time.</div>
         </div>
       </div>
 
-      <div style="display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 0 16px; padding: 26px 0 28px; border-top: 1px solid #B8B9B5;">
-        <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: #5F6466; padding-top: 7px;">04</div>
+      <div style="display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 0 16px; padding: 26px 0 28px; border-top: 1px solid var(--rule-dimension);">
+        <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: var(--fg-muted); padding-top: 7px;">04</div>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 10px 40px; align-items: start; min-width: 0;">
           <div style="display: flex; flex-direction: column; gap: 10px; min-width: 0;">
             <div style="display: flex; align-items: center; gap: 12px;">
-              <svg viewBox="0 0 100 100" width="26" height="26" aria-hidden="true" style="flex: none;"><line x1="14" y1="28" x2="34" y2="28" stroke="#111111" stroke-width="9"></line><line x1="42" y1="28" x2="62" y2="28" stroke="#111111" stroke-width="9"></line><line x1="70" y1="28" x2="90" y2="28" stroke="#111111" stroke-width="9"></line><line x1="14" y1="74" x2="90" y2="74" stroke="#C43230" stroke-width="9"></line></svg>
-              <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #111111;">Operations</div>
+              <svg viewBox="0 0 100 100" width="26" height="26" aria-hidden="true" style="flex: none;"><line x1="14" y1="28" x2="34" y2="28" stroke="currentColor" stroke-width="9"></line><line x1="42" y1="28" x2="62" y2="28" stroke="currentColor" stroke-width="9"></line><line x1="70" y1="28" x2="90" y2="28" stroke="currentColor" stroke-width="9"></line><line x1="14" y1="74" x2="90" y2="74" stroke="var(--change)" stroke-width="9"></line></svg>
+              <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg);">Operations</div>
             </div>
-            <h3 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 22px; line-height: 1.3; letter-spacing: -0.02em; color: #111111; text-wrap: balance;">Too much routine operational work is still manual.</h3>
+            <h3 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 22px; line-height: 1.3; letter-spacing: -0.02em; color: var(--fg); text-wrap: balance;">Too much routine operational work is still manual.</h3>
           </div>
-          <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466; min-width: 0;">Invoices and receipts entered by hand. Safety documentation chased. Billing packages assembled the same way every month.</div>
+          <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: var(--fg-muted); min-width: 0;">Invoices and receipts entered by hand. Safety documentation chased. Billing packages assembled the same way every month.</div>
         </div>
       </div>
 
@@ -574,7 +574,7 @@
           <svg viewBox="0 0 100 100" width="44" height="44" aria-hidden="true" style="flex: none; color: var(--fg);">
             <polyline points="16,54 16,16 54,16" fill="none" stroke="currentColor" stroke-width="9"></polyline>
             <polyline points="84,46 84,84 46,84" fill="none" stroke="currentColor" stroke-width="9"></polyline>
-            <rect x="32" y="32" width="36" height="36" style="fill: var(--change); stroke: #476776; stroke-width: 5;"></rect>
+            <rect x="32" y="32" width="36" height="36" style="fill: var(--change); stroke: var(--rule-object); stroke-width: 5;"></rect>
           </svg>
           <h2 class="cos-index__heading">Construction OS</h2>
         </div>
@@ -627,85 +627,85 @@
 </section>
 
 <!-- ===== §4 PROOF ===== -->
-<div style="background: #EFEFEB; padding: 76px 0 80px;">
+<div class="surface--bond" style="padding: 76px 0 80px;">
   <div style="max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px);">
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 24px 48px; align-items: start;">
       <div style="container-type: inline-size; min-width: 0;">
-        <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(26px, 7cqi, 38px); line-height: 1.08; letter-spacing: -0.032em; color: #111111; max-width: 22ch; text-wrap: balance;">Built in real construction operations.</h2>
+        <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(26px, 7cqi, 38px); line-height: 1.08; letter-spacing: -0.032em; color: var(--fg); max-width: 22ch; text-wrap: balance;">Built in real construction operations.</h2>
       </div>
       <div style="min-width: 0; display: flex; flex-direction: column; gap: 16px; align-items: flex-start; padding-top: 4px;">
-        <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.6; color: #5F6466;">I&rsquo;m Justin Yurasits. Construction OS grew out of solving these problems while I was working inside a residential GC&mdash;<wbr>not from taking a generic AI product and looking for a construction use case.</div>
-        <a href="/about.html" style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 15px; letter-spacing: -0.01em; color: #111111; border-bottom: 2px solid #111111; padding-bottom: 3px;">Read my story &rarr;</a>
+        <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.6; color: var(--fg-muted);">I&rsquo;m Justin Yurasits. Construction OS grew out of solving these problems while I was working inside a residential GC&mdash;<wbr>not from taking a generic AI product and looking for a construction use case.</div>
+        <a href="/about.html" style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 15px; letter-spacing: -0.01em; color: var(--fg); border-bottom: 2px solid var(--rule-cut); padding-bottom: 3px;">Read my story &rarr;</a>
       </div>
     </div>
 
-    <div style="border-top: 2px solid #111111; margin-top: 32px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); align-items: start;">
+    <div style="border-top: 2px solid var(--rule-cut); margin-top: 32px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); align-items: start;">
       <div style="min-width: 0; padding: 26px 32px 28px 0; display: flex; flex-direction: column; gap: 10px;">
-        <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: #5F6466;">4&ndash;8 hrs &rarr;</div>
-        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 38px; line-height: 1; letter-spacing: -0.035em; color: #C43230;">~30 min</div>
-        <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.5; color: #5F6466;">Contract package preparation</div>
+        <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: var(--fg-muted);">4&ndash;8 hrs &rarr;</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 38px; line-height: 1; letter-spacing: -0.035em; color: var(--change);">~30 min</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.5; color: var(--fg-muted);">Contract package preparation</div>
       </div>
-      <div style="min-width: 0; padding: 26px 32px 28px; border-left: 1px solid #B8B9B5; display: flex; flex-direction: column; gap: 10px;">
-        <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: #5F6466;">~10 days &rarr;</div>
-        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 38px; line-height: 1; letter-spacing: -0.035em; color: #C43230;">~3 days</div>
-        <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.5; color: #5F6466;">Change-order turnaround</div>
+      <div style="min-width: 0; padding: 26px 32px 28px; border-left: 1px solid var(--rule-dimension); display: flex; flex-direction: column; gap: 10px;">
+        <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: var(--fg-muted);">~10 days &rarr;</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 38px; line-height: 1; letter-spacing: -0.035em; color: var(--change);">~3 days</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.5; color: var(--fg-muted);">Change-order turnaround</div>
       </div>
     </div>
 
-    <div style="padding-top: 4px; font-family: Archivo, sans-serif; font-weight: 400; font-size: 14px; line-height: 1.55; color: #5F6466; max-width: 70ch;">Measured on residential projects at the GC where Construction OS was first built and applied.</div>
+    <div style="padding-top: 4px; font-family: Archivo, sans-serif; font-weight: 400; font-size: 14px; line-height: 1.55; color: var(--fg-muted); max-width: 70ch;">Measured on residential projects at the GC where Construction OS was first built and applied.</div>
   </div>
 </div>
 
 <!-- ===== §5 HOW YOU GET IT ===== -->
-<div style="background: #FFFFFF; padding: 76px 0 84px;">
+<div class="surface--white" style="padding: 76px 0 84px;">
   <div style="max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px);">
 
-    <div style="container-type: inline-size; display: flex; flex-direction: column; gap: 20px; border-bottom: 2px solid #111111; padding-bottom: 32px;">
-      <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #476776;">How you get it</div>
-      <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(28px, 8cqi, 46px); line-height: 1.02; letter-spacing: -0.038em; color: #111111; max-width: 26ch; text-wrap: balance;">Built around your business.</h2>
+    <div style="container-type: inline-size; display: flex; flex-direction: column; gap: 20px; border-bottom: 2px solid var(--rule-cut); padding-bottom: 32px;">
+      <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--fg-muted);">How you get it</div>
+      <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(28px, 8cqi, 46px); line-height: 1.02; letter-spacing: -0.038em; color: var(--fg); max-width: 26ch; text-wrap: balance;">Built around your business.</h2>
       <div style="display: flex; flex-direction: column; gap: 12px; max-width: 64ch;">
-        <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 17px; line-height: 1.5; letter-spacing: -0.015em; color: #111111;">Construction OS isn&rsquo;t self-service software that asks you to reshape the company around it.</div>
-        <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.6; color: #5F6466;">I start with the way your business actually works&mdash;<wbr>your documents, standards, knowledge, workflows, and bottlenecks&mdash;<wbr>then configure and build around the problems worth solving.</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 17px; line-height: 1.5; letter-spacing: -0.015em; color: var(--fg);">Construction OS isn&rsquo;t self-service software that asks you to reshape the company around it.</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.6; color: var(--fg-muted);">I start with the way your business actually works&mdash;<wbr>your documents, standards, knowledge, workflows, and bottlenecks&mdash;<wbr>then configure and build around the problems worth solving.</div>
       </div>
     </div>
 
     <div style="display: flex; flex-direction: column;">
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 10px 48px; padding: 26px 0 28px; align-items: baseline;">
         <div style="min-width: 0; display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 0 14px; align-items: baseline;">
-          <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: #5F6466;">01</div>
-          <h3 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 22px; line-height: 1.25; letter-spacing: -0.024em; color: #111111; text-wrap: balance;">Start with a real problem.</h3>
+          <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: var(--fg-muted);">01</div>
+          <h3 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 22px; line-height: 1.25; letter-spacing: -0.024em; color: var(--fg); text-wrap: balance;">Start with a real problem.</h3>
         </div>
-        <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">Not an abstract AI initiative. Pick the workflow actually costing the team time.</div>
+        <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: var(--fg-muted);">Not an abstract AI initiative. Pick the workflow actually costing the team time.</div>
       </div>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 10px 48px; padding: 26px 0 28px; border-top: 1px solid #B8B9B5; align-items: baseline;">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 10px 48px; padding: 26px 0 28px; border-top: 1px solid var(--rule-dimension); align-items: baseline;">
         <div style="min-width: 0; display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 0 14px; align-items: baseline;">
-          <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: #5F6466;">02</div>
-          <h3 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 22px; line-height: 1.25; letter-spacing: -0.024em; color: #111111; text-wrap: balance;">Prove it in real work.</h3>
+          <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: var(--fg-muted);">02</div>
+          <h3 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 22px; line-height: 1.25; letter-spacing: -0.024em; color: var(--fg); text-wrap: balance;">Prove it in real work.</h3>
         </div>
-        <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">Use your actual documents, workflows, terminology, and company context.</div>
+        <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: var(--fg-muted);">Use your actual documents, workflows, terminology, and company context.</div>
       </div>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 10px 48px; padding: 26px 0 28px; border-top: 1px solid #B8B9B5; align-items: baseline;">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 10px 48px; padding: 26px 0 28px; border-top: 1px solid var(--rule-dimension); align-items: baseline;">
         <div style="min-width: 0; display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 0 14px; align-items: baseline;">
-          <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: #5F6466;">03</div>
-          <h3 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 22px; line-height: 1.25; letter-spacing: -0.024em; color: #111111; text-wrap: balance;">Implement what works.</h3>
+          <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: var(--fg-muted);">03</div>
+          <h3 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 22px; line-height: 1.25; letter-spacing: -0.024em; color: var(--fg); text-wrap: balance;">Implement what works.</h3>
         </div>
-        <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">Turn the successful workflow into something the team can actually use.</div>
+        <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: var(--fg-muted);">Turn the successful workflow into something the team can actually use.</div>
       </div>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 10px 48px; padding: 26px 0 28px; border-top: 1px solid #B8B9B5; align-items: baseline;">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 10px 48px; padding: 26px 0 28px; border-top: 1px solid var(--rule-dimension); align-items: baseline;">
         <div style="min-width: 0; display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 0 14px; align-items: baseline;">
-          <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: #5F6466;">04</div>
-          <h3 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 22px; line-height: 1.25; letter-spacing: -0.024em; color: #111111; text-wrap: balance;">Expand from there.</h3>
+          <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: var(--fg-muted);">04</div>
+          <h3 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 22px; line-height: 1.25; letter-spacing: -0.024em; color: var(--fg); text-wrap: balance;">Expand from there.</h3>
         </div>
-        <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">Apply what proves valuable to the next team, workflow, or part of the business.</div>
+        <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: var(--fg-muted);">Apply what proves valuable to the next team, workflow, or part of the business.</div>
       </div>
     </div>
 
-    <div style="border-top: 2px solid #111111; padding-top: 30px; display: flex; flex-direction: column; gap: 22px; align-items: flex-start;">
-      <div style="border-left: 2px solid #476776; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; max-width: 66ch;">
-        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 20px; line-height: 1.35; letter-spacing: -0.022em; color: #111111;">Not every workflow should be automated.</div>
-        <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.6; color: #5F6466;">If existing software already solves the problem well, use it. If judgment creates the value, keep the judgment.</div>
+    <div style="border-top: 2px solid var(--rule-cut); padding-top: 30px; display: flex; flex-direction: column; gap: 22px; align-items: flex-start;">
+      <div style="border-left: 1.5px solid var(--fg); padding-left: 18px; display: flex; flex-direction: column; gap: 6px; max-width: 66ch;">
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 20px; line-height: 1.35; letter-spacing: -0.022em; color: var(--fg);">Not every workflow should be automated.</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.6; color: var(--fg-muted);">If existing software already solves the problem well, use it. If judgment creates the value, keep the judgment.</div>
       </div>
-      <a href="/services.html" style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 15px; letter-spacing: -0.01em; color: #111111; border-bottom: 2px solid #111111; padding-bottom: 3px;">See how an engagement works &rarr;</a>
+      <a href="/services.html" style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 15px; letter-spacing: -0.01em; color: var(--fg); border-bottom: 2px solid var(--rule-cut); padding-bottom: 3px;">See how an engagement works &rarr;</a>
     </div>
 
   </div>
@@ -793,26 +793,26 @@
     <div style="container-type: inline-size; min-width: 0; display: flex; flex-direction: column; gap: 26px;">
       <div style="display: flex; align-items: center; gap: 14px;">
         <svg viewBox="0 0 100 100" width="24" height="24" aria-hidden="true" style="flex: none;">
-          <polyline points="16,54 16,16 54,16" fill="none" stroke="#FFFFFF" stroke-width="10"></polyline>
-          <polyline points="84,46 84,84 46,84" fill="none" stroke="#FFFFFF" stroke-width="10"></polyline>
-          <rect x="34" y="34" width="32" height="32" fill="#FFFFFF"></rect>
+          <polyline points="16,54 16,16 54,16" fill="none" stroke="currentColor" stroke-width="10"></polyline>
+          <polyline points="84,46 84,84 46,84" fill="none" stroke="currentColor" stroke-width="10"></polyline>
+          <rect x="34" y="34" width="32" height="32" fill="currentColor"></rect>
         </svg>
-        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: #FFFFFF;">Construction OS</div>
-        <div style="height: 1px; flex: 1; background: #FFFFFF;" aria-hidden="true"></div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg);">Construction OS</div>
+        <div style="height: 1px; flex: 1; background: var(--fg);" aria-hidden="true"></div>
       </div>
-      <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(32px, 11cqi, 60px); line-height: 0.99; letter-spacing: -0.042em; color: #FFFFFF; text-wrap: balance;">Give your team time back.</h2>
-      <p style="margin: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 17px; line-height: 1.6; color: #FFFFFF; max-width: 46ch;">Bring me the workflow, paperwork, knowledge bottleneck, or repetitive process your team is tired of dealing with.</p>
+      <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(32px, 11cqi, 60px); line-height: 0.99; letter-spacing: -0.042em; color: var(--fg); text-wrap: balance;">Give your team time back.</h2>
+      <p style="margin: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 17px; line-height: 1.6; color: var(--fg); max-width: 46ch;">Bring me the workflow, paperwork, knowledge bottleneck, or repetitive process your team is tired of dealing with.</p>
       <div style="display: flex; align-items: center; gap: 22px; flex-wrap: wrap; padding-top: 4px;">
-        <a href="https://cal.com/justinyurasits" style="box-sizing: border-box; background: #FFFFFF; color: #111111; font-family: Archivo, sans-serif; font-weight: 600; font-size: 15px; letter-spacing: -0.01em; padding: 15px 26px; min-height: 48px; display: flex; align-items: center;">Book a 30-minute call</a>
-        <a href="https://draftconstructionchangeorder.com" style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 15px; letter-spacing: -0.01em; color: #FFFFFF; border-bottom: 2px solid #FFFFFF; padding-bottom: 3px;">See it work &rarr;</a>
+        <a href="https://cal.com/justinyurasits" style="box-sizing: border-box; background: var(--btn-bg); color: var(--btn-fg); font-family: Archivo, sans-serif; font-weight: 600; font-size: 15px; letter-spacing: -0.01em; padding: 15px 26px; min-height: 48px; display: flex; align-items: center;">Book a 30-minute call</a>
+        <a href="https://draftconstructionchangeorder.com" style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 15px; letter-spacing: -0.01em; color: var(--fg); border-bottom: 2px solid var(--fg); padding-bottom: 3px;">See it work &rarr;</a>
       </div>
     </div>
 
     <div style="min-width: 0; display: flex; flex-direction: column;">
-      <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: #FFFFFF; padding-bottom: 14px;">What a call covers</div>
-      <div style="border-top: 1px solid rgba(255,255,255,0.3); padding: 16px 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: 16px; line-height: 1.5; color: #FFFFFF;">Where the work actually slows down</div>
-      <div style="border-top: 1px solid rgba(255,255,255,0.3); padding: 16px 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: 16px; line-height: 1.5; color: #FFFFFF;">Which problem is worth solving first</div>
-      <div style="border-top: 1px solid rgba(255,255,255,0.3); padding: 16px 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: 16px; line-height: 1.5; color: #FFFFFF;">What a first engagement would look like</div>
+      <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fg); padding-bottom: 14px;">What a call covers</div>
+      <div style="border-top: 1px solid rgba(255,255,255,0.3); padding: 16px 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: 16px; line-height: 1.5; color: var(--fg);">Where the work actually slows down</div>
+      <div style="border-top: 1px solid rgba(255,255,255,0.3); padding: 16px 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: 16px; line-height: 1.5; color: var(--fg);">Which problem is worth solving first</div>
+      <div style="border-top: 1px solid rgba(255,255,255,0.3); padding: 16px 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: 16px; line-height: 1.5; color: var(--fg);">What a first engagement would look like</div>
     </div>
   </div>
 </div>
@@ -825,10 +825,10 @@
       <!-- Identity -->
       <div class="cos-footer__brand">
         <a class="cos-footer__lockup" href="/">
-          <svg viewBox="0 0 100 100" width="22" height="22" aria-hidden="true" style="color:#111111;flex:none">
+          <svg viewBox="0 0 100 100" width="22" height="22" aria-hidden="true" style="color:var(--fg);flex:none">
             <polyline points="14,56 14,14 56,14" fill="none" stroke="currentColor" stroke-width="13"/>
             <polyline points="86,44 86,86 44,86" fill="none" stroke="currentColor" stroke-width="13"/>
-            <rect x="32" y="32" width="36" height="36" fill="#C43230"/>
+            <rect x="32" y="32" width="36" height="36" fill="var(--change)"/>
           </svg>
           Construction OS
         </a>

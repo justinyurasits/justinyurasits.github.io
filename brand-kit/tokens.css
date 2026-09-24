@@ -14,6 +14,7 @@
   --c-brass:        #C08F58;   /* dark surfaces only — 6.02:1 on ink, 5.14:1 on navy */
   --c-muted-dark:   #B1A9A3;   /* muted text on dark — 7.47:1 on ink, 6.38:1 on navy, 4.80:1 on oxblood */
   --c-change-lift:  #D07A6A;   /* change mark on dark — 5.49:1 on ink, 4.69:1 on navy */
+  --c-mark:         #692524;   /* brand mark only — fixed, does not follow --change */
 }
 
 

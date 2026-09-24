@@ -120,6 +120,8 @@ Sentence case everywhere in language. Capitals are reserved for identifiers that
 
 On dark surfaces (ink, navy) the lifted variant `--c-change-lift` (`#D07A6A`) carries the change role — 5.49:1 on ink, 4.69:1 on navy. The change must always be readable by position and label, never by color alone.
 
+**Exception — brand mark.** The oxblood square in the Construction OS logo mark is not a change indicator. It uses `--c-mark` (`#692524`, same value as `--c-oxblood`), is fixed regardless of surface, and does not follow `--change`. This is the one place the color appears without semantic change meaning.
+
 ---
 
 ## 5. Line hierarchy

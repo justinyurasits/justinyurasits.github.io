@@ -8,6 +8,7 @@
   --c-white:         #FFFFFF;
   --c-bond:          #EFEFEB;
   --c-steel:         #476776;
+  --c-steel-deep:    #2F4A57;
   --c-revision:      #C43230;
   --c-graphite:      #5F6466;
   --c-line:          #B8B9B5;
@@ -154,5 +155,35 @@
   --btn-fg:          var(--c-ink);
   --btn-border:      var(--c-white);
   background:        var(--c-steel);
+  color:             var(--c-white);
+}
+
+.surface--steel-deep {
+  --surface:         var(--c-steel-deep);
+  --fg:              var(--c-white);
+  --fg-muted:        var(--c-white); /* single-level text — consistent with steel pattern */
+  --rule-cut:        var(--c-white);
+  --rule-object:     var(--c-line-dark);
+  --rule-dimension:  var(--c-line-dark);
+  --change:          var(--c-revision-lift);
+  --btn-bg:          var(--c-white);
+  --btn-fg:          var(--c-ink);
+  --btn-border:      var(--c-white);
+  background:        var(--c-steel-deep);
+  color:             var(--c-white);
+}
+
+.surface--revision {
+  --surface:         var(--c-revision);
+  --fg:              var(--c-white);
+  --fg-muted:        var(--c-white); /* no usable muted range on revision red */
+  --rule-cut:        var(--c-white);
+  --rule-object:     var(--c-white);
+  --rule-dimension:  var(--c-white);
+  --change:          var(--c-white);
+  --btn-bg:          var(--c-white);
+  --btn-fg:          var(--c-ink);
+  --btn-border:      var(--c-white);
+  background:        var(--c-revision);
   color:             var(--c-white);
 }

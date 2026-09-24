@@ -33,6 +33,7 @@ Raw values. Nothing in the site references these directly — all components use
 | `--c-white` | `#FFFFFF` | |
 | `--c-bond` | `#EFEFEB` | |
 | `--c-steel` | `#476776` | |
+| `--c-steel-deep` | `#2F4A57` | Deeper steel — 9.46:1 white contrast |
 | `--c-revision` | `#C43230` | 4.74:1 on bond, 5.46:1 on white — changed from `#C73A32` in rev 04 |
 | `--c-graphite` | `#5F6466` | Muted text on light surfaces |
 | `--c-line` | `#B8B9B5` | Rules on light surfaces |
@@ -65,8 +66,10 @@ Four surfaces, applied as a class to the section wrapper element. Each redefines
 | `.surface--bond` | `#EFEFEB` | ink | graphite | ink fill |
 | `.surface--ink` | `#111111` | white | graphite-lift | white fill, ink text |
 | `.surface--steel` | `#476776` | white | white | white fill, ink text |
+| `.surface--steel-deep` | `#2F4A57` | white | white | white fill, ink text |
+| `.surface--revision` | `#C43230` | white | white | white fill, ink text |
 
-Steel's 6.05:1 ceiling leaves no usable secondary text range — `--fg-muted` is set to white. See §2.4.
+Steel's 6.05:1 ceiling leaves no usable secondary text range — `--fg-muted` is set to white on both steel surfaces. See §2.4.
 
 ### 2.4 Surface rules
 
@@ -75,8 +78,10 @@ Steel's 6.05:1 ceiling leaves no usable secondary text range — `--fg-muted` is
 - **No more than three consecutive sections on one surface.** The page needs rhythm; monotone columns lose hierarchy.
 - **At least one dark surface (ink or steel) within the first two screens of any page.** The contrast keeps the page from reading as a document.
 - **Steel blue is a surface only.** Never a text color, never a button, never a decorative border, never an icon fill. Within a section on a light surface, steel may appear as a structural color inside technical diagrams, product illustrations, tables, and data visualizations — drawing frames, axes, table ruling, leader lines. It never carries data values, figures, or bars, which stay ink.
-- **Steel carries a single level of text.** Its 6.05:1 maximum contrast leaves no usable range for a secondary text level. Use steel for bands, figure grounds, and dividers — never for content sections requiring both primary and secondary text. `--fg-muted` on steel is set to white.
-- **No more than two dark sections per page.** Ink and steel are strong; overuse dilutes both.
+- **Steel carries a single level of text.** Its 6.05:1 maximum contrast leaves no usable range for a secondary text level. Use steel for bands, figure grounds, and dividers — never for content sections requiring both primary and secondary text. `--fg-muted` on steel and steel-deep is set to white.
+- **Steel-deep follows steel's single-level rule.** Deeper contrast (9.46:1 for white) but same usage constraint — figure grounds and metric bands only.
+- **Revision as a surface is ground-only.** `surface--revision` may be used on a closing or call-to-action section whose primary purpose is a before-and-after or a call to act on a measured change. At most one revision surface per page, and never adjacent to another dark surface.
+- **No more than two dark sections per page.** Ink, steel, steel-deep, and revision all count as dark; overuse dilutes all of them.
 - **Never place dark sections adjacent to each other.** Ink directly above steel reads as one large dark field — the surface boundary disappears and the hierarchy collapses.
 - **Dimension figures belong on white, bond, and ink.** On ink the changed value uses `--c-revision-lift` (#E2685E, 5.72:1 on ink), and the change must be readable by position and label as well as color, never by color alone. Dimension figures are prohibited on steel: revision-lift reaches only 1.84:1 against that surface and no revision red at usable luminance can clear the 3:1 minimum.
 
@@ -111,6 +116,8 @@ Sentence case everywhere in language. Capitals are reserved for identifiers that
 `revision` means change. Specifically: a before-and-after pair, a reduction, a delta, a revised state, a flagged exception, or a failure.
 
 It does not mean emphasis. It is not the accent color. Buttons are ink (or white on dark surfaces). Links are fg-colored with an underline. Nothing is red because a section felt flat.
+
+Revision red may also be used as a section ground — `surface--revision` — when the section's entire purpose is a before-and-after, a call to act on a measured change, or a closing that is itself the result. This is the only form of revision red on a ground, and it is a ground-level commitment, not a colored box within a section.
 
 Target: at most one red element per screen or page. The restraint is what makes it register.
 
@@ -265,3 +272,4 @@ Claude Code may not introduce a visual treatment not defined here. If a page nee
 | 04 | 2026-09-04 | `--c-revision` palette value changed from `#C73A32` to `#C43230` (bond contrast 4.47:1 → 4.73:1, white 5.46:1). Dimension figure prohibition narrowed from all dark surfaces to steel only — ink is permitted, with revision-lift at 5.72:1 on ink. §2.4, §8 rule 7, §10 updated. |
 | 05 | 2026-09-04 | `--c-graphite-lift` changed from `#D7E2E8` to `#949B9E` — 14.31:1 was indistinguishable from white fg; 6.69:1 creates usable hierarchy on ink. `--fg-muted` on steel set to white: 6.05:1 ceiling leaves no usable muted range. Rule added: steel carries single-level text only. Dimension tick height reduced 17px → 12px to prevent crowding on narrow spans. `.rule` constrained with `display:block; width:100%`. §2.1, §2.3, §2.4 updated. |
 | 06 | 2026-09-19 | §2.1 table corrected to `#C43230` to match rev 04. No token change. |
+| 07 | 2026-09-24 | Added `--c-steel-deep` (`#2F4A57`) to palette. Added `.surface--steel-deep` and `.surface--revision` surface classes to `tokens.css`. Stats band changed from `surface--ink` to `surface--steel-deep`. Closing CTA (§6) changed from inline `#111111` ground to `surface--revision`. §2.1, §2.3, §2.4, §4 updated with new surfaces and ground-only revision rule. |

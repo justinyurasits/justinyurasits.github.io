@@ -226,7 +226,6 @@
       text-decoration: none;
       color: var(--fg);
     }
-    .cos-index__row:last-child { border-bottom: var(--w-object) solid var(--rule-object); }
     .cos-index__row:hover .cos-index__name { text-decoration: underline; text-underline-offset: 3px; }
     .cos-index__num {
       grid-column: 1; grid-row: 1;
@@ -267,8 +266,8 @@
       .cos-index__row { grid-template-columns: 40px 1fr; }
       .cos-index__num  { grid-column: 1; grid-row: 1; }
       .cos-index__name { grid-column: 2; grid-row: 1; }
-      .cos-index__mid  { grid-column: 1 / 3; grid-row: 2; flex-direction: column; gap: var(--s-1); padding-top: 0; }
-      .cos-index__sub  { grid-column: 1 / 3; grid-row: 3; }
+      .cos-index__mid  { grid-column: 2; grid-row: 2; flex-direction: column; gap: var(--s-1); padding-top: 0; }
+      .cos-index__sub  { grid-column: 2; grid-row: 3; }
     }
 
     /* --- System stats band --- */

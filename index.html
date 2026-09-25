@@ -342,6 +342,34 @@
       .cos-index__sub  { grid-column: 2; grid-row: 3; }
     }
 
+    /* --- Proof section (§4) dimension figures --- */
+    .cos-proof { padding: var(--zone-pad) 0; }
+    .cos-proof__dims {
+      border-top: var(--w-cut) solid var(--rule-cut);
+      margin-top: 32px; padding-top: 32px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+      gap: 36px 60px;
+    }
+    .cos-dim { display: flex; flex-direction: column; }
+    .cos-dim__name {
+      font-family: var(--font-display);
+      font-size: 11px; font-weight: 600; letter-spacing: 0.10em;
+      color: var(--fg-muted); padding-bottom: 16px;
+    }
+    .cos-dim__svg { width: 100%; height: auto; display: block; overflow: visible; }
+    .cos-dim__nts {
+      font-family: var(--font-display);
+      font-size: 11px; font-weight: 400; letter-spacing: 0.04em;
+      font-style: italic; color: var(--fg-muted); padding-top: 6px;
+    }
+    .cos-proof__caption {
+      margin: 0; padding-top: 24px;
+      font-family: var(--font-display);
+      font-size: 14px; font-weight: 400; line-height: 1.55;
+      color: var(--fg-muted); max-width: 70ch;
+    }
+
     /* --- System stats band --- */
     .cos-stats { padding: var(--zone-pad) 0; }
     .cos-stats__row {
@@ -684,32 +712,80 @@
 </section>
 
 <!-- ===== §4 PROOF ===== -->
-<div class="surface--bond" style="padding: 76px 0 80px;">
-  <div style="max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px);">
+<div class="surface--bond cos-proof">
+  <div class="cos-container">
+
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 24px 48px; align-items: start;">
       <div style="container-type: inline-size; min-width: 0;">
         <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(26px, 7cqi, 38px); line-height: 1.08; letter-spacing: -0.032em; color: var(--fg); max-width: 22ch; text-wrap: balance;">Built in real construction operations.</h2>
       </div>
       <div style="min-width: 0; display: flex; flex-direction: column; gap: 16px; align-items: flex-start; padding-top: 4px;">
         <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.6; color: var(--fg-muted);">I&rsquo;m Justin Yurasits. Construction OS grew out of solving these problems while I was working inside a residential GC&mdash;<wbr>not from taking a generic AI product and looking for a construction use case.</div>
-        <a href="/about.html" style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 15px; letter-spacing: -0.01em; color: var(--fg); border-bottom: 2px solid var(--rule-cut); padding-bottom: 3px;">Read my story &rarr;</a>
+        <a href="/about.html" style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 15px; letter-spacing: -0.01em; color: var(--fg); border-bottom: 2px solid var(--rule-cut); padding-bottom: 3px;">Read my story</a>
       </div>
     </div>
 
-    <div style="border-top: 2px solid var(--rule-cut); margin-top: 32px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); align-items: start;">
-      <div style="min-width: 0; padding: 26px 32px 28px 0; display: flex; flex-direction: column; gap: 10px;">
-        <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: var(--fg-muted);">4&ndash;8 hrs &rarr;</div>
-        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 38px; line-height: 1; letter-spacing: -0.035em; color: var(--change);">~30 min</div>
-        <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.5; color: var(--fg-muted);">Contract package preparation</div>
+    <!-- Dimension figures per §8 -->
+    <div class="cos-proof__dims">
+
+      <!-- Figure 1: Contract package preparation -->
+      <div class="cos-dim">
+        <div class="cos-dim__name">Contract package preparation</div>
+        <svg class="cos-dim__svg" viewBox="0 0 440 76" xmlns="http://www.w3.org/2000/svg"
+          aria-label="Contract package preparation: before up to 8 hours, after approximately 30 minutes">
+          <!-- Extension lines (dimension-weight) -->
+          <line x1="8" y1="21" x2="8" y2="69" stroke="var(--rule-dimension)" stroke-width="0.5"/>
+          <line x1="432" y1="21" x2="432" y2="33" stroke="var(--rule-dimension)" stroke-width="0.5"/>
+          <!-- Before span: up to 8 hrs (fg-muted) -->
+          <text x="220" y="13" text-anchor="middle" dominant-baseline="middle"
+            font-family="Archivo, system-ui, sans-serif" font-size="11" letter-spacing="0.06em"
+            fill="var(--fg-muted)">up to 8 hrs</text>
+          <line x1="8" y1="27" x2="432" y2="27" stroke="var(--fg-muted)" stroke-width="0.5"/>
+          <line x1="2" y1="33" x2="14" y2="21" stroke="var(--fg-muted)" stroke-width="0.75"/>
+          <line x1="426" y1="33" x2="438" y2="21" stroke="var(--fg-muted)" stroke-width="0.75"/>
+          <!-- After span: ~30 min, not to scale — draw at 24 units, break mark at end -->
+          <line x1="8" y1="63" x2="32" y2="63" stroke="var(--change)" stroke-width="0.5"/>
+          <line x1="2" y1="69" x2="14" y2="57" stroke="var(--change)" stroke-width="0.75"/>
+          <line x1="27" y1="57" x2="31" y2="69" stroke="var(--change)" stroke-width="0.75"/>
+          <line x1="31" y1="57" x2="35" y2="69" stroke="var(--change)" stroke-width="0.75"/>
+          <text x="40" y="63" text-anchor="start" dominant-baseline="middle"
+            font-family="Archivo, system-ui, sans-serif" font-size="11" letter-spacing="0.06em"
+            fill="var(--change)">~30 min</text>
+        </svg>
+        <div class="cos-dim__nts">not to scale</div>
       </div>
-      <div style="min-width: 0; padding: 26px 32px 28px; border-left: 1px solid var(--rule-dimension); display: flex; flex-direction: column; gap: 10px;">
-        <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: var(--fg-muted);">~10 days &rarr;</div>
-        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 38px; line-height: 1; letter-spacing: -0.035em; color: var(--change);">~3 days</div>
-        <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.5; color: var(--fg-muted);">Change-order turnaround</div>
+
+      <!-- Figure 2: Change-order turnaround -->
+      <!-- Scale: 10 days = full span (424 units). After 3 days = 30% = 127 units -->
+      <div class="cos-dim">
+        <div class="cos-dim__name">Change-order turnaround</div>
+        <svg class="cos-dim__svg" viewBox="0 0 440 76" xmlns="http://www.w3.org/2000/svg"
+          aria-label="Change-order turnaround: before approximately 10 days, after approximately 3 days">
+          <!-- Extension lines (dimension-weight) -->
+          <line x1="8" y1="21" x2="8" y2="69" stroke="var(--rule-dimension)" stroke-width="0.5"/>
+          <line x1="432" y1="21" x2="432" y2="33" stroke="var(--rule-dimension)" stroke-width="0.5"/>
+          <line x1="135" y1="57" x2="135" y2="69" stroke="var(--rule-dimension)" stroke-width="0.5"/>
+          <!-- Before span: ~10 days (fg-muted) -->
+          <text x="220" y="13" text-anchor="middle" dominant-baseline="middle"
+            font-family="Archivo, system-ui, sans-serif" font-size="11" letter-spacing="0.06em"
+            fill="var(--fg-muted)">~10 days</text>
+          <line x1="8" y1="27" x2="432" y2="27" stroke="var(--fg-muted)" stroke-width="0.5"/>
+          <line x1="2" y1="33" x2="14" y2="21" stroke="var(--fg-muted)" stroke-width="0.75"/>
+          <line x1="426" y1="33" x2="438" y2="21" stroke="var(--fg-muted)" stroke-width="0.75"/>
+          <!-- After span: ~3 days (change) — 30% of full span -->
+          <text x="71" y="49" text-anchor="middle" dominant-baseline="middle"
+            font-family="Archivo, system-ui, sans-serif" font-size="11" letter-spacing="0.06em"
+            fill="var(--change)">~3 days</text>
+          <line x1="8" y1="63" x2="135" y2="63" stroke="var(--change)" stroke-width="0.5"/>
+          <line x1="2" y1="69" x2="14" y2="57" stroke="var(--change)" stroke-width="0.75"/>
+          <line x1="129" y1="69" x2="141" y2="57" stroke="var(--change)" stroke-width="0.75"/>
+        </svg>
       </div>
+
     </div>
 
-    <div style="padding-top: 4px; font-family: Archivo, sans-serif; font-weight: 400; font-size: 14px; line-height: 1.55; color: var(--fg-muted); max-width: 70ch;">Measured on residential projects at the GC where Construction OS was first built and applied.</div>
+    <p class="cos-proof__caption">Measured across roughly twenty real jobs and bids.</p>
+
   </div>
 </div>
 

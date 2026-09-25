@@ -178,6 +178,77 @@
       }
     }
 
+    /* --- Pain tiles (§2) --- */
+    .cos-pain { padding: var(--zone-pad) 0; }
+    .cos-pain__hd {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+      gap: var(--s-5) var(--s-8);
+      align-items: end;
+      border-bottom: var(--w-cut) solid var(--rule-cut);
+      padding-bottom: var(--s-5);
+      margin-bottom: var(--s-7);
+    }
+    .cos-pain__hd-left { container-type: inline-size; min-width: 0; }
+    .cos-pain__eyebrow {
+      font-family: var(--font-display);
+      font-size: 11px; font-weight: 600; letter-spacing: 0.14em;
+      color: var(--fg-muted); padding-bottom: var(--s-4);
+    }
+    .cos-pain__h2 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: clamp(28px, 8cqi, 42px); font-weight: 600;
+      line-height: 1.05; letter-spacing: -0.035em;
+      color: var(--fg); max-width: 18ch; text-wrap: balance;
+    }
+    .cos-pain__hd-right {
+      min-width: 0;
+      font-family: var(--font-display);
+      font-weight: 500; font-size: 12px; letter-spacing: 0.12em;
+      color: var(--fg-muted); text-align: right; white-space: nowrap;
+    }
+    .cos-pain__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-top: var(--w-object) solid var(--rule-object);
+      border-left: var(--w-object) solid var(--rule-object);
+    }
+    .cos-pain__tile {
+      border-right: var(--w-object) solid var(--rule-object);
+      border-bottom: var(--w-object) solid var(--rule-object);
+      padding: 40px;
+      display: flex; flex-direction: column; gap: var(--s-4);
+    }
+    .cos-pain__num {
+      font-family: var(--font-display);
+      font-size: 11px; font-weight: 400; letter-spacing: 0.06em;
+      font-variant-numeric: tabular-nums; color: var(--fg-muted);
+    }
+    .cos-pain__cat {
+      display: flex; align-items: center; gap: 10px;
+      font-family: var(--font-display);
+      font-weight: 600; font-size: 12px; letter-spacing: 0.10em;
+      color: var(--fg);
+    }
+    .cos-pain__title {
+      margin: 0;
+      font-family: var(--font-display);
+      font-weight: 600; font-size: 22px;
+      line-height: 1.3; letter-spacing: -0.02em;
+      color: var(--fg); text-wrap: balance;
+    }
+    .cos-pain__body {
+      margin: 0;
+      font-family: var(--font-display);
+      font-weight: 400; font-size: 15px; line-height: 1.6;
+      color: var(--fg-muted);
+    }
+    @media (max-width: 760px) {
+      .cos-pain__grid { grid-template-columns: 1fr; }
+      .cos-pain__tile { padding: var(--s-6) var(--s-5); }
+    }
+
     /* --- Product index (§3) --- */
     .cos-index { padding: var(--zone-pad) 0; }
     .cos-index__hd {
@@ -198,7 +269,7 @@
     .cos-index__eyebrow {
       font-family: var(--font-display);
       font-size: 11px; font-weight: 600; letter-spacing: 0.14em;
-      text-transform: uppercase; color: var(--fg-muted);
+      color: var(--fg-muted);
     }
     .cos-index__logo-row { display: flex; align-items: center; gap: var(--s-4); flex-wrap: wrap; }
     .cos-index__heading {
@@ -231,6 +302,7 @@
       grid-column: 1; grid-row: 1;
       font-family: var(--font-display);
       font-size: 11px; font-weight: 400; letter-spacing: 0.06em;
+      font-variant-numeric: tabular-nums;
       color: var(--fg-muted); padding-top: 4px;
     }
     .cos-index__name {
@@ -490,75 +562,61 @@
 </section>
 
 <!-- ===== §2 PAIN ===== -->
-<div class="surface--bond" style="padding: 76px 0 80px;">
-  <div style="max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px);">
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 20px 48px; align-items: end; border-bottom: 2px solid var(--rule-cut); padding-bottom: 26px;">
-      <div style="container-type: inline-size; min-width: 0;">
-        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--fg-muted); padding-bottom: 16px;">The current state</div>
-        <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(28px, 8cqi, 42px); line-height: 1.05; letter-spacing: -0.035em; color: var(--fg); max-width: 18ch; text-wrap: balance;">Does any of this sound familiar?</h2>
+<div class="surface--bond cos-pain">
+  <div class="cos-container">
+
+    <div class="cos-pain__hd">
+      <div class="cos-pain__hd-left">
+        <div class="cos-pain__eyebrow">The current state</div>
+        <h2 class="cos-pain__h2">Does any of this sound familiar?</h2>
       </div>
-      <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fg-muted); text-align: right; white-space: nowrap;">Four&nbsp;places it&nbsp;shows&nbsp;up</div>
+      <div class="cos-pain__hd-right">Four places it shows up</div>
     </div>
 
-    <div style="display: flex; flex-direction: column; padding-bottom: 44px;">
+    <div class="cos-pain__grid">
 
-      <div style="display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 0 16px; padding: 26px 0 28px;">
-        <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: var(--fg-muted); padding-top: 7px;">01</div>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 10px 40px; align-items: start; min-width: 0;">
-          <div style="display: flex; flex-direction: column; gap: 10px; min-width: 0;">
-            <div style="display: flex; align-items: center; gap: 12px;">
-              <svg viewBox="0 0 100 100" width="26" height="26" aria-hidden="true" style="flex: none;"><polyline points="30,14 86,14 86,72" fill="none" stroke="var(--rule-object)" stroke-width="5"></polyline><rect x="14" y="26" width="52" height="60" fill="none" stroke="currentColor" stroke-width="9"></rect></svg>
-              <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg);">Paperwork</div>
-            </div>
-            <h3 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 22px; line-height: 1.3; letter-spacing: -0.02em; color: var(--fg); text-wrap: balance;">Your PMs spend their best hours producing paperwork.</h3>
-          </div>
-          <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: var(--fg-muted); min-width: 0;">Change orders, RFIs, meeting minutes, reports, submittals, billing documentation&mdash;rebuilt from scratch, job after job.</div>
+      <div class="cos-pain__tile">
+        <div class="cos-pain__num">01</div>
+        <div class="cos-pain__cat">
+          <svg viewBox="0 0 100 100" width="22" height="22" aria-hidden="true" style="flex: none;"><polyline points="30,14 86,14 86,72" fill="none" stroke="var(--rule-object)" stroke-width="5"></polyline><rect x="14" y="26" width="52" height="60" fill="none" stroke="currentColor" stroke-width="9"></rect></svg>
+          Paperwork
         </div>
+        <h3 class="cos-pain__title">Your PMs spend their best hours producing paperwork.</h3>
+        <p class="cos-pain__body">Change orders, RFIs, meeting minutes, reports, submittals, billing documentation&mdash;rebuilt from scratch, job after job.</p>
       </div>
 
-      <div style="display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 0 16px; padding: 26px 0 28px; border-top: 1px solid var(--rule-dimension);">
-        <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: var(--fg-muted); padding-top: 7px;">02</div>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 10px 40px; align-items: start; min-width: 0;">
-          <div style="display: flex; flex-direction: column; gap: 10px; min-width: 0;">
-            <div style="display: flex; align-items: center; gap: 12px;">
-              <svg viewBox="0 0 100 100" width="26" height="26" aria-hidden="true" style="flex: none;"><line x1="6" y1="50" x2="96" y2="50" stroke="var(--rule-object)" stroke-width="5"></line><polyline points="8,20 40,20 54,42 94,42" fill="none" stroke="currentColor" stroke-width="9"></polyline><polyline points="8,80 40,80 54,58 94,58" fill="none" stroke="currentColor" stroke-width="9"></polyline></svg>
-              <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg);">Knowledge</div>
-            </div>
-            <h3 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 22px; line-height: 1.3; letter-spacing: -0.02em; color: var(--fg); text-wrap: balance;">Your best people are the only ones who know how the company works.</h3>
-          </div>
-          <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: var(--fg-muted); min-width: 0;">The senior PM everyone calls. The COO who answers every operational question. The estimator whose pricing judgment nobody else has.</div>
+      <div class="cos-pain__tile">
+        <div class="cos-pain__num">02</div>
+        <div class="cos-pain__cat">
+          <svg viewBox="0 0 100 100" width="22" height="22" aria-hidden="true" style="flex: none;"><line x1="6" y1="50" x2="96" y2="50" stroke="var(--rule-object)" stroke-width="5"></line><polyline points="8,20 40,20 54,42 94,42" fill="none" stroke="currentColor" stroke-width="9"></polyline><polyline points="8,80 40,80 54,58 94,58" fill="none" stroke="currentColor" stroke-width="9"></polyline></svg>
+          Knowledge
         </div>
+        <h3 class="cos-pain__title">Your best people are the only ones who know how the company works.</h3>
+        <p class="cos-pain__body">The senior PM everyone calls. The COO who answers every operational question. The estimator whose pricing judgment nobody else has.</p>
       </div>
 
-      <div style="display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 0 16px; padding: 26px 0 28px; border-top: 1px solid var(--rule-dimension);">
-        <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: var(--fg-muted); padding-top: 7px;">03</div>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 10px 40px; align-items: start; min-width: 0;">
-          <div style="display: flex; flex-direction: column; gap: 10px; min-width: 0;">
-            <div style="display: flex; align-items: center; gap: 12px;">
-              <svg viewBox="0 0 100 100" width="26" height="26" aria-hidden="true" style="flex: none;"><rect x="6" y="18" width="88" height="64" fill="none" stroke="var(--rule-object)" stroke-width="5"></rect><line x1="18" y1="70" x2="82" y2="70" stroke="currentColor" stroke-width="9"></line><line x1="30" y1="70" x2="30" y2="56" stroke="currentColor" stroke-width="9"></line><line x1="50" y1="70" x2="50" y2="44" stroke="currentColor" stroke-width="9"></line><line x1="70" y1="70" x2="70" y2="32" stroke="var(--change)" stroke-width="9"></line></svg>
-              <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg);">Visibility</div>
-            </div>
-            <h3 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 22px; line-height: 1.3; letter-spacing: -0.02em; color: var(--fg); text-wrap: balance;">You&rsquo;re chasing people to figure out what needs attention.</h3>
-          </div>
-          <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: var(--fg-muted); min-width: 0;">Open changes, aging RFIs, missing approvals, unsigned contracts, schedule risk&mdash;assembled by hand, one conversation at a time.</div>
+      <div class="cos-pain__tile">
+        <div class="cos-pain__num">03</div>
+        <div class="cos-pain__cat">
+          <svg viewBox="0 0 100 100" width="22" height="22" aria-hidden="true" style="flex: none;"><rect x="6" y="18" width="88" height="64" fill="none" stroke="var(--rule-object)" stroke-width="5"></rect><line x1="18" y1="70" x2="82" y2="70" stroke="currentColor" stroke-width="9"></line><line x1="30" y1="70" x2="30" y2="56" stroke="currentColor" stroke-width="9"></line><line x1="50" y1="70" x2="50" y2="44" stroke="currentColor" stroke-width="9"></line><line x1="70" y1="70" x2="70" y2="32" stroke="var(--change)" stroke-width="9"></line></svg>
+          Visibility
         </div>
+        <h3 class="cos-pain__title">You&rsquo;re chasing people to figure out what needs attention.</h3>
+        <p class="cos-pain__body">Open changes, aging RFIs, missing approvals, unsigned contracts, schedule risk&mdash;assembled by hand, one conversation at a time.</p>
       </div>
 
-      <div style="display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 0 16px; padding: 26px 0 28px; border-top: 1px solid var(--rule-dimension);">
-        <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: var(--fg-muted); padding-top: 7px;">04</div>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 10px 40px; align-items: start; min-width: 0;">
-          <div style="display: flex; flex-direction: column; gap: 10px; min-width: 0;">
-            <div style="display: flex; align-items: center; gap: 12px;">
-              <svg viewBox="0 0 100 100" width="26" height="26" aria-hidden="true" style="flex: none;"><line x1="14" y1="28" x2="34" y2="28" stroke="currentColor" stroke-width="9"></line><line x1="42" y1="28" x2="62" y2="28" stroke="currentColor" stroke-width="9"></line><line x1="70" y1="28" x2="90" y2="28" stroke="currentColor" stroke-width="9"></line><line x1="14" y1="74" x2="90" y2="74" stroke="var(--change)" stroke-width="9"></line></svg>
-              <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg);">Operations</div>
-            </div>
-            <h3 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 22px; line-height: 1.3; letter-spacing: -0.02em; color: var(--fg); text-wrap: balance;">Too much routine operational work is still manual.</h3>
-          </div>
-          <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: var(--fg-muted); min-width: 0;">Invoices and receipts entered by hand. Safety documentation chased. Billing packages assembled the same way every month.</div>
+      <div class="cos-pain__tile">
+        <div class="cos-pain__num">04</div>
+        <div class="cos-pain__cat">
+          <svg viewBox="0 0 100 100" width="22" height="22" aria-hidden="true" style="flex: none;"><line x1="14" y1="28" x2="34" y2="28" stroke="currentColor" stroke-width="9"></line><line x1="42" y1="28" x2="62" y2="28" stroke="currentColor" stroke-width="9"></line><line x1="70" y1="28" x2="90" y2="28" stroke="currentColor" stroke-width="9"></line><line x1="14" y1="74" x2="90" y2="74" stroke="var(--change)" stroke-width="9"></line></svg>
+          Operations
         </div>
+        <h3 class="cos-pain__title">Too much routine operational work is still manual.</h3>
+        <p class="cos-pain__body">Invoices and receipts entered by hand. Safety documentation chased. Billing packages assembled the same way every month.</p>
       </div>
 
     </div>
+
   </div>
 </div>
 

@@ -2,7 +2,7 @@
 
 **Sheet:** BRAND-002
 **Issued:** 2026-09-19
-**Revision:** 08
+**Revision:** 09
 **Supersedes:** BRAND-001 (specimen)
 
 This file is the authority on what this brand looks like. It governs the website, PDFs, Word documents, decks, and carousels. When a rule here conflicts with anything else in this repository, or with an existing stylesheet, this file wins.
@@ -75,7 +75,7 @@ Ink and navy both carry two text levels: `--fg` (white) and `--fg-muted` (`--c-m
 - **No section may share a surface with the section directly above it.** Every surface change must be intentional.
 - **No more than three consecutive sections on one surface.** The page needs rhythm; monotone columns lose hierarchy.
 - **At least one dark surface (ink, navy, or oxblood) within the first two screens of any page.** The contrast keeps the page from reading as a document.
-- **No more than two dark sections per page.** Ink, navy, and oxblood all count as dark; overuse dilutes all of them.
+- **At most three dark sections per page, and only when each serves a distinct function: an evidence band, an argument, or a closing plate.** Never adjacent, never more than one of each function, and at least one within the first two screens. Two remains the norm; the third must be justifiable in a sentence.
 - **Never place dark sections adjacent to each other.** Ink directly above navy reads as one large dark field — the surface boundary disappears and the hierarchy collapses.
 - **Oxblood as a surface is ground-only.** `surface--oxblood` may be used on a closing plate whose primary purpose is a call to act. At most one oxblood surface per page, and never adjacent to another dark surface.
 - **Brass is a dark-surface-only accent.** `--c-brass` (#C08F58) may appear as an accent inside ink and navy sections only — decorative rules, annotation marks. Never as a text color on light surfaces (fails contrast floor), never as a button or link color.
@@ -273,3 +273,4 @@ Claude Code may not introduce a visual treatment not defined here. If a page nee
 | 06 | 2026-09-19 | §2.1 table corrected to `#C43230` to match rev 04. No token change. |
 | 07 | 2026-09-24 | Added `--c-steel-deep` (`#2F4A57`) to palette. Added `.surface--steel-deep` and `.surface--revision` surface classes to `tokens.css`. Stats band changed from `surface--ink` to `surface--steel-deep`. Closing CTA (§6) changed from inline `#111111` ground to `surface--revision`. §2.1, §2.3, §2.4, §4 updated with new surfaces and ground-only revision rule. **Superseded by rev 08** — `steel-deep` and `revision` surfaces are retired; do not implement. |
 | 08 | 2026-09-24 | Palette replaced. Retired: steel (`#476776`), steel-deep (`#2F4A57`), revision red (`#C43230`), graphite-lift (`#949B9E`), line-dark (`#B1BFC5`), revision-lift (`#E2685E`). Added: warm black ink (`#1E1A17`), warm ivory bond (`#F3F1EB`), navy (`#1D2648`), oxblood (`#692524`), graphite (`#413833`), line (`#BAB8B7`), brass (`#C08F58`, dark surfaces only), muted-dark (`#B1A9A3`), change-lift (`#D07A6A`). Surface classes reduced from 6 → 5: `.surface--steel` and `.surface--steel-deep` removed, `.surface--revision` replaced by `.surface--oxblood`, `.surface--navy` added. Stats band changed to `surface--navy`, closing CTA to `surface--oxblood`. §2.1, §2.3, §2.4, §4 rewritten. |
+| 09 | 2026-09-26 | §2.4 dark-section limit raised from two to three. Reason: the original two-section limit dates from the single-ink palette; the current palette carries three distinct dark grounds (ink, navy, oxblood), each with a different character and a different function. A nine-section page can support three without dilution provided each serves a separate role — evidence band, argument, closing plate — and the adjacency and function-uniqueness constraints are met. §2.4 updated accordingly. |

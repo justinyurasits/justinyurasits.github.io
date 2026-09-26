@@ -432,6 +432,50 @@
       }
     }
 
+    /* --- Pre-built architecture (§5.5) --- */
+    .cos-arch { padding: clamp(56px, 8vw, 84px) 0; }
+    .cos-arch__split {
+      display: flex;
+      gap: var(--s-8);
+      align-items: start;
+    }
+    .cos-arch__left { flex: 5; min-width: 0; }
+    .cos-arch__heading {
+      margin: 0;
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: clamp(28px, 4.2vw, 40px);
+      line-height: 1.05;
+      letter-spacing: -0.022em;
+      color: var(--fg);
+    }
+    .cos-arch__right {
+      flex: 7;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--s-5);
+    }
+    .cos-arch__body {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: 18px;
+      line-height: 1.55;
+      color: var(--fg);
+      max-width: 54ch;
+    }
+    .cos-arch__sub {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: 16px;
+      line-height: 1.55;
+      color: var(--fg-muted);
+      max-width: 54ch;
+    }
+    @media (max-width: 860px) {
+      .cos-arch__split { flex-direction: column; gap: var(--s-4); }
+    }
+
     /* --- What you keep (§5b) --- */
     .cos-keep {
       padding: clamp(56px, 8vw, 84px) 0;
@@ -906,6 +950,21 @@
 
   </div>
 </div>
+
+<!-- ===== §5.5 ARCHITECTURE ===== -->
+<section class="surface--ink cos-arch">
+  <div class="cos-container">
+    <div class="cos-arch__split">
+      <div class="cos-arch__left">
+        <h2 class="cos-arch__heading">We don&rsquo;t start from scratch.</h2>
+      </div>
+      <div class="cos-arch__right">
+        <p class="cos-arch__body">Construction OS already contains the architecture for recurring construction work&mdash;the documents, the scopes, the pricing conventions, the change procedures, the operating knowledge. We configure it around your company&rsquo;s documents, rules, terminology, and judgment.</p>
+        <p class="cos-arch__sub">You are not paying us to discover what a change order is.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ===== §5a FEE SCHEDULE ===== -->
 <section class="surface--bond cos-fees" aria-labelledby="fees-heading">

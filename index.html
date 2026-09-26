@@ -428,6 +428,46 @@
         padding-top: var(--s-4);
       }
     }
+
+    /* --- What you keep (§5b) --- */
+    .cos-keep {
+      padding: clamp(56px, 8vw, 84px) 0;
+      border-top: var(--w-cut) solid var(--rule-cut);
+    }
+    .cos-keep__grid {
+      display: grid;
+      grid-template-columns: 5fr 7fr;
+      gap: 0 var(--s-8);
+      align-items: start;
+    }
+    .cos-keep__heading {
+      margin: 0;
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: clamp(28px, 4.2vw, 40px);
+      line-height: 1.05;
+      letter-spacing: -0.022em;
+      color: var(--fg);
+    }
+    .cos-keep__body {
+      display: flex;
+      flex-direction: column;
+      gap: var(--s-5);
+    }
+    .cos-keep__p {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: 18px;
+      line-height: 1.55;
+      color: var(--fg);
+      max-width: 52ch;
+    }
+    @media (max-width: 860px) {
+      .cos-keep__grid {
+        grid-template-columns: 1fr;
+        gap: 12px 0;
+      }
+    }
   </style>
 </head>
 <body>
@@ -917,6 +957,19 @@
       </div>
     </div>
 
+  </div>
+</section>
+
+<!-- ===== §5b WHAT YOU KEEP ===== -->
+<section class="surface--white cos-keep">
+  <div class="cos-container">
+    <div class="cos-keep__grid">
+      <h2 class="cos-keep__heading">What you keep</h2>
+      <div class="cos-keep__body">
+        <p class="cos-keep__p">Your operating knowledge&mdash;documented procedures, pricing logic, standards, scope language, templates&mdash;is delivered to you and stays yours, permanently.</p>
+        <p class="cos-keep__p">Whatever happens next, your company&rsquo;s way of working is written down for the first time.</p>
+      </div>
+    </div>
   </div>
 </section>
 

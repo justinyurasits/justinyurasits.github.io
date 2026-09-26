@@ -476,6 +476,61 @@
       .cos-arch__split { flex-direction: column; gap: var(--s-4); }
     }
 
+    /* --- What it is not (§5.6) --- */
+    .cos-not { padding: clamp(56px, 8vw, 84px) 0; }
+    .cos-not__heading {
+      margin: 0 0 0 0;
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: clamp(28px, 4.2vw, 40px);
+      line-height: 1.05;
+      letter-spacing: -0.022em;
+      color: var(--fg);
+      border-bottom: var(--w-cut) solid var(--rule-cut);
+      padding-bottom: var(--s-5);
+    }
+    .cos-not__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .cos-not__cell {
+      display: flex;
+      flex-direction: column;
+      gap: var(--s-3);
+      padding: var(--s-6) 0;
+    }
+    .cos-not__cell:nth-child(n+3) {
+      border-top: var(--w-object) solid var(--rule-object);
+    }
+    .cos-not__cell:nth-child(odd)  { padding-right: var(--s-8); }
+    .cos-not__cell:nth-child(even) {
+      border-left: var(--w-object) solid var(--rule-object);
+      padding-left: var(--s-8);
+    }
+    .cos-not__statement {
+      margin: 0;
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 20px;
+      color: var(--fg);
+    }
+    .cos-not__body {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--fg-muted);
+    }
+    @media (max-width: 760px) {
+      .cos-not__grid { grid-template-columns: 1fr; }
+      .cos-not__cell:nth-child(odd)  { padding-right: 0; }
+      .cos-not__cell:nth-child(even) {
+        border-left: 0;
+        padding-left: 0;
+        border-top: var(--w-object) solid var(--rule-object);
+      }
+    }
+
     /* --- What you keep (§5b) --- */
     .cos-keep {
       padding: clamp(56px, 8vw, 84px) 0;
@@ -961,6 +1016,31 @@
       <div class="cos-arch__right">
         <p class="cos-arch__body">Construction OS already contains the architecture for recurring construction work&mdash;the documents, the scopes, the pricing conventions, the change procedures, the operating knowledge. We configure it around your company&rsquo;s documents, rules, terminology, and judgment.</p>
         <p class="cos-arch__sub">You are not paying us to discover what a change order is.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== §5.6 WHAT IT IS NOT ===== -->
+<section class="surface--white cos-not">
+  <div class="cos-container">
+    <h2 class="cos-not__heading">What Construction OS is not</h2>
+    <div class="cos-not__grid">
+      <div class="cos-not__cell">
+        <p class="cos-not__statement">Not project management</p>
+        <p class="cos-not__body">Procore and Buildertrend run the project. We produce the paperwork the project generates. Most firms run both.</p>
+      </div>
+      <div class="cos-not__cell">
+        <p class="cos-not__statement">Not an accounting system</p>
+        <p class="cos-not__body">We produce the pay application. Your books stay where they are.</p>
+      </div>
+      <div class="cos-not__cell">
+        <p class="cos-not__statement">Not a template library</p>
+        <p class="cos-not__body">A template doesn&rsquo;t know the contract value.</p>
+      </div>
+      <div class="cos-not__cell">
+        <p class="cos-not__statement">Not a legal service</p>
+        <p class="cos-not__body">Every document is a draft for your review. You issue it, under your name.</p>
       </div>
     </div>
   </div>

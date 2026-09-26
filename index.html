@@ -210,7 +210,7 @@
     }
     .cos-pain__grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
       border-top: var(--w-object) solid var(--rule-object);
       border-left: var(--w-object) solid var(--rule-object);
     }
@@ -244,7 +244,10 @@
       font-weight: 400; font-size: 15px; line-height: 1.6;
       color: var(--fg-muted);
     }
-    @media (max-width: 760px) {
+    @media (max-width: 900px) {
+      .cos-pain__grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
       .cos-pain__grid { grid-template-columns: 1fr; }
       .cos-pain__tile { padding: var(--s-6) var(--s-5); }
     }
@@ -638,7 +641,7 @@
         <div class="cos-pain__eyebrow">The current state</div>
         <h2 class="cos-pain__h2">Does any of this sound familiar?</h2>
       </div>
-      <div class="cos-pain__hd-right">Four places it shows up</div>
+      <div class="cos-pain__hd-right">Six places it shows up</div>
     </div>
 
     <div class="cos-pain__grid">
@@ -681,6 +684,26 @@
         </div>
         <h3 class="cos-pain__title">Too much routine operational work is still manual.</h3>
         <p class="cos-pain__body">Invoices and receipts entered by hand. Safety documentation chased. Billing packages assembled the same way every month.</p>
+      </div>
+
+      <div class="cos-pain__tile">
+        <div class="cos-pain__num">05</div>
+        <div class="cos-pain__cat">
+          <svg viewBox="0 0 100 100" width="22" height="22" aria-hidden="true" style="flex: none;"><rect x="8" y="24" width="84" height="60" fill="none" stroke="currentColor" stroke-width="9"></rect><polyline points="8,24 50,54 92,24" fill="none" stroke="var(--rule-object)" stroke-width="5"></polyline></svg>
+          Back office
+        </div>
+        <h3 class="cos-pain__title">The paper never stops coming.</h3>
+        <p class="cos-pain__body">Invoices and receipts arriving by email, photo, PDF, and paper. Compliance documents chased vendor by vendor. Cost data going stale because the paperwork is behind the work.</p>
+      </div>
+
+      <div class="cos-pain__tile">
+        <div class="cos-pain__num">06</div>
+        <div class="cos-pain__cat">
+          <svg viewBox="0 0 100 100" width="22" height="22" aria-hidden="true" style="flex: none;"><line x1="8" y1="8" x2="92" y2="8" stroke="currentColor" stroke-width="9"></line><line x1="8" y1="8" x2="8" y2="92" stroke="currentColor" stroke-width="9"></line><line x1="8" y1="92" x2="42" y2="92" stroke="currentColor" stroke-width="9"></line><line x1="42" y1="92" x2="58" y2="92" stroke="var(--change)" stroke-width="9"></line><line x1="58" y1="92" x2="92" y2="92" stroke="currentColor" stroke-width="9"></line><line x1="92" y1="8" x2="92" y2="92" stroke="currentColor" stroke-width="9"></line></svg>
+          Margin
+        </div>
+        <h3 class="cos-pain__title">You do work you never get paid for.</h3>
+        <p class="cos-pain__body">The owner asks for something in the field, it gets done, and it never becomes a change order. A sub&rsquo;s exclusion nobody caught before award. A scope item that disappeared during buyout.</p>
       </div>
 
     </div>

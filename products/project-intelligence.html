@@ -63,72 +63,76 @@ body { margin: 0; }
 <!-- header:end -->
 
 <!-- ================= 1. HERO ================= -->
-<div style="background: #FFFFFF; padding: 72px 0 72px;">
+<div class="surface--white" style="padding: 72px 0 72px;">
   <div style="max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px);">
     <div style="container-type: inline-size; display: flex; flex-direction: column; gap: 22px; max-width: 76ch;">
       <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
         <svg viewBox="0 0 100 100" width="26" height="26" aria-hidden="true" style="flex: none;">
-          <rect x="6" y="18" width="88" height="64" fill="none" stroke="#476776" stroke-width="5"></rect>
-          <line x1="18" y1="70" x2="82" y2="70" stroke="#111111" stroke-width="9"></line>
-          <line x1="30" y1="70" x2="30" y2="56" stroke="#111111" stroke-width="9"></line>
-          <line x1="50" y1="70" x2="50" y2="44" stroke="#111111" stroke-width="9"></line>
-          <line x1="70" y1="70" x2="70" y2="32" stroke="#C43230" stroke-width="9"></line>
+          <rect x="6" y="18" width="88" height="64" fill="none" stroke="var(--rule-object)" stroke-width="5"></rect>
+          <line x1="18" y1="70" x2="82" y2="70" stroke="currentColor" stroke-width="9"></line>
+          <line x1="30" y1="70" x2="30" y2="56" stroke="currentColor" stroke-width="9"></line>
+          <line x1="50" y1="70" x2="50" y2="44" stroke="currentColor" stroke-width="9"></line>
+          <line x1="70" y1="70" x2="70" y2="32" stroke="var(--change)" stroke-width="9"></line>
         </svg>
-        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #476776;">Project Intelligence</div>
-        <div style="box-sizing: border-box; font-family: Archivo, sans-serif; font-weight: 600; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: #5F6466; border: 1px solid #B8B9B5; padding: 4px 8px; flex: none;">In development</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.16em; color: var(--fg);">Project Intelligence</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 10.5px; letter-spacing: 0.12em; color: var(--fg-muted);">In development</div>
       </div>
-      <h1 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(30px, 9cqi, 56px); line-height: 1.0; letter-spacing: -0.04em; color: #111111; text-wrap: balance;">Know what needs attention.</h1>
-      <p style="margin: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 17px; line-height: 1.6; color: #5F6466; max-width: 64ch;">Surface the open decisions, aging changes, missing approvals, unresolved RFIs, unsigned agreements, and schedule issues that need intervention across active projects.</p>
-      <div style="border-left: 2px solid #476776; padding-left: 18px; font-family: Archivo, sans-serif; font-weight: 600; font-size: 19px; line-height: 1.45; letter-spacing: -0.02em; color: #111111; max-width: 44ch;">Manage the exceptions instead of chasing status.</div>
+      <h1 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(30px, 9cqi, 56px); line-height: 1.0; letter-spacing: -0.04em; color: var(--fg); text-wrap: balance;">Know what needs attention.</h1>
+      <p style="margin: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 17px; line-height: 1.6; color: var(--fg-muted); max-width: 64ch;">Surface the open decisions, aging changes, missing approvals, unresolved RFIs, unsigned agreements, and schedule issues that need intervention across active projects.</p>
+      <div style="border-left: var(--w-cut) solid var(--fg); padding-left: 18px; font-family: Archivo, sans-serif; font-weight: 600; font-size: 19px; line-height: 1.45; letter-spacing: -0.02em; color: var(--fg); max-width: 44ch;">Manage the exceptions instead of chasing status.</div>
       <div style="display: flex; align-items: center; gap: 22px; flex-wrap: wrap; padding-top: 4px;">
-        <a href="https://cal.com/justinyurasits" style="box-sizing: border-box; background: #111111; color: #FFFFFF; font-family: Archivo, sans-serif; font-weight: 600; font-size: 15px; letter-spacing: -0.01em; padding: 15px 26px; min-height: 48px; display: inline-flex; align-items: center; text-decoration: none;">Book a call</a>
-        <a href="#attention-view" style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 15px; letter-spacing: -0.01em; color: #111111; border-bottom: 2px solid #111111; padding-bottom: 3px; text-decoration: none;">See the attention view &darr;</a>
+        <a href="https://cal.com/justinyurasits" style="box-sizing: border-box; background: var(--btn-bg); color: var(--btn-fg); font-family: Archivo, sans-serif; font-weight: 600; font-size: 15px; letter-spacing: -0.01em; padding: 15px 26px; min-height: 48px; display: inline-flex; align-items: center; text-decoration: none;">Book a call</a>
+        <a href="#attention-view" style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 15px; letter-spacing: -0.01em; color: var(--fg); border-bottom: var(--w-cut) solid var(--rule-cut); padding-bottom: 3px; text-decoration: none;">See the attention view</a>
       </div>
     </div>
 
-    <div style="border-top: 1px solid #B8B9B5; margin-top: 44px; padding-top: 18px; display: flex; flex-wrap: wrap; gap: 10px 32px; align-items: baseline;">
-      <div style="flex: none; font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #5F6466;">Product status</div>
-      <div style="flex: 1 1 380px; min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 14px; line-height: 1.55; color: #5F6466;">Project Intelligence is in development. The views shown here illustrate the intended product experience.</div>
+    <div style="border-top: var(--w-dimension) solid var(--rule-dimension); margin-top: 44px; padding-top: 18px; display: flex; flex-wrap: wrap; gap: 10px 32px; align-items: baseline;">
+      <div style="flex: none; font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.14em; color: var(--fg-muted);">Product status</div>
+      <div style="flex: 1 1 380px; min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 14px; line-height: 1.55; color: var(--fg-muted);">Project Intelligence is in development. The views shown here illustrate the intended product experience.</div>
     </div>
   </div>
 </div>
 
 <!-- ================= 2. THE ATTENTION VIEW ================= -->
-<div id="attention-view" style="background: #EFEFEB; padding: 76px 0 80px;">
+<div id="attention-view" class="surface--bond" style="padding: 76px 0 80px;">
   <div style="max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px);">
 
-    <div style="container-type: inline-size; border-bottom: 2px solid #111111; padding-bottom: 28px;">
-      <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #476776; padding-bottom: 16px;">The attention view</div>
-      <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(28px, 8cqi, 42px); line-height: 1.05; letter-spacing: -0.035em; color: #111111; max-width: 22ch; text-wrap: balance;">Focus attention where it matters.</h2>
+    <div style="container-type: inline-size; border-bottom: var(--w-cut) solid var(--rule-cut); padding-bottom: 28px;">
+      <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.16em; color: var(--fg); padding-bottom: 16px;">The attention view</div>
+      <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(28px, 8cqi, 42px); line-height: 1.05; letter-spacing: -0.035em; color: var(--fg); max-width: 22ch; text-wrap: balance;">Focus attention where it matters.</h2>
     </div>
 
     <div style="padding-top: 32px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); gap: 28px 40px;">
       <div style="min-width: 0; display: flex; flex-direction: column; gap: 9px;">
-        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 19px; line-height: 1.3; letter-spacing: -0.02em; color: #111111; text-wrap: balance;">What needs attention, in one place</div>
-        <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">See the open items and exceptions that require action across active projects.</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 19px; line-height: 1.3; letter-spacing: -0.02em; color: var(--fg); text-wrap: balance;">What needs attention, in one place</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: var(--fg-muted);">See the open items and exceptions that require action across active projects.</div>
       </div>
       <div style="min-width: 0; display: flex; flex-direction: column; gap: 9px;">
-        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 19px; line-height: 1.3; letter-spacing: -0.02em; color: #111111; text-wrap: balance;">Prioritized by urgency</div>
-        <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">Know what is overdue, blocked, waiting, due soon, or beginning to age.</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 19px; line-height: 1.3; letter-spacing: -0.02em; color: var(--fg); text-wrap: balance;">Prioritized by urgency</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: var(--fg-muted);">Know what is overdue, blocked, waiting, due soon, or beginning to age.</div>
       </div>
       <div style="min-width: 0; display: flex; flex-direction: column; gap: 9px;">
-        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 19px; line-height: 1.3; letter-spacing: -0.02em; color: #111111; text-wrap: balance;">Manage by exception</div>
-        <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">Spend leadership time on the projects and decisions that actually need intervention.</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 19px; line-height: 1.3; letter-spacing: -0.02em; color: var(--fg); text-wrap: balance;">Manage by exception</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: var(--fg-muted);">Spend leadership time on the projects and decisions that actually need intervention.</div>
       </div>
     </div>
 
+    <!-- Attention-view specimen: intentionally uses ui-monospace for tabular age data, uppercase column
+         headers, and middot in the specimen title — simulates a real project-management tool UI.
+         background: #FFFFFF on the card is explicit white against the bond section; no role token
+         resolves to white on a bond surface. Leave as-is for verisimilitude. -->
     <div style="padding-top: 40px;">
       <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding-bottom: 12px;">
-        <div style="font-family: ui-monospace, monospace; font-size: 11px; letter-spacing: 0.1em; color: #476776;">PROJECT ATTENTION</div>
-        <div style="font-family: ui-monospace, monospace; font-size: 11px; letter-spacing: 0.04em; color: #5F6466;">EXAMPLE VIEW &middot; IN DEVELOPMENT</div>
+        <div style="font-family: ui-monospace, monospace; font-size: 11px; letter-spacing: 0.1em; color: var(--fg);">PROJECT ATTENTION</div>
+        <div style="font-family: ui-monospace, monospace; font-size: 11px; letter-spacing: 0.04em; color: var(--fg-muted);">EXAMPLE VIEW &middot; IN DEVELOPMENT</div>
       </div>
 
-      <div style="box-sizing: border-box; border: 1px solid #111111; background: #FFFFFF; position: relative;">
-        <div style="position: absolute; top: 10px; right: 10px; width: 14px; height: 14px; border-top: 2px solid #B8B9B5; border-right: 2px solid #B8B9B5;"></div>
+      <div style="box-sizing: border-box; border: var(--w-object) solid var(--rule-cut); background: #FFFFFF; position: relative;">
+        <div style="position: absolute; top: 10px; right: 10px; width: 14px; height: 14px; border-top: var(--w-cut) solid var(--rule-dimension); border-right: var(--w-cut) solid var(--rule-dimension);"></div>
 
-        <div style="border-bottom: 1px solid #111111; padding: 22px 28px 20px; display: flex; flex-direction: column; gap: 6px;">
-          <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 18px; letter-spacing: -0.02em; color: #111111;">Project attention</div>
-          <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 13.5px; line-height: 1.45; color: #5F6466;">5 items need attention across 4 active projects</div>
+        <div style="border-bottom: var(--w-object) solid var(--rule-cut); padding: 22px 28px 20px; display: flex; flex-direction: column; gap: 6px;">
+          <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 18px; letter-spacing: -0.02em; color: var(--fg);">Project attention</div>
+          <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 13.5px; line-height: 1.45; color: var(--fg-muted);">5 items need attention across 4 active projects</div>
         </div>
 
         <div style="padding: 0 28px;">
@@ -136,165 +140,165 @@ body { margin: 0; }
             <div style="min-width: 580px;">
               <!-- Header row -->
               <div style="display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1.6fr) 62px 96px; column-gap: 20px; padding: 16px 0 10px;">
-                <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #5F6466;">Project / Owner</div>
-                <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #5F6466;">Needs attention</div>
-                <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #5F6466; text-align: right;">Age</div>
-                <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #5F6466; text-align: right;">Status</div>
+                <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fg-muted);">Project / Owner</div>
+                <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fg-muted);">Needs attention</div>
+                <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fg-muted); text-align: right;">Age</div>
+                <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fg-muted); text-align: right;">Status</div>
               </div>
-              <!-- Row 01 — Ink border closes header -->
-              <div style="display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1.6fr) 62px 96px; column-gap: 20px; border-top: 1px solid #111111; padding: 14px 0 15px;">
+              <!-- Row 01 — strong border closes header -->
+              <div style="display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1.6fr) 62px 96px; column-gap: 20px; border-top: var(--w-object) solid var(--rule-cut); padding: 14px 0 15px;">
                 <div style="min-width: 0; display: flex; flex-direction: column; gap: 3px;">
-                  <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 14.5px; line-height: 1.35; letter-spacing: -0.014em; color: #111111;">Residential Renovation</div>
-                  <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 12.5px; line-height: 1.3; color: #5F6466;">PM</div>
+                  <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 14.5px; line-height: 1.35; letter-spacing: -0.014em; color: var(--fg);">Residential Renovation</div>
+                  <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 12.5px; line-height: 1.3; color: var(--fg-muted);">PM</div>
                 </div>
-                <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 14.5px; line-height: 1.4; color: #5F6466;">Owner approval &mdash; millwork change</div>
-                <div style="min-width: 0; font-family: ui-monospace, monospace; font-size: 14px; letter-spacing: 0.02em; color: #111111; text-align: right; font-variant-numeric: tabular-nums;">12d</div>
-                <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 13.5px; line-height: 1.4; letter-spacing: 0.02em; color: #C43230; text-align: right;">Overdue</div>
+                <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 14.5px; line-height: 1.4; color: var(--fg-muted);">Owner approval &mdash; millwork change</div>
+                <div style="min-width: 0; font-family: ui-monospace, monospace; font-size: 14px; letter-spacing: 0.02em; color: var(--fg); text-align: right; font-variant-numeric: tabular-nums;">12d</div>
+                <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 13.5px; line-height: 1.4; letter-spacing: 0.02em; color: var(--change); text-align: right;">Overdue</div>
               </div>
               <!-- Row 02 -->
-              <div style="display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1.6fr) 62px 96px; column-gap: 20px; border-top: 1px solid #B8B9B5; padding: 14px 0 15px;">
+              <div style="display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1.6fr) 62px 96px; column-gap: 20px; border-top: var(--w-dimension) solid var(--rule-dimension); padding: 14px 0 15px;">
                 <div style="min-width: 0; display: flex; flex-direction: column; gap: 3px;">
-                  <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 14.5px; line-height: 1.35; letter-spacing: -0.014em; color: #111111;">Cambridge Renovation</div>
-                  <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 12.5px; line-height: 1.3; color: #5F6466;">Ops</div>
+                  <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 14.5px; line-height: 1.35; letter-spacing: -0.014em; color: var(--fg);">Cambridge Renovation</div>
+                  <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 12.5px; line-height: 1.3; color: var(--fg-muted);">Ops</div>
                 </div>
-                <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 14.5px; line-height: 1.4; color: #5F6466;">Subcontract agreement</div>
-                <div style="min-width: 0; font-family: ui-monospace, monospace; font-size: 14px; letter-spacing: 0.02em; color: #111111; text-align: right; font-variant-numeric: tabular-nums;">6d</div>
-                <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 13.5px; line-height: 1.4; letter-spacing: 0.02em; color: #C43230; text-align: right;">Blocked</div>
+                <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 14.5px; line-height: 1.4; color: var(--fg-muted);">Subcontract agreement</div>
+                <div style="min-width: 0; font-family: ui-monospace, monospace; font-size: 14px; letter-spacing: 0.02em; color: var(--fg); text-align: right; font-variant-numeric: tabular-nums;">6d</div>
+                <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 13.5px; line-height: 1.4; letter-spacing: 0.02em; color: var(--change); text-align: right;">Blocked</div>
               </div>
               <!-- Row 03 -->
-              <div style="display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1.6fr) 62px 96px; column-gap: 20px; border-top: 1px solid #B8B9B5; padding: 14px 0 15px;">
+              <div style="display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1.6fr) 62px 96px; column-gap: 20px; border-top: var(--w-dimension) solid var(--rule-dimension); padding: 14px 0 15px;">
                 <div style="min-width: 0; display: flex; flex-direction: column; gap: 3px;">
-                  <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 14.5px; line-height: 1.35; letter-spacing: -0.014em; color: #111111;">High-Rise Residence</div>
-                  <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 12.5px; line-height: 1.3; color: #5F6466;">Architect</div>
+                  <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 14.5px; line-height: 1.35; letter-spacing: -0.014em; color: var(--fg);">High-Rise Residence</div>
+                  <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 12.5px; line-height: 1.3; color: var(--fg-muted);">Architect</div>
                 </div>
-                <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 14.5px; line-height: 1.4; color: #5F6466;">RFI 027 &mdash; ceiling coordination</div>
-                <div style="min-width: 0; font-family: ui-monospace, monospace; font-size: 14px; letter-spacing: 0.02em; color: #111111; text-align: right; font-variant-numeric: tabular-nums;">8d</div>
-                <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: 13.5px; line-height: 1.4; letter-spacing: 0.02em; color: #5F6466; text-align: right;">Waiting</div>
+                <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 14.5px; line-height: 1.4; color: var(--fg-muted);">RFI 027 &mdash; ceiling coordination</div>
+                <div style="min-width: 0; font-family: ui-monospace, monospace; font-size: 14px; letter-spacing: 0.02em; color: var(--fg); text-align: right; font-variant-numeric: tabular-nums;">8d</div>
+                <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: 13.5px; line-height: 1.4; letter-spacing: 0.02em; color: var(--fg-muted); text-align: right;">Waiting</div>
               </div>
               <!-- Row 04 -->
-              <div style="display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1.6fr) 62px 96px; column-gap: 20px; border-top: 1px solid #B8B9B5; padding: 14px 0 15px;">
+              <div style="display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1.6fr) 62px 96px; column-gap: 20px; border-top: var(--w-dimension) solid var(--rule-dimension); padding: 14px 0 15px;">
                 <div style="min-width: 0; display: flex; flex-direction: column; gap: 3px;">
-                  <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 14.5px; line-height: 1.35; letter-spacing: -0.014em; color: #111111;">Back Bay Residence</div>
-                  <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 12.5px; line-height: 1.3; color: #5F6466;">PM</div>
+                  <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 14.5px; line-height: 1.35; letter-spacing: -0.014em; color: var(--fg);">Back Bay Residence</div>
+                  <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 12.5px; line-height: 1.3; color: var(--fg-muted);">PM</div>
                 </div>
-                <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 14.5px; line-height: 1.4; color: #5F6466;">Client finish selection</div>
-                <div style="min-width: 0; font-family: ui-monospace, monospace; font-size: 14px; letter-spacing: 0.02em; color: #111111; text-align: right; font-variant-numeric: tabular-nums;">5d</div>
-                <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: 13.5px; line-height: 1.4; letter-spacing: 0.02em; color: #5F6466; text-align: right;">Due soon</div>
+                <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 14.5px; line-height: 1.4; color: var(--fg-muted);">Client finish selection</div>
+                <div style="min-width: 0; font-family: ui-monospace, monospace; font-size: 14px; letter-spacing: 0.02em; color: var(--fg); text-align: right; font-variant-numeric: tabular-nums;">5d</div>
+                <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: 13.5px; line-height: 1.4; letter-spacing: 0.02em; color: var(--fg-muted); text-align: right;">Due soon</div>
               </div>
               <!-- Row 05 -->
-              <div style="display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1.6fr) 62px 96px; column-gap: 20px; border-top: 1px solid #B8B9B5; padding: 14px 0 15px;">
+              <div style="display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1.6fr) 62px 96px; column-gap: 20px; border-top: var(--w-dimension) solid var(--rule-dimension); padding: 14px 0 15px;">
                 <div style="min-width: 0; display: flex; flex-direction: column; gap: 3px;">
-                  <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 14.5px; line-height: 1.35; letter-spacing: -0.014em; color: #111111;">Townhouse Renovation</div>
-                  <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 12.5px; line-height: 1.3; color: #5F6466;">Estimator</div>
+                  <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 14.5px; line-height: 1.35; letter-spacing: -0.014em; color: var(--fg);">Townhouse Renovation</div>
+                  <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 12.5px; line-height: 1.3; color: var(--fg-muted);">Estimator</div>
                 </div>
-                <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 14.5px; line-height: 1.4; color: #5F6466;">Change pricing not issued</div>
-                <div style="min-width: 0; font-family: ui-monospace, monospace; font-size: 14px; letter-spacing: 0.02em; color: #111111; text-align: right; font-variant-numeric: tabular-nums;">4d</div>
-                <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: 13.5px; line-height: 1.4; letter-spacing: 0.02em; color: #111111; text-align: right;">Open</div>
+                <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 14.5px; line-height: 1.4; color: var(--fg-muted);">Change pricing not issued</div>
+                <div style="min-width: 0; font-family: ui-monospace, monospace; font-size: 14px; letter-spacing: 0.02em; color: var(--fg); text-align: right; font-variant-numeric: tabular-nums;">4d</div>
+                <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: 13.5px; line-height: 1.4; letter-spacing: 0.02em; color: var(--fg); text-align: right;">Open</div>
               </div>
             </div>
           </div>
         </div>
 
-        <div style="border-top: 1px solid #111111; padding: 16px 28px; font-family: Archivo, sans-serif; font-weight: 500; font-size: 14.5px; line-height: 1.45; letter-spacing: -0.012em; color: #111111;">Nothing running to plan needs your attention.</div>
+        <div style="border-top: var(--w-object) solid var(--rule-cut); padding: 16px 28px; font-family: Archivo, sans-serif; font-weight: 500; font-size: 14.5px; line-height: 1.45; letter-spacing: -0.012em; color: var(--fg);">Nothing running to plan needs your attention.</div>
       </div>
 
-      <div style="padding-top: 14px; font-family: Archivo, sans-serif; font-weight: 400; font-size: 13.5px; line-height: 1.5; color: #5F6466;">Example project attention view. Project Intelligence is in development.</div>
+      <div style="padding-top: 14px; font-family: Archivo, sans-serif; font-weight: 400; font-size: 13.5px; line-height: 1.5; color: var(--fg-muted);">Example project attention view. Project Intelligence is in development.</div>
     </div>
   </div>
 </div>
 
 <!-- ================= 3. WHERE IT FITS ================= -->
-<div style="background: #FFFFFF; padding: 76px 0 80px;">
+<div class="surface--white" style="padding: 76px 0 80px;">
   <div style="max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px);">
 
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 24px 48px; align-items: start; border-bottom: 2px solid #111111; padding-bottom: 28px;">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 24px 48px; align-items: start; border-bottom: var(--w-cut) solid var(--rule-cut); padding-bottom: 28px;">
       <div style="container-type: inline-size; min-width: 0;">
-        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #476776; padding-bottom: 16px;">Where it fits</div>
-        <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(26px, 7cqi, 40px); line-height: 1.05; letter-spacing: -0.034em; color: #111111; max-width: 24ch; text-wrap: balance;">See the exception. Know what to do. Produce what comes next.</h2>
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.16em; color: var(--fg); padding-bottom: 16px;">Where it fits</div>
+        <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(26px, 7cqi, 40px); line-height: 1.05; letter-spacing: -0.034em; color: var(--fg); max-width: 24ch; text-wrap: balance;">See the exception. Know what to do. Produce what comes next.</h2>
       </div>
       <div style="min-width: 0; display: flex; flex-direction: column; gap: 12px; padding-top: 5px;">
-        <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 17px; line-height: 1.5; letter-spacing: -0.015em; color: #111111;">Project Intelligence is designed to become the attention layer of Construction OS.</div>
-        <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.6; color: #5F6466;">It surfaces the exception. Construction Intelligence helps determine what should happen. Document Workbench helps produce the documentation needed to move the work forward.</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 17px; line-height: 1.5; letter-spacing: -0.015em; color: var(--fg);">Project Intelligence is designed to become the attention layer of Construction OS.</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.6; color: var(--fg-muted);">It surfaces the exception. Construction Intelligence helps determine what should happen. Document Workbench helps produce the documentation needed to move the work forward.</div>
       </div>
     </div>
 
     <div style="padding-top: 36px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); gap: 32px 40px;">
       <div style="min-width: 0; display: flex; flex-direction: column; gap: 12px;">
         <div style="display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap;">
-          <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: #5F6466;">01</div>
-          <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #476776;">Project Intelligence</div>
+          <div style="font-family: Archivo, sans-serif; font-size: 12px; letter-spacing: 0.04em; font-variant-numeric: tabular-nums; color: var(--fg-muted);">01</div>
+          <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 12px; letter-spacing: 0.1em; color: var(--fg);">Project Intelligence</div>
         </div>
-        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 21px; line-height: 1.25; letter-spacing: -0.024em; color: #111111; text-wrap: balance;">See the exception.</div>
-        <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">Surface the item that needs attention.</div>
-        <div style="font-family: ui-monospace, monospace; font-size: 12px; line-height: 1.5; letter-spacing: 0.02em; color: #C43230; padding-top: 2px;">Owner approval &mdash; millwork change &middot; 12 days overdue</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 21px; line-height: 1.25; letter-spacing: -0.024em; color: var(--fg); text-wrap: balance;">See the exception.</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: var(--fg-muted);">Surface the item that needs attention.</div>
+        <div style="font-family: Archivo, sans-serif; font-size: 12px; line-height: 1.5; letter-spacing: 0.02em; font-variant-numeric: tabular-nums; color: var(--change); padding-top: 2px;">Owner approval &mdash; millwork change &mdash; 12 days overdue</div>
       </div>
       <div style="min-width: 0; display: flex; flex-direction: column; gap: 12px;">
         <div style="display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap;">
-          <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: #5F6466;">02</div>
-          <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #476776;">Construction Intelligence</div>
+          <div style="font-family: Archivo, sans-serif; font-size: 12px; letter-spacing: 0.04em; font-variant-numeric: tabular-nums; color: var(--fg-muted);">02</div>
+          <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 12px; letter-spacing: 0.1em; color: var(--fg);">Construction Intelligence</div>
         </div>
-        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 21px; line-height: 1.25; letter-spacing: -0.024em; color: #111111; text-wrap: balance;">Know what to do.</div>
-        <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">Apply company procedures, pricing rules, standards, and construction knowledge to determine the appropriate response.</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 21px; line-height: 1.25; letter-spacing: -0.024em; color: var(--fg); text-wrap: balance;">Know what to do.</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: var(--fg-muted);">Apply company procedures, pricing rules, standards, and construction knowledge to determine the appropriate response.</div>
       </div>
       <div style="min-width: 0; display: flex; flex-direction: column; gap: 12px;">
         <div style="display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap;">
-          <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: #5F6466;">03</div>
-          <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #476776;">Document Workbench</div>
+          <div style="font-family: Archivo, sans-serif; font-size: 12px; letter-spacing: 0.04em; font-variant-numeric: tabular-nums; color: var(--fg-muted);">03</div>
+          <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 12px; letter-spacing: 0.1em; color: var(--fg);">Document Workbench</div>
         </div>
-        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 21px; line-height: 1.25; letter-spacing: -0.024em; color: #111111; text-wrap: balance;">Produce what the job needs.</div>
-        <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">Prepare the change documentation, RFI, agreement, approval, or other project document needed to move the issue forward.</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 21px; line-height: 1.25; letter-spacing: -0.024em; color: var(--fg); text-wrap: balance;">Produce what the job needs.</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: var(--fg-muted);">Prepare the change documentation, RFI, agreement, approval, or other project document needed to move the issue forward.</div>
       </div>
     </div>
 
-    <div style="border-top: 1px solid #B8B9B5; margin-top: 40px; padding-top: 18px;">
-      <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 13.5px; line-height: 1.5; color: #5F6466; max-width: 70ch;">This illustrates the intended Construction OS sequence. Project Intelligence is still in development.</div>
+    <div style="border-top: var(--w-dimension) solid var(--rule-dimension); margin-top: 40px; padding-top: 18px;">
+      <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 13.5px; line-height: 1.5; color: var(--fg-muted); max-width: 70ch;">This illustrates the intended Construction OS sequence. Project Intelligence is still in development.</div>
     </div>
   </div>
 </div>
 
 <!-- ================= 4. BUILT WHEN THE OPERATION CALLS FOR IT ================= -->
-<div style="background: #EFEFEB; padding: 76px 0 80px;">
+<div class="surface--bond" style="padding: 76px 0 80px;">
   <div style="max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px);">
-    <div style="container-type: inline-size; display: flex; flex-direction: column; gap: 20px; border-bottom: 2px solid #111111; padding-bottom: 30px;">
-      <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #476776;">Development approach</div>
-      <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(28px, 8cqi, 42px); line-height: 1.05; letter-spacing: -0.035em; color: #111111; max-width: 24ch; text-wrap: balance;">Built when the operation calls for it.</h2>
+    <div style="container-type: inline-size; display: flex; flex-direction: column; gap: 20px; border-bottom: var(--w-cut) solid var(--rule-cut); padding-bottom: 30px;">
+      <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.16em; color: var(--fg);">Development approach</div>
+      <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(28px, 8cqi, 42px); line-height: 1.05; letter-spacing: -0.035em; color: var(--fg); max-width: 24ch; text-wrap: balance;">Built when the operation calls for it.</h2>
     </div>
 
     <div style="padding-top: 30px; display: flex; flex-wrap: wrap; gap: 24px 48px; align-items: flex-start;">
       <div style="flex: 1.7 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 14px;">
-        <p style="margin: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.6; color: #5F6466;">Project Intelligence is not being built just to fill out a product roadmap.</p>
-        <p style="margin: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.6; color: #5F6466;">It will be developed where real client engagements show a need for better visibility across active projects&mdash;<wbr>when important issues are aging quietly, leadership is spending too much time collecting status, or existing systems make it difficult to see where intervention is actually needed.</p>
+        <p style="margin: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.6; color: var(--fg-muted);">Project Intelligence is not being built just to fill out a product roadmap.</p>
+        <p style="margin: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.6; color: var(--fg-muted);">It will be developed where real client engagements show a need for better visibility across active projects&mdash;<wbr>when important issues are aging quietly, leadership is spending too much time collecting status, or existing systems make it difficult to see where intervention is actually needed.</p>
       </div>
-      <div style="flex: 1 1 260px; min-width: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 21px; line-height: 1.4; letter-spacing: -0.024em; color: #111111; text-wrap: balance;">Build what the operation justifies.</div>
+      <div style="flex: 1 1 260px; min-width: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 21px; line-height: 1.4; letter-spacing: -0.024em; color: var(--fg); text-wrap: balance;">Build what the operation justifies.</div>
     </div>
   </div>
 </div>
 
 <!-- ================= 5. CLOSING CTA ================= -->
-<div style="background: #111111; padding: 84px 0 80px;">
+<div class="surface--oxblood" style="padding: 84px 0 80px;">
   <div style="max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr)); gap: 48px; align-items: start;">
     <div style="container-type: inline-size; min-width: 0; display: flex; flex-direction: column; gap: 26px;">
       <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
         <svg viewBox="0 0 100 100" width="24" height="24" aria-hidden="true" style="flex: none;">
-          <rect x="6" y="18" width="88" height="64" fill="none" stroke="#B8B9B5" stroke-width="5"></rect>
-          <line x1="18" y1="70" x2="82" y2="70" stroke="#FFFFFF" stroke-width="10"></line>
-          <line x1="30" y1="70" x2="30" y2="56" stroke="#FFFFFF" stroke-width="10"></line>
-          <line x1="50" y1="70" x2="50" y2="44" stroke="#FFFFFF" stroke-width="10"></line>
-          <line x1="70" y1="70" x2="70" y2="32" stroke="#C43230" stroke-width="10"></line>
+          <rect x="6" y="18" width="88" height="64" fill="none" stroke="var(--rule-dimension)" stroke-width="5"></rect>
+          <line x1="18" y1="70" x2="82" y2="70" stroke="currentColor" stroke-width="10"></line>
+          <line x1="30" y1="70" x2="30" y2="56" stroke="currentColor" stroke-width="10"></line>
+          <line x1="50" y1="70" x2="50" y2="44" stroke="currentColor" stroke-width="10"></line>
+          <line x1="70" y1="70" x2="70" y2="32" stroke="currentColor" stroke-width="10"></line>
         </svg>
-        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: #FFFFFF;">Project Intelligence</div>
-        <div style="box-sizing: border-box; font-family: Archivo, sans-serif; font-weight: 600; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: #FFFFFF; border: 1px solid #5F6466; padding: 4px 8px; flex: none;">In development</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 13px; letter-spacing: 0.14em; color: var(--fg);">Project Intelligence</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 10.5px; letter-spacing: 0.12em; color: var(--fg-muted);">In development</div>
       </div>
-      <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(28px, 9cqi, 46px); line-height: 1.05; letter-spacing: -0.038em; color: #FFFFFF; text-wrap: balance;">If this is already a problem inside your company, bring it to the conversation.</div>
+      <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(28px, 9cqi, 46px); line-height: 1.05; letter-spacing: -0.038em; color: var(--fg); text-wrap: balance;">If this is already a problem inside your company, bring it to the conversation.</div>
       <div style="display: flex; align-items: center; gap: 22px; flex-wrap: wrap; padding-top: 4px;">
-        <a href="https://cal.com/justinyurasits" style="box-sizing: border-box; background: #FFFFFF; color: #111111; font-family: Archivo, sans-serif; font-weight: 600; font-size: 15px; letter-spacing: -0.01em; padding: 15px 26px; min-height: 48px; display: inline-flex; align-items: center; text-decoration: none;">Book a call</a>
+        <a href="https://cal.com/justinyurasits" style="box-sizing: border-box; background: var(--btn-bg); color: var(--btn-fg); font-family: Archivo, sans-serif; font-weight: 600; font-size: 15px; letter-spacing: -0.01em; padding: 15px 26px; min-height: 48px; display: inline-flex; align-items: center; text-decoration: none;">Book a call</a>
       </div>
     </div>
 
     <div style="min-width: 0; display: flex; flex-direction: column;">
-      <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: #B8B9B5; padding-bottom: 14px;">Available today</div>
-      <a href="/products/construction-intelligence.html" style="border-top: 1px solid #5F6466; padding: 18px 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 17px; line-height: 1.4; letter-spacing: -0.015em; color: #FFFFFF; text-decoration: none; display: block;">Explore Construction Intelligence &rarr;</a>
-      <a href="/products/document-workbench.html" style="border-top: 1px solid #5F6466; padding: 18px 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 17px; line-height: 1.4; letter-spacing: -0.015em; color: #FFFFFF; text-decoration: none; display: block;">Explore Document Workbench &rarr;</a>
+      <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 12px; letter-spacing: 0.12em; color: var(--fg-muted); padding-bottom: 14px;">Available today</div>
+      <a href="/products/construction-intelligence.html" style="border-top: var(--w-object) solid var(--rule-object); padding: 18px 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 17px; line-height: 1.4; letter-spacing: -0.015em; color: var(--fg); text-decoration: none; display: block;">Explore Construction Intelligence</a>
+      <a href="/products/document-workbench.html" style="border-top: var(--w-object) solid var(--rule-object); padding: 18px 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 17px; line-height: 1.4; letter-spacing: -0.015em; color: var(--fg); text-decoration: none; display: block;">Explore Document Workbench</a>
     </div>
   </div>
 </div>

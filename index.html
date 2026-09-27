@@ -292,7 +292,6 @@
     .cos-index__row {
       display: grid;
       grid-template-columns: 44px minmax(0, 300px) 1fr;
-      grid-template-rows: auto auto;
       column-gap: var(--s-5);
       row-gap: var(--s-2);
       padding: var(--s-5) 0;
@@ -318,31 +317,58 @@
     .cos-index__mid {
       grid-column: 3; grid-row: 1;
       display: flex; align-items: baseline;
-      justify-content: space-between; gap: var(--s-5);
+      justify-content: flex-end; gap: var(--s-5);
       padding-top: 4px;
-    }
-    .cos-index__tagline {
-      font-family: var(--font-display);
-      font-size: var(--fs-small); font-weight: 400;
-      line-height: 1.5; color: var(--fg-muted);
     }
     .cos-index__status {
       font-family: var(--font-display);
       font-size: 11px; font-weight: 400; letter-spacing: 0.06em;
       color: var(--fg-muted); white-space: nowrap;
     }
+    .cos-index__product {
+      grid-column: 2; grid-row: 2;
+      font-family: var(--font-display);
+      font-size: 15px; font-weight: 600;
+      line-height: 1.5; color: var(--fg-muted);
+    }
     .cos-index__sub {
-      grid-column: 2 / 4; grid-row: 2;
+      grid-column: 2 / 4; grid-row: 3;
       font-family: var(--font-display);
       font-size: 15px; font-weight: 400;
       line-height: 1.5; color: var(--fg-muted);
     }
+    .cos-index__how {
+      border-top: var(--w-cut) solid var(--rule-cut);
+      padding-top: var(--s-6);
+      display: flex;
+      flex-direction: column;
+      gap: var(--s-4);
+    }
+    .cos-index__how-head {
+      margin: 0;
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 1.35;
+      letter-spacing: -0.015em;
+      color: var(--fg);
+      max-width: 58ch;
+    }
+    .cos-index__how-p {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--fg-muted);
+      max-width: 58ch;
+    }
     @media (max-width: 760px) {
       .cos-index__row { grid-template-columns: 40px 1fr; }
-      .cos-index__num  { grid-column: 1; grid-row: 1; }
-      .cos-index__name { grid-column: 2; grid-row: 1; }
-      .cos-index__mid  { grid-column: 2; grid-row: 2; flex-direction: column; gap: var(--s-1); padding-top: 0; }
-      .cos-index__sub  { grid-column: 2; grid-row: 3; }
+      .cos-index__num     { grid-column: 1; grid-row: 1; }
+      .cos-index__name    { grid-column: 2; grid-row: 1; }
+      .cos-index__mid     { grid-column: 2; grid-row: auto; flex-direction: column; gap: var(--s-1); padding-top: 0; justify-content: flex-start; }
+      .cos-index__product { grid-column: 2; grid-row: auto; }
+      .cos-index__sub     { grid-column: 2; grid-row: auto; }
     }
 
     /* --- Proof section (§4) dimension figures --- */
@@ -823,7 +849,7 @@
             <polyline points="84,46 84,84 46,84" fill="none" stroke="currentColor" stroke-width="9"></polyline>
             <rect x="32" y="32" width="36" height="36" style="fill: var(--c-mark); stroke: var(--rule-object); stroke-width: 5;"></rect>
           </svg>
-          <h2 class="cos-index__heading">Construction OS</h2>
+          <h2 class="cos-index__heading">How Construction OS works</h2>
         </div>
       </div>
       <p class="cos-index__lead">Put more of how your company works into a system your team can use.</p>
@@ -831,43 +857,43 @@
 
     <div class="cos-index__list">
 
-      <a href="/products/document-workbench.html" class="cos-index__row">
+      <a href="/products/construction-intelligence.html" class="cos-index__row">
         <span class="cos-index__num">01</span>
-        <span class="cos-index__name">Document Workbench</span>
-        <span class="cos-index__mid">
-          <span class="cos-index__tagline">Produce the documents that run the job.</span>
-        </span>
-        <span class="cos-index__sub">Turn project information into company-standard construction documents from first walkthrough through closeout.</span>
+        <span class="cos-index__name">Know what to do.</span>
+        <span class="cos-index__product">Construction Intelligence</span>
+        <span class="cos-index__sub">Construction knowledge grounded in real operating practice, configured around your company&rsquo;s procedures, pricing, standards, contracts, and experience.</span>
       </a>
 
-      <a href="/products/construction-intelligence.html" class="cos-index__row">
+      <a href="/products/document-workbench.html" class="cos-index__row">
         <span class="cos-index__num">02</span>
-        <span class="cos-index__name">Construction Intelligence</span>
-        <span class="cos-index__mid">
-          <span class="cos-index__tagline">Get the answer. See what it&rsquo;s based on.</span>
-        </span>
-        <span class="cos-index__sub">Give the team company-specific answers grounded in your procedures, standards, pricing rules, and project history.</span>
+        <span class="cos-index__name">Do the work.</span>
+        <span class="cos-index__product">Document Workbench</span>
+        <span class="cos-index__sub">Turn project information and decisions into the scopes, PCOs, RFIs, agreements, reports, and other documents the job requires.</span>
       </a>
 
       <a href="/products/project-intelligence.html" class="cos-index__row">
         <span class="cos-index__num">03</span>
-        <span class="cos-index__name">Project Intelligence</span>
+        <span class="cos-index__name">Know what needs attention.</span>
         <span class="cos-index__mid">
-          <span class="cos-index__tagline">Know what needs attention.</span>
           <span class="cos-index__status">In development</span>
         </span>
-        <span class="cos-index__sub">Surface the open items and exceptions that need intervention across active projects.</span>
+        <span class="cos-index__product">Project Intelligence</span>
+        <span class="cos-index__sub">Surface the open decisions, aging changes, missing approvals, unresolved work, and exceptions that need action.</span>
       </a>
 
       <a href="/products/operations-automation.html" class="cos-index__row">
-        <span class="cos-index__num">EXT</span>
-        <span class="cos-index__name">Operations Automation</span>
-        <span class="cos-index__mid">
-          <span class="cos-index__tagline">Handle the repetitive work around it.</span>
-        </span>
-        <span class="cos-index__sub">Purpose-built workflows handle recurring operational work around invoices, field reporting, safety, billing, compliance, and changes.</span>
+        <span class="cos-index__num">04</span>
+        <span class="cos-index__name">Keep the routine work moving.</span>
+        <span class="cos-index__product">Operations Automation</span>
+        <span class="cos-index__sub">Take repetitive, high-volume operational work off the team while keeping review and judgment with your people.</span>
       </a>
 
+    </div>
+
+    <div class="cos-index__how">
+      <p class="cos-index__how-head">Construction Intelligence determines what should happen. Document Workbench produces what happens next.</p>
+      <p class="cos-index__how-p">&ldquo;An owner requests a change. Construction Intelligence applies how your company handles it &mdash; what the contract requires, how the pricing should be treated, whether written authorization is needed, and what conditions would change the answer.&rdquo;</p>
+      <p class="cos-index__how-p">&ldquo;Document Workbench then produces the PCO: the scope language, the pricing, the schedule impact, and the approval documentation.&rdquo;</p>
     </div>
 
   </div>

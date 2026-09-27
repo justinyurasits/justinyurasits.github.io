@@ -13,6 +13,525 @@
 <link rel="stylesheet" href="brand-kit/cos-footer.css">
 <style>
 body { margin: 0; }
+
+/* ── Hero (§1) ────────────────────────────────────────────── */
+.svc-hero { padding: clamp(72px, 10vw, 120px) 0; }
+.svc-hero__inner { display: flex; flex-direction: column; gap: var(--s-5); }
+.svc-hero__eyebrow {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  line-height: 1.35;
+  color: var(--fg-muted);
+}
+.svc-hero__h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(44px, 6.2vw, 84px);
+  line-height: 1.05;
+  letter-spacing: -0.022em;
+  color: var(--fg);
+  max-width: 18ch;
+  text-wrap: balance;
+}
+.svc-hero__lead {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--fg-muted);
+  max-width: 58ch;
+}
+
+/* ── Stats band (§2) ──────────────────────────────────────── */
+.cos-stats { padding: var(--zone-pad) 0; }
+.cos-stats__row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-top: var(--w-cut) solid var(--rule-cut);
+}
+.cos-stats__col {
+  padding: var(--s-6) var(--s-6) var(--s-6) 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+}
+.cos-stats__col + .cos-stats__col {
+  border-left: var(--w-object) solid var(--rule-object);
+  padding-left: var(--s-6);
+}
+.cos-stats__fig {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 4vw, 44px);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.032em;
+  font-variant-numeric: tabular-nums;
+  color: var(--fg);
+}
+.cos-stats__label {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  line-height: 1.35;
+  color: var(--fg-muted);
+}
+@media (max-width: 760px) {
+  .cos-stats__row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: var(--s-5);
+  }
+  .cos-stats__col,
+  .cos-stats__col + .cos-stats__col {
+    border-left: 0;
+    padding: var(--s-5) 0;
+  }
+}
+@media (max-width: 480px) {
+  .cos-stats__row {
+    grid-template-columns: 1fr;
+    column-gap: 0;
+  }
+  .cos-stats__col {
+    padding-bottom: var(--s-4);
+  }
+  .cos-stats__col + .cos-stats__col {
+    border-top: var(--w-dimension) solid var(--rule-dimension);
+    padding-top: var(--s-4);
+  }
+}
+
+/* ── Ways in (§3) ─────────────────────────────────────────── */
+.svc-ways { padding: clamp(56px, 8vw, 84px) 0; }
+.svc-ways__h2 {
+  margin: 0 0 var(--s-7);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(28px, 4.2vw, 40px);
+  line-height: 1.05;
+  letter-spacing: -0.022em;
+  color: var(--fg);
+  max-width: 36ch;
+}
+.svc-ways__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: var(--w-object) solid var(--rule-object);
+  border-left: var(--w-object) solid var(--rule-object);
+}
+.svc-ways__tile {
+  border-right: var(--w-object) solid var(--rule-object);
+  border-bottom: var(--w-object) solid var(--rule-object);
+  padding: var(--s-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+}
+.svc-ways__num {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  font-variant-numeric: tabular-nums;
+  color: var(--fg-muted);
+  line-height: 1.35;
+}
+.svc-ways__name {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 1.18;
+  letter-spacing: -0.022em;
+  color: var(--fg);
+}
+.svc-ways__terms {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--fg-muted);
+}
+.svc-ways__promise {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-style: italic;
+  line-height: 1.45;
+  color: var(--fg);
+}
+.svc-ways__body {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--fg-muted);
+}
+.svc-ways__sub {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--fg-muted);
+  border-top: var(--w-dimension) solid var(--rule-dimension);
+  padding-top: var(--s-3);
+}
+.svc-ways__sub strong {
+  font-weight: 600;
+  color: var(--fg);
+}
+@media (max-width: 900px) {
+  .svc-ways__grid { grid-template-columns: 1fr; }
+}
+
+/* ── Bypass (§4) ──────────────────────────────────────────── */
+.svc-bypass {
+  border-top: var(--w-cut) solid var(--rule-cut);
+  margin-top: var(--s-7);
+  padding-top: var(--s-6);
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: 0 var(--s-8);
+  align-items: start;
+}
+.svc-bypass__q {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+  color: var(--fg);
+}
+.svc-bypass__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+}
+.svc-bypass__p {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--fg-muted);
+}
+.svc-bypass__link {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--fg);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+@media (max-width: 860px) {
+  .svc-bypass { grid-template-columns: 1fr; gap: var(--s-4) 0; }
+}
+
+/* ── What we need (§5) ────────────────────────────────────── */
+.svc-needs { padding: clamp(56px, 8vw, 84px) 0; }
+.svc-needs__h2 {
+  margin: 0 0 var(--s-5);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(28px, 4.2vw, 40px);
+  line-height: 1.05;
+  letter-spacing: -0.022em;
+  color: var(--fg);
+  border-bottom: var(--w-cut) solid var(--rule-cut);
+  padding-bottom: var(--s-5);
+}
+.svc-needs__cells { display: flex; flex-direction: column; }
+.svc-needs__cell {
+  display: flex;
+  gap: 0 var(--s-8);
+  border-top: var(--w-object) solid var(--rule-object);
+  padding: var(--s-6) 0;
+  align-items: start;
+}
+.svc-needs__label {
+  flex: 3;
+  min-width: 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+  color: var(--fg);
+}
+.svc-needs__content {
+  flex: 7;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+}
+.svc-needs__p {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--fg-muted);
+}
+.svc-needs__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+.svc-needs__item {
+  font-family: var(--font-display);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--fg-muted);
+  border-top: var(--w-dimension) solid var(--rule-dimension);
+  padding: 6px 0;
+}
+.svc-needs__item:first-child { border-top: 0; padding-top: 0; }
+@media (max-width: 760px) {
+  .svc-needs__cell { flex-direction: column; gap: var(--s-3) 0; }
+}
+
+/* ── Don't start from scratch (§6) ───────────────────────── */
+.svc-arch { padding: clamp(56px, 8vw, 84px) 0; }
+.svc-arch__split { display: flex; gap: 0 var(--s-8); align-items: start; }
+.svc-arch__left { flex: 5; min-width: 0; }
+.svc-arch__h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(28px, 4.2vw, 40px);
+  line-height: 1.05;
+  letter-spacing: -0.022em;
+  color: var(--fg);
+}
+.svc-arch__right { flex: 7; min-width: 0; display: flex; flex-direction: column; gap: var(--s-5); }
+.svc-arch__body {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--fg);
+  max-width: 54ch;
+}
+.svc-arch__sub {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--fg-muted);
+  max-width: 54ch;
+}
+@media (max-width: 860px) {
+  .svc-arch__split { flex-direction: column; gap: var(--s-4) 0; }
+}
+
+/* ── Purpose-built (§7) ──────────────────────────────────── */
+.svc-custom { padding: clamp(56px, 8vw, 84px) 0; }
+.svc-custom__h2 {
+  margin: 0 0 var(--s-5);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(28px, 4.2vw, 40px);
+  line-height: 1.05;
+  letter-spacing: -0.022em;
+  color: var(--fg);
+  border-bottom: var(--w-cut) solid var(--rule-cut);
+  padding-bottom: var(--s-5);
+}
+.svc-custom__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-5);
+  max-width: 68ch;
+  padding-top: var(--s-5);
+}
+.svc-custom__p {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--fg-muted);
+}
+.svc-custom__link {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--fg);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  align-self: start;
+}
+
+/* ── Limits (§8) ─────────────────────────────────────────── */
+.svc-limits { padding: clamp(56px, 8vw, 84px) 0; }
+.svc-limits__h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(28px, 4.2vw, 40px);
+  line-height: 1.05;
+  letter-spacing: -0.022em;
+  color: var(--fg);
+}
+.svc-limits__triad {
+  border-top: var(--w-cut) solid var(--rule-cut);
+  margin-top: var(--s-6);
+  margin-bottom: var(--s-8);
+  max-width: 68ch;
+}
+.svc-limits__line {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--fg-muted);
+  padding: var(--s-4) 0;
+  border-bottom: var(--w-dimension) solid var(--rule-dimension);
+}
+.svc-limits__line--strong {
+  font-weight: 600;
+  color: var(--fg);
+  border-bottom: var(--w-cut) solid var(--rule-cut);
+}
+.svc-limits__subh {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(22px, 3vw, 28px);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--fg);
+  border-bottom: var(--w-cut) solid var(--rule-cut);
+  padding-bottom: var(--s-4);
+}
+.svc-limits__rows { display: flex; flex-direction: column; }
+.svc-limits__row {
+  display: flex;
+  gap: 0 var(--s-8);
+  border-top: var(--w-object) solid var(--rule-object);
+  padding: var(--s-5) 0;
+  align-items: start;
+}
+.svc-limits__disq {
+  flex: 7;
+  min-width: 0;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 1.45;
+  letter-spacing: -0.015em;
+  color: var(--fg);
+}
+.svc-limits__note {
+  flex: 5;
+  min-width: 0;
+  font-family: var(--font-display);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--fg-muted);
+}
+@media (max-width: 760px) {
+  .svc-limits__row { flex-direction: column; gap: var(--s-2) 0; }
+}
+
+/* ── What you keep (§9) ──────────────────────────────────── */
+.svc-keep { padding: clamp(56px, 8vw, 84px) 0; border-top: var(--w-cut) solid var(--rule-cut); }
+.svc-keep__grid { display: grid; grid-template-columns: 5fr 7fr; gap: 0 var(--s-8); align-items: start; }
+.svc-keep__h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(28px, 4.2vw, 40px);
+  line-height: 1.05;
+  letter-spacing: -0.022em;
+  color: var(--fg);
+}
+.svc-keep__body { display: flex; flex-direction: column; gap: var(--s-4); }
+.svc-keep__p {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--fg-muted);
+}
+.svc-keep__note {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--fg-muted);
+  border-top: var(--w-object) solid var(--rule-object);
+  padding-top: var(--s-4);
+}
+@media (max-width: 860px) {
+  .svc-keep__grid { grid-template-columns: 1fr; gap: var(--s-4) 0; }
+}
+
+/* ── Both sides (§10) ────────────────────────────────────── */
+.svc-sides { padding: clamp(56px, 8vw, 84px) 0; }
+.svc-sides__h2 {
+  margin: 0 0 var(--s-5);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(28px, 4.2vw, 40px);
+  line-height: 1.05;
+  letter-spacing: -0.022em;
+  color: var(--fg);
+  border-bottom: var(--w-cut) solid var(--rule-cut);
+  padding-bottom: var(--s-5);
+}
+.svc-sides__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-5);
+  max-width: 68ch;
+  padding-top: var(--s-5);
+}
+.svc-sides__p {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--fg-muted);
+}
+.svc-sides__closing {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.45;
+  letter-spacing: -0.015em;
+  color: var(--fg);
+}
+
+/* ── Closing plate (§11) ─────────────────────────────────── */
+.svc-plate { padding: clamp(72px, 10vw, 96px) 0; }
+.svc-plate__inner { display: flex; flex-direction: column; gap: var(--s-6); }
+.svc-plate__mark { display: flex; align-items: center; gap: var(--s-3); }
+.svc-plate__wordmark {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  color: var(--fg);
+}
+.svc-plate__rule { height: 1px; flex: 1; background: var(--fg); }
+.svc-plate__h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(32px, 5vw, 60px);
+  line-height: 1.0;
+  letter-spacing: -0.038em;
+  color: var(--fg);
+  max-width: 22ch;
+  text-wrap: balance;
+}
 </style>
 </head>
 <body>
@@ -62,463 +581,257 @@ body { margin: 0; }
 </header>
 <!-- header:end -->
 
-<!-- 1. HERO -->
-<div style="background: #FFFFFF; padding: 76px 0 72px;">
-  <div style="max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px);">
-    <div style="container-type: inline-size; display: flex; flex-direction: column; gap: 24px; max-width: 76ch;">
-      <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
-        <svg viewBox="0 0 100 100" width="26" height="26" aria-hidden="true" style="flex: none;">
-          <polyline points="16,54 16,16 54,16" fill="none" stroke="#111111" stroke-width="11"></polyline>
-          <polyline points="84,46 84,84 46,84" fill="none" stroke="#111111" stroke-width="11"></polyline>
-          <rect x="34" y="34" width="32" height="32" fill="var(--c-mark)"></rect>
+<!-- ===== §1 HERO ===== -->
+<section class="surface--white svc-hero">
+  <div class="cos-container">
+    <div class="svc-hero__inner">
+      <p class="svc-hero__eyebrow">How we work</p>
+      <h1 class="svc-hero__h1">Start with the problem you already know about.</h1>
+      <p class="svc-hero__lead">You don&rsquo;t need an AI strategy. You need to know where the business is losing time, what depends too heavily on one person, and which problem is worth fixing first.</p>
+      <a class="btn" href="https://cal.com/justinyurasits">Book a call</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== §2 NUMBERS BAND ===== -->
+<section class="surface--navy cos-stats" aria-label="System scale">
+  <div class="cos-container">
+    <div class="cos-stats__row">
+      <div class="cos-stats__col">
+        <span class="cos-stats__fig">3</span>
+        <span class="cos-stats__label">Ways in</span>
+      </div>
+      <div class="cos-stats__col">
+        <span class="cos-stats__fig">110</span>
+        <span class="cos-stats__label">Document types produced</span>
+      </div>
+      <div class="cos-stats__col">
+        <span class="cos-stats__fig">38</span>
+        <span class="cos-stats__label">Categories covered</span>
+      </div>
+      <div class="cos-stats__col">
+        <span class="cos-stats__fig">1,258</span>
+        <span class="cos-stats__label">Pricing items referenced</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== §3 THREE WAYS IN + §4 BYPASS ===== -->
+<section class="surface--bond svc-ways">
+  <div class="cos-container">
+
+    <h2 class="svc-ways__h2">Three ways in. Start wherever the problem is clearest.</h2>
+
+    <div class="svc-ways__grid">
+
+      <div class="svc-ways__tile">
+        <span class="svc-ways__num">01</span>
+        <h3 class="svc-ways__name">Audit</h3>
+        <p class="svc-ways__terms">2&ndash;3 weeks &mdash; $4,000&ndash;6,000</p>
+        <p class="svc-ways__promise">Find out what&rsquo;s actually costing you.</p>
+        <p class="svc-ways__body">We interview your team, map how the work moves today, and identify where better systems create real leverage. You get a prioritized roadmap and a scoped proposal with a number.</p>
+        <p class="svc-ways__sub"><strong>What we need from you:</strong> four to eight hours across your PMs, estimator, and office, plus access to how you currently produce documents.</p>
+        <p class="svc-ways__sub"><strong>What you get:</strong> the current-state map, the roadmap, and a scoped build proposal. Yours whether you build with us or not.</p>
+      </div>
+
+      <div class="svc-ways__tile">
+        <span class="svc-ways__num">02</span>
+        <h3 class="svc-ways__name">Build</h3>
+        <p class="svc-ways__terms">About a month &mdash; $12,000&ndash;15,000</p>
+        <p class="svc-ways__promise">Configure the first priority.</p>
+        <p class="svc-ways__body">We collect your documents, map the workflows, configure the system around your standards, review it against real jobs, and hand it over with training. One or two purpose-built workflows are included in scope.</p>
+        <p class="svc-ways__sub"><strong>What we need from you:</strong> your templates, contract language, pricing references, procedures, and a few hours a week from whoever owns the process.</p>
+        <p class="svc-ways__sub"><strong>What you get:</strong> a working system, your operating knowledge documented, and your team trained on it.</p>
+      </div>
+
+      <div class="svc-ways__tile">
+        <span class="svc-ways__num">03</span>
+        <h3 class="svc-ways__name">Monthly</h3>
+        <p class="svc-ways__terms">From $2,000</p>
+        <p class="svc-ways__promise">Access, kept current.</p>
+        <p class="svc-ways__body">Your team uses the system. We keep it running and matched to your business as procedures, contracts, and standards change. New workflows get added as you need them.</p>
+        <p class="svc-ways__body">Priced by annual construction volume and what&rsquo;s configured.</p>
+      </div>
+
+    </div>
+
+    <div class="svc-bypass">
+      <p class="svc-bypass__q">Already know what you need?</p>
+      <div class="svc-bypass__body">
+        <p class="svc-bypass__p">You don&rsquo;t have to start with an audit. If the problem is clear, we scope the build.</p>
+        <a class="svc-bypass__link" href="https://cal.com/justinyurasits">Book a scoping call</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== §5 WHAT WE NEED FROM YOU ===== -->
+<section class="surface--white svc-needs">
+  <div class="cos-container">
+    <h2 class="svc-needs__h2">What we need from you</h2>
+    <div class="svc-needs__cells">
+
+      <div class="svc-needs__cell">
+        <div class="svc-needs__label">Time</div>
+        <div class="svc-needs__content">
+          <p class="svc-needs__p">Typically 4&ndash;8 hours across Phase 1 from each key person involved in the scoped workflows.</p>
+          <p class="svc-needs__p">That may include the owner or operations lead, a PM who runs the work daily, the estimator when pricing is relevant, and the person handling the administrative work.</p>
+          <p class="svc-needs__p">That last perspective often reveals where the time is really going.</p>
+        </div>
+      </div>
+
+      <div class="svc-needs__cell">
+        <div class="svc-needs__label">Documents</div>
+        <div class="svc-needs__content">
+          <p class="svc-needs__p">Depending on what&rsquo;s in scope, we may ask for:</p>
+          <ul class="svc-needs__list">
+            <li class="svc-needs__item">Contract templates and subcontract forms.</li>
+            <li class="svc-needs__item">Scopes from recent jobs&mdash;one that went well and one that didn&rsquo;t.</li>
+            <li class="svc-needs__item">Your pricing structure, markups, and rate card.</li>
+            <li class="svc-needs__item">Whatever procedures or checklists exist, however rough.</li>
+            <li class="svc-needs__item">A real change order, RFI, pay app, or closeout package.</li>
+            <li class="svc-needs__item">Any spreadsheet somebody maintains by hand.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="svc-needs__cell">
+        <div class="svc-needs__label">Access</div>
+        <div class="svc-needs__content">
+          <ul class="svc-needs__list">
+            <li class="svc-needs__item">Read access to your project management system if you have one.</li>
+            <li class="svc-needs__item">A sample project folder as it actually looks.</li>
+            <li class="svc-needs__item">Permission to sit in on one recurring meeting.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="svc-needs__cell">
+        <div class="svc-needs__label">A point of contact</div>
+        <div class="svc-needs__content">
+          <p class="svc-needs__p">One point of contact who can keep documents, access, and decisions moving.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== §6 WE DON'T START FROM SCRATCH ===== -->
+<section class="surface--ink svc-arch">
+  <div class="cos-container">
+    <div class="svc-arch__split">
+      <div class="svc-arch__left">
+        <h2 class="svc-arch__h2">We don&rsquo;t start from scratch.</h2>
+      </div>
+      <div class="svc-arch__right">
+        <p class="svc-arch__body">Construction OS already contains the architecture for recurring construction work &mdash; the documents, the scopes, the pricing conventions, the change procedures, the operating knowledge. We configure it around your company&rsquo;s documents, rules, terminology, and judgment.</p>
+        <p class="svc-arch__sub">You are not paying us to discover what a change order is.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== §7 PURPOSE-BUILT SYSTEMS ===== -->
+<section class="surface--white svc-custom">
+  <div class="cos-container">
+    <h2 class="svc-custom__h2">Purpose-built systems</h2>
+    <div class="svc-custom__body">
+      <p class="svc-custom__p">Not every construction problem fits an existing Construction OS capability. When the business case is real, we design and build a system around a specific workflow, process, or operating need.</p>
+      <p class="svc-custom__p">The goal is not custom software for its own sake. We build where the problem is worth solving, and where the work can become part of a stronger reusable system over time.</p>
+      <a class="svc-custom__link" href="/products/custom-solutions.html">See how purpose-built work gets scoped</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== §8 BUILD WHERE THE BUSINESS CASE IS REAL ===== -->
+<section class="surface--bond svc-limits">
+  <div class="cos-container">
+    <h2 class="svc-limits__h2">Not every problem needs a system built for it.</h2>
+    <div class="svc-limits__triad">
+      <p class="svc-limits__line">If the software you already have solves the problem well, use it.</p>
+      <p class="svc-limits__line">If judgment is what creates the value, keep the judgment.</p>
+      <p class="svc-limits__line svc-limits__line--strong">Build only where the business case is real.</p>
+    </div>
+
+    <h3 class="svc-limits__subh">Who this isn&rsquo;t for</h3>
+    <div class="svc-limits__rows">
+
+      <div class="svc-limits__row">
+        <div class="svc-limits__disq">Companies looking for self-service, per-seat software.</div>
+        <div class="svc-limits__note">We configure systems around a business. We don&rsquo;t sell seats.</div>
+      </div>
+
+      <div class="svc-limits__row">
+        <div class="svc-limits__disq">Companies where the people who know how the work happens can&rsquo;t spend a few hours with us.</div>
+        <div class="svc-limits__note">Phase 1 produces a map of nothing.</div>
+      </div>
+
+      <div class="svc-limits__row">
+        <div class="svc-limits__disq">Companies that want AI layered on top of a process nobody has agreed on.</div>
+        <div class="svc-limits__note">That automates the disagreement.</div>
+      </div>
+
+      <div class="svc-limits__row">
+        <div class="svc-limits__disq">Companies that want a system running unsupervised.</div>
+        <div class="svc-limits__note">Review and approval stay with your team.</div>
+      </div>
+
+      <div class="svc-limits__row">
+        <div class="svc-limits__disq">Companies whose real problem is a software selection.</div>
+        <div class="svc-limits__note">Sometimes the answer is to buy the product that already does it.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== §9 WHAT YOU KEEP ===== -->
+<section class="surface--white svc-keep">
+  <div class="cos-container">
+    <div class="svc-keep__grid">
+      <h2 class="svc-keep__h2">What you keep</h2>
+      <div class="svc-keep__body">
+        <p class="svc-keep__p">Your information stays yours. The documented operating knowledge, workflow maps, procedures, and inventories we create from it are yours to keep and use. Reusable Construction OS components, methods, and underlying system IP remain ours unless the agreement says otherwise.</p>
+        <p class="svc-keep__note">Everything you share during an engagement is treated as confidential.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== §10 BUILT FROM BOTH SIDES ===== -->
+<section class="surface--bond svc-sides">
+  <div class="cos-container">
+    <h2 class="svc-sides__h2">Built from both sides of the problem.</h2>
+    <div class="svc-sides__body">
+      <p class="svc-sides__p">Construction OS is built by people who have worked both sides of the problem. I ran projects at a $50 million contractor as a licensed Massachusetts Construction Supervisor, and spent twelve years leading enterprise product at Fidelity, Jabra, and Optimizely. Ava Yurasits builds the engineering, agents, and configuration layer.</p>
+      <p class="svc-sides__closing">The technology matters. Understanding the operation matters more.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== §11 CLOSING PLATE ===== -->
+<section class="surface--oxblood svc-plate">
+  <div class="cos-container">
+    <div class="svc-plate__inner">
+      <div class="svc-plate__mark">
+        <svg viewBox="0 0 100 100" width="24" height="24" aria-hidden="true" style="flex: none;">
+          <polyline points="16,54 16,16 54,16" fill="none" stroke="currentColor" stroke-width="10"></polyline>
+          <polyline points="84,46 84,84 46,84" fill="none" stroke="currentColor" stroke-width="10"></polyline>
+          <rect x="34" y="34" width="32" height="32" fill="currentColor"></rect>
         </svg>
-        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #476776;">Engagements</div>
+        <span class="svc-plate__wordmark">Construction OS</span>
+        <div class="svc-plate__rule" aria-hidden="true"></div>
       </div>
-
-      <h1 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(30px, 9cqi, 52px); line-height: 1.02; letter-spacing: -0.038em; text-wrap: balance; color: #111111;">How an engagement works.</h1>
-
-      <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 20px; line-height: 1.4; letter-spacing: -0.02em; max-width: 44ch; color: #111111;">Four ways to work together. One starting point.</div>
-
-      <div style="border-left: 2px solid #476776; padding-left: 18px; font-family: Archivo, sans-serif; font-weight: 600; font-size: 19px; line-height: 1.45; letter-spacing: -0.02em; max-width: 50ch; color: #111111;">Everything I capture about how your business operates belongs to your business.</div>
-
-      <div style="display: flex; align-items: center; gap: 22px; flex-wrap: wrap; padding-top: 6px;">
-        <a href="https://cal.com/justinyurasits" style="box-sizing: border-box; background: #111111; color: #FFFFFF; font-family: Archivo, sans-serif; font-weight: 600; font-size: 15px; letter-spacing: -0.01em; padding: 15px 26px; min-height: 48px; display: inline-flex; align-items: center; text-decoration: none;">Book a call</a>
-        <a href="#phase-1" style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 15px; color: #111111; border-bottom: 1px solid #111111; padding-bottom: 2px; text-decoration: none;">See how an engagement starts &darr;</a>
+      <h2 class="svc-plate__h2">Bring us the problem everyone already knows about.</h2>
+      <div>
+        <a class="btn" href="https://cal.com/justinyurasits">Book a call</a>
       </div>
     </div>
   </div>
-</div>
-
-<!-- 2. THE STARTING POINT -->
-<div style="background: #111111; padding: 80px 0 84px;">
-  <div style="max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px);">
-    <div style="container-type: inline-size; display: flex; flex-direction: column; gap: 30px;">
-      <div style="display: flex; align-items: center; gap: 14px;">
-        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #B8B9B5;">The starting point</div>
-        <div style="height: 1px; flex: 1; background: #5F6466;"></div>
-      </div>
-
-      <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(28px, 8cqi, 46px); line-height: 1.06; letter-spacing: -0.036em; color: #FFFFFF; max-width: 30ch; text-wrap: balance;">Most businesses don&rsquo;t need to start with AI. They need to make the operation legible.</div>
-
-      <div style="display: flex; flex-wrap: wrap; gap: 20px 48px; align-items: flex-start; border-top: 1px solid #5F6466; padding-top: 26px;">
-        <div style="flex: 1 1 340px; min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 17px; line-height: 1.6; color: #B8B9B5;">How the company actually works lives across people, files, systems, and habit.</div>
-        <div style="flex: 1 1 340px; min-width: 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: 17px; line-height: 1.55; color: #FFFFFF;">Every engagement starts by making that visible before deciding what&mdash;<wbr>if anything&mdash;<wbr>should be built.</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- 3. FOUR WAYS TO WORK WITH ME -->
-<div style="background: #FFFFFF; padding: 80px 0 84px;">
-  <div style="max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px);">
-    <div style="container-type: inline-size;">
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 24px 48px; align-items: start; border-bottom: 2px solid #111111; padding-bottom: 28px;">
-        <div style="display: flex; flex-direction: column; gap: 18px; min-width: 0;">
-          <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #476776;">Four ways to work with me</div>
-          <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(28px, 8cqi, 42px); line-height: 1.06; letter-spacing: -0.035em; max-width: 22ch; text-wrap: balance; color: #111111;">Different starting points. The same first step.</h2>
-        </div>
-        <div style="display: flex; flex-direction: column; gap: 14px; min-width: 0; padding-top: 5px;">
-          <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.6; color: #5F6466;">All of this comes out of building and running these systems while working inside large Boston residential general contractors.</div>
-          <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 17px; line-height: 1.5; color: #111111;">What you hire me for depends on what your operation needs.</div>
-        </div>
-      </div>
-
-      <div style="padding-top: 40px; display: flex; flex-wrap: wrap; gap: 40px 44px;">
-
-        <div style="flex: 1 1 max(300px, calc(50% - 22px)); min-width: 0; display: flex; flex-direction: column; gap: 14px; border-top: 2px solid #111111; padding-top: 18px;">
-          <div style="display: flex; align-items: baseline; gap: 12px;">
-            <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: #5F6466; flex: none;">01</div>
-            <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 23px; line-height: 1.18; letter-spacing: -0.027em; color: #111111;">Construction OS implementation</div>
-          </div>
-          <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">Configure Document Workbench, Construction Intelligence, and automation workflows around your documents, standards, pricing rules, and terminology.</div>
-          <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">For companies producing the same paperwork job after job and answering the same questions every week.</div>
-          <div style="border-top: 1px solid #B8B9B5; padding-top: 13px; font-family: Archivo, sans-serif; font-weight: 600; font-size: 15px; line-height: 1.5; letter-spacing: -0.012em; color: #111111;">You end up with working Construction OS systems configured around how your company actually operates.</div>
-        </div>
-
-        <div style="flex: 1 1 max(300px, calc(50% - 22px)); min-width: 0; display: flex; flex-direction: column; gap: 14px; border-top: 2px solid #111111; padding-top: 18px;">
-          <div style="display: flex; align-items: baseline; gap: 12px;">
-            <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: #5F6466; flex: none;">02</div>
-            <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 23px; line-height: 1.18; letter-spacing: -0.027em; color: #111111;">AI strategy and advisory</div>
-          </div>
-          <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">Where AI fits, what to build versus buy, and how to scope it so it doesn&rsquo;t fail.</div>
-          <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">For leadership teams under pressure to &ldquo;do something with AI&rdquo; who want a clear-eyed read before committing budget.</div>
-          <div style="border-top: 1px solid #B8B9B5; padding-top: 13px; font-family: Archivo, sans-serif; font-weight: 600; font-size: 15px; line-height: 1.5; letter-spacing: -0.012em; color: #111111;">You end up with a decision you can defend, and a roadmap with priorities and sequencing.</div>
-        </div>
-
-        <div style="flex: 1 1 max(300px, calc(50% - 22px)); min-width: 0; display: flex; flex-direction: column; gap: 14px; border-top: 2px solid #111111; padding-top: 18px;">
-          <div style="display: flex; align-items: baseline; gap: 12px;">
-            <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: #5F6466; flex: none;">03</div>
-            <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 23px; line-height: 1.18; letter-spacing: -0.027em; color: #111111;">Purpose-built systems</div>
-          </div>
-          <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">A system built around the workflow nothing off-the-shelf handles.</div>
-          <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">The spreadsheet nobody wants to maintain. The approval that dies in email. The report someone rebuilds every Friday.</div>
-          <div style="border-top: 1px solid #B8B9B5; padding-top: 13px; font-family: Archivo, sans-serif; font-weight: 600; font-size: 15px; line-height: 1.5; letter-spacing: -0.012em; color: #111111;">You end up with something built around your process, not somebody else&rsquo;s.</div>
-        </div>
-
-        <div style="flex: 1 1 max(300px, calc(50% - 22px)); min-width: 0; display: flex; flex-direction: column; gap: 14px; border-top: 2px solid #111111; padding-top: 18px;">
-          <div style="display: flex; align-items: baseline; gap: 12px;">
-            <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: #5F6466; flex: none;">04</div>
-            <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 23px; line-height: 1.18; letter-spacing: -0.027em; color: #111111;">Operations and process work</div>
-          </div>
-          <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">Document how the company actually runs&mdash;<wbr>workflows, decisions, pricing logic, and the knowledge that lives in one person&rsquo;s head.</div>
-          <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">For companies that need this whether or not AI is ever involved.</div>
-          <div style="border-top: 1px solid #B8B9B5; padding-top: 13px; font-family: Archivo, sans-serif; font-weight: 600; font-size: 15px; line-height: 1.5; letter-spacing: -0.012em; color: #111111;">You end up with a structured record of your own operation.</div>
-        </div>
-      </div>
-
-      <div style="border-top: 1px solid #B8B9B5; margin-top: 44px; padding-top: 20px;">
-        <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466; max-width: 74ch;">Some engagements end after Phase 1 by design. Others continue into implementation or a purpose-built system.</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- 4. PHASE 1 -->
-<div id="phase-1" style="background: #EFEFEB; padding: 80px 0 84px;">
-  <div style="max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px);">
-    <div style="container-type: inline-size;">
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 24px 48px; align-items: start; border-bottom: 2px solid #111111; padding-bottom: 28px;">
-        <div style="display: flex; flex-direction: column; gap: 18px; min-width: 0;">
-          <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #476776;">Phase 1</div>
-          <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(28px, 8cqi, 42px); line-height: 1.06; letter-spacing: -0.035em; max-width: 22ch; text-wrap: balance; color: #111111;">Every engagement starts the same way.</h2>
-          <div style="font-family: ui-monospace, monospace; font-size: 12.5px; letter-spacing: 0.05em; color: #111111;">Operational Architecture &middot; 2&ndash;4 weeks &middot; Fixed fee</div>
-        </div>
-        <div style="display: flex; flex-direction: column; gap: 12px; min-width: 0; padding-top: 5px;">
-          <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.6; color: #5F6466;">I spend time inside the business&mdash;<wbr>observing, mapping, and extracting how it actually operates.</div>
-          <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 17px; line-height: 1.5; color: #5F6466;">Not the ideal version.</div>
-          <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 21px; line-height: 1.3; letter-spacing: -0.024em; color: #111111;">The real one.</div>
-        </div>
-      </div>
-
-      <div style="padding-top: 38px; display: flex; flex-direction: column; gap: 22px;">
-        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #5F6466;">What Phase 1 produces</div>
-
-        <div style="display: flex; flex-wrap: wrap; gap: 34px 44px;">
-          <div style="flex: 1 1 max(300px, calc(50% - 22px)); min-width: 0; display: flex; flex-direction: column; gap: 11px; border-top: 1px solid #B8B9B5; padding-top: 16px;">
-            <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 20px; line-height: 1.25; letter-spacing: -0.022em; color: #111111;">Workflow Maps</div>
-            <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">How the work moves today: triggers, inputs, handoffs, bottlenecks, approvals, and outputs.</div>
-          </div>
-          <div style="flex: 1 1 max(300px, calc(50% - 22px)); min-width: 0; display: flex; flex-direction: column; gap: 11px; border-top: 1px solid #B8B9B5; padding-top: 16px;">
-            <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 20px; line-height: 1.25; letter-spacing: -0.022em; color: #111111;">Knowledge Inventory</div>
-            <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">Where the procedures, standards, pricing logic, documents, examples, and operating knowledge actually live.</div>
-          </div>
-          <div style="flex: 1 1 max(300px, calc(50% - 22px)); min-width: 0; display: flex; flex-direction: column; gap: 11px; border-top: 1px solid #B8B9B5; padding-top: 16px;">
-            <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 20px; line-height: 1.25; letter-spacing: -0.022em; color: #111111;">Decision Architecture</div>
-            <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">The rules, judgment points, dependencies, and exceptions behind how the work gets done.</div>
-          </div>
-          <div style="flex: 1 1 max(300px, calc(50% - 22px)); min-width: 0; display: flex; flex-direction: column; gap: 11px; border-top: 1px solid #B8B9B5; padding-top: 16px;">
-            <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 20px; line-height: 1.25; letter-spacing: -0.022em; color: #111111;">Implementation Roadmap</div>
-            <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">What should change, what is worth building, what existing software should handle, and what should be left alone.</div>
-          </div>
-        </div>
-      </div>
-
-      <div style="margin-top: 44px; border: 1px solid #111111; background: #FFFFFF; padding: 30px 32px; display: flex; flex-direction: column; gap: 16px;">
-        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #5F6466;">Deliverable</div>
-        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 19px; line-height: 1.4; letter-spacing: -0.02em; max-width: 62ch; color: #111111;">At the end of Phase 1, your business has a structured record of how the priority parts of the operation actually work.</div>
-        <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.65; color: #5F6466; max-width: 72ch;">Workflows documented. Decisions written down. Pricing logic captured where relevant. Knowledge that lived in one person&rsquo;s head made accessible to the team.</div>
-        <div style="border-top: 1px solid #B8B9B5; padding-top: 16px; font-family: Archivo, sans-serif; font-weight: 500; font-size: 16px; line-height: 1.5; color: #111111;">That&rsquo;s valuable whether or not anything gets built on top of it.</div>
-      </div>
-
-      <div style="padding-top: 22px; font-family: Archivo, sans-serif; font-weight: 400; font-size: 14px; line-height: 1.55; color: #5F6466;">Fixed fee, quoted after the scoping call. No hourly billing.</div>
-    </div>
-  </div>
-</div>
-
-<!-- 5. THE APPROACH -->
-<div style="background: #FFFFFF; padding: 80px 0 84px;">
-  <div style="max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px);">
-    <div style="container-type: inline-size;">
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 24px 48px; align-items: start; border-bottom: 2px solid #111111; padding-bottom: 28px;">
-        <div style="display: flex; flex-direction: column; gap: 18px; min-width: 0;">
-          <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #476776;">The approach</div>
-          <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(28px, 8cqi, 42px); line-height: 1.06; letter-spacing: -0.035em; max-width: 20ch; text-wrap: balance; color: #111111;">I don&rsquo;t start with AI. I start with the work.</h2>
-        </div>
-        <div style="display: flex; flex-direction: column; gap: 12px; min-width: 0; padding-top: 5px;">
-          <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 17px; line-height: 1.5; color: #111111;">Show me how the process actually happens today.</div>
-          <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.6; color: #5F6466;">I want to understand:</div>
-        </div>
-      </div>
-
-      <div style="padding-top: 10px;">
-        <div style="display: flex; flex-wrap: wrap; gap: 6px 28px; align-items: baseline; padding: 18px 0;">
-          <div style="font-family: ui-monospace, monospace; font-size: 12px; color: #5F6466; width: 28px; flex: none;">01</div>
-          <div style="flex: 1 1 300px; min-width: 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: 18px; line-height: 1.4; letter-spacing: -0.018em; color: #111111;">Where does the information come from? Who touches it?</div>
-        </div>
-        <div style="display: flex; flex-wrap: wrap; gap: 6px 28px; align-items: baseline; padding: 18px 0; border-top: 1px solid #B8B9B5;">
-          <div style="font-family: ui-monospace, monospace; font-size: 12px; color: #5F6466; width: 28px; flex: none;">02</div>
-          <div style="flex: 1 1 300px; min-width: 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: 18px; line-height: 1.4; letter-spacing: -0.018em; color: #111111;">What gets copied, checked, reformatted, or chased?</div>
-        </div>
-        <div style="display: flex; flex-wrap: wrap; gap: 6px 28px; align-items: baseline; padding: 18px 0; border-top: 1px solid #B8B9B5;">
-          <div style="font-family: ui-monospace, monospace; font-size: 12px; color: #5F6466; width: 28px; flex: none;">03</div>
-          <div style="flex: 1 1 300px; min-width: 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: 18px; line-height: 1.4; letter-spacing: -0.018em; color: #111111;">Where does the process slow down?</div>
-        </div>
-        <div style="display: flex; flex-wrap: wrap; gap: 6px 28px; align-items: baseline; padding: 18px 0; border-top: 1px solid #B8B9B5;">
-          <div style="font-family: ui-monospace, monospace; font-size: 12px; color: #5F6466; width: 28px; flex: none;">04</div>
-          <div style="flex: 1 1 300px; min-width: 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: 18px; line-height: 1.4; letter-spacing: -0.018em; color: #111111;">What requires real construction judgment?</div>
-        </div>
-        <div style="display: flex; flex-wrap: wrap; gap: 6px 28px; align-items: baseline; padding: 18px 0; border-top: 1px solid #B8B9B5;">
-          <div style="font-family: ui-monospace, monospace; font-size: 12px; color: #5F6466; width: 28px; flex: none;">05</div>
-          <div style="flex: 1 1 300px; min-width: 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: 18px; line-height: 1.4; letter-spacing: -0.018em; color: #111111;">What is simply repetitive production?</div>
-        </div>
-      </div>
-
-      <div style="margin-top: 56px; border-top: 2px solid #111111; border-bottom: 2px solid #111111; padding: 44px 0 46px;">
-        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(26px, 7.4cqi, 40px); line-height: 1.14; letter-spacing: -0.032em; max-width: 34ch; text-wrap: pretty; color: #111111;">The question isn&rsquo;t &ldquo;where can AI help?&rdquo; It&rsquo;s &ldquo;why is your team still doing this the hard way?&rdquo;</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- 6. WHAT IT TAKES -->
-<div style="background: #EFEFEB; padding: 80px 0 84px;">
-  <div style="max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px);">
-    <div style="container-type: inline-size;">
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 24px 48px; align-items: start; border-bottom: 2px solid #111111; padding-bottom: 28px;">
-        <div style="display: flex; flex-direction: column; gap: 18px; min-width: 0;">
-          <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #476776;">What it takes</div>
-          <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(28px, 8cqi, 42px); line-height: 1.06; letter-spacing: -0.035em; max-width: 20ch; text-wrap: balance; color: #111111;">What I need from your side.</h2>
-        </div>
-        <div style="display: flex; flex-direction: column; gap: 12px; min-width: 0; padding-top: 5px;">
-          <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.6; color: #5F6466;">Phase 1 only works if I can see how the work actually happens.</div>
-          <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 17px; line-height: 1.5; color: #111111;">That means time from the people who do it.</div>
-        </div>
-      </div>
-
-      <div style="display: flex; flex-wrap: wrap; gap: 12px 44px; align-items: flex-start; padding: 34px 0 32px;">
-        <div style="flex: 1 1 200px; min-width: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 20px; line-height: 1.25; letter-spacing: -0.022em; color: #111111;">Time</div>
-        <div style="flex: 2.2 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 12px;">
-          <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 17px; line-height: 1.5; letter-spacing: -0.015em; color: #111111;">Typically 4&ndash;8 hours across Phase 1 from each key person involved in the scoped workflows.</div>
-          <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.65; color: #5F6466;">That may include the owner or operations lead, a PM who runs the work daily, the estimator when pricing is relevant, and the person handling the administrative work.</div>
-          <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.65; color: #5F6466;">That last perspective often reveals where the time is really going.</div>
-        </div>
-      </div>
-
-      <div style="border-top: 2px solid #111111; padding-top: 26px;">
-        <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 16px; line-height: 1.5; color: #5F6466; padding-bottom: 8px;">Depending on what&rsquo;s in scope, I may ask for:</div>
-
-        <div style="display: flex; flex-wrap: wrap; gap: 12px 44px; align-items: flex-start; padding: 26px 0;">
-          <div style="flex: 1 1 200px; min-width: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 20px; line-height: 1.25; letter-spacing: -0.022em; color: #111111;">Documents</div>
-          <div style="flex: 2.2 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 9px;">
-            <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">Contract templates and subcontract forms.</div>
-            <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">Scopes from recent jobs&mdash;<wbr>one that went well and one that didn&rsquo;t.</div>
-            <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">Your pricing structure, markups, and rate card.</div>
-            <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">Whatever procedures or checklists exist, however rough.</div>
-            <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">A real change order, RFI, pay app, or closeout package.</div>
-            <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">Any spreadsheet somebody maintains by hand.</div>
-          </div>
-        </div>
-
-        <div style="display: flex; flex-wrap: wrap; gap: 12px 44px; align-items: flex-start; padding: 26px 0; border-top: 1px solid #B8B9B5;">
-          <div style="flex: 1 1 200px; min-width: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 20px; line-height: 1.25; letter-spacing: -0.022em; color: #111111;">Access</div>
-          <div style="flex: 2.2 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 9px;">
-            <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">Read access to your project management system if you have one.</div>
-            <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">A sample project folder as it actually looks.</div>
-            <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">Permission to sit in on one recurring meeting.</div>
-          </div>
-        </div>
-
-        <div style="display: flex; flex-wrap: wrap; gap: 12px 44px; align-items: flex-start; padding: 26px 0; border-top: 1px solid #B8B9B5;">
-          <div style="flex: 1 1 200px; min-width: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 20px; line-height: 1.25; letter-spacing: -0.022em; color: #111111;">A point of contact</div>
-          <div style="flex: 2.2 1 420px; min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">One point of contact who can keep documents, access, and decisions moving.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- 7. PHASE 2 -->
-<div style="background: #FFFFFF; padding: 80px 0 84px;">
-  <div style="max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px);">
-    <div style="container-type: inline-size;">
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 24px 48px; align-items: start; border-bottom: 2px solid #111111; padding-bottom: 28px;">
-        <div style="display: flex; flex-direction: column; gap: 18px; min-width: 0;">
-          <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #476776;">Phase 2</div>
-          <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(28px, 8cqi, 42px); line-height: 1.06; letter-spacing: -0.035em; max-width: 18ch; color: #111111;">What gets built.</h2>
-          <div style="font-family: ui-monospace, monospace; font-size: 12.5px; letter-spacing: 0.05em; color: #111111;">4&ndash;12 weeks &middot; Fixed fee</div>
-        </div>
-        <div style="display: flex; flex-direction: column; gap: 12px; min-width: 0; padding-top: 5px;">
-          <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.6; color: #5F6466;">I build the systems identified in Phase 1&mdash;<wbr>grounded in your actual operations and tested against real work.</div>
-          <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 17px; line-height: 1.5; color: #111111;">What gets built depends on what Phase 1 found.</div>
-        </div>
-      </div>
-
-      <div style="padding: 34px 0 0; display: flex; flex-wrap: wrap; gap: 18px 44px; align-items: flex-start;">
-        <div style="flex: 1 1 380px; min-width: 0; display: flex; flex-direction: column; gap: 11px;">
-          <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.6; color: #5F6466;">Sometimes that&rsquo;s a Construction OS configuration.</div>
-          <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.6; color: #5F6466;">Sometimes it&rsquo;s a purpose-built tool.</div>
-          <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 17px; line-height: 1.5; letter-spacing: -0.015em; color: #111111;">Sometimes the honest answer is that the documented process was the fix.</div>
-        </div>
-        <div style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 14px;">
-          <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #5F6466;">Examples</div>
-          <div style="display: flex; flex-direction: column;">
-            <div style="border-top: 1px solid #B8B9B5; padding: 10px 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: 15px; color: #111111;">Construction OS configuration</div>
-            <div style="border-top: 1px solid #B8B9B5; padding: 10px 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: 15px; color: #111111;">Estimating systems</div>
-            <div style="border-top: 1px solid #B8B9B5; padding: 10px 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: 15px; color: #111111;">Change order systems</div>
-            <div style="border-top: 1px solid #B8B9B5; padding: 10px 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: 15px; color: #111111;">Knowledge assistants</div>
-            <div style="border-top: 1px solid #B8B9B5; padding: 10px 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: 15px; color: #111111;">Document production systems</div>
-            <div style="border-top: 1px solid #B8B9B5; padding: 10px 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: 15px; color: #111111;">Workflow automation</div>
-          </div>
-        </div>
-      </div>
-
-      <div style="border-top: 1px solid #B8B9B5; margin-top: 40px; padding-top: 20px; font-family: Archivo, sans-serif; font-weight: 400; font-size: 14px; line-height: 1.55; color: #5F6466;">Fixed fee, quoted from the Phase 1 roadmap.</div>
-    </div>
-  </div>
-</div>
-
-<!-- 8. ONGOING -->
-<div style="background: #EFEFEB; padding: 72px 0 76px;">
-  <div style="max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px);">
-    <div style="container-type: inline-size; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 24px 48px; align-items: start;">
-      <div style="display: flex; flex-direction: column; gap: 18px; min-width: 0;">
-        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #476776;">Ongoing</div>
-        <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(26px, 7cqi, 36px); line-height: 1.08; letter-spacing: -0.032em; max-width: 16ch; color: #111111;">Keeping it running.</h2>
-      </div>
-      <div style="display: flex; flex-direction: column; gap: 14px; min-width: 0; padding-top: 5px;">
-        <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.65; color: #5F6466;">Systems built around a company&rsquo;s operation need to change when the operation does&mdash;<wbr>new templates, revised pricing, or a workflow that turns out to matter more than expected.</div>
-        <div style="border-top: 1px solid #B8B9B5; padding-top: 14px; font-family: Archivo, sans-serif; font-weight: 500; font-size: 16px; line-height: 1.55; color: #111111;">Ongoing support and development is available monthly for updates as standards change and continued work on what comes next.</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- 9. SCOPE -->
-<div style="background: #FFFFFF; padding: 80px 0 84px;">
-  <div style="max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px);">
-    <div style="container-type: inline-size;">
-      <div style="display: flex; flex-direction: column; gap: 18px; border-bottom: 2px solid #111111; padding-bottom: 30px;">
-        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #476776;">Scope</div>
-        <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(28px, 8cqi, 42px); line-height: 1.06; letter-spacing: -0.035em; max-width: 26ch; text-wrap: balance; color: #111111;">Scope is defined before anything is signed.</h2>
-      </div>
-
-      <div style="padding-top: 36px; display: flex; flex-wrap: wrap; gap: 40px 48px; align-items: flex-start;">
-        <div style="flex: 1 1 max(320px, calc(50% - 24px)); min-width: 0; display: flex; flex-direction: column; gap: 16px;">
-          <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 20px; line-height: 1.3; letter-spacing: -0.022em; color: #111111;">What the scoping call covers</div>
-          <div style="display: flex; flex-direction: column;">
-            <div style="border-top: 1px solid #B8B9B5; padding: 12px 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.55; color: #5F6466;">Where operational knowledge currently lives&mdash;<wbr>and where it doesn&rsquo;t</div>
-            <div style="border-top: 1px solid #B8B9B5; padding: 12px 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.55; color: #5F6466;">Which workflows cause the most friction for your team</div>
-            <div style="border-top: 1px solid #B8B9B5; padding: 12px 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.55; color: #5F6466;">Team structure, handoff points, and who holds the knowledge</div>
-            <div style="border-top: 1px solid #B8B9B5; padding: 12px 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.55; color: #5F6466;">Current documentation state and AI readiness</div>
-            <div style="border-top: 1px solid #B8B9B5; padding: 12px 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.55; color: #5F6466;">Whether Phase 1 is the right entry point</div>
-          </div>
-        </div>
-
-        <div style="flex: 1 1 max(320px, calc(50% - 24px)); min-width: 0; display: flex; flex-direction: column; gap: 16px;">
-          <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 20px; line-height: 1.3; letter-spacing: -0.022em; color: #111111;">What gets agreed before signing</div>
-          <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 17px; line-height: 1.55; letter-spacing: -0.015em; color: #111111;">Before Phase 1 begins, 3&ndash;5 priority workflows are identified and agreed in writing.</div>
-          <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">The engagement is scoped to those workflows.</div>
-          <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 19px; line-height: 1.4; letter-spacing: -0.02em; color: #111111;">Nothing open-ended.</div>
-
-          <div style="border-top: 1px solid #B8B9B5; margin-top: 10px; padding-top: 18px; display: flex; flex-direction: column; gap: 10px;">
-            <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #5F6466;">Example &mdash; residential GC: estimating &middot; change orders &middot; PM onboarding</div>
-            <div style="font-family: ui-monospace, monospace; font-size: 13.5px; letter-spacing: 0.06em; color: #111111;">Estimating &middot; Change orders &middot; PM onboarding</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- 10. THE LIMITS + WHO THIS ISN'T FOR -->
-<div style="background: #EFEFEB; padding: 80px 0 84px;">
-  <div style="max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px);">
-    <div style="container-type: inline-size;">
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 24px 48px; align-items: start; border-bottom: 2px solid #111111; padding-bottom: 30px;">
-        <div style="display: flex; flex-direction: column; gap: 18px; min-width: 0;">
-          <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #476776;">The limits</div>
-          <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(28px, 8cqi, 42px); line-height: 1.06; letter-spacing: -0.035em; max-width: 24ch; text-wrap: balance; color: #111111;">Not every problem needs a system built for it.</h2>
-        </div>
-        <div style="display: flex; flex-direction: column; gap: 12px; min-width: 0; padding-top: 5px;">
-          <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.6; color: #5F6466;">If the software you already have solves the problem well, use it.</div>
-          <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.6; color: #5F6466;">If judgment is what creates the value, keep the judgment.</div>
-          <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 19px; line-height: 1.4; letter-spacing: -0.02em; color: #111111;">Build only where the business case is real.</div>
-        </div>
-      </div>
-
-      <div style="padding-top: 44px;">
-        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(22px, 5.4cqi, 28px); line-height: 1.2; letter-spacing: -0.028em; padding-bottom: 22px; border-bottom: 2px solid #111111; color: #111111;">Who this isn&rsquo;t for.</div>
-
-        <div style="display: flex; flex-wrap: wrap; gap: 10px 44px; align-items: baseline; padding: 20px 0;">
-          <div style="flex: 1 1 380px; min-width: 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: 17px; line-height: 1.45; letter-spacing: -0.015em; color: #111111;">Companies looking for self-service, per-seat software.</div>
-          <div style="flex: 1 1 300px; min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">I configure systems around a business. I don&rsquo;t sell seats.</div>
-        </div>
-        <div style="display: flex; flex-wrap: wrap; gap: 10px 44px; align-items: baseline; padding: 20px 0; border-top: 1px solid #B8B9B5;">
-          <div style="flex: 1 1 380px; min-width: 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: 17px; line-height: 1.45; letter-spacing: -0.015em; color: #111111;">Companies where the people who know how the work happens can&rsquo;t spend a few hours with me.</div>
-          <div style="flex: 1 1 300px; min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">Phase 1 produces a map of nothing.</div>
-        </div>
-        <div style="display: flex; flex-wrap: wrap; gap: 10px 44px; align-items: baseline; padding: 20px 0; border-top: 1px solid #B8B9B5;">
-          <div style="flex: 1 1 380px; min-width: 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: 17px; line-height: 1.45; letter-spacing: -0.015em; color: #111111;">Companies that want AI layered on top of a process nobody has agreed on.</div>
-          <div style="flex: 1 1 300px; min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">That automates the disagreement.</div>
-        </div>
-        <div style="display: flex; flex-wrap: wrap; gap: 10px 44px; align-items: baseline; padding: 20px 0; border-top: 1px solid #B8B9B5;">
-          <div style="flex: 1 1 380px; min-width: 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: 17px; line-height: 1.45; letter-spacing: -0.015em; color: #111111;">Companies that want a system running unsupervised.</div>
-          <div style="flex: 1 1 300px; min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">Review and approval stay with your team.</div>
-        </div>
-        <div style="display: flex; flex-wrap: wrap; gap: 10px 44px; align-items: baseline; padding: 20px 0; border-top: 1px solid #B8B9B5;">
-          <div style="flex: 1 1 380px; min-width: 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: 17px; line-height: 1.45; letter-spacing: -0.015em; color: #111111;">Companies whose real problem is a software selection.</div>
-          <div style="flex: 1 1 300px; min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">Sometimes the answer is to buy the product that already does it.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- 11. OWNERSHIP -->
-<div style="background: #FFFFFF; padding: 80px 0 84px;">
-  <div style="max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px);">
-    <div style="container-type: inline-size;">
-      <div style="display: flex; flex-direction: column; gap: 18px; border-bottom: 2px solid #111111; padding-bottom: 30px;">
-        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #476776;">Ownership</div>
-        <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(28px, 8cqi, 42px); line-height: 1.06; letter-spacing: -0.035em; max-width: 18ch; color: #111111;">What you own.</h2>
-      </div>
-
-      <div style="padding-top: 34px; display: flex; flex-direction: column; gap: 0; max-width: 82ch;">
-        <div style="padding: 0 0 22px; font-family: Archivo, sans-serif; font-weight: 600; font-size: 19px; line-height: 1.45; letter-spacing: -0.02em; color: #111111;">Everything you share during an engagement is treated as confidential.</div>
-
-        <div style="border-top: 1px solid #B8B9B5; padding: 22px 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.65; color: #5F6466; max-width: 64ch;">Your source documents, project information, operating knowledge, pricing logic, and company-specific procedures remain yours.</div>
-
-        <div style="border-top: 1px solid #B8B9B5; padding: 22px 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.65; color: #5F6466; max-width: 64ch;">The workflow maps, documented procedures, inventories, and other client-specific Phase 1 deliverables are yours to keep and use whether or not the engagement continues.</div>
-
-        <div style="border-top: 1px solid #B8B9B5; padding: 22px 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.65; color: #5F6466; max-width: 64ch;">Construction OS, reusable system components, methods, and underlying intellectual property remain mine unless the engagement agreement specifically says otherwise.</div>
-
-        <div style="border-top: 2px solid #111111; padding-top: 22px; font-family: Archivo, sans-serif; font-weight: 500; font-size: 16px; line-height: 1.6; color: #111111;">Any Phase 2 ownership, licensing, or ongoing-support terms are defined before that work begins.</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- 12. CLOSING CTA -->
-<div style="background: #111111; padding: 88px 0 84px;">
-  <div style="max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px);">
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr)); gap: 48px; align-items: start;">
-      <div style="container-type: inline-size; display: flex; flex-direction: column; gap: 26px; min-width: 0;">
-        <div style="display: flex; align-items: center; gap: 12px;">
-          <svg viewBox="0 0 100 100" width="24" height="24" aria-hidden="true" style="flex: none;">
-            <polyline points="16,54 16,16 54,16" fill="none" stroke="#FFFFFF" stroke-width="11"></polyline>
-            <polyline points="84,46 84,84 46,84" fill="none" stroke="#FFFFFF" stroke-width="11"></polyline>
-            <rect x="34" y="34" width="32" height="32" fill="var(--c-mark)"></rect>
-          </svg>
-          <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: #FFFFFF;">Engagements</div>
-          <div style="height: 1px; flex: 1; background: #5F6466;"></div>
-        </div>
-
-        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(28px, 9cqi, 46px); line-height: 1.03; letter-spacing: -0.038em; color: #FFFFFF; text-wrap: balance;">Start with a 30-minute scoping call.</div>
-
-        <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 17px; line-height: 1.6; color: #B8B9B5; max-width: 50ch;">Bring the workflow, paperwork, knowledge bottleneck, or repetitive process your team is tired of dealing with.</div>
-
-        <div style="display: flex; align-items: center; gap: 22px; flex-wrap: wrap;">
-          <a href="https://cal.com/justinyurasits" style="box-sizing: border-box; background: #FFFFFF; color: #111111; font-family: Archivo, sans-serif; font-weight: 600; font-size: 15px; letter-spacing: -0.01em; padding: 15px 26px; min-height: 48px; display: inline-flex; align-items: center; text-decoration: none;">Book a call</a>
-        </div>
-      </div>
-
-      <div style="display: flex; flex-direction: column; gap: 20px; min-width: 0;">
-        <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.6; color: #B8B9B5;">No commitment until scope is agreed.</div>
-        <div style="border-top: 1px solid #5F6466; padding-top: 20px; font-family: Archivo, sans-serif; font-weight: 600; font-size: 19px; line-height: 1.4; letter-spacing: -0.018em; color: #FFFFFF;">Phase 1 stands alone as a deliverable.</div>
-      </div>
-    </div>
-  </div>
-</div>
+</section>
 
 <!-- footer:start -->
 <footer class="cos-footer">

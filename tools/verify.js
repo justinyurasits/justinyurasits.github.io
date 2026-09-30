@@ -26,6 +26,28 @@ function fail(file, lineNum, lineText, rule) {
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
 
+// Decode the HTML entities most likely to disguise banned strings or drift values.
+// Does NOT decode &lt; / &gt; / &quot; — those are structural and must stay intact
+// so tag/comment detection keeps working.  Newlines are never touched (line numbers stay valid).
+function decodeEntities(html) {
+  return html
+    .replace(/&ndash;/g,  '–') // –
+    .replace(/&mdash;/g,  '—') // —
+    .replace(/&nbsp;/g,   ' ')
+    .replace(/&middot;/g, '·') // ·
+    .replace(/&rarr;/g,   '→') // →
+    .replace(/&larr;/g,   '←') // ←
+    .replace(/&bull;/g,   '•') // •
+    .replace(/&rsquo;/g,  '’')
+    .replace(/&lsquo;/g,  '‘')
+    .replace(/&rdquo;/g,  '”')
+    .replace(/&ldquo;/g,  '“')
+    .replace(/&sect;/g,   '§')
+    .replace(/&#(\d+);/g,             (_, n) => String.fromCharCode(+n))
+    .replace(/&#x([0-9a-fA-F]+);/g,   (_, h) => String.fromCharCode(parseInt(h, 16)))
+    .replace(/&amp;/g,    '&');     // last — avoids double-decoding &amp;ndash; etc.
+}
+
 // Replace comment content with spaces, preserving newlines (so line numbers stay valid).
 function stripComments(content) {
   return content.replace(/<!--[\s\S]*?-->/g, m => m.replace(/[^\n]/g, ' '));
@@ -133,8 +155,9 @@ function inComment(raw, stripped, offset) {
 
 for (const relPath of HTML_FILES) {
   const abs       = path.join(REPO, relPath);
-  const raw       = fs.readFileSync(abs, 'utf8');
-  const lines     = raw.split('\n');
+  const rawDisk   = fs.readFileSync(abs, 'utf8');
+  const lines     = rawDisk.split('\n');        // original, for line-number display
+  const raw       = decodeEntities(rawDisk);    // decoded, for all rule checks
   const noComment = stripComments(raw);
   const noCSS     = stripCssAndComments(raw);
   const genR      = genRanges(lines);
@@ -205,8 +228,8 @@ for (const relPath of HTML_FILES) {
 
   // 2c. Price ranges: any $N,NNN–M,MMM must be a canonical value.
   const VALID_RANGES = new Set(['4,000–6,000', '12,000–15,000']);
-  // Match both literal en-dash (–), HTML entity (&ndash;), and hyphen.
-  const priceRangeRe = /\$([\d,]+)(?:–|&ndash;|-)([\d,]+)/g;
+  // Entities are decoded before this runs; match en-dash, em-dash, and hyphen.
+  const priceRangeRe = /\$([\d,]+)[–—-]([\d,]+)/g;
   let pm;
   while ((pm = priceRangeRe.exec(raw)) !== null) {
     if (inComment(raw, noComment, pm.index)) continue;
@@ -234,7 +257,7 @@ for (const relPath of HTML_FILES) {
 
   // 2e. Audit/build duration strings.
   const DURATION_RE = [
-    { re: /(\d+)[–\-](\d+)\s+weeks?\b/gi, check: (a, b) => a === '2' && b === '3', canonical: '2–3 weeks', label: 'audit duration' },
+    { re: /(\d+)[–—-](\d+)\s+weeks?\b/gi, check: (a, b) => a === '2' && b === '3', canonical: '2–3 weeks', label: 'audit duration' },
   ];
   for (const chk of DURATION_RE) {
     chk.re.lastIndex = 0;
@@ -340,11 +363,10 @@ for (const relPath of HTML_FILES) {
 
   // ── Rule 7: PROHIBITIONS ───────────────────────────────────────────────────
   const PROHIBITIONS = [
-    { re: /text-transform\s*:\s*uppercase/gi,                                           label: 'text-transform:uppercase' },
+    { re: /text-transform\s*:\s*uppercase/gi, label: 'text-transform:uppercase' },
     { re: /font-family\s*:[^;]*(?:monospace|Courier|Consolas|Monaco|Menlo|Lucida Console|Liberation Mono|DejaVu)/gi, label: 'monospace font-family' },
-    { re: /&rarr;/g,  label: '&rarr; (arrow entity)' },
-    { re: /→/g,  label: '→ (U+2192 arrow)' },
-    { re: /&middot;/g, label: '&middot; (middot entity)' },
+    { re: /→/g,  label: '→ right arrow (entity or literal)' },   // &rarr; decoded above
+    { re: /·/g,  label: '· middle dot (entity or literal)' },    // &middot; decoded above
   ];
   for (const { re, label } of PROHIBITIONS) {
     re.lastIndex = 0;

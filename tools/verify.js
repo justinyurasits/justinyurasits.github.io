@@ -151,17 +151,111 @@ function inComment(raw, stripped, offset) {
   return stripped[offset] !== raw[offset];
 }
 
+// Extract individual visible text strings from HTML (text between tags).
+// Skips whitespace-only strings and anything over 120 chars (prose, not labels).
+function extractElementTexts(html) {
+  const texts = [];
+  const re = />([^<]+)</g;
+  let m;
+  while ((m = re.exec(html)) !== null) {
+    const t = m[1].trim();
+    if (t.length > 0 && t.length < 120) texts.push(t);
+  }
+  return texts;
+}
+
+// Collapse commas, middots, en/em-dashes, hyphens, and whitespace to a single space.
+function normalizeStatus(s) {
+  return s.toLowerCase().replace(/[,·–—\-\s]+/g, ' ').trim();
+}
+
+// ── Rule 3 setup (constant across files) ─────────────────────────────────────
+
+const WORKFLOW_MAP = {
+  'Change Order Drafting':     facts.workflows.changeOrderDrafting,
+  'Invoice Intake':            facts.workflows.invoiceIntake,
+  'Site Safety':               facts.workflows.siteSafety,
+  'Field Reports':             facts.workflows.fieldReports,
+  'Bid Comparison':            facts.workflows.bidComparison,
+  'Pay App Preparation':       facts.workflows.payAppPreparation,
+  'Subcontractor Compliance':  facts.workflows.subcontractorCompliance,
+  'Client Selections':         facts.workflows.clientSelections,
+};
+
+const PRODUCT_STATUS_MAP = {
+  'Project Intelligence': facts.products.projectIntelligence,
+};
+
+const ALL_STATUS_VALUES = [...new Set([
+  ...Object.values(WORKFLOW_MAP),
+  ...Object.values(PRODUCT_STATUS_MAP),
+])];
+
+// Check that each named item appears on the page with its canonical status nearby.
+// Fires 3a (wrong status), 3b (no status), or 3c (right words, non-canonical separator).
+// When a page's <title> contains the item name, skip it — the product's own page
+// has too many prose occurrences to check reliably.
+function checkStatusPresence(nameMap, relPath, rawDisk, lines, decodedLines, noCommentLines, genR) {
+  const pageTitle = ((rawDisk.match(/<title[^>]*>([^<]+)/i) || [])[1] || '').toLowerCase();
+
+  for (const [name, canonical] of Object.entries(nameMap)) {
+    if (pageTitle.includes(name.toLowerCase())) continue;
+
+    for (let i = 0; i < lines.length; i++) {
+      if (inRanges(i, genR)) continue;
+
+      // Only fire when an element on this line has the name as its ENTIRE text (label, not prose).
+      const lineTexts = extractElementTexts(noCommentLines[i]);
+      if (!lineTexts.some(t => t === name)) continue;
+
+      // Window: 3 lines back (status may precede label) and 5 forward.
+      const winStart   = Math.max(0, i - 3);
+      const winEnd     = Math.min(i + 5, decodedLines.length - 1);
+      const windowHtml = decodedLines.slice(winStart, winEnd + 1).join('\n');
+      const windowTexts = extractElementTexts(windowHtml);
+
+      // Case-insensitive exact matches against every known canonical status.
+      const exactHits = ALL_STATUS_VALUES.filter(s =>
+        windowTexts.some(t => t.toLowerCase() === s.toLowerCase())
+      );
+
+      if (exactHits.some(s => s.toLowerCase() === canonical.toLowerCase())) continue;
+
+      const wrongExact = exactHits.filter(s => s.toLowerCase() !== canonical.toLowerCase());
+      if (wrongExact.length > 0) {
+        fail(relPath, i + 1, lines[i],
+          `Rule 3a STATUS DRIFT (wrong): [${name}] page="${wrongExact[0]}", canonical="${canonical}"`);
+        continue;
+      }
+
+      // Normalized match: right words, non-canonical separator → 3c.
+      const normCanon    = normalizeStatus(canonical);
+      const malformedText = windowTexts.find(t => normalizeStatus(t) === normCanon);
+      if (malformedText) {
+        fail(relPath, i + 1, lines[i],
+          `Rule 3c STATUS DRIFT (malformed): [${name}] page="${malformedText}", canonical="${canonical}"`);
+        continue;
+      }
+
+      fail(relPath, i + 1, lines[i],
+        `Rule 3b STATUS DRIFT (missing): [${name}] no status found near label`);
+    }
+  }
+}
+
 // ── Per-file checks ──────────────────────────────────────────────────────────
 
 for (const relPath of HTML_FILES) {
   const abs       = path.join(REPO, relPath);
-  const rawDisk   = fs.readFileSync(abs, 'utf8');
-  const lines     = rawDisk.split('\n');        // original, for line-number display
-  const raw       = decodeEntities(rawDisk);    // decoded, for all rule checks
-  const noComment = stripComments(raw);
-  const noCSS     = stripCssAndComments(raw);
-  const genR      = genRanges(lines);
-  const exR       = exemptRanges(lines);
+  const rawDisk        = fs.readFileSync(abs, 'utf8');
+  const lines          = rawDisk.split('\n');        // original, for line-number display
+  const raw            = decodeEntities(rawDisk);    // decoded, for all rule checks
+  const decodedLines   = raw.split('\n');
+  const noComment      = stripComments(raw);
+  const noCommentLines = noComment.split('\n');
+  const noCSS          = stripCssAndComments(raw);
+  const genR           = genRanges(lines);
+  const exR            = exemptRanges(lines);
 
   const isAbout    = relPath === 'about.html';
   const isServices = relPath === 'services.html';
@@ -274,59 +368,8 @@ for (const relPath of HTML_FILES) {
   }
 
   // ── Rule 3: STATUS DRIFT ───────────────────────────────────────────────────
-
-  const WORKFLOW_MAP = {
-    'Change Order Drafting':  facts.workflows.changeOrderDrafting,
-    'Invoice Intake':         facts.workflows.invoiceIntake,
-    'Site Safety':            facts.workflows.siteSafety,
-    'Field Reports':          facts.workflows.fieldReports,
-    'Bid Comparison':         facts.workflows.bidComparison,
-    'Pay App Preparation':    facts.workflows.payAppPreparation,
-    'Subcontractor Compliance': facts.workflows.subcontractorCompliance,
-    'Client Selections':      facts.workflows.clientSelections,
-  };
-  const ALL_STATUSES = [...new Set(Object.values(WORKFLOW_MAP))];
-
-  for (let i = 0; i < lines.length; i++) {
-    if (inRanges(i, genR)) continue;
-    for (const [wfName, canonical] of Object.entries(WORKFLOW_MAP)) {
-      if (!lines[i].includes(wfName)) continue;
-      // Look for a recognised status string within the next 5 lines.
-      for (let j = i; j <= Math.min(i + 5, lines.length - 1); j++) {
-        for (const status of ALL_STATUSES) {
-          if (!lines[j].includes(status)) continue;
-          if (status !== canonical) {
-            fail(relPath, j + 1, lines[j],
-              `Rule 3 STATUS DRIFT [${wfName}]: page="${status}", canonical="${canonical}"`);
-          }
-          break;
-        }
-      }
-    }
-  }
-
-  // Product statuses: look for "In development" next to product names it shouldn't have,
-  // and validate PI specifically (other products have no on-page status label yet).
-  const PRODUCT_STATUS_MAP = {
-    'Project Intelligence': facts.products.projectIntelligence,
-  };
-  for (let i = 0; i < lines.length; i++) {
-    if (inRanges(i, genR)) continue;
-    for (const [prodName, canonical] of Object.entries(PRODUCT_STATUS_MAP)) {
-      if (!lines[i].includes(prodName)) continue;
-      for (let j = i; j <= Math.min(i + 5, lines.length - 1); j++) {
-        const knownStatuses = Object.values(facts.products);
-        for (const status of knownStatuses) {
-          if (!lines[j].includes(status)) continue;
-          if (status !== canonical) {
-            fail(relPath, j + 1, lines[j],
-              `Rule 3 STATUS DRIFT [${prodName}]: page="${status}", canonical="${canonical}"`);
-          }
-          break;
-        }
-      }
-    }
-  }
+  checkStatusPresence(WORKFLOW_MAP,       relPath, rawDisk, lines, decodedLines, noCommentLines, genR);
+  checkStatusPresence(PRODUCT_STATUS_MAP, relPath, rawDisk, lines, decodedLines, noCommentLines, genR);
 
   // ── Rule 4: DEAD LINKS ─────────────────────────────────────────────────────
   for (let i = 0; i < lines.length; i++) {

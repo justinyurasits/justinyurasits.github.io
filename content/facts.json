@@ -1,0 +1,75 @@
+{
+  "library": {
+    "documentTypes": 110,
+    "categories": 38,
+    "lifecyclePhases": 5,
+    "documentedProcedures": "160+",
+    "pricingItems": 1258
+  },
+  "measured": [
+    {
+      "task": "Contract package",
+      "before": "up to 8 hrs",
+      "after": "~30 min"
+    },
+    {
+      "task": "Change order",
+      "before": "~10 days",
+      "after": "~3 days"
+    },
+    {
+      "task": "Preliminary estimating",
+      "before": "~10 hrs",
+      "after": "~2 hrs"
+    }
+  ],
+  "usage": "roughly twenty real jobs and bids",
+  "credential": "licensed Massachusetts Construction Supervisor",
+  "operatorScale": "$1M–$4M renovations at a $50 million contractor",
+  "products": {
+    "documentWorkbench": "Beta, demonstrable",
+    "constructionIntelligence": "Beta, demonstrable",
+    "operationsAutomation": "One public demo, three live, four beta",
+    "projectIntelligence": "In development"
+  },
+  "workflows": {
+    "changeOrderDrafting": "Public demo",
+    "invoiceIntake": "Live, demo on request",
+    "siteSafety": "Live, demo on request",
+    "fieldReports": "Live, demo on request",
+    "bidComparison": "Beta",
+    "payAppPreparation": "Beta",
+    "subcontractorCompliance": "Beta",
+    "clientSelections": "Beta"
+  },
+  "pricing": {
+    "audit": {
+      "duration": "2–3 weeks",
+      "fee": "$4,000–6,000"
+    },
+    "build": {
+      "duration": "about a month",
+      "fee": "$12,000–15,000"
+    },
+    "monthly": {
+      "duration": "per month, ongoing",
+      "fee": "from $2,000"
+    }
+  },
+  "banned": [
+    "CASE-001",
+    "150+",
+    "4–8 hrs",
+    "Operational Architecture",
+    "first built and applied",
+    "field photos",
+    "Beacon Hill",
+    "Wellen",
+    "$30 million",
+    "General Contractor license",
+    "AI-powered",
+    "grounded in best practices",
+    "industry best practices",
+    "Custom Solutions"
+  ]
+}

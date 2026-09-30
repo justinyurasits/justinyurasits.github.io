@@ -7,23 +7,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../brand-kit/tokens.css">
 <style>
-/* ─── Tokens ─────────────────────────────────────────────── */
-:root {
-  --c-ink:       #111111;
-  --c-white:     #FFFFFF;
-  --c-bond:      #EFEFEB;
-  --c-steel:     #476776;
-  --c-graphite:  #5F6466;
-  --c-line:      #B8B9B5;
-  --c-revision:  #C43230;
-  --c-mark:      #692524;   /* brand mark only */
-  --font:        'Archivo', Helvetica, sans-serif;
-}
+/* Local shorthand — not a site token, just convenience */
+:root { --font: Archivo, sans-serif; }
 
 /* ─── Reset & base ───────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; }
-body { margin: 0; font-family: var(--font); background: var(--c-white); color: var(--c-ink); -webkit-font-smoothing: antialiased; }
+body { margin: 0; font-family: var(--font); -webkit-font-smoothing: antialiased; }
 ul, ol { list-style: none; margin: 0; padding: 0; }
 a { color: inherit; }
 
@@ -32,172 +23,154 @@ a { color: inherit; }
 
 /* ─── Shared CTA scale ───────────────────────────────────── */
 .cs-btn { display: inline-flex; align-items: center; min-height: 44px; padding: 13px 20px; font: 600 14px/1 var(--font); letter-spacing: -.01em; text-decoration: none; white-space: nowrap; }
-.cs-btn--ink { background: var(--c-ink); color: var(--c-white); }
-.cs-btn--ink:hover { background: var(--c-steel); }
-.cs-btn--paper { background: var(--c-white); color: var(--c-ink); }
-.cs-btn--paper:hover { background: var(--c-bond); }
+.cs-btn--ink { background: var(--btn-bg); color: var(--btn-fg); }
+.cs-btn--paper { background: var(--btn-bg); color: var(--btn-fg); }
 .cs-link { display: inline-flex; align-items: center; min-height: 40px; font: 600 14px/1 var(--font); letter-spacing: -.01em; text-decoration: none; border-bottom: 2px solid; padding-bottom: 3px; }
-.cs-link--ink { color: var(--c-ink); border-color: var(--c-ink); }
-.cs-link--ink:hover { color: var(--c-steel); border-color: var(--c-steel); }
-.cs-link--paper { color: var(--c-white); border-color: var(--c-white); }
-.cs-link--paper:hover { color: var(--c-line); border-color: var(--c-line); }
+.cs-link--ink { color: var(--fg); border-color: var(--fg); }
+.cs-link--paper { color: var(--fg); border-color: var(--fg); }
 .cs-cta-row { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
 
 /* ─── Shared type helpers ────────────────────────────────── */
-.cs-eyebrow { margin: 0 0 14px; font: 600 11px/1 var(--font); letter-spacing: .16em; text-transform: uppercase; color: var(--c-steel); }
-.cs-h2 { margin: 0; font: 600 clamp(28px, 8cqi, 42px)/1.05 var(--font); letter-spacing: -.035em; color: var(--c-ink); text-wrap: balance; }
-.cs-rule-2px { border: none; border-top: 2px solid var(--c-ink); }
-.cs-rule-1px { border: none; border-top: 1px solid var(--c-line); }
+.cs-eyebrow { margin: 0 0 14px; font: 600 11px/1 var(--font); letter-spacing: .16em; color: var(--fg); }
+.cs-h2 { margin: 0; font: 600 clamp(28px, 8cqi, 42px)/1.05 var(--font); letter-spacing: -.035em; color: var(--fg); text-wrap: balance; }
+.cs-rule-2px { border: none; border-top: var(--w-cut) solid var(--rule-cut); }
+.cs-rule-1px { border: none; border-top: var(--w-object) solid var(--rule-dimension); }
 .cs-section-head { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px,100%), 1fr)); gap: 24px 48px; align-items: start; container-type: inline-size; }
 
-/* ─── Extension layer tag ────────────────────────────────── */
-.cs-ext-tag { display: inline-flex; align-items: center; padding: 4px 8px; font: 600 11px/1 var(--font); letter-spacing: .14em; text-transform: uppercase; color: var(--c-steel); border: 1px solid var(--c-steel); white-space: nowrap; flex-shrink: 0; }
-.cs-ext-tag--ink { color: var(--c-line); border-color: var(--c-graphite); }
-.cs-ext-tag--sm { font-size: 10px; letter-spacing: .12em; }
-
-/* ─── § 1 Hero — Paper ───────────────────────────────────── */
-.cs-hero { background: var(--c-white); padding: 76px 0 64px; }
+/* ─── § 1 Hero — White ───────────────────────────────────── */
+.cs-hero { padding: 76px 0 64px; }
 .cs-hero__col { max-width: 64ch; container-type: inline-size; display: flex; flex-direction: column; gap: 26px; }
-.cs-hero__tag { margin: 0; display: flex; align-items: center; gap: 12px; font: 600 11px/1 var(--font); letter-spacing: .16em; text-transform: uppercase; color: var(--c-steel); flex-wrap: wrap; }
-.cs-hero__tag-n { font: 400 12px/1 ui-monospace, monospace; color: var(--c-graphite); letter-spacing: 0; }
-.cs-hero__tag-rule { width: 40px; height: 1px; background: var(--c-ink); flex-shrink: 0; }
-.cs-hero__name { margin: 0; font: 600 clamp(22px, 6cqi, 34px)/1.05 var(--font); letter-spacing: -.032em; color: var(--c-ink); display: flex; align-items: center; gap: .35em; white-space: nowrap; }
-.cs-hero__headline { margin: 0; font: 600 clamp(28px, 8.4cqi, 44px)/1.04 var(--font); letter-spacing: -.038em; color: var(--c-ink); text-wrap: balance; }
-.cs-hero__premise { margin: 0; max-width: 56ch; font: 500 18px/1.5 var(--font); color: var(--c-ink); }
-.cs-hero__body { margin: 0; max-width: 56ch; font: 400 17px/1.55 var(--font); color: var(--c-graphite); }
-.cs-hero__kicker { margin: 0; padding-left: 16px; border-left: 2px solid var(--c-steel); font: 600 18px/1.35 var(--font); color: var(--c-ink); }
-.cs-hero__rule { border: none; border-top: 2px solid var(--c-ink); margin: 48px 0 0; }
+.cs-hero__tag { margin: 0; display: flex; align-items: center; gap: 12px; font: 600 11px/1 var(--font); letter-spacing: .16em; color: var(--fg); flex-wrap: wrap; }
+.cs-hero__tag-n { font: 400 12px/1 var(--font); font-variant-numeric: tabular-nums; color: var(--fg-muted); letter-spacing: 0; }
+.cs-hero__tag-rule { width: 40px; height: 1px; background: var(--fg); flex-shrink: 0; }
+.cs-hero__name { margin: 0; font: 600 clamp(22px, 6cqi, 34px)/1.05 var(--font); letter-spacing: -.032em; color: var(--fg); display: flex; align-items: center; gap: .35em; white-space: nowrap; }
+.cs-hero__headline { margin: 0; font: 600 clamp(28px, 8.4cqi, 44px)/1.04 var(--font); letter-spacing: -.038em; color: var(--fg); text-wrap: balance; }
+.cs-hero__premise { margin: 0; max-width: 56ch; font: 500 18px/1.5 var(--font); color: var(--fg); }
+.cs-hero__body { margin: 0; max-width: 56ch; font: 400 17px/1.55 var(--font); color: var(--fg-muted); }
+.cs-hero__kicker { margin: 0; padding-left: 16px; border-left: 2px solid var(--rule-object); font: 600 18px/1.35 var(--font); color: var(--fg); }
+.cs-hero__rule { border: none; border-top: var(--w-cut) solid var(--rule-cut); margin: 48px 0 0; }
 .cs-hero__caps { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px,100%), 1fr)); column-gap: 40px; row-gap: 8px; }
-.cs-hero__cap { padding: 26px 0; border-top: 1px solid var(--c-line); }
-.cs-hero__cap-n { display: block; margin-bottom: 8px; font: 400 12px/1 ui-monospace, monospace; color: var(--c-graphite); }
-.cs-hero__cap-title { margin: 0 0 8px; font: 600 20px/1.25 var(--font); letter-spacing: -.02em; color: var(--c-ink); }
-.cs-hero__cap-body { margin: 0; font: 400 15px/1.55 var(--font); color: var(--c-graphite); }
+.cs-hero__cap { padding: 26px 0; border-top: var(--w-object) solid var(--rule-dimension); }
+.cs-hero__cap-n { display: block; margin-bottom: 8px; font: 400 12px/1 var(--font); font-variant-numeric: tabular-nums; color: var(--fg-muted); }
+.cs-hero__cap-title { margin: 0 0 8px; font: 600 20px/1.25 var(--font); letter-spacing: -.02em; color: var(--fg); }
+.cs-hero__cap-body { margin: 0; font: 400 15px/1.55 var(--font); color: var(--fg-muted); }
 
 /* ─── § 2 Off-the-shelf software — Bond ─────────────────── */
-.cs-ots { background: var(--c-bond); padding: 76px 0 80px; }
+.cs-ots { padding: 76px 0 80px; }
 .cs-ots__head { container-type: inline-size; }
-.cs-ots__head-body1 { margin: 0 0 8px; font: 400 16px/1.6 var(--font); color: var(--c-graphite); }
-.cs-ots__head-body2 { margin: 0 0 8px; font: 500 17px/1.5 var(--font); color: var(--c-ink); }
-.cs-ots__head-body3 { margin: 0; font: 400 16px/1.6 var(--font); color: var(--c-graphite); }
+.cs-ots__head-body1 { margin: 0 0 8px; font: 400 16px/1.6 var(--font); color: var(--fg-muted); }
+.cs-ots__head-body2 { margin: 0 0 8px; font: 500 17px/1.5 var(--font); color: var(--fg); }
+.cs-ots__head-body3 { margin: 0; font: 400 16px/1.6 var(--font); color: var(--fg-muted); }
 .cs-workarounds { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px,100%), 1fr)); column-gap: 40px; }
-.cs-workaround { border-top: 1px solid var(--c-line); padding: 18px 0; font: 500 16px/1.5 var(--font); color: var(--c-ink); }
-.cs-ots__close { margin: 0; max-width: 70ch; font: 600 19px/1.4 var(--font); letter-spacing: -.015em; color: var(--c-ink); padding-top: 24px; }
+.cs-workaround { border-top: var(--w-object) solid var(--rule-dimension); padding: 18px 0; font: 500 16px/1.5 var(--font); color: var(--fg); }
+.cs-ots__close { margin: 0; max-width: 70ch; font: 600 19px/1.4 var(--font); letter-spacing: -.015em; color: var(--fg); padding-top: 24px; }
 
-/* ─── § 3 We don't start with AI — Paper + § 3b Ink ─────── */
-.cs-approach { background: var(--c-white); padding-top: 76px; }
+/* ─── § 3 We don't start with AI — White ────────────────── */
+.cs-approach { padding-top: 76px; }
 .cs-approach__head { container-type: inline-size; }
-.cs-approach__head-body { margin: 0; font: 500 17px/1.5 var(--font); color: var(--c-ink); }
+.cs-approach__head-body { margin: 0; font: 500 17px/1.5 var(--font); color: var(--fg); }
 .cs-questions { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px,100%), 1fr)); column-gap: 40px; }
-.cs-question { border-top: 1px solid var(--c-line); padding: 22px 0; font: 600 19px/1.3 var(--font); letter-spacing: -.02em; color: var(--c-ink); }
+.cs-question { border-top: var(--w-object) solid var(--rule-dimension); padding: 22px 0; font: 600 19px/1.3 var(--font); letter-spacing: -.02em; color: var(--fg); }
 .cs-approach__close-wrap { padding: 24px 0 44px; }
-.cs-approach__close { margin: 0; max-width: 70ch; font: 500 17px/1.5 var(--font); color: var(--c-ink); }
+.cs-approach__close { margin: 0; max-width: 70ch; font: 500 17px/1.5 var(--font); color: var(--fg); }
 
-/* § 3b Ink band */
-.cs-approach__band { background: var(--c-ink); }
-.cs-approach__band-inner { padding-block: 38px; display: flex; flex-direction: column; gap: 22px; }
-.cs-band-label { font: 600 11px/1 var(--font); letter-spacing: .14em; text-transform: uppercase; color: #B8B9B5; border-bottom: 1px solid #5F6466; padding-bottom: 20px; }
+/* ─── § 3b The Real Question — Ink ──────────────────────── */
+.cs-band { padding-block: 38px; }
+.cs-band__inner { display: flex; flex-direction: column; gap: 22px; }
+.cs-band-label { font: 600 11px/1 var(--font); letter-spacing: .14em; color: var(--fg-muted); border-bottom: var(--w-object) solid var(--rule-object); padding-bottom: 20px; }
 .cs-band-statement { min-width: 0; display: flex; flex-direction: column; gap: 14px; max-width: 46ch; }
-.cs-band-q-light { margin: 0; font: 400 clamp(19px, 2.4vw, 22px)/1.4 var(--font); letter-spacing: -.02em; color: #B8B9B5; }
-.cs-band-q-bold { margin: 0; font: 600 clamp(22px, 3vw, 28px)/1.3 var(--font); letter-spacing: -.028em; color: #FFFFFF; }
+.cs-band-q-light { margin: 0; font: 400 clamp(19px, 2.4vw, 22px)/1.4 var(--font); letter-spacing: -.02em; color: var(--fg-muted); }
+.cs-band-q-bold { margin: 0; font: 600 clamp(22px, 3vw, 28px)/1.3 var(--font); letter-spacing: -.028em; color: var(--fg); }
 
 /* ─── § 4 Build around the problems — Bond ───────────────── */
-.cs-problems { background: var(--c-bond); padding: 76px 0 80px; }
+.cs-problems { padding: 76px 0 80px; }
 .cs-problems__head { container-type: inline-size; }
-.cs-problems__head-body { margin: 0; font: 400 16px/1.6 var(--font); color: var(--c-graphite); }
+.cs-problems__head-body { margin: 0; font: 400 16px/1.6 var(--font); color: var(--fg-muted); }
 .cs-problem-areas { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px,100%), 1fr)); column-gap: 40px; }
-.cs-problem-area { border-top: 1px solid var(--c-line); padding: 26px 0; display: flex; flex-direction: column; gap: 10px; }
-.cs-problem-area__title { margin: 0; font: 600 20px/1.25 var(--font); letter-spacing: -.02em; color: var(--c-ink); }
-.cs-problem-area__body { margin: 0; font: 400 15px/1.55 var(--font); color: var(--c-graphite); }
-.cs-problems__close { margin: 0; max-width: 70ch; font: 600 19px/1.4 var(--font); letter-spacing: -.015em; color: var(--c-ink); padding-top: 24px; }
+.cs-problem-area { border-top: var(--w-object) solid var(--rule-dimension); padding: 26px 0; display: flex; flex-direction: column; gap: 10px; }
+.cs-problem-area__title { margin: 0; font: 600 20px/1.25 var(--font); letter-spacing: -.02em; color: var(--fg); }
+.cs-problem-area__body { margin: 0; font: 400 15px/1.55 var(--font); color: var(--fg-muted); }
+.cs-problems__close { margin: 0; max-width: 70ch; font: 600 19px/1.4 var(--font); letter-spacing: -.015em; color: var(--fg); padding-top: 24px; }
 
-/* ─── § 5 A Custom Solution can help you — Paper ────────── */
-.cs-outcomes { background: var(--c-white); padding: 76px 0 80px; }
+/* ─── § 5 A Custom Solution can help you — White ────────── */
+.cs-outcomes { padding: 76px 0 80px; }
 .cs-outcomes__head { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px,100%), 1fr)); gap: 20px 48px; align-items: end; container-type: inline-size; padding-bottom: 16px; }
-.cs-outcomes__heading { margin: 0; font: 600 clamp(26px, 7cqi, 38px)/1.05 var(--font); letter-spacing: -.032em; color: var(--c-ink); text-wrap: balance; }
+.cs-outcomes__heading { margin: 0; font: 600 clamp(26px, 7cqi, 38px)/1.05 var(--font); letter-spacing: -.032em; color: var(--fg); text-wrap: balance; }
 .cs-outcomes__col-labels { display: flex; gap: 28px; align-items: baseline; }
-.cs-outcomes__col-label { font: 600 11px/1 var(--font); letter-spacing: .14em; text-transform: uppercase; }
-.cs-outcomes__col-label--do { color: var(--c-ink); }
-.cs-outcomes__col-label--instead { color: var(--c-graphite); }
-.cs-pairs { }
-.cs-pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px,100%), 1fr)); gap: 10px 28px; align-items: baseline; padding: 24px 0; border-bottom: 1px solid var(--c-line); }
-.cs-pair__action { margin: 0; font: 600 21px/1.25 var(--font); letter-spacing: -.022em; color: var(--c-ink); }
-.cs-pair__instead { margin: 0; font: 400 16px/1.5 var(--font); color: var(--c-graphite); }
-.cs-outcomes__close { margin: 0; max-width: 70ch; font: 600 19px/1.4 var(--font); letter-spacing: -.015em; color: var(--c-ink); padding-top: 24px; }
+.cs-outcomes__col-label { font: 600 11px/1 var(--font); letter-spacing: .14em; }
+.cs-outcomes__col-label--do { color: var(--fg); }
+.cs-outcomes__col-label--instead { color: var(--fg-muted); }
+.cs-pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px,100%), 1fr)); gap: 10px 28px; align-items: baseline; padding: 24px 0; border-bottom: var(--w-object) solid var(--rule-dimension); }
+.cs-pair__action { margin: 0; font: 600 21px/1.25 var(--font); letter-spacing: -.022em; color: var(--fg); }
+.cs-pair__instead { margin: 0; font: 400 16px/1.5 var(--font); color: var(--fg-muted); }
+.cs-outcomes__close { margin: 0; max-width: 70ch; font: 600 19px/1.4 var(--font); letter-spacing: -.015em; color: var(--fg); padding-top: 24px; }
 
 /* ─── § 6 From painful workflow — Bond ───────────────────── */
-.cs-process { background: var(--c-bond); padding: 76px 0 80px; }
-.cs-process__head { container-type: inline-size; margin-bottom: 0; }
-.cs-process__heading { margin: 0; font: 600 clamp(28px, 8cqi, 42px)/1.05 var(--font); letter-spacing: -.035em; color: var(--c-ink); text-wrap: balance; }
-.cs-ledger { }
-.cs-ledger-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px,100%), 1fr)); gap: 12px 28px; align-items: baseline; padding: 28px 0; border-bottom: 1px solid var(--c-line); }
+.cs-process { padding: 76px 0 80px; }
+.cs-process__heading { margin: 0; font: 600 clamp(28px, 8cqi, 42px)/1.05 var(--font); letter-spacing: -.035em; color: var(--fg); text-wrap: balance; }
+.cs-ledger-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px,100%), 1fr)); gap: 12px 28px; align-items: baseline; padding: 28px 0; border-bottom: var(--w-object) solid var(--rule-dimension); }
 .cs-ledger-row:last-child { border-bottom: none; }
 .cs-ledger__cell1 { display: flex; align-items: baseline; gap: 0; }
-.cs-ledger__n { width: 46px; flex: none; font: 400 12px/1 ui-monospace, monospace; color: var(--c-graphite); }
-.cs-ledger__title { margin: 0; font: 600 21px/1.25 var(--font); letter-spacing: -.022em; color: var(--c-ink); }
-.cs-ledger__body { }
-.cs-ledger__b1 { margin: 0 0 6px; font: 500 16px/1.5 var(--font); color: var(--c-ink); }
-.cs-ledger__b2 { margin: 0; font: 400 15px/1.55 var(--font); color: var(--c-graphite); }
-.cs-ledger__b-single { margin: 0; font: 400 16px/1.6 var(--font); color: var(--c-graphite); }
-.cs-process__close { margin: 0; font: 600 19px/1.4 var(--font); letter-spacing: -.015em; color: var(--c-ink); padding-top: 24px; }
+.cs-ledger__n { width: 46px; flex: none; font: 400 12px/1 var(--font); font-variant-numeric: tabular-nums; color: var(--fg-muted); }
+.cs-ledger__title { margin: 0; font: 600 21px/1.25 var(--font); letter-spacing: -.022em; color: var(--fg); }
+.cs-ledger__b1 { margin: 0 0 6px; font: 500 16px/1.5 var(--font); color: var(--fg); }
+.cs-ledger__b2 { margin: 0; font: 400 15px/1.55 var(--font); color: var(--fg-muted); }
+.cs-ledger__b-single { margin: 0; font: 400 16px/1.6 var(--font); color: var(--fg-muted); }
+.cs-process__close { margin: 0; font: 600 19px/1.4 var(--font); letter-spacing: -.015em; color: var(--fg); padding-top: 24px; }
 
-/* ─── § 7 Custom doesn't mean starting from zero — Paper ─── */
-.cs-foundation { background: var(--c-white); padding: 76px 0 80px; }
+/* ─── § 7 Custom doesn't mean starting from zero — White ─── */
+.cs-foundation { padding: 76px 0 80px; }
 .cs-foundation__head { container-type: inline-size; }
-.cs-foundation__head-body { margin: 0; font: 400 16px/1.6 var(--font); color: var(--c-graphite); }
+.cs-foundation__head-body { margin: 0; font: 400 16px/1.6 var(--font); color: var(--fg-muted); }
 .cs-cap-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px,100%), 1fr)); column-gap: 40px; row-gap: 44px; }
-.cs-cap-card { border-top: 1px solid var(--c-line); padding: 26px 0 0; display: flex; flex-direction: column; gap: 12px; }
+.cs-cap-card { border-top: var(--w-object) solid var(--rule-dimension); padding: 26px 0 0; display: flex; flex-direction: column; gap: 12px; }
 .cs-cap-card__hrow { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 2px; }
-.cs-cap-card__marker { font: 400 12px/1 ui-monospace, monospace; color: var(--c-graphite); flex-shrink: 0; }
-.cs-cap-card__name { font: 600 17px/1 var(--font); letter-spacing: -.015em; color: var(--c-ink); }
-.cs-cap-card__dev-tag { display: inline-flex; align-items: center; padding: 3px 6px; font: 600 10px/1 var(--font); letter-spacing: .1em; text-transform: uppercase; color: var(--c-graphite); border: 1px solid var(--c-line); white-space: nowrap; }
-.cs-cap-card__ext-label { font: 600 10px/1 var(--font); letter-spacing: .1em; text-transform: uppercase; color: var(--c-graphite); white-space: nowrap; }
-.cs-cap-card__role { margin: 0; font: 600 20px/1.25 var(--font); letter-spacing: -.02em; color: var(--c-ink); }
-.cs-cap-card__desc { margin: 0; font: 400 15px/1.55 var(--font); color: var(--c-graphite); }
-.cs-cap-card__link { display: inline-flex; align-items: center; min-height: 40px; align-self: flex-start; font: 600 14px/1 var(--font); letter-spacing: -.01em; text-decoration: none; border-bottom: 2px solid var(--c-ink); padding-bottom: 3px; color: var(--c-ink); }
-.cs-cap-card__link:hover { color: var(--c-steel); border-color: var(--c-steel); }
+.cs-cap-card__marker { font: 400 12px/1 var(--font); font-variant-numeric: tabular-nums; color: var(--fg-muted); flex-shrink: 0; }
+.cs-cap-card__name { font: 600 17px/1 var(--font); letter-spacing: -.015em; color: var(--fg); }
+.cs-cap-card__dev-tag { font: 600 10px/1 var(--font); letter-spacing: .1em; color: var(--fg-muted); white-space: nowrap; }
+.cs-cap-card__ext-label { font: 600 10px/1 var(--font); letter-spacing: .1em; color: var(--fg-muted); white-space: nowrap; }
+.cs-cap-card__role { margin: 0; font: 600 20px/1.25 var(--font); letter-spacing: -.02em; color: var(--fg); }
+.cs-cap-card__desc { margin: 0; font: 400 15px/1.55 var(--font); color: var(--fg-muted); }
+.cs-cap-card__link { display: inline-flex; align-items: center; min-height: 40px; align-self: flex-start; font: 600 14px/1 var(--font); letter-spacing: -.01em; text-decoration: none; border-bottom: 2px solid var(--fg); padding-bottom: 3px; color: var(--fg); }
 
 /* ─── § 8 Not custom software for the sake — Bond ────────── */
-.cs-limits { background: var(--c-bond); padding: 76px 0 80px; }
+.cs-limits { padding: 76px 0 80px; }
 .cs-limits__head { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px,100%), 1fr)); gap: 24px 48px; align-items: start; container-type: inline-size; }
-.cs-limits__heading { margin: 0; font: 600 clamp(26px, 7cqi, 38px)/1.05 var(--font); letter-spacing: -.032em; color: var(--c-ink); text-wrap: balance; }
-.cs-refusals { }
-.cs-refusal { margin: 0; font: 400 16px/1.55 var(--font); color: var(--c-graphite); padding: 14px 0; }
-.cs-refusal + .cs-refusal { border-top: 1px solid var(--c-line); }
-.cs-reasons-intro { margin: 0; font: 500 17px/1.5 var(--font); color: var(--c-ink); }
+.cs-limits__heading { margin: 0; font: 600 clamp(26px, 7cqi, 38px)/1.05 var(--font); letter-spacing: -.032em; color: var(--fg); text-wrap: balance; }
+.cs-refusal { margin: 0; font: 400 16px/1.55 var(--font); color: var(--fg-muted); padding: 14px 0; }
+.cs-refusal + .cs-refusal { border-top: var(--w-object) solid var(--rule-dimension); }
+.cs-reasons-intro { margin: 0; font: 500 17px/1.5 var(--font); color: var(--fg); }
 .cs-reasons { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px,100%), 1fr)); column-gap: 40px; }
-.cs-reason { border-top: 1px solid var(--c-line); padding: 20px 0; font: 600 19px/1.3 var(--font); letter-spacing: -.02em; color: var(--c-ink); }
+.cs-reason { border-top: var(--w-object) solid var(--rule-dimension); padding: 20px 0; font: 600 19px/1.3 var(--font); letter-spacing: -.02em; color: var(--fg); }
 .cs-limits__close { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px,100%), 1fr)); gap: 20px 48px; align-items: start; padding-top: 24px; }
 .cs-limits__close-left { display: flex; flex-direction: column; gap: 10px; }
-.cs-limits__close-g { margin: 0; font: 400 16px/1.6 var(--font); color: var(--c-graphite); }
-.cs-limits__close-kicker { margin: 0; padding-left: 16px; border-left: 2px solid var(--c-steel); font: 600 19px/1.35 var(--font); color: var(--c-ink); }
+.cs-limits__close-g { margin: 0; font: 400 16px/1.6 var(--font); color: var(--fg-muted); }
+.cs-limits__close-kicker { margin: 0; padding-left: 16px; border-left: 2px solid var(--rule-object); font: 600 19px/1.35 var(--font); color: var(--fg); }
 
-/* ─── § 9 Closing CTA — Ink ──────────────────────────────── */
-.cs-close { background: var(--c-ink); padding: 88px 0 80px; }
+/* ─── § 9 Closing CTA — Oxblood ─────────────────────────── */
+.cs-close { padding: 88px 0 80px; }
 .cs-close__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(340px,100%), 1fr)); gap: 56px; align-items: start; container-type: inline-size; }
 .cs-close__lockup { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 28px; }
-.cs-close__lockup-name { font: 600 14px/1 var(--font); letter-spacing: .14em; text-transform: uppercase; color: var(--c-white); white-space: nowrap; }
-.cs-close__h { margin: 0 0 16px; font: 600 clamp(32px, 10cqi, 58px)/0.99 var(--font); letter-spacing: -.042em; color: var(--c-white); text-wrap: balance; }
-.cs-close__intro { margin: 0 0 20px; max-width: 46ch; font: 400 19px/1.55 var(--font); color: var(--c-line); }
+.cs-close__lockup-name { font: 600 14px/1 var(--font); letter-spacing: .14em; color: var(--fg); white-space: nowrap; }
+.cs-close__h { margin: 0 0 16px; font: 600 clamp(32px, 10cqi, 58px)/0.99 var(--font); letter-spacing: -.042em; color: var(--fg); text-wrap: balance; }
+.cs-close__intro { margin: 0 0 20px; max-width: 46ch; font: 400 19px/1.55 var(--font); color: var(--fg-muted); }
 .cs-close__candidates { margin: 0 0 24px; }
-.cs-close-candidate { font: 500 16px/1.4 var(--font); color: var(--c-white); padding: 13px 0; display: block; }
-.cs-close-candidate + .cs-close-candidate { border-top: 1px solid var(--c-graphite); }
-.cs-close__kicker { padding-left: 16px; border-left: 2px solid var(--c-white); display: flex; flex-direction: column; gap: 8px; margin-bottom: 28px; }
-.cs-close__kicker-strong { margin: 0; font: 600 19px/1.35 var(--font); color: var(--c-white); }
-.cs-close__kicker-sub { margin: 0; font: 400 16px/1.5 var(--font); color: var(--c-line); }
-.cs-close__index-label { font: 500 12px/1 var(--font); letter-spacing: .12em; text-transform: uppercase; color: var(--c-line); margin: 0 0 14px; }
-.cs-close__index-rule { height: 1px; background: var(--c-graphite); margin: 0 0 0; }
-.cs-close__index-row { display: flex; align-items: center; gap: 12px; padding: 16px 0; border-bottom: 1px solid var(--c-graphite); }
+.cs-close-candidate { font: 500 16px/1.4 var(--font); color: var(--fg); padding: 13px 0; display: block; }
+.cs-close-candidate + .cs-close-candidate { border-top: var(--w-object) solid var(--rule-object); }
+.cs-close__kicker { padding-left: 16px; border-left: 2px solid var(--fg); display: flex; flex-direction: column; gap: 8px; margin-bottom: 28px; }
+.cs-close__kicker-strong { margin: 0; font: 600 19px/1.35 var(--font); color: var(--fg); }
+.cs-close__kicker-sub { margin: 0; font: 400 16px/1.5 var(--font); color: var(--fg-muted); }
+.cs-close__index-label { font: 500 12px/1 var(--font); letter-spacing: .12em; color: var(--fg-muted); margin: 0 0 14px; }
+.cs-close__index-rule { height: 1px; background: var(--rule-object); }
+.cs-close__index-row { display: flex; align-items: center; gap: 12px; padding: 16px 0; border-bottom: var(--w-object) solid var(--rule-object); }
 .cs-close__index-row:last-child { border-bottom: none; }
-.cs-close__index-n { font: 400 12px/1 ui-monospace, monospace; color: var(--c-line); flex-shrink: 0; }
-.cs-close__index-name { font: 600 17px/1 var(--font); color: var(--c-white); }
-.cs-close__index-tag { display: inline-flex; align-items: center; padding: 3px 6px; font: 600 10px/1 var(--font); letter-spacing: .12em; text-transform: uppercase; color: var(--c-line); border: 1px solid var(--c-graphite); margin-left: 8px; white-space: nowrap; }
+.cs-close__index-n { font: 400 12px/1 var(--font); font-variant-numeric: tabular-nums; color: var(--fg-muted); flex-shrink: 0; }
+.cs-close__index-name { font: 600 17px/1 var(--font); color: var(--fg); }
+.cs-close__index-tag { font: 600 10px/1 var(--font); letter-spacing: .12em; color: var(--fg-muted); margin-left: 8px; white-space: nowrap; }
 
-/* ─── Footer ─────────────────────────────────────────────── */
-
+@media (max-width: 900px) {
   .cs-hero { padding: 56px 0 48px; }
   .cs-hero__rule { margin-top: 32px; }
-}
-@media (max-width: 900px) {
 }
 </style>
 <link rel="stylesheet" href="../brand-kit/cos-header.css">
@@ -250,25 +223,25 @@ a { color: inherit; }
 </header>
 <!-- header:end -->
 
-<!-- § 1. Hero — Paper -->
-<section class="cs-hero">
+<!-- § 1. Hero — White -->
+<section class="cs-hero surface--white">
   <div class="cos-container">
     <div class="cs-hero__col">
 
-      <!-- Tag row: —— · rule · CONSTRUCTION OS · EXTENSION LAYER tag (no trailing rule per rule f) -->
+      <!-- Tag row -->
       <p class="cs-hero__tag">
         <span class="cs-hero__tag-n">&mdash;&mdash;</span>
         <span class="cs-hero__tag-rule"></span>
         <span>Construction OS</span>
-        <span class="cs-ext-tag">Extension Layer</span>
+        <span>Extension layer</span>
       </p>
 
       <!-- Product name with CS icon at .74em -->
       <h1 class="cs-hero__name">
-        <!-- icon-custom-solutions: 56×56 Ink at (8,8) + 40×40 Steel at (52,52), ≤24px: stroke 11 each -->
+        <!-- icon-custom-solutions: 56×56 large rect + 40×40 recessed rect -->
         <svg viewBox="0 0 100 100" style="width:.74em;height:.74em;flex:none" aria-hidden="true">
           <rect x="8" y="8" width="56" height="56" fill="none" stroke="currentColor" stroke-width="11"/>
-          <rect x="52" y="52" width="40" height="40" fill="none" stroke="#476776" stroke-width="11"/>
+          <rect x="52" y="52" width="40" height="40" fill="none" style="stroke: var(--rule-object)" stroke-width="11"/>
         </svg>
         Custom Solutions
       </h1>
@@ -279,7 +252,7 @@ a { color: inherit; }
       <!-- Premise (500) -->
       <p class="cs-hero__premise">Every contractor has work that doesn&rsquo;t fit neatly into off-the-shelf software.</p>
 
-      <!-- Body paragraphs (400, Graphite) -->
+      <!-- Body paragraphs (400, fg-muted) -->
       <p class="cs-hero__body">The spreadsheet nobody wants to maintain. The approval that dies in email. The report someone rebuilds every Friday. The information that gets entered into three different systems. The workflow that only works because one person remembers how to run it.</p>
       <p class="cs-hero__body">We learn how the work actually happens, find the unnecessary manual effort, and build purpose-built AI tools, automations, workflows, and integrations around your operation.</p>
 
@@ -294,7 +267,7 @@ a { color: inherit; }
 
     </div>
 
-    <!-- Three capability points under 2px Ink rule -->
+    <!-- Three capability points under cut rule -->
     <hr class="cs-hero__rule" aria-hidden="true">
     <div class="cs-hero__caps" aria-label="Key capabilities">
       <div class="cs-hero__cap">
@@ -317,13 +290,13 @@ a { color: inherit; }
 </section>
 
 <!-- § 2. Off-the-shelf software doesn't fit every workflow — Bond -->
-<section class="cs-ots">
+<section class="cs-ots surface--bond">
   <div class="cos-container">
 
     <!-- Header block -->
     <div class="cs-section-head cs-ots__head" style="padding-bottom:20px">
       <div>
-        <p class="cs-eyebrow">The Problem</p>
+        <p class="cs-eyebrow">The problem</p>
         <h2 class="cs-h2">Off-the-shelf software doesn&rsquo;t fit every workflow.</h2>
       </div>
       <div>
@@ -350,14 +323,14 @@ a { color: inherit; }
   </div>
 </section>
 
-<!-- § 3. We don't start with AI — Paper + § 3b Ink band -->
-<section class="cs-approach">
+<!-- § 3. We don't start with AI — White -->
+<section class="cs-approach surface--white">
   <div class="cos-container">
 
     <!-- Header block -->
     <div class="cs-section-head cs-approach__head" style="padding-bottom:20px">
       <div>
-        <p class="cs-eyebrow">The Approach</p>
+        <p class="cs-eyebrow">The approach</p>
         <h2 class="cs-h2">We don&rsquo;t start with AI. We start with the work.</h2>
       </div>
       <div>
@@ -382,27 +355,27 @@ a { color: inherit; }
     </div>
 
   </div>
+</section>
 
-  <!-- § 3b. Ink band — the page's sharpest line -->
-  <div class="cs-approach__band">
-    <div class="cos-container cs-approach__band-inner">
-      <span class="cs-band-label">The Real Question</span>
-      <div class="cs-band-statement">
-        <p class="cs-band-q-light">The question isn&rsquo;t &ldquo;Where can we add AI?&rdquo;</p>
-        <p class="cs-band-q-bold">It&rsquo;s &ldquo;Why is your team still doing this the hard way?&rdquo;</p>
-      </div>
+<!-- § 3b. The Real Question — Ink (pulled out as its own section) -->
+<section class="cs-band surface--ink">
+  <div class="cos-container cs-band__inner">
+    <span class="cs-band-label">The real question</span>
+    <div class="cs-band-statement">
+      <p class="cs-band-q-light">The question isn&rsquo;t &ldquo;Where can we add AI?&rdquo;</p>
+      <p class="cs-band-q-bold">It&rsquo;s &ldquo;Why is your team still doing this the hard way?&rdquo;</p>
     </div>
   </div>
 </section>
 
 <!-- § 4. Build around the problems costing your team time — Bond -->
-<section class="cs-problems">
+<section class="cs-problems surface--bond">
   <div class="cos-container">
 
     <!-- Header block -->
     <div class="cs-section-head cs-problems__head" style="padding-bottom:20px">
       <div>
-        <p class="cs-eyebrow">Where It Fits</p>
+        <p class="cs-eyebrow">Where it fits</p>
         <h2 class="cs-h2">Build around the problems costing your team time.</h2>
       </div>
       <div>
@@ -453,25 +426,25 @@ a { color: inherit; }
   </div>
 </section>
 
-<!-- § 5. A Custom Solution can help you — Paper -->
-<section class="cs-outcomes">
+<!-- § 5. A Custom Solution can help you — White -->
+<section class="cs-outcomes surface--white">
   <div class="cos-container">
 
     <!-- Header with column labels in right cell -->
     <div class="cs-outcomes__head">
       <div>
-        <p class="cs-eyebrow">What It Does</p>
+        <p class="cs-eyebrow">What it does</p>
         <h2 class="cs-outcomes__heading">A Custom Solution can help you:</h2>
       </div>
       <div class="cs-outcomes__col-labels">
-        <span class="cs-outcomes__col-label cs-outcomes__col-label--do">Do This</span>
-        <span class="cs-outcomes__col-label cs-outcomes__col-label--instead">Instead Of</span>
+        <span class="cs-outcomes__col-label cs-outcomes__col-label--do">Do this</span>
+        <span class="cs-outcomes__col-label cs-outcomes__col-label--instead">Instead of</span>
       </div>
     </div>
     <hr class="cs-rule-2px" aria-hidden="true">
 
     <!-- Six paired rows -->
-    <div class="cs-pairs">
+    <div>
       <div class="cs-pair">
         <p class="cs-pair__action">Capture information once</p>
         <p class="cs-pair__instead">Instead of entering it again and again.</p>
@@ -505,24 +478,24 @@ a { color: inherit; }
 </section>
 
 <!-- § 6. From painful workflow to working solution — Bond -->
-<section class="cs-process" id="process">
+<section class="cs-process surface--bond" id="process">
   <div class="cos-container">
 
-    <div class="cs-process__head" style="margin-bottom:0;container-type:inline-size">
-      <p class="cs-eyebrow">The Process</p>
+    <div style="margin-bottom:0;container-type:inline-size">
+      <p class="cs-eyebrow">The process</p>
       <h2 class="cs-process__heading">From painful workflow to working solution.</h2>
     </div>
     <hr class="cs-rule-2px" style="margin:26px 0 0" aria-hidden="true">
 
     <!-- Four ledger rows -->
-    <div class="cs-ledger">
+    <div>
 
       <div class="cs-ledger-row">
         <div class="cs-ledger__cell1">
           <span class="cs-ledger__n">01</span>
           <h3 class="cs-ledger__title">Show us the problem.</h3>
         </div>
-        <div class="cs-ledger__body">
+        <div>
           <p class="cs-ledger__b1">Start with the workflow your team is tired of doing by hand.</p>
           <p class="cs-ledger__b2">We learn how it actually works today&mdash;not how it is supposed to work on paper.</p>
         </div>
@@ -533,7 +506,7 @@ a { color: inherit; }
           <span class="cs-ledger__n">02</span>
           <h3 class="cs-ledger__title">Find the unnecessary work.</h3>
         </div>
-        <div class="cs-ledger__body">
+        <div>
           <p class="cs-ledger__b-single">Separate the parts that require experience and judgment from the repetitive production, information movement, checking, and handoffs around them.</p>
         </div>
       </div>
@@ -543,7 +516,7 @@ a { color: inherit; }
           <span class="cs-ledger__n">03</span>
           <h3 class="cs-ledger__title">Build around your operation.</h3>
         </div>
-        <div class="cs-ledger__body">
+        <div>
           <p class="cs-ledger__b-single">Create the tool, workflow, automation, or integration around the way your company needs the work to happen.</p>
         </div>
       </div>
@@ -553,7 +526,7 @@ a { color: inherit; }
           <span class="cs-ledger__n">04</span>
           <h3 class="cs-ledger__title">Prove it in real work.</h3>
         </div>
-        <div class="cs-ledger__body">
+        <div>
           <p class="cs-ledger__b1">Put it in the hands of the people who actually perform the process.</p>
           <p class="cs-ledger__b2">If it saves meaningful time and makes the workflow better, expand from there.</p>
         </div>
@@ -567,14 +540,14 @@ a { color: inherit; }
   </div>
 </section>
 
-<!-- § 7. Custom doesn't mean starting from zero — Paper -->
-<section class="cs-foundation">
+<!-- § 7. Custom doesn't mean starting from zero — White -->
+<section class="cs-foundation surface--white">
   <div class="cos-container">
 
     <!-- Header block -->
     <div class="cs-section-head cs-foundation__head" style="padding-bottom:20px">
       <div>
-        <p class="cs-eyebrow">The Foundation</p>
+        <p class="cs-eyebrow">The foundation</p>
         <h2 class="cs-h2">Custom doesn&rsquo;t mean starting from zero.</h2>
       </div>
       <div>
@@ -583,14 +556,13 @@ a { color: inherit; }
     </div>
     <hr class="cs-rule-2px" style="margin-bottom:30px" aria-hidden="true">
 
-    <!-- Four capability cards (row-gap:44px for wrapping grid) -->
+    <!-- Four capability cards -->
     <div class="cs-cap-cards">
 
       <!-- 01 Document Workbench -->
       <div class="cs-cap-card">
         <div class="cs-cap-card__hrow">
           <span class="cs-cap-card__marker">01</span>
-          <!-- icon-less-paperwork at 15px: one sheet, currentColor, sw=12 -->
           <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true">
             <rect x="14" y="26" width="52" height="60" fill="none" stroke="currentColor" stroke-width="12"/>
           </svg>
@@ -598,14 +570,13 @@ a { color: inherit; }
         </div>
         <p class="cs-cap-card__role">Produce what the workflow requires.</p>
         <p class="cs-cap-card__desc">Create company-standard documents, reports, forms, and other project outputs from the information already in the work.</p>
-        <a class="cs-cap-card__link" href="/products/document-workbench.html">Explore Document Workbench &rarr;</a>
+        <a class="cs-cap-card__link" href="/products/document-workbench.html">Explore Document Workbench</a>
       </div>
 
       <!-- 02 Construction Intelligence -->
       <div class="cs-cap-card">
         <div class="cs-cap-card__hrow">
           <span class="cs-cap-card__marker">02</span>
-          <!-- icon-fewer-bottlenecks at 15px: two polylines, currentColor, sw=11 -->
           <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true">
             <polyline points="8,20 40,20 54,42 94,42" fill="none" stroke="currentColor" stroke-width="11"/>
             <polyline points="8,80 40,80 54,58 94,58" fill="none" stroke="currentColor" stroke-width="11"/>
@@ -614,14 +585,13 @@ a { color: inherit; }
         </div>
         <p class="cs-cap-card__role">Apply how your company does the work.</p>
         <p class="cs-cap-card__desc">Use your procedures, standards, pricing rules, references, and company knowledge when the workflow depends on understanding what should happen.</p>
-        <a class="cs-cap-card__link" href="/products/construction-intelligence.html">Explore Construction Intelligence &rarr;</a>
+        <a class="cs-cap-card__link" href="/products/construction-intelligence.html">Explore Construction Intelligence</a>
       </div>
 
-      <!-- 03 Project Intelligence [IN DEVELOPMENT] -->
+      <!-- 03 Project Intelligence [In development] -->
       <div class="cs-cap-card">
         <div class="cs-cap-card__hrow">
           <span class="cs-cap-card__marker">03</span>
-          <!-- icon-better-visibility at 15px: baseline + 4 bars, no red, currentColor, sw=11 -->
           <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true">
             <line x1="18" y1="70" x2="82" y2="70" stroke="currentColor" stroke-width="11"/>
             <line x1="30" y1="70" x2="30" y2="56" stroke="currentColor" stroke-width="11"/>
@@ -629,18 +599,17 @@ a { color: inherit; }
             <line x1="70" y1="70" x2="70" y2="32" stroke="currentColor" stroke-width="11"/>
           </svg>
           <span class="cs-cap-card__name">Project Intelligence</span>
-          <span class="cs-cap-card__dev-tag">In Development</span>
+          <span class="cs-cap-card__dev-tag">In development</span>
         </div>
         <p class="cs-cap-card__role">Surface what needs attention.</p>
         <p class="cs-cap-card__desc">Bring open items, aging issues, missing approvals, and other exceptions into view when the workflow depends on knowing where intervention is needed.</p>
-        <a class="cs-cap-card__link" href="/products/project-intelligence.html">Explore Project Intelligence &rarr;</a>
+        <a class="cs-cap-card__link" href="/products/project-intelligence.html">Explore Project Intelligence</a>
       </div>
 
-      <!-- Operations Automation — EXTENSION LAYER, Graphite unboxed label -->
+      <!-- Operations Automation — Extension layer -->
       <div class="cs-cap-card">
         <div class="cs-cap-card__hrow">
           <span class="cs-cap-card__marker">&mdash;&mdash;</span>
-          <!-- icon-less-repetitive-work at 15px: 3 dashes + baseline run, currentColor, sw=11, no red -->
           <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true">
             <line x1="14" y1="28" x2="34" y2="28" stroke="currentColor" stroke-width="11"/>
             <line x1="42" y1="28" x2="62" y2="28" stroke="currentColor" stroke-width="11"/>
@@ -648,11 +617,11 @@ a { color: inherit; }
             <line x1="14" y1="74" x2="90" y2="74" stroke="currentColor" stroke-width="11"/>
           </svg>
           <span class="cs-cap-card__name">Operations Automation</span>
-          <span class="cs-cap-card__ext-label">Extension Layer</span>
+          <span class="cs-cap-card__ext-label">Extension layer</span>
         </div>
         <p class="cs-cap-card__role">Handle the repeatable work around it.</p>
         <p class="cs-cap-card__desc">Use automation patterns for recurring construction workflows such as invoices, field reporting, safety, compliance, billing, changes, and client decisions.</p>
-        <a class="cs-cap-card__link" href="/products/operations-automation.html">Explore Operations Automation &rarr;</a>
+        <a class="cs-cap-card__link" href="/products/operations-automation.html">Explore Operations Automation</a>
       </div>
 
     </div>
@@ -661,13 +630,13 @@ a { color: inherit; }
 </section>
 
 <!-- § 8. Not custom software for the sake of custom software — Bond -->
-<section class="cs-limits">
+<section class="cs-limits surface--bond">
   <div class="cos-container">
 
     <!-- Header: left heading, right three refusals as ruled lines -->
     <div class="cs-limits__head" style="padding-bottom:20px">
       <div>
-        <p class="cs-eyebrow">The Limits</p>
+        <p class="cs-eyebrow">The limits</p>
         <h2 class="cs-limits__heading">Not custom software for the sake of custom software.</h2>
       </div>
       <div class="cs-refusals">
@@ -702,22 +671,22 @@ a { color: inherit; }
   </div>
 </section>
 
-<!-- § 9. Closing CTA — Ink -->
-<section class="cs-close" id="cta">
+<!-- § 9. Closing CTA — Oxblood -->
+<section class="cs-close surface--oxblood" id="cta">
   <div class="cos-container">
     <div class="cs-close__grid">
 
       <!-- Left column -->
       <div>
-        <!-- Lockup: CS icon + name + EXTENSION LAYER tag (no trailing rule per rule f) -->
+        <!-- Lockup: CS icon + name + Extension layer label -->
         <div class="cs-close__lockup">
-          <!-- CS icon at 24px on Ink: large rect Paper, small rect Line gray, sw=11 -->
+          <!-- CS icon: large rect primary, small rect recessed -->
           <svg viewBox="0 0 100 100" width="24" height="24" aria-hidden="true">
-            <rect x="8" y="8" width="56" height="56" fill="none" stroke="#ffffff" stroke-width="11"/>
-            <rect x="52" y="52" width="40" height="40" fill="none" stroke="#B8B9B5" stroke-width="11"/>
+            <rect x="8" y="8" width="56" height="56" fill="none" stroke="currentColor" stroke-width="11"/>
+            <rect x="52" y="52" width="40" height="40" fill="none" style="stroke: var(--fg-muted)" stroke-width="11"/>
           </svg>
           <span class="cs-close__lockup-name">Custom Solutions</span>
-          <span class="cs-ext-tag cs-ext-tag--ink cs-ext-tag--sm">Extension Layer</span>
+          <span style="font: 600 10px/1 var(--font); letter-spacing: .12em; color: var(--fg-muted); white-space: nowrap;">Extension layer</span>
         </div>
 
         <h2 class="cs-close__h">Start with the workflow everyone complains about.</h2>
@@ -742,7 +711,7 @@ a { color: inherit; }
         <!-- CTA row -->
         <div class="cs-cta-row">
           <a class="cs-btn cs-btn--paper" href="https://cal.com/justinyurasits">Book a demo</a>
-          <a class="cs-link cs-link--paper" href="/">Explore Construction OS &rarr;</a>
+          <a class="cs-link cs-link--paper" href="/">Explore Construction OS</a>
         </div>
       </div>
 
@@ -754,7 +723,7 @@ a { color: inherit; }
         <!-- 01 Document Workbench -->
         <div class="cs-close__index-row">
           <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true">
-            <rect x="14" y="26" width="52" height="60" fill="none" stroke="#ffffff" stroke-width="12"/>
+            <rect x="14" y="26" width="52" height="60" fill="none" stroke="currentColor" stroke-width="12"/>
           </svg>
           <span class="cs-close__index-n">01</span>
           <span class="cs-close__index-name">Document Workbench</span>
@@ -763,33 +732,33 @@ a { color: inherit; }
         <!-- 02 Construction Intelligence -->
         <div class="cs-close__index-row">
           <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true">
-            <polyline points="8,20 40,20 54,42 94,42" fill="none" stroke="#ffffff" stroke-width="11"/>
-            <polyline points="8,80 40,80 54,58 94,58" fill="none" stroke="#ffffff" stroke-width="11"/>
+            <polyline points="8,20 40,20 54,42 94,42" fill="none" stroke="currentColor" stroke-width="11"/>
+            <polyline points="8,80 40,80 54,58 94,58" fill="none" stroke="currentColor" stroke-width="11"/>
           </svg>
           <span class="cs-close__index-n">02</span>
           <span class="cs-close__index-name">Construction Intelligence</span>
         </div>
 
-        <!-- 03 Project Intelligence [IN DEVELOPMENT] -->
+        <!-- 03 Project Intelligence [In development] -->
         <div class="cs-close__index-row">
           <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true">
-            <line x1="18" y1="70" x2="82" y2="70" stroke="#ffffff" stroke-width="11"/>
-            <line x1="30" y1="70" x2="30" y2="56" stroke="#ffffff" stroke-width="11"/>
-            <line x1="50" y1="70" x2="50" y2="44" stroke="#ffffff" stroke-width="11"/>
-            <line x1="70" y1="70" x2="70" y2="32" stroke="#ffffff" stroke-width="11"/>
+            <line x1="18" y1="70" x2="82" y2="70" stroke="currentColor" stroke-width="11"/>
+            <line x1="30" y1="70" x2="30" y2="56" stroke="currentColor" stroke-width="11"/>
+            <line x1="50" y1="70" x2="50" y2="44" stroke="currentColor" stroke-width="11"/>
+            <line x1="70" y1="70" x2="70" y2="32" stroke="currentColor" stroke-width="11"/>
           </svg>
           <span class="cs-close__index-n">03</span>
           <span class="cs-close__index-name">Project Intelligence</span>
-          <span class="cs-close__index-tag">In Development</span>
+          <span class="cs-close__index-tag">In development</span>
         </div>
 
         <!-- Operations Automation -->
         <div class="cs-close__index-row">
           <svg viewBox="0 0 100 100" width="15" height="15" aria-hidden="true">
-            <line x1="14" y1="28" x2="34" y2="28" stroke="#ffffff" stroke-width="11"/>
-            <line x1="42" y1="28" x2="62" y2="28" stroke="#ffffff" stroke-width="11"/>
-            <line x1="70" y1="28" x2="90" y2="28" stroke="#ffffff" stroke-width="11"/>
-            <line x1="14" y1="74" x2="90" y2="74" stroke="#B8B9B5" stroke-width="11"/>
+            <line x1="14" y1="28" x2="34" y2="28" stroke="currentColor" stroke-width="11"/>
+            <line x1="42" y1="28" x2="62" y2="28" stroke="currentColor" stroke-width="11"/>
+            <line x1="70" y1="28" x2="90" y2="28" stroke="currentColor" stroke-width="11"/>
+            <line x1="14" y1="74" x2="90" y2="74" style="stroke: var(--fg-muted)" stroke-width="11"/>
           </svg>
           <span class="cs-close__index-n">&mdash;&mdash;</span>
           <span class="cs-close__index-name">Operations Automation</span>

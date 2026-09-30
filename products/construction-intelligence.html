@@ -63,201 +63,207 @@ body { margin: 0; }
 <!-- header:end -->
 
 <!-- ================= 1. HERO ================= -->
-<div style="background: #FFFFFF; padding: 72px 0 76px;">
+<div class="surface--white" style="padding: 72px 0 76px;">
   <div style="max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px);">
     <div style="container-type: inline-size; display: flex; flex-direction: column; gap: 22px; max-width: 76ch;">
       <div style="display: flex; align-items: center; gap: 14px;">
         <svg viewBox="0 0 100 100" width="26" height="26" aria-hidden="true" style="flex: none;">
-          <line x1="6" y1="50" x2="96" y2="50" stroke="#476776" stroke-width="5"></line>
-          <polyline points="8,20 40,20 54,42 94,42" fill="none" stroke="#111111" stroke-width="9"></polyline>
-          <polyline points="8,80 40,80 54,58 94,58" fill="none" stroke="#111111" stroke-width="9"></polyline>
+          <line x1="6" y1="50" x2="96" y2="50" stroke="var(--rule-object)" stroke-width="5"></line>
+          <polyline points="8,20 40,20 54,42 94,42" fill="none" stroke="currentColor" stroke-width="9"></polyline>
+          <polyline points="8,80 40,80 54,58 94,58" fill="none" stroke="currentColor" stroke-width="9"></polyline>
         </svg>
-        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #476776;">Construction Intelligence</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.16em; color: var(--fg);">Construction Intelligence</div>
       </div>
-      <h1 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(30px, 9cqi, 56px); line-height: 1.0; letter-spacing: -0.04em; color: #111111; text-wrap: balance;">Put your company&rsquo;s knowledge to work.</h1>
-      <p style="margin: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 17px; line-height: 1.6; color: #5F6466; max-width: 64ch;">Construction Intelligence answers company-specific operating questions using your procedures, standards, pricing rules, templates, and project history&mdash;<wbr>so your team can get the answer without tracking down the person who knows.</p>
-      <div style="border-left: 2px solid #476776; padding-left: 18px; font-family: Archivo, sans-serif; font-weight: 600; font-size: 19px; line-height: 1.45; letter-spacing: -0.02em; color: #111111; max-width: 46ch;">Get the answer. See what it&rsquo;s based on. Know what comes next.</div>
+      <h1 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(30px, 9cqi, 56px); line-height: 1.0; letter-spacing: -0.04em; color: var(--fg); text-wrap: balance;">Put your company&rsquo;s knowledge to work.</h1>
+      <p style="margin: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 17px; line-height: 1.6; color: var(--fg-muted); max-width: 64ch;">Construction Intelligence answers company-specific operating questions using your procedures, standards, pricing rules, templates, and project history&mdash;<wbr>so your team can get the answer without tracking down the person who knows.</p>
+      <div style="border-left: var(--w-cut) solid var(--fg); padding-left: 18px; font-family: Archivo, sans-serif; font-weight: 600; font-size: 19px; line-height: 1.45; letter-spacing: -0.02em; color: var(--fg); max-width: 46ch;">Get the answer. See what it&rsquo;s based on. Know what comes next.</div>
       <div style="display: flex; align-items: center; gap: 22px; flex-wrap: wrap; padding-top: 4px;">
-        <a href="https://cal.com/justinyurasits" style="box-sizing: border-box; background: #111111; color: #FFFFFF; font-family: Archivo, sans-serif; font-weight: 600; font-size: 15px; letter-spacing: -0.01em; padding: 15px 26px; min-height: 48px; display: inline-flex; align-items: center; text-decoration: none;">Book a 30-minute call</a>
-        <a href="#example-answer" style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 15px; letter-spacing: -0.01em; color: #111111; border-bottom: 2px solid #111111; padding-bottom: 3px; text-decoration: none;">See an example answer &rarr;</a>
+        <a href="https://cal.com/justinyurasits" style="box-sizing: border-box; background: var(--btn-bg); color: var(--btn-fg); font-family: Archivo, sans-serif; font-weight: 600; font-size: 15px; letter-spacing: -0.01em; padding: 15px 26px; min-height: 48px; display: inline-flex; align-items: center; text-decoration: none;">Book a 30-minute call</a>
+        <a href="#example-answer" style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 15px; letter-spacing: -0.01em; color: var(--fg); border-bottom: var(--w-cut) solid var(--rule-cut); padding-bottom: 3px; text-decoration: none;">See an example answer</a>
       </div>
     </div>
   </div>
 </div>
 
 <!-- ================= 2. ANSWER SPECIMEN ================= -->
-<div id="example-answer" style="background: #EFEFEB; padding: 76px 0 80px;">
+<div id="example-answer" class="surface--bond" style="padding: 76px 0 80px;">
   <div style="max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px);">
 
     <!-- Section header -->
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 24px 48px; align-items: start; border-bottom: 2px solid #111111; padding-bottom: 28px;">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 24px 48px; align-items: start; border-bottom: var(--w-cut) solid var(--rule-cut); padding-bottom: 28px;">
       <div style="container-type: inline-size; min-width: 0;">
-        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #476776; padding-bottom: 16px;">See an example answer</div>
-        <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(26px, 7cqi, 40px); line-height: 1.05; letter-spacing: -0.034em; color: #111111; max-width: 24ch; text-wrap: balance;">Get the answer&mdash;<wbr>and see what it&rsquo;s based on.</h2>
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.16em; color: var(--fg); padding-bottom: 16px;">See an example answer</div>
+        <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(26px, 7cqi, 40px); line-height: 1.05; letter-spacing: -0.034em; color: var(--fg); max-width: 24ch; text-wrap: balance;">Get the answer&mdash;<wbr>and see what it&rsquo;s based on.</h2>
       </div>
-      <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.6; color: #5F6466; padding-top: 5px;">One real question, answered from a real construction library. The source references below are actual documents, not illustrative citations written for a website.</div>
+      <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.6; color: var(--fg-muted); padding-top: 5px;">One real question, answered from a real construction library. The source references below are actual documents, not illustrative citations written for a website.</div>
     </div>
 
     <!-- Specimen artifact -->
     <div style="padding-top: 32px;">
       <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding-bottom: 12px;">
-        <div style="font-family: ui-monospace, monospace; font-size: 11px; letter-spacing: 0.1em; color: #476776;">EXAMPLE ANSWER</div>
-        <div style="font-family: ui-monospace, monospace; font-size: 11px; letter-spacing: 0.04em; color: #5F6466;">COST-PLUS</div>
+        <div style="font-family: Archivo, sans-serif; font-size: 11px; letter-spacing: 0.1em; color: var(--fg);">Example answer</div>
+        <div style="font-family: Archivo, sans-serif; font-size: 11px; letter-spacing: 0.04em; color: var(--fg-muted);">Cost-plus</div>
       </div>
 
-      <div style="box-sizing: border-box; border: 1px solid #111111; background: #FFFFFF; position: relative;">
+      <!-- Specimen exemption: this card renders the product UI as built. Monospace column headers
+           (QUESTION, ANSWER, SOURCES, WHAT CHANGES THE ANSWER), step numbers (01–06), and source
+           references (FCM-03 §8.2, CHG-53 §8.6, etc.) are document identifiers — permitted by §3.
+           background:#FFFFFF on the card interior and border-top:#EFEFEB on step separators are
+           intentional exceptions: no role token resolves to white on bond, and the bond-color
+           separator creates deliberate depth on the white card interior. -->
+      <div style="box-sizing: border-box; border: var(--w-object) solid var(--rule-cut); background: #FFFFFF; position: relative;">
         <!-- Registration bracket -->
-        <div style="position: absolute; top: 10px; right: 10px; width: 14px; height: 14px; border-top: 2px solid #B8B9B5; border-right: 2px solid #B8B9B5;"></div>
+        <div style="position: absolute; top: 10px; right: 10px; width: 14px; height: 14px; border-top: var(--w-cut) solid var(--rule-dimension); border-right: var(--w-cut) solid var(--rule-dimension);"></div>
 
         <!-- Band 1: Question -->
-        <div style="border-bottom: 1px solid #111111; padding: 24px 30px 26px; display: flex; flex-direction: column; gap: 10px;">
-          <div style="font-family: ui-monospace, monospace; font-size: 11px; letter-spacing: 0.1em; color: #5F6466;">QUESTION</div>
-          <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 19px; line-height: 1.45; letter-spacing: -0.018em; color: #111111; max-width: 54ch;">How should we price an owner-requested millwork change on a cost-plus project?</div>
+        <div style="border-bottom: var(--w-object) solid var(--rule-cut); padding: 24px 30px 26px; display: flex; flex-direction: column; gap: 10px;">
+          <div style="font-family: ui-monospace, monospace; font-size: 11px; letter-spacing: 0.1em; color: var(--fg-muted);">QUESTION</div>
+          <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 19px; line-height: 1.45; letter-spacing: -0.018em; color: var(--fg); max-width: 54ch;">How should we price an owner-requested millwork change on a cost-plus project?</div>
         </div>
 
         <!-- Band 2: Answer — six numbered steps -->
         <div style="padding: 26px 30px 28px; display: flex; flex-direction: column; gap: 14px;">
-          <div style="font-family: ui-monospace, monospace; font-size: 11px; letter-spacing: 0.1em; color: #476776;">ANSWER</div>
+          <div style="font-family: ui-monospace, monospace; font-size: 11px; letter-spacing: 0.1em; color: var(--fg);">ANSWER</div>
 
           <!-- Step 01: no border-top -->
           <div style="display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 4px 14px;">
-            <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: #5F6466; padding-top: 4px;">01</div>
-            <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 16.5px; line-height: 1.4; letter-spacing: -0.016em; color: #111111;">Allowance status first.</div>
+            <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: var(--fg-muted); padding-top: 4px;">01</div>
+            <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 16.5px; line-height: 1.4; letter-spacing: -0.016em; color: var(--fg);">Allowance status first.</div>
             <div></div>
-            <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466; max-width: 72ch;">If the millwork is carried by an allowance, this is an allowance reconciliation&mdash;<wbr>compare actual cost against the allowance amount and document the variance. It becomes a change to the contract sum only for the portion that falls outside the allowance.</div>
+            <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: var(--fg-muted); max-width: 72ch;">If the millwork is carried by an allowance, this is an allowance reconciliation&mdash;<wbr>compare actual cost against the allowance amount and document the variance. It becomes a change to the contract sum only for the portion that falls outside the allowance.</div>
           </div>
 
-          <!-- Steps 02–06: border-top: 1px solid #EFEFEB -->
+          <!-- Steps 02–06: border-top: 1px solid #EFEFEB (intentional exception — bond-color separator on white card interior) -->
           <div style="display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 4px 14px; border-top: 1px solid #EFEFEB; padding-top: 14px;">
-            <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: #5F6466; padding-top: 4px;">02</div>
-            <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 16.5px; line-height: 1.4; letter-spacing: -0.016em; color: #111111;">Open a Change Event before pricing.</div>
+            <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: var(--fg-muted); padding-top: 4px;">02</div>
+            <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 16.5px; line-height: 1.4; letter-spacing: -0.016em; color: var(--fg);">Open a Change Event before pricing.</div>
             <div></div>
-            <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466; max-width: 72ch;">The Change Event records the request, the date, and the originating direction. The PCO prices what the Change Event has already established.</div>
-          </div>
-
-          <div style="display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 4px 14px; border-top: 1px solid #EFEFEB; padding-top: 14px;">
-            <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: #5F6466; padding-top: 4px;">03</div>
-            <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 16.5px; line-height: 1.4; letter-spacing: -0.016em; color: #111111;">Price from the subcontractor quote&mdash;<wbr>but write the scope internally.</div>
-            <div></div>
-            <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466; max-width: 72ch;">Use the shop quote for cost. Do not adopt the subcontractor&rsquo;s scope language as the contract description; write the scope in the company&rsquo;s own terms.</div>
+            <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: var(--fg-muted); max-width: 72ch;">The Change Event records the request, the date, and the originating direction. The PCO prices what the Change Event has already established.</div>
           </div>
 
           <div style="display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 4px 14px; border-top: 1px solid #EFEFEB; padding-top: 14px;">
-            <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: #5F6466; padding-top: 4px;">04</div>
-            <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 16.5px; line-height: 1.4; letter-spacing: -0.016em; color: #111111;">Apply contractor fee only where the contract permits it.</div>
+            <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: var(--fg-muted); padding-top: 4px;">03</div>
+            <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 16.5px; line-height: 1.4; letter-spacing: -0.016em; color: var(--fg);">Price from the subcontractor quote&mdash;<wbr>but write the scope internally.</div>
             <div></div>
-            <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466; max-width: 72ch;">Show fee as a separate line, and never apply fee on fee.</div>
+            <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: var(--fg-muted); max-width: 72ch;">Use the shop quote for cost. Do not adopt the subcontractor&rsquo;s scope language as the contract description; write the scope in the company&rsquo;s own terms.</div>
           </div>
 
           <div style="display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 4px 14px; border-top: 1px solid #EFEFEB; padding-top: 14px;">
-            <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: #5F6466; padding-top: 4px;">05</div>
-            <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 16.5px; line-height: 1.4; letter-spacing: -0.016em; color: #111111;">State schedule impact explicitly.</div>
+            <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: var(--fg-muted); padding-top: 4px;">04</div>
+            <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 16.5px; line-height: 1.4; letter-spacing: -0.016em; color: var(--fg);">Apply contractor fee only where the contract permits it.</div>
             <div></div>
-            <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466; max-width: 72ch;">One of three: <span style="font-weight: 600; color: #111111;">None</span>, <span style="font-weight: 600; color: #111111;">TBD</span>, or <span style="font-weight: 600; color: #111111;">+__ calendar days</span>. Never leave it blank.</div>
+            <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: var(--fg-muted); max-width: 72ch;">Show fee as a separate line, and never apply fee on fee.</div>
           </div>
 
           <div style="display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 4px 14px; border-top: 1px solid #EFEFEB; padding-top: 14px;">
-            <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: #5F6466; padding-top: 4px;">06</div>
-            <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 16.5px; line-height: 1.4; letter-spacing: -0.016em; color: #111111;">If the shop must be released before pricing is final, authorize it in writing.</div>
+            <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: var(--fg-muted); padding-top: 4px;">05</div>
+            <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 16.5px; line-height: 1.4; letter-spacing: -0.016em; color: var(--fg);">State schedule impact explicitly.</div>
             <div></div>
-            <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466; max-width: 72ch;">Depending on what the contract provides, that may be an NTE, a T&amp;M authorization, or a construction change directive. Never verbally.</div>
+            <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: var(--fg-muted); max-width: 72ch;">One of three: <span style="font-weight: 600; color: var(--fg);">None</span>, <span style="font-weight: 600; color: var(--fg);">TBD</span>, or <span style="font-weight: 600; color: var(--fg);">+__ calendar days</span>. Never leave it blank.</div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 4px 14px; border-top: 1px solid #EFEFEB; padding-top: 14px;">
+            <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: var(--fg-muted); padding-top: 4px;">06</div>
+            <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 16.5px; line-height: 1.4; letter-spacing: -0.016em; color: var(--fg);">If the shop must be released before pricing is final, authorize it in writing.</div>
+            <div></div>
+            <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: var(--fg-muted); max-width: 72ch;">Depending on what the contract provides, that may be an NTE, a T&amp;M authorization, or a construction change directive. Never verbally.</div>
           </div>
         </div>
 
         <!-- Band 3: Sources -->
         <!-- border-top on every cell is correct: cells sit under a band boundary in a multi-column auto-fit grid -->
-        <div style="border-top: 1px solid #111111; padding: 24px 30px 26px; display: flex; flex-direction: column; gap: 14px;">
+        <div style="border-top: var(--w-object) solid var(--rule-cut); padding: 24px 30px 26px; display: flex; flex-direction: column; gap: 14px;">
           <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
-            <div style="font-family: ui-monospace, monospace; font-size: 11px; letter-spacing: 0.1em; color: #476776;">SOURCES</div>
-            <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 12.5px; color: #5F6466;">From the operating library</div>
+            <div style="font-family: ui-monospace, monospace; font-size: 11px; letter-spacing: 0.1em; color: var(--fg);">SOURCES</div>
+            <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 12.5px; color: var(--fg-muted);">From the operating library</div>
           </div>
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr)); gap: 0 32px;">
-            <div style="min-width: 0; border-top: 1px solid #B8B9B5; padding: 12px 0 13px; display: flex; flex-direction: column; gap: 5px;">
-              <div style="font-family: ui-monospace, monospace; font-size: 12.5px; letter-spacing: 0.03em; color: #111111;">FCM-03 &sect;10.2</div>
-              <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 13px; line-height: 1.5; color: #5F6466;">Allowance changes &mdash; price the delta against the allowance baseline; avoid blending base-contract and upgrade costs.</div>
+            <div style="min-width: 0; border-top: var(--w-dimension) solid var(--rule-dimension); padding: 12px 0 13px; display: flex; flex-direction: column; gap: 5px;">
+              <div style="font-family: ui-monospace, monospace; font-size: 12.5px; letter-spacing: 0.03em; color: var(--fg);">FCM-03 &sect;10.2</div>
+              <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 13px; line-height: 1.5; color: var(--fg-muted);">Allowance changes &mdash; price the delta against the allowance baseline; avoid blending base-contract and upgrade costs.</div>
             </div>
-            <div style="min-width: 0; border-top: 1px solid #B8B9B5; padding: 12px 0 13px; display: flex; flex-direction: column; gap: 5px;">
-              <div style="font-family: ui-monospace, monospace; font-size: 12.5px; letter-spacing: 0.03em; color: #111111;">FCM-03 &sect;8.2</div>
-              <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 13px; line-height: 1.5; color: #5F6466;">Cost-plus change authorization and fee treatment</div>
+            <div style="min-width: 0; border-top: var(--w-dimension) solid var(--rule-dimension); padding: 12px 0 13px; display: flex; flex-direction: column; gap: 5px;">
+              <div style="font-family: ui-monospace, monospace; font-size: 12.5px; letter-spacing: 0.03em; color: var(--fg);">FCM-03 &sect;8.2</div>
+              <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 13px; line-height: 1.5; color: var(--fg-muted);">Cost-plus change authorization and fee treatment</div>
             </div>
-            <div style="min-width: 0; border-top: 1px solid #B8B9B5; padding: 12px 0 13px; display: flex; flex-direction: column; gap: 5px;">
-              <div style="font-family: ui-monospace, monospace; font-size: 12.5px; letter-spacing: 0.03em; color: #111111;">CHG-53 &sect;8.6 / &sect;9.2</div>
-              <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 13px; line-height: 1.5; color: #5F6466;">PCO pricing presentation and contractor-written scope</div>
+            <div style="min-width: 0; border-top: var(--w-dimension) solid var(--rule-dimension); padding: 12px 0 13px; display: flex; flex-direction: column; gap: 5px;">
+              <div style="font-family: ui-monospace, monospace; font-size: 12.5px; letter-spacing: 0.03em; color: var(--fg);">CHG-53 &sect;8.6 / &sect;9.2</div>
+              <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 13px; line-height: 1.5; color: var(--fg-muted);">PCO pricing presentation and contractor-written scope</div>
             </div>
-            <div style="min-width: 0; border-top: 1px solid #B8B9B5; padding: 12px 0 13px; display: flex; flex-direction: column; gap: 5px;">
-              <div style="font-family: ui-monospace, monospace; font-size: 12.5px; letter-spacing: 0.03em; color: #111111;">CON-16 &sect;7.4</div>
-              <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 13px; line-height: 1.5; color: #5F6466;">Fee and markup rules</div>
+            <div style="min-width: 0; border-top: var(--w-dimension) solid var(--rule-dimension); padding: 12px 0 13px; display: flex; flex-direction: column; gap: 5px;">
+              <div style="font-family: ui-monospace, monospace; font-size: 12.5px; letter-spacing: 0.03em; color: var(--fg);">CON-16 &sect;7.4</div>
+              <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 13px; line-height: 1.5; color: var(--fg-muted);">Fee and markup rules</div>
             </div>
-            <div style="min-width: 0; border-top: 1px solid #B8B9B5; padding: 12px 0 13px; display: flex; flex-direction: column; gap: 5px;">
-              <div style="font-family: ui-monospace, monospace; font-size: 12.5px; letter-spacing: 0.03em; color: #111111;">CHG-59</div>
-              <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 13px; line-height: 1.5; color: #5F6466;">NTE / T&amp;M / CCD authorization paths</div>
+            <div style="min-width: 0; border-top: var(--w-dimension) solid var(--rule-dimension); padding: 12px 0 13px; display: flex; flex-direction: column; gap: 5px;">
+              <div style="font-family: ui-monospace, monospace; font-size: 12.5px; letter-spacing: 0.03em; color: var(--fg);">CHG-59</div>
+              <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 13px; line-height: 1.5; color: var(--fg-muted);">NTE / T&amp;M / CCD authorization paths</div>
             </div>
           </div>
         </div>
 
         <!-- Band 4: What changes the answer -->
-        <div style="border-top: 1px solid #111111; padding: 22px 30px 24px; display: flex; flex-wrap: wrap; gap: 12px 32px; align-items: baseline;">
-          <div style="flex: 1 1 220px; min-width: 0; font-family: ui-monospace, monospace; font-size: 11px; letter-spacing: 0.1em; color: #476776;">WHAT CHANGES THE ANSWER</div>
-          <div style="flex: 2 1 380px; min-width: 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: 16px; line-height: 1.55; letter-spacing: -0.012em; color: #111111;">Allowance status first. Then subcontracted vs. self-performed work, what the contract permits for fee, whether pricing is final, and whether the project has a GMP cap.</div>
+        <div style="border-top: var(--w-object) solid var(--rule-cut); padding: 22px 30px 24px; display: flex; flex-wrap: wrap; gap: 12px 32px; align-items: baseline;">
+          <div style="flex: 1 1 220px; min-width: 0; font-family: ui-monospace, monospace; font-size: 11px; letter-spacing: 0.1em; color: var(--fg);">WHAT CHANGES THE ANSWER</div>
+          <div style="flex: 2 1 380px; min-width: 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: 16px; line-height: 1.55; letter-spacing: -0.012em; color: var(--fg);">Allowance status first. Then subcontracted vs. self-performed work, what the contract permits for fee, whether pricing is final, and whether the project has a GMP cap.</div>
         </div>
       </div>
     </div>
 
     <!-- Below artifact -->
     <div style="padding-top: 26px; display: flex; flex-wrap: wrap; gap: 16px 48px; align-items: baseline;">
-      <div style="flex: 2 1 420px; min-width: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 19px; line-height: 1.45; letter-spacing: -0.018em; color: #111111;">The point is not simply to produce an answer. It is to show the company knowledge behind it and the conditions that could change it.</div>
-      <div style="flex: 1 1 280px; min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 14px; line-height: 1.55; color: #5F6466;">the real construction library built inside a large Boston residential GC</div>
+      <div style="flex: 2 1 420px; min-width: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 19px; line-height: 1.45; letter-spacing: -0.018em; color: var(--fg);">The point is not simply to produce an answer. It is to show the company knowledge behind it and the conditions that could change it.</div>
+      <div style="flex: 1 1 280px; min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 14px; line-height: 1.55; color: var(--fg-muted);">Built from real construction documents and operating procedures.</div>
     </div>
 
   </div>
 </div>
 
 <!-- ================= 3. THE CORPUS ================= -->
-<div style="background: #FFFFFF; padding: 76px 0 80px;">
+<div class="surface--white" style="padding: 76px 0 80px;">
   <div style="max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px);">
 
     <!-- Section header -->
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 24px 48px; align-items: start; border-bottom: 2px solid #111111; padding-bottom: 28px;">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 24px 48px; align-items: start; border-bottom: var(--w-cut) solid var(--rule-cut); padding-bottom: 28px;">
       <div style="container-type: inline-size; min-width: 0;">
-        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #476776; padding-bottom: 16px;">The corpus</div>
-        <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(28px, 8cqi, 42px); line-height: 1.05; letter-spacing: -0.035em; color: #111111; max-width: 22ch; text-wrap: balance;">The corpus behind this example.</h2>
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.16em; color: var(--fg); padding-bottom: 16px;">The corpus</div>
+        <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(28px, 8cqi, 42px); line-height: 1.05; letter-spacing: -0.035em; color: var(--fg); max-width: 22ch; text-wrap: balance;">The corpus behind this example.</h2>
       </div>
-      <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: 17px; line-height: 1.5; letter-spacing: -0.015em; color: #111111; padding-top: 5px;">The answer above comes from a documented construction operating library&mdash;<wbr>not a generic prompt.</div>
+      <div style="min-width: 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: 17px; line-height: 1.5; letter-spacing: -0.015em; color: var(--fg); padding-top: 5px;">The answer above comes from a documented construction operating library&mdash;<wbr>not a generic prompt.</div>
     </div>
 
     <!-- Corpus figures -->
     <div style="padding-top: 34px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); gap: 28px 44px;">
-      <div style="min-width: 0; border-top: 1px solid #B8B9B5; padding: 20px 0 0; display: flex; flex-direction: column; gap: 10px;">
-        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 40px; line-height: 1; letter-spacing: -0.038em; color: #111111;">110</div>
-        <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.5; color: #5F6466;">Distinct construction document types</div>
+      <div style="min-width: 0; border-top: var(--w-dimension) solid var(--rule-dimension); padding: 20px 0 0; display: flex; flex-direction: column; gap: 10px;">
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 40px; line-height: 1; letter-spacing: -0.038em; color: var(--fg);">110</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.5; color: var(--fg-muted);">Distinct construction document types</div>
       </div>
-      <div style="min-width: 0; border-top: 1px solid #B8B9B5; padding: 20px 0 0; display: flex; flex-direction: column; gap: 10px;">
-        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 40px; line-height: 1; letter-spacing: -0.038em; color: #111111;">38</div>
-        <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.5; color: #5F6466;">Document categories</div>
+      <div style="min-width: 0; border-top: var(--w-dimension) solid var(--rule-dimension); padding: 20px 0 0; display: flex; flex-direction: column; gap: 10px;">
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 40px; line-height: 1; letter-spacing: -0.038em; color: var(--fg);">38</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.5; color: var(--fg-muted);">Document categories</div>
       </div>
-      <div style="min-width: 0; border-top: 1px solid #B8B9B5; padding: 20px 0 0; display: flex; flex-direction: column; gap: 10px;">
-        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 40px; line-height: 1; letter-spacing: -0.038em; color: #111111;">5</div>
-        <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.5; color: #5F6466;">Construction lifecycle phases</div>
+      <div style="min-width: 0; border-top: var(--w-dimension) solid var(--rule-dimension); padding: 20px 0 0; display: flex; flex-direction: column; gap: 10px;">
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 40px; line-height: 1; letter-spacing: -0.038em; color: var(--fg);">5</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.5; color: var(--fg-muted);">Construction lifecycle phases</div>
       </div>
     </div>
 
     <!-- Closing row -->
-    <div style="border-top: 2px solid #111111; margin-top: 40px; padding-top: 26px; display: flex; flex-wrap: wrap; gap: 20px 44px; align-items: flex-start;">
-      <div style="flex: 1.6 1 400px; min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.6; color: #5F6466;">This is the operating library behind the example above. A client implementation would be configured around that company&rsquo;s own procedures, standards, pricing rules, templates, project history, and operating knowledge.</div>
+    <div style="border-top: var(--w-cut) solid var(--rule-cut); margin-top: 40px; padding-top: 26px; display: flex; flex-wrap: wrap; gap: 20px 44px; align-items: flex-start;">
+      <div style="flex: 1.6 1 400px; min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.6; color: var(--fg-muted);">This is the operating library behind the example above. A client implementation would be configured around that company&rsquo;s own procedures, standards, pricing rules, templates, project history, and operating knowledge.</div>
     </div>
 
   </div>
 </div>
 
 <!-- ================= 4. COMPANY-SPECIFIC QUESTIONS ================= -->
-<div style="background: #EFEFEB; padding: 76px 0 80px;">
+<div class="surface--bond" style="padding: 76px 0 80px;">
   <div style="max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px);">
 
     <!-- Single-column header -->
-    <div style="container-type: inline-size; display: flex; flex-direction: column; gap: 20px; border-bottom: 2px solid #111111; padding-bottom: 30px;">
-      <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #476776;">The questions that matter</div>
-      <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(28px, 8cqi, 42px); line-height: 1.05; letter-spacing: -0.035em; color: #111111; max-width: 24ch; text-wrap: balance;">Ask how your company does the work.</h2>
-      <p style="margin: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.6; color: #5F6466; max-width: 66ch;">The useful questions usually aren&rsquo;t generic construction questions. They&rsquo;re questions where the answer depends on construction knowledge and the way your company operates.</p>
+    <div style="container-type: inline-size; display: flex; flex-direction: column; gap: 20px; border-bottom: var(--w-cut) solid var(--rule-cut); padding-bottom: 30px;">
+      <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.16em; color: var(--fg);">The questions that matter</div>
+      <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(28px, 8cqi, 42px); line-height: 1.05; letter-spacing: -0.035em; color: var(--fg); max-width: 24ch; text-wrap: balance;">Ask how your company does the work.</h2>
+      <p style="margin: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.6; color: var(--fg-muted); max-width: 66ch;">The useful questions usually aren&rsquo;t generic construction questions. They&rsquo;re questions where the answer depends on construction knowledge and the way your company operates.</p>
     </div>
 
     <!-- Two question blocks -->
@@ -265,28 +271,28 @@ body { margin: 0; }
 
       <!-- Changes -->
       <div style="flex: 1 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 16px;">
-        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #5F6466; border-bottom: 1px solid #B8B9B5; padding-bottom: 12px;">Changes</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.14em; color: var(--fg-muted); border-bottom: var(--w-dimension) solid var(--rule-dimension); padding-bottom: 12px;">Changes</div>
         <div style="display: flex; flex-direction: column; gap: 6px;">
-          <div style="font-family: ui-monospace, monospace; font-size: 11px; letter-spacing: 0.08em; color: #5F6466;">INSTEAD OF</div>
+          <div style="font-family: Archivo, sans-serif; font-size: 11px; letter-spacing: 0.08em; color: var(--fg-muted);">Instead of</div>
           <!-- Line gray is deliberate: the rejected option, contrast is the argument. Do not raise to Graphite. -->
-          <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.5; color: #B8B9B5;">How do you price a change order?</div>
+          <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.5; color: var(--rule-dimension);">How do you price a change order?</div>
         </div>
         <div style="display: flex; flex-direction: column; gap: 6px;">
-          <div style="font-family: ui-monospace, monospace; font-size: 11px; letter-spacing: 0.08em; color: #476776;">ASK</div>
-          <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 18px; line-height: 1.4; letter-spacing: -0.018em; color: #111111; text-wrap: pretty;">How should we price this owner-requested millwork change on this type of contract?</div>
+          <div style="font-family: Archivo, sans-serif; font-size: 11px; letter-spacing: 0.08em; color: var(--fg);">Ask</div>
+          <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 18px; line-height: 1.4; letter-spacing: -0.018em; color: var(--fg); text-wrap: pretty;">How should we price this owner-requested millwork change on this type of contract?</div>
         </div>
       </div>
 
       <!-- Contracts -->
       <div style="flex: 1 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 16px;">
-        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #5F6466; border-bottom: 1px solid #B8B9B5; padding-bottom: 12px;">Contracts</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.14em; color: var(--fg-muted); border-bottom: var(--w-dimension) solid var(--rule-dimension); padding-bottom: 12px;">Contracts</div>
         <div style="display: flex; flex-direction: column; gap: 6px;">
-          <div style="font-family: ui-monospace, monospace; font-size: 11px; letter-spacing: 0.08em; color: #5F6466;">INSTEAD OF</div>
-          <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.5; color: #B8B9B5;">What belongs in a subcontract?</div>
+          <div style="font-family: Archivo, sans-serif; font-size: 11px; letter-spacing: 0.08em; color: var(--fg-muted);">Instead of</div>
+          <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.5; color: var(--rule-dimension);">What belongs in a subcontract?</div>
         </div>
         <div style="display: flex; flex-direction: column; gap: 6px;">
-          <div style="font-family: ui-monospace, monospace; font-size: 11px; letter-spacing: 0.08em; color: #476776;">ASK</div>
-          <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 18px; line-height: 1.4; letter-spacing: -0.018em; color: #111111; text-wrap: pretty;">What does our company require before this subcontract can be issued?</div>
+          <div style="font-family: Archivo, sans-serif; font-size: 11px; letter-spacing: 0.08em; color: var(--fg);">Ask</div>
+          <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 18px; line-height: 1.4; letter-spacing: -0.018em; color: var(--fg); text-wrap: pretty;">What does our company require before this subcontract can be issued?</div>
         </div>
       </div>
 
@@ -295,108 +301,108 @@ body { margin: 0; }
 </div>
 
 <!-- ================= 5. FROM ANSWER TO ACTION ================= -->
-<div style="background: #FFFFFF; padding: 76px 0 80px;">
+<div class="surface--white" style="padding: 76px 0 80px;">
   <div style="max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px);">
 
     <!-- Section header -->
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 24px 48px; align-items: start; border-bottom: 2px solid #111111; padding-bottom: 28px;">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 24px 48px; align-items: start; border-bottom: var(--w-cut) solid var(--rule-cut); padding-bottom: 28px;">
       <div style="container-type: inline-size; min-width: 0;">
-        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #476776; padding-bottom: 16px;">From answer to action</div>
-        <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(28px, 8cqi, 42px); line-height: 1.05; letter-spacing: -0.035em; color: #111111; max-width: 22ch; text-wrap: balance;">The answer shouldn&rsquo;t be the end of the workflow.</h2>
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.16em; color: var(--fg); padding-bottom: 16px;">From answer to action</div>
+        <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(28px, 8cqi, 42px); line-height: 1.05; letter-spacing: -0.035em; color: var(--fg); max-width: 22ch; text-wrap: balance;">The answer shouldn&rsquo;t be the end of the workflow.</h2>
       </div>
       <div style="min-width: 0; display: flex; flex-direction: column; gap: 12px; padding-top: 5px;">
-        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 19px; line-height: 1.4; letter-spacing: -0.02em; color: #111111;">Know what to do. Then do it.</div>
-        <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.6; color: #5F6466;">When the answer requires documentation or another project action, Construction Intelligence can point the PM toward the appropriate document or workflow in Document Workbench.</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 19px; line-height: 1.4; letter-spacing: -0.02em; color: var(--fg);">Know what to do. Then do it.</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.6; color: var(--fg-muted);">When the answer requires documentation or another project action, Construction Intelligence can point the PM toward the appropriate document or workflow in Document Workbench.</div>
       </div>
     </div>
 
-    <!-- Three rows: row 01 no border-top, rows 02–03 have 1px Line gray, none below row 03, no arrow glyph -->
+    <!-- Three rows: row 01 no border-top, rows 02–03 have dimension rule, none below row 03 -->
     <div style="display: flex; flex-direction: column;">
 
       <!-- Row 01 -->
       <div style="padding: 26px 0 28px; display: flex; flex-direction: column; gap: 16px;">
-        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 18px; line-height: 1.35; letter-spacing: -0.018em; color: #111111;">Owner-requested change</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 18px; line-height: 1.35; letter-spacing: -0.018em; color: var(--fg);">Owner-requested change</div>
         <div style="display: flex; flex-wrap: wrap; gap: 20px 32px; align-items: flex-start;">
           <div style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 7px;">
-            <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #476776;">Construction Intelligence</div>
-            <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">Determine the authorization, pricing treatment, and company procedure.</div>
+            <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 12px; letter-spacing: 0.1em; color: var(--fg);">Construction Intelligence</div>
+            <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: var(--fg-muted);">Determine the authorization, pricing treatment, and company procedure.</div>
           </div>
           <div style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 7px;">
-            <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #476776;">Document Workbench</div>
-            <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">Prepare the appropriate change documentation.</div>
+            <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 12px; letter-spacing: 0.1em; color: var(--fg);">Document Workbench</div>
+            <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: var(--fg-muted);">Prepare the appropriate change documentation.</div>
           </div>
         </div>
       </div>
 
       <!-- Row 02 -->
-      <div style="padding: 26px 0 28px; border-top: 1px solid #B8B9B5; display: flex; flex-direction: column; gap: 16px;">
-        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 18px; line-height: 1.35; letter-spacing: -0.018em; color: #111111;">Contract requirement</div>
+      <div style="padding: 26px 0 28px; border-top: var(--w-dimension) solid var(--rule-dimension); display: flex; flex-direction: column; gap: 16px;">
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 18px; line-height: 1.35; letter-spacing: -0.018em; color: var(--fg);">Contract requirement</div>
         <div style="display: flex; flex-wrap: wrap; gap: 20px 32px; align-items: flex-start;">
           <div style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 7px;">
-            <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #476776;">Construction Intelligence</div>
-            <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">Identify what is required before the agreement can move forward.</div>
+            <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 12px; letter-spacing: 0.1em; color: var(--fg);">Construction Intelligence</div>
+            <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: var(--fg-muted);">Identify what is required before the agreement can move forward.</div>
           </div>
           <div style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 7px;">
-            <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #476776;">Document Workbench</div>
-            <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">Prepare the appropriate subcontract or supporting documents.</div>
+            <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 12px; letter-spacing: 0.1em; color: var(--fg);">Document Workbench</div>
+            <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: var(--fg-muted);">Prepare the appropriate subcontract or supporting documents.</div>
           </div>
         </div>
       </div>
 
       <!-- Row 03 -->
-      <div style="padding: 26px 0 28px; border-top: 1px solid #B8B9B5; display: flex; flex-direction: column; gap: 16px;">
-        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 18px; line-height: 1.35; letter-spacing: -0.018em; color: #111111;">Potential RFI</div>
+      <div style="padding: 26px 0 28px; border-top: var(--w-dimension) solid var(--rule-dimension); display: flex; flex-direction: column; gap: 16px;">
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 18px; line-height: 1.35; letter-spacing: -0.018em; color: var(--fg);">Potential RFI</div>
         <div style="display: flex; flex-wrap: wrap; gap: 20px 32px; align-items: flex-start;">
           <div style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 7px;">
-            <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #476776;">Construction Intelligence</div>
-            <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">Determine whether formal clarification is required.</div>
+            <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 12px; letter-spacing: 0.1em; color: var(--fg);">Construction Intelligence</div>
+            <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: var(--fg-muted);">Determine whether formal clarification is required.</div>
           </div>
           <div style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 7px;">
-            <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #476776;">Document Workbench</div>
-            <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: #5F6466;">Move into the appropriate RFI workflow when needed.</div>
+            <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 12px; letter-spacing: 0.1em; color: var(--fg);">Document Workbench</div>
+            <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.6; color: var(--fg-muted);">Move into the appropriate RFI workflow when needed.</div>
           </div>
         </div>
       </div>
 
     </div>
 
-    <!-- Closing statement: border-top on outer div, max-width: 70ch on inner text -->
-    <div style="border-top: 2px solid #111111; padding-top: 24px;">
-      <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 19px; line-height: 1.45; letter-spacing: -0.018em; color: #111111; max-width: 70ch;">Ask the question. Understand the requirement. Produce what the job needs next.</div>
+    <!-- Closing statement -->
+    <div style="border-top: var(--w-cut) solid var(--rule-cut); padding-top: 24px;">
+      <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 19px; line-height: 1.45; letter-spacing: -0.018em; color: var(--fg); max-width: 70ch;">Ask the question. Understand the requirement. Produce what the job needs next.</div>
     </div>
 
   </div>
 </div>
 
-<!-- ================= 6. CLOSING CTA (Ink) ================= -->
-<div style="background: #111111; padding: 84px 0 80px;">
+<!-- ================= 6. CLOSING CTA ================= -->
+<div class="surface--oxblood" style="padding: 84px 0 80px;">
   <div style="max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr)); gap: 48px; align-items: start;">
 
     <!-- Left column -->
     <div style="container-type: inline-size; min-width: 0; display: flex; flex-direction: column; gap: 26px;">
       <div style="display: flex; align-items: center; gap: 14px;">
         <svg viewBox="0 0 100 100" width="24" height="24" aria-hidden="true" style="flex: none;">
-          <line x1="6" y1="50" x2="96" y2="50" stroke="#B8B9B5" stroke-width="5"></line>
-          <polyline points="8,20 40,20 54,42 94,42" fill="none" stroke="#FFFFFF" stroke-width="10"></polyline>
-          <polyline points="8,80 40,80 54,58 94,58" fill="none" stroke="#FFFFFF" stroke-width="10"></polyline>
+          <line x1="6" y1="50" x2="96" y2="50" stroke="currentColor" stroke-width="5"></line>
+          <polyline points="8,20 40,20 54,42 94,42" fill="none" stroke="currentColor" stroke-width="10"></polyline>
+          <polyline points="8,80 40,80 54,58 94,58" fill="none" stroke="currentColor" stroke-width="10"></polyline>
         </svg>
-        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: #FFFFFF;">Construction Intelligence</div>
-        <div style="height: 1px; flex: 1; background: #5F6466;"></div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 13px; letter-spacing: 0.14em; color: var(--fg);">Construction Intelligence</div>
+        <div style="height: 1px; flex: 1; background: var(--rule-object);"></div>
       </div>
-      <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(30px, 10cqi, 52px); line-height: 1.0; letter-spacing: -0.04em; color: #FFFFFF; text-wrap: balance;">Bring me the question your team keeps asking the same person.</h2>
-      <p style="margin: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 17px; line-height: 1.6; color: #B8B9B5; max-width: 48ch;">Construction Intelligence gives the team another path to the answer&mdash;<wbr>grounded in the way your company actually works.</p>
+      <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(30px, 10cqi, 52px); line-height: 1.0; letter-spacing: -0.04em; color: var(--fg); text-wrap: balance;">Bring us the question your team keeps asking the same person.</h2>
+      <p style="margin: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 17px; line-height: 1.6; color: var(--fg-muted); max-width: 48ch;">Construction Intelligence gives the team another path to the answer&mdash;<wbr>grounded in the way your company actually works.</p>
       <div style="display: flex; align-items: center; gap: 22px; flex-wrap: wrap; padding-top: 4px;">
-        <a href="https://cal.com/justinyurasits" style="box-sizing: border-box; background: #FFFFFF; color: #111111; font-family: Archivo, sans-serif; font-weight: 600; font-size: 15px; letter-spacing: -0.01em; padding: 15px 26px; min-height: 48px; display: inline-flex; align-items: center; text-decoration: none;">Book a 30-minute call</a>
-        <a href="/products/document-workbench.html" style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 15px; letter-spacing: -0.01em; color: #FFFFFF; border-bottom: 2px solid #FFFFFF; padding-bottom: 3px; text-decoration: none;">Explore Document Workbench &rarr;</a>
+        <a href="https://cal.com/justinyurasits" style="box-sizing: border-box; background: var(--btn-bg); color: var(--btn-fg); font-family: Archivo, sans-serif; font-weight: 600; font-size: 15px; letter-spacing: -0.01em; padding: 15px 26px; min-height: 48px; display: inline-flex; align-items: center; text-decoration: none;">Book a 30-minute call</a>
+        <a href="/products/document-workbench.html" style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 15px; letter-spacing: -0.01em; color: var(--fg); border-bottom: var(--w-cut) solid var(--rule-cut); padding-bottom: 3px; text-decoration: none;">Explore Document Workbench</a>
       </div>
     </div>
 
-    <!-- Right column: hairlines Graphite #5F6466, text Paper #FFFFFF, label Line gray #B8B9B5 -->
+    <!-- Right column -->
     <div style="min-width: 0; display: flex; flex-direction: column;">
-      <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: #B8B9B5; padding-bottom: 14px;">The questions that keep coming back</div>
-      <div style="border-top: 1px solid #5F6466; padding: 16px 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: 16px; line-height: 1.5; color: #FFFFFF;">The pricing question that always goes back to the estimator.</div>
-      <div style="border-top: 1px solid #5F6466; padding: 16px 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: 16px; line-height: 1.5; color: #FFFFFF;">The contract question that always goes back to the owner.</div>
-      <div style="border-top: 1px solid #5F6466; padding: 16px 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: 16px; line-height: 1.5; color: #FFFFFF;">The process question that always goes back to the senior PM.</div>
+      <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 12px; letter-spacing: 0.12em; color: var(--fg-muted); padding-bottom: 14px;">The questions that keep coming back</div>
+      <div style="border-top: var(--w-object) solid var(--rule-object); padding: 16px 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: 16px; line-height: 1.5; color: var(--fg);">The pricing question that always goes back to the estimator.</div>
+      <div style="border-top: var(--w-object) solid var(--rule-object); padding: 16px 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: 16px; line-height: 1.5; color: var(--fg);">The contract question that always goes back to the owner.</div>
+      <div style="border-top: var(--w-object) solid var(--rule-object); padding: 16px 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: 16px; line-height: 1.5; color: var(--fg);">The process question that always goes back to the senior PM.</div>
     </div>
 
   </div>

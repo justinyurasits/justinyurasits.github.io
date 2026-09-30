@@ -64,13 +64,13 @@
     },
     {
       "path": "products/custom-solutions.html",
-      "active": "products",
-      "activeProduct": "custom-solutions",
+      "active": "services",
+      "activeProduct": null,
       "footer": {
         "current": "custom-solutions",
-        "page": "Custom Solutions",
-        "issued": "2026-09-06",
-        "rev": "01",
+        "page": "Purpose-Built Systems",
+        "issued": "2026-09-30",
+        "rev": "02",
         "status": "Issued For Construction"
       }
     },

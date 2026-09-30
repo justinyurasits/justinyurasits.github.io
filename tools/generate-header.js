@@ -55,7 +55,6 @@ ${productItem('/products/construction-intelligence.html', '02', 'Construction In
 ${productItem('/products/project-intelligence.html', '03', 'Project Intelligence', 'project-intelligence', activeProduct)}
             <span class="cos-nav__group-label">Extension Layer</span>
 ${productItem('/products/operations-automation.html', '——', 'Operations Automation', 'operations-automation', activeProduct)}
-${productItem('/products/custom-solutions.html', '——', 'Custom Solutions', 'custom-solutions', activeProduct)}
           </nav>
         </li>
 ${navA('/services.html', 'Engagements', 'services')}

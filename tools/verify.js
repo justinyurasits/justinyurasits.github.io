@@ -61,6 +61,53 @@ function stripCssAndComments(content) {
   return s;
 }
 
+// Extract all <style> block contents and their start offsets within `html`.
+// Used to do selector-aware checking inside style blocks.
+function extractStyleBlocks(html) {
+  const blocks = [];
+  const re = /(<style[^>]*>)([\s\S]*?)(<\/style>)/gi;
+  let m;
+  while ((m = re.exec(html)) !== null) {
+    blocks.push({ start: m.index + m[1].length, content: m[2] });
+  }
+  return blocks;
+}
+
+// Selectors for which text-transform:uppercase is permitted inside <style> blocks.
+// All other selectors — and any inline style="" attribute — remain prohibited.
+const UPPERCASE_CSS_SELECTOR_ALLOWLIST = ['.row__name'];
+
+// Given a <style> block's content and the offset of a text-transform:uppercase
+// match within that content, return true if the containing rule's selector is
+// in UPPERCASE_CSS_SELECTOR_ALLOWLIST.
+function isCssUppercaseAllowed(cssContent, localOffset) {
+  // Walk backwards to find the { that opens the containing rule.
+  let depth = 0, openBrace = -1;
+  for (let i = localOffset; i >= 0; i--) {
+    if (cssContent[i] === '}') depth++;
+    else if (cssContent[i] === '{') {
+      if (depth === 0) { openBrace = i; break; }
+      depth--;
+    }
+  }
+  if (openBrace < 0) return false;
+
+  // Selector is the text between the previous } (or start) and openBrace.
+  let selStart = 0;
+  for (let i = openBrace - 1; i >= 0; i--) {
+    if (cssContent[i] === '}') { selStart = i + 1; break; }
+  }
+  const selectorRaw = cssContent.slice(selStart, openBrace).trim();
+
+  // Strip any enclosing at-rule block (e.g. @media … {) to get the immediate selector.
+  const lastBrace = selectorRaw.lastIndexOf('{');
+  const selector  = (lastBrace >= 0 ? selectorRaw.slice(lastBrace + 1) : selectorRaw).trim();
+
+  return selector.split(',').some(s =>
+    UPPERCASE_CSS_SELECTOR_ALLOWLIST.some(a => s.trim() === a)
+  );
+}
+
 // 0-based line index of char offset.
 function lineOf(str, offset) {
   let n = 0;
@@ -254,6 +301,7 @@ for (const relPath of HTML_FILES) {
   const noComment      = stripComments(raw);
   const noCommentLines = noComment.split('\n');
   const noCSS          = stripCssAndComments(raw);
+  const styleBlocks    = extractStyleBlocks(raw);
   const genR           = genRanges(lines);
   const exR            = exemptRanges(lines);
 
@@ -405,20 +453,38 @@ for (const relPath of HTML_FILES) {
   }
 
   // ── Rule 7: PROHIBITIONS ───────────────────────────────────────────────────
+  // text-transform:uppercase is allowed inside <style> blocks only when the
+  // containing CSS rule's selector is in UPPERCASE_CSS_SELECTOR_ALLOWLIST;
+  // it is always flagged in inline style="" attributes and page content.
+  // Monospace font-family has no allowlist — flagged everywhere.
+  // → and · are flagged anywhere in page content.
   const PROHIBITIONS = [
-    { re: /text-transform\s*:\s*uppercase/gi, label: 'text-transform:uppercase' },
-    { re: /font-family\s*:[^;]*(?:monospace|Courier|Consolas|Monaco|Menlo|Lucida Console|Liberation Mono|DejaVu)/gi, label: 'monospace font-family' },
-    { re: /→/g,  label: '→ right arrow (entity or literal)' },   // &rarr; decoded above
-    { re: /·/g,  label: '· middle dot (entity or literal)' },    // &middot; decoded above
+    {
+      re: /text-transform\s*:\s*uppercase/gi,
+      label: 'text-transform:uppercase',
+      src: raw,
+      checkFn: (m) => {
+        for (const block of styleBlocks) {
+          if (m.index >= block.start && m.index < block.start + block.content.length) {
+            return !isCssUppercaseAllowed(block.content, m.index - block.start);
+          }
+        }
+        return true; // inline style="" or content — always flag
+      },
+    },
+    { re: /font-family\s*:[^;]*(?:monospace|Courier|Consolas|Monaco|Menlo|Lucida Console|Liberation Mono|DejaVu)/gi, label: 'monospace font-family', src: raw },
+    { re: /→/g, label: '→ right arrow (entity or literal)', src: raw },
+    { re: /·/g, label: '· middle dot (entity or literal)',  src: raw },
   ];
-  for (const { re, label } of PROHIBITIONS) {
+  for (const { re, label, src, checkFn } of PROHIBITIONS) {
     re.lastIndex = 0;
     let m;
-    while ((m = re.exec(raw)) !== null) {
+    while ((m = re.exec(src)) !== null) {
       if (inComment(raw, noComment, m.index)) continue;
       const li = lineOf(raw, m.index);
       if (inRanges(li, genR)) continue;
       if (inRanges(li, exR)) continue;
+      if (checkFn && !checkFn(m)) continue;
       fail(relPath, li + 1, lines[li], `Rule 7 PROHIBITION: ${label}`);
     }
   }

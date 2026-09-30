@@ -252,124 +252,116 @@
       .cos-pain__tile { padding: var(--s-6) var(--s-5); }
     }
 
-    /* --- Product index (§3) --- */
-    .cos-index { padding: var(--zone-pad) 0; }
-    .cos-index__hd {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
-      gap: var(--s-5) var(--s-8);
-      align-items: start;
-      border-bottom: var(--w-cut) solid var(--rule-cut);
-      padding-bottom: var(--s-5);
-    }
-    .cos-index__hd-left {
-      container-type: inline-size;
-      min-width: 0;
-      display: flex;
-      flex-direction: column;
-      gap: var(--s-4);
-    }
-    .cos-index__eyebrow {
+    /* --- The system (§3) --- */
+    .sys { padding: 80px 0 84px; }
+    .sys__head { display: flex; flex-wrap: wrap; gap: 24px 56px; align-items: flex-end; padding-bottom: 36px; }
+    .sys__head-l { flex: 2 1 560px; display: flex; flex-direction: column; gap: 20px; }
+    .sys__eyebrow {
+      display: flex; align-items: center; gap: 12px;
       font-family: var(--font-display);
-      font-size: 11px; font-weight: 600; letter-spacing: 0.14em;
-      color: var(--fg-muted);
+      font-weight: 500; font-size: 11px; letter-spacing: 0.06em; color: var(--fg-muted);
     }
-    .cos-index__logo-row { display: flex; align-items: center; gap: var(--s-4); flex-wrap: wrap; }
-    .cos-index__heading {
+    .mark .m-frame { fill: none; stroke: var(--c-ink); }
+    .mark .m-plate { fill: var(--c-mark); }
+    .sys__h2 {
       margin: 0;
       font-family: var(--font-display);
-      font-size: clamp(28px, 8cqi, 42px);
-      font-weight: 600; line-height: 1.05; letter-spacing: -0.035em;
-      color: var(--fg); text-wrap: balance;
+      font-weight: 600; font-size: clamp(40px,5vw,60px); line-height: .98; letter-spacing: -0.022em;
     }
-    .cos-index__lead {
+    .sys__head-r { flex: 1 1 280px; padding-bottom: 8px; }
+    .sys__intro {
       margin: 0;
       font-family: var(--font-display);
-      font-size: 17px; font-weight: 500; line-height: 1.5; letter-spacing: -0.015em;
-      color: var(--fg); padding-top: 5px; min-width: 0;
+      font-weight: 500; font-size: clamp(20px,2vw,26px); line-height: 1.22;
+      letter-spacing: -0.022em; text-wrap: balance;
     }
-    .cos-index__list { display: flex; flex-direction: column; }
-    .cos-index__row {
-      display: grid;
-      grid-template-columns: 44px minmax(0, 300px) 1fr;
-      column-gap: var(--s-5);
-      row-gap: var(--s-2);
-      padding: var(--s-5) 0;
-      border-top: var(--w-object) solid var(--rule-object);
-      text-decoration: none;
-      color: var(--fg);
+    .sys__rows { list-style: none; margin: 0; padding: 0; border-top: var(--w-cut) solid var(--c-ink); }
+    .row {
+      --bg: var(--c-white);
+      --fg: var(--c-ink);
+      --muted: var(--c-graphite);
+      --num: var(--c-ink);
+      --glyph-p: var(--c-ink);
+      --glyph-s: var(--c-graphite);
+      --glyph-delta: var(--c-mark);
+      display: flex; flex-wrap: wrap; gap: 16px 28px; align-items: center;
+      padding: 34px 28px;
+      background: var(--bg); color: var(--fg); transition: background 220ms;
     }
-    .cos-index__row:hover .cos-index__name { text-decoration: underline; text-underline-offset: 3px; }
-    .cos-index__num {
-      grid-column: 1; grid-row: 1;
+    .row + .row { border-top: var(--w-dimension) solid var(--c-line); }
+    .row--navy, .row--black {
+      --fg: var(--c-white);
+      --muted: var(--c-muted-dark);
+      --num: var(--c-brass);
+      --glyph-p: var(--c-white);
+      --glyph-s: var(--c-white);
+      --glyph-delta: var(--c-mark-lift);
+    }
+    .row--navy { --bg: var(--c-navy); }
+    .row--black { --bg: var(--c-ink); }
+    @media (hover:hover) {
+      .row:hover, .row:focus-within {
+        --bg: var(--c-navy);
+        --fg: var(--c-white);
+        --muted: var(--c-muted-dark);
+        --num: var(--c-brass);
+        --glyph-p: var(--c-white);
+        --glyph-s: var(--c-white);
+        --glyph-delta: var(--c-mark-lift);
+      }
+    }
+    @media (prefers-reduced-motion: reduce) { .row { transition: none; } }
+    .row__a { flex: 0 0 278px; display: flex; align-items: center; }
+    .row__num {
+      flex: 0 0 48px;
       font-family: var(--font-display);
-      font-size: 11px; font-weight: 400; letter-spacing: 0.06em;
-      font-variant-numeric: tabular-nums;
-      color: var(--fg-muted); padding-top: 4px;
+      font-weight: 500; font-size: 13px; letter-spacing: 0.06em;
+      font-variant-numeric: tabular-nums; color: var(--num);
     }
-    .cos-index__name {
-      grid-column: 2; grid-row: 1;
+    .row__prod { display: flex; align-items: center; gap: 16px; }
+    .glyph { width: 40px; height: 40px; flex: 0 0 40px; display: block; }
+    .glyph .g-p { fill: none; stroke: var(--glyph-p); }
+    .glyph .g-s { fill: none; stroke: var(--glyph-s); }
+    .glyph .g-d { fill: none; stroke: var(--glyph-delta); }
+    .row__meta { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
+    .row__name {
       font-family: var(--font-display);
-      font-size: 22px; font-weight: 600;
-      line-height: 1.18; letter-spacing: -0.022em;
-      color: var(--fg);
+      font-weight: 600; font-size: 13px; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--fg); /* product wordmark: capitals permitted — BRAND §3 rev 10 */
     }
-    .cos-index__mid {
-      grid-column: 3; grid-row: 1;
-      display: flex; align-items: baseline;
-      justify-content: flex-end; gap: var(--s-5);
-      padding-top: 4px;
-    }
-    .cos-index__status {
+    .row__status {
       font-family: var(--font-display);
-      font-size: 11px; font-weight: 400; letter-spacing: 0.06em;
-      color: var(--fg-muted); white-space: nowrap;
+      font-weight: 500; font-size: 11px; letter-spacing: 0.06em; color: var(--muted);
     }
-    .cos-index__product {
-      grid-column: 2; grid-row: 2;
+    .row__bc { flex: 1 1 380px; min-width: 0; display: flex; flex-wrap: wrap; gap: 12px 28px; align-items: center; }
+    .row__h3 {
+      flex: 1 1 300px; margin: 0;
       font-family: var(--font-display);
-      font-size: 15px; font-weight: 600;
-      line-height: 1.5; color: var(--fg-muted);
+      font-weight: 600; font-size: clamp(30px,3vw,38px); line-height: 1.02;
+      letter-spacing: -0.022em; text-wrap: balance; color: var(--fg);
     }
-    .cos-index__sub {
-      grid-column: 2 / 4; grid-row: 3;
+    .row__body {
+      flex: 1 1 280px; max-width: 320px; margin: 0;
       font-family: var(--font-display);
-      font-size: 15px; font-weight: 400;
-      line-height: 1.5; color: var(--fg-muted);
+      font-size: 15px; line-height: 1.55; color: var(--muted);
     }
-    .cos-index__how {
-      border-top: var(--w-cut) solid var(--rule-cut);
-      padding-top: var(--s-6);
-      display: flex;
-      flex-direction: column;
-      gap: var(--s-4);
-    }
-    .cos-index__how-head {
-      margin: 0;
+    .sys__example { display: flex; flex-wrap: wrap; gap: 40px 64px; padding-top: 56px; align-items: flex-start; }
+    .sys__stmt {
+      flex: 5 1 340px; margin: 0;
       font-family: var(--font-display);
-      font-weight: 600;
-      font-size: 20px;
-      line-height: 1.35;
-      letter-spacing: -0.015em;
-      color: var(--fg);
-      max-width: 58ch;
+      font-weight: 600; font-size: clamp(24px,2.6vw,32px); line-height: 1.12;
+      letter-spacing: -0.022em; text-wrap: balance;
     }
-    .cos-index__how-p {
-      margin: 0;
-      font-family: var(--font-display);
-      font-size: 16px;
-      line-height: 1.6;
-      color: var(--fg-muted);
-      max-width: 58ch;
+    .sys__quotes {
+      flex: 7 1 480px;
+      display: grid; grid-template-columns: repeat(auto-fit,minmax(min(240px,100%),1fr)); gap: 32px;
     }
-    @media (max-width: 760px) {
-      .cos-index__row { grid-template-columns: 40px 1fr; }
-      .cos-index__num     { grid-column: 1; grid-row: 1; }
-      .cos-index__name    { grid-column: 2; grid-row: 1; }
-      .cos-index__mid     { grid-column: 2; grid-row: auto; flex-direction: column; gap: var(--s-1); padding-top: 0; justify-content: flex-start; }
-      .cos-index__product { grid-column: 2; grid-row: auto; }
-      .cos-index__sub     { grid-column: 2; grid-row: auto; }
-    }
+    .quote { display: flex; flex-direction: column; gap: 14px; padding-top: 16px; border-top: var(--w-object) solid var(--q); }
+    .quote--navy { --q: var(--c-navy); }
+    .quote--black { --q: var(--c-ink); }
+    .quote__label { font-family: var(--font-display); font-weight: 500; font-size: 11px; letter-spacing: 0.06em; color: var(--q); }
+    .quote__text { margin: 0; font-family: var(--font-display); font-size: 16px; line-height: 1.6; }
+    @media (max-width: 699px) { .row { padding: 28px 20px; } }
 
     /* --- Proof section (§4) dimension figures --- */
     .cos-proof { padding: var(--zone-pad) 0; }
@@ -837,63 +829,92 @@
 </div>
 
 <!-- ===== §3 THE SYSTEM ===== -->
-<section class="surface--white cos-index">
+<section class="surface--white sys" aria-labelledby="sys-h2">
   <div class="cos-container">
 
-    <div class="cos-index__hd">
-      <div class="cos-index__hd-left">
-        <div class="cos-index__eyebrow">The system</div>
-        <div class="cos-index__logo-row">
-          <svg viewBox="0 0 100 100" width="44" height="44" aria-hidden="true" style="flex: none; color: var(--fg);">
-            <polyline points="16,54 16,16 54,16" fill="none" stroke="currentColor" stroke-width="9"></polyline>
-            <polyline points="84,46 84,84 46,84" fill="none" stroke="currentColor" stroke-width="9"></polyline>
-            <rect x="32" y="32" width="36" height="36" style="fill: var(--c-mark); stroke: var(--rule-object); stroke-width: 5;"></rect>
-          </svg>
-          <h2 class="cos-index__heading">How Construction OS works</h2>
+    <div class="sys__head">
+      <div class="sys__head-l">
+        <div class="sys__eyebrow">
+          <svg class="mark" viewBox="0 0 100 100" width="22" height="22" aria-hidden="true"><polyline class="m-frame" points="16,54 16,16 54,16" stroke-width="11"/><polyline class="m-frame" points="84,46 84,84 46,84" stroke-width="11"/><rect class="m-plate" x="34" y="34" width="32" height="32"/></svg>
+          <span>The system</span>
+        </div>
+        <h2 id="sys-h2" class="sys__h2">How Construction OS works</h2>
+      </div>
+      <div class="sys__head-r"><p class="sys__intro">Put more of how your company works into a system your team can use.</p></div>
+    </div>
+
+    <ol class="sys__rows">
+
+      <li class="row">
+        <div class="row__a">
+          <span class="row__num" aria-hidden="true">01</span>
+          <div class="row__prod">
+            <svg class="glyph" viewBox="0 0 100 100" aria-hidden="true"><line class="g-s" x1="6" y1="50" x2="96" y2="50" stroke-width="5"/><polyline class="g-p" points="8,20 40,20 54,42 94,42" stroke-width="9"/><polyline class="g-p" points="8,80 40,80 54,58 94,58" stroke-width="9"/></svg>
+            <div class="row__meta"><span class="row__name">Construction Intelligence</span></div>
+          </div>
+        </div>
+        <div class="row__bc">
+          <h3 class="row__h3">Know what to do.</h3>
+          <p class="row__body">Construction knowledge grounded in real operating practice, configured around your company&rsquo;s procedures, pricing, standards, contracts, and experience.</p>
+        </div>
+      </li>
+
+      <li class="row">
+        <div class="row__a">
+          <span class="row__num" aria-hidden="true">02</span>
+          <div class="row__prod">
+            <svg class="glyph" viewBox="0 0 100 100" aria-hidden="true"><polyline class="g-s" points="30,14 86,14 86,72" stroke-width="5"/><rect class="g-p" x="14" y="26" width="52" height="60" stroke-width="9"/></svg>
+            <div class="row__meta"><span class="row__name">Document Workbench</span></div>
+          </div>
+        </div>
+        <div class="row__bc">
+          <h3 class="row__h3">Do the work.</h3>
+          <p class="row__body">Turn project information and decisions into the scopes, PCOs, RFIs, agreements, reports, and other documents the job requires.</p>
+        </div>
+      </li>
+
+      <li class="row row--navy">
+        <div class="row__a">
+          <span class="row__num" aria-hidden="true">03</span>
+          <div class="row__prod">
+            <svg class="glyph" viewBox="0 0 100 100" aria-hidden="true"><rect class="g-s" x="6" y="18" width="88" height="64" stroke-width="5"/><line class="g-p" x1="18" y1="70" x2="82" y2="70" stroke-width="9"/><line class="g-p" x1="30" y1="70" x2="30" y2="56" stroke-width="9"/><line class="g-p" x1="50" y1="70" x2="50" y2="44" stroke-width="9"/><line class="g-d" x1="70" y1="70" x2="70" y2="32" stroke-width="9"/></svg>
+            <div class="row__meta"><span class="row__name">Project Intelligence</span><span class="row__status">In development</span></div>
+          </div>
+        </div>
+        <div class="row__bc">
+          <h3 class="row__h3">Know what needs attention.</h3>
+          <p class="row__body">Surface the open decisions, aging changes, missing approvals, unresolved work, and exceptions that need action.</p>
+        </div>
+      </li>
+
+      <li class="row row--black">
+        <div class="row__a">
+          <span class="row__num" aria-hidden="true">04</span>
+          <div class="row__prod">
+            <svg class="glyph" viewBox="0 0 100 100" aria-hidden="true"><line class="g-p" x1="14" y1="28" x2="34" y2="28" stroke-width="9"/><line class="g-p" x1="42" y1="28" x2="62" y2="28" stroke-width="9"/><line class="g-p" x1="70" y1="28" x2="90" y2="28" stroke-width="9"/><line class="g-s" x1="24" y1="34" x2="24" y2="66" stroke-width="5"/><line class="g-s" x1="52" y1="34" x2="52" y2="66" stroke-width="5"/><line class="g-s" x1="80" y1="34" x2="80" y2="66" stroke-width="5"/><line class="g-d" x1="14" y1="74" x2="90" y2="74" stroke-width="9"/></svg>
+            <div class="row__meta"><span class="row__name">Operations Automation</span><span class="row__status">Extension layer</span></div>
+          </div>
+        </div>
+        <div class="row__bc">
+          <h3 class="row__h3">Keep the routine work moving.</h3>
+          <p class="row__body">Take repetitive, high-volume operational work off the team while keeping review and judgment with your people.</p>
+        </div>
+      </li>
+
+    </ol>
+
+    <div class="sys__example">
+      <p class="sys__stmt">Construction Intelligence determines what should happen. Document Workbench produces what happens next.</p>
+      <div class="sys__quotes">
+        <div class="quote quote--navy">
+          <span class="quote__label">Construction Intelligence</span>
+          <p class="quote__text">&ldquo;An owner requests a change. Construction Intelligence applies how your company handles it &mdash; what the contract requires, how the pricing should be treated, whether written authorization is needed, and what conditions would change the answer.&rdquo;</p>
+        </div>
+        <div class="quote quote--black">
+          <span class="quote__label">Document Workbench</span>
+          <p class="quote__text">&ldquo;Document Workbench then produces the PCO: the scope language, the pricing, the schedule impact, and the approval documentation.&rdquo;</p>
         </div>
       </div>
-      <p class="cos-index__lead">Put more of how your company works into a system your team can use.</p>
-    </div>
-
-    <div class="cos-index__list">
-
-      <a href="/products/construction-intelligence.html" class="cos-index__row">
-        <span class="cos-index__num">01</span>
-        <span class="cos-index__name">Know what to do.</span>
-        <span class="cos-index__product">Construction Intelligence</span>
-        <span class="cos-index__sub">Construction knowledge grounded in real operating practice, configured around your company&rsquo;s procedures, pricing, standards, contracts, and experience.</span>
-      </a>
-
-      <a href="/products/document-workbench.html" class="cos-index__row">
-        <span class="cos-index__num">02</span>
-        <span class="cos-index__name">Do the work.</span>
-        <span class="cos-index__product">Document Workbench</span>
-        <span class="cos-index__sub">Turn project information and decisions into the scopes, PCOs, RFIs, agreements, reports, and other documents the job requires.</span>
-      </a>
-
-      <a href="/products/project-intelligence.html" class="cos-index__row">
-        <span class="cos-index__num">03</span>
-        <span class="cos-index__name">Know what needs attention.</span>
-        <span class="cos-index__mid">
-          <span class="cos-index__status">In development</span>
-        </span>
-        <span class="cos-index__product">Project Intelligence</span>
-        <span class="cos-index__sub">Surface the open decisions, aging changes, missing approvals, unresolved work, and exceptions that need action.</span>
-      </a>
-
-      <a href="/products/operations-automation.html" class="cos-index__row">
-        <span class="cos-index__num">04</span>
-        <span class="cos-index__name">Keep the routine work moving.</span>
-        <span class="cos-index__product">Operations Automation</span>
-        <span class="cos-index__sub">Take repetitive, high-volume operational work off the team while keeping review and judgment with your people.</span>
-      </a>
-
-    </div>
-
-    <div class="cos-index__how">
-      <p class="cos-index__how-head">Construction Intelligence determines what should happen. Document Workbench produces what happens next.</p>
-      <p class="cos-index__how-p">&ldquo;An owner requests a change. Construction Intelligence applies how your company handles it &mdash; what the contract requires, how the pricing should be treated, whether written authorization is needed, and what conditions would change the answer.&rdquo;</p>
-      <p class="cos-index__how-p">&ldquo;Document Workbench then produces the PCO: the scope language, the pricing, the schedule impact, and the approval documentation.&rdquo;</p>
     </div>
 
   </div>

@@ -1,8 +1,8 @@
 # Brand system
 
 **Sheet:** BRAND-002
-**Issued:** 2026-09-19
-**Revision:** 09
+**Issued:** 2026-09-30
+**Revision:** 10
 **Supersedes:** BRAND-001 (specimen)
 
 This file is the authority on what this brand looks like. It governs the website, PDFs, Word documents, decks, and carousels. When a rule here conflicts with anything else in this repository, or with an existing stylesheet, this file wins.
@@ -39,6 +39,8 @@ Raw values. Nothing in the site references these directly — all components use
 | `--c-brass` | `#C08F58` | Dark surfaces only — 6.02:1 on ink, 5.14:1 on navy |
 | `--c-muted-dark` | `#B1A9A3` | Muted text on dark — 7.47:1 on ink, 6.38:1 on navy, 4.80:1 on oxblood |
 | `--c-change-lift` | `#D07A6A` | Change mark on dark — 5.49:1 on ink, 4.69:1 on navy |
+| `--c-mark` | `#692524` | Brand mark plate and glyph delta on light — fixed, does not follow `--change` |
+| `--c-mark-lift` | `#D07A6A` | Glyph delta on dark — same value as `--c-change-lift`, separately controllable |
 
 ### 2.2 Role tokens (Layer 2)
 
@@ -106,6 +108,8 @@ Body prose sets to a maximum of 68 characters. All numerals use `font-variant-nu
 
 Sentence case everywhere in language. Capitals are reserved for identifiers that genuinely are codes: `CASE-003`, `REV 02`. Never `PALETTE`, never `OUR PROCESS`, never a capitalized label above a headline.
 
+**Exception — product wordmarks.** The four product names in the §3 system section (Construction Intelligence, Document Workbench, Project Intelligence, Operations Automation) may be set in capitals: Archivo 600, 13px, 0.1em tracking, `text-transform: uppercase`. They function as identifiers, not labels. Every other label — eyebrow, status text, quote labels, and all copy — stays sentence case. Status text under a wordmark is plain text, never a chip, box, or pill.
+
 ---
 
 ## 4. Oxblood — change mark and closing ground
@@ -120,7 +124,7 @@ Sentence case everywhere in language. Capitals are reserved for identifiers that
 
 On dark surfaces (ink, navy) the lifted variant `--c-change-lift` (`#D07A6A`) carries the change role — 5.49:1 on ink, 4.69:1 on navy. The change must always be readable by position and label, never by color alone.
 
-**Exception — brand mark.** The oxblood square in the Construction OS logo mark is not a change indicator. It uses `--c-mark` (`#692524`, same value as `--c-oxblood`), is fixed regardless of surface, and does not follow `--change`. This is the one place the color appears without semantic change meaning.
+**Exception — brand mark and product glyph deltas.** The oxblood square in the Construction OS logo mark is not a change indicator. It uses `--c-mark` (`#692524`, same value as `--c-oxblood`), is fixed regardless of surface, and does not follow `--change`. The delta stroke in each product glyph plays the same plate role as the mark's square — it uses `--c-mark` on light rows and `--c-mark-lift` (`#D07A6A`) on dark rows. Neither `--c-mark` nor `--c-mark-lift` follows `--change`. Red as change and red as mark are separate roles on separate tokens — do not conflate them.
 
 ---
 
@@ -232,7 +236,19 @@ Each of these has a reason. A prohibition without a reason gets argued around.
 - **All-caps labels** — see §3.
 - **Monospace for data labels** — the reflexive technical-brand move, and inaccurate: drafting lettering was single-stroke gothic, never monospaced. Archivo with tabular figures does this job.
 - **Blueprint motifs** — grid overlays, drafting compasses, paper texture, blueprint blue, faux stamps.
-- **Icon sets** — no generic line-icon library. Where a mark is needed it is drawn from the line vocabulary in §5.
+- **Icon sets** — no generic line-icon library. Where a mark is needed it is drawn from the line vocabulary in §5. The four product glyphs are a documented family built from the brand mark's geometry, not an icon set:
+
+  The brand mark (22px eyebrow) is drawn on a 100×100 grid: two opposed corner brackets — polyline `16,54 16,16 54,16` and `84,46 84,84 46,84`, stroke 11 — around a centred 32×32 plate (34,34). The bracket is the line; the plate is the change mark.
+
+  The four 40×40 glyphs draw on the same 100×100 grid and take the mark's vocabulary, not its outline. They are companions to the mark, not geometric reductions of it. Grid and terminals: 100-unit grid, orthogonal strokes, butt caps, mitred corners, no curves — as the mark. Stroke hierarchy: the mark's single 11-unit stroke splits into two weights — 9 (primary, = the bracket) and 5 (secondary, = reference/datum). At 40px these render at 3.6px and 2px; do not scale linearly to other sizes. Plate role: where a glyph shows a change or exception, that one stroke takes `--c-mark`/`--c-mark-lift` (the plate's colour role). Only Project Intelligence and Operations Automation carry a delta.
+
+  Per glyph:
+  - **Construction Intelligence:** 5-unit datum on the centre axis (y=50, the mark's axis of symmetry); two 9-unit paths converge on it from y=20/80.
+  - **Document Workbench:** 9-unit sheet `14,26` 52×60; behind it a 5-unit offset corner `30,14 86,14 86,72` — the one direct quotation of a mark bracket.
+  - **Project Intelligence:** 5-unit frame `6,18` 88×64; 9-unit baseline and three bars rising 14/26/38 units; the tallest bar is the delta.
+  - **Operations Automation:** three 9-unit segments on y=28, three 5-unit drops, 9-unit baseline on y=74 as the delta.
+
+  Colour: primary and secondary strokes take the row's foreground on dark rows; on light rows primary is warm black (`--c-ink`), secondary warm graphite (`--c-graphite`). The delta is `--c-mark` on light rows and `--c-mark-lift` on dark rows.
 - **Entrance animation on scroll** — fade-and-slide-up on every section is the generated default. Motion responds to a user action or does not exist.
 - **Steel as a text color, button, or icon** — steel is a surface. Its use outside a section background is prohibited.
 - **Dimension figures on steel** — revision-lift (#E2685E) reaches 1.84:1 on steel, below the 3:1 minimum for non-text. No revision red at usable luminance passes against `#476776`. Ink is permitted; see §8 rule 7.
@@ -274,3 +290,4 @@ Claude Code may not introduce a visual treatment not defined here. If a page nee
 | 07 | 2026-09-24 | Added `--c-steel-deep` (`#2F4A57`) to palette. Added `.surface--steel-deep` and `.surface--revision` surface classes to `tokens.css`. Stats band changed from `surface--ink` to `surface--steel-deep`. Closing CTA (§6) changed from inline `#111111` ground to `surface--revision`. §2.1, §2.3, §2.4, §4 updated with new surfaces and ground-only revision rule. **Superseded by rev 08** — `steel-deep` and `revision` surfaces are retired; do not implement. |
 | 08 | 2026-09-24 | Palette replaced. Retired: steel (`#476776`), steel-deep (`#2F4A57`), revision red (`#C43230`), graphite-lift (`#949B9E`), line-dark (`#B1BFC5`), revision-lift (`#E2685E`). Added: warm black ink (`#1E1A17`), warm ivory bond (`#F3F1EB`), navy (`#1D2648`), oxblood (`#692524`), graphite (`#413833`), line (`#BAB8B7`), brass (`#C08F58`, dark surfaces only), muted-dark (`#B1A9A3`), change-lift (`#D07A6A`). Surface classes reduced from 6 → 5: `.surface--steel` and `.surface--steel-deep` removed, `.surface--revision` replaced by `.surface--oxblood`, `.surface--navy` added. Stats band changed to `surface--navy`, closing CTA to `surface--oxblood`. §2.1, §2.3, §2.4, §4 rewritten. |
 | 09 | 2026-09-26 | §2.4 dark-section limit raised from two to three. Reason: the original two-section limit dates from the single-ink palette; the current palette carries three distinct dark grounds (ink, navy, oxblood), each with a different character and a different function. A nine-section page can support three without dilution provided each serves a separate role — evidence band, argument, closing plate — and the adjacency and function-uniqueness constraints are met. §2.4 updated accordingly. |
+| 10 | 2026-09-30 | §3 type: product wordmarks (the four product names in the §3 system section) may be set in Archivo 600, 13px, 0.1em tracking, uppercase — the only exception to sentence case. Status text under a wordmark is plain text, never a chip. §4: glyph delta strokes in the four product glyphs use `--c-mark`/`--c-mark-lift`, not `--change` — mark role and change role are separate tokens on separate semantic axes; §4 updated to document this. §10: four product glyphs documented as a constructed family from the mark's geometry (not an icon set); full construction notes added. §2.1: `--c-mark` and `--c-mark-lift` added to palette table. `--c-mark-lift` (#D07A6A, same value as `--c-change-lift`) added to `tokens.css`. |

@@ -289,6 +289,15 @@
       background: var(--bg); color: var(--fg); transition: background 220ms;
     }
     .row + .row { border-top: var(--w-dimension) solid var(--c-line); }
+    .row--navy {
+      --bg: var(--c-navy);
+      --fg: var(--c-white);
+      --muted: var(--c-muted-dark);
+      --num: var(--c-brass);
+      --glyph-p: var(--c-white);
+      --glyph-s: var(--c-white);
+      --glyph-delta: var(--c-mark-lift);
+    }
     .row--black {
       --bg: var(--c-ink);
       --fg: var(--c-white);
@@ -308,6 +317,7 @@
         --glyph-s: var(--c-white);
         --glyph-delta: var(--c-mark-lift);
       }
+      .row--navy:hover, .row--navy:focus-within { --bg: var(--c-navy); }
       .row--black:hover, .row--black:focus-within { --bg: var(--c-ink); }
     }
     @media (prefers-reduced-motion: reduce) { .row { transition: none; } }
@@ -893,7 +903,7 @@
         </div>
       </li>
 
-      <li class="row">
+      <li class="row row--navy">
         <div class="row__a">
           <span class="row__num" aria-hidden="true">03</span>
           <a class="row__prod" href="/products/project-intelligence.html">

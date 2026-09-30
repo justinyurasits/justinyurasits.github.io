@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="brand-kit/cos-footer.css">
 <script src="/image-slot.js"></script>
 <style>
-body { margin: 0; background: #FFFFFF; }
+body { margin: 0; font-family: Archivo, sans-serif; }
 </style>
 </head>
 <body>
@@ -63,311 +63,291 @@ body { margin: 0; background: #FFFFFF; }
 </header>
 <!-- header:end -->
 
-<div style="font-family: Archivo, Helvetica, sans-serif; color: #111111;">
+<!-- § 1. Hero — White -->
+<div class="surface--white" style="padding: 76px 0 80px;">
+  <div style="max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px);">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr)); gap: 44px 56px; align-items: start;">
 
-  <!-- 1. HERO — Paper -->
-  <div style="background: #FFFFFF; padding: 76px 0 80px;">
-    <div style="max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px);">
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr)); gap: 44px 56px; align-items: start;">
-
-        <div style="container-type: inline-size; display: flex; flex-direction: column; gap: 24px; min-width: 0;">
-          <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
-            <svg viewBox="0 0 100 100" width="26" height="26" aria-hidden="true" style="flex: none;">
-              <polyline points="16,54 16,16 54,16" fill="none" stroke="#111111" stroke-width="11"></polyline>
-              <polyline points="84,46 84,84 46,84" fill="none" stroke="#111111" stroke-width="11"></polyline>
-              <rect x="34" y="34" width="32" height="32" fill="var(--c-mark)"></rect>
-            </svg>
-            <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #476776;">About</div>
-          </div>
-
-          <h1 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(28px, 8.4cqi, 48px); line-height: 1.04; letter-spacing: -0.038em; text-wrap: balance;">I build the systems I needed when I was the one producing the paperwork.</h1>
-
-          <div style="border-top: 1px solid #B8B9B5; padding-top: 24px; display: flex; flex-direction: column; gap: 14px;">
-            <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 18px; line-height: 1.45; letter-spacing: -0.018em; max-width: 46ch;">Twelve years in enterprise product leadership. Three years inside residential construction operations.</div>
-            <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 19px; line-height: 1.4; letter-spacing: -0.02em; color: #111111;">Construction OS came out of the overlap.</div>
-          </div>
+      <div style="container-type: inline-size; display: flex; flex-direction: column; gap: 24px; min-width: 0;">
+        <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
+          <svg viewBox="0 0 100 100" width="26" height="26" aria-hidden="true" style="flex: none;">
+            <polyline points="16,54 16,16 54,16" fill="none" stroke="currentColor" stroke-width="11"/>
+            <polyline points="84,46 84,84 46,84" fill="none" stroke="currentColor" stroke-width="11"/>
+            <rect x="34" y="34" width="32" height="32" fill="var(--c-mark)"/>
+          </svg>
+          <div style="font-weight: 600; font-size: 11px; letter-spacing: 0.16em; color: var(--fg);">About</div>
         </div>
 
-        <div style="min-width: 0; display: flex; flex-direction: column;">
-          <div style="border: 1px solid #111111; padding: 10px; background: #EFEFEB;">
-            <div style="position: relative; width: 100%; aspect-ratio: 4 / 5;">
-              <image-slot id="about-portrait" shape="rect" fit="cover" src="/images/about-portrait.jpg" placeholder="Drop the portrait of Justin — square or 4:5 crop"></image-slot>
-            </div>
-          </div>
-          <div style="border-top: 1px solid #B8B9B5; margin-top: 10px; padding-top: 9px; font-family: ui-monospace, monospace; font-size: 11px; letter-spacing: 0.06em; color: #5F6466;">Justin Yurasits &middot; Boston, MA</div>
-        </div>
+        <h1 style="margin: 0; font-weight: 600; font-size: clamp(28px, 8.4cqi, 48px); line-height: 1.04; letter-spacing: -0.038em; text-wrap: balance; color: var(--fg);">Built from both sides of the problem.</h1>
 
+        <div style="font-weight: 600; font-size: clamp(20px, 5cqi, 26px); line-height: 1.2; letter-spacing: -0.026em; color: var(--fg); max-width: 32ch; text-wrap: balance;">I build the systems I needed when I was the one producing the paperwork.</div>
+
+        <div style="border-top: var(--w-object) solid var(--rule-dimension); padding-top: 24px; display: flex; flex-direction: column; gap: 14px;">
+          <div style="font-weight: 500; font-size: 18px; line-height: 1.45; letter-spacing: -0.018em; max-width: 46ch;">Twelve years in enterprise product leadership. Three years inside residential construction operations.</div>
+          <div style="font-weight: 600; font-size: 19px; line-height: 1.4; letter-spacing: -0.02em; color: var(--fg);">Construction OS came out of the overlap.</div>
+        </div>
+      </div>
+
+      <div style="min-width: 0; display: flex; flex-direction: column;">
+        <!-- Portrait frame: var(--c-bond) mat on white section is an intentional design choice — no role token resolves to bond on white -->
+        <div style="border: var(--w-object) solid var(--rule-cut); padding: 10px; background: var(--c-bond);">
+          <div style="position: relative; width: 100%; aspect-ratio: 4 / 5;">
+            <image-slot id="about-portrait" shape="rect" fit="cover" src="/images/about-portrait.jpg" placeholder="Drop the portrait of Justin — square or 4:5 crop"></image-slot>
+          </div>
+        </div>
+        <div style="border-top: var(--w-object) solid var(--rule-dimension); margin-top: 10px; padding-top: 9px; font-size: 11px; letter-spacing: 0.06em; color: var(--fg-muted);">Justin Yurasits — Boston, MA</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- § 2. Today — Bond -->
+<div class="surface--bond" style="padding: 64px 0 66px;">
+  <div style="max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px);">
+    <div style="container-type: inline-size;">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 24px 48px; align-items: start; border-bottom: var(--w-cut) solid var(--rule-cut); padding-bottom: 28px;">
+        <div style="display: flex; flex-direction: column; gap: 18px; min-width: 0;">
+          <div style="font-weight: 600; font-size: 11px; letter-spacing: 0.16em; color: var(--fg);">Today</div>
+          <div style="font-weight: 600; font-size: clamp(28px, 8cqi, 40px); line-height: 1.06; letter-spacing: -0.035em; max-width: 16ch; color: var(--fg);">What I do now.</div>
+        </div>
+        <div style="min-width: 0; padding-top: 5px; font-weight: 400; font-size: 16px; line-height: 1.65; color: var(--fg-muted);">I build operating systems for construction companies&mdash;<wbr>configuring Construction OS around how a company actually works, or building something purpose-made when nothing off-the-shelf fits.</div>
+      </div>
+
+      <div style="padding-top: 26px; font-weight: 500; font-size: 17px; line-height: 1.55; max-width: 68ch; color: var(--fg);">I&rsquo;ve written the scopes, produced the change orders, managed trades, and been responsible for work in the field.</div>
+    </div>
+  </div>
+</div>
+
+<!-- § 3. Where this came from — White -->
+<div class="surface--white" style="padding: 80px 0 84px;">
+  <div style="max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px);">
+    <div style="container-type: inline-size;">
+      <div style="display: flex; flex-direction: column; gap: 20px; border-bottom: var(--w-cut) solid var(--rule-cut); padding-bottom: 30px;">
+        <div style="font-weight: 600; font-size: 11px; letter-spacing: 0.16em; color: var(--fg);">Where this came from</div>
+        <div style="font-weight: 600; font-size: clamp(28px, 8cqi, 42px); line-height: 1.06; letter-spacing: -0.035em; max-width: 26ch; text-wrap: balance; color: var(--fg);">I&rsquo;ve held the license, run the jobs, and produced the paperwork.</div>
+        <div style="font-weight: 600; font-size: 19px; line-height: 1.45; letter-spacing: -0.02em; max-width: 54ch; text-wrap: pretty; color: var(--fg);">Product thinking applied from inside the operation. That&rsquo;s where Construction OS came from.</div>
+      </div>
+
+      <div style="padding-top: 34px;">
+        <div style="display: flex; flex-wrap: wrap; gap: 10px 44px; align-items: baseline; padding: 20px 0;">
+          <div style="flex: 1 1 190px; min-width: 0; font-weight: 600; font-size: 11px; letter-spacing: 0.14em; color: var(--fg);">License</div>
+          <div style="flex: 2.6 1 400px; min-width: 0; font-weight: 500; font-size: 16.5px; line-height: 1.55; letter-spacing: -0.015em; color: var(--fg);">Massachusetts Construction Supervisor License</div>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 10px 44px; align-items: baseline; padding: 20px 0; border-top: var(--w-object) solid var(--rule-dimension);">
+          <div style="flex: 1 1 190px; min-width: 0; font-weight: 600; font-size: 11px; letter-spacing: 0.14em; color: var(--fg);">The work</div>
+          <div style="flex: 2.6 1 400px; min-width: 0; font-weight: 500; font-size: 16.5px; line-height: 1.55; letter-spacing: -0.015em; color: var(--fg);">Three years in residential construction as project manager and site superintendent, running $1M&ndash;$4M renovations at a $50 million contractor.</div>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 10px 44px; align-items: baseline; padding: 20px 0; border-top: var(--w-object) solid var(--rule-dimension);">
+          <div style="flex: 1 1 190px; min-width: 0; font-weight: 600; font-size: 11px; letter-spacing: 0.14em; color: var(--fg);">What I built</div>
+          <div style="flex: 2.6 1 400px; min-width: 0; font-weight: 500; font-size: 16.5px; line-height: 1.55; letter-spacing: -0.015em; color: var(--fg);">The construction document library, operating procedures, and standards came from running those jobs. The AI systems were built out of the problems encountered doing that work, and have been used on roughly twenty real jobs and bids.</div>
+        </div>
+      </div>
+
+      <div style="border-top: var(--w-object) solid var(--rule-dimension); margin-top: 30px; padding-top: 26px; display: flex; flex-direction: column; gap: 14px;">
+        <div style="font-weight: 500; font-size: 16.5px; line-height: 1.55; letter-spacing: -0.015em; max-width: 68ch; color: var(--fg);">I ran $1M&ndash;$4M renovations at a $50 million contractor as a licensed Massachusetts Construction Supervisor.</div>
+        <div style="font-weight: 400; font-size: 16px; line-height: 1.65; color: var(--fg-muted); max-width: 76ch;">I learned how estimates get built, how documents get produced, and how information moves between the office and the field.</div>
+        <div style="font-weight: 600; font-size: clamp(21px, 5.2cqi, 27px); line-height: 1.25; letter-spacing: -0.026em; max-width: 40ch; text-wrap: pretty; color: var(--fg);">And where experienced judgment is the only thing keeping a process running.</div>
+      </div>
+
+      <div style="border-top: var(--w-cut) solid var(--rule-cut); margin-top: 44px; padding-top: 24px; display: flex; flex-wrap: wrap; gap: 10px 44px; align-items: baseline;">
+        <div style="flex: 1 1 190px; min-width: 0; font-weight: 600; font-size: 11px; letter-spacing: 0.14em; color: var(--fg-muted);">Before that</div>
+        <div style="flex: 2.6 1 400px; min-width: 0; font-weight: 400; font-size: 15px; line-height: 1.7; color: var(--fg-muted); max-width: 74ch;">Twelve years building enterprise software products: Optimizely, as Principal Product Manager on generative AI and data-science products. Fidelity Investments, a digital customer-account platform used by millions. Jabra. Most recently, Citizens.</div>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- 2. TODAY — Bond -->
-  <div style="background: #EFEFEB; padding: 64px 0 66px;">
-    <div style="max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px);">
-      <div style="container-type: inline-size;">
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 24px 48px; align-items: start; border-bottom: 2px solid #111111; padding-bottom: 28px;">
-          <div style="display: flex; flex-direction: column; gap: 18px; min-width: 0;">
-            <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #476776;">Today</div>
-            <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(28px, 8cqi, 40px); line-height: 1.06; letter-spacing: -0.035em; max-width: 16ch;">What I do now.</div>
-          </div>
-          <div style="min-width: 0; padding-top: 5px; font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.65; color: #5F6466;">I build operating systems for construction companies&mdash;<wbr>configuring Construction OS around how a company actually works, or building something purpose-made when nothing off-the-shelf fits.</div>
+<!-- § 4. What I found — Bond -->
+<div class="surface--bond" style="padding: 80px 0 84px;">
+  <div style="max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px);">
+    <div style="container-type: inline-size;">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 24px 48px; align-items: start; border-bottom: var(--w-cut) solid var(--rule-cut); padding-bottom: 28px;">
+        <div style="display: flex; flex-direction: column; gap: 18px; min-width: 0;">
+          <div style="font-weight: 600; font-size: 11px; letter-spacing: 0.16em; color: var(--fg);">What I found</div>
+          <div style="font-weight: 600; font-size: clamp(28px, 8cqi, 42px); line-height: 1.06; letter-spacing: -0.035em; max-width: 20ch; text-wrap: balance; color: var(--fg);">It wasn&rsquo;t really a software problem.</div>
         </div>
-
-        <div style="padding-top: 26px; font-family: Archivo, sans-serif; font-weight: 500; font-size: 17px; line-height: 1.55; max-width: 68ch;">I&rsquo;ve written the scopes, produced the change orders, managed trades, and been responsible for work in the field.</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 3. WHERE THIS CAME FROM — Paper -->
-  <div style="background: #FFFFFF; padding: 80px 0 84px;">
-    <div style="max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px);">
-      <div style="container-type: inline-size;">
-        <div style="display: flex; flex-direction: column; gap: 20px; border-bottom: 2px solid #111111; padding-bottom: 30px;">
-          <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #476776;">Where this came from</div>
-          <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(28px, 8cqi, 42px); line-height: 1.06; letter-spacing: -0.035em; max-width: 26ch; text-wrap: balance;">I&rsquo;ve held the license, run the jobs, and produced the paperwork.</div>
-          <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 19px; line-height: 1.45; letter-spacing: -0.02em; max-width: 54ch; text-wrap: pretty;">Product thinking applied from inside the operation. That&rsquo;s where Construction OS came from.</div>
-        </div>
-
-        <div style="padding-top: 34px;">
-          <div style="display: flex; flex-wrap: wrap; gap: 10px 44px; align-items: baseline; padding: 20px 0;">
-            <div style="flex: 1 1 190px; min-width: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #476776;">License</div>
-            <div style="flex: 2.6 1 400px; min-width: 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: 16.5px; line-height: 1.55; letter-spacing: -0.015em;">Massachusetts Construction Supervisor License &middot; General Contractor license</div>
-          </div>
-          <div style="display: flex; flex-wrap: wrap; gap: 10px 44px; align-items: baseline; padding: 20px 0; border-top: 1px solid #B8B9B5;">
-            <div style="flex: 1 1 190px; min-width: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #476776;">The work</div>
-            <div style="flex: 2.6 1 400px; min-width: 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: 16.5px; line-height: 1.55; letter-spacing: -0.015em;">Three years in residential construction as project manager and site superintendent, at large Boston residential general contractors</div>
-          </div>
-          <div style="display: flex; flex-wrap: wrap; gap: 10px 44px; align-items: baseline; padding: 20px 0; border-top: 1px solid #B8B9B5;">
-            <div style="flex: 1 1 190px; min-width: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #476776;">Project value</div>
-            <div style="flex: 2.6 1 400px; min-width: 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: 16.5px; line-height: 1.55; letter-spacing: -0.015em;">More than $30 million in high-end residential construction</div>
-          </div>
-          <div style="display: flex; flex-wrap: wrap; gap: 10px 44px; align-items: baseline; padding: 20px 0; border-top: 1px solid #B8B9B5;">
-            <div style="flex: 1 1 190px; min-width: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #476776;">What I built</div>
-            <div style="flex: 2.6 1 400px; min-width: 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: 16.5px; line-height: 1.55; letter-spacing: -0.015em;">The construction document library and the operating systems behind it: 110 document types across five lifecycle phases, the pricing logic, the standards, and the procedures</div>
-          </div>
-        </div>
-
-        <div style="border-top: 1px solid #B8B9B5; margin-top: 30px; padding-top: 26px; display: flex; flex-direction: column; gap: 24px;">
-          <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.65; color: #5F6466; max-width: 76ch;">I learned how estimates get built, how documents get produced, and how information moves between the office and the field.</div>
-          <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(21px, 5.2cqi, 27px); line-height: 1.25; letter-spacing: -0.026em; max-width: 40ch; text-wrap: pretty;">And where experienced judgment is the only thing keeping a process running.</div>
-        </div>
-
-        <div style="border-top: 2px solid #111111; margin-top: 44px; padding-top: 24px; display: flex; flex-wrap: wrap; gap: 10px 44px; align-items: baseline;">
-          <div style="flex: 1 1 190px; min-width: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #5F6466;">Before that</div>
-          <div style="flex: 2.6 1 400px; min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.7; color: #5F6466; max-width: 74ch;">A decade building enterprise software products: Optimizely, as Principal Product Manager on generative AI and data-science products. Fidelity Investments, a digital customer-account platform used by millions. Jabra. Most recently, Citizens.</div>
+        <div style="min-width: 0; padding-top: 5px; display: flex; flex-direction: column; gap: 12px;">
+          <div style="font-weight: 500; font-size: 17px; line-height: 1.5; color: var(--fg);">The software existed.</div>
+          <div style="font-weight: 400; font-size: 16px; line-height: 1.65; color: var(--fg-muted);">The problem was that the operation hadn&rsquo;t been made legible enough for it to work.</div>
         </div>
       </div>
-    </div>
-  </div>
 
-  <!-- 4. WHAT I FOUND — Bond -->
-  <div style="background: #EFEFEB; padding: 80px 0 84px;">
-    <div style="max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px);">
-      <div style="container-type: inline-size;">
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 24px 48px; align-items: start; border-bottom: 2px solid #111111; padding-bottom: 28px;">
-          <div style="display: flex; flex-direction: column; gap: 18px; min-width: 0;">
-            <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #476776;">What I found</div>
-            <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(28px, 8cqi, 42px); line-height: 1.06; letter-spacing: -0.035em; max-width: 20ch; text-wrap: balance;">It wasn&rsquo;t really a software problem.</div>
-          </div>
-          <div style="min-width: 0; padding-top: 5px; display: flex; flex-direction: column; gap: 12px;">
-            <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 17px; line-height: 1.5;">The software existed.</div>
-            <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.65; color: #5F6466;">The problem was that the operation hadn&rsquo;t been made legible enough for it to work.</div>
-          </div>
-        </div>
-
-        <div style="padding-top: 8px;">
-          <div style="padding: 18px 0;"><div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.6; color: #5F6466; max-width: 78ch;">Valuable knowledge lived in experienced people&mdash;<wbr>and left with them when they did.</div></div>
-          <div style="border-top: 1px solid #B8B9B5; padding: 18px 0;"><div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.6; color: #5F6466; max-width: 78ch;">Operating standards existed, but not in a form anyone could consistently use.</div></div>
-          <div style="border-top: 1px solid #B8B9B5; padding: 18px 0;"><div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.6; color: #5F6466; max-width: 78ch;">Repetitive production work consumed time that should have gone to judgment.</div></div>
-          <div style="border-top: 1px solid #B8B9B5; padding: 18px 0;"><div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.6; color: #5F6466; max-width: 78ch;">Most tools required the work to adapt to the software, not the other way around.</div></div>
-          <div style="border-top: 1px solid #B8B9B5; padding: 18px 0;"><div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.6; color: #5F6466; max-width: 78ch;">The business couldn&rsquo;t scale its best practices because they weren&rsquo;t written down anywhere useful.</div></div>
-        </div>
-
-        <div style="border-top: 2px solid #111111; margin-top: 44px; padding-top: 44px;">
-          <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(24px, 6.4cqi, 34px); line-height: 1.18; letter-spacing: -0.03em; max-width: 42ch; text-wrap: pretty;">The technology was ready. The operating knowledge wasn&rsquo;t in a form the technology could use.</div>
-        </div>
-
-        <div style="margin-top: 64px; border-top: 2px solid #111111; border-bottom: 2px solid #111111; padding: 60px 0 62px;">
-          <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(30px, 9.4cqi, 54px); line-height: 1.04; letter-spacing: -0.038em; max-width: 30ch; text-wrap: balance;">You can&rsquo;t automate what the business hasn&rsquo;t made legible.</div>
-        </div>
-
-        <div style="padding-top: 20px;">
-          <div style="display: flex; flex-wrap: wrap; gap: 10px 40px; align-items: baseline; padding: 30px 0;">
-            <div style="flex: 1 1 320px; min-width: 0; display: flex; align-items: baseline; gap: 12px;">
-              <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: #5F6466; flex: none;">01</div>
-              <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 21px; line-height: 1.25; letter-spacing: -0.024em;">Make the operation legible.</div>
-            </div>
-            <div style="flex: 1.7 1 380px; min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.6; color: #5F6466;">Capture the knowledge, standards, and judgment that live in people&rsquo;s heads and put them somewhere the work can use.</div>
-          </div>
-          <div style="display: flex; flex-wrap: wrap; gap: 10px 40px; align-items: baseline; padding: 26px 0; border-top: 1px solid #B8B9B5;">
-            <div style="flex: 1 1 320px; min-width: 0; display: flex; align-items: baseline; gap: 12px;">
-              <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: #5F6466; flex: none;">02</div>
-              <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 21px; line-height: 1.25; letter-spacing: -0.024em;">Build around the way the business actually works.</div>
-            </div>
-            <div style="flex: 1.7 1 380px; min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.6; color: #5F6466;">Build systems that reflect how the business operates&mdash;<wbr>not how a generic software product assumes it should.</div>
-          </div>
-          <div style="display: flex; flex-wrap: wrap; gap: 10px 40px; align-items: baseline; padding: 26px 0; border-top: 1px solid #B8B9B5;">
-            <div style="flex: 1 1 320px; min-width: 0; display: flex; align-items: baseline; gap: 12px;">
-              <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: #5F6466; flex: none;">03</div>
-              <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 21px; line-height: 1.25; letter-spacing: -0.024em;">Then automation follows structure.</div>
-            </div>
-            <div style="flex: 1.7 1 380px; min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.6; color: #5F6466;">When the operation is well defined, the predictable work comes off the team and attention goes where it matters.</div>
-          </div>
-        </div>
-
-        <div style="border-top: 1px solid #B8B9B5; margin-top: 40px; padding-top: 24px; font-family: Archivo, sans-serif; font-weight: 600; font-size: 19px; line-height: 1.4; letter-spacing: -0.018em;">That is the premise Construction OS is built on.</div>
+      <div style="padding-top: 8px;">
+        <div style="padding: 18px 0;"><div style="font-weight: 400; font-size: 16px; line-height: 1.6; color: var(--fg-muted); max-width: 78ch;">Valuable knowledge lived in experienced people&mdash;<wbr>and left with them when they did.</div></div>
+        <div style="border-top: var(--w-object) solid var(--rule-dimension); padding: 18px 0;"><div style="font-weight: 400; font-size: 16px; line-height: 1.6; color: var(--fg-muted); max-width: 78ch;">Operating standards existed, but not in a form anyone could consistently use.</div></div>
+        <div style="border-top: var(--w-object) solid var(--rule-dimension); padding: 18px 0;"><div style="font-weight: 400; font-size: 16px; line-height: 1.6; color: var(--fg-muted); max-width: 78ch;">Repetitive production work consumed time that should have gone to judgment.</div></div>
+        <div style="border-top: var(--w-object) solid var(--rule-dimension); padding: 18px 0;"><div style="font-weight: 400; font-size: 16px; line-height: 1.6; color: var(--fg-muted); max-width: 78ch;">Most tools required the work to adapt to the software, not the other way around.</div></div>
+        <div style="border-top: var(--w-object) solid var(--rule-dimension); padding: 18px 0;"><div style="font-weight: 400; font-size: 16px; line-height: 1.6; color: var(--fg-muted); max-width: 78ch;">The business couldn&rsquo;t scale its best practices because they weren&rsquo;t written down anywhere useful.</div></div>
       </div>
+
+      <div style="border-top: var(--w-cut) solid var(--rule-cut); margin-top: 44px; padding-top: 44px;">
+        <div style="font-weight: 600; font-size: clamp(24px, 6.4cqi, 34px); line-height: 1.18; letter-spacing: -0.03em; max-width: 42ch; text-wrap: pretty; color: var(--fg);">The technology was ready. The operating knowledge wasn&rsquo;t in a form the technology could use.</div>
+      </div>
+
+      <div style="margin-top: 64px; border-top: var(--w-cut) solid var(--rule-cut); border-bottom: var(--w-cut) solid var(--rule-cut); padding: 60px 0 62px;">
+        <div style="font-weight: 600; font-size: clamp(30px, 9.4cqi, 54px); line-height: 1.04; letter-spacing: -0.038em; max-width: 30ch; text-wrap: balance; color: var(--fg);">You can&rsquo;t automate what the business hasn&rsquo;t made legible.</div>
+      </div>
+
+      <div style="padding-top: 32px; display: flex; flex-direction: column; gap: 16px; max-width: 68ch;">
+        <p style="margin: 0; font-weight: 400; font-size: 16px; line-height: 1.65; color: var(--fg-muted);">The first step is making the operation legible: capturing the knowledge, standards, and procedures that live in experienced people and putting them into a form the work can actually use.</p>
+        <p style="margin: 0; font-weight: 400; font-size: 16px; line-height: 1.65; color: var(--fg-muted);">Then the tools and systems are built around how the business operates&mdash;<wbr>not around how a generic product assumes it should.</p>
+        <p style="margin: 0; font-weight: 400; font-size: 16px; line-height: 1.65; color: var(--fg-muted);">When the structure is right, the predictable work comes off the team and attention goes where it actually matters.</p>
+      </div>
+
+      <div style="border-top: var(--w-object) solid var(--rule-dimension); margin-top: 40px; padding-top: 24px; font-weight: 600; font-size: 19px; line-height: 1.4; letter-spacing: -0.018em; color: var(--fg);">That is the premise Construction OS is built on.</div>
     </div>
   </div>
+</div>
 
-  <!-- 5. THE TEAM — Paper -->
-  <div style="background: #FFFFFF; padding: 80px 0 84px;">
-    <div style="max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px);">
-      <div style="container-type: inline-size;">
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 24px 48px; align-items: start; border-bottom: 2px solid #111111; padding-bottom: 28px;">
-          <div style="display: flex; flex-direction: column; gap: 18px; min-width: 0;">
-            <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #476776;">The team</div>
-            <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(28px, 8cqi, 42px); line-height: 1.06; letter-spacing: -0.035em; max-width: 20ch; text-wrap: balance;">Two people. Two halves of the same problem.</div>
-          </div>
-          <div style="min-width: 0; padding-top: 5px; display: flex; flex-direction: column; gap: 14px;">
-            <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 17px; line-height: 1.55; letter-spacing: -0.015em;">I designed, architected, and built Construction OS&mdash;<wbr>the document library, standards, pricing logic, product architecture, and working systems built around them.</div>
-            <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.65; color: #5F6466;">Ava builds it with me: agents, system components, and the configuration layer that lets the same underlying system be configured company by company instead of rebuilt from scratch.</div>
-            <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.65; color: #5F6466;">The construction knowledge, product architecture, and engineering live close together. That&rsquo;s why Construction OS reflects how the work actually happens.</div>
+<!-- § 5. The team — White -->
+<div class="surface--white" style="padding: 80px 0 84px;">
+  <div style="max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px);">
+    <div style="container-type: inline-size;">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 24px 48px; align-items: start; border-bottom: var(--w-cut) solid var(--rule-cut); padding-bottom: 28px;">
+        <div style="display: flex; flex-direction: column; gap: 18px; min-width: 0;">
+          <div style="font-weight: 600; font-size: 11px; letter-spacing: 0.16em; color: var(--fg);">The team</div>
+          <div style="font-weight: 600; font-size: clamp(28px, 8cqi, 42px); line-height: 1.06; letter-spacing: -0.035em; max-width: 20ch; text-wrap: balance; color: var(--fg);">Two people. Two halves of the same problem.</div>
+        </div>
+        <div style="min-width: 0; padding-top: 5px; display: flex; flex-direction: column; gap: 14px;">
+          <div style="font-weight: 500; font-size: 17px; line-height: 1.55; letter-spacing: -0.015em; color: var(--fg);">I designed, architected, and built Construction OS&mdash;<wbr>the document library, standards, pricing logic, product architecture, and working systems built around them.</div>
+          <div style="font-weight: 400; font-size: 16px; line-height: 1.65; color: var(--fg-muted);">Ava builds the engineering and the agents. She&rsquo;s developing the configuration layer that will let the same underlying system be adapted company by company instead of rebuilt from scratch each time.</div>
+          <div style="font-weight: 400; font-size: 16px; line-height: 1.65; color: var(--fg-muted);">The construction knowledge, product architecture, and engineering live close together. That&rsquo;s why Construction OS reflects how the work actually happens.</div>
+        </div>
+      </div>
+
+      <div style="padding-top: 40px;">
+
+        <!-- Justin -->
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <div style="font-weight: 600; font-size: 22px; line-height: 1.2; letter-spacing: -0.026em; color: var(--fg);">Justin Yurasits</div>
+          <div style="font-weight: 500; font-size: 12px; letter-spacing: 0.1em; color: var(--fg-muted);">Co-Founder — Construction / Product</div>
+          <div style="border-top: var(--w-object) solid var(--rule-dimension); padding-top: 16px; display: flex; flex-direction: column; gap: 13px;">
+            <div style="font-weight: 500; font-size: 16.5px; line-height: 1.55; letter-spacing: -0.015em; max-width: 74ch; color: var(--fg);">Designed, architected, and built Construction OS.</div>
+            <div style="font-weight: 400; font-size: 15px; line-height: 1.65; color: var(--fg-muted); max-width: 74ch;">Massachusetts Construction Supervisor License, three years inside residential construction operations as a project manager and site superintendent, and twelve years in enterprise software product leadership before that.</div>
+            <div style="font-weight: 600; font-size: 17px; line-height: 1.5; letter-spacing: -0.016em; color: var(--fg); max-width: 62ch;">I define the product architecture, write the specifications, and build the systems.</div>
           </div>
         </div>
 
-        <div style="padding-top: 40px;">
-
-          <!-- Justin — full-width, no portrait -->
-          <div style="display: flex; flex-direction: column; gap: 14px;">
-            <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 22px; line-height: 1.2; letter-spacing: -0.026em;">Justin Yurasits</div>
-            <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #476776;">Co-Founder &middot; Construction / Product</div>
-            <div style="border-top: 1px solid #B8B9B5; padding-top: 16px; display: flex; flex-direction: column; gap: 13px;">
-              <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 16.5px; line-height: 1.55; letter-spacing: -0.015em; max-width: 74ch;">Designed, architected, and built Construction OS.</div>
-              <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.65; color: #5F6466; max-width: 74ch;">Massachusetts Construction Supervisor License, three years inside residential construction operations as a project manager and site superintendent, and more than a decade in enterprise software product leadership before that.</div>
-              <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 17px; line-height: 1.5; letter-spacing: -0.016em; color: #111111; max-width: 62ch;">I define the product architecture, write the specifications, and build the systems.</div>
-            </div>
-          </div>
-
-          <!-- Ava — portrait left, on 2px rule -->
-          <div style="border-top: 2px solid #111111; margin-top: 40px; padding-top: 40px; display: flex; flex-wrap: wrap; gap: 36px 48px; align-items: flex-start;">
-            <div style="flex: 1 1 max(240px, calc(34% - 24px)); min-width: 0;">
-              <div style="border: 1px solid #111111; padding: 10px; background: #EFEFEB;">
-                <div style="position: relative; width: 100%; aspect-ratio: 4 / 5;">
-                  <image-slot id="team-ava" shape="rect" fit="cover" src="/images/team-ava.jpg" placeholder="Drop Ava&rsquo;s portrait — square or 4:5 crop"></image-slot>
-                </div>
-              </div>
-            </div>
-            <div style="flex: 1 1 max(300px, calc(66% - 24px)); min-width: 0; display: flex; flex-direction: column; gap: 14px;">
-              <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 22px; line-height: 1.2; letter-spacing: -0.026em;">Ava Yurasits</div>
-              <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #476776;">Co-Founder &middot; Engineering</div>
-              <div style="border-top: 1px solid #B8B9B5; padding-top: 16px; display: flex; flex-direction: column; gap: 13px;">
-                <div style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 16.5px; line-height: 1.55; letter-spacing: -0.015em;">Builds agents and system components behind Construction OS, along with the configuration layer that adapts the system company by company.</div>
-                <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.65; color: #5F6466;">Ava also works in clinical automation and operations, where the same underlying problem appears in a different industry: the knowledge that makes software useful often lives in the person doing the job rather than in the system itself.</div>
+        <!-- Ava -->
+        <div style="border-top: var(--w-cut) solid var(--rule-cut); margin-top: 40px; padding-top: 40px; display: flex; flex-wrap: wrap; gap: 36px 48px; align-items: flex-start;">
+          <div style="flex: 1 1 max(240px, calc(34% - 24px)); min-width: 0;">
+            <!-- Portrait frame: var(--c-bond) mat is an intentional design choice -->
+            <div style="border: var(--w-object) solid var(--rule-cut); padding: 10px; background: var(--c-bond);">
+              <div style="position: relative; width: 100%; aspect-ratio: 4 / 5;">
+                <image-slot id="team-ava" shape="rect" fit="cover" src="/images/team-ava.jpg" placeholder="Drop Ava&rsquo;s portrait — square or 4:5 crop"></image-slot>
               </div>
             </div>
           </div>
-
-        </div>
-
-        <div style="border-top: 2px solid #111111; border-bottom: 2px solid #111111; margin-top: 52px; padding: 40px 0 42px;">
-          <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(24px, 6.6cqi, 36px); line-height: 1.16; letter-spacing: -0.032em; max-width: 40ch; text-wrap: pretty;">The software isn&rsquo;t the hard part. Getting a business&rsquo;s own knowledge into a form software can use is.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 6. WHAT THAT BECAME — Bond -->
-  <div style="background: #EFEFEB; padding: 80px 0 84px;">
-    <div style="max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px);">
-      <div style="container-type: inline-size;">
-        <div style="display: flex; flex-direction: column; gap: 18px; border-bottom: 2px solid #111111; padding-bottom: 28px;">
-          <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #476776;">What that became</div>
-          <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(28px, 8cqi, 42px); line-height: 1.06; letter-spacing: -0.035em; max-width: 24ch;">Construction OS grew out of the work.</div>
-        </div>
-
-        <div style="padding-top: 10px;">
-          <div style="display: flex; flex-wrap: wrap; gap: 12px 40px; align-items: baseline; padding: 24px 0;">
-            <div style="flex: 1 1 260px; min-width: 0; display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;">
-              <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: #5F6466; flex: none;">01</div>
-              <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 21px; line-height: 1.25; letter-spacing: -0.024em;">Document Workbench</div>
+          <div style="flex: 1 1 max(300px, calc(66% - 24px)); min-width: 0; display: flex; flex-direction: column; gap: 14px;">
+            <div style="font-weight: 600; font-size: 22px; line-height: 1.2; letter-spacing: -0.026em; color: var(--fg);">Ava Yurasits</div>
+            <div style="font-weight: 500; font-size: 12px; letter-spacing: 0.1em; color: var(--fg-muted);">Co-Founder — Engineering</div>
+            <div style="border-top: var(--w-object) solid var(--rule-dimension); padding-top: 16px; display: flex; flex-direction: column; gap: 13px;">
+              <div style="font-weight: 500; font-size: 16.5px; line-height: 1.55; letter-spacing: -0.015em; color: var(--fg);">Builds the engineering and the agents behind Construction OS. Is developing the configuration layer that will let the system be adapted company by company rather than rebuilt from scratch.</div>
+              <div style="font-weight: 400; font-size: 15px; line-height: 1.65; color: var(--fg-muted);">Ava also works in clinical automation and operations, where the same underlying problem appears in a different industry: the knowledge that makes software useful often lives in the person doing the job rather than in the system itself.</div>
             </div>
-            <div style="flex: 2 1 380px; min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 15.5px; line-height: 1.6; color: #5F6466;">Produce company-standard construction documents from first walkthrough through closeout.</div>
-            <div style="flex: none; font-family: Archivo, sans-serif; font-weight: 500; font-size: 14px; border-bottom: 1px solid #111111; padding-bottom: 2px;"><a href="/products/document-workbench.html" style="text-decoration: none; color: inherit;">Explore &rarr;</a></div>
           </div>
-
-          <div style="display: flex; flex-wrap: wrap; gap: 12px 40px; align-items: baseline; padding: 24px 0; border-top: 1px solid #B8B9B5;">
-            <div style="flex: 1 1 260px; min-width: 0; display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;">
-              <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: #5F6466; flex: none;">02</div>
-              <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 21px; line-height: 1.25; letter-spacing: -0.024em;">Construction Intelligence</div>
-            </div>
-            <div style="flex: 2 1 380px; min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 15.5px; line-height: 1.6; color: #5F6466;">Put your company&rsquo;s procedures, standards, pricing judgment, and operating knowledge within reach of the team.</div>
-            <div style="flex: none; font-family: Archivo, sans-serif; font-weight: 500; font-size: 14px; border-bottom: 1px solid #111111; padding-bottom: 2px;"><a href="/products/construction-intelligence.html" style="text-decoration: none; color: inherit;">Explore &rarr;</a></div>
-          </div>
-
-          <div style="display: flex; flex-wrap: wrap; gap: 12px 40px; align-items: baseline; padding: 24px 0; border-top: 1px solid #B8B9B5;">
-            <div style="flex: 1 1 260px; min-width: 0; display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;">
-              <div style="font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; color: #5F6466; flex: none;">03</div>
-              <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 21px; line-height: 1.25; letter-spacing: -0.024em;">Project Intelligence</div>
-              <div style="box-sizing: border-box; font-family: Archivo, sans-serif; font-weight: 600; font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase; color: #5F6466; border: 1px solid #B8B9B5; padding: 3px 6px; flex: none;">In development</div>
-            </div>
-            <div style="flex: 2 1 380px; min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 15.5px; line-height: 1.6; color: #5F6466;">Surface the exceptions and unresolved work that need attention across active projects.</div>
-            <div style="flex: none; font-family: Archivo, sans-serif; font-weight: 500; font-size: 14px; border-bottom: 1px solid #111111; padding-bottom: 2px;"><a href="/products/project-intelligence.html" style="text-decoration: none; color: inherit;">Explore &rarr;</a></div>
-          </div>
-
-          <div style="display: flex; flex-wrap: wrap; gap: 10px 40px; align-items: baseline; padding: 28px 0 0; border-top: 1px solid #B8B9B5;">
-            <div style="flex: 1 1 260px; min-width: 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #476776;">Extension layer</div>
-            <div style="flex: 2 1 380px; min-width: 0; font-family: Archivo, sans-serif; font-weight: 400; font-size: 15.5px; line-height: 1.6; color: #5F6466;">Operations Automation extends the system into recurring operational workflows.</div>
-          </div>
-        </div>
-
-        <div style="border: 1px solid #111111; background: #FFFFFF; margin-top: 56px; padding: 30px 32px; display: flex; flex-direction: column; gap: 16px;">
-          <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(20px, 5cqi, 26px); line-height: 1.25; letter-spacing: -0.026em;">Built from real construction work.</div>
-          <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.65; color: #5F6466; max-width: 76ch;">The operating library behind Construction OS&mdash;<wbr>110 distinct construction document types across five lifecycle phases&mdash;<wbr>grew out of the workflows, document patterns, and operating knowledge I learned while working inside Boston residential construction companies.</div>
-          <div style="border-top: 1px solid #B8B9B5; padding-top: 16px; font-family: Archivo, sans-serif; font-weight: 500; font-size: 16px; line-height: 1.5;">It wasn&rsquo;t assembled from a generic template pack.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 7. CTA — Ink -->
-  <div style="background: #111111; padding: 88px 0 84px;">
-    <div style="max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px);">
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr)); gap: 48px; align-items: start;">
-
-        <div style="container-type: inline-size; display: flex; flex-direction: column; gap: 26px; min-width: 0;">
-          <div style="display: flex; align-items: center; gap: 12px;">
-            <svg viewBox="0 0 100 100" width="24" height="24" aria-hidden="true" style="flex: none;">
-              <polyline points="16,54 16,16 54,16" fill="none" stroke="#FFFFFF" stroke-width="11"></polyline>
-              <polyline points="84,46 84,84 46,84" fill="none" stroke="#FFFFFF" stroke-width="11"></polyline>
-              <rect x="34" y="34" width="32" height="32" fill="var(--c-mark)"></rect>
-            </svg>
-            <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: #FFFFFF;">About</div>
-            <div style="height: 1px; flex: 1; background: #5F6466;"></div>
-          </div>
-
-          <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(28px, 9cqi, 46px); line-height: 1.03; letter-spacing: -0.038em; color: #FFFFFF; text-wrap: balance;">Tell me about the problem.</div>
-
-          <div style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 19px; line-height: 1.4; letter-spacing: -0.018em; color: #FFFFFF; max-width: 46ch;">Bring me the problem your team is tired of dealing with.</div>
-
-          <div style="display: flex; align-items: center; gap: 22px; flex-wrap: wrap;">
-            <a href="https://cal.com/justinyurasits" style="box-sizing: border-box; background: #FFFFFF; color: #111111; font-family: Archivo, sans-serif; font-weight: 600; font-size: 15px; letter-spacing: -0.01em; padding: 15px 26px; min-height: 48px; display: inline-flex; align-items: center; text-decoration: none;">Book a call</a>
-            <a href="/services.html" style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 15px; color: #FFFFFF; border-bottom: 1px solid #FFFFFF; padding-bottom: 2px; text-decoration: none;">See how an engagement works &rarr;</a>
-          </div>
-        </div>
-
-        <div style="min-width: 0; display: flex; flex-direction: column; gap: 0;">
-          <div style="font-family: Archivo, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.6; color: #B8B9B5; padding-bottom: 20px;">Most conversations start with one of these.</div>
-          <div style="border-top: 1px solid #5F6466; padding: 16px 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: 16px; line-height: 1.5; color: #FFFFFF;">You have more work than time to do it well.</div>
-          <div style="border-top: 1px solid #5F6466; padding: 16px 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: 16px; line-height: 1.5; color: #FFFFFF;">A process is held together by one person&rsquo;s experience.</div>
-          <div style="border-top: 1px solid #5F6466; padding: 16px 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: 16px; line-height: 1.5; color: #FFFFFF;">The same question gets asked&mdash;<wbr>and re-answered&mdash;<wbr>every week.</div>
-          <div style="border-top: 1px solid #5F6466; padding: 16px 0; font-family: Archivo, sans-serif; font-weight: 500; font-size: 16px; line-height: 1.5; color: #FFFFFF;">The business has grown, but the way the work gets done hasn&rsquo;t kept up.</div>
         </div>
 
       </div>
+
+      <div style="border-top: var(--w-cut) solid var(--rule-cut); border-bottom: var(--w-cut) solid var(--rule-cut); margin-top: 52px; padding: 40px 0 42px;">
+        <div style="font-weight: 600; font-size: clamp(24px, 6.6cqi, 36px); line-height: 1.16; letter-spacing: -0.032em; max-width: 40ch; text-wrap: pretty; color: var(--fg);">The software isn&rsquo;t the hard part. Getting a business&rsquo;s own knowledge into a form software can use is.</div>
+      </div>
     </div>
   </div>
+</div>
 
+<!-- § 6. What that became — Bond -->
+<div class="surface--bond" style="padding: 80px 0 84px;">
+  <div style="max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px);">
+    <div style="container-type: inline-size;">
+      <div style="display: flex; flex-direction: column; gap: 18px; border-bottom: var(--w-cut) solid var(--rule-cut); padding-bottom: 28px;">
+        <div style="font-weight: 600; font-size: 11px; letter-spacing: 0.16em; color: var(--fg);">What that became</div>
+        <div style="font-weight: 600; font-size: clamp(28px, 8cqi, 42px); line-height: 1.06; letter-spacing: -0.035em; max-width: 24ch; color: var(--fg);">Construction OS grew out of the work.</div>
+      </div>
+
+      <div style="padding-top: 10px;">
+        <div style="display: flex; flex-wrap: wrap; gap: 12px 40px; align-items: baseline; padding: 24px 0;">
+          <div style="flex: 1 1 260px; min-width: 0; display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;">
+            <div style="font-weight: 400; font-size: 12px; letter-spacing: 0.04em; font-variant-numeric: tabular-nums; color: var(--fg-muted); flex: none;">01</div>
+            <div style="font-weight: 600; font-size: 21px; line-height: 1.25; letter-spacing: -0.024em; color: var(--fg);">Document Workbench</div>
+          </div>
+          <div style="flex: 2 1 380px; min-width: 0; font-weight: 400; font-size: 15.5px; line-height: 1.6; color: var(--fg-muted);">Produce company-standard construction documents from first walkthrough through closeout.</div>
+          <div style="flex: none; font-weight: 500; font-size: 14px; border-bottom: var(--w-object) solid var(--fg); padding-bottom: 2px;"><a href="/products/document-workbench.html" style="text-decoration: none; color: inherit;">Explore</a></div>
+        </div>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 12px 40px; align-items: baseline; padding: 24px 0; border-top: var(--w-object) solid var(--rule-dimension);">
+          <div style="flex: 1 1 260px; min-width: 0; display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;">
+            <div style="font-weight: 400; font-size: 12px; letter-spacing: 0.04em; font-variant-numeric: tabular-nums; color: var(--fg-muted); flex: none;">02</div>
+            <div style="font-weight: 600; font-size: 21px; line-height: 1.25; letter-spacing: -0.024em; color: var(--fg);">Construction Intelligence</div>
+          </div>
+          <div style="flex: 2 1 380px; min-width: 0; font-weight: 400; font-size: 15.5px; line-height: 1.6; color: var(--fg-muted);">Put your company&rsquo;s procedures, standards, pricing judgment, and operating knowledge within reach of the team.</div>
+          <div style="flex: none; font-weight: 500; font-size: 14px; border-bottom: var(--w-object) solid var(--fg); padding-bottom: 2px;"><a href="/products/construction-intelligence.html" style="text-decoration: none; color: inherit;">Explore</a></div>
+        </div>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 12px 40px; align-items: baseline; padding: 24px 0; border-top: var(--w-object) solid var(--rule-dimension);">
+          <div style="flex: 1 1 260px; min-width: 0; display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;">
+            <div style="font-weight: 400; font-size: 12px; letter-spacing: 0.04em; font-variant-numeric: tabular-nums; color: var(--fg-muted); flex: none;">03</div>
+            <div style="font-weight: 600; font-size: 21px; line-height: 1.25; letter-spacing: -0.024em; color: var(--fg);">Project Intelligence</div>
+            <div style="font-weight: 600; font-size: 9.5px; letter-spacing: 0.12em; color: var(--fg-muted); flex: none;">In development</div>
+          </div>
+          <div style="flex: 2 1 380px; min-width: 0; font-weight: 400; font-size: 15.5px; line-height: 1.6; color: var(--fg-muted);">Surface the exceptions and unresolved work that need attention across active projects.</div>
+          <div style="flex: none; font-weight: 500; font-size: 14px; border-bottom: var(--w-object) solid var(--fg); padding-bottom: 2px;"><a href="/products/project-intelligence.html" style="text-decoration: none; color: inherit;">Explore</a></div>
+        </div>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 10px 40px; align-items: baseline; padding: 28px 0 0; border-top: var(--w-object) solid var(--rule-dimension);">
+          <div style="flex: 1 1 260px; min-width: 0; font-weight: 600; font-size: 11px; letter-spacing: 0.14em; color: var(--fg);">Extension layer</div>
+          <div style="flex: 2 1 380px; min-width: 0; font-weight: 400; font-size: 15.5px; line-height: 1.6; color: var(--fg-muted);">Operations Automation extends the system into recurring operational workflows.</div>
+        </div>
+      </div>
+
+      <!-- Framed callout: var(--c-white) interior on bond section is an intentional design choice -->
+      <div style="border: var(--w-object) solid var(--rule-cut); background: var(--c-white); margin-top: 56px; padding: 30px 32px; display: flex; flex-direction: column; gap: 16px;">
+        <div style="font-weight: 600; font-size: clamp(20px, 5cqi, 26px); line-height: 1.25; letter-spacing: -0.026em; color: var(--fg);">Built from real construction work.</div>
+        <div style="font-weight: 400; font-size: 16px; line-height: 1.65; color: var(--fg-muted); max-width: 76ch;">The document library behind Construction OS&mdash;<wbr>110 distinct construction document types across five lifecycle phases&mdash;<wbr>grew out of the workflows, document patterns, and operating knowledge from running $1M&ndash;$4M renovations at a $50 million contractor. The AI systems were built out of the problems encountered doing that work, and have been used on roughly twenty real jobs and bids.</div>
+        <div style="border-top: var(--w-object) solid var(--rule-dimension); padding-top: 16px; font-weight: 500; font-size: 16px; line-height: 1.5; color: var(--fg);">It wasn&rsquo;t assembled from a generic template pack.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- § 7. Closing CTA — Oxblood -->
+<div class="surface--oxblood" style="padding: 88px 0 84px;">
+  <div style="max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px);">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr)); gap: 48px; align-items: start;">
+
+      <div style="container-type: inline-size; display: flex; flex-direction: column; gap: 26px; min-width: 0;">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <svg viewBox="0 0 100 100" width="24" height="24" aria-hidden="true" style="flex: none;">
+            <polyline points="16,54 16,16 54,16" fill="none" stroke="currentColor" stroke-width="11"/>
+            <polyline points="84,46 84,84 46,84" fill="none" stroke="currentColor" stroke-width="11"/>
+            <rect x="34" y="34" width="32" height="32" fill="var(--c-mark)"/>
+          </svg>
+          <div style="font-weight: 600; font-size: 13px; letter-spacing: 0.14em; color: var(--fg);">About</div>
+          <div style="height: 1px; flex: 1; background: var(--rule-object);"></div>
+        </div>
+
+        <div style="font-weight: 600; font-size: clamp(28px, 9cqi, 46px); line-height: 1.03; letter-spacing: -0.038em; color: var(--fg); text-wrap: balance;">Tell me about the problem.</div>
+
+        <div style="font-weight: 600; font-size: 19px; line-height: 1.4; letter-spacing: -0.018em; color: var(--fg); max-width: 46ch;">Bring me the problem your team is tired of dealing with.</div>
+
+        <div style="display: flex; align-items: center; gap: 22px; flex-wrap: wrap;">
+          <a href="https://cal.com/justinyurasits" style="box-sizing: border-box; background: var(--btn-bg); color: var(--btn-fg); font-family: Archivo, sans-serif; font-weight: 600; font-size: 15px; letter-spacing: -0.01em; padding: 15px 26px; min-height: 48px; display: inline-flex; align-items: center; text-decoration: none;">Book a call</a>
+          <a href="/services.html" style="font-family: Archivo, sans-serif; font-weight: 500; font-size: 15px; color: var(--fg); border-bottom: var(--w-object) solid var(--fg); padding-bottom: 2px; text-decoration: none;">See how an engagement works</a>
+        </div>
+      </div>
+
+      <div style="min-width: 0; display: flex; flex-direction: column; gap: 0;">
+        <div style="font-weight: 400; font-size: 16px; line-height: 1.6; color: var(--fg-muted); padding-bottom: 20px;">Most conversations start with one of these.</div>
+        <div style="border-top: var(--w-object) solid var(--rule-object); padding: 16px 0; font-weight: 500; font-size: 16px; line-height: 1.5; color: var(--fg);">You have more work than time to do it well.</div>
+        <div style="border-top: var(--w-object) solid var(--rule-object); padding: 16px 0; font-weight: 500; font-size: 16px; line-height: 1.5; color: var(--fg);">A process is held together by one person&rsquo;s experience.</div>
+        <div style="border-top: var(--w-object) solid var(--rule-object); padding: 16px 0; font-weight: 500; font-size: 16px; line-height: 1.5; color: var(--fg);">The same question gets asked&mdash;<wbr>and re-answered&mdash;<wbr>every week.</div>
+        <div style="border-top: var(--w-object) solid var(--rule-object); padding: 16px 0; font-weight: 500; font-size: 16px; line-height: 1.5; color: var(--fg);">The business has grown, but the way the work gets done hasn&rsquo;t kept up.</div>
+      </div>
+
+    </div>
+  </div>
 </div>
 
 <!-- footer:start -->
@@ -433,11 +413,11 @@ body { margin: 0; background: #FFFFFF; }
       </div>
       <div class="cos-titleblock__cell">
         <span class="cos-titleblock__label">Issued</span>
-        <span class="cos-titleblock__value">2026-09-08</span>
+        <span class="cos-titleblock__value">2026-09-30</span>
       </div>
       <div class="cos-titleblock__cell">
         <span class="cos-titleblock__label">Rev</span>
-        <span class="cos-titleblock__value">01</span>
+        <span class="cos-titleblock__value">02</span>
       </div>
       <div class="cos-titleblock__cell">
         <span class="cos-titleblock__label">Status</span>

@@ -77,6 +77,10 @@ function extractStyleBlocks(html) {
 // All other selectors — and any inline style="" attribute — remain prohibited.
 const UPPERCASE_CSS_SELECTOR_ALLOWLIST = ['.row__name'];
 
+// Selectors for which a non-var() font-size is permitted inside <style> blocks.
+// Covers product wordmarks that must stay at a fixed size.
+const FONT_SIZE_CSS_SELECTOR_ALLOWLIST = ['.row__name'];
+
 // Given a <style> block's content and the offset of a text-transform:uppercase
 // match within that content, return true if the containing rule's selector is
 // in UPPERCASE_CSS_SELECTOR_ALLOWLIST.
@@ -105,6 +109,30 @@ function isCssUppercaseAllowed(cssContent, localOffset) {
 
   return selector.split(',').some(s =>
     UPPERCASE_CSS_SELECTOR_ALLOWLIST.some(a => s.trim() === a)
+  );
+}
+
+// True when the CSS rule at `localOffset` in `cssContent` has a selector in
+// FONT_SIZE_CSS_SELECTOR_ALLOWLIST.  Mirror of isCssUppercaseAllowed.
+function isCssFontSizeAllowed(cssContent, localOffset) {
+  let depth = 0, openBrace = -1;
+  for (let i = localOffset; i >= 0; i--) {
+    if (cssContent[i] === '}') depth++;
+    else if (cssContent[i] === '{') {
+      if (depth === 0) { openBrace = i; break; }
+      depth--;
+    }
+  }
+  if (openBrace < 0) return false;
+  let selStart = 0;
+  for (let i = openBrace - 1; i >= 0; i--) {
+    if (cssContent[i] === '}') { selStart = i + 1; break; }
+  }
+  const selectorRaw = cssContent.slice(selStart, openBrace).trim();
+  const lastBrace   = selectorRaw.lastIndexOf('{');
+  const selector    = (lastBrace >= 0 ? selectorRaw.slice(lastBrace + 1) : selectorRaw).trim();
+  return selector.split(',').some(s =>
+    FONT_SIZE_CSS_SELECTOR_ALLOWLIST.some(a => s.trim() === a)
   );
 }
 
@@ -500,6 +528,41 @@ for (const relPath of HTML_FILES) {
     const target = clean === '/' ? 'index.html' : clean.replace(/^\//, '');
     if (!fs.existsSync(path.join(REPO, target))) {
       fail(relPath, li + 1, lines[li], `Rule 8 BROKEN LINK: "${href}" → ${target} not found`);
+    }
+  }
+
+  // ── Rule 9: TYPE TOKEN ENFORCEMENT ────────────────────────────────────────
+  // Fail any CSS font-size declaration whose value is not var().
+  // SVG font-size="..." presentation attributes use = not :, so they never match.
+  // Inline style exemptions are handled via exemption comments in the HTML.
+  // Scope: index.html only — other pages have not been migrated yet.
+  // TODO: extend to each page as it is migrated to the type scale:
+  //   products/workbench.html, products/intelligence.html,
+  //   products/automation.html, about.html, services.html,
+  //   privacy.html, terms.html
+  if (relPath === 'index.html') {
+    const fontSizeRe = /font-size\s*:\s*(?!\s*var\s*\()([^;}"'\n]+)/gi;
+    let fsm;
+    fontSizeRe.lastIndex = 0;
+    while ((fsm = fontSizeRe.exec(raw)) !== null) {
+      if (inComment(raw, noComment, fsm.index)) continue;
+      const li = lineOf(raw, fsm.index);
+      if (inRanges(li, genR)) continue;
+      if (inRanges(li, exR)) continue;
+
+      // In a <style> block: pass if the containing selector is allowlisted.
+      let isAllowedBySelector = false;
+      for (const block of styleBlocks) {
+        if (fsm.index >= block.start && fsm.index < block.start + block.content.length) {
+          isAllowedBySelector = isCssFontSizeAllowed(block.content, fsm.index - block.start);
+          break;
+        }
+      }
+      if (isAllowedBySelector) continue;
+
+      const value = fsm[1].trim();
+      fail(relPath, li + 1, lines[li],
+        `Rule 9 TYPE TOKEN: font-size: ${value} (use var(--fs-*))`);
     }
   }
 }

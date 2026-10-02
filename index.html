@@ -178,79 +178,50 @@
       }
     }
 
-    /* --- Pain tiles (§2) --- */
-    .cos-pain { padding: var(--zone-pad) 0; }
-    .cos-pain__hd {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
-      gap: var(--s-5) var(--s-8);
-      align-items: end;
-      border-bottom: var(--w-cut) solid var(--rule-cut);
-      padding-bottom: var(--s-5);
-      margin-bottom: var(--s-7);
+    /* --- Pain section (§2) tablist --- */
+    .pain { padding: 80px 0 88px; }
+    .pain__inner { max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px); }
+    .pain__head { display: flex; flex-wrap: wrap; gap: 24px 56px; align-items: flex-end; padding-bottom: 36px; }
+    .pain__head-l { flex: 2 1 560px; display: flex; flex-direction: column; gap: 20px; }
+    .pain__label { font-family: var(--font-display); font-weight: 500; font-size: 11px; letter-spacing: var(--tr-annotation); color: var(--fg-muted); }
+    .pain__h2 { margin: 0; font-family: var(--font-display); font-weight: 600; font-size: clamp(40px, 5vw, 60px); line-height: .98; letter-spacing: var(--tr-display); }
+    .pain__body { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 56px; align-items: start; border-top: var(--w-cut) solid var(--fg); }
+    .pain__index { min-width: 0; display: flex; flex-direction: column; }
+    .p-tab {
+      --bg: transparent; --fg: var(--c-ink); --muted: var(--c-graphite); --num: var(--c-ink);
+      --glyph-p: var(--c-ink); --glyph-s: var(--c-graphite); --glyph-delta: var(--c-mark);
+      all: unset; box-sizing: border-box; display: flex; flex-direction: column; gap: 14px;
+      padding: 22px 24px; cursor: pointer; background: var(--bg); color: var(--fg);
+      transition: background 220ms; width: 100%; font-variant-numeric: tabular-nums;
     }
-    .cos-pain__hd-left { container-type: inline-size; min-width: 0; }
-    .cos-pain__eyebrow {
-      font-family: var(--font-display);
-      font-size: 11px; font-weight: 600; letter-spacing: 0.14em;
-      color: var(--fg-muted); padding-bottom: var(--s-4);
+    .p-tab + .p-tab { border-top: var(--w-dimension) solid var(--c-line); }
+    .p-tab[aria-selected="true"] {
+      --bg: var(--c-navy); --fg: var(--c-white); --muted: var(--c-muted-dark); --num: var(--c-brass);
+      --glyph-p: var(--c-white); --glyph-s: var(--c-white); --glyph-delta: var(--c-mark-lift);
     }
-    .cos-pain__h2 {
-      margin: 0;
-      font-family: var(--font-display);
-      font-size: clamp(28px, 8cqi, 42px); font-weight: 600;
-      line-height: 1.05; letter-spacing: -0.035em;
-      color: var(--fg); max-width: 18ch; text-wrap: balance;
+    .p-tab:focus-visible { outline: var(--w-object) solid var(--c-ink); outline-offset: -4px; }
+    .p-tab[aria-selected="true"]:focus-visible { outline-color: var(--c-white); }
+    .p-tab__row { display: flex; align-items: baseline; }
+    .p-tab__num { flex: 0 0 48px; font-family: var(--font-display); font-weight: 500; font-size: 13px; letter-spacing: var(--tr-annotation); font-variant-numeric: tabular-nums; color: var(--num); }
+    .p-tab__head { flex: 1 1 auto; font-family: var(--font-display); font-weight: 600; font-size: 24px; line-height: 1.15; letter-spacing: var(--tr-display); text-wrap: balance; }
+    .p-tab__inline { display: none; padding-left: 48px; flex-direction: column; gap: 12px; }
+    .p-tab__cat { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-weight: 500; font-size: 11px; letter-spacing: var(--tr-annotation); color: var(--fg); }
+    .p-tab__text { font-family: var(--font-display); font-size: 15px; line-height: 1.55; color: var(--muted); }
+    .pain__panel { min-width: 0; position: sticky; top: 24px; padding-top: 40px; display: flex; flex-direction: column; gap: 22px; --glyph-p: var(--c-ink); --glyph-s: var(--c-graphite); --glyph-delta: var(--c-mark); }
+    .pain__panel-cat { display: flex; align-items: center; gap: 14px; font-family: var(--font-display); font-weight: 500; font-size: 13px; letter-spacing: var(--tr-annotation); }
+    .pain__panel-head { margin: 0; font-family: var(--font-display); font-weight: 600; font-size: 36px; line-height: 1.05; letter-spacing: var(--tr-display); text-wrap: balance; }
+    .pain__panel-text { margin: 0; font-family: var(--font-display); font-size: 18px; line-height: 1.55; color: var(--fg-muted); text-wrap: pretty; }
+    /* Unscoped: <use> clones live in a shadow tree; custom properties inherit from the <use> host. */
+    .g-p { fill: none; stroke: var(--glyph-p); }
+    .g-s { fill: none; stroke: var(--glyph-s); }
+    .g-d { fill: none; stroke: var(--glyph-delta); }
+    @media (max-width: 899px) {
+      .pain__body { grid-template-columns: minmax(0, 1fr); }
+      .pain__panel { display: none; }
+      .p-tab[aria-selected="true"] .p-tab__inline { display: flex; }
     }
-    .cos-pain__hd-right {
-      min-width: 0;
-      font-family: var(--font-display);
-      font-weight: 500; font-size: 12px; letter-spacing: 0.12em;
-      color: var(--fg-muted); text-align: right; white-space: nowrap;
-    }
-    .cos-pain__grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      border-top: var(--w-object) solid var(--rule-object);
-      border-left: var(--w-object) solid var(--rule-object);
-    }
-    .cos-pain__tile {
-      border-right: var(--w-object) solid var(--rule-object);
-      border-bottom: var(--w-object) solid var(--rule-object);
-      padding: 40px;
-      display: flex; flex-direction: column; gap: var(--s-4);
-    }
-    .cos-pain__num {
-      font-family: var(--font-display);
-      font-size: 11px; font-weight: 400; letter-spacing: 0.06em;
-      font-variant-numeric: tabular-nums; color: var(--fg-muted);
-    }
-    .cos-pain__cat {
-      display: flex; align-items: center; gap: 10px;
-      font-family: var(--font-display);
-      font-weight: 600; font-size: 12px; letter-spacing: 0.10em;
-      color: var(--fg);
-    }
-    .cos-pain__title {
-      margin: 0;
-      font-family: var(--font-display);
-      font-weight: 600; font-size: 22px;
-      line-height: 1.3; letter-spacing: -0.02em;
-      color: var(--fg); text-wrap: balance;
-    }
-    .cos-pain__body {
-      margin: 0;
-      font-family: var(--font-display);
-      font-weight: 400; font-size: 15px; line-height: 1.6;
-      color: var(--fg-muted);
-    }
-    @media (max-width: 900px) {
-      .cos-pain__grid { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 600px) {
-      .cos-pain__grid { grid-template-columns: 1fr; }
-      .cos-pain__tile { padding: var(--s-6) var(--s-5); }
-    }
+    @media (max-width: 699px) { .p-tab { padding: 20px 16px; } }
+    @media (prefers-reduced-motion: reduce) { .p-tab { transition: none; } }
 
     /* --- The system (§3) --- */
     .sys { padding: 80px 0 84px; }
@@ -748,83 +719,141 @@
 </section>
 
 <!-- ===== §2 PAIN ===== -->
-<div class="surface--bond cos-pain">
-  <div class="cos-container">
+<!-- Glyph defs for pain section. Shapes use .g-p/.g-s/.g-d; custom properties inherit from each <use> host. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <g id="pg-know"><line class="g-s" x1="6" y1="50" x2="96" y2="50" stroke-width="5"/><polyline class="g-p" points="8,20 40,20 54,42 94,42" stroke-width="9"/><polyline class="g-p" points="8,80 40,80 54,58 94,58" stroke-width="9"/></g>
+    <g id="pg-paper"><polyline class="g-s" points="30,14 86,14 86,72" stroke-width="5"/><rect class="g-p" x="14" y="26" width="52" height="60" stroke-width="9"/></g>
+    <g id="pg-vis"><rect class="g-s" x="6" y="18" width="88" height="64" stroke-width="5"/><line class="g-p" x1="18" y1="70" x2="82" y2="70" stroke-width="9"/><line class="g-p" x1="30" y1="70" x2="30" y2="56" stroke-width="9"/><line class="g-p" x1="50" y1="70" x2="50" y2="44" stroke-width="9"/><line class="g-d" x1="70" y1="70" x2="70" y2="32" stroke-width="9"/></g>
+    <g id="pg-ops"><line class="g-p" x1="14" y1="28" x2="34" y2="28" stroke-width="9"/><line class="g-p" x1="42" y1="28" x2="62" y2="28" stroke-width="9"/><line class="g-p" x1="70" y1="28" x2="90" y2="28" stroke-width="9"/><line class="g-s" x1="24" y1="34" x2="24" y2="66" stroke-width="5"/><line class="g-s" x1="52" y1="34" x2="52" y2="66" stroke-width="5"/><line class="g-s" x1="80" y1="34" x2="80" y2="66" stroke-width="5"/><line class="g-d" x1="14" y1="74" x2="90" y2="74" stroke-width="9"/></g>
+    <g id="pg-back"><rect class="g-p" x="10" y="22" width="80" height="56" stroke-width="9"/><polyline class="g-s" points="14,28 50,54 86,28" stroke-width="5"/></g>
+    <g id="pg-margin"><rect class="g-p" x="14" y="14" width="72" height="72" stroke-width="9"/></g>
+  </defs>
+</svg>
+<section class="surface--bond pain" aria-labelledby="pain-h2">
+  <div class="pain__inner">
 
-    <div class="cos-pain__hd">
-      <div class="cos-pain__hd-left">
-        <div class="cos-pain__eyebrow">The current state</div>
-        <h2 class="cos-pain__h2">Does any of this sound familiar?</h2>
+    <div class="pain__head">
+      <div class="pain__head-l">
+        <span class="pain__label">The current state</span>
+        <h2 id="pain-h2" class="pain__h2">Does any of this sound familiar?</h2>
       </div>
-      <div class="cos-pain__hd-right">Six places it shows up</div>
+      <span class="pain__label">Six places it shows up</span>
     </div>
 
-    <div class="cos-pain__grid">
+    <div class="pain__body">
+      <div class="pain__index" role="tablist" aria-label="Where it shows up" aria-orientation="vertical">
 
-      <div class="cos-pain__tile">
-        <div class="cos-pain__num">01</div>
-        <div class="cos-pain__cat">
-          <svg viewBox="0 0 100 100" width="22" height="22" aria-hidden="true" style="flex: none;"><polyline points="30,14 86,14 86,72" fill="none" stroke="var(--rule-object)" stroke-width="5"></polyline><rect x="14" y="26" width="52" height="60" fill="none" stroke="currentColor" stroke-width="9"></rect></svg>
-          Paperwork
-        </div>
-        <h3 class="cos-pain__title">Your best people are the only ones who know how you do it.</h3>
-        <p class="cos-pain__body">Change orders, RFIs, meeting minutes, reports, submittals, billing documentation&mdash;rebuilt from scratch, job after job.</p>
+        <button class="p-tab" role="tab" id="pt1" aria-selected="true" aria-controls="pain-panel"
+                data-glyph="pg-know" data-cat="Knowledge"
+                data-text="The senior PM everyone calls. The COO who answers every operational question. The estimator whose pricing judgment nobody else has.">
+          <span class="p-tab__row"><span class="p-tab__num">01</span><span class="p-tab__head">Your best people are the only ones who know how you do it.</span></span>
+          <span class="p-tab__inline">
+            <span class="p-tab__cat"><svg viewBox="0 0 100 100" width="24" height="24" aria-hidden="true"><use href="#pg-know"/></svg>Knowledge</span>
+            <span class="p-tab__text">The senior PM everyone calls. The COO who answers every operational question. The estimator whose pricing judgment nobody else has.</span>
+          </span>
+        </button>
+
+        <button class="p-tab" role="tab" id="pt2" aria-selected="false" tabindex="-1" aria-controls="pain-panel"
+                data-glyph="pg-paper" data-cat="Paperwork"
+                data-text="Change orders, RFIs, meeting minutes, reports, submittals, billing documentation&mdash;rebuilt from scratch, job after job.">
+          <span class="p-tab__row"><span class="p-tab__num">02</span><span class="p-tab__head">Your PMs spend their best hours producing paperwork.</span></span>
+          <span class="p-tab__inline">
+            <span class="p-tab__cat"><svg viewBox="0 0 100 100" width="24" height="24" aria-hidden="true"><use href="#pg-paper"/></svg>Paperwork</span>
+            <span class="p-tab__text">Change orders, RFIs, meeting minutes, reports, submittals, billing documentation&mdash;rebuilt from scratch, job after job.</span>
+          </span>
+        </button>
+
+        <button class="p-tab" role="tab" id="pt3" aria-selected="false" tabindex="-1" aria-controls="pain-panel"
+                data-glyph="pg-vis" data-cat="Visibility"
+                data-text="Open changes, aging RFIs, missing approvals, unsigned contracts, schedule risk&mdash;assembled by hand, one conversation at a time.">
+          <span class="p-tab__row"><span class="p-tab__num">03</span><span class="p-tab__head">You&rsquo;re chasing people to figure out what needs attention.</span></span>
+          <span class="p-tab__inline">
+            <span class="p-tab__cat"><svg viewBox="0 0 100 100" width="24" height="24" aria-hidden="true"><use href="#pg-vis"/></svg>Visibility</span>
+            <span class="p-tab__text">Open changes, aging RFIs, missing approvals, unsigned contracts, schedule risk&mdash;assembled by hand, one conversation at a time.</span>
+          </span>
+        </button>
+
+        <button class="p-tab" role="tab" id="pt4" aria-selected="false" tabindex="-1" aria-controls="pain-panel"
+                data-glyph="pg-ops" data-cat="Operations"
+                data-text="Invoices and receipts entered by hand. Safety documentation chased. Billing packages assembled the same way every month.">
+          <span class="p-tab__row"><span class="p-tab__num">04</span><span class="p-tab__head">Too much routine work still depends on someone doing it by hand.</span></span>
+          <span class="p-tab__inline">
+            <span class="p-tab__cat"><svg viewBox="0 0 100 100" width="24" height="24" aria-hidden="true"><use href="#pg-ops"/></svg>Operations</span>
+            <span class="p-tab__text">Invoices and receipts entered by hand. Safety documentation chased. Billing packages assembled the same way every month.</span>
+          </span>
+        </button>
+
+        <button class="p-tab" role="tab" id="pt5" aria-selected="false" tabindex="-1" aria-controls="pain-panel"
+                data-glyph="pg-back" data-cat="Back office"
+                data-text="Invoices and receipts arriving by email, photo, PDF, and paper. Compliance documents chased vendor by vendor. Cost data going stale because the paperwork is behind the work.">
+          <span class="p-tab__row"><span class="p-tab__num">05</span><span class="p-tab__head">The back office is always trying to catch up.</span></span>
+          <span class="p-tab__inline">
+            <span class="p-tab__cat"><svg viewBox="0 0 100 100" width="24" height="24" aria-hidden="true"><use href="#pg-back"/></svg>Back office</span>
+            <span class="p-tab__text">Invoices and receipts arriving by email, photo, PDF, and paper. Compliance documents chased vendor by vendor. Cost data going stale because the paperwork is behind the work.</span>
+          </span>
+        </button>
+
+        <button class="p-tab" role="tab" id="pt6" aria-selected="false" tabindex="-1" aria-controls="pain-panel"
+                data-glyph="pg-margin" data-cat="Margin"
+                data-text="The owner asks for something in the field, it gets done, and it never becomes a change order. A sub&rsquo;s exclusion nobody caught before award. A scope item that disappeared during buyout.">
+          <span class="p-tab__row"><span class="p-tab__num">06</span><span class="p-tab__head">You do work you never get paid for.</span></span>
+          <span class="p-tab__inline">
+            <span class="p-tab__cat"><svg viewBox="0 0 100 100" width="24" height="24" aria-hidden="true"><use href="#pg-margin"/></svg>Margin</span>
+            <span class="p-tab__text">The owner asks for something in the field, it gets done, and it never becomes a change order. A sub&rsquo;s exclusion nobody caught before award. A scope item that disappeared during buyout.</span>
+          </span>
+        </button>
+
       </div>
 
-      <div class="cos-pain__tile">
-        <div class="cos-pain__num">02</div>
-        <div class="cos-pain__cat">
-          <svg viewBox="0 0 100 100" width="22" height="22" aria-hidden="true" style="flex: none;"><line x1="6" y1="50" x2="96" y2="50" stroke="var(--rule-object)" stroke-width="5"></line><polyline points="8,20 40,20 54,42 94,42" fill="none" stroke="currentColor" stroke-width="9"></polyline><polyline points="8,80 40,80 54,58 94,58" fill="none" stroke="currentColor" stroke-width="9"></polyline></svg>
-          Knowledge
+      <div class="pain__panel" id="pain-panel" role="tabpanel" aria-labelledby="pt1" aria-live="polite">
+        <div class="pain__panel-cat">
+          <svg viewBox="0 0 100 100" width="40" height="40" aria-hidden="true"><use id="pain-panel-glyph" href="#pg-know"/></svg>
+          <span id="pain-panel-catname">Knowledge</span>
         </div>
-        <h3 class="cos-pain__title">Your best people are the only ones who know how the company works.</h3>
-        <p class="cos-pain__body">The senior PM everyone calls. The COO who answers every operational question. The estimator whose pricing judgment nobody else has.</p>
+        <p class="pain__panel-head" id="pain-panel-head">Your best people are the only ones who know how you do it.</p>
+        <p class="pain__panel-text" id="pain-panel-text">The senior PM everyone calls. The COO who answers every operational question. The estimator whose pricing judgment nobody else has.</p>
       </div>
-
-      <div class="cos-pain__tile">
-        <div class="cos-pain__num">03</div>
-        <div class="cos-pain__cat">
-          <svg viewBox="0 0 100 100" width="22" height="22" aria-hidden="true" style="flex: none;"><rect x="6" y="18" width="88" height="64" fill="none" stroke="var(--rule-object)" stroke-width="5"></rect><line x1="18" y1="70" x2="82" y2="70" stroke="currentColor" stroke-width="9"></line><line x1="30" y1="70" x2="30" y2="56" stroke="currentColor" stroke-width="9"></line><line x1="50" y1="70" x2="50" y2="44" stroke="currentColor" stroke-width="9"></line><line x1="70" y1="70" x2="70" y2="32" stroke="currentColor" stroke-width="9"></line></svg>
-          Visibility
-        </div>
-        <h3 class="cos-pain__title">You&rsquo;re chasing people to figure out what needs attention.</h3>
-        <p class="cos-pain__body">Open changes, aging RFIs, missing approvals, unsigned contracts, schedule risk&mdash;assembled by hand, one conversation at a time.</p>
-      </div>
-
-      <div class="cos-pain__tile">
-        <div class="cos-pain__num">04</div>
-        <div class="cos-pain__cat">
-          <svg viewBox="0 0 100 100" width="22" height="22" aria-hidden="true" style="flex: none;"><line x1="14" y1="28" x2="34" y2="28" stroke="currentColor" stroke-width="9"></line><line x1="42" y1="28" x2="62" y2="28" stroke="currentColor" stroke-width="9"></line><line x1="70" y1="28" x2="90" y2="28" stroke="currentColor" stroke-width="9"></line><line x1="14" y1="74" x2="90" y2="74" stroke="currentColor" stroke-width="9"></line></svg>
-          Operations
-        </div>
-        <h3 class="cos-pain__title">Too much routine operational work is still manual.</h3>
-        <p class="cos-pain__body">Invoices and receipts entered by hand. Safety documentation chased. Billing packages assembled the same way every month.</p>
-      </div>
-
-      <div class="cos-pain__tile">
-        <div class="cos-pain__num">05</div>
-        <div class="cos-pain__cat">
-          <svg viewBox="0 0 100 100" width="22" height="22" aria-hidden="true" style="flex: none;"><rect x="8" y="24" width="84" height="60" fill="none" stroke="currentColor" stroke-width="9"></rect><polyline points="8,24 50,54 92,24" fill="none" stroke="var(--rule-object)" stroke-width="5"></polyline></svg>
-          Back office
-        </div>
-        <h3 class="cos-pain__title">The paper never stops coming.</h3>
-        <p class="cos-pain__body">Invoices and receipts arriving by email, photo, PDF, and paper. Compliance documents chased vendor by vendor. Cost data going stale because the paperwork is behind the work.</p>
-      </div>
-
-      <div class="cos-pain__tile">
-        <div class="cos-pain__num">06</div>
-        <div class="cos-pain__cat">
-          <svg viewBox="0 0 100 100" width="22" height="22" aria-hidden="true" style="flex: none;"><line x1="8" y1="8" x2="92" y2="8" stroke="currentColor" stroke-width="9"></line><line x1="8" y1="8" x2="8" y2="92" stroke="currentColor" stroke-width="9"></line><line x1="8" y1="92" x2="42" y2="92" stroke="currentColor" stroke-width="9"></line><line x1="42" y1="92" x2="58" y2="92" stroke="currentColor" stroke-width="9"></line><line x1="58" y1="92" x2="92" y2="92" stroke="currentColor" stroke-width="9"></line><line x1="92" y1="8" x2="92" y2="92" stroke="currentColor" stroke-width="9"></line></svg>
-          Margin
-        </div>
-        <h3 class="cos-pain__title">You do work you never get paid for.</h3>
-        <p class="cos-pain__body">The owner asks for something in the field, it gets done, and it never becomes a change order. A sub&rsquo;s exclusion nobody caught before award. A scope item that disappeared during buyout.</p>
-      </div>
-
     </div>
-
   </div>
-</div>
+
+  <script>
+  (() => {
+    const tabs = [...document.querySelectorAll('.pain .p-tab')];
+    const panelGlyph = document.getElementById('pain-panel-glyph');
+    const panelCat   = document.getElementById('pain-panel-catname');
+    const panelHead  = document.getElementById('pain-panel-head');
+    const panelText  = document.getElementById('pain-panel-text');
+    const panel      = document.getElementById('pain-panel');
+    const hover = matchMedia('(hover:hover)');
+    function select(tab, focus) {
+      tabs.forEach(t => {
+        const on = t === tab;
+        t.setAttribute('aria-selected', on);
+        t.tabIndex = on ? 0 : -1;
+      });
+      panelGlyph.setAttribute('href', '#' + tab.dataset.glyph);
+      panelCat.textContent  = tab.dataset.cat;
+      panelHead.textContent = tab.querySelector('.p-tab__head').textContent;
+      panelText.textContent = tab.dataset.text;
+      panel.setAttribute('aria-labelledby', tab.id);
+      if (focus) tab.focus();
+    }
+    tabs.forEach((t, idx) => {
+      t.addEventListener('click', () => select(t));
+      t.addEventListener('mouseenter', () => { if (hover.matches) select(t); });
+      t.addEventListener('keydown', e => {
+        const k = e.key; let j = null;
+        if (k === 'ArrowDown' || k === 'ArrowRight') j = (idx + 1) % tabs.length;
+        if (k === 'ArrowUp'   || k === 'ArrowLeft')  j = (idx - 1 + tabs.length) % tabs.length;
+        if (k === 'Home') j = 0;
+        if (k === 'End')  j = tabs.length - 1;
+        if (j !== null) { e.preventDefault(); select(tabs[j], true); }
+      });
+    });
+  })();
+  </script>
+</section>
 
 <!-- ===== §3 THE SYSTEM ===== -->
 <section class="surface--white sys" aria-labelledby="sys-h2">

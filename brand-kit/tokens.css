@@ -27,23 +27,28 @@
   --font-display: "Archivo", system-ui, -apple-system, sans-serif;
   --font-body:    "Source Serif 4", Georgia, "Times New Roman", serif;
 
-  --fs-display:   clamp(44px, 6.2vw, 84px);
-  --fs-head:      clamp(21px, 2.6vw, 25px);
-  --fs-subhead:   18px;
-  --fs-body:      16px;
-  --fs-small:     14px;
-  --fs-annotation:11px;
+  --fs-display:    clamp(44px, 6vw, 72px);    /* hero headline only */
+  --fs-section:    clamp(40px, 5vw, 60px);    /* section h2 */
+  --fs-subhead:    clamp(28px, 4.2vw, 40px);  /* sub-section headings, row headlines */
+  --fs-lead:       clamp(18px, 2vw, 26px);    /* intros, stat claims, panel descriptions */
+  --fs-figure:     clamp(48px, 5vw, 64px);    /* stat band figures */
+  --fs-body:       16px;
+  --fs-small:      14px;
+  --fs-annotation: 11px;
 
-  --lh-display:   1.05;
-  --lh-head:      1.18;
-  --lh-subhead:   1.35;
-  --lh-body:      1.62;
-  --lh-annotation:1.35;
+  --lh-display:    1.05;
+  --lh-section:    1.05;
+  --lh-subhead:    1.1;
+  --lh-lead:       1.4;
+  --lh-body:       1.62;
+  --lh-small:      1.5;
+  --lh-annotation: 1.35;
 
-  --tr-display:   -0.022em;
-  --tr-head:      -0.015em;
-  --tr-subhead:   -0.01em;
-  --tr-annotation: 0.06em;
+  --tr-display:    -0.022em;
+  --tr-section:    -0.022em;
+  --tr-subhead:    -0.022em;
+  --tr-lead:       -0.01em;
+  --tr-annotation:  0.06em;
 
   --w-cut:        1.5px;
   --w-object:     1px;

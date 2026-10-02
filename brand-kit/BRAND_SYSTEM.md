@@ -2,7 +2,7 @@
 
 **Sheet:** BRAND-002
 **Issued:** 2026-09-30
-**Revision:** 10
+**Revision:** 11
 **Supersedes:** BRAND-001 (specimen)
 
 This file is the authority on what this brand looks like. It governs the website, PDFs, Word documents, decks, and carousels. When a rule here conflicts with anything else in this repository, or with an existing stylesheet, this file wins.
@@ -95,14 +95,20 @@ Both are free and embeddable, which is required: these tokens have to survive in
 
 Archivo is deliberately restrained. The personality of this brand comes from the drawing language, not the typeface. Do not substitute a more distinctive display face — that turns the identity into typography cosplay and it will fight the dimension system for attention.
 
-| Role | Family | Size / line-height | Weight | Tracking |
-|---|---|---|---|---|
-| Display | Archivo | 40 / 1.05 | 600 | −0.022em |
-| Head | Archivo | 24 / 1.2 | 500 | −0.015em |
-| Subhead | Archivo | 18 / 1.35 | 500 | −0.01em |
-| Body | Source Serif 4 | 16 / 1.62 | 400 | 0 |
-| Small | Archivo | 14 / 1.5 | 400 | 0 |
-| Annotation | Archivo | 11 / 1.35 | 400 | +0.06em |
+Eight steps, defined as CSS tokens in `brand-kit/tokens.css`. No page may declare a `font-size` value outside these tokens — every inline pixel value and every `cqi` unit is retired; all fluid type uses `vw` inside `clamp()`. For non-web renderers (§11), use each token's floor value as the static size.
+
+| Token | Role | Formula | Weight | LH | Tracking |
+|---|---|---|---|---|---|
+| `--fs-display` | Display | `clamp(44px, 6vw, 72px)` | 600 | 1.05 | −0.022em |
+| `--fs-section` | Section heading | `clamp(40px, 5vw, 60px)` | 600 | 1.05 | −0.022em |
+| `--fs-subhead` | Subheading | `clamp(28px, 4.2vw, 40px)` | 600 | 1.1 | −0.022em |
+| `--fs-lead` | Lead | `clamp(18px, 2vw, 26px)` | 400 | 1.4 | −0.01em |
+| `--fs-figure` | Figure | `clamp(48px, 5vw, 64px)` | 600 | 0.95 | −0.03em |
+| `--fs-body` | Body | `16px` | 400 | 1.62 | 0 |
+| `--fs-small` | Small | `14px` | 400 | 1.5 | 0 |
+| `--fs-annotation` | Annotation | `11px` | 400 | 1.35 | +0.06em |
+
+`--fs-display` is the hero headline only. `--fs-figure` is for large numerals on dark bands (brass on dark surfaces only — §2.4). Hierarchy holds at every viewport: floors (44, 40, 28, 18 — skipping figure) and ceilings (72, 60, 40, 26) are strictly descending across Display → Section → Subhead → Lead.
 
 Body prose sets to a maximum of 68 characters. All numerals use `font-variant-numeric: tabular-nums` — figures in this system are data and must align in columns.
 
@@ -291,3 +297,4 @@ Claude Code may not introduce a visual treatment not defined here. If a page nee
 | 08 | 2026-09-24 | Palette replaced. Retired: steel (`#476776`), steel-deep (`#2F4A57`), revision red (`#C43230`), graphite-lift (`#949B9E`), line-dark (`#B1BFC5`), revision-lift (`#E2685E`). Added: warm black ink (`#1E1A17`), warm ivory bond (`#F3F1EB`), navy (`#1D2648`), oxblood (`#692524`), graphite (`#413833`), line (`#BAB8B7`), brass (`#C08F58`, dark surfaces only), muted-dark (`#B1A9A3`), change-lift (`#D07A6A`). Surface classes reduced from 6 → 5: `.surface--steel` and `.surface--steel-deep` removed, `.surface--revision` replaced by `.surface--oxblood`, `.surface--navy` added. Stats band changed to `surface--navy`, closing CTA to `surface--oxblood`. §2.1, §2.3, §2.4, §4 rewritten. |
 | 09 | 2026-09-26 | §2.4 dark-section limit raised from two to three. Reason: the original two-section limit dates from the single-ink palette; the current palette carries three distinct dark grounds (ink, navy, oxblood), each with a different character and a different function. A nine-section page can support three without dilution provided each serves a separate role — evidence band, argument, closing plate — and the adjacency and function-uniqueness constraints are met. §2.4 updated accordingly. |
 | 10 | 2026-09-30 | §3 type: product wordmarks (the four product names in the §3 system section) may be set in Archivo 600, 13px, 0.1em tracking, uppercase — the only exception to sentence case. Status text under a wordmark is plain text, never a chip. §4: glyph delta strokes in the four product glyphs use `--c-mark`/`--c-mark-lift`, not `--change` — mark role and change role are separate tokens on separate semantic axes; §4 updated to document this. §10: four product glyphs documented as a constructed family from the mark's geometry (not an icon set); full construction notes added. §2.1: `--c-mark` and `--c-mark-lift` added to palette table. `--c-mark-lift` (#D07A6A, same value as `--c-change-lift`) added to `tokens.css`. |
+| 11 | 2026-10-01 | §3 type scale rebuilt as eight fluid tokens. `--fs-head` retired; replaced by `--fs-section` at `clamp(40px,5vw,60px)`. `--fs-display` ceiling lowered from 84px to 72px, rate from 6.2vw to 6vw. `--fs-subhead` raised from 18px to `clamp(28px,4.2vw,40px)`. `--fs-lead` added at `clamp(18px,2vw,26px)`. `--fs-figure` added at `clamp(48px,5vw,64px)`. Rule added: no page may declare a font-size outside these tokens. `cqi` units retired in favour of `vw`. `tokens.css` updated: `--lh-head`/`--tr-head` renamed to `--lh-section`/`--tr-section`; `--lh-subhead` updated from 1.35 to 1.1 (role now covers 28–40px); `--lh-lead` and `--lh-small` added. |

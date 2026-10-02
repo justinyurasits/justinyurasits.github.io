@@ -360,63 +360,51 @@
       color: var(--fg-muted); max-width: 70ch;
     }
 
-    /* --- System stats band --- */
-    .cos-stats { padding: var(--zone-pad) 0; }
-    .cos-stats__row {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      border-top: var(--w-cut) solid var(--rule-cut);
+    /* --- Proof band (§1a) --- */
+    .proof { padding: 88px 0; }
+    .proof__inner { max-width: 1280px; margin: 0 auto; padding-inline: clamp(24px, 6vw, 96px); }
+    .proof__grid {
+      list-style: none; margin: 0; padding: 0;
+      display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: var(--w-dimension);
+      background: var(--c-muted-dark);
+      border-top: var(--w-cut) solid var(--c-muted-dark);
     }
-    .cos-stats__col {
-      padding: var(--s-6) var(--s-6) var(--s-6) 0;
-      display: flex;
-      flex-direction: column;
-      gap: var(--s-2);
+    .stat {
+      background: var(--c-navy);
+      display: flex; flex-direction: column; gap: 28px;
+      padding: 28px 28px 8px;
     }
-    .cos-stats__col + .cos-stats__col {
-      border-left: var(--w-object) solid var(--rule-object);
-      padding-left: var(--s-6);
+    .stat:nth-child(4n+1) { padding-left: 0; }
+    .stat__claim {
+      font-family: var(--font-display); font-weight: 600;
+      font-size: 22px; line-height: 1.15;
+      letter-spacing: var(--tr-display);
+      color: var(--c-white); text-wrap: balance; min-height: 2.3em; margin: 0;
     }
-    .cos-stats__fig {
-      font-family: var(--font-display);
-      font-size: clamp(32px, 4vw, 44px);
-      font-weight: 600;
-      line-height: 1;
-      letter-spacing: -0.032em;
-      font-variant-numeric: tabular-nums;
-      color: var(--fg);
+    .stat__fig-wrap { display: flex; flex-direction: column; gap: 8px; }
+    .stat__fig {
+      font-family: var(--font-display); font-weight: 600;
+      font-size: clamp(48px, 5vw, 64px); line-height: .95;
+      letter-spacing: -0.03em; font-variant-numeric: tabular-nums;
+      color: var(--c-brass);
     }
-    .cos-stats__label {
-      font-family: var(--font-display);
-      font-size: 11px;
-      font-weight: 400;
-      letter-spacing: 0.06em;
-      line-height: 1.35;
-      color: var(--fg-muted);
+    .stat__unit {
+      font-family: var(--font-display); font-weight: 500;
+      font-size: 13px; letter-spacing: var(--tr-annotation);
+      color: var(--c-muted-dark);
     }
-    @media (max-width: 760px) {
-      .cos-stats__row {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        column-gap: var(--s-5);
-      }
-      .cos-stats__col,
-      .cos-stats__col + .cos-stats__col {
-        border-left: 0;
-        padding: var(--s-5) 0;
-      }
+    @media (max-width: 1023px) {
+      .proof__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .stat { padding: 28px 28px 32px; }
+      .stat:nth-child(4n+1) { padding-left: 28px; }
+      .stat:nth-child(2n+1) { padding-left: 0; }
     }
-    @media (max-width: 480px) {
-      .cos-stats__row {
-        grid-template-columns: 1fr;
-        column-gap: 0;
-      }
-      .cos-stats__col {
-        padding-bottom: var(--s-4);
-      }
-      .cos-stats__col + .cos-stats__col {
-        border-top: var(--w-dimension) solid var(--rule-dimension);
-        padding-top: var(--s-4);
-      }
+    @media (max-width: 599px) {
+      .proof { padding: 64px 0; }
+      .proof__grid { grid-template-columns: minmax(0, 1fr); }
+      .stat, .stat:nth-child(2n+1) { padding: 24px 0 28px; }
+      .stat__claim { min-height: 0; }
     }
 
     /* --- Pre-built architecture (§5.5) --- */
@@ -694,27 +682,27 @@
   </div>
 </div>
 
-<!-- ===== §1a STATS BAND ===== -->
-<section class="surface--navy cos-stats" aria-label="System coverage">
-  <div class="cos-container">
-    <div class="cos-stats__row">
-      <div class="cos-stats__col">
-        <span class="cos-stats__fig">110</span>
-        <span class="cos-stats__label">Document types produced</span>
-      </div>
-      <div class="cos-stats__col">
-        <span class="cos-stats__fig">5</span>
-        <span class="cos-stats__label">Lifecycle phases covered</span>
-      </div>
-      <div class="cos-stats__col">
-        <span class="cos-stats__fig">160+</span>
-        <span class="cos-stats__label">Documented procedures</span>
-      </div>
-      <div class="cos-stats__col">
-        <span class="cos-stats__fig">1,258</span>
-        <span class="cos-stats__label">Pricing items referenced</span>
-      </div>
-    </div>
+<!-- ===== §1a PROOF BAND ===== -->
+<section class="surface--navy proof" aria-label="Construction OS by the numbers">
+  <div class="proof__inner">
+    <ol class="proof__grid">
+      <li class="stat">
+        <p class="stat__claim">Know how your company does the work</p>
+        <div class="stat__fig-wrap"><span class="stat__fig">160+</span><span class="stat__unit">Construction SOPs</span></div>
+      </li>
+      <li class="stat">
+        <p class="stat__claim">Produce what the job requires</p>
+        <div class="stat__fig-wrap"><span class="stat__fig">110</span><span class="stat__unit">Document types</span></div>
+      </li>
+      <li class="stat">
+        <p class="stat__claim">Across the whole job</p>
+        <div class="stat__fig-wrap"><span class="stat__fig">5</span><span class="stat__unit">Lifecycle phases</span></div>
+      </li>
+      <li class="stat">
+        <p class="stat__claim">Price from real project costs</p>
+        <div class="stat__fig-wrap"><span class="stat__fig">1,258</span><span class="stat__unit">Pricing reference items</span></div>
+      </li>
+    </ol>
   </div>
 </section>
 

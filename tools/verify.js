@@ -327,7 +327,7 @@ for (const relPath of HTML_FILES) {
     { label: /Document\s+types?\s+produced/i, canonical: '110',   key: 'documentTypes' },
     { label: /Categories\s+covered/i,         canonical: '38',    key: 'categories' },
     { label: /Lifecycle\s+phases/i,           canonical: '5',     key: 'lifecyclePhases' },
-    { label: /Documented\s+procedures/i,      canonical: '160+',  key: 'documentedProcedures' },
+    { label: /Construction\s+SOPs/i,           canonical: '160+',  key: 'constructionSOPs' },
     { label: /Pricing\s+items/i,              canonical: '1,258', key: 'pricingItems' },
   ];
   for (let i = 0; i < lines.length; i++) {

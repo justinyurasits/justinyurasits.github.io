@@ -28,9 +28,12 @@ npm run check      # the build plus every check; must pass before every commit
 
 | Folder | What it holds |
 | --- | --- |
+| `src/pages/` | One file or folder per route. Pages built in M1 replace the `[COPY]` stubs |
+| `src/layouts/`, `src/components/` | The base layout (header, navigation, footer) and shared components |
+| `src/styles/` | Neutral styling until the visual design is applied (M2) |
+| `public/` | Files served as they are, including `CNAME` |
 | `content/` | `facts.json`, the facts register every claim about Justin and his products must match |
-| `*.html`, `products/`, `tools/`, `brand-kit/`, `brand-kit-master/`, `images/`, `assets/` | The old static site. Removed from `v2` by M0.2; it stays on `main` until cutover |
-| `.github/` | The pull request template |
+| `.github/` | The pull request template and CI |
 
 ## How work happens
 

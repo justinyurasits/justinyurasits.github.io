@@ -1,0 +1,22 @@
+---
+// Site navigation. Contact is in the header and the footer on every page (JYC-CAP-08).
+export const NAV = [
+  { href: '/writing/', label: 'Writing' },
+  { href: '/projects/', label: 'Projects' },
+  { href: '/construction-os/', label: 'Construction OS' },
+  { href: '/work-with-me/enterprise/', label: 'Enterprise AI' },
+  { href: '/work-with-me/construction/', label: 'Construction AI' },
+  { href: '/about/', label: 'About' },
+  { href: '/contact/', label: 'Contact' },
+];
+const current = Astro.url.pathname;
+---
+<nav aria-label="Main">
+  <ul>
+    {NAV.map((item) => (
+      <li>
+        <a href={item.href} aria-current={current.startsWith(item.href) ? 'page' : undefined}>{item.label}</a>
+      </li>
+    ))}
+  </ul>
+</nav>

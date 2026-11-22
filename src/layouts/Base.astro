@@ -1,0 +1,44 @@
+---
+import Nav from '../components/Nav.astro';
+import '../styles/neutral.css';
+
+interface Props {
+  title: string;
+  description: string;
+}
+const { title, description } = Astro.props;
+const siteName = 'Justin Yurasits';
+const fullTitle = title === siteName ? title : `${title} | ${siteName}`;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary" />
+    <slot name="head" />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <header>
+      <a class="site-name" href="/">{siteName}</a>
+      <Nav />
+    </header>
+    <main id="main">
+      <slot />
+    </main>
+    <footer>
+      <ul>
+        <li><a href="/contact/">Contact</a></li>
+      </ul>
+    </footer>
+  </body>
+</html>

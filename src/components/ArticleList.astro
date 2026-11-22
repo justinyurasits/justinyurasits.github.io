@@ -1,0 +1,17 @@
+---
+import type { Article } from '../lib/articles';
+import { articleUrl, categoryUrl, formatDate } from '../lib/format';
+interface Props { articles: Article[]; empty?: string }
+const { articles, empty = 'No articles yet.' } = Astro.props;
+---
+{articles.length === 0 ? <p>{empty}</p> : (
+  <ul class="article-list">
+    {articles.map((a) => (
+      <li>
+        <a href={articleUrl(a.id)}>{a.data.title}</a>
+        <p>{a.data.description}</p>
+        <p><a href={categoryUrl(a.data.category)}>{a.data.category}</a>, <time datetime={a.data.date.toISOString().slice(0, 10)}>{formatDate(a.data.date)}</time></p>
+      </li>
+    ))}
+  </ul>
+)}

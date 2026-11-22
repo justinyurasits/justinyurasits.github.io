@@ -1,7 +1,41 @@
 ---
+// JYC-CAP-02: the writing library. Every listing is built from published content.
 import Base from '../../layouts/Base.astro';
+import ArticleList from '../../components/ArticleList.astro';
+import { publishedArticles, featured, recent, categories, allTags } from '../../lib/articles';
+import { tagUrl } from '../../lib/format';
+
+const all = await publishedArticles();
+const tags = allTags(all);
 ---
 <Base title="Writing" description="[COPY]">
   <h1>Writing</h1>
   <p>[COPY]</p>
+
+  <section aria-labelledby="featured" data-section="featured">
+    <h2 id="featured">Featured</h2>
+    <ArticleList articles={featured(all)} empty="No featured articles yet." />
+  </section>
+
+  <section aria-labelledby="recent" data-section="recent">
+    <h2 id="recent">Recent</h2>
+    <ArticleList articles={recent(all)} />
+  </section>
+
+  <section aria-labelledby="categories">
+    <h2 id="categories">Categories</h2>
+    <ul>{categories.map((c) => <li><a href={`/writing/category/${c.slug}/`}>{c.name}</a></li>)}</ul>
+  </section>
+
+  {tags.length > 0 && (
+    <section aria-labelledby="tags">
+      <h2 id="tags">Tags</h2>
+      <ul>{tags.map((t) => <li><a href={tagUrl(t.name)}>{t.name}</a></li>)}</ul>
+    </section>
+  )}
+
+  <section aria-labelledby="all" data-section="all">
+    <h2 id="all">All articles</h2>
+    <ArticleList articles={all} />
+  </section>
 </Base>

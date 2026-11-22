@@ -6,12 +6,15 @@
 //   no fees          none of Justin's fee values appears on any page
 //   basis            every metric has a basis (a warning or an error, per checks.config.json)
 //   links            no href="#"; every internal link and its #anchor resolves
+//   preserved links  every old site address reaches its destination, following redirect
+//                    pages, and the anchor it points at exists there (JYC-CAP-09)
 //   discoverable     every page has a title, description, canonical and social preview and
 //                    is in the sitemap; every article is in the RSS feed
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import { join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadRegister, feeValues } from '../src/lib/register.mjs';
+import { OLD_ADDRESSES } from '../src/data/old-addresses.mjs';
 
 const ROOT = resolve(fileURLToPath(new URL('..', import.meta.url)));
 
@@ -68,7 +71,7 @@ const FIGURE = /(?:up to|~)\s?\d+(?:\.\d+)?\s?(?:hrs?|hours?|min(?:utes)?|days?)
 const normFigure = (s) => s.toLowerCase().replace(/\s+/g, ' ').replace(/~ /, '~')
   .replace(/\bhours?\b/, 'hrs').replace(/\bhr\b/, 'hrs').replace(/\bminutes\b/, 'min').replace(/\bday\b/, 'days');
 
-export function runChecks({ dist = join(ROOT, 'dist'), register = loadRegister(), config = {} } = {}) {
+export function runChecks({ dist = join(ROOT, 'dist'), register = loadRegister(), config = {}, oldAddresses = OLD_ADDRESSES } = {}) {
   const errors = [];
   const warnings = [];
   const missingBasis = config.missingBasis ?? 'warn';
@@ -153,6 +156,37 @@ export function runChecks({ dist = join(ROOT, 'dist'), register = loadRegister()
       } else if (anchor && targetHtml !== null && !new RegExp(`\\sid="${anchor.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"`).test(targetHtml)) {
         errors.push(`Broken anchor "${href}" on ${where(url)}: ${path || url} has no element with id="${anchor}".`);
       }
+    }
+  }
+
+  // preserved links: follow each old address to its final destination
+  const fileFor = (path) => join(dist, path.endsWith('/') ? `${path}index.html` : path);
+  for (const { from } of oldAddresses) {
+    let path = from;
+    let anchor = '';
+    const seen = [];
+    for (let hop = 0; ; hop++) {
+      const f = fileFor(path);
+      if (!existsSync(f)) {
+        errors.push(seen.length
+          ? `Old address ${from} redirects to ${path}, which isn't built. Fix its destination in src/data/old-addresses.mjs or build the page.`
+          : `Old address ${from} isn't built. Every address in the JYC-CAP-09 table must keep working: add it to src/data/old-addresses.mjs.`);
+        break;
+      }
+      const html = readFileSync(f, 'utf8');
+      const refresh = html.match(/<meta[^>]*http-equiv="refresh"[^>]*content="\d+;\s*url=([^"]+)"/i)?.[1];
+      if (!refresh) {
+        if (anchor && !new RegExp(`\\sid="${anchor.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"`).test(html)) {
+          errors.push(`Old address ${from} points at ${path}#${anchor}, but ${path} has no element with id="${anchor}". Fix the anchor in src/data/old-addresses.mjs or on the page.`);
+        }
+        break;
+      }
+      seen.push(path);
+      if (hop >= 5) {
+        errors.push(`Old address ${from} redirects more than 5 times (${seen.join(' → ')}). Point it straight at its destination.`);
+        break;
+      }
+      [path, anchor = ''] = decode(refresh).split('#');
     }
   }
 

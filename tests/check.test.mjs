@@ -26,7 +26,7 @@ function check(pages, { sitemap = Object.keys(pages), rss = null, config = {}, r
     }
     writeFileSync(join(dist, 'sitemap-0.xml'), `<urlset>${sitemap.map((u) => `<url><loc>https://justinyurasits.com${u}</loc></url>`).join('')}</urlset>`);
     if (rss) writeFileSync(join(dist, 'rss.xml'), rss);
-    return runChecks({ dist, register: reg, config });
+    return runChecks({ dist, register: reg, config, oldAddresses: [] });
   } finally { rmSync(dist, { recursive: true, force: true }); }
 }
 

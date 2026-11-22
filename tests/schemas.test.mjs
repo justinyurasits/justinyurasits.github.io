@@ -9,7 +9,7 @@ function buildWith(files) {
 
 const listing = `---
 import { getPublished } from '../lib/content';
-const items = [...await getPublished('articles'), ...await getPublished('projects'), ...await getPublished('experience')];
+const items = [...await getPublished('articles'), ...await getPublished('projects')];
 ---
 <ul>{items.map((e) => <li>{e.data.title}</li>)}</ul>
 `;

@@ -1,0 +1,7 @@
+---
+// Built, led or both, and what Justin personally did (product spec §5).
+import { ROLE_LABEL } from '../lib/status';
+interface Props { role: string; personallyDid: string }
+const { role, personallyDid } = Astro.props;
+---
+<p class="role"><strong data-role={role}>{ROLE_LABEL[role]}.</strong> {personallyDid}</p>

@@ -1,0 +1,11 @@
+---
+// Maturity and demo availability (product spec §5). With a register key, the M0.6 check
+// compares what's shown with content/facts.json.
+import { MATURITY_LABEL, DEMO_LABEL } from '../lib/status';
+interface Props { maturity: string; demo: string; demoUrl?: string; registerKey?: string }
+const { maturity, demo, demoUrl, registerKey } = Astro.props;
+---
+<span class="status" data-status={registerKey} data-maturity={registerKey && maturity} data-demo={registerKey && demo}>
+  <span class="maturity">{MATURITY_LABEL[maturity]}</span>,
+  {demo === 'public' && demoUrl ? <a class="demo" href={demoUrl}>{DEMO_LABEL[demo]}</a> : <span class="demo">{DEMO_LABEL[demo]}</span>}
+</span>

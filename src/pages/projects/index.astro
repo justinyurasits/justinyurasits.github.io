@@ -1,7 +1,26 @@
 ---
+// JYC-CAP-05: the projects index.
 import Base from '../../layouts/Base.astro';
+import Status from '../../components/Status.astro';
+import Role from '../../components/Role.astro';
+import { getPublished } from '../../lib/content';
+import { projectUrl } from '../../lib/format';
+
+const projects = (await getPublished('projects')).sort((a, b) => a.data.order - b.data.order || a.data.title.localeCompare(b.data.title));
 ---
 <Base title="Projects" description="[COPY]">
   <h1>Projects</h1>
   <p>[COPY]</p>
+  {projects.length === 0 ? <p>No projects yet.</p> : (
+    <ul class="project-list">
+      {projects.map((p) => (
+        <li>
+          <a href={projectUrl(p.id)}>{p.data.title}</a>
+          <p>{p.data.summary}</p>
+          <Role role={p.data.role} personallyDid={p.data.personallyDid} />
+          <p><Status maturity={p.data.maturity} demo={p.data.demo} demoUrl={p.data.demoUrl} registerKey={p.data.registerKey} /></p>
+        </li>
+      ))}
+    </ul>
+  )}
 </Base>

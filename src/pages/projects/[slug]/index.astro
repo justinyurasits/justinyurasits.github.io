@@ -1,0 +1,61 @@
+---
+// JYC-CAP-05: one case study. The format is the same for every project.
+import { render } from 'astro:content';
+import { Image } from 'astro:assets';
+import Base from '../../../layouts/Base.astro';
+import Status from '../../../components/Status.astro';
+import Role from '../../../components/Role.astro';
+import { getPublished } from '../../../lib/content';
+import { articleUrl } from '../../../lib/format';
+
+export async function getStaticPaths() {
+  const projects = await getPublished('projects');
+  return projects.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const p = entry.data;
+const citing = (await getPublished('articles'))
+  .filter((a) => a.data.relatedProjects.some((r) => r.id === entry.id))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const hasEvidence = p.screenshots.length > 0 || !!p.walkthroughUrl || !!p.architecture;
+---
+<Base title={p.title} description={p.summary}>
+  <article>
+    <p><a href="/projects/">Projects</a></p>
+    <h1>{p.title}</h1>
+    <p>{p.summary}</p>
+
+    <section aria-labelledby="status">
+      <h2 id="status">Role and status</h2>
+      <Role role={p.role} personallyDid={p.personallyDid} />
+      <p><Status maturity={p.maturity} demo={p.demo} demoUrl={p.demoUrl} registerKey={p.registerKey} /></p>
+      {p.repository.visibility === 'public' && <p><a href={p.repository.url}>Repository</a></p>}
+      {p.repository.visibility === 'private-own' && <p class="repo-label">Private repository, walkthrough on request.</p>}
+    </section>
+
+    <section aria-labelledby="problem">
+      <h2 id="problem">The problem</h2>
+      <p>{p.problem}</p>
+    </section>
+
+    <Content />
+
+    {hasEvidence && (
+      <section aria-labelledby="evidence">
+        <h2 id="evidence">Evidence</h2>
+        {p.screenshots.map((s) => <figure><Image src={s.src} alt={s.alt} /><figcaption>{s.alt}</figcaption></figure>)}
+        {p.walkthroughUrl && <p><a href={p.walkthroughUrl}>Walkthrough</a></p>}
+        {p.architecture && <><h3>Architecture</h3><p>{p.architecture}</p></>}
+      </section>
+    )}
+
+    {citing.length > 0 && (
+      <section aria-labelledby="related-writing">
+        <h2 id="related-writing">Related writing</h2>
+        <ul>{citing.map((a) => <li><a href={articleUrl(a.id)}>{a.data.title}</a></li>)}</ul>
+      </section>
+    )}
+  </article>
+</Base>

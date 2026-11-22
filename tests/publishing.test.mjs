@@ -76,14 +76,17 @@ test('CAP-04: a correction is the same one file; the URL stays the same', () => 
 
 import { spawn } from 'node:child_process';
 
-test('CAP-04: npm run preview shows a draft locally', async () => {
+test('CAP-04: npm run preview shows a draft locally', { timeout: 120000 }, async () => {
   const site = makeSite({ 'src/content/articles/wip.md': md({ ...ARTICLE, title: 'Work in progress', draft: true }) });
   const port = 4500 + Math.floor(Math.random() * 400);
-  const dev = spawn('npm', ['run', '--silent', 'preview', '--', '--port', String(port)], { cwd: site.dir, env: { ...process.env, FORCE_COLOR: '0' } });
+  // Its own process group, so stopping it stops the Astro server npm starts, not just npm.
+  const dev = spawn('npm', ['run', '--silent', 'preview', '--', '--port', String(port)], { cwd: site.dir, env: { ...process.env, FORCE_COLOR: '0' }, detached: true });
   try {
     await new Promise((ok, fail) => {
       const t = setTimeout(() => fail(new Error('dev server did not start')), 60000);
-      dev.stdout.on('data', (d) => { if (/localhost:\d+/.test(String(d))) { clearTimeout(t); ok(); } });
+      const seen = (d) => { if (/localhost:\d+/.test(String(d))) { clearTimeout(t); ok(); } };
+      dev.stdout.on('data', seen);
+      dev.stderr.on('data', seen);
     });
     const res = await fetch(`http://localhost:${port}/writing/wip/`);
     assert.equal(res.status, 200);
@@ -91,7 +94,8 @@ test('CAP-04: npm run preview shows a draft locally', async () => {
     assert.match(html, /Work in progress/);
     assert.match(html, /Draft/);
   } finally {
-    dev.kill('SIGTERM');
+    try { process.kill(-dev.pid, 'SIGTERM'); } catch {}
+    dev.stdout.destroy(); dev.stderr.destroy();
     site.cleanup();
   }
 });

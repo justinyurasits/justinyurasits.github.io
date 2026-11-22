@@ -28,6 +28,8 @@ const articles = defineCollection({
     category: z.enum(CATEGORIES, { error: oneOf('category', CATEGORIES) }),
     tags: z.array(z.string()).default([]),
     draft: z.boolean({ error: 'draft is required: true or false' }),
+    // Shown in the featured sections (the homepage and the writing library).
+    featured: z.boolean().default(false),
     updated: z
       .object({
         date: z.coerce.date({ error: 'updated.date is required, as YYYY-MM-DD' }),

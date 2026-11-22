@@ -1,0 +1,16 @@
+---
+import Base from '../../../../layouts/Base.astro';
+import ArticleList from '../../../../components/ArticleList.astro';
+import { publishedArticles, withTag, allTags } from '../../../../lib/articles';
+
+export async function getStaticPaths() {
+  const all = await publishedArticles();
+  return allTags(all).map((t) => ({ params: { tag: t.slug }, props: { name: t.name, articles: withTag(all, t.name) } }));
+}
+const { name, articles } = Astro.props;
+---
+<Base title={`Tagged ${name}`} description={`Articles tagged ${name}.`}>
+  <p><a href="/writing/">Writing</a></p>
+  <h1>Tagged {name}</h1>
+  <ArticleList articles={articles} />
+</Base>

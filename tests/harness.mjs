@@ -6,7 +6,7 @@ import { dirname, join, resolve } from 'node:path';
 import { spawnSync } from 'node:child_process';
 
 const ROOT = resolve(dirname(new URL(import.meta.url).pathname), '..');
-const COPY = ['src', 'public', 'content', 'scripts', 'astro.config.mjs', 'package.json', 'tsconfig.json'];
+const COPY = ['src', 'public', 'content', 'scripts', 'astro.config.mjs', 'package.json', 'tsconfig.json', 'checks.config.json'];
 
 export function makeSite(files = {}, { remove = [] } = {}) {
   const dir = mkdtempSync(join(tmpdir(), 'jyc-site-'));

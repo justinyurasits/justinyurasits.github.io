@@ -8,9 +8,11 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "test": "node --test --test-concurrency=4 \"tests/*.test.mjs\""
   },
   "dependencies": {
+    "@astrojs/mdx": "8.1.6",
     "astro": "7.4.13"
   }
 }

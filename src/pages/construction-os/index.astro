@@ -1,7 +1,51 @@
 ---
+// JYC-CAP-09: the Construction OS landing page. One section and anchor per product; every
+// status comes from the register, and every live product and demo is linked.
 import Base from '../../layouts/Base.astro';
+import Status from '../../components/Status.astro';
+import { facts, productStatus } from '../../lib/facts';
+import { getPublished } from '../../lib/content';
+import { projectUrl, slugify } from '../../lib/format';
+
+const projects = await getPublished('projects');
+const caseStudyFor = (registerKey: string) => projects.find((p) => p.data.registerKey === registerKey);
+
+const products = Object.entries(facts.products).map(([key, p]) => {
+  const fromWorkflows = 'statusFrom' in p;
+  return {
+    key,
+    name: p.name,
+    anchor: slugify(p.name),
+    caseStudy: caseStudyFor(`products.${key}`),
+    rows: productStatus(key).map((s) => ({ ...s, registerKey: fromWorkflows ? `workflows.${s.key}` : `products.${key}` })),
+    fromWorkflows,
+  };
+});
 ---
 <Base title="Construction OS" description="[COPY]">
   <h1>Construction OS</h1>
   <p>[COPY]</p>
+
+  <nav aria-label="Products">
+    <ul>{products.map((p) => <li><a href={`#${p.anchor}`}>{p.name}</a></li>)}</ul>
+  </nav>
+
+  {products.map((p) => (
+    <section id={p.anchor} aria-labelledby={`${p.anchor}-title`} data-product={p.key}>
+      <h2 id={`${p.anchor}-title`}>{p.name}</h2>
+      <p>[COPY]</p>
+      {p.fromWorkflows ? (
+        <ul class="workflows">
+          {p.rows.map((w) => (
+            <li>
+              {w.name}: <Status maturity={w.maturity} demo={w.demo} demoUrl={w.demoUrl} registerKey={w.registerKey} />
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p><Status maturity={p.rows[0].maturity} demo={p.rows[0].demo} demoUrl={p.rows[0].demoUrl} registerKey={p.rows[0].registerKey} /></p>
+      )}
+      {p.caseStudy && <p><a href={projectUrl(p.caseStudy.id)}>Case study</a></p>}
+    </section>
+  ))}
 </Base>

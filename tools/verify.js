@@ -77,6 +77,33 @@ function extractStyleBlocks(html) {
 // All other selectors — and any inline style="" attribute — remain prohibited.
 const UPPERCASE_CSS_SELECTOR_ALLOWLIST = ['.row__name'];
 
+// HTML element classes for which a → right-arrow in text content is permitted.
+// .fig__sep: the value separator between before/after measurement figures.
+// The ban exists for trailing link arrows; a value separator is not a link arrow.
+const ARROW_HTML_CLASS_ALLOWLIST = ['.fig__sep'];
+
+// Return true when the → at `matchIndex` in `raw` is the text content of an
+// element whose class attribute is in ARROW_HTML_CLASS_ALLOWLIST.
+function isArrowInAllowedClass(raw, matchIndex) {
+  // Find the > that closes the opening tag immediately before matchIndex.
+  let gtPos = -1;
+  for (let i = matchIndex - 1; i >= 0; i--) {
+    if (raw[i] === '>') { gtPos = i; break; }
+  }
+  if (gtPos < 0) return false;
+  // Find the < that opens that tag.
+  let ltPos = -1;
+  for (let i = gtPos - 1; i >= 0; i--) {
+    if (raw[i] === '<') { ltPos = i; break; }
+  }
+  if (ltPos < 0) return false;
+  const tag = raw.slice(ltPos, gtPos + 1);
+  const classMatch = tag.match(/class="([^"]*)"/);
+  if (!classMatch) return false;
+  const classes = classMatch[1].split(/\s+/).map(c => '.' + c);
+  return ARROW_HTML_CLASS_ALLOWLIST.some(a => classes.includes(a));
+}
+
 // Selectors for which a non-var() font-size is permitted inside <style> blocks.
 // Covers product wordmarks that must stay at a fixed size.
 const FONT_SIZE_CSS_SELECTOR_ALLOWLIST = ['.row__name'];
@@ -501,7 +528,12 @@ for (const relPath of HTML_FILES) {
       },
     },
     { re: /font-family\s*:[^;]*(?:monospace|Courier|Consolas|Monaco|Menlo|Lucida Console|Liberation Mono|DejaVu)/gi, label: 'monospace font-family', src: raw },
-    { re: /→/g, label: '→ right arrow (entity or literal)', src: raw },
+    {
+      re: /→/g,
+      label: '→ right arrow (entity or literal)',
+      src: raw,
+      checkFn: (m) => !isArrowInAllowedClass(raw, m.index),
+    },
     { re: /·/g, label: '· middle dot (entity or literal)',  src: raw },
   ];
   for (const { re, label, src, checkFn } of PROHIBITIONS) {

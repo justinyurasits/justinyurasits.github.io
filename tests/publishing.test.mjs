@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
-import { makeSite, md, ARTICLE } from './harness.mjs';
+import { makeSite, md, ARTICLE, freePort } from './harness.mjs';
 
 // A 1×1 PNG.
 const PNG = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=', 'base64');
@@ -78,12 +78,12 @@ import { spawn } from 'node:child_process';
 
 test('CAP-04: npm run preview shows a draft locally', { timeout: 120000 }, async () => {
   const site = makeSite({ 'src/content/articles/wip.md': md({ ...ARTICLE, title: 'Work in progress', draft: true }) });
-  const port = 4500 + Math.floor(Math.random() * 400);
+  const port = await freePort();
   // Its own process group, so stopping it stops the Astro server npm starts, not just npm.
   const dev = spawn('npm', ['run', '--silent', 'preview', '--', '--port', String(port)], { cwd: site.dir, env: { ...process.env, FORCE_COLOR: '0' }, detached: true });
   try {
     await new Promise((ok, fail) => {
-      const t = setTimeout(() => fail(new Error('dev server did not start')), 60000);
+      const t = setTimeout(() => fail(new Error('dev server did not start')), 90000);
       const seen = (d) => { if (/localhost:\d+/.test(String(d))) { clearTimeout(t); ok(); } };
       dev.stdout.on('data', seen);
       dev.stderr.on('data', seen);

@@ -2,9 +2,10 @@
 // browser download), for checks that need real layout: what's visible without scrolling.
 import { spawn } from 'node:child_process';
 import { chromium } from 'playwright-core';
+import { freePort } from './harness.mjs';
 
 export async function serve(site) {
-  const port = 4900 + Math.floor(Math.random() * 400);
+  const port = await freePort();
   const proc = spawn('npx', ['astro', 'preview', '--port', String(port)], { cwd: site.dir, detached: true, env: { ...process.env, FORCE_COLOR: '0' } });
   await new Promise((ok, fail) => {
     const t = setTimeout(() => fail(new Error('preview server did not start')), 60000);

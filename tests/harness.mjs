@@ -57,3 +57,14 @@ export const PROJECT = {
   repository: { visibility: 'private-own' }, architecture: 'A sanitized outline of the parts.',
 };
 export const EXPERIENCE = { facts: ['about.credential'], role: 'led', personallyDid: 'Led the team.' };
+
+// A port nothing is listening on, from the OS, so parallel tests never collide.
+import { createServer } from 'node:net';
+export function freePort() {
+  return new Promise((ok, fail) => {
+    const s = createServer();
+    s.unref();
+    s.on('error', fail);
+    s.listen(0, '127.0.0.1', () => { const { port } = s.address(); s.close(() => ok(port)); });
+  });
+}

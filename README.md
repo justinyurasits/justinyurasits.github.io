@@ -32,6 +32,7 @@ npm test           # the test suite
 | `src/pages/` | One file or folder per route. Pages built in M1 replace the `[COPY]` stubs |
 | `src/content/` | Articles, projects and experience entries; their schemas are in `src/content.config.ts` |
 | `src/lib/` | Shared code, including `getPublished`, the only way pages read content (it leaves drafts out of builds) |
+| `scripts/` | `check.mjs`, the site checks run by `npm run check`; `checks.config.json` sets whether a missing metric basis warns or fails |
 | `tests/` | Tests that build a throwaway copy of the site with fixture content |
 | `src/layouts/`, `src/components/` | The base layout (header, navigation, footer) and shared components |
 | `src/styles/` | Neutral styling until the visual design is applied (M2) |

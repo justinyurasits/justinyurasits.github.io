@@ -115,7 +115,9 @@ issue or milestone is done, and about every ten turns of work since you last ask
 - **Run:** `npm install`, then `npm run dev` (or `npm run preview` after a build).
   Node 22, pinned in `.nvmrc`.
 - **Checks:** `npm run check` builds the site and runs every check (schemas, facts
-  register, fees, links, discoverability). It must pass before every commit. If a facts
+  register, fees, links, discoverability), and `npm test` runs the test suite. Both must
+  pass before every commit, and CI runs both on every pull request. A missing metric
+  `basis` is a warning until M2.8 switches it to a failure in `checks.config.json`. If a facts
   check fails, fix the page, not `content/facts.json`, unless Justin has said the
   canonical value changed.
 - **Conventions:** Astro, statically generated; content in Markdown/MDX as Astro content

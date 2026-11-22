@@ -36,7 +36,7 @@ npm test           # the test suite
 | `src/layouts/`, `src/components/` | The base layout (header, navigation, footer) and shared components |
 | `src/styles/` | Neutral styling until the visual design is applied (M2) |
 | `public/` | Files served as they are, including `CNAME` |
-| `content/` | `facts.json`, the facts register every claim about Justin and his products must match |
+| `content/` | `facts.json`, the facts register every claim about Justin and his products must match. Its schema is `src/lib/register.mjs`; pages read it through `src/lib/facts.ts` |
 | `.github/` | The pull request template and CI |
 
 ## How work happens

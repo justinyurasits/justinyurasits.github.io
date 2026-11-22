@@ -1,4 +1,9 @@
 {
+  "about": {
+    "credential": "licensed Massachusetts Construction Supervisor",
+    "operatorScale": "$1M–$4M renovations at a $50 million contractor"
+  },
+  "usage": "roughly twenty real jobs and bids",
   "library": {
     "documentTypes": 110,
     "categories": 38,
@@ -6,55 +11,33 @@
     "constructionSOPs": "160+",
     "pricingItems": 1258
   },
-  "measured": [
-    {
-      "task": "Contract package",
-      "before": "up to 8 hrs",
-      "after": "~30 min"
-    },
-    {
-      "task": "Change order",
-      "before": "~10 days",
-      "after": "~3 days"
-    },
-    {
-      "task": "Preliminary estimating",
-      "before": "~10 hrs",
-      "after": "~2 hrs"
-    }
+  "metrics": [
+    { "key": "contractPackage", "task": "Contract package", "before": "up to 8 hrs", "after": "~30 min" },
+    { "key": "changeOrder", "task": "Change order", "before": "~10 days", "after": "~3 days" },
+    { "key": "preliminaryEstimating", "task": "Preliminary estimating", "before": "~10 hrs", "after": "~2 hrs" },
+    { "key": "pmKnowledge", "task": "Project manager knowledge", "before": "months", "after": "day one" }
   ],
-  "usage": "roughly twenty real jobs and bids",
-  "credential": "licensed Massachusetts Construction Supervisor",
-  "operatorScale": "$1M–$4M renovations at a $50 million contractor",
   "products": {
-    "documentWorkbench": "Beta, demonstrable",
-    "constructionIntelligence": "Beta, demonstrable",
-    "operationsAutomation": "One public demo, three live, four beta",
-    "projectIntelligence": "In development"
+    "documentWorkbench": { "name": "Document Workbench", "maturity": "beta", "demo": "on-request" },
+    "constructionIntelligence": { "name": "Construction Intelligence", "maturity": "beta", "demo": "on-request" },
+    "operationsAutomation": { "name": "Operations Automation", "statusFrom": "workflows" },
+    "projectIntelligence": { "name": "Project Intelligence", "maturity": "in-development", "demo": "none" }
   },
   "workflows": {
-    "changeOrderDrafting": "Public demo",
-    "invoiceIntake": "Live, demo on request",
-    "siteSafety": "Live, demo on request",
-    "fieldReports": "Live, demo on request",
-    "bidComparison": "Beta",
-    "payAppPreparation": "Beta",
-    "subcontractorCompliance": "Beta",
-    "clientSelections": "Beta"
+    "changeOrderDrafting": { "name": "Change Order Drafting", "product": "operationsAutomation", "maturity": "live", "demo": "public", "demoUrl": "https://draftconstructionchangeorder.com/" },
+    "invoiceIntake": { "name": "Invoice Intake", "product": "operationsAutomation", "maturity": "live", "demo": "on-request" },
+    "siteSafety": { "name": "Site Safety", "product": "operationsAutomation", "maturity": "live", "demo": "on-request" },
+    "fieldReports": { "name": "Field Reports", "product": "operationsAutomation", "maturity": "live", "demo": "on-request" },
+    "bidComparison": { "name": "Bid Comparison", "product": "operationsAutomation", "maturity": "beta", "demo": "none" },
+    "payAppPreparation": { "name": "Pay App Preparation", "product": "operationsAutomation", "maturity": "beta", "demo": "none" },
+    "subcontractorCompliance": { "name": "Subcontractor Compliance", "product": "operationsAutomation", "maturity": "beta", "demo": "none" },
+    "clientSelections": { "name": "Client Selections", "product": "operationsAutomation", "maturity": "beta", "demo": "none" }
   },
-  "pricing": {
-    "audit": {
-      "duration": "2–3 weeks",
-      "fee": "$4,000–6,000"
-    },
-    "build": {
-      "duration": "about a month",
-      "fee": "$12,000–15,000"
-    },
-    "monthly": {
-      "duration": "per month, ongoing",
-      "fee": "from $2,000"
-    }
+  "fees": {
+    "pageFacing": false,
+    "audit": { "duration": "2–3 weeks", "fee": "$4,000–6,000" },
+    "build": { "duration": "about a month", "fee": "$12,000–15,000" },
+    "monthly": { "duration": "per month, ongoing", "fee": "from $2,000" }
   },
   "banned": [
     "CASE-001",

@@ -56,4 +56,4 @@ export const PROJECT = {
   role: 'built', personallyDid: 'Wrote all of it.', maturity: 'prototype', demo: 'none',
   repository: { visibility: 'private-own' }, architecture: 'A sanitized outline of the parts.',
 };
-export const EXPERIENCE = { title: 'Fixture role', role: 'led', personallyDid: 'Led the team.' };
+export const EXPERIENCE = { facts: ['about.credential'], role: 'led', personallyDid: 'Led the team.' };

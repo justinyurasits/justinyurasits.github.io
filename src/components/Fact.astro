@@ -1,0 +1,12 @@
+---
+// A claim about Justin or his products, rendered from the register and marked so the
+// facts check (M0.6) verifies it against content/facts.json.
+import { facts } from '../lib/facts';
+interface Props { path: string }
+const { path } = Astro.props;
+const value = path.split('.').reduce<any>((o, k) => (o == null ? undefined : o[k]), facts);
+if (value === undefined || typeof value === 'object') {
+  throw new Error(`Unknown fact "${path}": use a key that exists in content/facts.json.`);
+}
+---
+<span data-fact={path}>{String(value)}</span>

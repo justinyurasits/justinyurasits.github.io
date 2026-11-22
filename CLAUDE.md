@@ -112,8 +112,9 @@ issue or milestone is done, and about every ten turns of work since you last ask
 
 - **Layout:** see the Layout table in [README.md](README.md). When a folder is added,
   moved or retired, update both.
-- **Run:** `npm install`, then `npm run dev` (or `npm run preview` after a build).
-  Node 22, pinned in `.nvmrc`.
+- **Run:** `npm install`, then `npm run preview` (local dev server, drafts included), or
+  `npm run preview:build` to serve a build. Node 22, pinned in `.nvmrc`. Publishing an
+  article is the routine in the README's "Publishing an article".
 - **Checks:** `npm run check` builds the site and runs every check (schemas, facts
   register, fees, links, discoverability), and `npm test` runs the test suite. Both must
   pass before every commit, and CI runs both on every pull request. A missing metric

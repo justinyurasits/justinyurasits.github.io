@@ -15,8 +15,28 @@ v2 is built on the `v2` branch: every pull request branches from `v2` and target
 ```bash
 nvm use            # Node 22, from .nvmrc
 npm install
-npm run dev        # local preview while editing
+npm run preview    # local preview while editing, drafts included
 ```
+
+## Publishing an article
+
+No Astro knowledge needed. Five steps:
+
+1. `npm run new-article -- "Article title" construction` (or `enterprise`). This creates
+   one file, `src/content/articles/<article-title>.md`, as a draft.
+2. Write the article in that file. Set the description and tags at the top. Images go
+   in the folder named after the article, next to the file.
+3. `npm run preview`, then open the address it prints. Drafts show here and nowhere else.
+4. Set `draft: false`, then run `npm run check`. It must end with "Ready to publish."
+   If it doesn't, each ✗ line names the file and what to change.
+5. Push. After cutover, an article-only change can go straight to `main` (CLAUDE.md §7).
+
+**Corrections:** edit the same file and push. The URL stays the same. For a substantive
+change, add `updated:` with the date and `substantive: true`, and the article shows
+"Updated <date>". A typo fix needs nothing.
+
+**Beyond a standard article:** an advanced layout or an interactive demonstration may need
+development work, through an issue and a pull request. A standard article never does.
 
 ## Test it
 
@@ -28,8 +48,8 @@ npm test           # the test suite
 ## Deploy
 
 Until the M2.9 cutover, `main` is the live Construction OS site and GitHub Pages serves it
-as before. There's no preview deploy for v2: preview locally with `npm run dev`, or
-`npm run build && npm run preview`.
+as before. There's no preview deploy for v2: preview locally with `npm run preview` (drafts
+included), or `npm run build && npm run preview:build` to serve the built site.
 
 At cutover, `.github/workflows/deploy.yml` builds, checks and publishes from `main`. It
 runs only once the repository variable `PAGES_DEPLOY_ENABLED` is `true` and Pages is

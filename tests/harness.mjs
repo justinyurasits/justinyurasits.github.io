@@ -19,8 +19,8 @@ export function makeSite(files = {}, { remove = [] } = {}) {
   }
   return {
     dir,
-    run(script, extraEnv = {}) {
-      const r = spawnSync('npm', ['run', '--silent', script], {
+    run(script, extraEnv = {}, args = []) {
+      const r = spawnSync('npm', ['run', '--silent', script, ...(args.length ? ['--', ...args] : [])], {
         cwd: dir, encoding: 'utf8', env: { ...process.env, ...extraEnv, FORCE_COLOR: '0', NO_COLOR: '1' },
       });
       return { code: r.status, out: `${r.stdout}\n${r.stderr}` };

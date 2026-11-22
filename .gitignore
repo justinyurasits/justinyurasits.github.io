@@ -1,5 +1,35 @@
+# Secrets: only .env.example is committed
+.env
+.env.*
+!.env.example
+
+# OS and editor
 .DS_Store
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+
+# Node
+node_modules/
+.next/
+dist/
+build/
+
+# Logs
+*.log
+
+# Add language- or tool-specific lines below.
+
+# Astro
+.astro/
+
+# Local tooling
 .agents/
 .claude/
 skills-lock.json
-node_modules/

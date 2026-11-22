@@ -54,6 +54,6 @@ export const ARTICLE = {
 export const PROJECT = {
   title: 'Fixture project', summary: 'A fixture project.', problem: 'A problem.',
   role: 'built', personallyDid: 'Wrote all of it.', maturity: 'prototype', demo: 'none',
-  repository: { visibility: 'private-own' },
+  repository: { visibility: 'private-own' }, architecture: 'A sanitized outline of the parts.',
 };
 export const EXPERIENCE = { title: 'Fixture role', role: 'led', personallyDid: 'Led the team.' };

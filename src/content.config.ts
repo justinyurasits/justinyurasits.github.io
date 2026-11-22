@@ -45,7 +45,7 @@ const articles = defineCollection({
 
 const projects = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/projects' }),
-  schema: z
+  schema: ({ image }) => z
     .object({
       title: z.string({ error: 'title is required' }).min(1, 'title is required'),
       summary: z.string({ error: 'summary is required' }).min(1, 'summary is required'),
@@ -62,16 +62,38 @@ const projects = defineCollection({
         },
         { error: 'repository is required, with visibility: public, private-own or confidential' },
       ),
+      // Evidence for a project with no public repository (JYC-CAP-05): at least one of these.
+      screenshots: z.array(z.object({ src: image(), alt: z.string().min(1, 'every screenshot needs alt text') })).default([]),
+      walkthroughUrl: z.url().optional(),
+      architecture: z.string().optional(),
+      // Confidential work: Justin confirms the case study names no client and shows no
+      // client documents, data or identifying screenshots.
+      confidentialityReviewed: z.boolean().optional(),
+      // The register product or workflow this project is, so its status is checked against
+      // content/facts.json, e.g. "products.documentWorkbench".
       registerKey: z.string().optional(),
+      order: z.number().default(0),
       draft: z.boolean().default(false),
     })
     .refine((p) => p.repository.visibility !== 'public' || !!p.repository.url, {
       message: 'repository.url is required when repository.visibility is "public"',
       path: ['repository', 'url'],
     })
+    .refine((p) => p.repository.visibility === 'public' || !p.repository.url, {
+      message: 'repository.url is only for a public repository; remove it',
+      path: ['repository', 'url'],
+    })
     .refine((p) => p.demo !== 'public' || !!p.demoUrl, {
       message: 'demoUrl is required when demo is "public"',
       path: ['demoUrl'],
+    })
+    .refine((p) => p.repository.visibility === 'public' || p.screenshots.length > 0 || !!p.walkthroughUrl || !!p.architecture, {
+      message: 'a project with no public repository needs evidence: screenshots, walkthroughUrl or architecture',
+      path: ['screenshots'],
+    })
+    .refine((p) => p.repository.visibility !== 'confidential' || p.confidentialityReviewed === true, {
+      message: 'confidential work needs confidentialityReviewed: true, once no client name, document, data or identifying screenshot is shown',
+      path: ['confidentialityReviewed'],
     }),
 });
 

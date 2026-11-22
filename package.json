@@ -9,10 +9,12 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "test": "node --test --test-concurrency=4 \"tests/*.test.mjs\""
+    "test": "node --test --test-concurrency=4 \"tests/*.test.mjs\"",
+    "check": "astro build && node scripts/check.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "8.1.6",
+    "@astrojs/sitemap": "3.7.6",
     "astro": "7.4.13"
   }
 }

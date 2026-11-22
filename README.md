@@ -45,6 +45,14 @@ npm run check      # the build plus every check; must pass before every commit
 npm test           # the test suite
 ```
 
+## Inquiries
+
+Contact has no form. Each reason (consulting, contract engagements, partnerships,
+speaking, education) has its own email link with the reason as the subject, plus the
+booking link (`cal.com/justinyurasits`). Justin tags each inquiry relevant or not by hand
+in his inbox. The count tagged relevant is how the Inquire goal is measured (product
+brief §4, JYC-CAP-08).
+
 ## Deploy
 
 Until the M2.9 cutover, `main` is the live Construction OS site and GitHub Pages serves it

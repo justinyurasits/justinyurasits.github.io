@@ -1,33 +1,38 @@
-# justinyurasits.com
+# justinyurasits.github.io
 
-The Construction OS product and services site, served by GitHub Pages at
-[justinyurasits.com](https://justinyurasits.com).
+The code and content for [justinyurasits.com](https://justinyurasits.com): Justin's
+personal site for his writing, AI projects and consulting.
 
 **Status:** active
+**Design:** [`design/justinyurasits-com/site`](https://github.com/justinyurasits/design/tree/main/justinyurasits-com/site)
 
-Static HTML, no build step. Product design docs live in the
-[design](https://github.com/justinyurasits/design/tree/main/construction-os) repository;
-this repo holds only the public site.
+`main` is the live Construction OS site, served by GitHub Pages, until the v2 cutover.
+v2 is built on the `v2` branch: every pull request branches from `v2` and targets it
+(see [CLAUDE.md](CLAUDE.md), section 7).
 
-## What's here
-
-| Path | What it is |
-| --- | --- |
-| `*.html` | Top-level pages: home, services, engagements, work, insights, about, legal |
-| `products/` | One page per product |
-| `content/` | `facts.json`, `metrics.json`, `register.json`: the canonical facts and numbers the pages must match |
-| `tools/` | `verify.js` (the pre-commit check), `generate-header.js`, `manifest.json` |
-| `brand-kit/`, `brand-kit-master/` | Brand system and component specs the pages follow |
-| `images/`, `assets/` | Site images and illustrations |
-
-## Working on it
+## Run it
 
 ```bash
-python3 -m http.server 8000   # preview at localhost:8000
-node tools/verify.js          # must exit 0 before every commit
+nvm use            # Node 22, from .nvmrc
+npm install
+npm run dev        # local preview while editing
 ```
 
-If `verify.js` fails, fix the page. Change `content/facts.json` only when the canonical
-value itself has changed. See [CLAUDE.md](CLAUDE.md).
+## Test it
 
-Keep images web-sized: about 1600 px on the long edge and a few hundred KB.
+```bash
+npm run check      # the build plus every check; must pass before every commit
+```
+
+## Layout
+
+| Folder | What it holds |
+| --- | --- |
+| `content/` | `facts.json`, the facts register every claim about Justin and his products must match |
+| `*.html`, `products/`, `tools/`, `brand-kit/`, `brand-kit-master/`, `images/`, `assets/` | The old static site. Removed from `v2` by M0.2; it stays on `main` until cutover |
+| `.github/` | The pull request template |
+
+## How work happens
+
+Every change starts as a GitHub issue and lands through a pull request. Design changes
+happen in the design repository first. See [CLAUDE.md](CLAUDE.md).

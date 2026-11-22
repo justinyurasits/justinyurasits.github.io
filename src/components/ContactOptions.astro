@@ -1,0 +1,18 @@
+---
+// The contact options: one email link per reason, and the booking link. Used on Contact
+// and as the next step on each pathway page (JYC-CAP-06).
+import { REASONS, BOOKING_URL, EMAIL, mailto, type ReasonId } from '../lib/contact';
+interface Props { reasons?: readonly ReasonId[]; headingLevel?: 2 | 3 }
+const { reasons, headingLevel = 2 } = Astro.props;
+const shown = reasons ? REASONS.filter((r) => reasons.includes(r.id)) : REASONS;
+const H = `h${headingLevel}`;
+---
+<div class="contact-options" data-contact-options>
+  <H>Email</H>
+  <ul>
+    {shown.map((r) => <li><a href={mailto(r.subject)} data-reason={r.id}>{r.label}</a></li>)}
+  </ul>
+  <p><a href={`mailto:${EMAIL}`}>{EMAIL}</a></p>
+  <H>Book a call</H>
+  <p><a href={BOOKING_URL} data-booking>{BOOKING_URL.replace('https://', '')}</a></p>
+</div>

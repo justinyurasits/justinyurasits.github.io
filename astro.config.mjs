@@ -11,5 +11,8 @@ export default defineConfig({
   site: 'https://justinyurasits.com',
   output: 'static',
   trailingSlash: 'always',
+  // Keep the content cache with the project, not in node_modules, so the throwaway sites
+  // the tests build in parallel never share one.
+  cacheDir: './.astro/cache',
   integrations: [mdx(), sitemap({ filter: (page) => !page.endsWith('/404/') })],
 });

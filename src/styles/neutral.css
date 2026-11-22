@@ -10,3 +10,4 @@ img { max-width: 100%; height: auto; }
 pre { overflow-x: auto; }
 .skip { position: absolute; left: -999px; }
 .skip:focus { position: static; }
+article .tags { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 0.25rem 0.75rem; }

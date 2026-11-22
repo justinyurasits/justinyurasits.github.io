@@ -1,0 +1,65 @@
+---
+// JYC-CAP-03: the article page. The URL comes from the file name, so it stays the same
+// when the article is corrected or retitled.
+import { render, getEntries } from 'astro:content';
+import Base from '../../../layouts/Base.astro';
+import { getPublished, showDrafts } from '../../../lib/content';
+import { formatDate, categoryUrl, tagUrl, projectUrl, pathwayFor } from '../../../lib/format';
+
+export async function getStaticPaths() {
+  const articles = await getPublished('articles');
+  return articles.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const d = entry.data;
+const related = (await getEntries(d.relatedProjects)).filter((p) => showDrafts || !p.data.draft);
+const showUpdated = d.updated?.substantive === true;
+const pathway = pathwayFor(d.category);
+---
+<Base title={d.title} description={d.description} type="article" publishedTime={d.date}
+  modifiedTime={showUpdated ? d.updated!.date : undefined}>
+  <article>
+    <header>
+      {d.draft && <p><strong>Draft</strong>: visible in local preview only.</p>}
+      <p><a href={categoryUrl(d.category)}>{d.category}</a></p>
+      <h1>{d.title}</h1>
+      <p>{d.description}</p>
+      <p>
+        <time datetime={d.date.toISOString().slice(0, 10)}>{formatDate(d.date)}</time>
+        {showUpdated && <>, <span class="updated">Updated <time datetime={d.updated!.date.toISOString().slice(0, 10)}>{formatDate(d.updated!.date)}</time></span></>}
+      </p>
+      {d.tags.length > 0 && (
+        <ul class="tags" aria-label="Tags">
+          {d.tags.map((t) => <li><a href={tagUrl(t)}>{t}</a></li>)}
+        </ul>
+      )}
+    </header>
+
+    <Content />
+
+    {d.references.length > 0 && (
+      <section aria-labelledby="references">
+        <h2 id="references">References</h2>
+        <ol>
+          {d.references.map((r) => <li>{r.url ? <a href={r.url}>{r.title}</a> : r.title}</li>)}
+        </ol>
+      </section>
+    )}
+
+    {related.length > 0 && (
+      <section aria-labelledby="related-projects">
+        <h2 id="related-projects">Related projects</h2>
+        <ul>
+          {related.map((p) => <li><a href={projectUrl(p.id)}>{p.data.title}</a></li>)}
+        </ul>
+      </section>
+    )}
+
+    <section aria-labelledby="related-expertise">
+      <h2 id="related-expertise">Related expertise</h2>
+      <p><a href={pathway.href}>{pathway.label}</a></p>
+    </section>
+  </article>
+</Base>

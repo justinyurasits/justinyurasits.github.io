@@ -1,7 +1,67 @@
 ---
+// JYC-CAP-01: the homepage, in five sections, in order.
 import Base from '../layouts/Base.astro';
+import Status from '../components/Status.astro';
+import { homepageWriting } from '../lib/home';
+import { getPublished } from '../lib/content';
+import { articleUrl, categoryUrl, projectUrl } from '../lib/format';
+
+const { lead, curated } = await homepageWriting();
+const projects = (await getPublished('projects')).sort((a, b) => a.data.order - b.data.order).slice(0, 3);
 ---
 <Base title="Justin Yurasits" description="[COPY]">
-  <h1>AI Product Leader. Systems Designer. Hands-On Builder.</h1>
-  <p>[COPY]</p>
+  <section aria-labelledby="intro" data-section="introduction">
+    <h1 id="intro">AI Product Leader. Systems Designer. Hands-On Builder.</h1>
+    <p data-slot="supporting">I combine enterprise AI product leadership, firsthand business operations experience, and hands-on AI software development to help organizations turn complex problems into practical AI systems.</p>
+    <p data-slot="credentials">[COPY]</p>
+    <ul class="pathways" data-pathways>
+      <li><a href="/work-with-me/enterprise/">Enterprise AI Consulting &amp; Leadership</a></li>
+      <li><a href="/work-with-me/construction/">Construction AI Consulting</a></li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="featured-writing" data-section="featured-writing">
+    <h2 id="featured-writing">Featured writing</h2>
+    {lead ? (
+      <article data-lead={lead.id}>
+        <p><a href={categoryUrl(lead.data.category)}>{lead.data.category}</a></p>
+        <h3><a href={articleUrl(lead.id)}>{lead.data.title}</a></h3>
+        <p>{lead.data.description}</p>
+      </article>
+    ) : <p>No articles yet.</p>}
+    {curated.length > 0 && (
+      <ul data-curated>
+        {curated.map((a) => <li data-category={a.data.category}><a href={articleUrl(a.id)}>{a.data.title}</a> <span>{a.data.category}</span></li>)}
+      </ul>
+    )}
+    <p><a href="/writing/">All writing</a></p>
+  </section>
+
+  <section aria-labelledby="selected-work" data-section="selected-work">
+    <h2 id="selected-work">Selected work</h2>
+    <p><a href="/construction-os/">Construction OS</a></p>
+    {projects.length > 0 && (
+      <ul>
+        {projects.map((p) => (
+          <li><a href={projectUrl(p.id)}>{p.data.title}</a>: <Status maturity={p.data.maturity} demo={p.data.demo} demoUrl={p.data.demoUrl} registerKey={p.data.registerKey} /></li>
+        ))}
+      </ul>
+    )}
+    <p><a href="/projects/">All projects</a></p>
+  </section>
+
+  <section aria-labelledby="work-with-me" data-section="work-with-me">
+    <h2 id="work-with-me">Work with me</h2>
+    <ul>
+      <li><a href="/work-with-me/enterprise/">Enterprise AI Consulting &amp; Leadership</a>: [COPY]</li>
+      <li><a href="/work-with-me/construction/">Construction AI Consulting</a>: [COPY]</li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="background" data-section="background-and-contact">
+    <h2 id="background">Background</h2>
+    <p>[COPY]</p>
+    <p><a href="/about/">About</a></p>
+    <p><a href="/contact/">Contact</a></p>
+  </section>
 </Base>

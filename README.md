@@ -22,6 +22,7 @@ npm run dev        # local preview while editing
 
 ```bash
 npm run check      # the build plus every check; must pass before every commit
+npm test           # the test suite
 ```
 
 ## Layout
@@ -29,6 +30,9 @@ npm run check      # the build plus every check; must pass before every commit
 | Folder | What it holds |
 | --- | --- |
 | `src/pages/` | One file or folder per route. Pages built in M1 replace the `[COPY]` stubs |
+| `src/content/` | Articles, projects and experience entries; their schemas are in `src/content.config.ts` |
+| `src/lib/` | Shared code, including `getPublished`, the only way pages read content (it leaves drafts out of builds) |
+| `tests/` | Tests that build a throwaway copy of the site with fixture content |
 | `src/layouts/`, `src/components/` | The base layout (header, navigation, footer) and shared components |
 | `src/styles/` | Neutral styling until the visual design is applied (M2) |
 | `public/` | Files served as they are, including `CNAME` |

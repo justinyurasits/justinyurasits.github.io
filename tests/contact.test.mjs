@@ -8,7 +8,7 @@ test.after(() => site.cleanup());
 
 test('CAP-08: Contact is in the header navigation and the footer of every page', () => {
   assert.ok(pages.length > 5);
-  for (const p of pages) {
+  for (const p of pages.filter((p) => !/http-equiv="refresh"/.test(p.body))) {
     const header = p.body.match(/<header>[\s\S]*?<\/header>/)?.[0] ?? '';
     const footer = p.body.match(/<footer>[\s\S]*?<\/footer>/)?.[0] ?? '';
     assert.match(header, /<nav[\s\S]*href="\/contact\/"/, p.path);

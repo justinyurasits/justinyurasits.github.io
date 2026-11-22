@@ -37,6 +37,9 @@ const articles = defineCollection({
       })
       .optional(),
     relatedProjects: z.array(reference('projects')).default([]),
+    // Old site addresses this article replaces, e.g. ["/tribal-knowledge.html"]. Once it's
+    // published, those addresses redirect to it (JYC-CAP-09).
+    replaces: z.array(z.string().regex(/^\/.*\.html$/, 'replaces entries are old addresses like "/tribal-knowledge.html"')).default([]),
     references: z
       .array(z.object({ title: z.string(), url: z.url().optional() }))
       .default([]),

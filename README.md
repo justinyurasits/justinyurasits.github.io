@@ -25,6 +25,17 @@ npm run check      # the build plus every check; must pass before every commit
 npm test           # the test suite
 ```
 
+## Deploy
+
+Until the M2.9 cutover, `main` is the live Construction OS site and GitHub Pages serves it
+as before. There's no preview deploy for v2: preview locally with `npm run dev`, or
+`npm run build && npm run preview`.
+
+At cutover, `.github/workflows/deploy.yml` builds, checks and publishes from `main`. It
+runs only once the repository variable `PAGES_DEPLOY_ENABLED` is `true` and Pages is
+set to deploy from GitHub Actions. A failed build or check never deploys, so the
+previous version stays live.
+
 ## Layout
 
 | Folder | What it holds |
@@ -38,7 +49,7 @@ npm test           # the test suite
 | `src/styles/` | Neutral styling until the visual design is applied (M2) |
 | `public/` | Files served as they are, including `CNAME` |
 | `content/` | `facts.json`, the facts register every claim about Justin and his products must match. Its schema is `src/lib/register.mjs`; pages read it through `src/lib/facts.ts` |
-| `.github/` | The pull request template and CI |
+| `.github/` | The pull request template, CI (`ci.yml`) and the deploy workflow (`deploy.yml`) |
 
 ## How work happens
 

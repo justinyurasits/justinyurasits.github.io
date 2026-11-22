@@ -1,0 +1,49 @@
+name: Deploy
+
+# Publishes the site to GitHub Pages from main. It can't run before the M2.9 cutover:
+# this file reaches main only when v2 is merged into it, and the job also waits for the
+# repository variable PAGES_DEPLOY_ENABLED=true, set as part of the cutover.
+#
+# A failed build or check stops the workflow before the deploy step, so the previous
+# version of the site stays live (JYC-CAP-04).
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    if: vars.PAGES_DEPLOY_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm run check
+      - run: npm test
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

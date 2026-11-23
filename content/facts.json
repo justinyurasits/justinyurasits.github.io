@@ -272,7 +272,7 @@
       "maturity": "live",
       "demo": "public",
       "demoUrl": "https://fieldscope-vm64.onrender.com/",
-      "demoNote": "The first load can take up to a minute while the server wakes."
+      "demoNote": "Demo login shown on the sign-in page. The first load can take up to a minute while the server wakes."
     },
     "fieldReports": {
       "name": "Field Reports",

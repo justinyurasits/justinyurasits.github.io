@@ -12,14 +12,16 @@
     "pricingItems": 1258
   },
   "metrics": [
-    { "key": "contractPackage", "task": "Contract package", "before": "up to 8 hrs", "after": "~30 min" },
-    { "key": "changeOrder", "task": "Change order", "before": "~10 days", "after": "~3 days" },
-    { "key": "preliminaryEstimating", "task": "Preliminary estimating", "before": "~10 hrs", "after": "~2 hrs" },
-    { "key": "pmKnowledge", "task": "Project manager knowledge", "before": "months", "after": "day one" }
+    { "key": "contractPackage", "task": "Contract package", "before": "up to 8 hrs", "after": "~30 min", "outcome": "to a package ready for PM review", "basis": "My own time assembling contract packages by hand on real jobs, compared with generating a review-ready package with Document Workbench on about 10 jobs, 2024–2026." },
+    { "key": "changeOrder", "task": "Change order package", "before": "~4 hrs", "after": "~1 hr", "outcome": "of PM time", "basis": "My own PM time preparing change order packages by hand, compared with the system, on 10–15 jobs." },
+    { "key": "preliminaryEstimating", "task": "Preliminary estimating", "before": "~10 hrs", "after": "~2 hrs", "basis": "My own time producing preliminary estimates by hand, compared with the system, on 10–15 jobs." }
   ],
   "constructionOS": {
     "role": "built",
-    "personallyDid": "Conceived and architected Construction OS and built its major components (the corpus, the Document Workbench and the intake router), drawing on my own construction document library. Ava Yurasits contributed to the build."
+    "personallyDid": "Conceived and architected Construction OS and built its major components (the corpus, the Document Workbench and the intake router), drawing on my own construction document library. Ava Yurasits contributed to the build.",
+    "capabilities": [
+      "A new PM can ask the system for company policy and instructions from day one."
+    ]
   },
   "products": {
     "documentWorkbench": { "name": "Document Workbench", "maturity": "beta", "demo": "on-request" },

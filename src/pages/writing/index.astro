@@ -1,8 +1,12 @@
 ---
 // JYC-CAP-02: the writing library (handoff §7, Writing). The featured article leads, with
-// the fallback for one set back to draft; then the recent articles; then "All writing"
-// with category filters (without JavaScript every article shows); then the category and
-// tag pages. Every listing is built from published content.
+// the fallback for one set back to draft; then "All writing" with category filters
+// (without JavaScript every article shows); then the category and tag pages. Every listing
+// is built from published content.
+//
+// Recent shows only when it would show an article the rest of the page doesn't (Justin,
+// 2026-11-23). "All writing" lists every article today, so Recent stays hidden until
+// that listing stops showing them all.
 import { Image } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
 import ArticleList from '../../components/ArticleList.astro';
@@ -12,6 +16,10 @@ import { articleUrl, formatDate, tagUrl } from '../../lib/format';
 const all = await publishedArticles();
 const lead = await featuredArticle(all);
 const tags = allTags(all);
+const listed = all; // what "All writing" shows
+const shownElsewhere = new Set([lead?.id, ...listed.map((a) => a.id)]);
+const recentArticles = recent(all);
+const showRecent = recentArticles.some((a) => !shownElsewhere.has(a.id));
 const counts = categories.map((c) => ({ ...c, count: all.filter((a) => a.data.category === c.name).length }));
 ---
 <Base title="Writing" description="[COPY]" bleed>
@@ -42,10 +50,12 @@ const counts = categories.map((c) => ({ ...c, count: all.filter((a) => a.data.ca
           </section>
         )}
 
-        <section aria-labelledby="recent" data-section="recent">
-          <h2 id="recent" class="wl-title">Recent</h2>
-          <ArticleList articles={recent(all)} />
-        </section>
+        {showRecent && (
+          <section aria-labelledby="recent" data-section="recent">
+            <h2 id="recent" class="wl-title">Recent</h2>
+            <ArticleList articles={recentArticles} />
+          </section>
+        )}
 
         <section aria-labelledby="all" data-section="all">
           <div class="wl-all-header">
@@ -56,7 +66,7 @@ const counts = categories.map((c) => ({ ...c, count: all.filter((a) => a.data.ca
               <p class="wl-count" aria-live="polite" data-filter-status>Showing {all.length} of {all.length}</p>
             </div>
           </div>
-          <ArticleList articles={all} filter="writing" />
+          <ArticleList articles={listed} filter="writing" />
         </section>
 
         <nav class="panel wl-browse" aria-label="Browse by category and tag">

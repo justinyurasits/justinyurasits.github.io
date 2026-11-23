@@ -1,11 +1,11 @@
 ---
-// JYC-CAP-09: the Construction OS landing page. One section and anchor per product; every
+// JYC-CAP-09: the Construction OS page, under Solutions. One section and anchor per product; every
 // status comes from the register, and every live product and demo is linked.
-import Base from '../../layouts/Base.astro';
-import Status from '../../components/Status.astro';
-import { facts, productStatus } from '../../lib/facts';
-import { getPublished } from '../../lib/content';
-import { projectUrl, slugify } from '../../lib/format';
+import Base from '../../../layouts/Base.astro';
+import Status from '../../../components/Status.astro';
+import { facts, productStatus } from '../../../lib/facts';
+import { getPublished } from '../../../lib/content';
+import { projectUrl, slugify } from '../../../lib/format';
 
 const projects = await getPublished('projects');
 const caseStudyFor = (registerKey: string) => projects.find((p) => p.data.registerKey === registerKey);

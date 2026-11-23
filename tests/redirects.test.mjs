@@ -7,9 +7,9 @@ import { serve, launch } from './browser.mjs';
 // from it unnoticed. null: kept at the same address.
 const SPEC_TABLE = {
   '/': null,
-  '/services.html': '/work-with-me/construction/',
-  '/engagements.html': '/work-with-me/construction/',
-  '/work.html': '/projects/',
+  '/services.html': '/work-with-me/#construction',
+  '/engagements.html': '/work-with-me/#construction',
+  '/work.html': '/demos/',
   '/insights.html': '/writing/',
   '/about.html': '/about/',
   '/privacy.html': null,
@@ -17,11 +17,11 @@ const SPEC_TABLE = {
   '/tribal-knowledge.html': '/writing/',
   '/eighty-ninety-problem.html': '/writing/',
   '/ai-projects-fail.html': '/writing/',
-  '/products/document-workbench.html': '/construction-os/#document-workbench',
-  '/products/construction-intelligence.html': '/construction-os/#construction-intelligence',
-  '/products/operations-automation.html': '/construction-os/#operations-automation',
-  '/products/project-intelligence.html': '/construction-os/#project-intelligence',
-  '/products/custom-solutions.html': '/work-with-me/construction/',
+  '/products/document-workbench.html': '/solutions/construction-os/#document-workbench',
+  '/products/construction-intelligence.html': '/solutions/construction-os/#construction-intelligence',
+  '/products/operations-automation.html': '/solutions/construction-os/#operations-automation',
+  '/products/project-intelligence.html': '/solutions/construction-os/#project-intelligence',
+  '/products/custom-solutions.html': '/work-with-me/#construction',
 };
 const file = (p) => (p === '/' ? 'dist/index.html' : `dist${p}`);
 const refreshOf = (h) => h.match(/http-equiv="refresh" content="0; url=([^"]+)"/)?.[1];
@@ -41,7 +41,7 @@ test('CAP-09: every moving address serves a redirect page (meta refresh plus can
     const h = site.read(file(from));
     if (to === null) {
       assert.equal(refreshOf(h), undefined, `${from} is kept, not redirected`);
-      assert.match(h, /<header>[\s\S]*href="\/contact\/"/, `${from} is a real page`);
+      assert.match(h, /<header>[\s\S]*href="\/work-with-me\/"/, `${from} is a real page`);
       continue;
     }
     assert.equal(refreshOf(h), to, from);
@@ -93,13 +93,13 @@ test('CAP-09: the check fails when a destination or its anchor is missing', () =
   try {
     const r = a.run('check');
     assert.notEqual(r.code, 0);
-    assert.match(r.out, /Old address \/products\/document-workbench\.html points at \/construction-os\/#document-workbench, but \/construction-os\/ has no element with id="document-workbench"/);
+    assert.match(r.out, /Old address \/products\/document-workbench\.html points at \/solutions\/construction-os\/#document-workbench, but \/solutions\/construction-os\/ has no element with id="document-workbench"/);
   } finally { a.cleanup(); }
   // A destination that isn't built.
-  const b = makeSite({}, { remove: ['src/pages/projects/index.astro'] });
+  const b = makeSite({}, { remove: ['src/pages/demos/index.astro'] });
   try {
     const r = b.run('check');
     assert.notEqual(r.code, 0);
-    assert.match(r.out, /Old address \/work\.html redirects to \/projects\/, which isn't built/);
+    assert.match(r.out, /Old address \/work\.html redirects to \/demos\/, which isn't built/);
   } finally { b.cleanup(); }
 });

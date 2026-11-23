@@ -1,0 +1,32 @@
+---
+// JYC-CAP-06: one consulting track on the Work with me page. It opens with a named
+// business problem, states the outcomes of an engagement, and ends with a next step that
+// reaches the contact panel on the same page. It never shows Justin's fees or service
+// pricing. Both tracks use this one component, so they share one structure.
+interface Props { id: 'enterprise' | 'construction'; title: string; services: string[] }
+const { id, title, services } = Astro.props;
+---
+<section id={id} aria-labelledby={`${id}-title`} data-track={id}>
+  <h2 id={`${id}-title`}>{title}</h2>
+  <div data-slot="problem">
+    <h3 class="visually-hidden">The problem</h3>
+    <p>[COPY]</p>
+  </div>
+
+  <div data-slot="outcomes">
+    <h3>What an engagement delivers</h3>
+    <p>[COPY]</p>
+  </div>
+
+  <div data-slot="engagements">
+    <h3>Engagements</h3>
+    <ul>{services.map((s) => <li>{s}</li>)}</ul>
+    <slot name="details" />
+  </div>
+
+  <div data-slot="next-step">
+    <h3>Next step</h3>
+    <p>[COPY]</p>
+    <p><a href="#contact">Get in touch</a></p>
+  </div>
+</section>

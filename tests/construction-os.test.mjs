@@ -9,7 +9,7 @@ test('CAP-09: one section and anchor per product; each live product and demo is 
   try {
     const r = site.run('check');
     assert.equal(r.code, 0, r.out);   // statuses match the register (the M0.6 status check)
-    const h = site.read('dist/construction-os/index.html');
+    const h = site.read('dist/solutions/construction-os/index.html');
     for (const a of ANCHORS) {
       assert.match(h, new RegExp(`<section id="${a}"`), a);
       assert.match(h, new RegExp(`href="#${a}"`), a);
@@ -27,7 +27,7 @@ test('CAP-09: a product with a published case study links to it', () => {
   try {
     const r = site.run('check');
     assert.equal(r.code, 0, r.out);
-    const section = site.read('dist/construction-os/index.html').split('<section id="document-workbench"')[1].split('</section>')[0];
-    assert.match(section, /<a href="\/projects\/workbench\/">Case study<\/a>/);
+    const section = site.read('dist/solutions/construction-os/index.html').split('<section id="document-workbench"')[1].split('</section>')[0];
+    assert.match(section, /<a href="\/demos\/workbench\/">Case study<\/a>/);
   } finally { site.cleanup(); }
 });

@@ -6,12 +6,12 @@ export const slugify = (s: string) =>
   s.toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 
 export const articleUrl = (id: string) => `/writing/${id}/`;
-export const projectUrl = (id: string) => `/projects/${id}/`;
+export const projectUrl = (id: string) => `/demos/${id}/`;
 export const categoryUrl = (category: string) => `/writing/category/${slugify(category)}/`;
 export const tagUrl = (tag: string) => `/writing/tags/${slugify(tag)}/`;
 
-// The pathway page for each category: an article's "related expertise".
-export const pathwayFor = (category: string) =>
+// The Work with me track for each category: an article's "related expertise".
+export const trackFor = (category: string) =>
   category === 'AI for Construction'
-    ? { href: '/work-with-me/construction/', label: 'Construction AI Consulting' }
-    : { href: '/work-with-me/enterprise/', label: 'Enterprise AI Consulting & Leadership' };
+    ? { href: '/work-with-me/#construction', label: 'Construction AI Consulting' }
+    : { href: '/work-with-me/#enterprise', label: 'Enterprise AI Consulting & Leadership' };

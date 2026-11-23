@@ -15,8 +15,8 @@ const projects = (await getPublished('projects')).sort((a, b) => a.data.order - 
     <p data-slot="supporting">I combine enterprise AI product leadership, firsthand business operations experience, and hands-on AI software development to help organizations turn complex problems into practical AI systems.</p>
     <p data-slot="credentials">[COPY]</p>
     <ul class="pathways" data-pathways>
-      <li><a href="/work-with-me/enterprise/">Enterprise AI Consulting &amp; Leadership</a></li>
-      <li><a href="/work-with-me/construction/">Construction AI Consulting</a></li>
+      <li><a href="/work-with-me/#enterprise">Enterprise AI Consulting &amp; Leadership</a></li>
+      <li><a href="/work-with-me/#construction">Construction AI Consulting</a></li>
     </ul>
   </section>
 
@@ -39,7 +39,7 @@ const projects = (await getPublished('projects')).sort((a, b) => a.data.order - 
 
   <section aria-labelledby="selected-work" data-section="selected-work">
     <h2 id="selected-work">Selected work</h2>
-    <p><a href="/construction-os/">Construction OS</a></p>
+    <p><a href="/solutions/construction-os/">Construction OS</a></p>
     {projects.length > 0 && (
       <ul>
         {projects.map((p) => (
@@ -47,14 +47,14 @@ const projects = (await getPublished('projects')).sort((a, b) => a.data.order - 
         ))}
       </ul>
     )}
-    <p><a href="/projects/">All projects</a></p>
+    <p><a href="/demos/">Demos &amp; Builds</a></p>
   </section>
 
   <section aria-labelledby="work-with-me" data-section="work-with-me">
     <h2 id="work-with-me">Work with me</h2>
     <ul>
-      <li><a href="/work-with-me/enterprise/">Enterprise AI Consulting &amp; Leadership</a>: [COPY]</li>
-      <li><a href="/work-with-me/construction/">Construction AI Consulting</a>: [COPY]</li>
+      <li><a href="/work-with-me/#enterprise">Enterprise AI Consulting &amp; Leadership</a>: [COPY]</li>
+      <li><a href="/work-with-me/#construction">Construction AI Consulting</a>: [COPY]</li>
     </ul>
   </section>
 
@@ -62,6 +62,6 @@ const projects = (await getPublished('projects')).sort((a, b) => a.data.order - 
     <h2 id="background">Background</h2>
     <p>[COPY]</p>
     <p><a href="/about/">About</a></p>
-    <p><a href="/contact/">Contact</a></p>
+    <p><a href="/work-with-me/#contact">Contact</a></p>
   </section>
 </Base>

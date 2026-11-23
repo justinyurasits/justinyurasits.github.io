@@ -1,14 +1,14 @@
 ---
-// Site navigation. Contact is in the header and the footer on every page (JYC-CAP-08).
+// Site navigation (JYC-CAP-08): Solutions, Demos, Writing, Training and About, with Work
+// with me as the header's action on every page.
 export const NAV = [
+  { href: '/solutions/', label: 'Solutions' },
+  { href: '/demos/', label: 'Demos' },
   { href: '/writing/', label: 'Writing' },
-  { href: '/projects/', label: 'Projects' },
-  { href: '/construction-os/', label: 'Construction OS' },
-  { href: '/work-with-me/enterprise/', label: 'Enterprise AI' },
-  { href: '/work-with-me/construction/', label: 'Construction AI' },
+  { href: '/training/', label: 'Training' },
   { href: '/about/', label: 'About' },
-  { href: '/contact/', label: 'Contact' },
 ];
+export const ACTION = { href: '/work-with-me/', label: 'Work with me' };
 const current = Astro.url.pathname;
 ---
 <nav aria-label="Main">
@@ -20,3 +20,4 @@ const current = Astro.url.pathname;
     ))}
   </ul>
 </nav>
+<a class="nav-action" href={ACTION.href} data-action aria-current={current.startsWith(ACTION.href) ? 'page' : undefined}>{ACTION.label}</a>

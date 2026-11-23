@@ -1,17 +1,64 @@
 ---
+// Article rows (handoff §7, Writing): category and date, title, description; the whole row
+// is the link. A Draft pill shows only in local preview: drafts never reach a build, so no
+// published listing says "Draft". With `filter`, each row is a filter item tagged with its
+// category.
 import type { Article } from '../lib/articles';
-import { articleUrl, categoryUrl, formatDate } from '../lib/format';
-interface Props { articles: Article[]; empty?: string }
-const { articles, empty = 'No articles yet.' } = Astro.props;
+import { articleUrl, formatDate, slugify } from '../lib/format';
+interface Props { articles: Article[]; empty?: string; filter?: string }
+const { articles, empty = 'No articles yet.', filter } = Astro.props;
 ---
-{articles.length === 0 ? <p>{empty}</p> : (
+{articles.length === 0 ? <p class="article-empty">{empty}</p> : (
   <ul class="article-list">
     {articles.map((a) => (
-      <li>
-        <a href={articleUrl(a.id)}>{a.data.title}</a>
-        <p>{a.data.description}</p>
-        <p><a href={categoryUrl(a.data.category)}>{a.data.category}</a>, <time datetime={a.data.date.toISOString().slice(0, 10)}>{formatDate(a.data.date)}</time></p>
+      <li data-filter-item={filter} data-tags={filter && slugify(a.data.category)} data-article={a.id}>
+        <a class="article-row" href={articleUrl(a.id)}>
+          <span class="article-meta">
+            {a.data.draft && <span class="badge badge-muted">Draft</span>}
+            <span>{a.data.category}</span>
+            <span aria-hidden="true">·</span>
+            <time datetime={a.data.date.toISOString().slice(0, 10)}>{formatDate(a.data.date)}</time>
+          </span>
+          <span class="article-title">{a.data.title}</span>
+          <span class="article-desc">{a.data.description}</span>
+          <span class="article-arrow" aria-hidden="true">→</span>
+        </a>
       </li>
     ))}
   </ul>
 )}
+
+<style>
+  .article-list { border-top: 1px solid var(--line); }
+  .article-list li { border-bottom: 1px solid var(--line); }
+  .article-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: 2rem;
+    row-gap: 0.4rem;
+    padding: 1.5rem 0;
+    color: inherit;
+    text-decoration: none;
+  }
+  .article-meta {
+    grid-column: 1;
+    display: flex; flex-wrap: wrap; align-items: center; gap: 0.25rem 0.5rem;
+    font-size: var(--fs-label); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+  }
+  .article-title {
+    grid-column: 1;
+    font-size: var(--fs-card-title); font-weight: 700; letter-spacing: -0.015em; line-height: 1.3; color: var(--ink);
+    transition: color var(--ease);
+  }
+  .article-desc { grid-column: 1; color: var(--body); max-width: 70ch; }
+  .article-arrow {
+    grid-column: 2; grid-row: 1 / span 3; align-self: center;
+    color: var(--accent); font-size: var(--fs-card-title);
+    transition: transform var(--ease);
+  }
+  .article-row:hover .article-title { color: var(--accent-strong); }
+  .article-row:hover .article-arrow { transform: translateX(3px); }
+  @media (prefers-reduced-motion: reduce) {
+    .article-row:hover .article-arrow { transform: none; }
+  }
+</style>

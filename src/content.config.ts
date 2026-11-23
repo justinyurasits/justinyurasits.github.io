@@ -21,7 +21,7 @@ const personallyDid = z
 
 const articles = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/articles' }),
-  schema: z.object({
+  schema: ({ image }) => z.object({
     title: z.string({ error: 'title is required' }).min(1, 'title is required'),
     description: z.string({ error: 'description is required' }).min(1, 'description is required'),
     date: z.coerce.date({ error: 'date is required, as YYYY-MM-DD' }),
@@ -37,6 +37,13 @@ const articles = defineCollection({
       })
       .optional(),
     relatedProjects: z.array(reference('projects')).default([]),
+    // The deck under the title (JYC-CAP-03). Without one, the description is the deck.
+    deck: z.string().trim().min(1).optional(),
+    // The cover the writing library shows when the article is featured (16:10).
+    cover: z.object({ src: image(), alt: z.string().min(1, 'the cover needs alt text') }).optional(),
+    // The two related articles Justin picks (JYC-CAP-03). Missing or unpublished picks are
+    // filled with the newest published articles in the same category.
+    relatedArticles: z.array(reference('articles')).default([]),
     // Old site addresses this article replaces, e.g. ["/tribal-knowledge.html"]. Once it's
     // published, those addresses redirect to it (JYC-CAP-09).
     replaces: z.array(z.string().regex(/^\/.*\.html$/, 'replaces entries are old addresses like "/tribal-knowledge.html"')).default([]),

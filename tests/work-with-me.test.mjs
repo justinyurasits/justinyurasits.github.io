@@ -8,12 +8,12 @@ test.after(() => site.cleanup());
 
 const TRACKS = ['enterprise', 'construction'];
 const main = () => page.match(/<main[^>]*>([\s\S]*)<\/main>/)[1];
-const track = (id) => main().split(`<section id="${id}"`)[1].split('</section>')[0];
+const track = (id) => main().split(`id="${id}" aria-labelledby="${id}-title"`)[1].split('</article>')[0];
 const slots = (h) => [...h.matchAll(/data-slot="([^"]+)"/g)].map((m) => m[1]).filter((s) => s !== 'resume');
 
 test('CAP-06: one page with both tracks, each at its anchor', () => {
-  for (const id of TRACKS) assert.match(main(), new RegExp(`<section id="${id}" aria-labelledby="${id}-title" data-track="${id}">`));
-  assert.match(main(), /<section id="contact"/);
+  for (const id of TRACKS) assert.match(main(), new RegExp(`<article class="track card card-lg card-accent" id="${id}" aria-labelledby="${id}-title" data-track="${id}"`));
+  assert.match(main(), /<section id="contact"[^>]*data-contact-panel/);
 });
 
 test('CAP-06: each track opens with the problem slot and has an outcomes slot', () => {
@@ -47,4 +47,14 @@ test('CAP-06: the enterprise track states the engagement types and "remote, base
   for (const s of ['Contract or C2C', 'Fractional AI product leadership', 'Implementation leadership']) assert.match(m, new RegExp(s));
   assert.match(m, /Remote, based in Boston\./);
   assert.match(m, /data-slot="resume"/);
+});
+
+test('CAP-06: the two tracks have equal weight: same card, same rows, side by side at 1280px', () => {
+  const cls = (id) => main().match(new RegExp(`<article class="([^"]+)" id="${id}"`))[1];
+  assert.equal(cls('enterprise'), cls('construction'));
+  for (const id of TRACKS) {
+    const t = track(id);
+    for (const h of ['What an engagement delivers', 'What working together looks like']) assert.match(t, new RegExp(h), `${id}: ${h}`);
+    assert.match(t, /<a class="btn btn-primary" href="#contact"[^>]*>Start a conversation/, id);
+  }
 });

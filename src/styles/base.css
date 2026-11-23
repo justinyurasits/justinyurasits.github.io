@@ -190,7 +190,8 @@ h1, h2, h3, h4 { text-wrap: balance; color: var(--ink); }
   padding: 2rem;
 }
 .card-lg { border-radius: var(--radius-lg); }
-.card-accent { border-top: 4px solid var(--ink); }
+.card-accent { position: relative; overflow: hidden; }
+.card-accent::before { content: ''; position: absolute; inset: 0 0 auto; height: 4px; background: var(--ink); }
 .panel {
   background: var(--panel);
   border-radius: var(--radius-md);
@@ -394,6 +395,12 @@ h1, h2, h3, h4 { text-wrap: balance; color: var(--ink); }
 }
 .footer-list a:hover { color: var(--ink); text-decoration-color: var(--accent); }
 .footer-list a[aria-current] { color: var(--ink); font-weight: 600; }
+
+/* ---------------------------------------------------------------- page intro */
+.page-intro { padding-top: clamp(2.5rem, 6vw, 4.5rem); padding-bottom: clamp(2rem, 4vw, 3rem); }
+.page-intro .eyebrow { margin-bottom: 1.25rem; }
+.page-intro h1 { margin-bottom: 0; }
+.page-intro .lead { margin-top: 1.25rem; }
 
 /* ---------------------------------------------------------------- page defaults */
 /* Pages not yet rebuilt in the approved patterns (M2.11 to M2.17) get readable defaults. */

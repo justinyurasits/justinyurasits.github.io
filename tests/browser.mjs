@@ -1,6 +1,6 @@
 // Serve a built throwaway site and open it in the installed Chrome (playwright-core, no
 // browser download), for checks that need real layout: what's visible without scrolling.
-import { spawn } from 'node:child_process';
+import { spawn, spawnSync } from 'node:child_process';
 import { chromium } from 'playwright-core';
 import { freePort } from './harness.mjs';
 
@@ -14,7 +14,13 @@ export async function serve(site) {
   });
   return {
     url: (path) => `http://localhost:${port}${path}`,
-    stop() { try { process.kill(-proc.pid, 'SIGTERM'); } catch {} proc.stdout.destroy(); proc.stderr.destroy(); },
+    stop() {
+      // Astro 7 moves the preview server into the background, so stopping the process we
+      // started isn't enough: ask Astro to stop the one it runs for this site.
+      spawnSync('npx', ['astro', 'preview', 'stop'], { cwd: site.dir, stdio: 'ignore' });
+      try { process.kill(-proc.pid, 'SIGTERM'); } catch {}
+      proc.stdout.destroy(); proc.stderr.destroy();
+    },
   };
 }
 

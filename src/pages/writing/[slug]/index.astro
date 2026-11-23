@@ -4,7 +4,7 @@
 import { render, getEntries } from 'astro:content';
 import Base from '../../../layouts/Base.astro';
 import { getPublished, showDrafts } from '../../../lib/content';
-import { formatDate, categoryUrl, tagUrl, projectUrl, pathwayFor } from '../../../lib/format';
+import { formatDate, categoryUrl, tagUrl, projectUrl, trackFor } from '../../../lib/format';
 
 export async function getStaticPaths() {
   const articles = await getPublished('articles');
@@ -16,7 +16,7 @@ const { Content } = await render(entry);
 const d = entry.data;
 const related = (await getEntries(d.relatedProjects)).filter((p) => showDrafts || !p.data.draft);
 const showUpdated = d.updated?.substantive === true;
-const pathway = pathwayFor(d.category);
+const track = trackFor(d.category);
 ---
 <Base title={d.title} description={d.description} type="article" publishedTime={d.date}
   modifiedTime={showUpdated ? d.updated!.date : undefined}>
@@ -59,7 +59,7 @@ const pathway = pathwayFor(d.category);
 
     <section aria-labelledby="related-expertise">
       <h2 id="related-expertise">Related expertise</h2>
-      <p><a href={pathway.href}>{pathway.label}</a></p>
+      <p><a href={track.href}>{track.label}</a></p>
     </section>
   </article>
 </Base>

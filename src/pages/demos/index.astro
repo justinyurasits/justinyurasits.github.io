@@ -1,5 +1,5 @@
 ---
-// JYC-CAP-05: the projects index.
+// JYC-CAP-05: Demos & Builds ("Demos" in the navigation).
 import Base from '../../layouts/Base.astro';
 import Status from '../../components/Status.astro';
 import Role from '../../components/Role.astro';
@@ -8,10 +8,10 @@ import { projectUrl } from '../../lib/format';
 
 const projects = (await getPublished('projects')).sort((a, b) => a.data.order - b.data.order || a.data.title.localeCompare(b.data.title));
 ---
-<Base title="Projects" description="[COPY]">
-  <h1>Projects</h1>
+<Base title="Demos & Builds" description="[COPY]">
+  <h1>Demos &amp; Builds</h1>
   <p>[COPY]</p>
-  {projects.length === 0 ? <p>No projects yet.</p> : (
+  {projects.length === 0 ? <p>Nothing here yet.</p> : (
     <ul class="project-list">
       {projects.map((p) => (
         <li>

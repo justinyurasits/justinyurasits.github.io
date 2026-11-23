@@ -28,7 +28,7 @@ test('CAP-03: an article that cites a project links to its case study', () => {
     'src/content/projects/estimator.md': md({ ...PROJECT, title: 'Estimator' }),
     'src/content/articles/a.md': md({ ...ARTICLE, relatedProjects: ['estimator'] }, BODY),
   }, (s) => {
-    assert.match(s.read('dist/writing/a/index.html'), /<a href="\/projects\/estimator\/">Estimator<\/a>/);
+    assert.match(s.read('dist/writing/a/index.html'), /<a href="\/demos\/estimator\/">Estimator<\/a>/);
   });
 });
 
@@ -56,7 +56,7 @@ test('CAP-03: code is syntax-highlighted; references and related expertise are s
     const h = s.read('dist/writing/a/index.html');
     assert.match(h, /class="astro-code/);
     assert.match(h, /<a href="https:\/\/example\.com\/p">A paper<\/a>/);
-    assert.match(h, /href="\/work-with-me\/construction\/"/);
+    assert.match(h, /href="\/work-with-me\/#construction"/);
   });
 });
 

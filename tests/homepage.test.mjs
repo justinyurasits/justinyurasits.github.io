@@ -30,7 +30,7 @@ test('CAP-01: the introduction shows the positioning and both pathway links with
     for (const vp of VIEWPORTS) {
       const page = await browser.newPage({ viewport: { width: vp.width, height: vp.height } });
       await page.goto(server.url('/'));
-      for (const sel of ['#intro', '[data-slot="supporting"]', '[data-pathways] a[href="/work-with-me/enterprise/"]', '[data-pathways] a[href="/work-with-me/construction/"]']) {
+      for (const sel of ['#intro', '[data-slot="supporting"]', '[data-pathways] a[href="/work-with-me/#enterprise"]', '[data-pathways] a[href="/work-with-me/#construction"]']) {
         const box = await page.locator(sel).boundingBox();
         assert.ok(box, `${vp.name}: ${sel} is on the page`);
         assert.ok(box.y >= 0 && box.y + box.height <= vp.height, `${vp.name}: ${sel} ends at ${Math.round(box.y + box.height)}px, below the ${vp.height}px fold`);

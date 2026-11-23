@@ -8,9 +8,9 @@
 //            address is published, and to the writing library until then
 export const OLD_ADDRESSES = [
   { from: '/', kept: true },
-  { from: '/services.html', to: '/work-with-me/construction/' },
-  { from: '/engagements.html', to: '/work-with-me/construction/' },
-  { from: '/work.html', to: '/projects/' },
+  { from: '/services.html', to: '/work-with-me/#construction' },
+  { from: '/engagements.html', to: '/work-with-me/#construction' },
+  { from: '/work.html', to: '/demos/' },
   { from: '/insights.html', to: '/writing/' },
   { from: '/about.html', to: '/about/' },
   { from: '/privacy.html', kept: true },
@@ -18,11 +18,11 @@ export const OLD_ADDRESSES = [
   { from: '/tribal-knowledge.html', article: true },
   { from: '/eighty-ninety-problem.html', article: true },
   { from: '/ai-projects-fail.html', article: true },
-  { from: '/products/document-workbench.html', to: '/construction-os/#document-workbench' },
-  { from: '/products/construction-intelligence.html', to: '/construction-os/#construction-intelligence' },
-  { from: '/products/operations-automation.html', to: '/construction-os/#operations-automation' },
-  { from: '/products/project-intelligence.html', to: '/construction-os/#project-intelligence' },
-  { from: '/products/custom-solutions.html', to: '/work-with-me/construction/' },
+  { from: '/products/document-workbench.html', to: '/solutions/construction-os/#document-workbench' },
+  { from: '/products/construction-intelligence.html', to: '/solutions/construction-os/#construction-intelligence' },
+  { from: '/products/operations-automation.html', to: '/solutions/construction-os/#operations-automation' },
+  { from: '/products/project-intelligence.html', to: '/solutions/construction-os/#project-intelligence' },
+  { from: '/products/custom-solutions.html', to: '/work-with-me/#construction' },
 ];
 
 export const ARTICLE_FALLBACK = '/writing/';

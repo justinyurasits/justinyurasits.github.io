@@ -1,6 +1,8 @@
-// Contact details (JYC-CAP-08): email and a booking link. No form and no backend.
+// Contact details (JYC-CAP-08): email, a booking link, and LinkedIn as a supplement. No
+// form and no backend.
 export const EMAIL = 'justin@justinyurasits.com';
 export const BOOKING_URL = 'https://cal.com/justinyurasits';
+export const LINKEDIN_URL = 'https://www.linkedin.com/in/justinjyurasits/';
 
 // One email link per reason, each with a prefilled subject naming it, so inquiries arrive
 // already sorted.

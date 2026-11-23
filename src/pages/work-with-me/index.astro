@@ -1,0 +1,44 @@
+---
+// JYC-CAP-06 and JYC-CAP-08: one page with two consulting tracks of equal weight, and
+// the contact panel they both end in.
+import Base from '../../layouts/Base.astro';
+import Track from '../../components/Track.astro';
+import ContactOptions from '../../components/ContactOptions.astro';
+
+const enterprise = [
+  'Contract or C2C',
+  'Fractional AI product leadership',
+  'Advisory',
+  'Product strategy',
+  'Solution design',
+  'Modernization',
+  'Implementation leadership',
+];
+const construction = [
+  'Education',
+  'Opportunity assessment',
+  'Business workflow design',
+  'Advisory',
+  'Custom implementation',
+  'Construction OS-related services',
+];
+---
+<Base title="Work with me" description="[COPY]">
+  <h1>Work with me</h1>
+  <p>[COPY]</p>
+
+  <Track id="enterprise" title="Enterprise AI Consulting & Leadership" services={enterprise}>
+    <Fragment slot="details">
+      <p>Remote, based in Boston.</p>
+      <p data-slot="resume">[COPY: résumé PDF link, added in M2.4]</p>
+    </Fragment>
+  </Track>
+
+  <Track id="construction" title="Construction AI Consulting" services={construction} />
+
+  <section id="contact" aria-labelledby="contact-title" data-contact-panel>
+    <h2 id="contact-title">Contact</h2>
+    <p>[COPY]</p>
+    <ContactOptions headingLevel={3} />
+  </section>
+</Base>

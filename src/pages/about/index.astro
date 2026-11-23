@@ -1,39 +1,94 @@
 ---
-// JYC-CAP-07: About. Every credential, employer, figure and date comes from the facts
-// register (Career Facts v5.7), and the facts check verifies each one. The approved
-// design comes in M2.16 (#58).
+// JYC-CAP-07: About (handoff §7, About). An intro row with the eyebrow and H1 beside a 2:1
+// portrait; then hairline-separated rows, H2 left (4fr) and text right (7fr, max 40rem):
+// the four prose sections, professional history and credentials. Every credential,
+// employer, figure and date comes from the facts register (Career Facts v5.7), and the
+// facts check verifies each one. Achievements sit under their entry's built/led line.
 import Base from '../../layouts/Base.astro';
 import Experience from '../../components/Experience.astro';
+import PlaceholderMedia from '../../components/PlaceholderMedia.astro';
 import { facts } from '../../lib/facts';
 
 const ids = Object.keys(facts.experience);
 const enterprise = ids.filter((id) => facts.experience[id].sector === 'enterprise');
 const construction = ids.filter((id) => facts.experience[id].sector === 'construction');
+const prose = [
+  { id: 'enterprise-leadership', title: 'Enterprise AI product leadership' },
+  { id: 'hands-on-building', title: 'Hands-on building' },
+  { id: 'construction-background', title: 'Construction background' },
+  { id: 'approach', title: 'How I work' },
+];
 ---
-<Base title="About" description="[COPY]">
-  <h1>About</h1>
-  <p>[COPY]</p>
-  <p data-fact="about.location">{facts.about.location}</p>
+<Base title="About" description="[COPY]" bleed>
+  <div class="page-intro container about-intro">
+    <div>
+      <p class="eyebrow">Background</p>
+      <h1>About</h1>
+      <p class="about-location" data-fact="about.location">{facts.about.location}</p>
+    </div>
+    <div class="about-portrait">
+      <PlaceholderMedia label="Portrait" needs="the approved headshot, cropped wide (2:1)" ratio="2 / 1" />
+    </div>
+  </div>
 
-  <section aria-labelledby="enterprise">
-    <h2 id="enterprise">Enterprise leadership</h2>
-    {enterprise.map((id) => <Experience id={id} />)}
-  </section>
+  <div class="container about">
+    {prose.map((p) => (
+      <section class="about-row" aria-labelledby={p.id}>
+        <h2 id={p.id}>{p.title}</h2>
+        <div class="about-text">
+          <p class="about-lead">[COPY]</p>
+          <p>[COPY]</p>
+        </div>
+      </section>
+    ))}
 
-  <section aria-labelledby="construction">
-    <h2 id="construction">Construction</h2>
-    {construction.map((id) => <Experience id={id} />)}
-  </section>
+    <section class="about-row" aria-labelledby="history" data-section="history">
+      <h2 id="history">Professional history</h2>
+      <div class="about-text">
+        <h3 class="label-muted about-group">Enterprise</h3>
+        <div class="about-entries">{enterprise.map((id) => <Experience id={id} headingLevel="h4" />)}</div>
+        <h3 class="label-muted about-group">Construction</h3>
+        <div class="about-entries">{construction.map((id) => <Experience id={id} headingLevel="h4" />)}</div>
+      </div>
+    </section>
 
-  <section aria-labelledby="credentials">
-    <h2 id="credentials">Credentials</h2>
-    <ul>
-      {Object.entries(facts.credentials).map(([k, v]) => <li data-fact={`credentials.${k}`}>{v}</li>)}
-    </ul>
-  </section>
-
-  <section aria-labelledby="approach">
-    <h2 id="approach">Approach</h2>
-    <p>[COPY]</p>
-  </section>
+    <section class="about-row" aria-labelledby="credentials" data-section="credentials">
+      <h2 id="credentials">Credentials</h2>
+      <div class="about-text">
+        <ul class="check-list">
+          {Object.entries(facts.credentials).map(([k, v]) => <li data-fact={`credentials.${k}`}>{v}</li>)}
+        </ul>
+      </div>
+    </section>
+  </div>
 </Base>
+
+<style>
+  .about-intro { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+  .about-location { margin-top: 1.25rem; font-size: var(--fs-lead); color: var(--body); }
+
+  .about { padding-bottom: var(--space-section); }
+  .about-row {
+    display: grid;
+    grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
+    gap: clamp(1.5rem, 4vw, 4rem);
+    padding: clamp(2.5rem, 5vw, 3.5rem) 0;
+    border-top: 1px solid var(--line);
+  }
+  .about-row h2 { font-size: var(--fs-about-section); font-weight: 700; letter-spacing: -0.025em; line-height: 1.2; color: var(--ink); }
+  .about-text { max-width: 40rem; }
+  .about-text p { color: var(--body); line-height: 1.7; margin-bottom: 1rem; }
+  .about-text .about-lead { font-size: var(--fs-lead); color: var(--ink); }
+  .about-group { margin: 0 0 1.25rem; }
+  .about-entries + .about-group { margin-top: 2.5rem; }
+
+  @media (max-width: 1024px) {
+    .about-row { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); }
+  }
+  @media (max-width: 768px) {
+    .about-intro, .about-row { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 480px) {
+    .about-portrait :global(.media-placeholder) { aspect-ratio: 16 / 10; }
+  }
+</style>

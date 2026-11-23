@@ -25,7 +25,7 @@ test('M2.10: no page links to a removed route', () => {
 });
 
 test('M2.10: the header is Solutions, Demos, Writing, Training and About, with Work with me as its action', () => {
-  const header = site.read('dist/about/index.html').match(/<header>[\s\S]*?<\/header>/)[0];
+  const header = site.read('dist/about/index.html').match(/<header[^>]*>[\s\S]*?<\/header>/)[0];
   const nav = [...header.split('</nav>')[0].matchAll(/<a href="([^"]+)"[^>]*>([^<]+)<\/a>/g)].map((m) => `${m[2]} ${m[1]}`);
   assert.deepEqual(nav, ['Solutions /solutions/', 'Demos /demos/', 'Writing /writing/', 'Training /training/', 'About /about/']);
   assert.match(header.split('</nav>')[1], /href="\/work-with-me\/" data-action/);
@@ -33,7 +33,7 @@ test('M2.10: the header is Solutions, Demos, Writing, Training and About, with W
 
 test('M2.10: the footer on every page links both consulting tracks, and Privacy and Terms in its Site group', () => {
   for (const p of pages.filter((p) => !/http-equiv="refresh"/.test(p.body))) {
-    const footer = p.body.match(/<footer>[\s\S]*?<\/footer>/)?.[0] ?? '';
+    const footer = p.body.match(/<footer[^>]*>[\s\S]*?<\/footer>/)?.[0] ?? '';
     const consulting = footer.split('data-footer-group="consulting"')[1]?.split('</nav>')[0] ?? '';
     assert.match(consulting, /href="\/work-with-me\/#enterprise"/, p.path);
     assert.match(consulting, /href="\/work-with-me\/#construction"/, p.path);

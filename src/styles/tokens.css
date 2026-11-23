@@ -1,0 +1,57 @@
+/* Copied from justinyurasits/brand-system, brands/personal/tokens.css (BRAND-004 rev 01),
+   at commit 704a10991641c30ea7ccda49bbc3efed972b150e.
+   Do not edit here: change brand-system first, then copy the file again and update this
+   commit (CLAUDE.md section 7, Visual design). The site check allows hex colors only in
+   this file. */
+
+/* Personal sub-brand tokens (BRAND-004 rev 01).
+   The :root block below is copied verbatim from the approved design-lab prototype,
+   styles.css sha256 a4f8792c791cc889d94ee8ac651942ce1203d541fdf74bb44e529eb3764e095d
+   (handoff v4). The block after it adds colors the handoff documents (DESIGN_HANDOFF.md
+   §1, and BRAND.md §3 for the status mapping) that the prototype hard-codes.
+   Projects copy this file and record the brand-system commit they copied from. */
+
+:root {
+  /* Palette: Deep Navy · Slate Blue · Warm Ivory */
+  --bg:            #F8F5F0;   /* warm ivory canvas */
+  --surface:       #FFFFFF;
+  --panel:         #F1EDE6;   /* soft stone panels and bands */
+  --ink:           #112A42;   /* deep navy — headings, primary controls */
+  --ink-hover:     #1E3D5C;
+  --body:          #3D4B59;
+  --muted:         #5B6875;
+  --accent:        #466A89;   /* slate blue — AA on every surface */
+  --accent-strong: #34587A;
+  --accent-icon:   #54789A;   /* non-text strokes only */
+  --accent-pale:   #E6EDF3;
+  --line:          #E3DED6;
+  --line-strong:   #CFC8BC;
+  --code-bg:       #0F2236;
+
+  /* Placeholder media */
+  --ph-from: #DDE7EE;
+  --ph-to:   #BFD2DF;
+
+  --radius-sm: 10px;   /* thumbnails, small elements */
+  --radius-md: 16px;   /* cards, code, diagrams, notes */
+  --radius-lg: 24px;   /* media and large panels */
+  --radius-btn: 12px;
+
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  --font-mono: 'SF Mono', ui-monospace, Menlo, Consolas, monospace;
+
+  --container: 1200px;
+  --gutter: clamp(1.25rem, 5vw, 3rem);
+  --space-section: clamp(4rem, 8vw, 6.5rem);
+  --space-block: clamp(2.5rem, 5vw, 3.5rem);
+
+  --ease: 0.18s ease;
+}
+
+:root {
+  /* Documented in the handoff, hard-coded in the prototype */
+  --on-ink:        #FFFFFF;   /* text on --ink: primary buttons, logo tile (14.7:1) */
+  --status-live:   #4A6A4E;   /* maturity live badge (5.6:1 on ivory) */
+  --status-proto:  #7A5E3C;   /* maturity prototype badge (5.5:1 on ivory) */
+}

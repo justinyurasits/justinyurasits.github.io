@@ -1,8 +1,147 @@
 ---
-// JYC-CAP-10: Training, informational only. Built out in M2.17.
+// JYC-CAP-10: Training, informational only (handoff §7, Training). Construction classes
+// first, each a panel: the summary on the left (level, title, format, prerequisites,
+// schedule, the email link) and the details on the right (description, what it covers,
+// what a participant leaves with). Then how the classes fit, private company training
+// (to the construction track), staying informed and the workshops being planned.
+// No registration, form, payment, tuition or fee: interest arrives by email, with the
+// subject "Education: <class title>". Classes are content (src/content/classes).
 import Base from '../../layouts/Base.astro';
+import { getPublished } from '../../lib/content';
+import { mailto } from '../../lib/contact';
+
+const classes = (await getPublished('classes')).sort((a, b) =>
+  (a.data.audienceGroup === 'construction' ? 0 : 1) - (b.data.audienceGroup === 'construction' ? 0 : 1) || a.data.order - b.data.order);
+const interest = (title: string) => mailto(`Education: ${title}`);
+const planned = ['From AI tools to smarter construction workflows', 'Building an AI-enabled construction business'];
 ---
-<Base title="Training" description="[COPY]">
-  <h1>Training</h1>
-  <p>[COPY]</p>
+<Base title="Training" description="[COPY]" bleed>
+  <div class="page-intro container">
+    <p class="eyebrow">AI education</p>
+    <h1>Training</h1>
+    <p class="lead">[COPY]</p>
+  </div>
+
+  <div class="container tr">
+    <section class="tr-classes" aria-labelledby="classes-title">
+      <h2 id="classes-title" class="visually-hidden">Classes</h2>
+      {classes.map((c, i) => {
+        const d = c.data;
+        return (
+          <article class:list={['card card-lg card-accent tr-class', { 'tr-class-secondary': i > 0 }]} aria-labelledby={`class-${c.id}`} data-class={c.id}>
+            <div class="tr-summary">
+              <p class="label-muted">{d.level} · {d.duration}</p>
+              <h3 id={`class-${c.id}`} class="tr-title">{d.title}</h3>
+              <dl class="def-rows tr-rows">
+                <dt>Audience</dt><dd data-field="audience">{d.audience}</dd>
+                <dt>Format</dt><dd data-field="format">{d.format}</dd>
+                <dt>Prerequisites</dt><dd data-field="prerequisites">{d.prerequisites}</dd>
+                <dt>Schedule</dt><dd data-field="schedule">{d.schedule}</dd>
+              </dl>
+              <a class="btn btn-primary" href={interest(d.title)} data-interest={c.id}>Express interest by email <span aria-hidden="true">→</span></a>
+              <p class="tr-note">No registration or payment. Email to hear when dates are set.</p>
+            </div>
+            <div class="tr-details">
+              <p class="tr-desc" data-field="description">{d.description}</p>
+              {d.formatNote && <p class="tr-format-note">{d.formatNote}</p>}
+              {d.covers.length > 0 && (
+                <>
+                  <h4 class="label-muted">{d.coversTitle}</h4>
+                  <ol class="tr-covers">{d.covers.map((x) => <li>{x}</li>)}</ol>
+                </>
+              )}
+              <h4 class="label-muted">What you'll leave with</h4>
+              <ul class="check-list" data-field="leaveWith">{d.leaveWith.map((x) => <li>{x}</li>)}</ul>
+              {d.leaveWithNote && <p class="tr-format-note">{d.leaveWithNote}</p>}
+            </div>
+          </article>
+        );
+      })}
+    </section>
+
+    {classes.some((c) => c.data.fit) && (
+      <section class="tr-fit" aria-labelledby="fit-title">
+        <h2 id="fit-title" class="tr-section-title">How the classes fit together</h2>
+        <ol class="tr-path">
+          {classes.filter((c) => c.data.fit).map((c, i) => (
+            <li><span class="tr-step" aria-hidden="true">{i + 1}</span><span><strong>{c.data.title}</strong>{c.data.fit}</span></li>
+          ))}
+          <li><span class="tr-step" aria-hidden="true">{classes.filter((c) => c.data.fit).length + 1}</span><span><strong>Private training or consulting</strong>Applied to your own operations</span></li>
+        </ol>
+      </section>
+    )}
+
+    <div class="tr-panels">
+      <section class="panel panel-lg tr-private" aria-labelledby="private-title" data-section="private-training">
+        <h2 id="private-title" class="tr-section-title">Private company training</h2>
+        <p>[COPY]</p>
+        <a class="btn btn-primary" href="/work-with-me/#construction">Construction AI consulting <span aria-hidden="true">→</span></a>
+      </section>
+
+      <section class="panel panel-lg tr-informed" aria-labelledby="informed-title" data-section="stay-informed">
+        <h2 id="informed-title" class="tr-section-title">Stay informed</h2>
+        <p>[COPY]</p>
+        <a class="text-link" href={mailto('Education')}>Email about training&nbsp;<span aria-hidden="true">→</span></a>
+      </section>
+    </div>
+
+    <section class="tr-planned" aria-labelledby="planned-title" data-section="planned">
+      <h2 id="planned-title" class="tr-section-title">More workshops planned</h2>
+      <ul class="tr-planned-list">
+        {planned.map((t) => <li><span class="badge badge-muted">Planned</span> <span>{t}</span></li>)}
+      </ul>
+    </section>
+  </div>
 </Base>
+
+<style>
+  .tr { display: grid; gap: var(--space-block); padding-bottom: var(--space-section); }
+  .tr-section-title { font-size: var(--fs-section); font-weight: 700; letter-spacing: -0.025em; line-height: 1.2; color: var(--ink); margin-bottom: 1rem; }
+
+  .tr-classes { display: grid; gap: 1.5rem; }
+  .tr-class { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0; padding: 0; }
+  .tr-class-secondary::before { background: var(--line-strong); }
+  .tr-summary, .tr-details { padding: clamp(1.75rem, 3.5vw, 2.5rem); }
+  .tr-details { border-left: 1px solid var(--line); }
+  .tr-summary { display: flex; flex-direction: column; gap: 1rem; align-items: flex-start; }
+  .tr-title { font-size: var(--fs-section-title); font-weight: 700; letter-spacing: -0.025em; line-height: 1.15; color: var(--ink); }
+  .tr-rows { width: 100%; }
+  .tr-note { font-size: var(--fs-small); color: var(--muted); }
+  .tr-desc { font-size: var(--fs-lead); line-height: 1.6; color: var(--ink); margin-bottom: 1.25rem; }
+  .tr-format-note { color: var(--body); margin-bottom: 1.25rem; }
+  .tr-details h4 { margin: 1.5rem 0 0.75rem; }
+  .tr-covers { display: grid; gap: 0.5rem; padding-left: 1.25rem; list-style: decimal; color: var(--ink); font-size: var(--fs-ui); line-height: 1.5; }
+  .tr-details .check-list + .tr-format-note { margin-top: 1rem; }
+
+  .tr-path { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; }
+  .tr-path li { display: flex; gap: 1rem; align-items: flex-start; border-top: 1px solid var(--line); padding-top: 1.25rem; }
+  .tr-path strong { display: block; color: var(--ink); margin-bottom: 0.25rem; }
+  .tr-path span:last-child { color: var(--body); }
+  .tr-step {
+    flex: none; display: inline-flex; align-items: center; justify-content: center;
+    width: 2rem; height: 2rem; border-radius: 999px;
+    background: var(--accent-pale); color: var(--accent-strong); font-size: var(--fs-small); font-weight: 700;
+  }
+
+  .tr-panels { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.5rem; }
+  .tr-panels .panel { display: grid; gap: 1rem; justify-items: start; align-content: start; }
+  .tr-panels .tr-section-title { margin-bottom: 0; }
+  .tr-panels p { color: var(--body); }
+  .tr-informed { background: var(--accent-pale); }
+
+  .tr-planned-list { display: grid; gap: 0.75rem; }
+  .tr-planned-list li { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; font-size: var(--fs-body-lg); color: var(--ink); }
+
+  @media (max-width: 1024px) {
+    .tr-panels { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 768px) {
+    .tr-class { grid-template-columns: 1fr; border: 0; background: transparent; border-radius: 0; }
+    .tr-class::before { display: none; }
+    .tr-summary, .tr-details { padding: 0; }
+    .tr-details { border-left: 0; padding-top: 1.5rem; }
+    .tr-class + .tr-class { border-top: 1px solid var(--line); padding-top: 2.5rem; }
+    .tr-summary .btn { width: 100%; }
+    .tr-path { grid-template-columns: 1fr; }
+  }
+</style>

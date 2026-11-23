@@ -120,7 +120,40 @@ const projects = defineCollection({
     }),
 });
 
+// Training classes (JYC-CAP-10). Every field a visitor reads is required, so the build
+// fails, naming the file and the field, if one is missing. A class for another audience is
+// a new file here, with no change to the page. No price, tuition or fee field: interest
+// arrives by email.
+const req = (field: string) => z.string({ error: `${field} is required` }).trim().min(1, `${field} is required`);
+const classes = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/classes' }),
+  schema: z.object({
+    title: req('title'),
+    audience: req('audience'),
+    level: req('level'),
+    duration: req('duration'),
+    format: req('format'),
+    prerequisites: req('prerequisites'),
+    schedule: req('schedule'),
+    description: req('description'),
+    leaveWith: z.array(z.string().trim().min(1), { error: 'leaveWith is required: what a participant leaves with' }).min(1, 'leaveWith is required: what a participant leaves with'),
+    // A line under what they leave with, e.g. what it isn't.
+    leaveWithNote: z.string().trim().min(1).optional(),
+    // What the class covers, in order.
+    covers: z.array(z.string().trim().min(1)).default([]),
+    coversTitle: z.string().default('What it covers'),
+    // How the class works, e.g. a fictional company everyone shares.
+    formatNote: z.string().trim().min(1).optional(),
+    // Where it sits in the path, e.g. "Understand and identify".
+    fit: z.string().trim().min(1).optional(),
+    // The group the class belongs to; construction first.
+    audienceGroup: z.enum(['construction', 'enterprise']).default('construction'),
+    order: z.number().default(0),
+    draft: z.boolean().default(false),
+  }),
+});
+
 // Experience entries live in the facts register (content/facts.json → experience), with
 // their role, what Justin personally did and their achievements (Career Facts v5.7).
 
-export const collections = { articles, projects };
+export const collections = { articles, projects, classes };

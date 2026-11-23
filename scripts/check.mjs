@@ -11,7 +11,9 @@
 //                    pages, and the anchor it points at exists there (JYC-CAP-09)
 //   discoverable     every page has a title, description, canonical and social preview and
 //                    is in the sitemap; every article is in the RSS feed
-//   article source   no published article still has the template's placeholder line
+//   article source   no published article still has the template's placeholder line, or
+//                    pairs a product metric with a figure the register doesn't give
+//                    (scripts/article-metrics.mjs); in a draft, both are warnings
 //   brand            the BRAND-004 checks, in scripts/brand-check.mjs
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import { join, relative, resolve } from 'node:path';
@@ -20,6 +22,7 @@ import { loadRegister, feeValues } from '../src/lib/register.mjs';
 import { OLD_ADDRESSES } from '../src/data/old-addresses.mjs';
 import { brandChecks } from './brand-check.mjs';
 import { PLACEHOLDER } from './article-template.mjs';
+import { metricMismatches } from './article-metrics.mjs';
 
 const ROOT = resolve(fileURLToPath(new URL('..', import.meta.url)));
 
@@ -86,7 +89,7 @@ function inScope(scope, url, html) {
 
 // The article files themselves: the template's placeholder line left in a published
 // article fails; in a draft it's a reminder.
-export function articleSourceChecks({ root = ROOT } = {}) {
+export function articleSourceChecks({ root = ROOT, register = loadRegister() } = {}) {
   const errors = [];
   const warnings = [];
   const dir = join(root, 'src/content/articles');
@@ -96,11 +99,17 @@ export function articleSourceChecks({ root = ROOT } = {}) {
   walk(dir);
   for (const f of files.sort()) {
     const text = readFileSync(f, 'utf8');
-    if (!text.includes(PLACEHOLDER)) continue;
     const draft = /^draft:\s*true\s*$/m.test(text.split(/^---\s*$/m)[1] ?? '');
     const rel = relative(root, f);
-    if (draft) warnings.push(`${rel} still has the template line "${PLACEHOLDER}" Replace it with the article before publishing.`);
-    else errors.push(`${rel} still has the template line "${PLACEHOLDER}" Delete it and write the article there.`);
+    if (text.includes(PLACEHOLDER)) {
+      if (draft) warnings.push(`${rel} still has the template line "${PLACEHOLDER}" Replace it with the article before publishing.`);
+      else errors.push(`${rel} still has the template line "${PLACEHOLDER}" Delete it and write the article there.`);
+    }
+    for (const h of metricMismatches(text, register)) {
+      const figs = h.figures.map((x) => `"${x}"`).join(', ');
+      const msg = `${rel}: ${figs} ${h.figures.length > 1 ? "aren't register figures" : "isn't a register figure"}, in "${h.sentence}" The register says ${h.says.join('; ')}. Use the register's figure or remove it${draft ? ' before publishing' : ''}.`;
+      (draft ? warnings : errors).push(msg);
+    }
   }
   return { errors, warnings };
 }

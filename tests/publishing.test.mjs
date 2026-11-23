@@ -103,3 +103,33 @@ test('CAP-04: npm run preview shows a draft locally', { timeout: 120000 }, async
     site.cleanup();
   }
 });
+
+test('#77: new-article with no arguments asks for the title and the category, asking again on a wrong category', () => {
+  const site = makeSite();
+  try {
+    const r = spawnSync('node', ['scripts/new-article.mjs'], { cwd: site.dir, encoding: 'utf8', input: 'Asked for title\nmarketing\nenterprise\n' });
+    assert.equal(r.status, 0, r.stdout + r.stderr);
+    assert.match(r.stdout, /Title: /);
+    assert.match(r.stdout, /"marketing" isn't a category\. Type construction or enterprise\./);
+    const f = site.read('src/content/articles/asked-for-title.md');
+    assert.match(f, /^title: "Asked for title"$/m);
+    assert.match(f, /^category: "Enterprise AI & Product Leadership"$/m);
+    assert.match(f, /^draft: true$/m);
+  } finally { site.cleanup(); }
+});
+
+test('#77: the template line fails npm run check in a published article and is a warning in a draft', () => {
+  const tpl = (draft) => `---\ntitle: "T"\ndescription: "D"\ndate: 2026-11-01\ncategory: "AI for Construction"\ntags: []\ndraft: ${draft}\n---\n\nWrite the article here in Markdown.\n`;
+  let site = makeSite({ 'src/content/articles/left-in.md': tpl(false) });
+  try {
+    const r = site.run('check');
+    assert.notEqual(r.code, 0);
+    assert.match(r.out, /✗ src\/content\/articles\/left-in\.md still has the template line "Write the article here in Markdown\."/);
+  } finally { site.cleanup(); }
+  site = makeSite({ 'src/content/articles/wip.md': tpl(true) });
+  try {
+    const r = site.run('check');
+    assert.equal(r.code, 0, r.out);
+    assert.match(r.out, /⚠ src\/content\/articles\/wip\.md still has the template line/);
+  } finally { site.cleanup(); }
+});

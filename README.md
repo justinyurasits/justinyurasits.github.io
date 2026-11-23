@@ -22,14 +22,45 @@ npm run preview    # local preview while editing, drafts included
 
 No Astro knowledge needed. Five steps:
 
-1. `npm run new-article -- "Article title" construction` (or `enterprise`). This creates
-   one file, `src/content/articles/<article-title>.md`, as a draft.
-2. Write the article in that file. Set the description and tags at the top. Images go
-   in the folder named after the article, next to the file.
+1. `npm run new-article`. It asks for the title and the category (`construction` or
+   `enterprise`), then creates one file, `src/content/articles/<article-title>.md`, as a
+   draft. You can also give both at once:
+   `npm run new-article -- "Article title" construction`.
+2. Write the article in that file, replacing the line "Write the article here in
+   Markdown." (`npm run check` fails a published article that still has it). Set the
+   description and tags at the top.
 3. `npm run preview`, then open the address it prints. Drafts show here and nowhere else.
 4. Set `draft: false`, then run `npm run check`. It must end with "Ready to publish."
    If it doesn't, each ✗ line names the file and what to change.
 5. Push. After cutover, an article-only change can go straight to `main` (CLAUDE.md §7).
+
+**Images:** put them in a folder named after the article, next to its file, and
+reference them from the article with a relative path and alt text that says what the
+image shows:
+
+```
+src/content/articles/my-article.md
+src/content/articles/my-article/diagram.png
+```
+
+```markdown
+![The intake router sends each document to one workflow](./my-article/diagram.png)
+```
+
+PNG, JPEG, WebP and SVG all work; the build compresses PNG, JPEG and WebP. A missing
+image fails `npm run check`, which names it.
+
+**Converting from Word:** install [pandoc](https://pandoc.org/installing.html), then
+
+```
+pandoc file.docx -t gfm -o out.md
+```
+
+Paste the contents of `out.md` under the front matter of the file `new-article`
+created, in place of the template line. Check the headings: sections are `##`, so a
+Word "Heading 1" that comes out as `#` becomes `##`. Then check the lists and the
+links. Images in the Word file aren't carried over this way: save each one into the
+article's folder and reference it as above.
 
 **Corrections:** edit the same file and push. The URL stays the same. For a substantive
 change, add `updated:` with the date and `substantive: true`, and the article shows

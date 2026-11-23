@@ -1,46 +1,66 @@
+// JYC-CAP-07: About, from the facts register (Career Facts v5.7, #4).
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { makeSite, md, EXPERIENCE } from './harness.mjs';
+import { readFileSync, writeFileSync } from 'node:fs';
+import { join } from 'node:path';
+import { runChecks } from '../scripts/check.mjs';
+import { makeSite } from './harness.mjs';
 
-function withSite(files, fn, { expectFail = false } = {}) {
+const REGISTER = JSON.parse(readFileSync(new URL('../content/facts.json', import.meta.url), 'utf8'));
+const withRegister = (edit) => { const d = structuredClone(REGISTER); edit(d); return { 'content/facts.json': JSON.stringify(d, null, 2) }; };
+
+function withSite(files, fn, { expectFail = false, script = 'check' } = {}) {
   const site = makeSite(files);
   try {
-    const r = site.run('check');
+    const r = site.run(script);
     if (expectFail) assert.notEqual(r.code, 0, r.out); else assert.equal(r.code, 0, r.out);
     fn(site, r);
   } finally { site.cleanup(); }
 }
 
-test('CAP-07: an experience entry shows built, led or both, with one line on what Justin did', () => {
-  withSite({ 'src/content/experience/e.md': md({ ...EXPERIENCE, role: 'both', personallyDid: 'Ran the product and wrote the first version.' }) }, (s) => {
-    assert.match(s.read('dist/about/index.html'), /data-role="both">Built and led\.<\/strong> Ran the product and wrote the first version\./);
+test('#4: the register holds the Career Facts v5.7 entries, credentials and location', () => {
+  assert.deepEqual(Object.keys(REGISTER.experience), ['citizens', 'optimizelyGenAI', 'optimizelyConnect', 'jabra', 'fidelityDigitization', 'fidelityContactCenter', 'wellen', 'beaconHill']);
+  for (const [k, e] of Object.entries(REGISTER.experience)) {
+    assert.ok(['built', 'led', 'both'].includes(e.role), k);
+    assert.ok(e.personallyDid && e.employer && e.title && e.type && e.dates, k);
+  }
+  assert.deepEqual(Object.values(REGISTER.credentials), ['MBA, Babson College', 'BS Chemical Engineering, Georgia Institute of Technology', 'Massachusetts Construction Supervisor License (current)']);
+  assert.equal(REGISTER.about.location, 'Remote, based in Boston');
+  assert.equal(REGISTER.library.corpusDocuments, 173);
+  assert.equal(REGISTER.experience.beaconHill.role, 'built');
+});
+
+test('CAP-07: every experience entry shows built, led or both, with what Justin did, and each value is checked against the register', () => {
+  withSite({}, (s) => {
+    const h = s.read('dist/about/index.html');
+    for (const [k, e] of Object.entries(REGISTER.experience)) {
+      const entry = h.match(new RegExp(`<article[^>]*data-experience="${k}"[\\s\\S]*?</article>`))?.[0] ?? '';
+      assert.match(entry, new RegExp(`data-role="${e.role}"`), k);
+      assert.match(entry, new RegExp(`data-fact="experience\\.${k}\\.personallyDid"`), k);
+      assert.match(entry, new RegExp(`data-fact="experience\\.${k}\\.employer"`), k);
+      assert.match(entry, new RegExp(`data-fact="experience\\.${k}\\.dates"`), k);
+    }
+    // Beacon Hill's achievements are the register's metrics.
+    assert.match(h, /data-metric="changeOrder"[^>]*><span data-fact="metrics\.\d\.task"[^>]*>Change order package<\/span>: <span[^>]*>~4 hrs<\/span> → <span[^>]*>~1 hr<\/span> <span[^>]*>of PM time<\/span>/);
+    for (const k of Object.keys(REGISTER.credentials)) assert.match(h, new RegExp(`data-fact="credentials\\.${k}"`));
   });
 });
 
-test('CAP-07: an experience entry missing role or personallyDid fails the build', () => {
+test('CAP-07: an experience entry missing its role or what Justin did fails the build, naming the field', () => {
   for (const f of ['role', 'personallyDid']) {
-    withSite({ 'src/content/experience/e.md': md({ ...EXPERIENCE, [f]: undefined }) }, (_, r) => {
-      assert.match(r.out, new RegExp(`src/content/experience/e: .*${f}`));
-    }, { expectFail: true });
+    withSite(withRegister((d) => { delete d.experience.jabra[f]; }), (_, r) => {
+      assert.match(r.out, new RegExp(`content/facts\\.json → experience\\.jabra\\.${f}`));
+    }, { expectFail: true, script: 'build' });
   }
 });
 
-test('CAP-07: credentials and experience facts come from the register and are checked against it', () => {
-  withSite({ 'src/content/experience/e.md': md({ ...EXPERIENCE, facts: ['about.credential', 'about.operatorScale'] }) }, (s) => {
-    const h = s.read('dist/about/index.html');
-    assert.match(h, /<span data-fact="about\.credential">licensed Massachusetts Construction Supervisor<\/span>/);
-    assert.match(h, /<span data-fact="about\.operatorScale">/);
-  });
-});
-
-test('CAP-07: an experience entry naming a fact the register doesn\'t have fails the build', () => {
-  withSite({ 'src/content/experience/e.md': md({ ...EXPERIENCE, facts: ['experience.madeUpEmployer'] }) }, (_, r) => {
-    assert.match(r.out, /Unknown fact "experience\.madeUpEmployer"/);
-  }, { expectFail: true });
-});
-
-test('CAP-07: an experience entry with no facts fails the build', () => {
-  withSite({ 'src/content/experience/e.md': md({ ...EXPERIENCE, facts: [] }) }, (_, r) => {
-    assert.match(r.out, /facts is required: register keys for the employer, role and dates/);
-  }, { expectFail: true });
+test('CAP-07: an About value that drifts from the register fails the check', () => {
+  const site = makeSite();
+  try {
+    assert.equal(site.build().code, 0);
+    const f = join(site.dir, 'dist/about/index.html');
+    writeFileSync(f, readFileSync(f, 'utf8').replace('>Apr 2020 – Feb 2022<', '>Apr 2019 – Feb 2022<'));
+    const r = runChecks({ dist: join(site.dir, 'dist'), oldAddresses: [] });
+    assert.match(r.errors.join('\n'), /Fact drift on \/about\/.*"experience\.jabra\.dates" shows "Apr 2019 – Feb 2022"/);
+  } finally { site.cleanup(); }
 });

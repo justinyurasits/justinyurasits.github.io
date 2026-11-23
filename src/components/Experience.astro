@@ -1,0 +1,50 @@
+---
+// One experience entry from the facts register (JYC-CAP-07): employer, title, type, dates
+// and location; built, led or both, with what Justin personally did; then the
+// achievements. Every value carries data-fact, so the facts check verifies it against
+// content/facts.json. A metric achievement renders the register's metric.
+import { facts } from '../lib/facts';
+import { ROLE_LABEL } from '../lib/status';
+
+interface Props { id: string; headingLevel?: 'h3' | 'h4' }
+const { id, headingLevel = 'h3' } = Astro.props;
+const e = facts.experience[id];
+if (!e) throw new Error(`Unknown experience entry "${id}": use a key under experience in content/facts.json.`);
+const key = `experience.${id}`;
+const Heading = headingLevel;
+const metric = (k: string) => {
+  const i = facts.metrics.findIndex((m) => m.key === k);
+  return { i, m: facts.metrics[i] };
+};
+---
+<article class="xp" data-experience={id}>
+  <header class="xp-head">
+    <Heading class="xp-employer"><span data-fact={`${key}.employer`}>{e.employer}</span></Heading>
+    <p class="xp-title" data-fact={`${key}.title`}>{e.title}</p>
+    <p class="xp-meta">
+      <span data-fact={`${key}.type`}>{e.type}</span>
+      <span aria-hidden="true">·</span>
+      <span data-fact={`${key}.dates`}>{e.dates}</span>
+      {e.location && <><span aria-hidden="true">·</span><span data-fact={`${key}.location`}>{e.location}</span></>}
+    </p>
+  </header>
+  <p class="role"><strong data-role={e.role}>{ROLE_LABEL[e.role]}.</strong> <span data-fact={`${key}.personallyDid`}>{e.personallyDid}</span></p>
+  {e.achievements.length > 0 && (
+    <>
+      {e.achievementsNote && <p class="xp-note" data-fact={`${key}.achievementsNote`}>{e.achievementsNote}</p>}
+      <ul class="check-list xp-achievements">
+        {e.achievements.map((a, i) => {
+          if ('metric' in a) {
+            const { i: mi, m } = metric(a.metric);
+            return (
+              <li data-metric={m.key}>
+                <span data-fact={`metrics.${mi}.task`}>{m.task}</span>: <span data-fact={`metrics.${mi}.before`}>{m.before}</span> → <span data-fact={`metrics.${mi}.after`}>{m.after}</span>{m.outcome && <> <span data-fact={`metrics.${mi}.outcome`}>{m.outcome}</span></>}
+              </li>
+            );
+          }
+          return <li data-fact={`${key}.achievements.${i}.text`}>{a.text}</li>;
+        })}
+      </ul>
+    </>
+  )}
+</article>

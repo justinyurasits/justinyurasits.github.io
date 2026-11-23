@@ -65,7 +65,7 @@ test('§5: Construction OS\'s role and what Justin did come from the register; "
     assert.equal(site.run('check').code, 0);
     const register = JSON.parse(site.read('content/facts.json')).constructionOS;
     assert.equal(register.role, 'built');
-    assert.match(register.personallyDid, /^Conceived and architected Construction OS .*Ava Yurasits contributed to the build\.$/);
+    assert.equal(register.personallyDid, 'Conceived and architected Construction OS and built its major components (the corpus, the Document Workbench and the intake router), drawing on my own construction document library.');
     const h = site.read('dist/solutions/construction-os/index.html');
     assert.match(h, /<strong data-role="built"[^>]*>Built\.<\/strong> <span data-fact="constructionOS\.personallyDid"[^>]*>Conceived and architected Construction OS/);
   } finally { site.cleanup(); }

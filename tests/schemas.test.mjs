@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { makeSite, md, ARTICLE, PROJECT, EXPERIENCE } from './harness.mjs';
+import { makeSite, md, ARTICLE, PROJECT } from './harness.mjs';
 
 function buildWith(files) {
   const site = makeSite(files);
@@ -14,11 +14,10 @@ const items = [...await getPublished('articles'), ...await getPublished('project
 <ul>{items.map((e) => <li>{e.data.title}</li>)}</ul>
 `;
 
-test('a valid article, project and experience entry build', () => {
+test('a valid article and project build', () => {
   const r = buildWith({
     'src/content/articles/ok.md': md(ARTICLE),
     'src/content/projects/ok.md': md(PROJECT),
-    'src/content/experience/ok.md': md(EXPERIENCE),
   });
   assert.equal(r.code, 0, r.out);
 });
@@ -78,11 +77,3 @@ test('CAP-05: role must be built, led or both', () => {
   assert.match(r.out, /role must be exactly one of: "built", "led", "both"/);
 });
 
-for (const field of ['role', 'personallyDid']) {
-  test(`CAP-07: an experience entry missing ${field} fails the build`, () => {
-    const r = buildWith({ [`src/content/experience/no-${field}.md`]: md({ ...EXPERIENCE, [field]: undefined }) });
-    assert.notEqual(r.code, 0);
-    assert.match(r.out, new RegExp(`no-${field}`));
-    assert.match(r.out, new RegExp(field));
-  });
-}

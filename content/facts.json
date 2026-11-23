@@ -1,7 +1,13 @@
 {
   "about": {
     "credential": "licensed Massachusetts Construction Supervisor",
-    "operatorScale": "$1M–$4M renovations at a $50 million contractor"
+    "operatorScale": "$1M–$4M renovations at a $50 million contractor",
+    "location": "Remote, based in Boston"
+  },
+  "credentials": {
+    "mba": "MBA, Babson College",
+    "bsChemicalEngineering": "BS Chemical Engineering, Georgia Institute of Technology",
+    "constructionSupervisor": "Massachusetts Construction Supervisor License (current)"
   },
   "usage": "roughly twenty real jobs and bids",
   "library": {
@@ -9,41 +15,310 @@
     "categories": 38,
     "lifecyclePhases": 5,
     "constructionSOPs": "160+",
-    "pricingItems": 1258
+    "pricingItems": 1258,
+    "corpusDocuments": 173
   },
   "metrics": [
-    { "key": "contractPackage", "task": "Contract package", "before": "up to 8 hrs", "after": "~30 min", "outcome": "to a package ready for PM review", "basis": "My own time assembling contract packages by hand on real jobs, compared with generating a review-ready package with Document Workbench on about 10 jobs, 2024–2026." },
-    { "key": "changeOrder", "task": "Change order package", "before": "~4 hrs", "after": "~1 hr", "outcome": "of PM time", "basis": "My own PM time preparing change order packages by hand, compared with the system, on 10–15 jobs." },
-    { "key": "preliminaryEstimating", "task": "Preliminary estimating", "before": "~10 hrs", "after": "~2 hrs", "basis": "My own time producing preliminary estimates by hand, compared with the system, on 10–15 jobs." }
+    {
+      "key": "contractPackage",
+      "task": "Contract package",
+      "before": "up to 8 hrs",
+      "after": "~30 min",
+      "outcome": "to a package ready for PM review",
+      "basis": "My own time assembling contract packages by hand on real jobs, compared with generating a review-ready package with Document Workbench on about 10 jobs, 2024–2026."
+    },
+    {
+      "key": "changeOrder",
+      "task": "Change order package",
+      "before": "~4 hrs",
+      "after": "~1 hr",
+      "outcome": "of PM time",
+      "basis": "My own PM time preparing change order packages by hand, compared with the system, on 10–15 jobs."
+    },
+    {
+      "key": "preliminaryEstimating",
+      "task": "Preliminary estimating",
+      "before": "~10 hrs",
+      "after": "~2 hrs",
+      "basis": "My own time producing preliminary estimates by hand, compared with the system, on 10–15 jobs."
+    }
   ],
   "constructionOS": {
     "role": "built",
-    "personallyDid": "Conceived and architected Construction OS and built its major components (the corpus, the Document Workbench and the intake router), drawing on my own construction document library. Ava Yurasits contributed to the build.",
+    "personallyDid": "Conceived and architected Construction OS and built its major components (the corpus, the Document Workbench and the intake router), drawing on my own construction document library.",
     "capabilities": [
       "A new PM can ask the system for company policy and instructions from day one."
     ]
   },
+  "experience": {
+    "citizens": {
+      "sector": "enterprise",
+      "employer": "Citizens",
+      "title": "Experience Owner, Contact Center Platform & AI Experience",
+      "type": "Contract",
+      "dates": "Mar 2026 – Oct 2026",
+      "location": "Boston (hybrid)",
+      "role": "led",
+      "personallyDid": "Owned the roadmap, strategy and delivery plan for the conversational AI and intent-based routing workstream, within a major bank's move from a legacy Cisco IVR to Amazon Connect. Led a matrixed team of 10 (architects, engineers, QA, business analysts) across eight epics. Defined the requirements and release validation for the AI components, and worked with engineering and data science on the design.",
+      "achievements": [
+        {
+          "text": "Took the conversational system to a limited production launch. Card-processing intents went live to real retail customers of Citizens Access and ran for a month before I left.",
+          "basis": "Launch is a fact. No outcome claim; I don't have post-launch numbers."
+        },
+        {
+          "text": "Rationalized a 259-intent legacy catalog to a 52-intent MVP, then to 22 intents, each assigned a fulfillment path. Classification testing changed the model: a first cut to 10 intents failed and was redrawn."
+        },
+        {
+          "text": "Set pre-release gates: over 90% classification accuracy, under 1% hallucination, over 95% consistency, over 95% out-of-scope capture. Evaluated against a 768-row labeled benchmark across ten prompt versions.",
+          "basis": "Pre-release measurement."
+        },
+        {
+          "text": "Presented the workstream's roadmap to EVP and SVP stakeholders and secured approval to proceed."
+        }
+      ]
+    },
+    "optimizelyGenAI": {
+      "sector": "enterprise",
+      "employer": "Optimizely",
+      "title": "Principal Product Manager, Generative AI, ML & Personalization",
+      "type": "Full-time",
+      "dates": "Apr 2023 – Apr 2024",
+      "location": "Remote",
+      "role": "led",
+      "personallyDid": "Owned GenAI product strategy and roadmap across 10+ product lines. Owned the internal model garden, a shared foundation-model layer for product engineering teams. Led a matrixed team of 10 data scientists and developers. Set up model evaluation through experimentation. Defined which customer data could reach model providers. Built the documentation bot over the company's full document set.",
+      "achievements": [
+        {
+          "text": "The model garden accelerated AI deployment cycles 80–90%, because each team no longer had to build its own model integration."
+        },
+        {
+          "text": "Brought Google's PaLM 2 models from Vertex AI into the garden; corroborated by Optimizely's Aug 29, 2023 press release."
+        },
+        {
+          "text": "Another team shipped a customer-facing GenAI feature (the AI variation generator) on the platform's access and tooling."
+        },
+        {
+          "text": "GenAI capabilities shipped across 10+ product lines under the Opal brand.",
+          "note": "Never cite Opal's later growth."
+        }
+      ]
+    },
+    "optimizelyConnect": {
+      "sector": "enterprise",
+      "employer": "Optimizely",
+      "title": "Principal Product Manager, Optimizely Connect Platform",
+      "type": "Full-time",
+      "dates": "Jan 2022 – Apr 2023",
+      "location": "Remote",
+      "role": "led",
+      "personallyDid": "Took the Connect Platform, a serverless developer and app-marketplace platform, from pilot to production launch. Defined its APIs and SDKs. Assessed and onboarded 30+ third-party integrations. Wrote most of the v1 developer documentation myself.",
+      "achievements": [
+        {
+          "text": "Active, daily-used apps grew from 3 to 35 in the three months after launch."
+        },
+        {
+          "text": "Developer time for new apps down 60%, because developers no longer built, hosted and maintained their own integrations."
+        },
+        {
+          "text": "Customer deployment time down 80–90%: installation went from an integration project to picking an app in the marketplace."
+        },
+        {
+          "text": "The core v1 developer documentation remains substantially in place in what Optimizely publishes today."
+        }
+      ]
+    },
+    "jabra": {
+      "sector": "enterprise",
+      "employer": "Jabra",
+      "title": "Head of Product, Contact Center Solutions",
+      "type": "Full-time",
+      "dates": "Apr 2020 – Feb 2022",
+      "location": "Lowell, MA",
+      "role": "led",
+      "personallyDid": "Owned product strategy and roadmap for a $250M ARR portfolio. Ran net-new development of the Engage 50 II and Engage 55, from market analysis through manufacturing and launch. Stood up the portfolio's first SaaS product, Call Quality Beacon / Engage Plus (real-time speech sentiment and conversation-quality analytics). Owned pricing and packaging. Led 5 product managers.",
+      "achievements": [
+        {
+          "text": "15% market share increase and $20M annual revenue growth, driven largely by the new Engage lines.",
+          "basis": "Reported from the period."
+        },
+        {
+          "text": "Go-to-market time down 20%, production costs down 10%, customer satisfaction up 35%.",
+          "basis": "Reported from the period."
+        }
+      ]
+    },
+    "fidelityDigitization": {
+      "sector": "enterprise",
+      "employer": "Fidelity Investments",
+      "title": "Director of Product Management, Digitization of Service",
+      "type": "Full-time",
+      "dates": "Nov 2017 – Apr 2020",
+      "location": "Boston",
+      "role": "led",
+      "personallyDid": "Led digital account opening and service transformation for 25M+ retail customers, across product, engineering, UX, operations, risk and compliance.",
+      "achievements": [
+        {
+          "text": "$1B+ in new AUM a year through digital onboarding.",
+          "basis": "Reported from the period."
+        },
+        {
+          "text": "Onboarding time down 40%, account-opening drop-offs down 15%, NPS up 12 points.",
+          "basis": "Reported from the period."
+        },
+        {
+          "text": "Self-service usage up 40%, removing 100,000+ live-agent calls a year.",
+          "basis": "Reported from the period."
+        },
+        {
+          "text": "Built the onboarding and service capabilities that supported Fidelity's win of the Amazon 401(k) account.",
+          "basis": "Reported from the period.",
+          "note": "I did not personally win the account."
+        }
+      ]
+    },
+    "fidelityContactCenter": {
+      "sector": "enterprise",
+      "employer": "Fidelity Investments",
+      "title": "Head of Contact Center Support & Customer Success",
+      "type": "Full-time",
+      "dates": "Jun 2014 – Nov 2017",
+      "location": "Boston",
+      "role": "led",
+      "personallyDid": "Created the operational support function for Fidelity's new contact center platform during its migration off legacy Cisco onto Genesys, as all 25,000 agents moved over. Built a 30+ person global 24x7 team. Ran daily change, release, incident and problem management.",
+      "achievements": [
+        {
+          "text": "Incident volume down 85% in year one; change-related outages down 65%; mean time to restore improved 50%.",
+          "basis": "Reported from the period."
+        },
+        {
+          "text": "Nearly $4M a year in support cost reduction.",
+          "basis": "Reported from the period."
+        },
+        {
+          "text": "About 1,100 agents were on Amazon Connect by the time I left, within months of its general availability."
+        }
+      ]
+    },
+    "wellen": {
+      "sector": "construction",
+      "employer": "Wellen Construction",
+      "title": "Residential Construction Project Manager",
+      "type": "Full-time",
+      "dates": "Apr 2024 – Mar 2026",
+      "location": "Boston",
+      "role": "both",
+      "personallyDid": "Ran $1M–$4M architect-driven luxury renovations at a roughly $50M general contractor. Built working pilots for ten operational workflows, used by me and three or four PM colleagues.",
+      "achievements": []
+    },
+    "beaconHill": {
+      "sector": "construction",
+      "employer": "Beacon Hill Interiors",
+      "title": "AI Systems Builder",
+      "type": "Part-time",
+      "dates": "Apr 2024 – present",
+      "role": "built",
+      "personallyDid": "Conceived, architected and built Construction OS: the governed corpus (173 documents), the Document Workbench, which drafts and prices change orders end to end, and the Operations Automation workflows. Also built Fieldscope.",
+      "achievementsNote": "Single-operator before-and-after on the same task, self-reported.",
+      "achievements": [
+        {
+          "metric": "contractPackage"
+        },
+        {
+          "metric": "preliminaryEstimating"
+        },
+        {
+          "metric": "changeOrder"
+        }
+      ]
+    }
+  },
   "products": {
-    "documentWorkbench": { "name": "Document Workbench", "maturity": "beta", "demo": "on-request" },
-    "constructionIntelligence": { "name": "Construction Intelligence", "maturity": "beta", "demo": "on-request" },
-    "operationsAutomation": { "name": "Operations Automation", "statusFrom": "workflows" },
-    "projectIntelligence": { "name": "Project Intelligence", "maturity": "in-development", "demo": "none" }
+    "documentWorkbench": {
+      "name": "Document Workbench",
+      "maturity": "beta",
+      "demo": "on-request"
+    },
+    "constructionIntelligence": {
+      "name": "Construction Intelligence",
+      "maturity": "beta",
+      "demo": "on-request"
+    },
+    "operationsAutomation": {
+      "name": "Operations Automation",
+      "statusFrom": "workflows"
+    },
+    "projectIntelligence": {
+      "name": "Project Intelligence",
+      "maturity": "in-development",
+      "demo": "none"
+    }
   },
   "workflows": {
-    "changeOrderDrafting": { "name": "Change Order Drafting", "product": "operationsAutomation", "maturity": "live", "demo": "public", "demoUrl": "https://draftconstructionchangeorder.com/" },
-    "invoiceIntake": { "name": "Invoice Intake", "product": "operationsAutomation", "maturity": "live", "demo": "on-request" },
-    "siteSafety": { "name": "Site Safety (Fieldscope)", "product": "operationsAutomation", "maturity": "live", "demo": "public", "demoUrl": "https://fieldscope-vm64.onrender.com/", "demoNote": "The first load can take up to a minute while the server wakes." },
-    "fieldReports": { "name": "Field Reports", "product": "operationsAutomation", "maturity": "beta", "demo": "none" },
-    "bidComparison": { "name": "Bid Comparison", "product": "operationsAutomation", "maturity": "beta", "demo": "none" },
-    "payAppPreparation": { "name": "Pay App Preparation", "product": "operationsAutomation", "maturity": "beta", "demo": "none" },
-    "subcontractorCompliance": { "name": "Subcontractor Compliance", "product": "operationsAutomation", "maturity": "beta", "demo": "none" },
-    "clientSelections": { "name": "Client Selections", "product": "operationsAutomation", "maturity": "beta", "demo": "none" }
+    "changeOrderDrafting": {
+      "name": "Change Order Drafting",
+      "product": "operationsAutomation",
+      "maturity": "live",
+      "demo": "public",
+      "demoUrl": "https://draftconstructionchangeorder.com/"
+    },
+    "invoiceIntake": {
+      "name": "Invoice Intake",
+      "product": "operationsAutomation",
+      "maturity": "live",
+      "demo": "on-request"
+    },
+    "siteSafety": {
+      "name": "Site Safety (Fieldscope)",
+      "product": "operationsAutomation",
+      "maturity": "live",
+      "demo": "public",
+      "demoUrl": "https://fieldscope-vm64.onrender.com/",
+      "demoNote": "The first load can take up to a minute while the server wakes."
+    },
+    "fieldReports": {
+      "name": "Field Reports",
+      "product": "operationsAutomation",
+      "maturity": "beta",
+      "demo": "none"
+    },
+    "bidComparison": {
+      "name": "Bid Comparison",
+      "product": "operationsAutomation",
+      "maturity": "beta",
+      "demo": "none"
+    },
+    "payAppPreparation": {
+      "name": "Pay App Preparation",
+      "product": "operationsAutomation",
+      "maturity": "beta",
+      "demo": "none"
+    },
+    "subcontractorCompliance": {
+      "name": "Subcontractor Compliance",
+      "product": "operationsAutomation",
+      "maturity": "beta",
+      "demo": "none"
+    },
+    "clientSelections": {
+      "name": "Client Selections",
+      "product": "operationsAutomation",
+      "maturity": "beta",
+      "demo": "none"
+    }
   },
   "fees": {
     "pageFacing": false,
-    "audit": { "duration": "2–3 weeks", "fee": "$4,000–6,000" },
-    "build": { "duration": "about a month", "fee": "$12,000–15,000" },
-    "monthly": { "duration": "per month, ongoing", "fee": "from $2,000" }
+    "audit": {
+      "duration": "2–3 weeks",
+      "fee": "$4,000–6,000"
+    },
+    "build": {
+      "duration": "about a month",
+      "fee": "$12,000–15,000"
+    },
+    "monthly": {
+      "duration": "per month, ongoing",
+      "fee": "from $2,000"
+    }
   },
   "banned": [
     "CASE-001",
@@ -52,14 +327,21 @@
     "Operational Architecture",
     "first built and applied",
     "field photos",
-    "Beacon Hill",
-    "Wellen",
     "$30 million",
     "General Contractor license",
     "AI-powered",
     "grounded in best practices",
     "industry best practices",
     "Custom Solutions",
-    "sole designer and builder"
+    "sole designer and builder",
+    "10 days → 3 days",
+    {
+      "text": "Wellen",
+      "scope": "construction-os"
+    },
+    {
+      "text": "Beacon Hill",
+      "scope": "construction-os"
+    }
   ]
 }

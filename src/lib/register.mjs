@@ -40,10 +40,39 @@ const workflow = z.object({
   message: 'demoUrl is required when demo is "public"',
 });
 
+// An experience entry (Career Facts v5.7). Every entry needs its role and one line on what
+// Justin personally did (§5, JYC-CAP-07). An achievement is a statement with an optional
+// basis, or a reference to a metric. A note is internal guidance and never shown.
+const achievement = z.union([
+  z.object({ text: z.string().trim().min(1), basis: z.string().min(1).optional(), note: z.string().min(1).optional() }).strict(),
+  z.object({ metric: z.string().min(1) }).strict(),
+]);
+const experienceEntry = z.object({
+  sector: z.enum(['enterprise', 'construction']),
+  employer: z.string().min(1),
+  title: z.string().min(1),
+  type: z.string().min(1),
+  dates: z.string().min(1),
+  location: z.string().min(1).optional(),
+  role: z.enum(['built', 'led', 'both'], { error: 'role is required: built, led or both' }),
+  personallyDid: z.string({ error: 'personallyDid is required: one line on what Justin personally did' }).trim().min(1, 'personallyDid is required: one line on what Justin personally did'),
+  achievementsNote: z.string().min(1).optional(),
+  achievements: z.array(achievement).default([]),
+}).strict();
+
+// A banned string applies on every page, or only on the pages of its scope (§5):
+// "construction-os" is the Construction OS page and its case studies.
+export const BAN_SCOPES = ['construction-os'];
+const ban = z.union([
+  z.string().min(1),
+  z.object({ text: z.string().min(1), scope: z.enum(BAN_SCOPES) }).strict(),
+]);
+
 const fee = z.object({ duration: z.string(), fee: z.string() });
 
 export const registerSchema = z.object({
   about: z.record(z.string(), z.string()),
+  credentials: z.record(z.string(), z.string().min(1)),
   usage: z.string(),
   library: z.record(z.string(), z.union([z.string(), z.number()])),
   metrics: z.array(metric),
@@ -55,12 +84,21 @@ export const registerSchema = z.object({
     // What Construction OS does, one line each, as the register states it.
     capabilities: z.array(z.string().trim().min(1)).default([]),
   }).strict(),
+  experience: z.record(z.string(), experienceEntry),
   products: z.record(z.string(), product),
   workflows: z.record(z.string(), workflow),
   // Justin's fees and service pricing. Never shown on a page (§5, no fees).
   fees: z.object({ pageFacing: z.literal(false) }).catchall(fee),
-  banned: z.array(z.string()),
+  banned: z.array(ban),
 }).strict().superRefine((r, ctx) => {
+  const metricKeys = new Set(r.metrics.map((m) => m.key));
+  for (const [key, e] of Object.entries(r.experience)) {
+    e.achievements.forEach((a, i) => {
+      if ('metric' in a && !metricKeys.has(a.metric)) {
+        ctx.addIssue({ code: 'custom', path: ['experience', key, 'achievements', i, 'metric'], message: `unknown metric "${a.metric}"` });
+      }
+    });
+  }
   for (const [key, w] of Object.entries(r.workflows)) {
     if (!(w.product in r.products)) {
       ctx.addIssue({ code: 'custom', path: ['workflows', key, 'product'], message: `unknown product "${w.product}"` });

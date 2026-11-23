@@ -2,7 +2,8 @@
 // Every result says what failed, where, and what to change.
 //
 //   facts register   claims rendered from the register match it; measured figures on
-//                    non-article pages are register values; no banned strings
+//                    non-article pages are register values; no banned strings, site-wide
+//                    or within a ban's scope (the Construction OS page and case studies)
 //   no fees          none of Justin's fee values appears on any page
 //   basis            every metric has a basis (a warning or an error, per checks.config.json)
 //   links            no href="#"; every internal link and its #anchor resolves
@@ -73,6 +74,14 @@ const FIGURE = /(?:up to|~)\s?\d+(?:\.\d+)?\s?(?:hrs?|hours?|min(?:utes)?|days?)
 const normFigure = (s) => s.toLowerCase().replace(/\s+/g, ' ').replace(/~ /, '~')
   .replace(/\bhours?\b/, 'hrs').replace(/\bhr\b/, 'hrs').replace(/\bminutes\b/, 'min').replace(/\bday\b/, 'days');
 
+// The pages a scoped ban applies to. A Construction OS case study marks itself with
+// data-scope="construction-os".
+const SCOPE_LABEL = { 'construction-os': 'the Construction OS page and case studies' };
+function inScope(scope, url, html) {
+  if (scope === 'construction-os') return url.startsWith('/solutions/construction-os/') || /\sdata-scope="construction-os"/.test(html);
+  return false;
+}
+
 export function runChecks({ dist = join(ROOT, 'dist'), register = loadRegister(), config = {}, oldAddresses = OLD_ADDRESSES } = {}) {
   const errors = [];
   const warnings = [];
@@ -95,10 +104,13 @@ export function runChecks({ dist = join(ROOT, 'dist'), register = loadRegister()
   for (const [url, { html }] of pages) {
     const text = textOf(html);
 
-    // banned strings
+    // banned strings: site-wide, or only on the pages of the ban's scope
     for (const b of register.banned) {
-      if (text.toLowerCase().includes(b.toLowerCase())) {
-        errors.push(`Banned string "${b}" on ${where(url)}. The register bans it: remove it or rephrase.`);
+      const ban = typeof b === 'string' ? { text: b } : b;
+      if (ban.scope && !inScope(ban.scope, url, html)) continue;
+      if (text.toLowerCase().includes(ban.text.toLowerCase())) {
+        const where_ = ban.scope ? ` (banned on ${SCOPE_LABEL[ban.scope]})` : '';
+        errors.push(`Banned string "${ban.text}" on ${where(url)}${where_}. The register bans it: remove it or rephrase.`);
       }
     }
 

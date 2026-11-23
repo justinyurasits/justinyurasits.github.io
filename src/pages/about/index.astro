@@ -1,56 +1,39 @@
 ---
-// JYC-CAP-07: About. Every credential, employer, figure and date comes from the register.
+// JYC-CAP-07: About. Every credential, employer, figure and date comes from the facts
+// register (Career Facts v5.7), and the facts check verifies each one. The approved
+// design comes in M2.16 (#58).
 import Base from '../../layouts/Base.astro';
-import Fact from '../../components/Fact.astro';
-import Role from '../../components/Role.astro';
-import { getPublished } from '../../lib/content';
+import Experience from '../../components/Experience.astro';
+import { facts } from '../../lib/facts';
 
-const entries = (await getPublished('experience')).sort((a, b) => a.data.order - b.data.order);
+const ids = Object.keys(facts.experience);
+const enterprise = ids.filter((id) => facts.experience[id].sector === 'enterprise');
+const construction = ids.filter((id) => facts.experience[id].sector === 'construction');
 ---
 <Base title="About" description="[COPY]">
   <h1>About</h1>
   <p>[COPY]</p>
-
-  <section aria-labelledby="history">
-    <h2 id="history">Professional history</h2>
-    {entries.length === 0 ? <p>[COPY]</p> : (
-      <ul class="experience">
-        {entries.map((e) => (
-          <li>
-            <h3><Fact path={e.data.facts[0]} /></h3>
-            {e.data.facts.length > 1 && <p>{e.data.facts.slice(1).map((f, i) => <>{i > 0 && ', '}<Fact path={f} /></>)}</p>}
-            <Role role={e.data.role} personallyDid={e.data.personallyDid} />
-          </li>
-        ))}
-      </ul>
-    )}
-  </section>
+  <p data-fact="about.location">{facts.about.location}</p>
 
   <section aria-labelledby="enterprise">
     <h2 id="enterprise">Enterprise leadership</h2>
-    <p>[COPY]</p>
+    {enterprise.map((id) => <Experience id={id} />)}
   </section>
 
   <section aria-labelledby="construction">
-    <h2 id="construction">Construction operations</h2>
-    <p>[COPY]</p>
+    <h2 id="construction">Construction</h2>
+    {construction.map((id) => <Experience id={id} />)}
   </section>
 
   <section aria-labelledby="credentials">
     <h2 id="credentials">Credentials</h2>
     <ul>
-      <li><Fact path="about.credential" /></li>
-      <li><Fact path="about.operatorScale" /></li>
+      {Object.entries(facts.credentials).map(([k, v]) => <li data-fact={`credentials.${k}`}>{v}</li>)}
     </ul>
   </section>
 
   <section aria-labelledby="approach">
     <h2 id="approach">Approach</h2>
-    <p>[COPY]</p>
-  </section>
-
-  <section aria-labelledby="achievements">
-    <h2 id="achievements">Selected achievements</h2>
     <p>[COPY]</p>
   </section>
 </Base>

@@ -1,3 +1,4 @@
 {
-  "missingBasis": "warn"
+  "missingBasis": "warn",
+  "placeholderMedia": "warn"
 }

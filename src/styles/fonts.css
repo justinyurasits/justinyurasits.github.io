@@ -1,0 +1,9 @@
+/* Self-hosted fonts (design handoff §2 and §9): Inter 400–700 and Source Serif 4 Italic
+   400 and 600, latin subset, from Fontsource. Licenses: public/fonts/LICENSE-*.txt (SIL OFL
+   1.1). No font CDN. */
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 400; font-display: swap; src: url('/fonts/inter-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 500; font-display: swap; src: url('/fonts/inter-latin-500-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 600; font-display: swap; src: url('/fonts/inter-latin-600-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 700; font-display: swap; src: url('/fonts/inter-latin-700-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Source Serif 4'; font-style: italic; font-weight: 400; font-display: swap; src: url('/fonts/source-serif-4-latin-400-italic.woff2') format('woff2'); }
+@font-face { font-family: 'Source Serif 4'; font-style: italic; font-weight: 600; font-display: swap; src: url('/fonts/source-serif-4-latin-600-italic.woff2') format('woff2'); }

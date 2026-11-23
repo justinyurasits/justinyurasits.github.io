@@ -41,7 +41,7 @@ test('CAP-09: every moving address serves a redirect page (meta refresh plus can
     const h = site.read(file(from));
     if (to === null) {
       assert.equal(refreshOf(h), undefined, `${from} is kept, not redirected`);
-      assert.match(h, /<header>[\s\S]*href="\/work-with-me\/"/, `${from} is a real page`);
+      assert.match(h, /<header[^>]*>[\s\S]*href="\/work-with-me\/"/, `${from} is a real page`);
       continue;
     }
     assert.equal(refreshOf(h), to, from);

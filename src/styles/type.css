@@ -1,0 +1,21 @@
+/* The type scale from the design handoff §2 (BRAND-004), as tokens. Every font-size in the
+   site's CSS uses one of these; the site check fails any other value. */
+:root {
+  --fs-hero:          clamp(2.125rem, 4.4vw, 3.5rem);   /* homepage headline */
+  --fs-hero-em:       1.07em;                           /* serif-italic emphasis in the headline */
+  --fs-page-title:    clamp(2.375rem, 5vw, 3.5rem);     /* inner-page H1 */
+  --fs-article-title: clamp(2.125rem, 4.6vw, 3.25rem);  /* article H1 */
+  --fs-section-title: clamp(1.875rem, 3.2vw, 2.5rem);   /* homepage and feature H2 */
+  --fs-section:       clamp(1.375rem, 2.2vw, 1.75rem);  /* section header H2 */
+  --fs-about-section: clamp(1.5rem, 2.4vw, 1.875rem);   /* About H2 */
+  --fs-card-title:    1.25rem;                          /* card H3 */
+  --fs-lead:          clamp(1.0625rem, 1.5vw, 1.1875rem);
+  --fs-prose:         1.125rem;                         /* article prose; also the mobile menu */
+  --fs-prose-mobile:  1.0625rem;
+  --fs-body-lg:       1.0625rem;                        /* brand name, larger body */
+  --fs-body:          1rem;
+  --fs-ui:            0.9375rem;                        /* buttons, nav, text links */
+  --fs-small:         0.875rem;                         /* footer links, chips, small buttons */
+  --fs-label:         0.75rem;                          /* eyebrows, category and meta labels */
+  --fs-badge:         0.6875rem;                        /* badges and pills */
+}

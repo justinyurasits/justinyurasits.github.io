@@ -15,7 +15,7 @@ test('CAP-09: one section and anchor per product; each live product and demo is 
       assert.match(h, new RegExp(`href="#${a}"`), a);
     }
     // the public demo is linked
-    assert.match(h, /data-status="workflows\.changeOrderDrafting" data-maturity="live" data-demo="public"[\s\S]*?<a class="demo" href="https:\/\/draftconstructionchangeorder\.com\/">Public demo<\/a>/);
+    assert.match(h, /data-status="workflows\.changeOrderDrafting" data-maturity="live" data-demo="public"[\s\S]*?<a class="demo text-link" href="https:\/\/draftconstructionchangeorder\.com\/">Public demo<\/a>/);
     // every product and workflow shows its status from the register
     assert.equal((h.match(/data-status="/g) ?? []).length, 3 + 8);
     assert.match(h, /data-status="products\.projectIntelligence" data-maturity="in-development" data-demo="none"/);

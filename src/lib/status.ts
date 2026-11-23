@@ -16,3 +16,12 @@ export const ROLE_LABEL: Record<string, string> = {
   led: 'Led',
   both: 'Built and led',
 };
+
+// The maturity badge for each value (BRAND-004 §3).
+export const MATURITY_BADGE: Record<string, string> = {
+  live: 'badge-live',
+  beta: 'badge-beta',
+  prototype: 'badge-prototype',
+  experiment: 'badge-muted',
+  'in-development': 'badge-muted',
+};

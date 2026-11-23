@@ -72,11 +72,12 @@ previous version stays live.
 | `src/content/` | Articles, projects and experience entries; their schemas are in `src/content.config.ts` |
 | `src/data/` | `old-addresses.mjs`: every old site address and where it goes now (JYC-CAP-09). The redirect pages, sitemap and preserved-links check read it |
 | `src/lib/` | Shared code, including `getPublished`, the only way pages read content (it leaves drafts out of builds) |
-| `scripts/` | `check.mjs`, the site checks run by `npm run check`; `checks.config.json` sets whether a missing metric basis warns or fails |
+| `scripts/` | `check.mjs`, the site checks run by `npm run check`, and `brand-check.mjs`, the BRAND-004 checks it also runs; `checks.config.json` sets whether a missing metric basis or placeholder media warns or fails |
 | `tests/` | Tests that build a throwaway copy of the site with fixture content |
 | `src/layouts/`, `src/components/` | The base layout (header, navigation, footer) and shared components |
-| `src/styles/` | Neutral styling until the visual design is applied (M2) |
-| `public/` | Files served as they are, including `CNAME` |
+| `src/styles/` | The visual design (BRAND-004): `tokens.css`, copied from brand-system with its commit in the header and the only place colors are set; `type.css`, the type-size tokens; `fonts.css`; and `base.css`, the shared components |
+| `src/scripts/` | `site.ts`, the one progressive script: the mobile menu and the filters |
+| `public/` | Files served as they are, including `CNAME` and the self-hosted fonts with their licenses (`public/fonts/`) |
 | `content/` | `facts.json`, the facts register every claim about Justin and his products must match. Its schema is `src/lib/register.mjs`; pages read it through `src/lib/facts.ts` |
 | `.github/` | The pull request template, CI (`ci.yml`) and the deploy workflow (`deploy.yml`) |
 

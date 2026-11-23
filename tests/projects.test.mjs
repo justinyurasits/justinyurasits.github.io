@@ -21,7 +21,7 @@ test('CAP-05: a case study shows built, led or both, what Justin did, maturity a
     for (const page of ['dist/demos/p/index.html', 'dist/demos/index.html']) {
       const h = s.read(page);
       assert.match(h, /data-role="both">Built and led\.<\/strong> Designed the retrieval layer\./, page);
-      assert.match(h, /<span class="maturity">Beta<\/span>/, page);
+      assert.match(h, /<span class="maturity badge badge-beta">Beta<\/span>/, page);
       assert.match(h, /<span class="demo">Demo on request<\/span>/, page);
     }
   });
@@ -30,7 +30,7 @@ test('CAP-05: a case study shows built, led or both, what Justin did, maturity a
 test('CAP-05: a public demo and a public repository are linked', () => {
   withSite({ 'src/content/projects/p.md': yaml({ ...PROJECT, demo: 'public', demoUrl: 'https://demo.example.com/', repository: { visibility: 'public', url: 'https://github.com/justinyurasits/agents' }, architecture: undefined }) }, (s) => {
     const h = s.read('dist/demos/p/index.html');
-    assert.match(h, /<a class="demo" href="https:\/\/demo\.example\.com\/">Public demo<\/a>/);
+    assert.match(h, /<a class="demo text-link" href="https:\/\/demo\.example\.com\/">Public demo<\/a>/);
     assert.match(h, /<a href="https:\/\/github\.com\/justinyurasits\/agents">Repository<\/a>/);
     assert.doesNotMatch(h, /Private repository/);
   });

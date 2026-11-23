@@ -1,7 +1,7 @@
 ---
 // The footer, identical on every page (handoff §5): brand, Site, Consulting and Contact.
-// Privacy and Terms sit in the Site group; the Contact group links email and LinkedIn
-// (JYC-CAP-08), and Consulting links both tracks (JYC-CAP-01, JYC-CAP-06).
+// Privacy, Terms and RSS sit in the Site group; the Contact group links email and
+// LinkedIn (JYC-CAP-08), and Consulting links both tracks (JYC-CAP-01, JYC-CAP-06).
 import { NAV, ACTION } from './Nav.astro';
 import { EMAIL, LINKEDIN_URL } from '../lib/contact';
 const site = [
@@ -13,27 +13,31 @@ const site = [
 ];
 const current = Astro.url.pathname;
 ---
-<footer>
-  <div data-footer-group="brand">
-    <a href="/">Justin Yurasits</a>
-    <p>AI Product Leadership.</p>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div data-footer-group="brand">
+      <a class="footer-brand" href="/">
+        <span class="footer-logo" aria-hidden="true">JY</span>
+        <span><span class="footer-name">Justin Yurasits</span><span class="footer-tagline">AI Product Leadership</span></span>
+      </a>
+    </div>
+    <nav aria-labelledby="footer-site" data-footer-group="site">
+      <h2 class="footer-heading" id="footer-site">Site</h2>
+      <ul class="footer-list footer-list-2col">{site.map((l) => <li><a href={l.href} aria-current={current === l.href ? 'page' : undefined}>{l.label}</a></li>)}</ul>
+    </nav>
+    <nav aria-labelledby="footer-consulting" data-footer-group="consulting">
+      <h2 class="footer-heading" id="footer-consulting">Consulting</h2>
+      <ul class="footer-list">
+        <li><a href="/work-with-me/#enterprise">Enterprise AI</a></li>
+        <li><a href="/work-with-me/#construction">Construction AI</a></li>
+      </ul>
+    </nav>
+    <nav aria-labelledby="footer-contact" data-footer-group="contact">
+      <h2 class="footer-heading" id="footer-contact">Contact</h2>
+      <ul class="footer-list">
+        <li><a href={LINKEDIN_URL}>LinkedIn</a></li>
+        <li><a href={`mailto:${EMAIL}`}>Email</a></li>
+      </ul>
+    </nav>
   </div>
-  <nav aria-labelledby="footer-site" data-footer-group="site">
-    <h2 id="footer-site">Site</h2>
-    <ul>{site.map((l) => <li><a href={l.href} aria-current={current === l.href ? 'page' : undefined}>{l.label}</a></li>)}</ul>
-  </nav>
-  <nav aria-labelledby="footer-consulting" data-footer-group="consulting">
-    <h2 id="footer-consulting">Consulting</h2>
-    <ul>
-      <li><a href="/work-with-me/#enterprise">Enterprise AI</a></li>
-      <li><a href="/work-with-me/#construction">Construction AI</a></li>
-    </ul>
-  </nav>
-  <nav aria-labelledby="footer-contact" data-footer-group="contact">
-    <h2 id="footer-contact">Contact</h2>
-    <ul>
-      <li><a href={LINKEDIN_URL}>LinkedIn</a></li>
-      <li><a href={`mailto:${EMAIL}`}>Email</a></li>
-    </ul>
-  </nav>
 </footer>

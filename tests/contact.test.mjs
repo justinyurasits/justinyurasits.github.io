@@ -13,11 +13,11 @@ const pagesOnly = () => pages.filter((p) => !/http-equiv="refresh"/.test(p.body)
 test('CAP-08: Work with me is in the header of every page, and the footer has a Contact group', () => {
   assert.ok(pagesOnly().length > 5);
   for (const p of pagesOnly()) {
-    const header = p.body.match(/<header>[\s\S]*?<\/header>/)?.[0] ?? '';
-    const footer = p.body.match(/<footer>[\s\S]*?<\/footer>/)?.[0] ?? '';
-    assert.match(header, /<a class="nav-action" href="\/work-with-me\/" data-action[^>]*>Work with me<\/a>/, p.path);
+    const header = p.body.match(/<header[^>]*>[\s\S]*?<\/header>/)?.[0] ?? '';
+    const footer = p.body.match(/<footer[^>]*>[\s\S]*?<\/footer>/)?.[0] ?? '';
+    assert.match(header, /<a class="btn btn-primary btn-sm header-action" href="\/work-with-me\/" data-action[^>]*>Work with me <span aria-hidden="true">→<\/span><\/a>/, p.path);
     const group = footer.split('data-footer-group="contact"')[1]?.split('</nav>')[0] ?? '';
-    assert.match(group, /<h2 id="footer-contact">Contact<\/h2>/, p.path);
+    assert.match(group, /<h2[^>]*id="footer-contact"[^>]*>Contact<\/h2>/, p.path);
     assert.match(group, /href="mailto:justin@justinyurasits\.com"/, p.path);
     assert.match(group, /href="https:\/\/www\.linkedin\.com\/in\/justinjyurasits\/"/, p.path);
   }

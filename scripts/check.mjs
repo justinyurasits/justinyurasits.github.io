@@ -10,11 +10,13 @@
 //                    pages, and the anchor it points at exists there (JYC-CAP-09)
 //   discoverable     every page has a title, description, canonical and social preview and
 //                    is in the sitemap; every article is in the RSS feed
+//   brand            the BRAND-004 checks, in scripts/brand-check.mjs
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import { join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadRegister, feeValues } from '../src/lib/register.mjs';
 import { OLD_ADDRESSES } from '../src/data/old-addresses.mjs';
+import { brandChecks } from './brand-check.mjs';
 
 const ROOT = resolve(fileURLToPath(new URL('..', import.meta.url)));
 
@@ -221,6 +223,9 @@ if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.ur
     process.exit(1);
   }
   const { errors, warnings, pages } = runChecks({ config });
+  const brand = brandChecks({ root: ROOT, config });
+  errors.push(...brand.errors);
+  warnings.push(...brand.warnings);
   for (const w of warnings) console.log(`⚠ ${w}`);
   for (const e of errors) console.log(`✗ ${e}`);
   console.log(`\n${pages} pages checked: ${errors.length} problem(s), ${warnings.length} warning(s).`);

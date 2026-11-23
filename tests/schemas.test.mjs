@@ -63,7 +63,7 @@ test('CAP-04: a draft article appears nowhere in a build; a published one does',
   } finally { site.cleanup(); }
 });
 
-for (const field of ['role', 'personallyDid', 'maturity', 'demo']) {
+for (const field of ['role', 'personallyDid', 'maturity', 'demo', 'whatYouCanView', 'limitations']) {
   test(`CAP-05: a project missing ${field} fails the build`, () => {
     const r = buildWith({ [`src/content/projects/no-${field}.md`]: md({ ...PROJECT, [field]: undefined }) });
     assert.notEqual(r.code, 0);

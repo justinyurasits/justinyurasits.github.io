@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { readFileSync, readdirSync } from 'node:fs';
 import { makeSite, md, ARTICLE } from './harness.mjs';
 import { serve, launch } from './browser.mjs';
 
@@ -25,6 +25,21 @@ const SPEC_TABLE = {
   '/products/custom-solutions.html': '/work-with-me/#construction',
 };
 const file = (p) => (p === '/' ? 'dist/index.html' : `dist${p}`);
+
+// Where an old article address goes today: the article that replaces it once that article
+// is published, the library until then. Read from the real articles, so publishing one
+// doesn't break these tests.
+const ARTICLES = new URL('../src/content/articles/', import.meta.url);
+const frontMatter = (id) => readFileSync(new URL(`${id}.md`, ARTICLES), 'utf8').split(/^---\s*$/m)[1];
+const isDraft = (id) => /^draft:\s*true\s*$/m.test(frontMatter(id));
+const currentDestination = (from, to) => {
+  if (to !== '/writing/') return to;
+  for (const f of readdirSync(ARTICLES).filter((f) => f.endsWith('.md'))) {
+    const id = f.replace(/\.md$/, '');
+    if (!isDraft(id) && frontMatter(id).includes(from)) return `/writing/${id}/`;
+  }
+  return to;
+};
 const refreshOf = (h) => h.match(/http-equiv="refresh" content="0; url=([^"]+)"/)?.[1];
 
 let site;
@@ -38,13 +53,14 @@ test('CAP-09: the data file matches the spec table, all 16 addresses', async () 
 });
 
 test('CAP-09: every moving address serves a redirect page (meta refresh plus canonical) to its destination', () => {
-  for (const [from, to] of Object.entries(SPEC_TABLE)) {
+  for (let [from, to] of Object.entries(SPEC_TABLE)) {
     const h = site.read(file(from));
     if (to === null) {
       assert.equal(refreshOf(h), undefined, `${from} is kept, not redirected`);
       assert.match(h, /<header[^>]*>[\s\S]*href="\/work-with-me\/"/, `${from} is a real page`);
       continue;
     }
+    to = currentDestination(from, to);
     assert.equal(refreshOf(h), to, from);
     assert.match(h, new RegExp(`<link rel="canonical" href="https://justinyurasits\\.com${to.split('#')[0].replace(/[/.]/g, '\\$&')}">`), from);
   }
@@ -72,14 +88,16 @@ test('CAP-09: in a browser, an old address lands on its destination, at its anch
 });
 
 test('CAP-09: an old article address goes to the library until the migrated article is published, then to the article', () => {
-  const s = makeSite({ 'src/content/articles/what-walks-out.md': md({ ...ARTICLE, replaces: ['/tribal-knowledge.html'] }) });
+  // The real tribal-knowledge article is removed, so the fixture alone replaces its address.
+  const remove = ['src/content/articles/tribal-knowledge.md', 'src/content/articles/ai-projects-fail.md'];
+  const s = makeSite({ 'src/content/articles/what-walks-out.md': md({ ...ARTICLE, replaces: ['/tribal-knowledge.html'] }) }, { remove });
   try {
     const r = s.run('check');
     assert.equal(r.code, 0, r.out);
     assert.equal(refreshOf(s.read('dist/tribal-knowledge.html')), '/writing/what-walks-out/');
     assert.equal(refreshOf(s.read('dist/ai-projects-fail.html')), '/writing/');
   } finally { s.cleanup(); }
-  const d = makeSite({ 'src/content/articles/what-walks-out.md': md({ ...ARTICLE, draft: true, replaces: ['/tribal-knowledge.html'] }) });
+  const d = makeSite({ 'src/content/articles/what-walks-out.md': md({ ...ARTICLE, draft: true, replaces: ['/tribal-knowledge.html'] }) }, { remove });
   try {
     assert.equal(d.run('check').code, 0);
     assert.equal(refreshOf(d.read('dist/tribal-knowledge.html')), '/writing/');
@@ -105,13 +123,12 @@ test('CAP-09: the check fails when a destination or its anchor is missing', () =
   } finally { b.cleanup(); }
 });
 
-test('#31: each migrated draft takes over its old address once it is published', () => {
+test('#31: each migrated article takes over its old address once it is published', () => {
   const ids = ['tribal-knowledge', 'eighty-ninety-problem', 'ai-projects-fail'];
   const published = Object.fromEntries(ids.map((id) => {
     const src = readFileSync(new URL(`../src/content/articles/${id}.md`, import.meta.url), 'utf8');
-    assert.match(src, /^draft: true$/m, `${id} is migrated as a draft`);
-    assert.match(src, new RegExp(`^replaces: \\["/${id}\\.html"\\]$`, 'm'));
-    return [`src/content/articles/${id}.md`, src.replace(/^draft: true$/m, 'draft: false')];
+    assert.match(src, new RegExp(`^replaces: \\[["']/${id}\\.html["']\\]$`, 'm'));
+    return [`src/content/articles/${id}.md`, src.replace(/^draft:\s*true\s*$/m, 'draft: false')];
   }));
   const site = makeSite(published);
   try {

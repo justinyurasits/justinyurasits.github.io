@@ -120,10 +120,21 @@ issue or milestone is done, and about every ten turns of work since you last ask
   pass before every commit, and CI runs both on every pull request. A missing metric
   `basis` is a warning until M2.8 switches it to a failure in `checks.config.json`. If a facts
   check fails, fix the page, not `content/facts.json`, unless Justin has said the
-  canonical value changed.
+  canonical value changed. From M2.1 (#26), `npm run check` also runs the BRAND-004
+  checks: hex colors only in `src/styles/tokens.css`, type sizes only from the type
+  tokens, no inline styles, no font CDN, the handoff's contrast pairs and badge colors,
+  visible focus, a skip link and no transitions under `prefers-reduced-motion`. Placeholder
+  media is a warning until M2.8 makes it a failure.
+- **Visual design:** the personal sub-brand in `brand-system`,
+  `../brand-system/brands/personal/BRAND.md` (BRAND-004), with its design handoff and
+  tokens. It covers every page, the Construction OS pages included; the Construction OS
+  sub-brand (BRAND-003) doesn't apply here. The site keeps its own copy of the tokens,
+  `src/styles/tokens.css`, whose header records the brand-system commit it came from.
+  Nothing in the build reads a neighboring repository. The prototype pages under
+  `reference/` are references: build components from the handoff and tokens, and don't
+  copy them wholesale.
 - **Conventions:** Astro, statically generated; content in Markdown/MDX as Astro content
-  collections. Styling stays neutral until the visual design from `brand-system` is
-  applied (M2). Domain language follows the product spec: capability IDs
+  collections. Domain language follows the product spec: capability IDs
   `JYC-CAP-<nn>`, maturity, demo, built/led/both.
 - **Overrides:** three, from the decision log in
   `../design/justinyurasits-com/site/design.md`.
@@ -136,7 +147,8 @@ issue or milestone is done, and about every ten turns of work since you last ask
      file and a push (JYC-CAP-04); a pull request for each article would make
      publishing harder, against the brief's Publish goal.
   3. *"Section 3's 'Never merge' doesn't apply to Claude Code's own pull requests into
-     `v2` during M0 and M1, once CI passes and every acceptance criterion is checked in
-     the pull request body. Justin reviews at each milestone's roll-up. Merging to
-     `main` always needs Justin's approval."* Why: keeps M0 and M1 moving without a
-     review per pull request; the roll-up at each milestone is the review.
+     `v2` during M0, M1 and M2, once CI passes and every acceptance criterion is checked
+     in the pull request body. Justin reviews at each milestone's roll-up. The cutover
+     (#34), and anything that merges into or touches `main`, need Justin's explicit
+     approval."* Why: keeps M2 moving the way M0 and M1 did; the roll-up is the review,
+     and `main` stays under Justin's direct control.

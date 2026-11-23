@@ -16,8 +16,9 @@ test('CAP-02: a new article appears in every listing, the feed and the sitemap, 
     assert.equal(r.code, 0, r.out);
     const lib = site.read('dist/writing/index.html');
     assert.match(section(lib, 'all'), /New one/);
-    assert.match(section(lib, 'recent'), /New one/);
-    assert.ok(section(lib, 'recent').indexOf('New one') < section(lib, 'recent').indexOf('Older one'), 'newest first');
+    // Recent would only repeat "All writing", so it's hidden (Justin, 2026-11-23).
+    assert.doesNotMatch(lib, /data-section="recent"/);
+    assert.ok(section(lib, 'all').indexOf('New one') < section(lib, 'all').indexOf('Older one'), 'newest first');
     assert.match(site.read('dist/writing/category/ai-for-construction/index.html'), /New one/);
     assert.doesNotMatch(site.read('dist/writing/category/ai-for-construction/index.html'), /Older one/);
     assert.match(site.read('dist/writing/category/enterprise-ai-and-product-leadership/index.html'), /Older one/);

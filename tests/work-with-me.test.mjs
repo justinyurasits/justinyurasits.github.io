@@ -24,6 +24,12 @@ test('CAP-06: each track opens with the problem slot and has an outcomes slot', 
   }
 });
 
+test('CAP-06: each track opens with its approved problem statement (#5)', () => {
+  const problem = (id) => track(id).match(/<p class="track-problem"[^>]*>([^<]*)<\/p>/)[1];
+  assert.equal(problem('enterprise'), 'You have an AI strategy and no one who can both run the product and build the system.');
+  assert.equal(problem('construction'), 'Your COO is about to retire, and half your business runs in his head.');
+});
+
 test('CAP-06: the two tracks have the same structure', () => {
   assert.deepEqual(slots(track('enterprise')), slots(track('construction')));
 });

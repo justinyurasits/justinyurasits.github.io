@@ -3,8 +3,8 @@
 // this one component, so they share one structure: the problem, the outcomes, what working
 // together looks like, and the next step, which reaches the contact panel on the same page.
 // It never shows Justin's fees or service pricing.
-interface Props { id: 'enterprise' | 'construction'; eyebrow: string; title: string; services: string[] }
-const { id, eyebrow, title, services } = Astro.props;
+interface Props { id: 'enterprise' | 'construction'; eyebrow: string; title: string; problem: string; services: string[] }
+const { id, eyebrow, title, problem, services } = Astro.props;
 ---
 <article class="track card card-lg card-accent" id={id} aria-labelledby={`${id}-title`} data-track={id}>
   <header>
@@ -14,7 +14,7 @@ const { id, eyebrow, title, services } = Astro.props;
 
   <div data-slot="problem">
     <h3 class="visually-hidden">The problem</h3>
-    <p class="track-problem">[COPY]</p>
+    <p class="track-problem">{problem}</p>
   </div>
 
   <div data-slot="outcomes">

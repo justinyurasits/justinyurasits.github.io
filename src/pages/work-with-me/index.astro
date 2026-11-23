@@ -33,13 +33,15 @@ const construction = [
   <div class="container wm">
     <section class="wm-tracks" aria-labelledby="tracks-title">
       <h2 id="tracks-title" class="visually-hidden">Consulting tracks</h2>
-      <Track id="enterprise" eyebrow="Track one" title="Enterprise AI Consulting & Leadership" services={enterprise}>
+      <Track id="enterprise" eyebrow="Track one" title="Enterprise AI Consulting & Leadership"
+        problem="You have an AI strategy and no one who can both run the product and build the system." services={enterprise}>
         <Fragment slot="details">
           <p>Remote, based in Boston.</p>
           <p data-slot="resume">[COPY: résumé PDF link, added in M2.4]</p>
         </Fragment>
       </Track>
-      <Track id="construction" eyebrow="Track two" title="Construction AI Consulting" services={construction} />
+      <Track id="construction" eyebrow="Track two" title="Construction AI Consulting"
+        problem="Your COO is about to retire, and half your business runs in his head." services={construction} />
     </section>
 
     <section id="contact" class="wm-contact panel panel-lg" aria-labelledby="contact-title" data-contact-panel>

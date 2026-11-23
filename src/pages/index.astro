@@ -3,7 +3,8 @@
 // Solutions → Demos → Writing → Work with me. The hero's headline and both actions show
 // without scrolling at 375px and 1280px. Writing covers both categories whenever both have
 // a published article. Copy is the spec's working text or [COPY] until the copy pass (#27).
-import { Image } from 'astro:assets';
+import { Image, Picture } from 'astro:assets';
+import headshot from '../assets/images/headshot.jpg';
 import Base from '../layouts/Base.astro';
 import ArticleList from '../components/ArticleList.astro';
 import PlaceholderMedia from '../components/PlaceholderMedia.astro';
@@ -40,7 +41,7 @@ const capabilities = [
         </div>
       </div>
       <div class="hero-portrait">
-        <PlaceholderMedia label="Portrait" needs="the approved headshot, landscape (7:5), safe area right of the diagonal" ratio="7 / 5" />
+        <Picture src={headshot} alt="Justin Yurasits" formats={['avif', 'webp']} widths={[480, 720, 960, 1280]} sizes="(max-width: 768px) 100vw, 54vw" loading="eager" fetchpriority="high" data-portrait />
       </div>
     </div>
   </section>
@@ -134,7 +135,10 @@ const capabilities = [
   .hero-headline em { font-family: var(--font-serif); font-style: italic; font-weight: 500; font-size: var(--fs-hero-em); letter-spacing: -0.01em; }
   .hero-body { margin-top: 1.25rem; font-size: var(--fs-lead); line-height: 1.6; color: var(--body); max-width: 36rem; }
   .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1.5rem; margin-top: 1.75rem; }
-  .hero-portrait :global(.media-placeholder) { aspect-ratio: 7 / 5; clip-path: polygon(16% 0, 100% 0, 100% 100%, 0 100%); }
+  .hero-portrait :global(img) {
+    display: block; width: 100%; height: auto; aspect-ratio: 7 / 5; object-fit: cover; object-position: 50% 42%;
+    border-radius: var(--radius-lg); clip-path: polygon(16% 0, 100% 0, 100% 100%, 0 100%);
+  }
 
   /* Capabilities band: three items between hairlines. */
   .caps { border-block: 1px solid var(--line); }

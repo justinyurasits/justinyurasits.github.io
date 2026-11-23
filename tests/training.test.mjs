@@ -83,3 +83,10 @@ test('CAP-10: planned workshops are labeled planned, with no class details', () 
     assert.doesNotMatch(section, /mailto:|data-class/);
   });
 });
+
+test('CAP-10: the hands-on class says "Claude Pro required", with no price', () => {
+  built({}, (s) => {
+    const c = classOf(s.read('dist/training/index.html'), 'build-your-own-construction-ai-assistant');
+    assert.match(c, /data-field="prerequisites"[^>]*>Claude Pro required\.<\/dd>/);
+  });
+});

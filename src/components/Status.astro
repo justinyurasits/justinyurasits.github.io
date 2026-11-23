@@ -1,12 +1,17 @@
 ---
 // Maturity and demo availability (product spec §5). Maturity is a badge (BRAND-004 §3);
 // demo availability is text, never a badge. With a register key, the M0.6 check compares
-// what's shown with content/facts.json.
+// what's shown with content/facts.json, and a public demo's note from the register (such
+// as a server that's slow to wake) shows wherever its link does.
 import { MATURITY_LABEL, DEMO_LABEL, MATURITY_BADGE } from '../lib/status';
+import { facts } from '../lib/facts';
 interface Props { maturity: string; demo: string; demoUrl?: string; registerKey?: string }
 const { maturity, demo, demoUrl, registerKey } = Astro.props;
+const entry = registerKey?.split('.').reduce<any>((o, k) => (o == null ? undefined : o[k]), facts);
+const demoNote: string | undefined = demo === 'public' && demoUrl ? entry?.demoNote : undefined;
 ---
 <span class="status" data-status={registerKey} data-maturity={registerKey && maturity} data-demo={registerKey && demo}>
   <span class={`maturity badge ${MATURITY_BADGE[maturity]}`}>{MATURITY_LABEL[maturity]}</span>
   {demo === 'public' && demoUrl ? <a class="demo text-link" href={demoUrl}>{DEMO_LABEL[demo]}</a> : <span class="demo">{DEMO_LABEL[demo]}</span>}
+  {demoNote && <span class="demo-note" data-fact={`${registerKey}.demoNote`}>{demoNote}</span>}
 </span>

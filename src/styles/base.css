@@ -181,6 +181,7 @@ h1, h2, h3, h4 { text-wrap: balance; color: var(--ink); }
 /* A maturity badge, then demo availability as text. */
 .status { display: inline-flex; align-items: center; flex-wrap: wrap; gap: 0.25rem 0.6rem; vertical-align: middle; }
 .status .text-link { min-height: 0; }
+.demo-note { flex-basis: 100%; font-size: var(--fs-small); color: var(--muted); }
 
 /* ---------------------------------------------------------------- cards, panels, lists */
 .card {

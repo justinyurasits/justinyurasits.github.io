@@ -85,3 +85,16 @@ test('#13: the Construction OS page states each capability from the register', (
     assert.match(site.read('dist/solutions/construction-os/index.html'), /<li data-fact="constructionOS\.capabilities\.0"[^>]*>A new PM can ask the system for company policy and instructions from day one\.<\/li>/);
   } finally { site.cleanup(); }
 });
+
+test('#28: Fieldscope\'s public demo is linked with its wake-up note; Operations Automation reads 3 live, 5 beta', () => {
+  const site = makeSite();
+  try {
+    const r = site.run('check');
+    assert.equal(r.code, 0, r.out);
+    const h = site.read('dist/solutions/construction-os/index.html');
+    assert.match(h, /data-status="workflows\.siteSafety" data-maturity="live" data-demo="public"[^>]*>[\s\S]*?<a class="demo text-link" href="https:\/\/fieldscope-vm64\.onrender\.com\/">Public demo<\/a>\s*<span class="demo-note" data-fact="workflows\.siteSafety\.demoNote">The first load can take up to a minute while the server wakes\.<\/span>/);
+    assert.match(h, /data-status="workflows\.fieldReports" data-maturity="beta" data-demo="none"/);
+    assert.match(h, /data-summary="operationsAutomation"[^>]*>8 workflows: 3 live, 5 beta</);
+    assert.doesNotMatch(h, /password|log ?in:/i, 'no login on the page');
+  } finally { site.cleanup(); }
+});

@@ -69,7 +69,7 @@ previous version stays live.
 | Folder | What it holds |
 | --- | --- |
 | `src/pages/` | One file or folder per route. Pages built in M1 replace the `[COPY]` stubs |
-| `src/content/` | Articles, projects and experience entries; their schemas are in `src/content.config.ts` |
+| `src/content/` | Articles and projects; their schemas are in `src/content.config.ts`. Experience entries are in the facts register, `content/facts.json` |
 | `src/data/` | `old-addresses.mjs`: every old site address and where it goes now (JYC-CAP-09). The redirect pages, sitemap and preserved-links check read it |
 | `src/lib/` | Shared code, including `getPublished`, the only way pages read content (it leaves drafts out of builds) |
 | `scripts/` | `check.mjs`, the site checks run by `npm run check`, and `brand-check.mjs`, the BRAND-004 checks it also runs; `checks.config.json` sets whether a missing metric basis or placeholder media warns or fails |

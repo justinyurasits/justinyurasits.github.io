@@ -64,6 +64,25 @@ test('facts register: a banned string fails', () => {
   assert.match(r.errors.join('\n'), /Banned string "AI-powered" on \/x\//);
 });
 
+test('facts register: a scoped ban applies only on its pages (Wellen and Beacon Hill on Construction OS)', () => {
+  const body = '<p>Built at Beacon Hill Interiors while at Wellen Construction.</p>';
+  const r = check({
+    '/about/': page({ canonical: 'https://justinyurasits.com/about/', body }),
+    '/solutions/construction-os/': page({ canonical: 'https://justinyurasits.com/solutions/construction-os/', body }),
+    '/demos/x/': page({ canonical: 'https://justinyurasits.com/demos/x/', body: `<article data-scope="construction-os">${body}</article>` }),
+    '/demos/y/': page({ canonical: 'https://justinyurasits.com/demos/y/', body }),
+  });
+  const bans = r.errors.filter((e) => /^Banned string/.test(e));
+  assert.equal(bans.length, 4, bans.join('\n'));
+  for (const e of bans) assert.match(e, /on \/(solutions\/construction-os|demos\/x)\/.*\(banned on the Construction OS page and case studies\)/);
+});
+
+test('facts register: "4–8 hrs" and "10 days → 3 days" are banned site-wide', () => {
+  const r = check({ '/x/': page({ body: '<p>From 4–8 hrs. Once 10 days → 3 days.</p>' }) });
+  assert.match(r.errors.join('\n'), /Banned string "4–8 hrs"/);
+  assert.match(r.errors.join('\n'), /Banned string "10 days → 3 days"/);
+});
+
 test('no fees: a register fee value on any page fails, whatever the dash', () => {
   for (const shown of ['$4,000–6,000', '$4,000-6,000', 'From $2,000']) {
     const r = check({ '/x/': page({ body: `<p>${shown}</p>` }) });

@@ -2,7 +2,7 @@
 // sitemap in a build, and shown only in local development (JYC-CAP-04).
 import { getCollection, type CollectionEntry } from 'astro:content';
 
-type Name = 'articles' | 'projects' | 'experience';
+type Name = 'articles' | 'projects';
 
 export const showDrafts = import.meta.env.DEV;
 

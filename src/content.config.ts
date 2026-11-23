@@ -120,19 +120,7 @@ const projects = defineCollection({
     }),
 });
 
-// An experience entry's employer, role title and dates are register facts (JYC-CAP-07), so
-// the entry names them by key and the page renders them from content/facts.json, where the
-// facts check verifies them. The first fact is the entry's heading.
-const experience = defineCollection({
-  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/experience' }),
-  schema: z.object({
-    facts: z
-      .array(z.string(), { error: 'facts is required: register keys for the employer, role and dates' })
-      .min(1, 'facts is required: register keys for the employer, role and dates'),
-    role,
-    personallyDid,
-    order: z.number().default(0),
-  }),
-});
+// Experience entries live in the facts register (content/facts.json → experience), with
+// their role, what Justin personally did and their achievements (Career Facts v5.7).
 
-export const collections = { articles, projects, experience };
+export const collections = { articles, projects };

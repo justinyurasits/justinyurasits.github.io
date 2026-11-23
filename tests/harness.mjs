@@ -57,7 +57,6 @@ export const PROJECT = {
   role: 'built', personallyDid: 'Wrote all of it.', maturity: 'prototype', demo: 'none',
   repository: { visibility: 'private-own' }, architecture: 'A sanitized outline of the parts.',
 };
-export const EXPERIENCE = { facts: ['about.credential'], role: 'led', personallyDid: 'Led the team.' };
 
 // A port nothing is listening on, from the OS, so parallel tests never collide.
 import { createServer } from 'node:net';

@@ -24,10 +24,12 @@ const p = entry.data;
 const citing = (await getPublished('articles'))
   .filter((a) => a.data.relatedProjects.some((r) => r.id === entry.id))
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+// A Construction OS case study: Construction OS-scoped bans apply to it (§5).
+const isConstructionOS = /^(products|workflows)\./.test(p.registerKey ?? '') || p.tags.includes('Construction OS');
 const hasEvidence = p.screenshots.length > 0 || !!p.walkthroughUrl || !!p.architecture;
 ---
 <Base title={p.title} description={p.summary}>
-  <article class="cs" data-project={entry.id}>
+  <article class="cs" data-project={entry.id} data-scope={isConstructionOS ? 'construction-os' : undefined}>
     <p class="eyebrow">Case study</p>
     <h1>{p.title}</h1>
     <p class="lead">{p.summary}</p>

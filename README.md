@@ -28,7 +28,11 @@ No Astro knowledge needed. Five steps:
    `npm run new-article -- "Article title" construction`.
 2. Write the article in that file, replacing the line "Write the article here in
    Markdown." (`npm run check` fails a published article that still has it). Set the
-   description and tags at the top.
+   description and tags at the top. When a sentence names a product metric (contract
+   package, change order, estimating, or what a new PM can do) and gives a time, the time
+   must be the register's (`content/facts.json`). `npm run check` names any sentence that
+   differs: a warning in a draft, a failure once published. Write a before-and-after as
+   "from 10 hours to 2"; "from 10 to 2 hours" reads as a range and is flagged.
 3. `npm run preview`, then open the address it prints. Drafts show here and nowhere else.
 4. Set `draft: false`, then run `npm run check`. It must end with "Ready to publish."
    If it doesn't, each ✗ line names the file and what to change.

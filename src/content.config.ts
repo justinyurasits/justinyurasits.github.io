@@ -53,6 +53,19 @@ const projects = defineCollection({
       title: z.string({ error: 'title is required' }).min(1, 'title is required'),
       summary: z.string({ error: 'summary is required' }).min(1, 'summary is required'),
       problem: z.string({ error: 'problem is required' }).min(1, 'problem is required'),
+      // What a visitor can actually view, and what the build doesn't do (JYC-CAP-05).
+      whatYouCanView: z
+        .string({ error: 'whatYouCanView is required: what a visitor can view' })
+        .trim()
+        .min(1, 'whatYouCanView is required: what a visitor can view'),
+      limitations: z
+        .string({ error: 'limitations is required: what it doesn\'t do yet' })
+        .trim()
+        .min(1, 'limitations is required: what it doesn\'t do yet'),
+      // Topics for the Demos & Builds filters, e.g. ["Agents", "Construction"].
+      tags: z.array(z.string().trim().min(1)).default([]),
+      // Leads the Demos & Builds page. Without one, the first by order leads.
+      featured: z.boolean().default(false),
       role,
       personallyDid,
       maturity: z.enum(MATURITY, { error: oneOf('maturity', MATURITY) }),

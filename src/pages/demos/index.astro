@@ -1,26 +1,56 @@
 ---
-// JYC-CAP-05: Demos & Builds ("Demos" in the navigation).
+// JYC-CAP-05: Demos & Builds ("Demos" in the navigation). Handoff §7: page intro → topic
+// filters → the featured build → "More builds and experiments". Without JavaScript the
+// filters stay hidden and every entry shows.
 import Base from '../../layouts/Base.astro';
-import Status from '../../components/Status.astro';
-import Role from '../../components/Role.astro';
+import DemoCard from '../../components/DemoCard.astro';
 import { getPublished } from '../../lib/content';
-import { projectUrl } from '../../lib/format';
+import { splitFeatured, topics, assertNoDemoImplied } from '../../lib/demos';
 
-const projects = (await getPublished('projects')).sort((a, b) => a.data.order - b.data.order || a.data.title.localeCompare(b.data.title));
+const projects = await getPublished('projects');
+projects.forEach(assertNoDemoImplied);
+const { featured, rest } = splitFeatured(projects);
+const topicList = topics(projects);
 ---
-<Base title="Demos & Builds" description="[COPY]">
-  <h1>Demos &amp; Builds</h1>
-  <p>[COPY]</p>
-  {projects.length === 0 ? <p>Nothing here yet.</p> : (
-    <ul class="project-list">
-      {projects.map((p) => (
-        <li>
-          <a href={projectUrl(p.id)}>{p.data.title}</a>
-          <p>{p.data.summary}</p>
-          <Role role={p.data.role} personallyDid={p.data.personallyDid} />
-          <p><Status maturity={p.data.maturity} demo={p.data.demo} demoUrl={p.data.demoUrl} registerKey={p.data.registerKey} /></p>
-        </li>
-      ))}
-    </ul>
-  )}
+<Base title="Demos & Builds" description="[COPY]" bleed>
+  <div class="page-intro container">
+    <p class="eyebrow">Working systems and experiments</p>
+    <h1>Demos &amp; Builds</h1>
+    <p class="lead">[COPY]</p>
+  </div>
+
+  <div class="container demos">
+    {projects.length === 0 ? <p>Nothing here yet.</p> : (
+      <>
+        {topicList.length > 0 && (
+          <div class="filter-row" role="group" aria-label="Filter by topic" data-filter-group="demos" hidden>
+            <span class="label-muted" aria-hidden="true">Filter</span>
+            <button type="button" class="chip" data-filter="all" aria-pressed="true">All</button>
+            {topicList.map((t) => <button type="button" class="chip" data-filter={t.slug} aria-pressed="false">{t.label}</button>)}
+            <p class="visually-hidden" aria-live="polite" data-filter-status></p>
+          </div>
+        )}
+
+        {featured && <DemoCard entry={featured} featured />}
+
+        {rest.length > 0 && (
+          <section class="demos-more" aria-labelledby="more-title" data-filter-section="demos">
+            <h2 id="more-title" class="demos-more-title">More builds and experiments</h2>
+            <div class="demos-grid">
+              {rest.map((entry) => <DemoCard entry={entry} />)}
+            </div>
+          </section>
+        )}
+      </>
+    )}
+  </div>
 </Base>
+
+<style>
+  .demos { display: grid; gap: var(--space-block); padding-bottom: var(--space-section); }
+  .demos-more-title { font-size: var(--fs-section); font-weight: 700; letter-spacing: -0.025em; line-height: 1.2; color: var(--ink); margin-bottom: 1.5rem; }
+  .demos-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; }
+  @media (max-width: 768px) {
+    .demos-grid { grid-template-columns: 1fr; }
+  }
+</style>

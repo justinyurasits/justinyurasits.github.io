@@ -1,5 +1,8 @@
 ---
-// JYC-CAP-05: one case study. The format is the same for every project.
+// JYC-CAP-05: one case study. The format is the same for every project. Built by the
+// composition rule (BRAND-004 §4) from handoff components: eyebrow, H1 and lead, the
+// maturity badge and demo availability, a card of definition rows, then the article
+// column.
 import { render } from 'astro:content';
 import { Image } from 'astro:assets';
 import Base from '../../../layouts/Base.astro';
@@ -7,9 +10,11 @@ import Status from '../../../components/Status.astro';
 import Role from '../../../components/Role.astro';
 import { getPublished } from '../../../lib/content';
 import { articleUrl } from '../../../lib/format';
+import { assertNoDemoImplied } from '../../../lib/demos';
 
 export async function getStaticPaths() {
   const projects = await getPublished('projects');
+  projects.forEach(assertNoDemoImplied);
   return projects.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
 }
 
@@ -22,17 +27,27 @@ const citing = (await getPublished('articles'))
 const hasEvidence = p.screenshots.length > 0 || !!p.walkthroughUrl || !!p.architecture;
 ---
 <Base title={p.title} description={p.summary}>
-  <article>
-    <p><a href="/demos/">Demos &amp; Builds</a></p>
+  <article class="cs" data-project={entry.id}>
+    <p class="eyebrow">Case study</p>
     <h1>{p.title}</h1>
-    <p>{p.summary}</p>
+    <p class="lead">{p.summary}</p>
+    <div class="cs-badges">
+      <Status maturity={p.maturity} demo={p.demo} demoUrl={p.demoUrl} registerKey={p.registerKey} />
+      {p.tags.map((t) => <span class="badge badge-tag">{t}</span>)}
+    </div>
 
-    <section aria-labelledby="status">
-      <h2 id="status">Role and status</h2>
-      <Role role={p.role} personallyDid={p.personallyDid} />
-      <p><Status maturity={p.maturity} demo={p.demo} demoUrl={p.demoUrl} registerKey={p.registerKey} /></p>
-      {p.repository.visibility === 'public' && <p><a href={p.repository.url}>Repository</a></p>}
-      {p.repository.visibility === 'private-own' && <p class="repo-label">Private repository, walkthrough on request.</p>}
+    <section class="card cs-facts" aria-labelledby="status">
+      <h2 id="status" class="visually-hidden">Role and status</h2>
+      <dl class="def-rows">
+        <dt>What you can view</dt>
+        <dd data-field="whatYouCanView">{p.whatYouCanView}</dd>
+        <dt>Justin's role</dt>
+        <dd><Role role={p.role} personallyDid={p.personallyDid} /></dd>
+        <dt>Limitations</dt>
+        <dd data-field="limitations">{p.limitations}</dd>
+        {p.repository.visibility === 'public' && <><dt>Repository</dt><dd><a href={p.repository.url}>Repository</a></dd></>}
+        {p.repository.visibility === 'private-own' && <><dt>Repository</dt><dd class="repo-label">Private repository, walkthrough on request.</dd></>}
+      </dl>
     </section>
 
     <section aria-labelledby="problem">
@@ -45,7 +60,7 @@ const hasEvidence = p.screenshots.length > 0 || !!p.walkthroughUrl || !!p.archit
     {hasEvidence && (
       <section aria-labelledby="evidence">
         <h2 id="evidence">Evidence</h2>
-        {p.screenshots.map((s) => <figure><Image src={s.src} alt={s.alt} /><figcaption>{s.alt}</figcaption></figure>)}
+        {p.screenshots.map((s) => <figure class="cs-shot"><Image src={s.src} alt={s.alt} /><figcaption>{s.alt}</figcaption></figure>)}
         {p.walkthroughUrl && <p><a href={p.walkthroughUrl}>Walkthrough</a></p>}
         {p.architecture && <><h3>Architecture</h3><p>{p.architecture}</p></>}
       </section>
@@ -57,5 +72,23 @@ const hasEvidence = p.screenshots.length > 0 || !!p.walkthroughUrl || !!p.archit
         <ul>{citing.map((a) => <li><a href={articleUrl(a.id)}>{a.data.title}</a></li>)}</ul>
       </section>
     )}
+
+    <p class="cs-back"><a class="text-link" href="/demos/"><span aria-hidden="true">←</span>&nbsp;Demos &amp; Builds</a></p>
   </article>
 </Base>
+
+<style>
+  /* The article column sets prose size on every p; the eyebrow and lead keep their own. */
+  .cs .eyebrow { margin-bottom: 1.25rem; font-size: var(--fs-label); line-height: 1.4; }
+  .cs .lead { margin-top: 1.25rem; font-size: var(--fs-lead); line-height: 1.65; }
+  .cs-badges { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 0.6rem; margin: 1.5rem 0 2rem; }
+  .cs-facts { padding-block: 0.75rem; }
+  .cs-facts .def-rows > :nth-child(-n+2) { border-top: 0; }
+  .cs-facts :global(.role) { margin: 0; font-size: var(--fs-ui); line-height: 1.5; }
+  .cs-facts dd { font-size: var(--fs-ui); line-height: 1.5; }
+  .cs-shot :global(img) { display: block; width: 100%; height: auto; border-radius: var(--radius-md); border: 1px solid var(--line); }
+  .cs-back { margin-top: var(--space-block); }
+  @media (max-width: 768px) {
+    .cs-facts .def-rows > dd:nth-child(2) { border-top: 0; }
+  }
+</style>

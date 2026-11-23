@@ -31,7 +31,7 @@ test('CAP-05: a public demo and a public repository are linked', () => {
   withSite({ 'src/content/projects/p.md': yaml({ ...PROJECT, demo: 'public', demoUrl: 'https://demo.example.com/', repository: { visibility: 'public', url: 'https://github.com/justinyurasits/agents' }, architecture: undefined }) }, (s) => {
     const h = s.read('dist/demos/p/index.html');
     assert.match(h, /<a class="demo text-link" href="https:\/\/demo\.example\.com\/">Public demo<\/a>/);
-    assert.match(h, /<a href="https:\/\/github\.com\/justinyurasits\/agents">Repository<\/a>/);
+    assert.match(h, /<a href="https:\/\/github\.com\/justinyurasits\/agents"[^>]*>Repository<\/a>/);
     assert.doesNotMatch(h, /Private repository/);
   });
 });
@@ -58,8 +58,8 @@ test('CAP-05: a project with no public repository needs evidence, and shows no r
     assert.equal(r.code, 0, r.out);
     const h = site.read('dist/demos/p/index.html');
     assert.match(h, /<img[^>]+alt="The estimate screen"/);
-    assert.match(h, /<a href="https:\/\/example\.com\/walkthrough">Walkthrough<\/a>/);
-    assert.doesNotMatch(h, />Repository</);
+    assert.match(h, /<a href="https:\/\/example\.com\/walkthrough"[^>]*>Walkthrough<\/a>/);
+    assert.doesNotMatch(h, />Repository<\/a>/);
     assert.doesNotMatch(h, /href="#"/);
   } finally { site.cleanup(); }
 });
@@ -70,7 +70,7 @@ test('CAP-05: "Private repository, walkthrough on request." appears only on Just
     'src/content/projects/pub.md': yaml({ ...PROJECT, repository: { visibility: 'public', url: 'https://github.com/x/y' } }),
     'src/content/projects/conf.md': yaml({ ...PROJECT, repository: { visibility: 'confidential' }, confidentialityReviewed: true }),
   }, (s) => {
-    assert.match(s.read('dist/demos/own/index.html'), /<p class="repo-label">Private repository, walkthrough on request\.<\/p>/);
+    assert.match(s.read('dist/demos/own/index.html'), /<dd class="repo-label"[^>]*>Private repository, walkthrough on request\.<\/dd>/);
     assert.doesNotMatch(s.read('dist/demos/pub/index.html'), /Private repository/);
     assert.doesNotMatch(s.read('dist/demos/conf/index.html'), /Private repository/);
   });
@@ -90,7 +90,7 @@ test('CAP-05: an article that cites a project gets a link back from the case stu
     'src/content/projects/est.md': yaml({ ...PROJECT, title: 'Estimator' }),
     'src/content/articles/a.md': md({ ...ARTICLE, title: 'Why estimates drift', relatedProjects: ['est'] }),
   }, (s) => {
-    assert.match(s.read('dist/demos/est/index.html'), /<a href="\/writing\/a\/">Why estimates drift<\/a>/);
+    assert.match(s.read('dist/demos/est/index.html'), /<a href="\/writing\/a\/"[^>]*>Why estimates drift<\/a>/);
   });
 });
 

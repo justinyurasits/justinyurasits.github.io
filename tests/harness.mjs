@@ -53,6 +53,7 @@ export const ARTICLE = {
 };
 export const PROJECT = {
   title: 'Fixture project', summary: 'A fixture project.', problem: 'A problem.',
+  whatYouCanView: 'An architecture outline.', limitations: 'Tested on one sample set.',
   role: 'built', personallyDid: 'Wrote all of it.', maturity: 'prototype', demo: 'none',
   repository: { visibility: 'private-own' }, architecture: 'A sanitized outline of the parts.',
 };

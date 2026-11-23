@@ -40,6 +40,10 @@ document.querySelectorAll<HTMLElement>('[data-filter-group]').forEach((group) =>
         item.hidden = !match;
         if (match) shown += 1;
       });
+      // A section whose items are all filtered out hides with them, heading included.
+      document.querySelectorAll<HTMLElement>(`[data-filter-section="${name}"]`).forEach((section) => {
+        section.hidden = !section.querySelector(`[data-filter-item="${name}"]:not([hidden])`);
+      });
       if (status) status.textContent = `Showing ${shown} of ${items.length}`;
     });
   });

@@ -1,0 +1,73 @@
+---
+// One Demos & Builds entry (JYC-CAP-05, handoff §7 Demos): the maturity badge and demo
+// availability, topics, title, summary, then definition rows for what a visitor can view,
+// Justin's role and the limitations. The featured build is the large card, with its first
+// screenshot beside the text when it has one.
+import type { CollectionEntry } from 'astro:content';
+import { Image } from 'astro:assets';
+import Status from './Status.astro';
+import Role from './Role.astro';
+import { projectUrl } from '../lib/format';
+import { topicSlug } from '../lib/demos';
+
+interface Props { entry: CollectionEntry<'projects'>; featured?: boolean }
+const { entry, featured = false } = Astro.props;
+const p = entry.data;
+const Heading = featured ? 'h2' : 'h3';
+const shot = featured ? p.screenshots[0] : undefined;
+const headingId = `demo-${entry.id}`;
+---
+<article
+  class:list={['card demo-card', { 'card-lg demo-feature': featured, 'has-visual': shot }]}
+  aria-labelledby={headingId}
+  data-filter-item="demos"
+  data-tags={p.tags.map(topicSlug).join(' ')}
+  data-project={entry.id}
+>
+  <div class="demo-text">
+    {featured && <p class="label-muted demo-kicker">Featured build</p>}
+    <div class="demo-badges">
+      <Status maturity={p.maturity} demo={p.demo} demoUrl={p.demoUrl} registerKey={p.registerKey} />
+      {p.tags.map((t) => <span class="badge badge-tag">{t}</span>)}
+    </div>
+    <Heading class="demo-title" id={headingId}>{p.title}</Heading>
+    <p class="demo-desc">{p.summary}</p>
+    <dl class="def-rows">
+      <dt>What you can view</dt>
+      <dd data-field="whatYouCanView">{p.whatYouCanView}</dd>
+      <dt>Justin's role</dt>
+      <dd><Role role={p.role} personallyDid={p.personallyDid} /></dd>
+      <dt>Limitations</dt>
+      <dd data-field="limitations">{p.limitations}</dd>
+    </dl>
+    <a class="text-link demo-link" href={projectUrl(entry.id)}>Read the case study&nbsp;<span aria-hidden="true">→</span><span class="visually-hidden">: {p.title}</span></a>
+  </div>
+  {shot && (
+    <figure class="demo-visual">
+      <Image src={shot.src} alt={shot.alt} widths={[640, 960, 1280]} sizes="(max-width: 1024px) 100vw, 560px" loading="eager" />
+    </figure>
+  )}
+</article>
+
+<style>
+  .demo-card { display: flex; flex-direction: column; }
+  .demo-text { display: flex; flex-direction: column; flex: 1; }
+  .demo-kicker { margin-bottom: 1rem; }
+  .demo-badges { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 0.6rem; margin-bottom: 1rem; }
+  .demo-title { font-size: var(--fs-card-title); font-weight: 700; letter-spacing: -0.015em; line-height: 1.3; color: var(--ink); margin-bottom: 0.75rem; }
+  .demo-desc { color: var(--body); margin-bottom: 1.5rem; }
+  .def-rows { margin-bottom: 1.5rem; }
+  .def-rows :global(.role) { margin: 0; }
+  .demo-link { margin-top: auto; align-self: flex-start; }
+
+  .demo-feature .demo-title { font-size: var(--fs-section-title); letter-spacing: -0.025em; line-height: 1.15; }
+  .demo-feature .demo-desc { font-size: var(--fs-lead); max-width: 60ch; }
+  .demo-feature.has-visual { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: clamp(2rem, 4vw, 3.5rem); align-items: start; }
+  .demo-visual { margin: 0; aspect-ratio: 4 / 3; border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--line); }
+  .demo-visual img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; }
+
+  @media (max-width: 1024px) {
+    .demo-feature.has-visual { grid-template-columns: 1fr; }
+    .demo-feature .demo-visual { order: -1; aspect-ratio: 16 / 9; }
+  }
+</style>

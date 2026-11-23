@@ -1,14 +1,131 @@
 ---
 // JYC-CAP-09: Solutions. How Justin applies AI to business problems: the Construction OS
-// flagship, the applied solution areas, and a note on scope. Built out in M2.12.
+// flagship, the applied solution areas, and a note on scope (handoff §7, Solutions).
+// Enterprise AI and construction AI carry equal weight; this isn't Construction OS's
+// marketing site. Construction OS shows no status of its own (§5), so the flagship has no
+// badge: its products carry theirs on the Construction OS page.
 import Base from '../../layouts/Base.astro';
+import PlaceholderMedia from '../../components/PlaceholderMedia.astro';
+import { facts } from '../../lib/facts';
+import { slugify } from '../../lib/format';
+import { SOLUTION_AREAS, AREA_KINDS } from '../../data/solution-areas';
+
+const products = Object.values(facts.products).map((p) => ({ name: p.name, anchor: slugify(p.name) }));
 ---
-<Base title="Solutions" description="[COPY]">
-  <h1>Solutions</h1>
-  <p>[COPY]</p>
-  <section aria-labelledby="flagship" data-section="flagship">
-    <h2 id="flagship">Construction OS</h2>
-    <p>[COPY]</p>
-    <p><a href="/solutions/construction-os/">Construction OS</a></p>
-  </section>
+<Base title="Solutions" description="[COPY]" bleed>
+  <div class="page-intro container">
+    <p class="eyebrow">AI applications</p>
+    <h1>Solutions</h1>
+    <p class="lead">[COPY]</p>
+  </div>
+
+  <div class="container sol">
+    <section class="sol-flagship" aria-labelledby="flagship" data-section="flagship">
+      <div class="sol-flagship-intro">
+        <p class="label-muted">Flagship build</p>
+        <h2 id="flagship" class="sol-title">Construction OS</h2>
+        <p class="sol-desc">[COPY]</p>
+      </div>
+      <div class="sol-flagship-media">
+        <PlaceholderMedia label="Construction OS interface" needs="a verified Construction OS screenshot (4:3)" />
+      </div>
+      <ol class="sol-steps">
+        <li>
+          <span class="sol-step" aria-hidden="true">1</span>
+          <h3>The problem</h3>
+          <p>[COPY]</p>
+        </li>
+        <li>
+          <span class="sol-step" aria-hidden="true">2</span>
+          <h3>The approach</h3>
+          <p>[COPY]</p>
+        </li>
+        <li>
+          <span class="sol-step" aria-hidden="true">3</span>
+          <h3>Where it stands</h3>
+          <p>Each product has its own maturity and demo availability:</p>
+          <ul class="sol-products">
+            {products.map((p) => <li><a class="text-link" href={`/solutions/construction-os/#${p.anchor}`}>{p.name}</a></li>)}
+          </ul>
+        </li>
+      </ol>
+      <div class="sol-cta">
+        <a class="btn btn-primary" href="/solutions/construction-os/" data-flagship-link>Explore Construction OS <span aria-hidden="true">→</span></a>
+      </div>
+    </section>
+
+    <section aria-labelledby="areas-title" data-section="areas">
+      <h2 id="areas-title" class="sol-section-title">Applied solution areas</h2>
+      <div class="sol-areas">
+        {SOLUTION_AREAS.map((a) => (
+          <article class="card sol-area" data-area-kind={a.kind}>
+            <p class="label-muted sol-kind">{AREA_KINDS[a.kind]}</p>
+            <h3>{a.title}</h3>
+            <p>{a.description}</p>
+            <a class="text-link" href={a.link.href}>{a.link.label}&nbsp;<span aria-hidden="true">→</span></a>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <aside class="panel sol-note" aria-labelledby="scope-title" data-section="scope">
+      <h2 id="scope-title" class="sol-note-title">A note on scope</h2>
+      <p>[COPY]</p>
+      <a class="text-link" href="/work-with-me/">Work with me&nbsp;<span aria-hidden="true">→</span></a>
+    </aside>
+  </div>
 </Base>
+
+<style>
+  .sol { display: grid; gap: var(--space-section); padding-bottom: var(--space-section); }
+
+  /* Flagship: intro beside a 4:3 screenshot, then three numbered steps, then the CTA. */
+  .sol-flagship {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas: 'intro media' 'steps steps' 'cta cta';
+    gap: clamp(2rem, 4vw, 3.5rem);
+    align-items: center;
+  }
+  .sol-flagship-intro { grid-area: intro; }
+  .sol-flagship-media { grid-area: media; }
+  .sol-steps { grid-area: steps; }
+  .sol-cta { grid-area: cta; }
+  .sol-flagship-intro .label-muted { margin-bottom: 1rem; }
+  .sol-title { font-size: var(--fs-section-title); font-weight: 700; letter-spacing: -0.025em; line-height: 1.15; color: var(--ink); margin-bottom: 1rem; }
+  .sol-desc { font-size: var(--fs-lead); line-height: 1.65; color: var(--body); max-width: 60ch; }
+
+  .sol-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1.5rem, 3vw, 2.5rem); align-self: start; }
+  .sol-steps > li { border-top: 1px solid var(--line); padding-top: 1.5rem; }
+  .sol-step {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 2rem; height: 2rem; border-radius: 999px; margin-bottom: 1rem;
+    background: var(--accent-pale); color: var(--accent-strong);
+    font-size: var(--fs-small); font-weight: 700;
+  }
+  .sol-steps h3 { font-size: var(--fs-card-title); font-weight: 700; color: var(--ink); margin-bottom: 0.5rem; }
+  .sol-steps p { color: var(--body); }
+  .sol-products { margin-top: 0.5rem; }
+  .sol-products .text-link { min-height: 2.25rem; }
+
+  .sol-section-title { font-size: var(--fs-section); font-weight: 700; letter-spacing: -0.025em; line-height: 1.2; color: var(--ink); margin-bottom: 1.5rem; }
+  .sol-areas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; }
+  .sol-area { display: flex; flex-direction: column; }
+  .sol-kind { margin-bottom: 0.75rem; }
+  .sol-area h3 { font-size: var(--fs-card-title); font-weight: 700; letter-spacing: -0.015em; line-height: 1.3; color: var(--ink); margin-bottom: 0.75rem; }
+  .sol-area p:not(.sol-kind) { color: var(--body); margin-bottom: 1.5rem; }
+  .sol-area .text-link { margin-top: auto; }
+
+  .sol-note-title { font-size: var(--fs-card-title); font-weight: 700; color: var(--ink); margin-bottom: 0.5rem; }
+  .sol-note p { color: var(--body); max-width: 70ch; margin-bottom: 0.5rem; }
+
+  @media (max-width: 1024px) {
+    .sol-flagship { grid-template-columns: 1fr; grid-template-areas: 'intro' 'media' 'steps' 'cta'; }
+    .sol-flagship-media :global(.media-placeholder) { aspect-ratio: 16 / 9; }
+    .sol-steps { grid-template-columns: 1fr; }
+    .sol-areas { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 768px) {
+    .sol-cta .btn { width: 100%; }
+  }
+</style>

@@ -1,0 +1,20 @@
+---
+// Placeholder media (handoff §8): one treatment for every visual not yet supplied. The
+// brand check reports every page that carries one: a warning now, a failure from the
+// launch checks, so none ships (M2.18 supplies the media).
+interface Props { label: string; needs: string; ratio?: string }
+const { label, needs, ratio = '4 / 3' } = Astro.props;
+---
+<div class="media-placeholder" role="img" aria-label={`${label} (placeholder)`} data-placeholder-media data-ratio={ratio}>
+  <span>{label}</span>
+  <span class="ph-needs">Replace with {needs}</span>
+</div>
+
+<style>
+  .media-placeholder { width: 100%; }
+  .media-placeholder[data-ratio="4 / 3"] { aspect-ratio: 4 / 3; }
+  .media-placeholder[data-ratio="16 / 10"] { aspect-ratio: 16 / 10; }
+  .media-placeholder[data-ratio="16 / 9"] { aspect-ratio: 16 / 9; }
+  .media-placeholder[data-ratio="2 / 1"] { aspect-ratio: 2 / 1; }
+  .ph-needs { color: var(--muted); font-weight: 400; }
+</style>

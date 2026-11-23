@@ -1,11 +1,14 @@
 ---
-// JYC-CAP-09: the Construction OS page, under Solutions. One section and anchor per product; every
-// status comes from the register, and every live product and demo is linked.
+// JYC-CAP-09: the Construction OS page, under Solutions. Built by the composition rule
+// (BRAND-004 §4): page intro, Justin's role from the register, a card per product with
+// its anchor, and a closing panel. Every status comes from the register, and every live
+// product and demo is linked. Construction OS has no status of its own (§5).
 import Base from '../../../layouts/Base.astro';
 import Status from '../../../components/Status.astro';
 import { facts, productStatus } from '../../../lib/facts';
 import { getPublished } from '../../../lib/content';
 import { projectUrl, slugify } from '../../../lib/format';
+import { ROLE_LABEL } from '../../../lib/status';
 
 const projects = await getPublished('projects');
 const caseStudyFor = (registerKey: string) => projects.find((p) => p.data.registerKey === registerKey);
@@ -21,31 +24,91 @@ const products = Object.entries(facts.products).map(([key, p]) => {
     fromWorkflows,
   };
 });
+const role = facts.constructionOS;
 ---
-<Base title="Construction OS" description="[COPY]">
-  <h1>Construction OS</h1>
-  <p>[COPY]</p>
+<Base title="Construction OS" description="[COPY]" bleed>
+  <div class="page-intro container">
+    <p class="eyebrow">Flagship build</p>
+    <h1>Construction OS</h1>
+    <p class="lead">[COPY]</p>
+  </div>
 
-  <nav aria-label="Products">
-    <ul>{products.map((p) => <li><a href={`#${p.anchor}`}>{p.name}</a></li>)}</ul>
-  </nav>
-
-  {products.map((p) => (
-    <section id={p.anchor} aria-labelledby={`${p.anchor}-title`} data-product={p.key}>
-      <h2 id={`${p.anchor}-title`}>{p.name}</h2>
-      <p>[COPY]</p>
-      {p.fromWorkflows ? (
-        <ul class="workflows">
-          {p.rows.map((w) => (
-            <li>
-              {w.name}: <Status maturity={w.maturity} demo={w.demo} demoUrl={w.demoUrl} registerKey={w.registerKey} />
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p><Status maturity={p.rows[0].maturity} demo={p.rows[0].demo} demoUrl={p.rows[0].demoUrl} registerKey={p.rows[0].registerKey} /></p>
-      )}
-      {p.caseStudy && <p><a href={projectUrl(p.caseStudy.id)}>Case study</a></p>}
+  <div class="container cos">
+    <section class="cos-role" aria-labelledby="role-title">
+      <h2 id="role-title" class="label-muted">Justin's role</h2>
+      <p class="role"><strong data-role={role.role}>{ROLE_LABEL[role.role]}.</strong> <span data-fact="constructionOS.personallyDid">{role.personallyDid}</span></p>
     </section>
-  ))}
+
+    <nav class="cos-jump" aria-label="Products">
+      <ul>{products.map((p) => <li><a class="chip" href={`#${p.anchor}`}>{p.name}</a></li>)}</ul>
+    </nav>
+
+    <div class="cos-products">
+      {products.map((p) => (
+        <section id={p.anchor} class="card card-lg cos-product" aria-labelledby={`${p.anchor}-title`} data-product={p.key}>
+          <div class="cos-product-text">
+            <h2 id={`${p.anchor}-title`}>{p.name}</h2>
+            <p>[COPY]</p>
+            {p.caseStudy && <a class="text-link" href={projectUrl(p.caseStudy.id)}>Case study</a>}
+          </div>
+          {p.fromWorkflows ? (
+            <dl class="def-rows cos-workflows" aria-label={`${p.name} workflows`}>
+              {p.rows.map((w) => (
+                <>
+                  <dt>{w.name}</dt>
+                  <dd><Status maturity={w.maturity} demo={w.demo} demoUrl={w.demoUrl} registerKey={w.registerKey} /></dd>
+                </>
+              ))}
+            </dl>
+          ) : (
+            <dl class="def-rows cos-workflows">
+              <dt>Status</dt>
+              <dd><Status maturity={p.rows[0].maturity} demo={p.rows[0].demo} demoUrl={p.rows[0].demoUrl} registerKey={p.rows[0].registerKey} /></dd>
+            </dl>
+          )}
+        </section>
+      ))}
+    </div>
+
+    <aside class="panel panel-lg cos-close" aria-labelledby="close-title">
+      <h2 id="close-title">[COPY]</h2>
+      <p>[COPY]</p>
+      <a class="btn btn-primary" href="/work-with-me/#construction">Construction AI consulting <span aria-hidden="true">→</span></a>
+    </aside>
+  </div>
 </Base>
+
+<style>
+  .cos { display: grid; gap: var(--space-block); padding-bottom: var(--space-section); }
+
+  .cos-role { max-width: 52rem; border-left: 1.5px solid var(--accent); padding-left: 1.5rem; }
+  .cos-role .label-muted { margin-bottom: 0.5rem; }
+  .cos-role .role { font-size: var(--fs-body-lg); line-height: 1.65; color: var(--body); }
+  .cos-role strong { color: var(--ink); }
+
+  .cos-jump ul { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .cos-jump .chip { text-decoration: none; }
+
+  .cos-products { display: grid; gap: 1.5rem; }
+  .cos-product {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: clamp(1.5rem, 4vw, 3.5rem);
+    align-items: start;
+    scroll-margin-top: 1.5rem;
+  }
+  .cos-product h2 { font-size: var(--fs-section); font-weight: 700; letter-spacing: -0.025em; line-height: 1.2; color: var(--ink); margin-bottom: 0.75rem; }
+  .cos-product-text p { color: var(--body); margin-bottom: 1rem; }
+  .cos-workflows > :nth-child(-n+2) { border-top: 0; }
+  .cos-workflows dt { padding-top: 0.95rem; }
+
+  .cos-close { display: grid; gap: 1rem; justify-items: start; }
+  .cos-close h2 { font-size: var(--fs-section); font-weight: 700; letter-spacing: -0.025em; color: var(--ink); }
+  .cos-close p { color: var(--body); max-width: 60ch; }
+
+  @media (max-width: 768px) {
+    .cos-product { grid-template-columns: 1fr; }
+    .cos-workflows > dd:nth-child(2) { border-top: 0; }
+    .cos-close .btn { justify-self: stretch; }
+  }
+</style>

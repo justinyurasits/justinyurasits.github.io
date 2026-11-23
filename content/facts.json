@@ -17,6 +17,10 @@
     { "key": "preliminaryEstimating", "task": "Preliminary estimating", "before": "~10 hrs", "after": "~2 hrs" },
     { "key": "pmKnowledge", "task": "Project manager knowledge", "before": "months", "after": "day one" }
   ],
+  "constructionOS": {
+    "role": "built",
+    "personallyDid": "Conceived and architected Construction OS and built its major components (the corpus, the Document Workbench and the intake router), drawing on my own construction document library. Ava Yurasits contributed to the build."
+  },
   "products": {
     "documentWorkbench": { "name": "Document Workbench", "maturity": "beta", "demo": "on-request" },
     "constructionIntelligence": { "name": "Construction Intelligence", "maturity": "beta", "demo": "on-request" },
@@ -53,6 +57,7 @@
     "AI-powered",
     "grounded in best practices",
     "industry best practices",
-    "Custom Solutions"
+    "Custom Solutions",
+    "sole designer and builder"
   ]
 }

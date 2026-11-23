@@ -1,5 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import { makeSite, md, ARTICLE } from './harness.mjs';
 import { serve, launch } from './browser.mjs';
 
@@ -102,4 +103,20 @@ test('CAP-09: the check fails when a destination or its anchor is missing', () =
     assert.notEqual(r.code, 0);
     assert.match(r.out, /Old address \/work\.html redirects to \/demos\/, which isn't built/);
   } finally { b.cleanup(); }
+});
+
+test('#31: each migrated draft takes over its old address once it is published', () => {
+  const ids = ['tribal-knowledge', 'eighty-ninety-problem', 'ai-projects-fail'];
+  const published = Object.fromEntries(ids.map((id) => {
+    const src = readFileSync(new URL(`../src/content/articles/${id}.md`, import.meta.url), 'utf8');
+    assert.match(src, /^draft: true$/m, `${id} is migrated as a draft`);
+    assert.match(src, new RegExp(`^replaces: \\["/${id}\\.html"\\]$`, 'm'));
+    return [`src/content/articles/${id}.md`, src.replace(/^draft: true$/m, 'draft: false')];
+  }));
+  const site = makeSite(published);
+  try {
+    const r = site.build();
+    assert.equal(r.code, 0, r.out);
+    for (const id of ids) assert.match(site.read(`dist/${id}.html`), new RegExp(`url=/writing/${id}/`), id);
+  } finally { site.cleanup(); }
 });

@@ -3,7 +3,7 @@
 // contact panel they both end in (handoff §7, Work with me).
 import Base from '../../layouts/Base.astro';
 import Track from '../../components/Track.astro';
-import { REASONS, BOOKING_URL, EMAIL, LINKEDIN_URL, mailto } from '../../lib/contact';
+import { REASONS, BOOKING_URL, EMAIL, LINKEDIN_URL, RESUME_URL, mailto } from '../../lib/contact';
 
 const enterprise = [
   'Contract or C2C',
@@ -36,7 +36,7 @@ const construction = [
       <Track id="enterprise" eyebrow="Track one" title="Enterprise AI Consulting & Leadership" services={enterprise}>
         <Fragment slot="details">
           <p>Remote, based in Boston.</p>
-          <p data-slot="resume">[COPY: résumé PDF link, added in M2.4]</p>
+          <p data-slot="resume"><a class="text-link" href={RESUME_URL} download data-resume>Download my résumé (PDF)&nbsp;<span aria-hidden="true">↓</span></a></p>
         </Fragment>
       </Track>
       <Track id="construction" eyebrow="Track two" title="Construction AI Consulting" services={construction} />

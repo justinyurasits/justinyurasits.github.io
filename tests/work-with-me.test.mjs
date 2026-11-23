@@ -1,5 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { makeSite } from './harness.mjs';
 
 let site, page;
@@ -47,6 +49,16 @@ test('CAP-06: the enterprise track states the engagement types and "remote, base
   for (const s of ['Contract or C2C', 'Fractional AI product leadership', 'Implementation leadership']) assert.match(m, new RegExp(s));
   assert.match(m, /Remote, based in Boston\./);
   assert.match(m, /data-slot="resume"/);
+});
+
+test('CAP-06: the résumé PDF downloads from the enterprise track (M2.4)', () => {
+  const link = track('enterprise').match(/<a[^>]*data-resume[^>]*>/)?.[0];
+  assert.ok(link, 'the enterprise track has a résumé link');
+  assert.match(link, /href="\/justin-yurasits-resume\.pdf"/);
+  assert.match(link, /\sdownload[\s>=]/);
+  assert.doesNotMatch(track('construction'), /data-resume/);
+  const pdf = readFileSync(join(site.dir, 'dist/justin-yurasits-resume.pdf'));
+  assert.equal(pdf.subarray(0, 5).toString('latin1'), '%PDF-');
 });
 
 test('CAP-06: the two tracks have equal weight: same card, same rows, side by side at 1280px', () => {

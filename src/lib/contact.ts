@@ -3,6 +3,9 @@
 export const EMAIL = 'justin@justinyurasits.com';
 export const BOOKING_URL = 'https://cal.com/justinyurasits';
 export const LINKEDIN_URL = 'https://www.linkedin.com/in/justinjyurasits/';
+// The résumé (JYC-CAP-06, M2.4), linked from the enterprise track. Replace the file in
+// public/ to update it; the address stays the same.
+export const RESUME_URL = '/justin-yurasits-resume.pdf';
 
 // One email link per reason, each with a prefilled subject naming it, so inquiries arrive
 // already sorted.

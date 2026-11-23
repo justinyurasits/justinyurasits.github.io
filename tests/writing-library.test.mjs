@@ -81,11 +81,12 @@ test('CAP-02: no published listing shows "Draft"', () => {
 });
 
 test('CAP-02: picking a category shows only its articles and says how many; without JavaScript every article shows', { timeout: 180000 }, async () => {
+  // Only the fixture articles, so the counts don't change as real articles are published.
   const site = makeSite({
     'src/content/articles/e1.md': md({ ...ARTICLE, title: 'E1', category: 'Enterprise AI & Product Leadership', date: '2026-11-03' }),
     'src/content/articles/e2.md': md({ ...ARTICLE, title: 'E2', category: 'Enterprise AI & Product Leadership', date: '2026-11-02' }),
     'src/content/articles/c1.md': md({ ...ARTICLE, title: 'C1', category: 'AI for Construction', date: '2026-11-01' }),
-  });
+  }, { remove: ['src/content/articles'] });
   let server, browser;
   try {
     assert.equal(site.build().code, 0);

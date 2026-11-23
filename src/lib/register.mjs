@@ -25,7 +25,7 @@ const metric = z.object({
 });
 
 const product = z.union([
-  z.object({ name: z.string().min(1), ...status, demoUrl: z.url().optional() }).strict(),
+  z.object({ name: z.string().min(1), ...status, demoUrl: z.url().optional(), demoNote: z.string().min(1).optional() }).strict(),
   z.object({ name: z.string().min(1), statusFrom: z.literal('workflows') }).strict(),
 ]);
 
@@ -34,6 +34,8 @@ const workflow = z.object({
   product: z.string().min(1),
   ...status,
   demoUrl: z.url().optional(),
+  // Shown wherever the demo link appears, e.g. a server that's slow to wake.
+  demoNote: z.string().min(1).optional(),
 }).strict().refine((w) => w.demo !== 'public' || !!w.demoUrl, {
   message: 'demoUrl is required when demo is "public"',
 });
@@ -93,7 +95,7 @@ export function productStatus(register, key) {
   if ('statusFrom' in p) {
     return Object.entries(register.workflows)
       .filter(([, w]) => w.product === key)
-      .map(([k, w]) => ({ key: k, name: w.name, maturity: w.maturity, demo: w.demo, demoUrl: w.demoUrl }));
+      .map(([k, w]) => ({ key: k, name: w.name, maturity: w.maturity, demo: w.demo, demoUrl: w.demoUrl, demoNote: w.demoNote }));
   }
-  return [{ key, name: p.name, maturity: p.maturity, demo: p.demo, demoUrl: p.demoUrl }];
+  return [{ key, name: p.name, maturity: p.maturity, demo: p.demo, demoUrl: p.demoUrl, demoNote: p.demoNote }];
 }

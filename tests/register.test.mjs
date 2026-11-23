@@ -28,10 +28,10 @@ test('project manager knowledge is a Construction OS capability, not a metric', 
   assert.deepEqual(r.constructionOS.capabilities, ['A new PM can ask the system for company policy and instructions from day one.']);
 });
 
-// Spec §5 mapping table, row by row.
+// Spec §5 mapping table, row by row, as Justin confirmed it in Career Facts v5.8 (#28).
 const MAPPING = {
   changeOrderDrafting: ['live', 'public'],
-  invoiceIntake: ['live', 'on-request'], siteSafety: ['live', 'on-request'], fieldReports: ['live', 'on-request'],
+  invoiceIntake: ['live', 'on-request'], siteSafety: ['live', 'public'], fieldReports: ['beta', 'none'],
   documentWorkbench: ['beta', 'on-request'], constructionIntelligence: ['beta', 'on-request'],
   bidComparison: ['beta', 'none'], payAppPreparation: ['beta', 'none'],
   subcontractorCompliance: ['beta', 'none'], clientSelections: ['beta', 'none'],
@@ -45,12 +45,12 @@ test('every product and workflow has maturity and demo matching the §5 mapping 
     assert.ok(e, key);
     assert.deepEqual([e.maturity, e.demo], [maturity, demo], key);
   }
-  // "One public demo, three live, four beta": no single value; shows its workflows'.
+  // "Three live, five beta", two of them public demos: no single value; shows its workflows'.
   const oa = productStatus(r, 'operationsAutomation');
   assert.equal(oa.length, 8);
-  assert.equal(oa.filter((w) => w.demo === 'public').length, 1);
-  assert.equal(oa.filter((w) => w.maturity === 'live').length, 4);
-  assert.equal(oa.filter((w) => w.maturity === 'beta').length, 4);
+  assert.equal(oa.filter((w) => w.demo === 'public').length, 2);
+  assert.equal(oa.filter((w) => w.maturity === 'live').length, 3);
+  assert.equal(oa.filter((w) => w.maturity === 'beta').length, 5);
 });
 
 test('the schema defines basis on metric entries; a missing one is not a schema error', () => {

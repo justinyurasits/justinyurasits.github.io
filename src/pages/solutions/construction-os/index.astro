@@ -8,7 +8,7 @@ import Status from '../../../components/Status.astro';
 import { facts, productStatus } from '../../../lib/facts';
 import { getPublished } from '../../../lib/content';
 import { projectUrl, slugify } from '../../../lib/format';
-import { ROLE_LABEL } from '../../../lib/status';
+import { ROLE_LABEL, MATURITY_LABEL } from '../../../lib/status';
 
 const projects = await getPublished('projects');
 const caseStudyFor = (registerKey: string) => projects.find((p) => p.data.registerKey === registerKey);
@@ -25,6 +25,13 @@ const products = Object.entries(facts.products).map(([key, p]) => {
   };
 });
 const role = facts.constructionOS;
+// A product whose status comes from its workflows gets a count by maturity, from the
+// register: "3 live, 5 beta".
+const summary = (rows: { maturity: string }[]) => {
+  const counts = new Map<string, number>();
+  for (const r of rows) counts.set(r.maturity, (counts.get(r.maturity) ?? 0) + 1);
+  return [...counts].map(([m, n]) => `${n} ${MATURITY_LABEL[m].toLowerCase()}`).join(', ');
+};
 ---
 <Base title="Construction OS" description="[COPY]" bleed>
   <div class="page-intro container">
@@ -58,6 +65,7 @@ const role = facts.constructionOS;
           <div class="cos-product-text">
             <h2 id={`${p.anchor}-title`}>{p.name}</h2>
             <p>[COPY]</p>
+            {p.fromWorkflows && <p class="cos-summary" data-summary={p.key}>{p.rows.length} workflows: {summary(p.rows)}</p>}
             {p.caseStudy && <a class="text-link" href={projectUrl(p.caseStudy.id)}>Case study</a>}
           </div>
           {p.fromWorkflows ? (
@@ -112,6 +120,7 @@ const role = facts.constructionOS;
   .cos-product h2 { font-size: var(--fs-section); font-weight: 700; letter-spacing: -0.025em; line-height: 1.2; color: var(--ink); margin-bottom: 0.75rem; }
   .cos-product-text p { color: var(--body); margin-bottom: 1rem; }
   .cos-workflows > :nth-child(-n+2) { border-top: 0; }
+  .cos-product-text .cos-summary { font-size: var(--fs-small); font-weight: 600; color: var(--ink); }
   .cos-workflows dt { padding-top: 0.95rem; }
 
   .cos-close { display: grid; gap: 1rem; justify-items: start; }

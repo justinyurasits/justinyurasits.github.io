@@ -32,8 +32,8 @@
   "workflows": {
     "changeOrderDrafting": { "name": "Change Order Drafting", "product": "operationsAutomation", "maturity": "live", "demo": "public", "demoUrl": "https://draftconstructionchangeorder.com/" },
     "invoiceIntake": { "name": "Invoice Intake", "product": "operationsAutomation", "maturity": "live", "demo": "on-request" },
-    "siteSafety": { "name": "Site Safety", "product": "operationsAutomation", "maturity": "live", "demo": "on-request" },
-    "fieldReports": { "name": "Field Reports", "product": "operationsAutomation", "maturity": "live", "demo": "on-request" },
+    "siteSafety": { "name": "Site Safety (Fieldscope)", "product": "operationsAutomation", "maturity": "live", "demo": "public", "demoUrl": "https://fieldscope-vm64.onrender.com/", "demoNote": "The first load can take up to a minute while the server wakes." },
+    "fieldReports": { "name": "Field Reports", "product": "operationsAutomation", "maturity": "beta", "demo": "none" },
     "bidComparison": { "name": "Bid Comparison", "product": "operationsAutomation", "maturity": "beta", "demo": "none" },
     "payAppPreparation": { "name": "Pay App Preparation", "product": "operationsAutomation", "maturity": "beta", "demo": "none" },
     "subcontractorCompliance": { "name": "Subcontractor Compliance", "product": "operationsAutomation", "maturity": "beta", "demo": "none" },

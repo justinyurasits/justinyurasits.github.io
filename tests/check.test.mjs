@@ -44,7 +44,7 @@ test('facts register: a rendered fact that drifts fails, naming the page and the
 
 test('facts register: a status that drifts fails', () => {
   const r = check({ '/x/': page({ body: '<span data-status="workflows.siteSafety" data-maturity="beta" data-demo="none">Beta</span>' }) });
-  assert.match(r.errors.join('\n'), /Status drift.*workflows\.siteSafety.*beta\/none.*live\/on-request/);
+  assert.match(r.errors.join('\n'), /Status drift.*workflows\.siteSafety.*beta\/none.*live\/public/);
 });
 
 test('facts register: a measured figure that isn\'t a register value fails on a non-article page', () => {

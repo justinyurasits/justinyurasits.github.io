@@ -1,15 +1,18 @@
 ---
-title: "What Walks Out the Door When Your Best Person Leaves"
+title: 'What Walks Out the Door When Your Best Person Leaves'
 description: "Your best estimator's pricing judgment is one of the most valuable assets in the company. It may also be completely undocumented."
 date: 2026-08-03
-category: "AI for Construction"
-tags: []
-draft: true
+updated:
+  date: 2026-11-23
+  substantive: true
+category: 'AI for Construction'
+tags: ['Construction OS', 'Document Intelligence']
+draft: false
 featured: false
 # Migrated unchanged from the old site (commit 416e8ba) for Justin to re-edit (#31).
 # Once published, the old address below redirects here; while it is a draft, it
 # redirects to the writing library.
-replaces: ["/tribal-knowledge.html"]
+replaces: ['/tribal-knowledge.html']
 ---
 
 Your best estimator has 20 years of pricing knowledge in his head. He can look at a scope and know almost immediately whether the access will be difficult, where the labor will run high, which trade is likely to miss something, and where the estimate needs extra protection. He may not be able to explain every step. He just knows.
@@ -57,13 +60,17 @@ The written process can only cover so much. Experienced people fill the gaps thr
 
 ## Capture it before it becomes urgent
 
+I saw this problem firsthand while managing $1 million to $4 million residential renovations at a $50 million construction company. Even with experienced project managers and established procedures, a surprising amount of operational knowledge depended on knowing who to ask. How should a particular situation be handled? What was the company's standard approach? Where was that requirement documented? Too often, the answer lived with an experienced employee rather than somewhere the rest of the team could easily find it.
+
+That's where I started documenting how the work actually got done. The approach stayed with me, and it became the foundation for the AI-powered system I built afterward, which now holds more than 160 procedures.
+
 The worst time to document someone's knowledge is during their final two weeks with the company. The work should begin while they are still available and actively doing the job.
 
 Watch how they complete real tasks. Ask why they made each decision. Document the rules, exceptions, standards, and warning signs they use. Connect those explanations to real estimates, projects, documents, and outcomes. Then organize the knowledge so other people can find and use it.
 
 The goal is not to replace experienced employees. It is to make what they know available beyond the moments when someone happens to ask them.
 
-A searchable operational knowledge system can give a new PM access to company standards, pricing guidance, workflows, and escalation rules from day one. They will still need experience and supervision. But they no longer have to begin with an empty page.
+In the system I built, a new project manager can ask for company policies and instructions from day one. They still need experience and supervision. But they no longer have to start with an empty page.
 
 Your company's most valuable operational knowledge should not disappear when someone walks out the door.
 

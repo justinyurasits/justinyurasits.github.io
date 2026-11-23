@@ -39,6 +39,15 @@ const role = facts.constructionOS;
       <p class="role"><strong data-role={role.role}>{ROLE_LABEL[role.role]}.</strong> <span data-fact="constructionOS.personallyDid">{role.personallyDid}</span></p>
     </section>
 
+    {role.capabilities.length > 0 && (
+      <section class="cos-capabilities" aria-labelledby="capabilities-title">
+        <h2 id="capabilities-title" class="label-muted">What it does</h2>
+        <ul class="check-list">
+          {role.capabilities.map((c, i) => <li data-fact={`constructionOS.capabilities.${i}`}>{c}</li>)}
+        </ul>
+      </section>
+    )}
+
     <nav class="cos-jump" aria-label="Products">
       <ul>{products.map((p) => <li><a class="chip" href={`#${p.anchor}`}>{p.name}</a></li>)}</ul>
     </nav>
@@ -85,6 +94,9 @@ const role = facts.constructionOS;
   .cos-role .label-muted { margin-bottom: 0.5rem; }
   .cos-role .role { font-size: var(--fs-body-lg); line-height: 1.65; color: var(--body); }
   .cos-role strong { color: var(--ink); }
+
+  .cos-capabilities { max-width: 52rem; }
+  .cos-capabilities .label-muted { margin-bottom: 0.75rem; }
 
   .cos-jump ul { display: flex; flex-wrap: wrap; gap: 0.5rem; }
   .cos-jump .chip { text-decoration: none; }

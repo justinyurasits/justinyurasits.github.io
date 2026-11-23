@@ -11,10 +11,21 @@ test('metrics.json is folded in and removed', () => {
   assert.throws(() => readFileSync(new URL('../content/metrics.json', import.meta.url)));
 });
 
-test('estimating reads "~10 hrs → ~2 hrs"; project manager knowledge reads "months → day one"', () => {
+const claim = (m) => `${m.before} → ${m.after}${m.outcome ? ` ${m.outcome}` : ''}`;
+
+test('the metrics read as Justin confirmed them (#13), each with a basis', () => {
   const m = Object.fromEntries(loadRegister().metrics.map((x) => [x.key, x]));
-  assert.equal(`${m.preliminaryEstimating.before} → ${m.preliminaryEstimating.after}`, '~10 hrs → ~2 hrs');
-  assert.equal(`${m.pmKnowledge.before} → ${m.pmKnowledge.after}`, 'months → day one');
+  assert.deepEqual(Object.keys(m), ['contractPackage', 'changeOrder', 'preliminaryEstimating']);
+  assert.equal(claim(m.contractPackage), 'up to 8 hrs → ~30 min to a package ready for PM review');
+  assert.equal(`${m.changeOrder.task}: ${claim(m.changeOrder)}`, 'Change order package: ~4 hrs → ~1 hr of PM time');
+  assert.equal(claim(m.preliminaryEstimating), '~10 hrs → ~2 hrs');
+  for (const x of Object.values(m)) assert.ok(x.basis, `${x.key} has a basis`);
+});
+
+test('project manager knowledge is a Construction OS capability, not a metric', () => {
+  const r = loadRegister();
+  assert.ok(!r.metrics.some((x) => x.key === 'pmKnowledge'));
+  assert.deepEqual(r.constructionOS.capabilities, ['A new PM can ask the system for company policy and instructions from day one.']);
 });
 
 // Spec §5 mapping table, row by row.

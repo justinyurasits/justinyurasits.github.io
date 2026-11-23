@@ -17,6 +17,8 @@ const metric = z.object({
   task: z.string().min(1),
   before: z.string().min(1),
   after: z.string().min(1),
+  // What the figure measures to, read after it: "~30 min to a package ready for PM review".
+  outcome: z.string().min(1).optional(),
   // Required by §5. A missing basis is reported by the facts check: a warning through M0
   // and M1, a build failure from the M2.8 launch checks. So the schema leaves it optional.
   basis: z.string().min(1).optional(),
@@ -48,6 +50,8 @@ export const registerSchema = z.object({
   constructionOS: z.object({
     role: z.enum(['built', 'led', 'both'], { error: 'role must be one of: built, led, both' }),
     personallyDid: z.string().trim().min(1),
+    // What Construction OS does, one line each, as the register states it.
+    capabilities: z.array(z.string().trim().min(1)).default([]),
   }).strict(),
   products: z.record(z.string(), product),
   workflows: z.record(z.string(), workflow),

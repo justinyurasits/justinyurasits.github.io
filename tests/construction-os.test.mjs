@@ -76,3 +76,12 @@ test('§5: Construction OS\'s role and what Justin did come from the register; "
     assert.match(r.out, /Banned string "sole designer and builder"/);
   } finally { bad.cleanup(); }
 });
+
+test('#13: the Construction OS page states each capability from the register', () => {
+  const site = makeSite();
+  try {
+    const r = site.run('check');
+    assert.equal(r.code, 0, r.out);
+    assert.match(site.read('dist/solutions/construction-os/index.html'), /<li data-fact="constructionOS\.capabilities\.0"[^>]*>A new PM can ask the system for company policy and instructions from day one\.<\/li>/);
+  } finally { site.cleanup(); }
+});

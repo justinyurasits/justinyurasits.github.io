@@ -76,11 +76,13 @@ test('no fees: other monetary figures are allowed', () => {
   assert.deepEqual(r.errors, []);
 });
 
-test('basis: a missing basis is a warning by default and an error when configured', () => {
-  const warn = check({ '/x/': page() });
+test('basis: every metric in the register has one (#13); a missing basis is a warning by default and an error when configured', () => {
+  assert.equal(check({ '/x/': page() }).warnings.filter((w) => /has no basis/.test(w)).length, 0);
+  const reg = { ...register, metrics: register.metrics.map((m, i) => (i === 0 ? { ...m, basis: undefined } : m)) };
+  const warn = check({ '/x/': page() }, { reg });
   assert.equal(warn.errors.length, 0);
-  assert.equal(warn.warnings.filter((w) => /has no basis/.test(w)).length, register.metrics.filter((m) => !m.basis).length);
-  const err = check({ '/x/': page() }, { config: { missingBasis: 'error' } });
+  assert.equal(warn.warnings.filter((w) => /has no basis/.test(w)).length, 1);
+  const err = check({ '/x/': page() }, { reg, config: { missingBasis: 'error' } });
   assert.ok(err.errors.some((e) => /has no basis/.test(e)));
 });
 

@@ -11,6 +11,7 @@
 //                    pages, and the anchor it points at exists there (JYC-CAP-09)
 //   discoverable     every page has a title, description, canonical and social preview and
 //                    is in the sitemap; every article is in the RSS feed
+//   article source   no published article still has the template's placeholder line
 //   brand            the BRAND-004 checks, in scripts/brand-check.mjs
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import { join, relative, resolve } from 'node:path';
@@ -18,6 +19,7 @@ import { fileURLToPath } from 'node:url';
 import { loadRegister, feeValues } from '../src/lib/register.mjs';
 import { OLD_ADDRESSES } from '../src/data/old-addresses.mjs';
 import { brandChecks } from './brand-check.mjs';
+import { PLACEHOLDER } from './article-template.mjs';
 
 const ROOT = resolve(fileURLToPath(new URL('..', import.meta.url)));
 
@@ -80,6 +82,27 @@ const SCOPE_LABEL = { 'construction-os': 'the Construction OS page and case stud
 function inScope(scope, url, html) {
   if (scope === 'construction-os') return url.startsWith('/solutions/construction-os/') || /\sdata-scope="construction-os"/.test(html);
   return false;
+}
+
+// The article files themselves: the template's placeholder line left in a published
+// article fails; in a draft it's a reminder.
+export function articleSourceChecks({ root = ROOT } = {}) {
+  const errors = [];
+  const warnings = [];
+  const dir = join(root, 'src/content/articles');
+  if (!existsSync(dir)) return { errors, warnings };
+  const files = [];
+  const walk = (d) => { for (const f of readdirSync(d)) { const p = join(d, f); statSync(p).isDirectory() ? walk(p) : /\.mdx?$/.test(f) && files.push(p); } };
+  walk(dir);
+  for (const f of files.sort()) {
+    const text = readFileSync(f, 'utf8');
+    if (!text.includes(PLACEHOLDER)) continue;
+    const draft = /^draft:\s*true\s*$/m.test(text.split(/^---\s*$/m)[1] ?? '');
+    const rel = relative(root, f);
+    if (draft) warnings.push(`${rel} still has the template line "${PLACEHOLDER}" Replace it with the article before publishing.`);
+    else errors.push(`${rel} still has the template line "${PLACEHOLDER}" Delete it and write the article there.`);
+  }
+  return { errors, warnings };
 }
 
 export function runChecks({ dist = join(ROOT, 'dist'), register = loadRegister(), config = {}, oldAddresses = OLD_ADDRESSES } = {}) {
@@ -236,8 +259,9 @@ if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.ur
   }
   const { errors, warnings, pages } = runChecks({ config });
   const brand = brandChecks({ root: ROOT, config });
-  errors.push(...brand.errors);
-  warnings.push(...brand.warnings);
+  const source = articleSourceChecks({ root: ROOT });
+  errors.push(...brand.errors, ...source.errors);
+  warnings.push(...brand.warnings, ...source.warnings);
   for (const w of warnings) console.log(`⚠ ${w}`);
   for (const e of errors) console.log(`✗ ${e}`);
   console.log(`\n${pages} pages checked: ${errors.length} problem(s), ${warnings.length} warning(s).`);

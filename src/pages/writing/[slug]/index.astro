@@ -1,10 +1,13 @@
 ---
-// JYC-CAP-03: the article page. The URL comes from the file name, so it stays the same
-// when the article is corrected or retitled.
+// JYC-CAP-03: the article page (handoff §7, Article). The URL comes from the file name, so
+// it stays the same when the article is corrected or retitled. A table of contents for
+// two or more sections; a deck and a byline; references and notes; related projects and
+// expertise; two related articles.
 import { render, getEntries } from 'astro:content';
 import Base from '../../../layouts/Base.astro';
 import { getPublished, showDrafts } from '../../../lib/content';
-import { formatDate, categoryUrl, tagUrl, projectUrl, trackFor } from '../../../lib/format';
+import { publishedArticles, relatedArticles } from '../../../lib/articles';
+import { formatDate, categoryUrl, tagUrl, projectUrl, articleUrl, trackFor } from '../../../lib/format';
 
 export async function getStaticPaths() {
   const articles = await getPublished('articles');
@@ -12,54 +15,146 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
-const { Content } = await render(entry);
+const { Content, headings } = await render(entry);
 const d = entry.data;
-const related = (await getEntries(d.relatedProjects)).filter((p) => showDrafts || !p.data.draft);
+// The article's own section headings; the notes heading the footnotes add isn't one.
+const sections = headings.filter((h) => h.depth === 2 && h.slug !== 'footnote-label');
+const projects = (await getEntries(d.relatedProjects)).filter((p) => showDrafts || !p.data.draft);
+const related = relatedArticles(entry, await publishedArticles());
 const showUpdated = d.updated?.substantive === true;
 const track = trackFor(d.category);
+const iso = (date: Date) => date.toISOString().slice(0, 10);
 ---
 <Base title={d.title} description={d.description} type="article" publishedTime={d.date}
   modifiedTime={showUpdated ? d.updated!.date : undefined}>
-  <article>
-    <header>
-      {d.draft && <p><strong>Draft</strong>: visible in local preview only.</p>}
-      <p><a href={categoryUrl(d.category)}>{d.category}</a></p>
-      <h1>{d.title}</h1>
-      <p>{d.description}</p>
-      <p>
-        <time datetime={d.date.toISOString().slice(0, 10)}>{formatDate(d.date)}</time>
-        {showUpdated && <>, <span class="updated">Updated <time datetime={d.updated!.date.toISOString().slice(0, 10)}>{formatDate(d.updated!.date)}</time></span></>}
-      </p>
-      {d.tags.length > 0 && (
-        <ul class="tags" aria-label="Tags">
-          {d.tags.map((t) => <li><a href={tagUrl(t)}>{t}</a></li>)}
-        </ul>
+  <div class:list={['art', { 'has-toc': sections.length >= 2 }]}>
+    <article class="art-body">
+      <header class="art-header">
+        <div class="art-kicker">
+          <p class="eyebrow"><a href={categoryUrl(d.category)}>{d.category}</a></p>
+          {d.draft && <span class="badge badge-muted" title="Visible in local preview only">Draft</span>}
+        </div>
+        <h1>{d.title}</h1>
+        <p class="art-deck">{d.deck ?? d.description}</p>
+        <p class="art-byline">
+          <span class="art-author">Justin Yurasits</span>
+          <span aria-hidden="true">·</span>
+          <time datetime={iso(d.date)}>{formatDate(d.date)}</time>
+          {showUpdated && <><span aria-hidden="true">·</span><span class="updated">Updated <time datetime={iso(d.updated!.date)}>{formatDate(d.updated!.date)}</time></span></>}
+        </p>
+        {d.tags.length > 0 && (
+          <ul class="art-tags" aria-label="Tags">
+            {d.tags.map((t) => <li><a class="badge badge-tag" href={tagUrl(t)}>{t}</a></li>)}
+          </ul>
+        )}
+      </header>
+
+      {sections.length >= 2 && (
+        <nav class="art-toc" aria-labelledby="toc-title" data-toc>
+          <h2 id="toc-title" class="label-muted">Contents</h2>
+          <ol class="art-toc-list">{sections.map((h) => <li><a href={`#${h.slug}`}>{h.text}</a></li>)}</ol>
+        </nav>
       )}
-    </header>
 
-    <Content />
+      <div class="art-prose">
+        <Content />
+      </div>
 
-    {d.references.length > 0 && (
-      <section aria-labelledby="references">
-        <h2 id="references">References</h2>
-        <ol>
-          {d.references.map((r) => <li>{r.url ? <a href={r.url}>{r.title}</a> : r.title}</li>)}
-        </ol>
+      {d.references.length > 0 && (
+        <section class="art-notes" aria-labelledby="references">
+          <h2 id="references">References</h2>
+          <ol>
+            {d.references.map((r) => <li>{r.url ? <a href={r.url}>{r.title}</a> : r.title}</li>)}
+          </ol>
+        </section>
+      )}
+
+      {projects.length > 0 && (
+        <section class="art-notes" aria-labelledby="related-projects">
+          <h2 id="related-projects">Related projects</h2>
+          <ul>
+            {projects.map((p) => <li><a href={projectUrl(p.id)}>{p.data.title}</a></li>)}
+          </ul>
+        </section>
+      )}
+
+      <section class="art-notes" aria-labelledby="related-expertise">
+        <h2 id="related-expertise">Related expertise</h2>
+        <p><a href={track.href}>{track.label}</a></p>
       </section>
-    )}
 
-    {related.length > 0 && (
-      <section aria-labelledby="related-projects">
-        <h2 id="related-projects">Related projects</h2>
-        <ul>
-          {related.map((p) => <li><a href={projectUrl(p.id)}>{p.data.title}</a></li>)}
-        </ul>
-      </section>
-    )}
-
-    <section aria-labelledby="related-expertise">
-      <h2 id="related-expertise">Related expertise</h2>
-      <p><a href={track.href}>{track.label}</a></p>
-    </section>
-  </article>
+      {related.length > 0 && (
+        <section class="art-related" aria-labelledby="related-articles" data-section="related-articles">
+          <h2 id="related-articles">Related articles</h2>
+          <ul class="art-related-list">
+            {related.map((a) => (
+              <li>
+                <a class="card art-related-card" href={articleUrl(a.id)} data-article={a.id}>
+                  <span class="label-muted">{a.data.category}</span>
+                  <span class="art-related-title">{a.data.title}</span>
+                  <span class="art-related-desc">{a.data.description}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+    </article>
+  </div>
 </Base>
+
+<style>
+  /* 200px sticky table of contents beside a 44rem reading column (handoff §7). The
+     contents follow the header in the markup; on wide screens the article is a subgrid and
+     the contents move to the left column. Below 1024px they stay under the header. */
+  .art { display: grid; grid-template-columns: minmax(0, 44rem); justify-content: center; }
+  .art.has-toc { grid-template-columns: 200px minmax(0, 44rem); column-gap: clamp(2.5rem, 5vw, 4.5rem); }
+  .art .art-body { display: grid; grid-template-columns: subgrid; grid-column: 1 / -1; align-content: start; max-width: none; }
+  .art-body > * { grid-column: -2; min-width: 0; }
+  .art.has-toc .art-toc { grid-column: 1; grid-row: 1 / span 8; position: sticky; top: 2rem; align-self: start; padding-top: 0.5rem; }
+  .art-toc h2 { margin: 0 0 0.75rem; font-size: var(--fs-label); }
+  .art-toc ol { display: grid; gap: 0.15rem; border-left: 1px solid var(--line); }
+  .art-toc li + li { margin-top: 0; }
+  .art-toc a {
+    display: block; padding: 0.4rem 0 0.4rem 1rem; margin-left: -1px; border-left: 1.5px solid transparent;
+    font-size: var(--fs-small); line-height: 1.45; color: var(--body); text-decoration: none;
+    transition: color var(--ease), border-color var(--ease);
+  }
+  .art-toc a:hover { color: var(--ink); border-left-color: var(--accent); }
+
+  .art-kicker { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem; }
+  .art-kicker .eyebrow { margin: 0; font-size: var(--fs-label); line-height: 1.4; }
+  .art-kicker .eyebrow a { color: inherit; text-decoration: none; }
+  .art-kicker .eyebrow a:hover { color: var(--accent-strong); }
+  .art-header h1 { font-size: var(--fs-article-title); }
+  .art-deck { font-family: var(--font-serif); font-style: italic; font-size: var(--fs-lead); line-height: 1.6; color: var(--body); margin: 1.25rem 0 0; }
+  .art-byline { display: flex; flex-wrap: wrap; gap: 0.25rem 0.5rem; margin: 1.25rem 0 0; font-size: var(--fs-small); line-height: 1.5; color: var(--muted); }
+  .art-author { color: var(--ink); font-weight: 600; }
+  .art-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.25rem; }
+  .art-tags li + li { margin-top: 0; }
+  .art-tags .badge { text-decoration: none; }
+  .art-tags .badge:hover { color: var(--ink); border-color: var(--ink); }
+  .art-header { padding-bottom: 2rem; margin-bottom: 2rem; border-bottom: 1px solid var(--line); }
+
+  .art-notes { margin-top: var(--space-block); padding-top: 1.5rem; border-top: 1px solid var(--line); }
+  .art-notes h2 { font-size: var(--fs-card-title); margin-top: 0; }
+  .art-notes p, .art-notes li { font-size: var(--fs-ui); line-height: 1.6; }
+
+  .art-related { margin-top: var(--space-block); }
+  .art-related h2 { margin-top: 0; }
+  .art-related-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
+  .art-related li + li { margin-top: 0; }
+  .art-related-card { display: flex; flex-direction: column; gap: 0.5rem; height: 100%; padding: 1.5rem; color: inherit; text-decoration: none; transition: border-color var(--ease); }
+  .art-related-card:hover { border-color: var(--line-strong); }
+  .art-related-title { font-size: var(--fs-card-title); font-weight: 700; letter-spacing: -0.015em; line-height: 1.3; color: var(--ink); }
+  .art-related-card:hover .art-related-title { color: var(--accent-strong); }
+  .art-related-desc { font-size: var(--fs-ui); line-height: 1.55; color: var(--body); }
+
+  @media (max-width: 1024px) {
+    .art.has-toc { grid-template-columns: minmax(0, 44rem); }
+    .art.has-toc .art-toc { grid-column: -2; grid-row: auto; position: static; margin-bottom: 2rem; padding: 1.25rem 1.5rem; background: var(--panel); border-radius: var(--radius-md); }
+  }
+  @media (max-width: 768px) {
+    .art-related-list { grid-template-columns: 1fr; }
+  }
+</style>

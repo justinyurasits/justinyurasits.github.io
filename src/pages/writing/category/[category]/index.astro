@@ -1,4 +1,6 @@
 ---
+// JYC-CAP-02: one category's articles. Built by the composition rule (BRAND-004 §4): the
+// page intro and the library's article rows.
 import Base from '../../../../layouts/Base.astro';
 import ArticleList from '../../../../components/ArticleList.astro';
 import { publishedArticles, inCategory, categories } from '../../../../lib/articles';
@@ -9,8 +11,18 @@ export function getStaticPaths() {
 const { name } = Astro.props;
 const articles = inCategory(await publishedArticles(), name);
 ---
-<Base title={name} description={`Articles in ${name}.`}>
-  <p><a href="/writing/">Writing</a></p>
-  <h1>{name}</h1>
-  <ArticleList articles={articles} />
+<Base title={name} description={`Articles in ${name}.`} bleed>
+  <div class="page-intro container">
+    <p class="eyebrow">Category</p>
+    <h1>{name}</h1>
+    <p class="lead">{articles.length === 1 ? '1 article' : `${articles.length} articles`}</p>
+  </div>
+  <div class="container listing">
+    <ArticleList articles={articles} />
+    <p><a class="text-link" href="/writing/"><span aria-hidden="true">←</span>&nbsp;All writing</a></p>
+  </div>
 </Base>
+
+<style>
+  .listing { display: grid; gap: var(--space-block); padding-bottom: var(--space-section); }
+</style>

@@ -2,6 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
+import { spawnSync } from 'node:child_process';
 import { makeSite, md, ARTICLE, freePort } from './harness.mjs';
 
 // A 1×1 PNG.
@@ -94,6 +95,9 @@ test('CAP-04: npm run preview shows a draft locally', { timeout: 120000 }, async
     assert.match(html, /Work in progress/);
     assert.match(html, /Draft/);
   } finally {
+    // Astro 7 can move the dev server into the background, so stopping the process we
+    // started isn't enough: ask Astro to stop the one it runs for this site.
+    spawnSync('npx', ['astro', 'dev', 'stop'], { cwd: site.dir, stdio: 'ignore' });
     try { process.kill(-dev.pid, 'SIGTERM'); } catch {}
     dev.stdout.destroy(); dev.stderr.destroy();
     site.cleanup();

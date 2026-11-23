@@ -4,7 +4,7 @@ audience: "Construction owners, PMs, operations managers and others ready to go 
 level: "Hands-on"
 duration: "4 hours"
 format: "In person (Boston area) or online"
-prerequisites: "A Claude Pro subscription."
+prerequisites: "Claude Pro required."
 schedule: "Dates to be announced."
 description: "Learn to configure a useful AI assistant, give it business context, test its behavior, and improve it."
 formatNote: "A guided workshop on a fictional company, Summit Ridge Builders. Everyone works from the same fictional materials, and no one uploads their own company's confidential data."

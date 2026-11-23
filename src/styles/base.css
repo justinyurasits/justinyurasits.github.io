@@ -443,6 +443,19 @@ h1, h2, h3, h4 { text-wrap: balance; color: var(--ink); }
 .page figcaption { font-size: var(--fs-small); color: var(--muted); margin-top: 0.5rem; }
 .page article { max-width: 44rem; }
 .page article p, .page article li { font-size: var(--fs-prose); line-height: 1.75; }
+/* Tables in an article scroll inside the reading column instead of widening the page. */
+.page article table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: var(--fs-small);
+  line-height: 1.5;
+}
+.page article th, .page article td { padding: 0.65rem 0.9rem; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; min-width: 8rem; }
+.page article th { color: var(--ink); font-weight: 600; border-bottom-color: var(--line-strong); }
+.page article td { color: var(--body); }
 
 /* ---------------------------------------------------------------- responsive */
 @media (max-width: 1024px) {

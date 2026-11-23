@@ -43,6 +43,12 @@ export const registerSchema = z.object({
   usage: z.string(),
   library: z.record(z.string(), z.union([z.string(), z.number()])),
   metrics: z.array(metric),
+  // Construction OS's role and what Justin personally did (§5). It has no status of its
+  // own: only its products' and workflows'.
+  constructionOS: z.object({
+    role: z.enum(['built', 'led', 'both'], { error: 'role must be one of: built, led, both' }),
+    personallyDid: z.string().trim().min(1),
+  }).strict(),
   products: z.record(z.string(), product),
   workflows: z.record(z.string(), workflow),
   // Justin's fees and service pricing. Never shown on a page (§5, no fees).

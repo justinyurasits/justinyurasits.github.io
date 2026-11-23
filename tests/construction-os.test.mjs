@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { makeSite, md, PROJECT } from './harness.mjs';
+import { makeSite, md, PROJECT, ARTICLE } from './harness.mjs';
 
 const ANCHORS = ['document-workbench', 'construction-intelligence', 'operations-automation', 'project-intelligence'];
 
@@ -28,6 +28,51 @@ test('CAP-09: a product with a published case study links to it', () => {
     const r = site.run('check');
     assert.equal(r.code, 0, r.out);
     const section = site.read('dist/solutions/construction-os/index.html').split('<section id="document-workbench"')[1].split('</section>')[0];
-    assert.match(section, /<a href="\/demos\/workbench\/">Case study<\/a>/);
+    assert.match(section, /<a class="text-link" href="\/demos\/workbench\/"[^>]*>Case study<\/a>/);
   } finally { site.cleanup(); }
+});
+
+test('CAP-09: each solution area says whether it\'s an existing build, a consulting service or a possible custom engagement', () => {
+  const site = makeSite();
+  try {
+    assert.equal(site.build().code, 0);
+    const h = site.read('dist/solutions/index.html');
+    const areas = [...h.matchAll(/<article[^>]*data-area-kind="([^"]+)"[^>]*>\s*<p[^>]*>([^<]+)<\/p>/g)];
+    assert.ok(areas.length >= 3, 'the applied solution areas');
+    const LABEL = { 'existing-build': 'Existing build', 'consulting-service': 'Consulting service', 'custom-engagement': 'Possible custom engagement' };
+    for (const [, kind, label] of areas) assert.equal(label, LABEL[kind]);
+  } finally { site.cleanup(); }
+});
+
+test('CAP-09: the Construction OS flagship links to the Construction OS page and shows no status of its own', () => {
+  const site = makeSite();
+  try {
+    const r = site.run('check');
+    assert.equal(r.code, 0, r.out);
+    const flagship = site.read('dist/solutions/index.html').split('data-section="flagship"')[1].split('</section>')[0];
+    assert.match(flagship, /<a class="btn btn-primary" href="\/solutions\/construction-os\/"/);
+    assert.doesNotMatch(flagship, /badge|data-status/, 'no status for Construction OS itself');
+    // On its own page, every status sits inside a product's section.
+    const page = site.read('dist/solutions/construction-os/index.html');
+    const outside = page.replace(/<section id="[a-z-]+" class="card[\s\S]*?<\/section>/g, '');
+    assert.doesNotMatch(outside, /class="maturity badge|data-status=/);
+  } finally { site.cleanup(); }
+});
+
+test('§5: Construction OS\'s role and what Justin did come from the register; "sole designer and builder" fails the check', () => {
+  const site = makeSite();
+  try {
+    assert.equal(site.run('check').code, 0);
+    const register = JSON.parse(site.read('content/facts.json')).constructionOS;
+    assert.equal(register.role, 'built');
+    assert.match(register.personallyDid, /^Conceived and architected Construction OS .*Ava Yurasits contributed to the build\.$/);
+    const h = site.read('dist/solutions/construction-os/index.html');
+    assert.match(h, /<strong data-role="built"[^>]*>Built\.<\/strong> <span data-fact="constructionOS\.personallyDid"[^>]*>Conceived and architected Construction OS/);
+  } finally { site.cleanup(); }
+  const bad = makeSite({ 'src/content/articles/x.md': md({ ...ARTICLE }, 'Justin is the sole designer and builder of Construction OS.') });
+  try {
+    const r = bad.run('check');
+    assert.notEqual(r.code, 0);
+    assert.match(r.out, /Banned string "sole designer and builder"/);
+  } finally { bad.cleanup(); }
 });
